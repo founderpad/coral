@@ -12,7 +12,7 @@ import { PointSeparator } from './Separators';
 type Props = BoxProps & {
 	label?: any;
 	defaultSrc?: string;
-	onUpload: (file: File) => void;
+	onUpload: (file: FileWithPath) => void;
 	onDelete: (path: string) => void;
 };
 

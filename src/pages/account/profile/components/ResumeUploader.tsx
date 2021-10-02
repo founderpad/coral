@@ -1,4 +1,5 @@
 import FileUploader from "components/shared/FileUploader";
+import { FileWithPath } from "file-selector";
 import { User_Profile, useUpdateResumeMutation } from "generated/graphql";
 import gql from "graphql-tag";
 import { useCurrentUser } from "hooks/auth";
@@ -40,7 +41,7 @@ const ResumeUploader = (): JSX.Element => {
         }
     });
 
-    const uploadResume = async (resume: File) => {
+    const uploadResume = async (resume: FileWithPath) => {
         const extension = resume?.name.split('.').pop();
         const timestamp = new Date().getTime();
         const filePath = `/public/resumes/${auth.getClaim('x-hasura-user-id') as string}.${extension}?v=` + timestamp;

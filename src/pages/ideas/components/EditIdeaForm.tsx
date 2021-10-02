@@ -4,7 +4,6 @@ import SubmitButton from 'components/buttons/SubmitButton';
 import { InputField } from 'components/input/InputFields';
 import { SelectField } from 'components/input/SelectFields';
 import { TextareaField } from 'components/input/TextareaFields';
-import FileUploader from 'components/shared/FileUploader';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { TIdea } from 'types/idea';
@@ -134,7 +133,7 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 					</FormHelperText>
 				</FormControl>
 
-				<Stack
+				{/* <Stack
 					w={'full'}
 					flex={1}
 					justifyContent={'flex-start'}
@@ -142,9 +141,9 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 					direction={{ base: 'column', sm: 'row' }}
 				>
 					<FileUploader label="Business Plan" />
-					{/* <FileUploader label="Pitch Deck" /> */}
+					<FileUploader label="Pitch Deck" />
 					<FileUploader label="Other" />
-				</Stack>
+				</Stack> */}
 
 				<SubmitButton
 					label="Update your idea"
