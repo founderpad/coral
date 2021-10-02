@@ -2,7 +2,7 @@ import { Box, Flex, HStack, Text } from '@chakra-ui/layout';
 import { BoxProps, Icon, IconButton } from '@chakra-ui/react';
 import { DeleteButton } from 'components/buttons/DeleteButton';
 import { PrimaryButton } from 'components/buttons/PrimaryButtons';
-import BaseLink, { PrimaryLink } from 'components/links';
+import { PrimaryLink } from 'components/links';
 import React, { useCallback, useState } from 'react';
 import { FileWithPath, useDropzone } from 'react-dropzone';
 import { IoCheckmarkCircleSharp, IoCloseSharp, IoCloudUploadSharp, IoDocumentSharp } from 'react-icons/io5';
@@ -140,7 +140,7 @@ const AddedFile = ({ src, onDelete }: { src: string, onDelete: (src: string) => 
 		<HStack alignItems={'center'}>
 			<Icon as={IoDocumentSharp} color={'fpGrey.300'} fontSize={'xx-large'} />
 			<Flex flexDirection={'column'}>
-				<PrimaryLink href={process.env.NEXT_PUBLIC_STORAGE_URL + src} isExternal>View</PrimaryLink>
+				<PrimaryLink title={'View file'} href={process.env.NEXT_PUBLIC_STORAGE_URL + src} isExternal>View</PrimaryLink>
 				<Text color={'fpGrey.300'} fontSize={'xs'}>Added {formatTimestamp(src?.split('?v=')[1])}</Text>
 			</Flex>
 		</HStack>
