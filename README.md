@@ -1,6 +1,8 @@
 Coral is [founderpad's](https://www.founderpad.com/) client facing application, which is used by founders alike to create and seek feedback from the community on their ideas.
 
-It's built using React (Next.js) on the client side, which interfaces with a GraphQL API ([Hasura](https://hasura.io/)) and Postgres database on the backend. Currently we are using [Nhost](https://nhost.io/) (an open source alternative to Firebase) to manage our cloud infrastructure. As the project and team expands, we will migrate everything to AWS and utilise containerization to handle all of the dev ops needs. 
+It's built using React ([Next.js](https://nextjs.org/)) on the client side, which interfaces with a GraphQL API ([Hasura](https://hasura.io/)) and Postgres database on the backend. Currently we are using [Nhost](https://nhost.io/) (an open source alternative to Firebase) to manage our cloud infrastructure. As the project and team expands, we will migrate everything to AWS and utilise containerization to handle all of the dev ops needs.
+
+It is deployed to [Vercel](https://vercel.com/) via our CI/CD pipeline which uses [GitHub Actions](https://github.com/features/actions).
 
 ## Getting Started
 
