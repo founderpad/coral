@@ -82,9 +82,6 @@ exports[`Login form matches snapshot 1`] = `
             value=""
           />
         </div>
-        <div>
-          TEST!!!!!!!!
-        </div>
         <button
           aria-label="submit"
           class="chakra-button css-ix34nz"

@@ -35,8 +35,6 @@ const LoginForm = (): JSX.Element => {
 					isRequired
 				/>
 
-				<div>TEST!!!!!!!!</div>
-
 				<SubmitButton
 					label="Login now"
 					isLoading={isSubmitting}
