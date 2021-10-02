@@ -4,6 +4,7 @@ import {
 	useMutation,
 	useQuery
 } from '@apollo/client';
+import { Ideas } from 'generated/graphql';
 import {
 	CREATE_IDEA,
 	DELETE_IDEA,
@@ -88,12 +89,12 @@ export const useGetIdeas = (): QueryResult<{
 	};
 };
 
-export const useGetIdea = (id: string): QueryResult<TIdea, any> => {
+export const useGetIdea = (id: string): QueryResult<Ideas, any> => {
 	const response = useQuery(GET_IDEA, {
 		variables: { id }
 	});
 
-	return { ...response, data: response.data?.idea as TIdea };
+	return { ...response, data: response.data?.idea };
 };
 
 // export const useUpdateIdea = (idea: TIdea): MutationTuple<any, any> => {

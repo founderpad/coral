@@ -19,6 +19,7 @@ const ExperienceForm = (userProfile: User_Profile): ReactElement<any> => {
     const dispatch = useDispatch();
     const isProfileComplete = useCurrentUser().user_profile.is_complete;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { __typename, user_id, ...rest } = userProfile;
     const [selectedSkills, setSelectedSkills] = useState<string[]>(
         userProfile.skills ?? []

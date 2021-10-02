@@ -4,7 +4,7 @@ import { DeleteButton } from 'components/buttons/DeleteButton';
 import { PrimaryButton } from 'components/buttons/PrimaryButtons';
 import { PrimaryLink } from 'components/links';
 import React, { useCallback, useState } from 'react';
-import { FileWithPath, useDropzone } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 import { IoCheckmarkCircleSharp, IoCloseSharp, IoCloudUploadSharp, IoDocumentSharp } from 'react-icons/io5';
 import { formatTimestamp } from 'utils/validators';
 import { PointSeparator } from './Separators';
@@ -12,7 +12,7 @@ import { PointSeparator } from './Separators';
 type Props = BoxProps & {
 	label?: any;
 	defaultSrc?: string;
-	onUpload: (file: FileWithPath) => void;
+	onUpload: (file: File) => void;
 	onDelete: (path: string) => void;
 };
 
@@ -52,14 +52,14 @@ const FileUploader = (props: Props): JSX.Element => {
 		onDrop
 	});
 
-	const onRemoveFile = (file: FileWithPath) => () => {
+	const onRemoveFile = (file: File) => () => {
 		const newFiles = [...myFiles];
 		newFiles.splice(newFiles.indexOf(file), 1);
 		setMyFiles(newFiles);
 		setError(undefined);
 	};
 
-	const files = myFiles.map((file: FileWithPath) => {
+	const files = myFiles.map((file: File) => {
 		return (
 			<Flex key={file.name} justifyContent={'space-between'} w={'full'} alignItems={'center'} flex={1}>
 				<Flex alignItems={'center'}>

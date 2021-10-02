@@ -10,7 +10,7 @@ const IdeasActions = ({
 }: {
     total: number;
     pageSize: number;
-}) => {
+}): JSX.Element => {
 
     return (
         <>

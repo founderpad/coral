@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
-import BaseLink, { PrimaryLink } from 'components/links';
+import { PrimaryLink } from 'components/links';
 import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
 
@@ -12,9 +12,9 @@ const ProfileSectionLabel = memo(
 		</Flex>
 	));
 
-const LinkSectionLabel = ({ label, link, icon }: { label: string, link: string, icon: IconType }) => (
+const LinkSectionLabel = ({ label, link, icon }: { label: string, link: string, icon: IconType }): JSX.Element => (
 	<ProfileSectionLabel label={label} icon={icon}>
-		{link && <PrimaryLink href={link} isExternal>{label}</PrimaryLink>}
+		{link && <PrimaryLink title={'Profile link'} href={link} isExternal>{label}</PrimaryLink>}
 	</ProfileSectionLabel>
 );
 
