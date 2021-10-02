@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logged out page matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-wyca3c"
+  >
+    <div
+      class="css-1n3ziv8"
+    >
+      <div
+        class="chakra-stack css-1hgee5k"
+      >
+        <img
+          alt="logo"
+          class="chakra-image css-1b7p44u"
+          src="/logo.svg"
+        />
+        <h2
+          class="chakra-heading css-1zp44w"
+        >
+          You've logged out successfully
+        </h2>
+        <p
+          class="chakra-text css-1mjwwnw"
+        />
+        <a
+          class="chakra-link css-1d7bnbh"
+          href="/login"
+          title="Log in"
+        >
+          Click here to log in
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
