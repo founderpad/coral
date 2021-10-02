@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageLayout layout matches PageLayout snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1f8qwia"
+  >
+    <header
+      class="css-12h5w9k"
+    >
+      <div
+        class="css-1lekzkb"
+      >
+        <h4
+          class="chakra-heading css-djevj3"
+        >
+          Page layout test
+        </h4>
+      </div>
+      <h4
+        class="chakra-text css-ax9bdp"
+      />
+    </header>
+    <main
+      class="css-kwwp0a"
+    >
+      <div
+        class="css-0"
+      >
+        Children
+      </div>
+    </main>
+  </div>
+</DocumentFragment>
+`;

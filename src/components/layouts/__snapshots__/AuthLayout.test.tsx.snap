@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthLayout layout matches AuthLayout snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-wyca3c"
+  >
+    <div
+      class="css-1n3ziv8"
+    >
+      <div
+        class="chakra-stack css-1hgee5k"
+      >
+        <img
+          alt="logo"
+          class="chakra-image__placeholder css-1b7p44u"
+        />
+        <h2
+          class="chakra-heading css-1zp44w"
+        >
+          Login
+        </h2>
+        <p
+          class="chakra-text css-1mjwwnw"
+        >
+          Pick up where you left off
+        </p>
+        <form
+          aria-label="loginform"
+          autocomplete="off"
+          id="login-form"
+          name="loginform"
+          novalidate=""
+        >
+          <div
+            class="chakra-stack css-mdhvlu"
+          >
+            <div
+              class="chakra-stack css-1bfctve"
+            >
+              <div
+                class="chakra-form-control css-1cid7j9"
+                role="group"
+              >
+                <label
+                  class="chakra-form__label css-1cz0ncb"
+                  for="email"
+                  id="email-label"
+                >
+                  Email
+                  <span
+                    aria-hidden="true"
+                    class="chakra-form__required-indicator css-0"
+                    role="presentation"
+                  >
+                    *
+                  </span>
+                </label>
+                <input
+                  aria-label="email"
+                  aria-required="true"
+                  class="chakra-input css-vnjr4l"
+                  control="[object Object]"
+                  errortext="Please enter a valid email"
+                  id="email"
+                  label="Email"
+                  name="email"
+                  placeholder="Email"
+                  required=""
+                  type="email"
+                  value=""
+                />
+              </div>
+              <div
+                class="chakra-form-control css-1cid7j9"
+                role="group"
+              >
+                <label
+                  class="chakra-form__label css-1cz0ncb"
+                  for="password"
+                  id="password-label"
+                >
+                  Password
+                  <span
+                    aria-hidden="true"
+                    class="chakra-form__required-indicator css-0"
+                    role="presentation"
+                  >
+                    *
+                  </span>
+                </label>
+                <input
+                  aria-label="password"
+                  aria-required="true"
+                  class="chakra-input css-vnjr4l"
+                  control="[object Object]"
+                  errortext="Please enter a valid password between 6 and 20 characters."
+                  id="password"
+                  label="Password"
+                  name="password"
+                  placeholder="Password"
+                  required=""
+                  rules="[object Object]"
+                  type="password"
+                  value=""
+                />
+              </div>
+              <button
+                aria-label="submit"
+                class="chakra-button css-1wolwds"
+                disabled=""
+                name="submit"
+                type="submit"
+              >
+                Login now
+              </button>
+              <div
+                class="css-1l89r0h"
+                spacing="6"
+              >
+                <p
+                  class="chakra-text css-135297o"
+                >
+                  Don't have an account?
+                </p>
+                 
+                <a
+                  class="chakra-link css-yye61v"
+                  href="/register"
+                  title="Link to register an account"
+                >
+                  Create one here
+                </a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

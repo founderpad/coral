@@ -1,0 +1,105 @@
+import Form from "components/form/Form";
+import { InputField } from "components/input/InputFields";
+import { SelectField } from "components/input/SelectFields";
+import ModalDrawerContext from "context/ModalDrawerContext";
+import { Users, Users_Set_Input, useUpdateUserPersonalDetailsMutation } from "generated/graphql";
+import { useCurrentUser } from "hooks/auth";
+import { useSuccessNotification } from "hooks/toast";
+import { ReactElement, useContext } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { updatePersonalDetails } from "slices/auth";
+import { countriesList } from "utils/Constants";
+import { auth } from "utils/nhost";
+
+const PersonalDetailsForm = (): ReactElement<any> => {
+    const user = useCurrentUser();
+
+    const dispatch = useDispatch();
+    const { setModalDrawer } = useContext(ModalDrawerContext);
+    const showSuccessNotification = useSuccessNotification();
+
+    const {
+        handleSubmit,
+        control,
+        getValues,
+        formState: { errors, isSubmitting, isValid }
+    } = useForm<Pick<Users_Set_Input, 'first_name' | 'last_name' | 'country'>>({
+        mode: 'all',
+        defaultValues: {
+            ...user
+        }
+    });
+
+    const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
+        variables: {
+            id: auth.getClaim('x-hasura-user-id') as string,
+            userPersonalDetails: {
+                first_name: getValues('first_name'),
+                last_name: getValues('last_name'),
+                country: getValues('country')
+            }
+        },
+        onCompleted: (data) => {
+            const user = data.user;
+            dispatch(updatePersonalDetails(user as Users));
+            setModalDrawer({
+                isOpen: false
+            });
+
+            showSuccessNotification({
+                title: 'Your personal details have been updated'
+            });
+        }
+    });
+
+    return (
+        <Form
+            id={'editPersonalDetailsForm'}
+            name={'editPersonalDetailsForm'}
+            onSubmit={handleSubmit(updateUserPersonalDetails)}
+            isSubmitting={isSubmitting}
+            isValid={isValid}
+        >
+            <InputField
+                id="first_name"
+                label="First name"
+                placeholder="First name"
+                error={errors['first_name']}
+                errorText="You must input a first name"
+                name="first_name"
+                control={control}
+                isRequired
+            />
+            <InputField
+                id="last_name"
+                label="Last name"
+                placeholder="Last name"
+                error={errors['last_name']}
+                errorText="Your last name"
+                name="last_name"
+                control={control}
+                helperText={'This will not be shown to other users.'}
+            />
+
+            <SelectField
+                id="country"
+                name="country"
+                label="Country"
+                placeholder={'country'}
+                options={countriesList()}
+                control={control}
+                full
+            />
+            {/* <ModalDrawerFooterActions noBtnLabel="Cancel">
+                <SubmitButton
+                    label={'Update'}
+                    isLoading={isSubmitting}
+                    disabled={!isValid || isSubmitting}
+                />
+            </ModalDrawerFooterActions> */}
+        </Form>
+    );
+};
+
+export default PersonalDetailsForm;
