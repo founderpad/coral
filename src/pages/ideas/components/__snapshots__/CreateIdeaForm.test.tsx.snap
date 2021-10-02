@@ -351,7 +351,7 @@ exports[`Create idea form matches snapshot 1`] = `
           <label
             class="chakra-form__label css-k9vklr"
             for="is_published"
-            id="field-2524043535-9-label"
+            id="label-is_published"
           >
             Publish your idea
           </label>
@@ -381,7 +381,7 @@ exports[`Create idea form matches snapshot 1`] = `
           </label>
           <div
             class="chakra-form__helper-text css-0"
-            id="field-2524043535-9-helptext"
+            id="helper-text-is_published"
           >
             You can change this after it's been created
           </div>

@@ -15,6 +15,7 @@ const SwitchField = forwardRef((props, ref) => {
 				fontSize={'sm'}
 				color={'gray.600'}
 				htmlFor={id}
+				id={`label-${id}`}
 			>
 				{label}
 			</FormLabel>
@@ -35,7 +36,7 @@ const SwitchField = forwardRef((props, ref) => {
 				name={name}
 				control={control}
 			/>
-			{helperText && <FormHelperText>{helperText}</FormHelperText>}
+			{helperText && <FormHelperText id={`helper-text-${id}`}>{helperText}</FormHelperText>}
 		</FormControl>
 	);
 });
