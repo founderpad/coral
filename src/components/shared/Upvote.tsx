@@ -3,9 +3,9 @@ import { Flex, HStack, Text } from '@chakra-ui/layout';
 import { Idea_Votes, useUpsertIdeaVoteMutation } from 'generated/graphql';
 import { cache } from 'pages/_app';
 import React from 'react';
-import { IoArrowDownCircleOutline, IoArrowDownSharp, IoArrowUpCircleOutline, IoArrowUpCircleSharp, IoArrowUpSharp } from 'react-icons/io5';
+import { IoArrowUpSharp } from 'react-icons/io5';
 
-const Upvote = (ideaVotes: Idea_Votes & { ideaId: string }) => {
+const Upvote = (ideaVotes: Idea_Votes & { ideaId: string }): JSX.Element => {
     const [upsertIdeaVote] = useUpsertIdeaVoteMutation({
         variables: {
             idea_vote: {
@@ -30,14 +30,14 @@ const Upvote = (ideaVotes: Idea_Votes & { ideaId: string }) => {
         >
             <Flex alignItems={'center'}>
                 <Icon
-                    as={IoArrowUpCircleOutline}
+                    as={IoArrowUpSharp}
                     color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'fpGrey.500'}
-                    fontSize={{ base: 'md', sm: 'x-large' }}
+                    fontSize={{ base: 'md' }}
                     title={'Upvote this idea'}
                     mr={2}
                     cursor={'pointer'}
                 />
-                <Text fontSize={{ base: 'xs', sm: 'large' }} fontWeight={'medium'} color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'fpGrey.500'}>
+                <Text fontSize={{ base: 'xs', sm: 'sm' }} fontWeight={'medium'} color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'fpGrey.500'}>
                     {ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum.vote_type ?? 0}
                 </Text>
             </Flex>

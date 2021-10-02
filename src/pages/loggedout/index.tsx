@@ -1,5 +1,5 @@
 import AuthLayout from 'components/layouts/AuthLayout';
-import BaseLink from 'components/links';
+import { BaseLink } from 'components/links';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ const LoggedOut = (): JSX.Element => {
 
 	return (
 		<AuthLayout header="You've logged out successfully" title="Logged out">
-			<BaseLink href={'/login'} textAlign={'center'}>
+			<BaseLink href={'/login'} title={'Log in'} textAlign={'center'} color={'fpPrimary.500'}>
 				Click here to log in
 			</BaseLink>
 		</AuthLayout>

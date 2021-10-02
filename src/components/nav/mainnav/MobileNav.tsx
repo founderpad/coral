@@ -38,7 +38,7 @@ const MobileNavItem = ({ label, children }: NavItem): JSX.Element => {
 					fontWeight={500}
 					_hover={{
 						textDecoration: 'none',
-						color: useColorModeValue('gray.600', 'white')
+						color: useColorModeValue('fpGrey.900', 'white')
 					}}
 				>
 					{label}
@@ -48,8 +48,8 @@ const MobileNavItem = ({ label, children }: NavItem): JSX.Element => {
 						as={IoChevronDownSharp}
 						transition={'all .25s ease-in-out'}
 						transform={isOpen ? 'rotate(180deg)' : ''}
-						w={6}
-						h={6}
+						w={4}
+						h={4}
 					/>
 				)}
 			</Flex>
