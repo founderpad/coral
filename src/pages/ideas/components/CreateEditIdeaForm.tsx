@@ -14,7 +14,7 @@ import { InputField } from 'components/input/InputFields';
 import { SelectField } from 'components/input/SelectFields';
 import { SwitchField } from 'components/input/SwitchFields';
 import { TextareaField } from 'components/input/TextareaFields';
-import { Ideas, useCreateIdeaMutation } from 'generated/graphql';
+import { Ideas, Ideas_Insert_Input, useCreateIdeaMutation } from 'generated/graphql';
 import NextLink from 'next/link';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -22,7 +22,7 @@ import { ideasStatusList, industriesList } from 'utils/Constants';
 
 type TEditIdea = Omit<Ideas, 'idea_user' | 'idea_votes'>;
 
-const CreateEditIdeaForm = ({ idea }: { idea?: TEditIdea }): JSX.Element => {
+const CreateEditIdeaForm = ({ idea }: { idea?: Ideas_Insert_Input }): JSX.Element => {
 	const {
 		handleSubmit,
 		control,

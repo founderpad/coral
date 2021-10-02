@@ -9,7 +9,7 @@ exports[`Register form matches snapshot 1`] = `
       class="chakra-stack css-16voevi"
     >
       <div
-        class="chakra-form-control css-3o8wi"
+        class="chakra-form-control css-1nn7pbt"
         role="group"
       >
         <label
@@ -100,7 +100,7 @@ exports[`Register form matches snapshot 1`] = `
         class="chakra-stack css-bxadxj"
       >
         <div
-          class="chakra-form-control css-1cid7j9"
+          class="chakra-form-control css-1cmijj6"
           role="group"
         >
           <label
@@ -133,7 +133,7 @@ exports[`Register form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1cid7j9"
+          class="chakra-form-control css-1cmijj6"
           role="group"
         >
           <label
@@ -160,7 +160,7 @@ exports[`Register form matches snapshot 1`] = `
         class="chakra-stack css-16voevi"
       >
         <div
-          class="chakra-form-control css-1cid7j9"
+          class="chakra-form-control css-1cmijj6"
           role="group"
         >
           <label
@@ -194,7 +194,7 @@ exports[`Register form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1cid7j9"
+          class="chakra-form-control css-1cmijj6"
           role="group"
         >
           <label
@@ -229,7 +229,7 @@ exports[`Register form matches snapshot 1`] = `
         </div>
         <button
           aria-label="submit"
-          class="chakra-button css-2cc3zw"
+          class="chakra-button css-24junl"
           disabled=""
           name="submit"
           type="submit"

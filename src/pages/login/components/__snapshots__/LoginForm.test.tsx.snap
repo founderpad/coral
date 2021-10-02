@@ -16,7 +16,7 @@ exports[`Login form matches snapshot 1`] = `
         class="chakra-stack css-1bfctve"
       >
         <div
-          class="chakra-form-control css-1cid7j9"
+          class="chakra-form-control css-1cmijj6"
           role="group"
         >
           <label
@@ -49,7 +49,7 @@ exports[`Login form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1cid7j9"
+          class="chakra-form-control css-1cmijj6"
           role="group"
         >
           <label
@@ -84,7 +84,7 @@ exports[`Login form matches snapshot 1`] = `
         </div>
         <button
           aria-label="submit"
-          class="chakra-button css-1wolwds"
+          class="chakra-button css-ix34nz"
           disabled=""
           name="submit"
           type="submit"

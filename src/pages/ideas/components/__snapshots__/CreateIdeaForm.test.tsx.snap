@@ -16,7 +16,7 @@ exports[`Create idea form matches snapshot 1`] = `
         class="chakra-stack css-1uxng5d"
       >
         <div
-          class="chakra-form-control css-1cid7j9"
+          class="chakra-form-control css-1cmijj6"
           role="group"
         >
           <label
@@ -48,7 +48,7 @@ exports[`Create idea form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1kxonj9"
+          class="chakra-form-control css-0"
           role="group"
         >
           <label
@@ -74,7 +74,7 @@ exports[`Create idea form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1kxonj9"
+          class="chakra-form-control css-0"
           role="group"
         >
           <label
@@ -91,7 +91,7 @@ exports[`Create idea form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-ycqyjq"
+          class="chakra-form-control css-m5v8bu"
           role="group"
         >
           <label
@@ -220,7 +220,7 @@ exports[`Create idea form matches snapshot 1`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control css-ycqyjq"
+          class="chakra-form-control css-m5v8bu"
           role="group"
         >
           <label
@@ -294,7 +294,7 @@ exports[`Create idea form matches snapshot 1`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control css-1kxonj9"
+          class="chakra-form-control css-0"
           role="group"
         >
           <label
@@ -311,7 +311,7 @@ exports[`Create idea form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1kxonj9"
+          class="chakra-form-control css-0"
           role="group"
         >
           <label
@@ -328,7 +328,7 @@ exports[`Create idea form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1kxonj9"
+          class="chakra-form-control css-0"
           role="group"
         >
           <label
@@ -345,18 +345,19 @@ exports[`Create idea form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1kxonj9"
+          class="chakra-form-control css-0"
           role="group"
         >
           <label
             class="chakra-form__label css-k9vklr"
             for="is_published"
-            id="field-9-label"
+            id="field-8331056756-9-label"
           >
             Publish your idea
           </label>
           <label
             class="chakra-switch css-evm8da"
+            data-checked=""
             role="switch"
           >
             <input
@@ -380,14 +381,14 @@ exports[`Create idea form matches snapshot 1`] = `
           </label>
           <div
             class="chakra-form__helper-text css-0"
-            id="field-9-helptext"
+            id="field-8331056756-9-helptext"
           >
             You can change this after it's been created
           </div>
         </div>
         <button
           aria-label="submit"
-          class="chakra-button css-1c4zs3d"
+          class="chakra-button css-1ac6dtc"
           disabled=""
           name="submit"
           type="submit"
