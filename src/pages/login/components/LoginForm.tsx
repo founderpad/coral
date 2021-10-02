@@ -1,7 +1,7 @@
 import { Flex, Text, VStack } from '@chakra-ui/layout';
 import SubmitButton from 'components/buttons/SubmitButton';
 import { Form } from 'components/form';
-import { PasswordField } from 'components/input/InputFields';
+import { EmailField, PasswordField } from 'components/input/InputFields';
 import { PrimaryLink } from 'components/links';
 import { useLogin } from 'hooks/auth';
 import React, { memo } from 'react';
@@ -19,14 +19,14 @@ const LoginForm = (): JSX.Element => {
 	return (
 		<Form id={'login-form'} name={'loginform'} onSubmit={handleSubmit(onLogin)}>
 			<VStack spacing={6} my={6}>
-				{/* <EmailField
+				<EmailField
 					id="email"
 					name="email"
 					error={errors['email']}
 					errorText="Please enter a valid email"
 					control={control}
 					isRequired
-				/> */}
+				/>
 				<PasswordField
 					id="password"
 					name="password"
@@ -34,6 +34,8 @@ const LoginForm = (): JSX.Element => {
 					control={control}
 					isRequired
 				/>
+
+				<div>TEST!!!!!!!!</div>
 
 				<SubmitButton
 					label="Login now"
