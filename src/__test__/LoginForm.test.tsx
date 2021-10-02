@@ -3,7 +3,7 @@ import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import store from 'utils/store';
 import { render } from '__test__/testUtils';
-import LoginForm from './LoginForm';
+import LoginForm from '../pages/login/components/LoginForm';
 
 const setup = () => render(
 	<Provider store={store}>

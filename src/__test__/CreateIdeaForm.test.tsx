@@ -86,7 +86,7 @@ describe('Create idea form', () => {
 		const mockSaveIdea = jest.fn();
 		const { getByRole } = render(
 			<MockedProvider mocks={mocks} addTypename={false}>
-				<CreateEditIdeaForm idea={mockSaveIdea} />
+				<CreateEditIdeaForm />
 			</MockedProvider>
 		);
 

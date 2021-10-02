@@ -1,5 +1,5 @@
 import { render } from '__test__/testUtils';
-import RegisterForm from './RegisterForm';
+import RegisterForm from '../pages/register/components/RegisterForm';
 import { Provider } from 'react-redux';
 import store from 'utils/store';
 import { act } from 'react-dom/test-utils';

@@ -3,7 +3,7 @@ import RegisterForm from 'pages/register/components/RegisterForm';
 import { render } from '__test__/testUtils';
 import store from 'utils/store';
 import { Provider } from 'react-redux';
-import AuthLayout from './AuthLayout';
+import AuthLayout from '../components/layouts/AuthLayout';
 
 describe('AuthLayout layout', () => {
 	it('matches AuthLayout snapshot', () => {

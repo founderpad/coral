@@ -1,7 +1,7 @@
 import { render } from '__test__/testUtils';
 import store from 'utils/store';
 import { Provider } from 'react-redux';
-import PageLayout from './PageLayout';
+import PageLayout from '../components/layouts/PageLayout';
 import { Box } from '@chakra-ui/layout';
 
 describe('PageLayout layout', () => {
