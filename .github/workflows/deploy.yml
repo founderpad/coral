@@ -25,5 +25,4 @@ jobs:
           node-version: 15
       - run: npm install -g yarn
       - run: yarn install --frozen-lockfile
-      - name: Build artifact for deployment
       - run: yarn build
