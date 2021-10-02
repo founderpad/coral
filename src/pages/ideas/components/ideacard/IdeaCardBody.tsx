@@ -21,7 +21,7 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 			href={`/idea/${id}`}
 		>
 			<Text color={'fpGrey.700'} fontSize={'sm'} noOfLines={2} mb={'1px'}>
-				{preview}
+				{preview}...
 			</Text>
 			<Text color={'fpGrey.700'} fontSize={'sm'} fontWeight={'medium'} noOfLines={2}>
 				{status}
