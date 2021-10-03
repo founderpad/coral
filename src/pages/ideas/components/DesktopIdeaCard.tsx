@@ -1,15 +1,13 @@
 import { Box } from '@chakra-ui/layout';
 import UserAvatar from 'components/shared/UserAvatar';
 import { Idea_Preview } from 'generated/graphql';
-import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import IdeaCardBody from './ideacard/IdeaCardBody';
 import IdeaCardFooter from './ideacard/IdeaCardFooter';
 import IdeaCardHeader from './ideacard/IdeaCardHeader';
 
 const DesktopIdeaCard = (idea: Idea_Preview): JSX.Element => {
-	// const avatarSize = useBreakpointValue({ : 'md' });
-	const avatarUser = useCurrentUser().avatar_url;
+	const { idea_user } = idea;
 
 	return (
 		<Box position={'relative'} display={{ base: 'none', sm: 'block' }}>
@@ -20,7 +18,7 @@ const DesktopIdeaCard = (idea: Idea_Preview): JSX.Element => {
 				size={'md'}
 				transform={'translateX(-25%) translateY(-15%)'}
 				boxShadow={'md'}
-				src={avatarUser}
+				src={idea_user.avatar_url}
 			/>
 			<IdeaCardHeader {...idea} />
 			<Box hover={{ bg: 'fpGrey.900' }}>
