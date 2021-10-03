@@ -1,6 +1,6 @@
 import { Stack } from '@chakra-ui/layout';
-import { FormControl, Icon, Text } from '@chakra-ui/react';
-import { FormLabelText } from 'components/form';
+import { FormControl, Icon } from '@chakra-ui/react';
+import { FormLabelText, FormLabelWithValue } from 'components/form';
 import Loading from 'components/shared/Loading';
 import UserAvatar from 'components/shared/UserAvatar';
 import { useGetIdeaQuery } from 'generated/graphql';
@@ -26,6 +26,18 @@ const IdeaTab = (): JSX.Element => {
 	if (!data) return <Loading small />;
 	if (!idea) router.replace('/404');
 
+	const {
+		name,
+		description,
+		mission_statement,
+		industry,
+		competitors,
+		team,
+		status,
+		additional_information,
+		is_published
+	} = idea;
+
 	return (
 		<Stack spacing={6}>
 			{user?.id === idea?.user_id && <IdeaActions ideaId={idea?.id} />}
@@ -34,41 +46,29 @@ const IdeaTab = (): JSX.Element => {
 				rounded={'full'}
 				src={idea?.idea_user.avatar_url}
 			/>
-			<FormControl>
-				<FormLabelText label={'Idea name'} />
-				<Text>{idea?.name}</Text>
-			</FormControl>
-			<FormControl>
-				<FormLabelText label={'Mission statement'} />
-				<Text>{idea?.mission_statement}</Text>
-			</FormControl>
-			<FormControl>
-				<FormLabelText label={'Description'} />
-				<Text>{idea?.description}</Text>
-			</FormControl>
-			<FormControl>
-				<FormLabelText label={'Idea stage'} />
-				<Text>{idea?.status}</Text>
-			</FormControl>
-			<FormControl>
-				<FormLabelText label={'Industry'} />
-				<Text>{idea?.industry}</Text>
-			</FormControl>
-			<FormControl>
-				<FormLabelText label={'Competitors'} />
-				<Text>{idea?.competitors ?? 'Empty'}</Text>
-			</FormControl>
-			<FormControl>
-				<FormLabelText label={'Team'} />
-				<Text>{idea?.team ?? 'Empty'}</Text>
-			</FormControl>
-			<FormControl>
-				<FormLabelText label={'Additional information'} />
-				<Text>{idea?.additional_information ?? 'Empty'}</Text>
-			</FormControl>
+			<FormLabelWithValue label={'Idea name'} value={name} />
+			<FormLabelWithValue
+				label={'Mission statement'}
+				value={mission_statement}
+			/>
+			<FormLabelWithValue label={'Description'} value={description} />
+			<FormLabelWithValue label={'Idea stage'} value={status} />
+
+			<FormLabelWithValue label={'Industry'} value={industry} />
+			{competitors && (
+				<FormLabelWithValue label={'Competitors'} value={competitors} />
+			)}
+
+			{team && <FormLabelWithValue label={'Team'} value={team} />}
+			{additional_information && (
+				<FormLabelWithValue
+					label={'Additional information'}
+					value={additional_information}
+				/>
+			)}
 			<FormControl flexDirection={'row'}>
 				<FormLabelText label={'Is published?'} />
-				{idea?.is_published ? (
+				{is_published ? (
 					<Icon
 						as={IoCheckmarkCircleSharp}
 						color={'green.500'}
