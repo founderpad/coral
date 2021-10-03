@@ -9,7 +9,7 @@ It is deployed to [Vercel](https://vercel.com/) via our CI/CD pipeline which use
 ### Pre-requisites
 - [VSCode](https://code.visualstudio.com/)
   - ESLint
-  - Prettier - Code formatter
+  - Prettier - Code formatter (make sure this is set to be your default formatter)
 - [Yarn](https://yarnpkg.com/)
 - [Node](https://nodejs.org/en/)
 - [iTerm2](https://iterm2.com/)
