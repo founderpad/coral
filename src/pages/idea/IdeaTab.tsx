@@ -23,13 +23,17 @@ const IdeaTab = (): JSX.Element => {
 
 	const idea = data?.idea;
 
-	if (!data) return <Loading small />
-	if (!idea) router.replace('/404')
+	if (!data) return <Loading small />;
+	if (!idea) router.replace('/404');
 
 	return (
 		<Stack spacing={6}>
 			{user?.id === idea?.user_id && <IdeaActions ideaId={idea?.id} />}
-			<UserAvatar size={'xl'} rounded={'full'} src={idea?.idea_user.avatar_url} />
+			<UserAvatar
+				size={'xl'}
+				rounded={'full'}
+				src={idea?.idea_user.avatar_url}
+			/>
 			<FormControl>
 				<FormLabelText label={'Idea name'} />
 				<Text>{idea?.name}</Text>
@@ -41,6 +45,10 @@ const IdeaTab = (): JSX.Element => {
 			<FormControl>
 				<FormLabelText label={'Description'} />
 				<Text>{idea?.description}</Text>
+			</FormControl>
+			<FormControl>
+				<FormLabelText label={'Idea stage'} />
+				<Text>{idea?.status}</Text>
 			</FormControl>
 			<FormControl>
 				<FormLabelText label={'Industry'} />
