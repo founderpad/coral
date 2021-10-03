@@ -4,4 +4,4 @@ enum Params {
     edit
 }
 
-export const useEditMode = (): any => useRouter().query.edit ? true : false
+export const useEditMode = (): any => useRouter().query[Params.edit];
