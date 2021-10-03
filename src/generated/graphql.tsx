@@ -334,7 +334,6 @@ export type Auth_Accounts_Select_Column =
   /** column name */
   | 'email';
 
-
 /** expression to compare columns of type citext. All fields are combined with logical 'AND'. */
 export type Citext_Comparison_Exp = {
   _eq?: Maybe<Scalars['citext']>;
@@ -1129,7 +1128,6 @@ export type Ideas_Update_Column =
   /** column name */
   | 'updated_at';
 
-
 /** expression to compare columns of type jsonb. All fields are combined with logical 'AND'. */
 export type Jsonb_Comparison_Exp = {
   /** is the column contained in the given json value */
@@ -1754,7 +1752,6 @@ export type Subscription_RootUsers_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
-
 /** expression to compare columns of type timestamp. All fields are combined with logical 'AND'. */
 export type Timestamp_Comparison_Exp = {
   _eq?: Maybe<Scalars['timestamp']>;
@@ -1767,7 +1764,6 @@ export type Timestamp_Comparison_Exp = {
   _neq?: Maybe<Scalars['timestamp']>;
   _nin?: Maybe<Array<Scalars['timestamp']>>;
 };
-
 
 /** expression to compare columns of type timestamptz. All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
@@ -2257,7 +2253,6 @@ export type Users_Update_Column =
   /** column name */
   | 'user_type';
 
-
 /** expression to compare columns of type uuid. All fields are combined with logical 'AND'. */
 export type Uuid_Comparison_Exp = {
   _eq?: Maybe<Scalars['uuid']>;
@@ -2276,14 +2271,14 @@ export type GetUserActivitiesQueryVariables = Exact<{
 }>;
 
 
-export type GetUserActivitiesQuery = { __typename?: 'query_root', activity: Array<{ __typename?: 'activity', idea_id?: Maybe<any>, event: string, description: string, url?: Maybe<string>, type?: Maybe<string>, created_at?: Maybe<any> }> };
+export type GetUserActivitiesQuery = { __typename?: 'query_root', activity: Array<{ __typename?: 'activity', idea_id?: any | null | undefined, event: string, description: string, url?: string | null | undefined, type?: string | null | undefined, created_at?: any | null | undefined }> };
 
 export type CreateIdeaMutationVariables = Exact<{
   idea: Ideas_Insert_Input;
 }>;
 
 
-export type CreateIdeaMutation = { __typename?: 'mutation_root', idea?: Maybe<{ __typename?: 'ideas', id: any }> };
+export type CreateIdeaMutation = { __typename?: 'mutation_root', idea?: { __typename?: 'ideas', id: any } | null | undefined };
 
 export type UpdateIdeaMutationVariables = Exact<{
   idea: Ideas_Set_Input;
@@ -2291,21 +2286,21 @@ export type UpdateIdeaMutationVariables = Exact<{
 }>;
 
 
-export type UpdateIdeaMutation = { __typename?: 'mutation_root', update_ideas_by_pk?: Maybe<{ __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: Maybe<string>, competitors?: Maybe<string>, team?: Maybe<string>, additional_information?: Maybe<string>, is_published?: Maybe<boolean>, user_id: any, status?: Maybe<string> }> };
+export type UpdateIdeaMutation = { __typename?: 'mutation_root', update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined } | null | undefined };
 
 export type GetUserIdeasQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type GetUserIdeasQuery = { __typename?: 'query_root', ideas: Array<{ __typename?: 'ideas', name: string, description: string, industry: string, updated_at?: Maybe<any>, is_published?: Maybe<boolean>, user_id: any, id: any }> };
+export type GetUserIdeasQuery = { __typename?: 'query_root', ideas: Array<{ __typename?: 'ideas', name: string, description: string, industry: string, updated_at?: any | null | undefined, is_published?: boolean | null | undefined, user_id: any, id: any }> };
 
 export type DeleteIdeaMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteIdeaMutation = { __typename?: 'mutation_root', delete_ideas_by_pk?: Maybe<{ __typename?: 'ideas', id: any }> };
+export type DeleteIdeaMutation = { __typename?: 'mutation_root', delete_ideas_by_pk?: { __typename?: 'ideas', id: any } | null | undefined };
 
 export type GetIdeasQueryVariables = Exact<{
   where?: Maybe<Idea_Preview_Bool_Exp>;
@@ -2316,35 +2311,35 @@ export type GetIdeasQueryVariables = Exact<{
 }>;
 
 
-export type GetIdeasQuery = { __typename?: 'query_root', idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: Maybe<{ __typename?: 'idea_preview_aggregate_fields', count?: Maybe<number> }> }, idea_preview: Array<{ __typename?: 'idea_preview', id?: Maybe<any>, name?: Maybe<string>, preview?: Maybe<string>, industry?: Maybe<string>, status?: Maybe<string>, created_at?: Maybe<any>, is_new?: Maybe<boolean>, idea_votes?: Maybe<{ __typename?: 'idea_votes', idea: { __typename?: 'ideas', idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: Maybe<{ __typename?: 'idea_votes_aggregate_fields', sum?: Maybe<{ __typename?: 'idea_votes_sum_fields', vote_type?: Maybe<number> }> }> }, idea_votes: Array<{ __typename?: 'idea_votes', vote_type: number }> } }>, idea_user?: Maybe<{ __typename?: 'users', first_name?: Maybe<string>, country?: Maybe<string>, id: any }> }> };
+export type GetIdeasQuery = { __typename?: 'query_root', idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count?: number | null | undefined } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, industry?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, idea_votes?: { __typename?: 'idea_votes', idea: { __typename?: 'ideas', idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined }, idea_votes: Array<{ __typename?: 'idea_votes', vote_type: number }> } } | null | undefined, idea_user?: { __typename?: 'users', first_name?: string | null | undefined, country?: string | null | undefined, id: any, avatar_url?: string | null | undefined } | null | undefined }> };
 
 export type GetIdeaQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetIdeaQuery = { __typename?: 'query_root', idea?: Maybe<{ __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: Maybe<string>, competitors?: Maybe<string>, team?: Maybe<string>, additional_information?: Maybe<string>, is_published?: Maybe<boolean>, user_id: any, status?: Maybe<string>, idea_user?: Maybe<{ __typename?: 'users', avatar_url?: Maybe<string> }>, idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: Maybe<{ __typename?: 'idea_votes_aggregate_fields', sum?: Maybe<{ __typename?: 'idea_votes_sum_fields', vote_type?: Maybe<number> }> }> } }> };
+export type GetIdeaQuery = { __typename?: 'query_root', idea?: { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined, idea_user?: { __typename?: 'users', avatar_url?: string | null | undefined } | null | undefined, idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined } } | null | undefined };
 
 export type UpsertIdeaVoteMutationVariables = Exact<{
   idea_vote: Idea_Votes_Insert_Input;
 }>;
 
 
-export type UpsertIdeaVoteMutation = { __typename?: 'mutation_root', insert_idea_votes_one?: Maybe<{ __typename?: 'idea_votes', idea_id: any }> };
+export type UpsertIdeaVoteMutation = { __typename?: 'mutation_root', insert_idea_votes_one?: { __typename?: 'idea_votes', idea_id: any } | null | undefined };
 
 export type GetUserSocialsQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetUserSocialsQuery = { __typename?: 'query_root', profile?: Maybe<{ __typename?: 'user_profile', linkedin?: Maybe<string>, twitter?: Maybe<string>, website?: Maybe<string> }> };
+export type GetUserSocialsQuery = { __typename?: 'query_root', profile?: { __typename?: 'user_profile', linkedin?: string | null | undefined, twitter?: string | null | undefined, website?: string | null | undefined } | null | undefined };
 
 export type GetUserQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type GetUserQuery = { __typename?: 'query_root', user?: Maybe<{ __typename?: 'users', id: any, last_name?: Maybe<string>, first_name?: Maybe<string>, country?: Maybe<string>, avatar_url?: Maybe<string>, created_at: any, account?: Maybe<{ __typename?: 'auth_accounts', email?: Maybe<any> }>, user_profile?: Maybe<{ __typename?: 'user_profile', id: any, is_complete?: Maybe<boolean> }> }> };
+export type GetUserQuery = { __typename?: 'query_root', user?: { __typename?: 'users', id: any, last_name?: string | null | undefined, first_name?: string | null | undefined, country?: string | null | undefined, avatar_url?: string | null | undefined, created_at: any, account?: { __typename?: 'auth_accounts', email?: any | null | undefined } | null | undefined, user_profile?: { __typename?: 'user_profile', id: any, is_complete?: boolean | null | undefined } | null | undefined } | null | undefined };
 
 export type UpdateUserProfileMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -2352,14 +2347,14 @@ export type UpdateUserProfileMutationVariables = Exact<{
 }>;
 
 
-export type UpdateUserProfileMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: Maybe<{ __typename?: 'user_profile', id: any, availability?: Maybe<number>, background?: Maybe<string>, linkedin?: Maybe<string>, twitter?: Maybe<string>, instagram?: Maybe<string>, facebook?: Maybe<string>, resume?: Maybe<string>, statement?: Maybe<string>, status?: Maybe<string>, business_description?: Maybe<string>, startups?: Maybe<number>, website?: Maybe<string>, skills?: Maybe<any>, is_complete?: Maybe<boolean>, specialist_industry?: Maybe<string>, updated_at?: Maybe<any> }> };
+export type UpdateUserProfileMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: number | null | undefined, background?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, resume?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, business_description?: string | null | undefined, startups?: number | null | undefined, website?: string | null | undefined, skills?: any | null | undefined, is_complete?: boolean | null | undefined, specialist_industry?: string | null | undefined, updated_at?: any | null | undefined } | null | undefined };
 
 export type GetUserExperienceQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetUserExperienceQuery = { __typename?: 'query_root', profile?: Maybe<{ __typename?: 'user_profile', id: any, user_id?: Maybe<any>, background?: Maybe<string>, statement?: Maybe<string>, startups?: Maybe<number>, status?: Maybe<string>, availability?: Maybe<number>, business_description?: Maybe<string>, specialist_industry?: Maybe<string>, skills?: Maybe<any>, resume?: Maybe<string>, linkedin?: Maybe<string>, twitter?: Maybe<string>, instagram?: Maybe<string>, facebook?: Maybe<string>, website?: Maybe<string>, updated_at?: Maybe<any>, is_complete?: Maybe<boolean> }> };
+export type GetUserExperienceQuery = { __typename?: 'query_root', profile?: { __typename?: 'user_profile', id: any, user_id?: any | null | undefined, background?: string | null | undefined, statement?: string | null | undefined, startups?: number | null | undefined, status?: string | null | undefined, availability?: number | null | undefined, business_description?: string | null | undefined, specialist_industry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updated_at?: any | null | undefined, is_complete?: boolean | null | undefined } | null | undefined };
 
 export type UpdateUserExperienceMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -2367,7 +2362,7 @@ export type UpdateUserExperienceMutationVariables = Exact<{
 }>;
 
 
-export type UpdateUserExperienceMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: Maybe<{ __typename?: 'user_profile', id: any, user_id?: Maybe<any>, background?: Maybe<string>, statement?: Maybe<string>, startups?: Maybe<number>, status?: Maybe<string>, skills?: Maybe<any>, availability?: Maybe<number>, resume?: Maybe<string>, business_description?: Maybe<string> }> };
+export type UpdateUserExperienceMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, user_id?: any | null | undefined, background?: string | null | undefined, statement?: string | null | undefined, startups?: number | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, availability?: number | null | undefined, resume?: string | null | undefined, business_description?: string | null | undefined } | null | undefined };
 
 export type UpdateResumeMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -2375,7 +2370,7 @@ export type UpdateResumeMutationVariables = Exact<{
 }>;
 
 
-export type UpdateResumeMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: Maybe<{ __typename?: 'user_profile', id: any, resume?: Maybe<string> }> };
+export type UpdateResumeMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, resume?: string | null | undefined } | null | undefined };
 
 export type UpdateUserPersonalDetailsMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -2383,7 +2378,7 @@ export type UpdateUserPersonalDetailsMutationVariables = Exact<{
 }>;
 
 
-export type UpdateUserPersonalDetailsMutation = { __typename?: 'mutation_root', user?: Maybe<{ __typename?: 'users', first_name?: Maybe<string>, last_name?: Maybe<string>, country?: Maybe<string>, avatar_url?: Maybe<string> }> };
+export type UpdateUserPersonalDetailsMutation = { __typename?: 'mutation_root', user?: { __typename?: 'users', first_name?: string | null | undefined, last_name?: string | null | undefined, country?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
 
 export type UpdateUserAvatarMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -2391,15 +2386,15 @@ export type UpdateUserAvatarMutationVariables = Exact<{
 }>;
 
 
-export type UpdateUserAvatarMutation = { __typename?: 'mutation_root', user?: Maybe<{ __typename?: 'users', avatar_url?: Maybe<string> }> };
+export type UpdateUserAvatarMutation = { __typename?: 'mutation_root', user?: { __typename?: 'users', avatar_url?: string | null | undefined } | null | undefined };
 
-export type ResumeFragmentFragment = { __typename?: 'user_profile', id: any, resume?: Maybe<string> };
+export type ResumeFragmentFragment = { __typename?: 'user_profile', id: any, resume?: string | null | undefined };
 
-export type SocialMediaFragmentFragment = { __typename?: 'user_profile', id: any, linkedin?: Maybe<string>, twitter?: Maybe<string>, instagram?: Maybe<string>, facebook?: Maybe<string>, website?: Maybe<string> };
+export type SocialMediaFragmentFragment = { __typename?: 'user_profile', id: any, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined };
 
-export type ExperienceFragmentFragment = { __typename?: 'user_profile', id: any, background?: Maybe<string>, statement?: Maybe<string>, status?: Maybe<string>, availability?: Maybe<number>, startups?: Maybe<number>, skills?: Maybe<any>, resume?: Maybe<string>, specialist_industry?: Maybe<string>, business_description?: Maybe<string>, is_complete?: Maybe<boolean> };
+export type ExperienceFragmentFragment = { __typename?: 'user_profile', id: any, background?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, availability?: number | null | undefined, startups?: number | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, specialist_industry?: string | null | undefined, business_description?: string | null | undefined, is_complete?: boolean | null | undefined };
 
-export type IdeaFragmentFragment = { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: Maybe<string>, competitors?: Maybe<string>, team?: Maybe<string>, additional_information?: Maybe<string>, is_published?: Maybe<boolean>, user_id: any, status?: Maybe<string> };
+export type IdeaFragmentFragment = { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined };
 
 export const ResumeFragmentFragmentDoc = gql`
     fragment ResumeFragment on user_profile {
@@ -2674,6 +2669,7 @@ export const GetIdeasDocument = gql`
       first_name
       country
       id
+      avatar_url
     }
   }
 }

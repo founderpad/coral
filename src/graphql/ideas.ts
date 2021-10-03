@@ -101,6 +101,7 @@ const GET_IDEAS = gql`
 				first_name
 				country
 				id
+				avatar_url
 			}
 		}
 	}
