@@ -1,5 +1,5 @@
 import PageLayout from 'components/layouts/PageLayout';
-import LastUpdatedAt from 'components/shared/LastUpdatedAt';
+import { LastUpdatedAt } from 'components/shared/CreatedUpdatedAt';
 import WindowTitle from 'components/shared/WindowTitle';
 import { useGetUserExperienceQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
@@ -28,7 +28,7 @@ const Profile = (): JSX.Element => {
 			>
 				<ProfileLayout />
 			</PageLayout>
-		</React.Fragment >
+		</React.Fragment>
 	);
 };
 

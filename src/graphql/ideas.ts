@@ -121,8 +121,12 @@ const GET_IDEA = gql`
 			is_published
 			user_id
 			status
+			created_at
 			idea_user {
 				avatar_url
+				first_name
+				country
+				id
 			}
 			idea_votes_aggregate {
 				aggregate {

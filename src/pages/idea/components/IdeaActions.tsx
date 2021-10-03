@@ -44,19 +44,20 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 			title: 'Edit idea',
 			isOpen: true,
 			body: <EditIdeaForm />,
-			actions: <SubmitButton form="editIdeaForm" label={'Save'} size={'sm'} />,
+			actions: (
+				<SubmitButton form="editIdeaForm" label={'Save'} size={'sm'} />
+			),
 			hideFooter: true,
 			size: '2xl'
 		});
 	}, []);
 
 	return (
-		<Stack direction={'row'} spacing={{ base: 2, sm: 4 }} ml={'auto'}>
-			{/* <PrimaryButton
-				label={'Edit'}
-				onClick={onEditClick}
-				leftIcon={<IoPencil color={'white'} />}
-			/> */}
+		<Stack
+			direction={'row'}
+			spacing={{ base: 2, sm: 4 }}
+			justifySelf={'flex-end'}
+		>
 			<EditButton onClick={onEditClick} aria-label={'Edit idea'} />
 			<DeleteIconButton onClick={onDeleteClick} />
 		</Stack>

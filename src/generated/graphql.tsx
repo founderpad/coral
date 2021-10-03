@@ -2318,7 +2318,7 @@ export type GetIdeaQueryVariables = Exact<{
 }>;
 
 
-export type GetIdeaQuery = { __typename?: 'query_root', idea?: { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined, idea_user?: { __typename?: 'users', avatar_url?: string | null | undefined } | null | undefined, idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined } } | null | undefined };
+export type GetIdeaQuery = { __typename?: 'query_root', idea?: { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined, created_at?: any | null | undefined, idea_user?: { __typename?: 'users', avatar_url?: string | null | undefined, first_name?: string | null | undefined, country?: string | null | undefined, id: any } | null | undefined, idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined } } | null | undefined };
 
 export type UpsertIdeaVoteMutationVariables = Exact<{
   idea_vote: Idea_Votes_Insert_Input;
@@ -2720,8 +2720,12 @@ export const GetIdeaDocument = gql`
     is_published
     user_id
     status
+    created_at
     idea_user {
       avatar_url
+      first_name
+      country
+      id
     }
     idea_votes_aggregate {
       aggregate {
