@@ -14,7 +14,9 @@
 		"test": "jest",
 		"test-all": "yarn lint && yarn type-check && yarn test",
 		"generate": "graphql-codegen --config codegen.js -r",
-		"generate:watch": "yarn generate --watch"
+		"generate:watch": "yarn generate --watch",
+		"prestart": "yarn generate",
+    	"predev": "yarn generate"
 	},
 	"husky": {
 		"hooks": {
