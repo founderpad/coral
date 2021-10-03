@@ -1,4 +1,4 @@
-import { IconButton, MenuButton } from '@chakra-ui/react';
+import { Icon, IconButton, MenuButton } from '@chakra-ui/react';
 import { IoTrashSharp } from 'react-icons/io5';
 import { BaseButtonProps } from 'types/buttons';
 import { BaseButton } from '.';
@@ -11,7 +11,8 @@ const DeleteButton = (props: BaseButtonProps): JSX.Element => {
 			{...props}
 			colorScheme={'red'}
 			variant={variant ?? 'solid'}
-		// size={size ?? 'sm'}
+			// size={size ?? 'sm'}
+			borderWidth={1}
 		>
 			{label}
 		</BaseButton>
@@ -34,14 +35,19 @@ const DeleteGhostButton = (props: BaseButtonProps): JSX.Element => (
 	<DeleteButton {...props} variant={'ghost'} />
 );
 
-const DeleteIconButton = ({ onClick }: { onClick: () => void }): JSX.Element => (
+const DeleteIconButton = ({
+	onClick
+}: {
+	onClick: () => void;
+}): JSX.Element => (
 	<IconButton
 		onClick={onClick}
 		aria-label={'Delete'}
-		colorScheme={'red'}
 		variant={'ghost'}
-		fontSize={'large'}
-		icon={<IoTrashSharp />}
+		colorScheme={'gray'}
+		fontSize={'md'}
+		size={'md'}
+		icon={<Icon as={IoTrashSharp} fontSize={'large'} color={'red.500'} />}
 		rounded={'full'}
 	/>
 );
