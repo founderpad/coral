@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from 'slices/auth';
 // import { updateUserPersonalDetails } from 'slices/auth';
-import { RegisterFormData, TExperience } from 'types/auth';
+import { IAuthFormData, IRegisterFormData, TExperience } from 'types/auth';
 import { UserType } from 'utils/Constants';
 import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
@@ -23,7 +23,7 @@ export const useRegister = (): any => {
 		firstName,
 		lastName,
 		type
-	}: RegisterFormData): Promise<void> => {
+	}: IRegisterFormData): Promise<void> => {
 		try {
 			await auth.register({
 				email,
@@ -52,7 +52,7 @@ export const useLogin = (): any => {
 	const showErrorNotification = useErrorNotification();
 	const [getAuthUser] = useGetAuthenticatedUser();
 
-	return async ({ email, password }: RegisterFormData): Promise<void> => {
+	return async ({ email, password }: IAuthFormData): Promise<void> => {
 		try {
 			await auth.login({ email, password });
 			getAuthUser();
@@ -90,7 +90,7 @@ export const useForgottenPassword = (): any => {
 
 	return async ({
 		email
-	}: Pick<RegisterFormData, 'email'>): Promise<void> => {
+	}: Pick<IAuthFormData, 'email'>): Promise<void> => {
 		try {
 			await auth.requestPasswordChange(email);
 			showSuccessNotification({

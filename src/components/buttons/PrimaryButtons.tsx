@@ -1,5 +1,5 @@
-import { BaseButtonProps } from 'types/buttons';
 import { BaseButton } from '.';
+import { BaseButtonProps } from './types/buttons';
 
 const PrimaryButton = (props: BaseButtonProps): JSX.Element => {
 	const { variant, label, size } = props;

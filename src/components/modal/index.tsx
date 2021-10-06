@@ -73,12 +73,15 @@ export const Modal = (props: IModalProps): JSX.Element => {
 						borderBottomWidth={1}
 					>
 						{title}
-						{actions &&
+						{actions && (
 							<ButtonGroup ml={'auto'} spacing={4}>
-								<CancelButton label={'Cancel'} onClick={onClose} />
+								<CancelButton
+									label={'Cancel'}
+									onClick={onClose}
+								/>
 								{actions}
 							</ButtonGroup>
-						}
+						)}
 					</ModalHeader>
 				)}
 				<ModalBody
@@ -95,6 +98,7 @@ export const Modal = (props: IModalProps): JSX.Element => {
 					<ModalFooter d={'flex'} w={'full'} p={4}>
 						<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
 							<BaseButton
+								name={'modal-actions-confirm-button'}
 								variant={'ghost'}
 								colorScheme={yesBtnColor ?? 'fpPrimary'}
 								label={yesBtnLabel ?? 'OK'}

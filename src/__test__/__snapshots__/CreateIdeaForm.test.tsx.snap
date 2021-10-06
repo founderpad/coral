@@ -387,8 +387,10 @@ exports[`Create idea form matches snapshot 1`] = `
           </div>
         </div>
         <button
+          aria-label="create-idea-button"
           class="chakra-button css-1ac6dtc"
           disabled=""
+          name="create-idea-button"
           type="submit"
         >
           Create your idea

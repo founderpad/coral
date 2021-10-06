@@ -68,7 +68,14 @@ export const ImageUploader = (props: Props): JSX.Element => {
 		setModalDrawer({
 			isOpen: true,
 			title,
-			actions: <PrimaryButton label={'Upload'} size={'sm'} onClick={getCropData} />,
+			actions: (
+				<PrimaryButton
+					name={'crop-image-modal-button'}
+					label={'Upload'}
+					size={'sm'}
+					onClick={getCropData}
+				/>
+			),
 			body: (
 				<Box position={'relative'}>
 					<Cropper

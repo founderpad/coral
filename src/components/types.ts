@@ -1,6 +1,6 @@
 
 
 export type TRequiredProps = {
-    id: string;
+    // id: string;
     name: string;
 }

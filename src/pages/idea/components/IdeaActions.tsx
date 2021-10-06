@@ -33,19 +33,18 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 		});
 	}, []);
 
-	// <SubmitButton
-	// 				label={label ?? 'Update'}
-	// 				isLoading={isSubmitting}
-	// 				disabled={!isValid || isSubmitting}
-	// 			/>
-
 	const onEditClick = useCallback(() => {
 		setModalDrawer({
 			title: 'Edit idea',
 			isOpen: true,
 			body: <EditIdeaForm />,
 			actions: (
-				<SubmitButton form="editIdeaForm" label={'Save'} size={'sm'} />
+				<SubmitButton
+					name={'open-modal-drawer-edit-idea-button'}
+					form="editIdeaForm"
+					label={'Save'}
+					size={'sm'}
+				/>
 			),
 			hideFooter: true,
 			size: '2xl'

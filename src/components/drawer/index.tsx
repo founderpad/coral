@@ -41,16 +41,23 @@ export const Drawer = ({
 	actions
 }: IModalProps): JSX.Element => {
 	return (
-		<ChakraDrawer isOpen={isOpen} onClose={onClose} placement={'bottom'} closeOnOverlayClick={false}>
+		<ChakraDrawer
+			isOpen={isOpen}
+			onClose={onClose}
+			placement={'bottom'}
+			closeOnOverlayClick={false}
+		>
 			<DrawerOverlay />
 			<DrawerContent borderTopWidth={1}>
 				{title && (
 					<React.Fragment>
-						{!actions && <DrawerCloseButton
-							top={4}
-							right={4}
-							color={'fpGrey.500'}
-						/>}
+						{!actions && (
+							<DrawerCloseButton
+								top={4}
+								right={4}
+								color={'fpGrey.500'}
+							/>
+						)}
 						<DrawerHeader
 							color={'fpGrey.900'}
 							fontWeight={'medium'}
@@ -61,12 +68,15 @@ export const Drawer = ({
 							borderBottomWidth={1}
 						>
 							{title}
-							{actions &&
+							{actions && (
 								<ButtonGroup ml={'auto'} spacing={4}>
-									<CancelButton label={'Cancel'} onClick={onClose} />
+									<CancelButton
+										label={'Cancel'}
+										onClick={onClose}
+									/>
 									{actions}
 								</ButtonGroup>
-							}
+							)}
 						</DrawerHeader>
 					</React.Fragment>
 				)}
@@ -77,17 +87,15 @@ export const Drawer = ({
 					color={'gray.500'}
 					flex={1}
 					p={removePadding ? 0 : 4}
-					maxH={'100%'}>
+					maxH={'100%'}
+				>
 					{body}
 				</DrawerBody>
 				{!hideFooter && (
-					<DrawerFooter
-						d={'flex'}
-						w={'full'}
-						p={4}
-					>
+					<DrawerFooter d={'flex'} w={'full'} p={4}>
 						<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
-						<BaseButton
+							<BaseButton
+								name={'drawer-actions-confirm-button'}
 								variant={'ghost'}
 								colorScheme={yesBtnColor ?? 'fpPrimary'}
 								label={yesBtnLabel ?? 'OK'}

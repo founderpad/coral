@@ -5,7 +5,12 @@ import { PrimaryButton } from 'components/buttons/PrimaryButtons';
 import { PrimaryLink } from 'components/links';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { IoCheckmarkCircleSharp, IoCloseSharp, IoCloudUploadSharp, IoDocumentSharp } from 'react-icons/io5';
+import {
+	IoCheckmarkCircleSharp,
+	IoCloseSharp,
+	IoCloudUploadSharp,
+	IoDocumentSharp
+} from 'react-icons/io5';
 import { formatTimestamp } from 'utils/validators';
 import { PointSeparator } from './Separators';
 
@@ -32,12 +37,14 @@ const FileUploader = (props: Props): JSX.Element => {
 		(acceptedFiles, fileRejections) => {
 			fileRejections.forEach((file: any) => {
 				file.errors.forEach((err: any) => {
-					if (err.code === "file-too-large") {
+					if (err.code === 'file-too-large') {
 						setError(`The file must have a maximum size of 5mb.`);
 					}
 
-					if (err.code === "file-invalid-type") {
-						setError(`This file must be of type .pdf, .doc, .docx, or .txt.`);
+					if (err.code === 'file-invalid-type') {
+						setError(
+							`This file must be of type .pdf, .doc, .docx, or .txt.`
+						);
 					}
 				});
 			});
@@ -61,15 +68,30 @@ const FileUploader = (props: Props): JSX.Element => {
 
 	const files = myFiles.map((file: File) => {
 		return (
-			<Flex key={file.name} justifyContent={'space-between'} w={'full'} alignItems={'center'} flex={1}>
+			<Flex
+				key={file.name}
+				justifyContent={'space-between'}
+				w={'full'}
+				alignItems={'center'}
+				flex={1}
+			>
 				<Flex alignItems={'center'}>
-					<Icon as={IoCheckmarkCircleSharp} mr={2} color={'green.500'} fontSize={'large'} />
+					<Icon
+						as={IoCheckmarkCircleSharp}
+						mr={2}
+						color={'green.500'}
+						fontSize={'large'}
+					/>
 					<Text color={'fpGrey.500'}>{file.name}</Text>
 					<PointSeparator />
 					<Text color={'fpGrey.500'}>{file.size}b</Text>
 				</Flex>
 				<HStack spacing={4}>
-					<PrimaryButton onClick={() => onUpload(file)} label={'Upload'} />
+					<PrimaryButton
+						name={'upload-button'}
+						onClick={() => onUpload(file)}
+						label={'Upload'}
+					/>
 					<IconButton
 						aria-label={'Clear file'}
 						icon={<IoCloseSharp />}
@@ -91,8 +113,15 @@ const FileUploader = (props: Props): JSX.Element => {
 
 	return (
 		<Box py={4}>
-			{defaultSrc ? <AddedFile src={defaultSrc} onDelete={src => onDeleteFile(src)} /> : files.length > 0 && <FilesList files={files} />}
-			{!defaultSrc && !files.length &&
+			{defaultSrc ? (
+				<AddedFile
+					src={defaultSrc}
+					onDelete={(src) => onDeleteFile(src)}
+				/>
+			) : (
+				files.length > 0 && <FilesList files={files} />
+			)}
+			{!defaultSrc && !files.length && (
 				<>
 					<Box
 						d={'flex'}
@@ -115,19 +144,35 @@ const FileUploader = (props: Props): JSX.Element => {
 							alignItems={'center'}
 							flexDirection={'column'}
 						>
-							<Icon as={IoCloudUploadSharp} fontSize={'x-large'} mb={2} color={'fpGrey.300'} />
-							<Text color={'fpGrey.300'} fontSize={'sm'}>{label}</Text>
+							<Icon
+								as={IoCloudUploadSharp}
+								fontSize={'x-large'}
+								mb={2}
+								color={'fpGrey.300'}
+							/>
+							<Text color={'fpGrey.300'} fontSize={'sm'}>
+								{label}
+							</Text>
 						</Flex>
 					</Box>
 
-					<Text fontSize={'sm'} color={error ? 'red.500' : 'fpGrey.300'}>
-						{error ?? <>Max file size: 5mb<br />Supported formats: .pdf, .doc, .docx, .txt</>}
+					<Text
+						fontSize={'sm'}
+						color={error ? 'red.500' : 'fpGrey.300'}
+					>
+						{error ?? (
+							<>
+								Max file size: 5mb
+								<br />
+								Supported formats: .pdf, .doc, .docx, .txt
+							</>
+						)}
 					</Text>
 				</>
-			}
+			)}
 		</Box>
 	);
-}
+};
 
 const FilesList = ({ files }: { files: JSX.Element[] }): JSX.Element => (
 	<Flex as={'aside'} mb={8} alignItems={'center'}>
@@ -135,16 +180,39 @@ const FilesList = ({ files }: { files: JSX.Element[] }): JSX.Element => (
 	</Flex>
 );
 
-const AddedFile = ({ src, onDelete }: { src: string, onDelete: (src: string) => void }) => (
+const AddedFile = ({
+	src,
+	onDelete
+}: {
+	src: string;
+	onDelete: (src: string) => void;
+}) => (
 	<Flex justifyContent={'space-between'} alignItems={'center'}>
 		<HStack alignItems={'center'}>
-			<Icon as={IoDocumentSharp} color={'fpGrey.300'} fontSize={'xx-large'} />
+			<Icon
+				as={IoDocumentSharp}
+				color={'fpGrey.300'}
+				fontSize={'xx-large'}
+			/>
 			<Flex flexDirection={'column'}>
-				<PrimaryLink title={'View file'} href={process.env.NEXT_PUBLIC_STORAGE_URL + src} isExternal>View</PrimaryLink>
-				<Text color={'fpGrey.300'} fontSize={'xs'}>Added {formatTimestamp(src?.split('?v=')[1])}</Text>
+				<PrimaryLink
+					title={'View file'}
+					href={process.env.NEXT_PUBLIC_STORAGE_URL + src}
+					isExternal
+				>
+					View
+				</PrimaryLink>
+				<Text color={'fpGrey.300'} fontSize={'xs'}>
+					Added {formatTimestamp(src?.split('?v=')[1])}
+				</Text>
 			</Flex>
 		</HStack>
-		<DeleteButton label={'Delete'} variant={'ghost'} onClick={() => onDelete(src)} />
+		<DeleteButton
+			name={'delete-file-button'}
+			label={'Delete'}
+			variant={'ghost'}
+			onClick={() => onDelete(src)}
+		/>
 	</Flex>
 );
 

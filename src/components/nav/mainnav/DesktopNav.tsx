@@ -107,17 +107,18 @@ const ProfileNotSet = (): JSX.Element => {
 	if (!isComplete)
 		return (
 			<BaseButton
+				name={'profile-not-set-button'}
 				as={BaseLink}
 				label={'Profile not set'}
 				position={'fixed'}
 				right={4}
 				colorScheme={'red'}
 				variant={'outline'}
-				href={'/account/profile'}
+				// href={'/account/profile'}
 			/>
 		);
 
 	return null;
-}
+};
 
 export default DesktopNav;

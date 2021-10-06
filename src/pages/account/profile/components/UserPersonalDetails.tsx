@@ -20,7 +20,13 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 		setModalDrawer({
 			title: 'Your details',
 			isOpen: true,
-			actions: <SubmitButton form="editPersonalDetailsForm" label={'Save'} />,
+			actions: (
+				<SubmitButton
+					name={'open-modal-drawer-personal-details-button'}
+					form="editPersonalDetailsForm"
+					label={'Save'}
+				/>
+			),
 			body: <PersonalDetailsForm />,
 			noBtnLabel: 'Cancel',
 			yesBtnLabel: 'Log out',
@@ -49,7 +55,5 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 		</Stack>
 	);
 });
-
-
 
 export default UserPersonalInformation;

@@ -146,6 +146,7 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 				</Stack> */}
 
 				<SubmitButton
+					name={'update-idea-confirm-button'}
 					label="Update your idea"
 					alignSelf={'center'}
 					isLoading={isSubmitting}

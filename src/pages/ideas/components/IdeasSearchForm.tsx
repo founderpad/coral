@@ -68,7 +68,11 @@ const IdeasSearchForm = (): JSX.Element => {
 	};
 
 	return (
-		<Form id={'ideaSearchForm'} name={'ideaSearchForm'} onSubmit={handleSubmit(onClick)}>
+		<Form
+			id={'ideaSearchForm'}
+			name={'ideaSearchForm'}
+			onSubmit={handleSubmit(onClick)}
+		>
 			<Heading
 				as={'h6'}
 				fontSize={'md'}
@@ -77,7 +81,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				mb={4}
 			>
 				Search ideas
-				</Heading>
+			</Heading>
 			<InputField
 				id="name"
 				name="name"
@@ -118,6 +122,7 @@ const IdeasSearchForm = (): JSX.Element => {
 			<ButtonGroup pt={4} spacing={4}>
 				<CancelButton label={'Clear'} flex={1} onClick={onClear} />
 				<SubmitButton
+					name={'search-ideas-button'}
 					label={'Search'}
 					flex={2}
 					mt={0}

@@ -1,7 +1,7 @@
 import { Icon, IconButton, MenuButton } from '@chakra-ui/react';
 import { IoTrashSharp } from 'react-icons/io5';
-import { BaseButtonProps } from 'types/buttons';
 import { BaseButton } from '.';
+import { BaseButtonProps } from './types/buttons';
 
 const DeleteButton = (props: BaseButtonProps): JSX.Element => {
 	const { variant, label } = props;

@@ -131,7 +131,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 					label="Your competitors"
 					placeholder="List your competitors about your idea"
 					control={control}
-				// rules={{ maxLength: 150 }}
+					// rules={{ maxLength: 150 }}
 				/>
 
 				<TextareaField
@@ -140,7 +140,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 					name="team"
 					placeholder="List each team member"
 					control={control}
-				// rules={{ maxLength: 150 }}
+					// rules={{ maxLength: 150 }}
 				/>
 
 				<TextareaField
@@ -149,7 +149,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 					name="additional_information"
 					placeholder="Any additional information"
 					control={control}
-				// rules={{ maxLength: 150 }}
+					// rules={{ maxLength: 150 }}
 				/>
 
 				{/* <FormControl>
@@ -205,6 +205,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 				)}
 
 				<SubmitButton
+					name={'create-idea-button'}
 					label={(idea ? 'Update your ' : 'Create your ') + 'idea'}
 					alignSelf={'center'}
 					isLoading={isSubmitting}
