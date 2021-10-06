@@ -40,6 +40,7 @@ const RegisterForm = (): JSX.Element => {
 		<form onSubmit={handleSubmit(onRegister)} noValidate>
 			<StackLayout>
 				<SelectField
+					id={'type'}
 					name="type"
 					label={'What are you looking for?'}
 					error={errors['type']}

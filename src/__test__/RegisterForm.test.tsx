@@ -20,7 +20,7 @@ jest.mock('hooks/auth', () => ({
 describe('Register form', () => {
 	it('matches snapshot', () => {
 		const { asFragment } = setup();
-		// expect(asFragment()).toMatchSnapshot();
+		expect(asFragment()).toMatchSnapshot();
 	});
 
 	it('renders register form', () => {
@@ -30,7 +30,7 @@ describe('Register form', () => {
 
 	it('should render RegisterForm fields', () => {
 		const { getByRole } = setup();
-		// expect(getByRole('combobox', { name: 'type' })).toBeInTheDocument();
+		expect(getByRole('combobox')).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'firstName' })).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'lastName' })).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'email' })).toBeInTheDocument();
