@@ -22,18 +22,13 @@ describe('AuthLayout layout', () => {
 	});
 
 	it('renders AuthLayout with LoginForm form', () => {
-		const { getByText } = render(
+		render(
 			<Provider store={store}>
-				<AuthLayout
-					header="Login"
-					subheader="Pick up where you left off"
-					title="Login"
-				>
+				<AuthLayout header="Login" title="Login">
 					<LoginForm />
 				</AuthLayout>
 			</Provider>
 		);
-		expect(getByText(/Pick up where you left off/i)).toBeInTheDocument();
 	});
 
 	it('renders AuthLayout with RegisterForm form', () => {
@@ -49,7 +44,6 @@ describe('AuthLayout layout', () => {
 			</Provider>
 		);
 		expect(getByText('Register')).toBeInTheDocument();
-		expect(getByText(/Launch your vision/i)).toBeInTheDocument();
 	});
 });
 

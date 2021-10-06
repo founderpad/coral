@@ -4,11 +4,7 @@ import LoginForm from './components/LoginForm';
 
 const Login = (): JSX.Element => {
 	return (
-		<AuthLayout
-			header="Login"
-			subheader="Pick up where you left off"
-			title="Login"
-		>
+		<AuthLayout header="Login" title="Login">
 			<LoginForm />
 		</AuthLayout>
 	);

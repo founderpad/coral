@@ -112,11 +112,11 @@ exports[`Create idea form matches snapshot 1`] = `
             class="chakra-select__wrapper css-42b2qy"
           >
             <select
-              aria-label="industry"
+              aria-label="select-industry-field"
               aria-required="true"
               class="chakra-select css-z0iqzd"
-              id="industry"
-              name="industry"
+              id="select-industry-field"
+              name="select-industry-field"
               required=""
             >
               <option
@@ -241,11 +241,11 @@ exports[`Create idea form matches snapshot 1`] = `
             class="chakra-select__wrapper css-42b2qy"
           >
             <select
-              aria-label="status"
+              aria-label="select-status-field"
               aria-required="true"
               class="chakra-select css-z0iqzd"
-              id="status"
-              name="status"
+              id="select-status-field"
+              name="select-status-field"
               required=""
             >
               <option
@@ -387,10 +387,8 @@ exports[`Create idea form matches snapshot 1`] = `
           </div>
         </div>
         <button
-          aria-label="submit"
           class="chakra-button css-1ac6dtc"
           disabled=""
-          name="submit"
           type="submit"
         >
           Create your idea

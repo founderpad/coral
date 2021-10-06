@@ -1,7 +1,4 @@
-import {
-	FormControl,
-	FormHelperText
-} from '@chakra-ui/form-control';
+import { FormControl, FormHelperText } from '@chakra-ui/form-control';
 import { forwardRef, Select } from '@chakra-ui/react';
 import { FormErrorText, FormLabelText } from 'components/form';
 import React from 'react';
@@ -49,8 +46,9 @@ const SelectField = forwardRef<ISelectFieldProps, 'select'>((props, ref) => {
 						onChange={onChange}
 						size={size ?? 'sm'}
 						error={!!error}
-						name={name}
-						aria-label={name}
+						id={`select-${name}-field`}
+						name={`select-${name}-field`}
+						aria-label={`select-${name}-field`}
 					>
 						{options}
 					</Select>
@@ -62,9 +60,7 @@ const SelectField = forwardRef<ISelectFieldProps, 'select'>((props, ref) => {
 			{error ? (
 				<FormErrorText label={errorText} />
 			) : (
-				helperText && (
-					<FormHelperText label={helperText} />
-				)
+				helperText && <FormHelperText label={helperText} />
 			)}
 		</FormControl>
 	);
