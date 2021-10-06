@@ -1,11 +1,8 @@
 import { Button } from '@chakra-ui/button';
-import { LinkProps } from '@chakra-ui/layout';
 import React from 'react';
-import { BaseButtonProps } from 'types/buttons';
+import { BaseButtonProps } from './types/buttons';
 
-type Props = BaseButtonProps & Pick<LinkProps, 'href'>;
-
-const BaseButton = (props: Props): JSX.Element => {
+const BaseButton = (props: BaseButtonProps): JSX.Element => {
 	const { label, size, ...rest } = props;
 
 	return (

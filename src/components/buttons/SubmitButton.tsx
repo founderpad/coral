@@ -1,22 +1,22 @@
-import { ButtonProps } from '@chakra-ui/button';
 import { BaseButton } from 'components/buttons';
 import React from 'react';
+import { BaseButtonProps } from './types/buttons';
 
 const SubmitButton = ({
 	label = 'Submit',
 	...props
-}: ButtonProps & { label: string, form?: string }): JSX.Element => {
-	const { colorScheme, isLoading } = props;
+}: BaseButtonProps & { form?: string }): JSX.Element => {
+	const { colorScheme, full, isLoading } = props;
 
 	return (
 		<BaseButton
 			{...props}
+			isFullWidth={full}
 			colorScheme={colorScheme ?? 'fpPrimary'}
 			isLoading={isLoading}
-			type='submit'
+			type={'submit'}
 			rounded={'md'}
 			label={label}
-			name='submit'
 		/>
 	);
 };
