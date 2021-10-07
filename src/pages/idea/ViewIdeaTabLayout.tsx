@@ -8,9 +8,9 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 		<TabLayout
 			tabs={[
 				{ label: 'Idea' },
-				{ label: 'Comments' },
-				{ label: 'Pad' },
-				{ label: 'Metrics' }
+				{ label: 'Comments' }
+				// { label: 'Pad' },
+				// { label: 'Metrics' }
 			]}
 			overflow={'hidden'}
 			minH={'full'}
@@ -18,8 +18,8 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 		>
 			<IdeaTab />
 			<BoxLayout>Comments</BoxLayout>
-			<BoxLayout>Workboard</BoxLayout>
-			<BoxLayout>Metrics</BoxLayout>
+			{/* <BoxLayout>Workboard</BoxLayout>
+			<BoxLayout>Metrics</BoxLayout> */}
 		</TabLayout>
 	);
 };
