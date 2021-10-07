@@ -1,5 +1,6 @@
 import { ButtonGroup } from '@chakra-ui/react';
 import { CancelButton } from 'components/buttons';
+import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import { IoChevronBackSharp, IoChevronForwardSharp } from 'react-icons/io5';
 
@@ -11,7 +12,7 @@ type Props = {
 export const Pagination = (props: Props): JSX.Element => {
 	const { pagesCount, onPageChange } = props;
 	const router = useRouter();
-	const page = parseInt(router.query.page as string);
+	const page = parseInt(useQueryParam('page'));
 	// const buttonSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
 	const pagesArray = Array.from(

@@ -5,6 +5,7 @@ import {
 	Idea_Preview_Bool_Exp,
 	useGetIdeasQuery
 } from 'generated/graphql';
+import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { auth } from 'utils/nhost';
@@ -17,15 +18,15 @@ const queryBuilder = (): Idea_Preview_Bool_Exp => {
 	const where: Idea_Preview_Bool_Exp = {};
 
 	if (router.query.name) {
-		where.name = { _ilike: `%${router.query.name as string}%` };
+		where.name = { _ilike: `%${useQueryParam('name')}%` };
 	}
 
 	if (router.query.industry) {
-		where.industry = { _eq: router.query.industry as string };
+		where.industry = { _eq: useQueryParam('industry') };
 	}
 
 	if (router.query.status) {
-		where.status = { _eq: router.query.status as string };
+		where.status = { _eq: useQueryParam('status') };
 	}
 
 	return where;
@@ -36,7 +37,7 @@ const IdeasContainer = (): JSX.Element => {
 		variables: {
 			where: queryBuilder(),
 			limit: 10,
-			offset: (parseInt(useRouter().query.page as string) - 1) * 10,
+			offset: (parseInt(useQueryParam('id')) - 1) * 10,
 			orderBy: {
 				created_at: 'desc'
 			},

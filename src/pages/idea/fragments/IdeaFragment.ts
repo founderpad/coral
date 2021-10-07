@@ -1,10 +1,10 @@
 import gql from "graphql-tag";
-import { useRouter } from "next/router";
+import { useQueryParam } from "hooks/util";
 import { cache } from "pages/_app";
 import { Ideas } from './../../../generated/graphql';
 
 const useIdeaFragment = (): Ideas => {
-    const ideaId = useRouter().query.id;
+    const ideaId = useQueryParam('id');
     const result = cache.readFragment({
         id: `ideas:${ideaId}`, // The value of the idea's cache id
         fragment: gql`
