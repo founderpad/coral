@@ -1,6 +1,6 @@
 import { BoxProps } from '@chakra-ui/layout';
 import { Box, Flex } from '@chakra-ui/react';
-import PageHeader from 'components/shared/PageHeader';
+import { PageHeader } from 'components/shared';
 import React from 'react';
 
 type Props = BoxProps & {

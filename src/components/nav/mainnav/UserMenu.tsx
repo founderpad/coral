@@ -3,9 +3,7 @@ import { Menu, MenuButton, MenuDivider, MenuList } from '@chakra-ui/menu';
 import { Icon, MenuGroup, MenuItem } from '@chakra-ui/react';
 import { BaseLink } from 'components/links';
 import LogoutModal from 'components/modal/LogoutModal';
-import UserAvatar, {
-	CurrentUserAvatarDetails
-} from 'components/shared/UserAvatar';
+import { CurrentUserAvatarDetails, UserAvatar } from 'components/shared';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import {

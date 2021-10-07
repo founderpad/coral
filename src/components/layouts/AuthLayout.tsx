@@ -1,6 +1,6 @@
 import { Image } from '@chakra-ui/image';
 import { Heading } from '@chakra-ui/layout';
-import WindowTitle from 'components/shared/WindowTitle';
+import { DocumentTitle } from 'components/shared';
 import React from 'react';
 import { StackLayout } from './StackLayout';
 
@@ -14,7 +14,7 @@ interface Props {
 const AuthLayout = ({ header, children, title }: Props): JSX.Element => {
 	return (
 		<React.Fragment>
-			<WindowTitle title={title} />
+			<DocumentTitle title={title} />
 			<StackLayout
 				minW={{ base: 'full', sm: '450px' }}
 				maxW={{ base: 'full', sm: '600px' }}

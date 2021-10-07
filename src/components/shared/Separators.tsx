@@ -7,7 +7,7 @@ import React from 'react';
 // 	</Box>
 // );
 
-const PointSeparator = ({
+export const PointSeparator = ({
 	color,
 	display,
 	small
@@ -41,5 +41,3 @@ const PointSeparator = ({
 		{small ? <>&middot;</> : <>&bull;</>}
 	</Box>
 );
-
-export { PointSeparator };

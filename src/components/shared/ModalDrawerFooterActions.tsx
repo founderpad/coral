@@ -3,7 +3,7 @@ import { CancelButton } from 'components/buttons';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import React, { memo, useContext } from 'react';
 
-const ModalDrawerFooterActions = memo(
+export const ModalDrawerFooterActions = memo(
 	({
 		children,
 		noBtnLabel
@@ -47,5 +47,3 @@ const ModalDrawerFooterActions = memo(
 		);
 	}
 );
-
-export default ModalDrawerFooterActions;

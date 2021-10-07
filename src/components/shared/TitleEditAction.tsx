@@ -3,7 +3,7 @@ import { EditButton } from 'components/buttons';
 import { TitleHeading } from 'components/heading';
 import React, { memo } from 'react';
 
-const TitleEditAction = memo(
+export const TitleEditAction = memo(
 	({
 		title,
 		onClick
@@ -32,5 +32,3 @@ const TitleEditAction = memo(
 		);
 	}
 );
-
-export default TitleEditAction;

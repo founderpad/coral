@@ -21,7 +21,7 @@ type Props = BoxProps & {
 	onDelete: (path: string) => void;
 };
 
-const FileUploader = (props: Props): JSX.Element => {
+export const FileUploader = (props: Props): JSX.Element => {
 	const { label, defaultSrc, onUpload, onDelete } = props;
 	const [myFiles, setMyFiles] = useState([]);
 	const [error, setError] = useState<string>(undefined);
@@ -215,5 +215,3 @@ const AddedFile = ({
 		/>
 	</Flex>
 );
-
-export default FileUploader;

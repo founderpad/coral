@@ -1,5 +1,5 @@
 import { PageLayout } from 'components/layouts';
-import WindowTitle from 'components/shared/WindowTitle';
+import { DocumentTitle } from 'components/shared';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
@@ -9,7 +9,7 @@ const Home = (): JSX.Element => {
 
 	return (
 		<React.Fragment>
-			<WindowTitle title="Home" />
+			<DocumentTitle title="Home" />
 			<PageLayout title={`Welcome back, ${firstName}`} />
 		</React.Fragment>
 	);

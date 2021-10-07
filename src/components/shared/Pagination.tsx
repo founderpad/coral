@@ -1,4 +1,3 @@
-
 import { ButtonGroup } from '@chakra-ui/react';
 import { CancelButton } from 'components/buttons';
 import { useRouter } from 'next/router';
@@ -9,7 +8,7 @@ type Props = {
 	onPageChange: (page: string) => void;
 };
 
-const PaginationFooter = (props: Props): JSX.Element => {
+export const Pagination = (props: Props): JSX.Element => {
 	const { pagesCount, onPageChange } = props;
 	const router = useRouter();
 	const page = parseInt(router.query.page as string);
@@ -33,10 +32,11 @@ const PaginationFooter = (props: Props): JSX.Element => {
 			/>
 			<ButtonGroup display={{ base: 'none', sm: 'flex' }}>
 				{pagesArray.map((p) => (
-					<CancelButton label={p.toString()} key={p} title={`Page ${p} of results`}
-						background={
-							page === p ? 'gray.300' : 'transparent'
-						}
+					<CancelButton
+						label={p.toString()}
+						key={p}
+						title={`Page ${p} of results`}
+						background={page === p ? 'gray.300' : 'transparent'}
 						onClick={() =>
 							router.push(
 								{
@@ -48,7 +48,8 @@ const PaginationFooter = (props: Props): JSX.Element => {
 									shallow: true
 								}
 							)
-						} />
+						}
+					/>
 				))}
 			</ButtonGroup>
 			<CancelButton
@@ -63,5 +64,3 @@ const PaginationFooter = (props: Props): JSX.Element => {
 		</ButtonGroup>
 	);
 };
-
-export default PaginationFooter;

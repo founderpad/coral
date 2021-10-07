@@ -1,6 +1,6 @@
 import { Stack, Text } from '@chakra-ui/layout';
+import DocumentTitle from 'components/shared/DocumentTitle';
 import PageHeader from 'components/shared/PageHeader';
-import WindowTitle from 'components/shared/WindowTitle';
 import { useCurrentUser } from 'hooks/auth';
 import { useGetUserIdeas } from 'hooks/ideas';
 import React from 'react';
@@ -12,7 +12,7 @@ const MyIdeas = (): JSX.Element => {
 
 	return (
 		<React.Fragment>
-			<WindowTitle title="Your ideas" />
+			<DocumentTitle title="Your ideas" />
 			<PageHeader
 				title="My ideas"
 				subtitle="Here are all the ideas below that you have published"

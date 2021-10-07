@@ -1,6 +1,6 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 import { PageLayout, StackLayout } from 'components/layouts';
-import WindowTitle from 'components/shared/WindowTitle';
+import { DocumentTitle } from 'components/shared';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 import IdeasSearchForm from './components/IdeasSearchForm';
@@ -8,7 +8,7 @@ import IdeasContainer from './IdeasContainer';
 
 const Ideas = (): JSX.Element => (
 	<React.Fragment>
-		<WindowTitle title="All ideas" />
+		<DocumentTitle title="All ideas" />
 		<PageLayout
 			title="All ideas"
 			subtitle="The latest ideas from other users"

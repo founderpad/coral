@@ -1,5 +1,5 @@
 import { Divider, Stack } from '@chakra-ui/layout';
-import NoResults from 'components/shared/NoResults';
+import { Loading, NoResults } from 'components/shared';
 import {
 	Idea_Preview,
 	Idea_Preview_Bool_Exp,
@@ -7,11 +7,10 @@ import {
 } from 'generated/graphql';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { auth } from 'utils/nhost';
 import IdeaCard from './components/ideacard/IdeaCard';
 import IdeasActions from './components/IdeasActions';
 import IdeasPagination from './IdeasPagination';
-import Loading from 'components/shared/Loading';
-import { auth } from 'utils/nhost';
 
 const queryBuilder = (): Idea_Preview_Bool_Exp => {
 	const router = useRouter();

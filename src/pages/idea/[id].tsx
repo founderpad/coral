@@ -1,4 +1,4 @@
-import WindowTitle from 'components/shared/WindowTitle';
+import DocumentTitle from 'components/shared/DocumentTitle';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 import ViewIdeaTabLayout from './ViewIdeaTabLayout';
@@ -6,7 +6,7 @@ import ViewIdeaTabLayout from './ViewIdeaTabLayout';
 const ViewIdea = () => {
 	return (
 		<React.Fragment>
-			<WindowTitle title="View idea" />
+			<DocumentTitle title="View idea" />
 			<ViewIdeaTabLayout />
 		</React.Fragment>
 	);
