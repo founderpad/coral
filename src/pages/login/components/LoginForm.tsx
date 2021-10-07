@@ -1,5 +1,5 @@
 import { Flex, Text, VStack } from '@chakra-ui/layout';
-import SubmitButton from 'components/buttons/SubmitButton';
+import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { useBaseForm } from 'components/form/hooks';
 import { EmailField, PasswordField } from 'components/input/InputFields';

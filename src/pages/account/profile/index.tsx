@@ -1,4 +1,4 @@
-import PageLayout from 'components/layouts/PageLayout';
+import { PageLayout } from 'components/layouts';
 import { LastUpdatedAt } from 'components/shared/CreatedUpdatedAt';
 import WindowTitle from 'components/shared/WindowTitle';
 import { useGetUserExperienceQuery } from 'generated/graphql';

@@ -8,7 +8,7 @@ import {
 	CloseButton,
 	Link
 } from '@chakra-ui/react';
-import SubmitButton from 'components/buttons/SubmitButton';
+import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { InputField } from 'components/input/InputFields';
 import { SelectField } from 'components/input/SelectFields';
@@ -90,14 +90,14 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 					isRequired
 				/>
 
-				<TextareaField
+				{/* <TextareaField
 					id="missionstatement"
 					label="Mission statement"
 					name="mission_statement"
 					placeholder="Write a mission statement about your idea (max. 500 characters)"
 					control={control}
 					rules={{ maxLength: 500 }}
-				/>
+				/> */}
 
 				<SelectField
 					id="industry"

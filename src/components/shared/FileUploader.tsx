@@ -1,7 +1,7 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/layout';
 import { BoxProps, Icon, IconButton } from '@chakra-ui/react';
+import { PrimaryButton } from 'components/buttons';
 import { DeleteButton } from 'components/buttons/DeleteButton';
-import { PrimaryButton } from 'components/buttons/PrimaryButtons';
 import { PrimaryLink } from 'components/links';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';

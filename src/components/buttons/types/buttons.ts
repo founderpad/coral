@@ -1,6 +1,6 @@
 import { TRequiredProps } from './../../types';
 import { ButtonProps } from "@chakra-ui/button";
-import { LinkProps } from "next/link";
+import { LinkProps } from '@chakra-ui/layout';
 
-export type BaseButtonProps = ButtonProps & { label: string; full?: boolean } & TRequiredProps;
-export type LinkButtonProps = BaseButtonProps & Pick<LinkProps, 'href'>;
+export type BaseButtonProps = ButtonProps & { label: React.ReactNode; full?: boolean } & TRequiredProps;
+export type LinkButtonProps = BaseButtonProps & LinkProps;

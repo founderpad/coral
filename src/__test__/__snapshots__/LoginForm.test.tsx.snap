@@ -58,7 +58,6 @@ exports[`Login form matches snapshot 1`] = `
           class="chakra-button css-ivx7jm"
           disabled=""
           id="submit-login"
-          name="submit-login"
           type="submit"
         >
           Login now

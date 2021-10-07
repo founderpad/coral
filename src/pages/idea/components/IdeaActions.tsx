@@ -1,7 +1,6 @@
 import { Stack } from '@chakra-ui/layout';
+import { EditButton, SubmitButton } from 'components/buttons';
 import { DeleteIconButton } from 'components/buttons/DeleteButton';
-import EditButton from 'components/buttons/iconbuttons/EditButton';
-import SubmitButton from 'components/buttons/SubmitButton';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useDeleteIdeaMutation } from 'generated/graphql';
 import React, { memo, useCallback, useContext } from 'react';

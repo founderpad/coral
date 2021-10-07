@@ -4,7 +4,7 @@ import { IoPencilSharp } from 'react-icons/io5';
 
 type Props = IconButtonProps & { htmlFor?: string };
 
-const EditButton = (props: Props): JSX.Element => (
+export const EditButton = (props: Props): JSX.Element => (
 	<IconButton
 		{...props}
 		aria-label={'Edit'}
@@ -22,5 +22,3 @@ const EditButton = (props: Props): JSX.Element => (
 		rounded={'full'}
 	/>
 );
-
-export default EditButton;

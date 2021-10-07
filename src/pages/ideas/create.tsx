@@ -1,4 +1,4 @@
-import PageLayout from 'components/layouts/PageLayout';
+import { PageLayout } from 'components/layouts';
 import WindowTitle from 'components/shared/WindowTitle';
 import CreateEditIdeaForm from 'pages/ideas/components/CreateEditIdeaForm';
 import React from 'react';

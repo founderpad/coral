@@ -1,9 +1,9 @@
 import { render } from '__test__/testUtils';
-import RegisterForm from '../pages/register/components/RegisterForm';
 import { Provider } from 'react-redux';
 import store from 'utils/store';
 import { act } from 'react-dom/test-utils';
 import { fireEvent, waitFor } from '@testing-library/dom';
+import RegisterForm from 'pages/register/components/RegisterForm';
 
 const setup = () =>
 	render(

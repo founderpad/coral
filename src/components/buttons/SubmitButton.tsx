@@ -2,7 +2,7 @@ import { BaseButton } from 'components/buttons';
 import React from 'react';
 import { BaseButtonProps } from './types/buttons';
 
-const SubmitButton = ({
+export const SubmitButton = ({
 	label = 'Submit',
 	...props
 }: BaseButtonProps & { form?: string }): JSX.Element => {
@@ -20,5 +20,3 @@ const SubmitButton = ({
 		/>
 	);
 };
-
-export default SubmitButton;

@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from 'slices/auth';
-// import { updateUserPersonalDetails } from 'slices/auth';
 import { IAuthFormData, IRegisterFormData, TExperience } from 'types/auth';
 import { UserType } from 'utils/Constants';
 import { auth } from 'utils/nhost';
@@ -127,7 +126,7 @@ export const useGetAuthenticatedUser = (): any => {
 		onCompleted: (data) => {
 			const user = data.user;
 			dispatch(setUser(user as Users));
-			router.replace('/dashboard');
+			router.replace('/ideas?page=1');
 		}
 	});
 };

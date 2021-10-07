@@ -74,23 +74,6 @@ exports[`Create idea form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-0"
-          role="group"
-        >
-          <label
-            class="chakra-form__label css-1hrwh1j"
-            for="missionstatement"
-            id="missionstatement-label"
-          >
-            Mission statement
-          </label>
-          <textarea
-            class="chakra-textarea css-1xh66r"
-            id="missionstatement"
-            placeholder="Write a mission statement about your idea (max. 500 characters)"
-          />
-        </div>
-        <div
           class="chakra-form-control css-m5v8bu"
           role="group"
         >
@@ -390,7 +373,6 @@ exports[`Create idea form matches snapshot 1`] = `
           aria-label="create-idea-button"
           class="chakra-button css-1ac6dtc"
           disabled=""
-          name="create-idea-button"
           type="submit"
         >
           Create your idea

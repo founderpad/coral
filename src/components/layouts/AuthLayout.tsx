@@ -2,7 +2,7 @@ import { Image } from '@chakra-ui/image';
 import { Heading } from '@chakra-ui/layout';
 import WindowTitle from 'components/shared/WindowTitle';
 import React from 'react';
-import StackLayout from './StackLayout';
+import { StackLayout } from './StackLayout';
 
 interface Props {
 	header: string;
@@ -23,6 +23,7 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => {
 				boxShadow={{ sm: 'sm' }}
 				borderWidth={{ sm: '1px' }}
 				m={'auto'}
+				bg={'white'}
 			>
 				<Image
 					src="/logo.svg"

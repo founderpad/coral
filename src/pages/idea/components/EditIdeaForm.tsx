@@ -66,7 +66,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				isRequired
 			/>
 
-			<TextareaField
+			{/* <TextareaField
 				id="missionstatement"
 				label="Mission statement"
 				name="mission_statement"
@@ -76,7 +76,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				control={control}
 				rules={{ maxLength: 500 }}
 				isRequired
-			/>
+			/> */}
 
 			<TextareaField
 				id="description"

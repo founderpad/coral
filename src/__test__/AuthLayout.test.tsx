@@ -34,11 +34,7 @@ describe('AuthLayout layout', () => {
 	it('renders AuthLayout with RegisterForm form', () => {
 		const { getByText } = render(
 			<Provider store={store}>
-				<AuthLayout
-					header="Register"
-					subheader="Launch your vision"
-					title="Login"
-				>
+				<AuthLayout header="Register" title="Login">
 					<RegisterForm />
 				</AuthLayout>
 			</Provider>

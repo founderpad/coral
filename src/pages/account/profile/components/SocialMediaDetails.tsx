@@ -1,5 +1,5 @@
 import { Stack } from '@chakra-ui/react';
-import SubmitButton from 'components/buttons/SubmitButton';
+import { SubmitButton } from 'components/buttons';
 import Loading from 'components/shared/Loading';
 import TitleEditAction from 'components/shared/TitleEditAction';
 import ModalDrawerContext from 'context/ModalDrawerContext';

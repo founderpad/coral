@@ -24,7 +24,8 @@ const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			isRequired,
 			rules,
 			label,
-			name
+			name,
+			size
 		} = props;
 
 		return (
@@ -48,7 +49,7 @@ const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							{...props}
 							placeholder={placeholder}
 							rounded={'md'}
-							size={'md'}
+							size={size ?? 'md'}
 							_focus={{
 								borderWidth: 1,
 								borderColor: 'fpGrey.500'

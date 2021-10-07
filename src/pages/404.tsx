@@ -1,5 +1,5 @@
 import { Heading, Stack } from '@chakra-ui/react';
-import GoBackButton from 'components/buttons/GoBackButton';
+import { GoBackButton } from 'components/buttons';
 
 const NotFound = (): JSX.Element => {
 	return (

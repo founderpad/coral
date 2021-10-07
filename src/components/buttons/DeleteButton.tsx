@@ -27,14 +27,6 @@ const DeleteMenuButton = (props: BaseButtonProps): JSX.Element => {
 	);
 };
 
-const DeleteOutlinedButton = (props: BaseButtonProps): JSX.Element => (
-	<DeleteButton {...props} variant={'outline'} />
-);
-
-const DeleteGhostButton = (props: BaseButtonProps): JSX.Element => (
-	<DeleteButton {...props} variant={'ghost'} />
-);
-
 const DeleteIconButton = ({
 	onClick
 }: {
@@ -52,10 +44,4 @@ const DeleteIconButton = ({
 	/>
 );
 
-export {
-	DeleteButton,
-	DeleteOutlinedButton,
-	DeleteMenuButton,
-	DeleteGhostButton,
-	DeleteIconButton
-};
+export { DeleteButton, DeleteMenuButton, DeleteIconButton };

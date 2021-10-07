@@ -1,16 +1,16 @@
-import PageLayout from 'components/layouts/PageLayout';
+import { PageLayout } from 'components/layouts';
 import WindowTitle from 'components/shared/WindowTitle';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 
 const Home = (): JSX.Element => {
-	const user = useCurrentUser();
+	const firstName = useCurrentUser().first_name;
 
 	return (
 		<React.Fragment>
 			<WindowTitle title="Home" />
-			<PageLayout title={`Welcome back, ${user?.first_name}`} />
+			<PageLayout title={`Welcome back, ${firstName}`} />
 		</React.Fragment>
 	);
 };

@@ -1,20 +1,31 @@
 import { Button } from '@chakra-ui/button';
+import { BaseLink } from 'components/links';
 import React from 'react';
-import { BaseButtonProps } from './types/buttons';
+import { BaseButtonProps, LinkButtonProps } from './types/buttons';
 
-const BaseButton = (props: BaseButtonProps): JSX.Element => {
-	const { label, size, ...rest } = props;
+export const BaseButton = (props: BaseButtonProps): JSX.Element => {
+	const { label, size, name, ...rest } = props;
 
 	return (
-		<Button
-			{...rest}
-			size={size ?? 'sm'}
-			rounded={'md'}
-			aria-label={props.name}
-		>
+		<Button {...rest} size={size ?? 'sm'} rounded={'md'} aria-label={name}>
 			{label}
 		</Button>
 	);
 };
 
-export default BaseButton;
+export const LinkButton = (props: LinkButtonProps): JSX.Element => {
+	const { label, size, name, href, ...rest } = props;
+
+	return (
+		<Button
+			{...rest}
+			as={BaseLink}
+			size={size ?? 'sm'}
+			rounded={'md'}
+			aria-label={name}
+			href={href}
+		>
+			{label}
+		</Button>
+	);
+};

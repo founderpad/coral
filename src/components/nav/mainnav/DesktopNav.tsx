@@ -1,12 +1,11 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import Icon from '@chakra-ui/icon';
-import { Box, Flex, Stack, Text } from '@chakra-ui/layout';
-import { MenuDivider } from '@chakra-ui/menu';
-import { Popover, PopoverContent, PopoverTrigger } from '@chakra-ui/popover';
-import { HStack } from '@chakra-ui/react';
-import { BaseButton } from 'components/buttons';
-import { BaseLink } from 'components/links';
-import { useCurrentUser } from 'hooks/auth';
+import { Flex, Link } from '@chakra-ui/layout';
+import { LinkButton } from 'components/buttons/BaseButton';
+import { BaseLabel } from 'components/labels/BaseLabel';
+import { BoxLayout, StackLayout } from 'components/layouts';
+import BasePopover from 'components/popover/BasePopover';
+import useUserProfile from 'hooks/user';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { IoChevronForwardSharp } from 'react-icons/io5';
@@ -15,110 +14,118 @@ import NavItems, { NavItem } from './NavItems';
 
 const DesktopNav = (): JSX.Element => {
 	const router = useRouter();
+	const isComplete = useUserProfile().is_complete;
 
 	return (
-		<HStack
+		<StackLayout
+			direction={'row'}
 			alignItems={'center'}
-			spacing={6}
+			spacing={4}
 			ml={'auto'}
 			display={{ base: 'none', md: 'flex' }}
 			position={'relative'}
 		>
 			{NavItems.map((navItem) => (
-				<Box key={navItem.key}>
-					<Popover trigger={'hover'} placement={'bottom-end'}>
-						<PopoverTrigger>
-							<NavLink
-								href={navItem.href ?? '#'}
-								color={
-									router.pathname === navItem.href
-										? 'fpGrey.900'
-										: 'fpGrey.500'
-								}
-							>
-								{navItem.label}
-							</NavLink>
-						</PopoverTrigger>
-
-						{navItem.children && (
-							<PopoverContent
-								border={0}
-								boxShadow={'xl'}
-								bg={useColorModeValue('white', 'gray.500')}
-								p={4}
-							>
-								<Stack spacing={2}>
-									{navItem.children.map((child) => (
-										<DesktopSubNav
-											key={child.label}
-											{...child}
-										/>
-									))}
-								</Stack>
-							</PopoverContent>
-						)}
-					</Popover>
-				</Box>
-			))}
-			<ProfileNotSet />
-		</HStack>
-	);
-};
-
-const DesktopSubNav = ({ label, href, divider, icon }: NavItem) => {
-	return (
-		<React.Fragment>
-			{divider && <MenuDivider />}
-			<NavLink href={href} role={'group'} color={'fpGrey.500'} my={2}>
-				<Stack direction={'row'} align={'center'}>
-					{icon}
-					<Box>
-						<Text
-							transition={'all .3s ease'}
+				<BasePopover
+					key={navItem.key}
+					triggerEl={
+						<Link
+							p={2}
+							href={navItem.href ?? '#'}
 							fontSize={'sm'}
 							fontWeight={500}
+							color={
+								router.pathname === navItem.href
+									? 'fpPrimary.300'
+									: 'fpGrey.900'
+							}
+							_hover={{
+								textDecoration: 'none',
+								color: 'fpGrey.900'
+							}}
 						>
-							{label}
-						</Text>
-					</Box>
-					<Flex
-						transition={'all .3s ease'}
-						transform={'translateX(-10px)'}
-						opacity={0}
-						_groupHover={{
-							opacity: '100%',
-							transform: 'translateX(0)'
-						}}
-						justify={'flex-end'}
-						align={'center'}
-						flex={1}
-					>
-						<Icon color={'fpGrey.900'} as={IoChevronForwardSharp} />
-					</Flex>
-				</Stack>
-			</NavLink>
-		</React.Fragment>
+							{navItem.label}
+						</Link>
+					}
+				>
+					{navItem.children && (
+						<StackLayout spacing={4}>
+							{navItem.children.map((child) => (
+								<DesktopSubNav key={child.label} {...child} />
+							))}
+						</StackLayout>
+					)}
+				</BasePopover>
+			))}
+			{!isComplete && <ProfileNotSet />}
+		</StackLayout>
 	);
 };
 
-const ProfileNotSet = (): JSX.Element => {
-	const isComplete = useCurrentUser().user_profile.is_complete;
+const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
+	<React.Fragment>
+		<NavLink
+			href={href}
+			role={'group'}
+			display={'block'}
+			p={2}
+			rounded={'md'}
+			_hover={{ bg: useColorModeValue('gray.50', 'gray.900') }}
+		>
+			<StackLayout direction={'row'} spacing={2}>
+				<BoxLayout p={0} alignItems={'center'}>
+					{icon && <Icon as={icon} mr={2} />}
+					<BoxLayout
+						p={0}
+						flexDirection={'column'}
+						alignItems={'flex-start'}
+						justifyContent={'flex-start'}
+					>
+						<BaseLabel
+							transition={'all .3s ease'}
+							label={label}
+							color={'fpGrey.900'}
+							fontWeight={500}
+							_groupHover={{ color: 'fpGrey.900' }}
+						/>
+						<BaseLabel label={subLabel} color={'fpGrey.300'} />
+					</BoxLayout>
+				</BoxLayout>
 
-	if (!isComplete)
-		return (
-			<BaseButton
-				name={'profile-not-set-button'}
-				as={BaseLink}
-				label={'Profile not set'}
-				position={'fixed'}
-				right={4}
-				colorScheme={'red'}
-				variant={'outline'}
-				// href={'/account/profile'}
-			/>
-		);
+				<Flex
+					transition={'all .3s ease'}
+					transform={'translateX(-10px)'}
+					opacity={0}
+					_groupHover={{
+						opacity: '100%',
+						transform: 'translateX(0)'
+					}}
+					justify={'flex-end'}
+					align={'center'}
+					flex={1}
+				>
+					<Icon
+						color={'fpGrey.300'}
+						w={4}
+						h={4}
+						as={IoChevronForwardSharp}
+					/>
+				</Flex>
+			</StackLayout>
+		</NavLink>
+	</React.Fragment>
+);
 
-	return null;
-};
+const ProfileNotSet = (): JSX.Element => (
+	<LinkButton
+		name={'profile-not-set-button'}
+		label={'Profile not set'}
+		position={'fixed'}
+		right={4}
+		colorScheme={'red'}
+		variant={'outline'}
+		href={'/account/profile'}
+	/>
+);
 
 export default DesktopNav;

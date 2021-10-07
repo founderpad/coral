@@ -10,8 +10,9 @@ type Props = BoxProps & {
 	action?: React.ReactNode;
 };
 
-const PageLayout = (props: Props): JSX.Element => {
-	const { fixedHeader, title, subtitle, action, children, p, ...rest } = props;
+export const PageLayout = (props: Props): JSX.Element => {
+	const { fixedHeader, title, subtitle, action, children, p, ...rest } =
+		props;
 	const headerProps = { fixedHeader, title, subtitle, action };
 
 	return (
@@ -41,5 +42,3 @@ const PageLayout = (props: Props): JSX.Element => {
 		</Flex>
 	);
 };
-
-export default PageLayout;

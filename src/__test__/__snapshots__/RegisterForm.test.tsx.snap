@@ -6,7 +6,7 @@ exports[`Register form matches snapshot 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-136el55"
+      class="chakra-stack css-1kii5if"
     >
       <div
         class="chakra-form-control css-1nn7pbt"
@@ -97,7 +97,7 @@ exports[`Register form matches snapshot 1`] = `
         />
       </div>
       <div
-        class="chakra-stack css-qk4a8a"
+        class="chakra-stack css-x4fhqb"
       >
         <div
           class="chakra-form-control css-1cmijj6"
@@ -157,7 +157,7 @@ exports[`Register form matches snapshot 1`] = `
         </div>
       </div>
       <div
-        class="chakra-stack css-136el55"
+        class="chakra-stack css-1kii5if"
       >
         <div
           class="chakra-form-control css-1cmijj6"
@@ -202,7 +202,6 @@ exports[`Register form matches snapshot 1`] = `
           class="chakra-button css-ivx7jm"
           disabled=""
           id="submit-register-account"
-          name="submit-register-account"
           type="submit"
         >
           Create account

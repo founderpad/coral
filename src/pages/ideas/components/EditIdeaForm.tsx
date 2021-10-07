@@ -1,6 +1,6 @@
 import { FormControl, FormHelperText } from '@chakra-ui/form-control';
 import { Heading, Stack, Text } from '@chakra-ui/layout';
-import SubmitButton from 'components/buttons/SubmitButton';
+import { SubmitButton } from 'components/buttons';
 import { InputField } from 'components/input/InputFields';
 import { SelectField } from 'components/input/SelectFields';
 import { TextareaField } from 'components/input/TextareaFields';
@@ -55,7 +55,7 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 					isRequired
 				/>
 
-				<TextareaField
+				{/* <TextareaField
 					id="mission_statement"
 					label="Mission statement"
 					name="mission_statement"
@@ -65,7 +65,7 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 					control={control}
 					rules={{ maxLength: 150 }}
 					isRequired
-				/>
+				/> */}
 
 				<TextareaField
 					id="description"

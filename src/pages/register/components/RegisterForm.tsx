@@ -1,4 +1,4 @@
-import SubmitButton from 'components/buttons/SubmitButton';
+import { SubmitButton } from 'components/buttons';
 import { useBaseForm } from 'components/form/hooks';
 import {
 	EmailField,
@@ -6,7 +6,7 @@ import {
 	PasswordField
 } from 'components/input/InputFields';
 import { SelectField } from 'components/input/SelectFields';
-import StackLayout from 'components/layouts/StackLayout';
+import { StackLayout } from 'components/layouts';
 import { useRegister } from 'hooks/auth';
 import React from 'react';
 import { IRegisterFormData } from 'types/auth';
