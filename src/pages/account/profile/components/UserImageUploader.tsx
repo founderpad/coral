@@ -1,5 +1,5 @@
+import { UserAvatar } from 'components/shared';
 import ImageUploader from 'components/shared/imageuploader/ImageUploader';
-import UserAvatar from 'components/shared/UserAvatar';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useUpdateUserPersonalDetailsMutation } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';

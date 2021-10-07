@@ -1,5 +1,7 @@
 import Icon from '@chakra-ui/icon';
-import { Flex, HStack, Text } from '@chakra-ui/layout';
+import { HStack, Text } from '@chakra-ui/layout';
+import { BaseButton } from 'components/buttons';
+import { FlexLayout } from 'components/layouts';
 import { Idea_Votes, useUpsertIdeaVoteMutation } from 'generated/graphql';
 import { cache } from 'pages/_app';
 import React from 'react';
@@ -25,33 +27,33 @@ export const Upvote = (
 		<HStack
 			alignItems={'center'}
 			cursor={'pointer'}
-			_hover={{ color: 'fpGrey.900' }}
-			color={'fpGrey.500'}
-			onClick={() => upsertIdeaVote()}
 			title={'Upvote this idea'}
 		>
-			<Flex alignItems={'center'}>
-				<Icon
-					as={IoArrowUpSharp}
-					color={
-						ideaVotes?.idea?.idea_votes ? 'green.300' : 'fpGrey.500'
-					}
-					fontSize={'lg'}
-					title={'Upvote this idea'}
-					mr={2}
-					cursor={'pointer'}
-				/>
-				<Text
-					fontSize={{ base: 'xs', sm: 'sm' }}
-					fontWeight={'medium'}
-					color={
-						ideaVotes?.idea?.idea_votes ? 'green.300' : 'fpGrey.500'
-					}
+			<FlexLayout
+				alignItems={'baseline'}
+				color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'fpGrey.500'}
+			>
+				<BaseButton
+					name={'upvote-idea-button'}
+					variant={'unstyled'}
+					d={'flex'}
+					onClick={() => upsertIdeaVote()}
 				>
-					{ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum
-						.vote_type ?? 0}
-				</Text>
-			</Flex>
+					<Icon as={IoArrowUpSharp} fontSize={'large'} mr={2} />
+					<Text
+						fontSize={{ base: 'xs', sm: 'sm' }}
+						fontWeight={'medium'}
+						color={
+							ideaVotes?.idea?.idea_votes
+								? 'green.300'
+								: 'fpGrey.500'
+						}
+					>
+						{ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum
+							.vote_type ?? 0}
+					</Text>
+				</BaseButton>
+			</FlexLayout>
 
 			{/* <Flex>
                 <Icon

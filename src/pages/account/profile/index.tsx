@@ -1,6 +1,5 @@
 import { PageLayout } from 'components/layouts';
-import { LastUpdatedAt } from 'components/shared/CreatedUpdatedAt';
-import DocumentTitle from 'components/shared/DocumentTitle';
+import { DocumentTitle, LastUpdatedAt } from 'components/shared';
 import { useGetUserExperienceQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';

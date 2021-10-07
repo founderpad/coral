@@ -22,13 +22,14 @@ const MobileFilterMenu = (): JSX.Element => {
 	return (
 		<PrimaryButton
 			name={'open-ideas-search-mobile-button'}
-			label={'Search'}
 			display={{ base: 'flex', md: 'none' }}
 			size={'xs'}
 			variant={'outline'}
 			onClick={onClick}
 			rightIcon={<IoChevronDownSharp />}
-		/>
+		>
+			Search
+		</PrimaryButton>
 	);
 };
 

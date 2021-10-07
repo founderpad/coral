@@ -10,7 +10,7 @@ import {
 	ModalProps
 } from '@chakra-ui/react';
 import { BaseButton, CancelButton } from 'components/buttons';
-import ModalDrawerFooterActions from 'components/shared/ModalDrawerFooterActions';
+import { ModalDrawerFooterActions } from 'components/shared';
 import React from 'react';
 
 type IModalProps = Omit<ModalProps, 'children'> & {
@@ -98,10 +98,11 @@ export const Drawer = ({
 								name={'drawer-actions-confirm-button'}
 								variant={'ghost'}
 								colorScheme={yesBtnColor ?? 'fpPrimary'}
-								label={yesBtnLabel ?? 'OK'}
 								onClick={onConfirm}
 								rounded={'md'}
-							/>
+							>
+								{yesBtnLabel ?? 'OK'}
+							</BaseButton>
 						</ModalDrawerFooterActions>
 					</DrawerFooter>
 				)}

@@ -2,7 +2,7 @@ import { BaseButton } from '.';
 import { BaseButtonProps } from './types/buttons';
 
 export const PrimaryButton = (props: BaseButtonProps): JSX.Element => {
-	const { variant, label, size } = props;
+	const { variant, children, size } = props;
 
 	return (
 		<BaseButton
@@ -13,7 +13,7 @@ export const PrimaryButton = (props: BaseButtonProps): JSX.Element => {
 			minW={'50px'}
 			rounded={'md'}
 		>
-			{label}
+			{children}
 		</BaseButton>
 	);
 };

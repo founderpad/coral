@@ -119,13 +119,14 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 const ProfileNotSet = (): JSX.Element => (
 	<LinkButton
 		name={'profile-not-set-button'}
-		label={'Profile not set'}
 		position={'fixed'}
 		right={4}
 		colorScheme={'red'}
 		variant={'outline'}
 		href={'/account/profile'}
-	/>
+	>
+		Profile not set
+	</LinkButton>
 );
 
 export default DesktopNav;

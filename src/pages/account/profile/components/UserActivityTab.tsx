@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/layout';
 import { Divider, Flex, Spinner, Text } from '@chakra-ui/react';
 import { PrimaryLink } from 'components/links';
-import NoResults from 'components/shared/NoResults';
+import { NoResults } from 'components/shared';
 import { Activity, useGetUserActivitiesQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
@@ -19,7 +19,7 @@ const UserActivityTab = (): JSX.Element => {
 	const activities = data?.activity;
 
 	if (loading) return <Spinner display={'flex'} m={'auto'} />;
-	if (activities?.length < 1) return <NoResults label={'activity'} />
+	if (activities?.length < 1) return <NoResults label={'activity'} />;
 
 	return (
 		<Stack>
@@ -45,7 +45,11 @@ const ActivityItem = (activity: Omit<Activity, 'id' | 'user_id' | 'user'>) => {
 					>
 						{activity.description}
 					</Text>
-					<PrimaryLink href={activity?.url} fontSize={'sm'} title={'Link to view the idea'}>
+					<PrimaryLink
+						href={activity?.url}
+						fontSize={'sm'}
+						title={'Link to view the idea'}
+					>
 						View this {activity.type}
 					</PrimaryLink>
 				</Flex>

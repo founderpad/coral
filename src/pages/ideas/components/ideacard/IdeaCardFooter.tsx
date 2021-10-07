@@ -1,6 +1,5 @@
 import { Flex, HStack, Text } from '@chakra-ui/layout';
-import { Upvote } from 'components/shared';
-import { PointSeparator } from 'components/shared/Separators';
+import { PointSeparator, Upvote } from 'components/shared';
 import { Idea_Preview } from 'generated/graphql';
 import React, { memo } from 'react';
 

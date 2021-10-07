@@ -1,13 +1,11 @@
-import {
-	FormControl
-} from '@chakra-ui/form-control';
-import { FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
+import { FormControl, FormHelperText } from '@chakra-ui/form-control';
+import { forwardRef, Select } from '@chakra-ui/react';
 import { FormErrorText, FormLabelText } from 'components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { IInputFieldProps } from 'types/fields';
+import { ISelectFieldProps } from 'types/fields';
 
-const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
+export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 	(props, ref) => {
 		const {
 			id,
@@ -15,11 +13,12 @@ const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 			label,
 			error,
 			errorText,
-			placeholder,
+			options,
+			control,
 			helperText,
 			name,
-			control,
-			rules,
+			full,
+			placeholder,
 			size
 		} = props;
 
@@ -28,6 +27,7 @@ const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 				id={id}
 				isInvalid={!!error}
 				isRequired={isRequired}
+				maxW={{ base: 'full', md: full ? 'full' : 'sm' }}
 				ref={ref}
 			>
 				<FormLabelText label={label} />
@@ -36,35 +36,34 @@ const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 						field: { onChange, value },
 						fieldState: { error }
 					}) => (
-						<Textarea
-							placeholder={placeholder}
+						<Select
+							placeholder={`Select ${placeholder ?? 'option'}`}
 							rounded={'md'}
+							value={value}
 							_focus={{
 								borderWidth: 1,
 								borderColor: 'fpGrey.500'
 							}}
-							ref={ref}
-							value={value}
 							onChange={onChange}
+							size={size ?? 'sm'}
 							error={!!error}
-							size={size}
-							minH={'100px'}
-						/>
+							id={`select-${name}-field`}
+							name={`select-${name}-field`}
+							aria-label={`select-${name}-field`}
+						>
+							{options}
+						</Select>
 					)}
 					name={name}
 					control={control}
-					rules={{ required: !!errorText, ...rules }}
+					rules={{ required: !!errorText }}
 				/>
 				{error ? (
 					<FormErrorText label={errorText} />
 				) : (
-					helperText && (
-						<FormHelperText label={helperText} />
-					)
+					helperText && <FormHelperText label={helperText} />
 				)}
 			</FormControl>
 		);
 	}
 );
-
-export { TextareaField };

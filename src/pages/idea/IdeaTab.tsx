@@ -1,6 +1,6 @@
 import { Divider, Flex, SimpleGrid, Stack } from '@chakra-ui/layout';
 import { TitleHeading } from 'components/heading';
-import Loading from 'components/shared/Loading';
+import { Loading } from 'components/shared';
 import { UserAvatarDetails } from 'components/shared/UserAvatar';
 import { useGetIdeaQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';

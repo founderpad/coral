@@ -1,4 +1,4 @@
-import PageHeader from 'components/shared/PageHeader';
+import { PageHeader } from 'components/shared';
 import { useGetIdea } from 'hooks/ideas';
 import { useRouter } from 'next/router';
 import React from 'react';

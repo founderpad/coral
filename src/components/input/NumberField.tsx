@@ -13,7 +13,7 @@ import {
 import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'types/fields';
 
-const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
+export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, _ref): JSX.Element => {
 		const {
 			isRequired,
@@ -94,5 +94,3 @@ const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 		);
 	}
 );
-
-export default NumberField;

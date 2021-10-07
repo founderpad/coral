@@ -71,10 +71,11 @@ export const ImageUploader = (props: Props): JSX.Element => {
 			actions: (
 				<PrimaryButton
 					name={'crop-image-modal-button'}
-					label={'Upload'}
 					size={'sm'}
 					onClick={getCropData}
-				/>
+				>
+					Upload
+				</PrimaryButton>
 			),
 			body: (
 				<Box position={'relative'}>

@@ -1,6 +1,5 @@
 import { Stack, Text } from '@chakra-ui/layout';
-import DocumentTitle from 'components/shared/DocumentTitle';
-import PageHeader from 'components/shared/PageHeader';
+import { DocumentTitle, PageHeader } from 'components/shared';
 import { useCurrentUser } from 'hooks/auth';
 import { useGetUserIdeas } from 'hooks/ideas';
 import React from 'react';

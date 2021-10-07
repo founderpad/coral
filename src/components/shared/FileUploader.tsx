@@ -90,8 +90,9 @@ export const FileUploader = (props: Props): JSX.Element => {
 					<PrimaryButton
 						name={'upload-button'}
 						onClick={() => onUpload(file)}
-						label={'Upload'}
-					/>
+					>
+						Upload
+					</PrimaryButton>
 					<IconButton
 						aria-label={'Clear file'}
 						icon={<IoCloseSharp />}
@@ -209,9 +210,10 @@ const AddedFile = ({
 		</HStack>
 		<DeleteButton
 			name={'delete-file-button'}
-			label={'Delete'}
 			variant={'ghost'}
 			onClick={() => onDelete(src)}
-		/>
+		>
+			Delete
+		</DeleteButton>
 	</Flex>
 );

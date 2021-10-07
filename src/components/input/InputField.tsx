@@ -13,7 +13,7 @@ import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'types/fields';
 import { EMAIL_REGEX } from 'utils/validators';
 
-const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
+export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref): JSX.Element => {
 		const {
 			errorText,
@@ -91,34 +91,35 @@ const InputFieldLabel = ({ label }: { label: string }): JSX.Element => (
 // 	)
 // );
 
-const InputFieldWithLabelAndIcon = forwardRef<IInputFieldProps<any>, 'input'>(
-	(props, _ref): JSX.Element => {
-		const { leftIcon, rightIcon } = props;
-		return (
-			// <InputFieldLabel {...props}>
-			<InputGroup>
-				{leftIcon && (
-					<InputLeftAddon
-						fontSize={'large'}
-						borderRadius={0}
-						bg={'white'}
-					>
-						{typeof leftIcon === 'string' ? (
-							leftIcon
-						) : (
-							<Icon as={leftIcon} />
-						)}
-					</InputLeftAddon>
-				)}
-				<InputField {...props} />
-				{rightIcon && <InputLeftAddon>{rightIcon}</InputLeftAddon>}
-			</InputGroup>
-			// </InputFieldLabel>
-		);
-	}
-);
+export const InputFieldWithLabelAndIcon = forwardRef<
+	IInputFieldProps<any>,
+	'input'
+>((props, _ref): JSX.Element => {
+	const { leftIcon, rightIcon } = props;
+	return (
+		// <InputFieldLabel {...props}>
+		<InputGroup>
+			{leftIcon && (
+				<InputLeftAddon
+					fontSize={'large'}
+					borderRadius={0}
+					bg={'white'}
+				>
+					{typeof leftIcon === 'string' ? (
+						leftIcon
+					) : (
+						<Icon as={leftIcon} />
+					)}
+				</InputLeftAddon>
+			)}
+			<InputField {...props} />
+			{rightIcon && <InputLeftAddon>{rightIcon}</InputLeftAddon>}
+		</InputGroup>
+		// </InputFieldLabel>
+	);
+});
 
-const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
+export const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref): JSX.Element => (
 		<InputField
 			{...props}
@@ -131,7 +132,7 @@ const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
 	)
 );
 
-const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
+export const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref): JSX.Element => (
 		<InputField
 			{...props}
@@ -145,4 +146,4 @@ const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
 	)
 );
 
-export { InputField, EmailField, PasswordField, InputFieldWithLabelAndIcon };
+export default InputField;

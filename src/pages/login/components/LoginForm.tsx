@@ -1,8 +1,9 @@
-import { Flex, Text, VStack } from '@chakra-ui/layout';
+import { Flex, Text } from '@chakra-ui/layout';
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { useBaseForm } from 'components/form/hooks';
-import { EmailField, PasswordField } from 'components/input/InputFields';
+import { EmailField, PasswordField } from 'components/input';
+import { StackLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import { useLogin } from 'hooks/auth';
 import React, { memo } from 'react';
@@ -22,7 +23,7 @@ const LoginForm = (): JSX.Element => {
 			name={'loginform'}
 			onSubmit={handleSubmit(onLogin)}
 		>
-			<VStack spacing={6} my={6}>
+			<StackLayout spacing={6} my={6}>
 				<EmailField
 					id="email"
 					name="email"
@@ -50,7 +51,7 @@ const LoginForm = (): JSX.Element => {
 					full
 				/>
 				<NoAccountFooter />
-			</VStack>
+			</StackLayout>
 		</Form>
 	);
 };

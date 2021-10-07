@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/layout';
 import { FlexProps } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
-import TitleEditAction from 'components/shared/TitleEditAction';
+import { TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useCurrentUser } from 'hooks/auth';
 import React, { memo, useContext } from 'react';

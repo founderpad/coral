@@ -4,7 +4,7 @@ import { BaseButton } from '.';
 import { BaseButtonProps } from './types/buttons';
 
 const DeleteButton = (props: BaseButtonProps): JSX.Element => {
-	const { variant, label } = props;
+	const { variant, children } = props;
 
 	return (
 		<BaseButton
@@ -14,7 +14,7 @@ const DeleteButton = (props: BaseButtonProps): JSX.Element => {
 			// size={size ?? 'sm'}
 			borderWidth={1}
 		>
-			{label}
+			{children}
 		</BaseButton>
 	);
 };

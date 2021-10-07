@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'types/fields';
 
-const DatePickerField = forwardRef<IInputFieldProps<any>, 'input'>(
+export const DatePickerField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref): JSX.Element => {
 		const { label, control, name } = props;
 
@@ -45,5 +45,3 @@ const DatePickerField = forwardRef<IInputFieldProps<any>, 'input'>(
 		);
 	}
 );
-
-export { DatePickerField };

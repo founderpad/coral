@@ -1,12 +1,15 @@
 import { Flex, Text } from '@chakra-ui/layout';
 import { BaseLink } from 'components/links';
-import { PointSeparator } from 'components/shared/Separators';
+import { PointSeparator } from 'components/shared';
 import { Idea_Preview } from 'generated/graphql';
 import React, { memo } from 'react';
 import { formatDate } from 'utils/validators';
 import NewIdeaBadge from '../NewIdeaBadge';
 
-type TIdeaCardHeader = Pick<Idea_Preview, 'name' | 'idea_user' | 'is_new' | 'created_at' | 'user_id'>;
+type TIdeaCardHeader = Pick<
+	Idea_Preview,
+	'name' | 'idea_user' | 'is_new' | 'created_at' | 'user_id'
+>;
 
 const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 	const { name, idea_user, created_at, is_new } = idea;
@@ -25,15 +28,10 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 			justifyContent={{ sm: 'space-between' }}
 			overflowX={'hidden'}
 		>
-			<Flex
-				alignItems={'center'}
-				overflowX={'hidden'}
-				mr={4}
-			>
+			<Flex alignItems={'center'} overflowX={'hidden'} mr={4}>
 				<Text
 					fontWeight={'bold'}
 					pl={{ sm: 10 }}
-					// fontSize={{ base: 'sm', sm: 'md' }}
 					fontSize={'sm'}
 					color={'fpGrey.900'}
 					aria-label={'The name of the idea'}

@@ -4,8 +4,8 @@ import {
 	EmailField,
 	InputField,
 	PasswordField
-} from 'components/input/InputFields';
-import { SelectField } from 'components/input/SelectFields';
+} from 'components/input/InputField';
+import { SelectField } from 'components/input/SelectField';
 import { StackLayout } from 'components/layouts';
 import { useRegister } from 'hooks/auth';
 import React from 'react';

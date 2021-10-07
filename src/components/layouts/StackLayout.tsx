@@ -1,7 +1,9 @@
 import { Stack, StackProps } from '@chakra-ui/layout';
 import React from 'react';
 
-export const StackLayout = (props: StackProps): JSX.Element => {
+export const StackLayout = ({
+	...props
+}: StackProps & { full?: boolean }): JSX.Element => {
 	const { children, spacing, ...rest } = props;
 
 	return (

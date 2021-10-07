@@ -1,9 +1,9 @@
 import { FormControl, FormHelperText } from '@chakra-ui/form-control';
 import { Heading, Stack, Text } from '@chakra-ui/layout';
 import { SubmitButton } from 'components/buttons';
-import { InputField } from 'components/input/InputFields';
-import { SelectField } from 'components/input/SelectFields';
-import { TextareaField } from 'components/input/TextareaFields';
+import { InputField } from 'components/input/InputField';
+import { SelectField } from 'components/input/SelectField';
+import { TextareaField } from 'components/input/TextareaField';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { TIdea } from 'types/idea';

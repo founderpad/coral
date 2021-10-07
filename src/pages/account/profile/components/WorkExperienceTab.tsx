@@ -1,8 +1,7 @@
 import { Stack, Text } from '@chakra-ui/layout';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
-import Loading from 'components/shared/Loading';
-import TitleEditAction from 'components/shared/TitleEditAction';
+import { Loading, TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import React, { memo, useContext } from 'react';
 import useProfileFragment from '../fragments/UserProfileFragment';
