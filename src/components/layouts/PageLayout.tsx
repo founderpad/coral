@@ -1,6 +1,6 @@
 import { BoxProps } from '@chakra-ui/layout';
 import { Box, Flex } from '@chakra-ui/react';
-import PageHeader from 'components/shared/PageHeader';
+import { PageHeader } from 'components/shared';
 import React from 'react';
 
 type Props = BoxProps & {
@@ -10,8 +10,9 @@ type Props = BoxProps & {
 	action?: React.ReactNode;
 };
 
-const PageLayout = (props: Props): JSX.Element => {
-	const { fixedHeader, title, subtitle, action, children, p, ...rest } = props;
+export const PageLayout = (props: Props): JSX.Element => {
+	const { fixedHeader, title, subtitle, action, children, p, ...rest } =
+		props;
 	const headerProps = { fixedHeader, title, subtitle, action };
 
 	return (
@@ -41,5 +42,3 @@ const PageLayout = (props: Props): JSX.Element => {
 		</Flex>
 	);
 };
-
-export default PageLayout;

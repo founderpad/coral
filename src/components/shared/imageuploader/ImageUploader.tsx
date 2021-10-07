@@ -1,6 +1,6 @@
 import { Box, BoxProps, Flex } from '@chakra-ui/react';
-import EditButton from 'components/buttons/iconbuttons/EditButton';
-import { PrimaryButton } from 'components/buttons/PrimaryButtons';
+import { EditButton } from 'components/buttons';
+import { PrimaryButton } from 'components/buttons/PrimaryButton';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import 'cropperjs/dist/cropper.css';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -68,7 +68,15 @@ export const ImageUploader = (props: Props): JSX.Element => {
 		setModalDrawer({
 			isOpen: true,
 			title,
-			actions: <PrimaryButton label={'Upload'} size={'sm'} onClick={getCropData} />,
+			actions: (
+				<PrimaryButton
+					name={'crop-image-modal-button'}
+					size={'sm'}
+					onClick={getCropData}
+				>
+					Upload
+				</PrimaryButton>
+			),
 			body: (
 				<Box position={'relative'}>
 					<Cropper

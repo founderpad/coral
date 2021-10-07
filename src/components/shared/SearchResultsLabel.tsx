@@ -9,7 +9,7 @@ type TSearchResultsLabel = {
 	total: number;
 };
 
-const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
+export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 	const { pageSize, limit, total } = props;
 	const page = useRouter().query.page;
 
@@ -30,5 +30,3 @@ const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 		</Text>
 	);
 });
-
-export default SearchResultsLabel;

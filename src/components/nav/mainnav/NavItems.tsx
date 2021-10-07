@@ -1,28 +1,29 @@
 import { Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
 import { IoAddSharp, IoLockClosedSharp } from 'react-icons/io5';
+import { IconType } from 'react-icons/lib';
 
 export interface NavItem {
 	label: string | React.ReactNode;
 	key: string;
 	subLabel?: string;
-	children?: Array<NavItem>;
+	children?: NavItem[];
 	href?: string;
-	icon?: any;
+	icon?: IconType;
 	divider?: boolean;
 }
 
 const NavItems: Array<NavItem> = [
-	{
-		label: 'Home',
-		key: 'home',
-		href: '/home'
-	},
-	{
-		label: 'Dashboard',
-		key: 'dashboard',
-		href: '/dashboard'
-	},
+	// {
+	// 	label: 'Home',
+	// 	key: 'home',
+	// 	href: '/home'
+	// },
+	// {
+	// 	label: 'Dashboard',
+	// 	key: 'dashboard',
+	// 	href: '/dashboard'
+	// },
 	{
 		label: 'Ideas',
 		key: 'ideas',
@@ -43,47 +44,48 @@ const NavItems: Array<NavItem> = [
 			{
 				label: 'Create idea',
 				key: 'create',
-				subLabel: 'Post a new idea to founders and investors',
+				subLabel: 'Post a new idea to the community',
 				href: '/ideas/create',
-				icon: <Icon as={IoAddSharp} mr={2} fontSize={'large'} />,
-				divider: true
+				icon: IoAddSharp
+				// divider: true
 			}
 		]
 	},
-	{
-		label: 'Founders',
-		key: 'founders',
-		href: '/founders',
-		children: [
-			{
-				label: 'Search founders',
-				key: 'search-founders',
-				subLabel: 'Search for other founders',
-				href: '/founders'
-			},
-			{
-				label: 'Your co-founders',
-				key: 'your-cofounders',
-				subLabel: 'The founders you have connected with',
-				href: '/founders/connected-founders'
-			}
-		]
-	},
+	// {
+	// 	label: 'Founders',
+	// 	key: 'founders',
+	// 	href: '/founders',
+	// 	children: [
+	// 		{
+	// 			label: 'Search founders',
+	// 			key: 'search-founders',
+	// 			subLabel: 'Search for other founders',
+	// 			href: '/founders'
+	// 		},
+	// 		{
+	// 			label: 'Your co-founders',
+	// 			key: 'your-cofounders',
+	// 			subLabel: 'The founders you have connected with',
+	// 			href: '/founders/connected-founders'
+	// 		}
+	// 	]
+	// },
+	// {
+	// 	label: (
+	// 		<Flex display="inline-flex" alignItems="center">
+	// 			Investor{' '}
+	// 			<Icon as={IoLockClosedSharp} ml={2} color="goldenrod" />
+	// 		</Flex>
+	// 	),
+	// 	key: 'investor-network',
+	// 	href: '/investor',
+	// 	divider: true
+	// },
 	{
 		label: (
-			<Flex display="inline-flex" alignItems="center">
-				Investor{' '}
-				<Icon as={IoLockClosedSharp} ml={2} color="goldenrod" />
-			</Flex>
-		),
-		key: 'investor-network',
-		href: '/investor',
-		divider: true
-	},
-	{
-		label: (
-			<Flex display="inline-flex" alignItems="center">
-				Mentor <Icon as={IoLockClosedSharp} ml={2} color="goldenrod" />
+			<Flex display={'inline-flex'} alignItems={'center'}>
+				Coming soon{' '}
+				<Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
 			</Flex>
 		),
 		key: 'mentor-network',

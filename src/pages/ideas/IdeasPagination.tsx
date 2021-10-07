@@ -1,4 +1,4 @@
-import PaginationFooter from 'components/shared/Pagination';
+import { Pagination } from 'components/shared';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -12,7 +12,7 @@ const IdeasPagination = ({
 
 	// console.log('pages count: ', Math.ceil(pagesCount));
 	return (
-		<PaginationFooter
+		<Pagination
 			// currentPage={0}
 			// isDisabled={false}
 			onPageChange={(page: string) => {

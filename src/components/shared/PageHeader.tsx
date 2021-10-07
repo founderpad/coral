@@ -2,7 +2,7 @@ import { Flex, Heading, Text } from '@chakra-ui/layout';
 import { Box } from '@chakra-ui/react';
 import React, { memo } from 'react';
 
-const PageHeader = memo(
+export const PageHeader = memo(
 	({
 		title,
 		subtitle,
@@ -24,7 +24,10 @@ const PageHeader = memo(
 					top={0}
 					w={'full'}
 				>
-					<Flex justifyContent={'space-between'} alignItems={'center'}>
+					<Flex
+						justifyContent={'space-between'}
+						alignItems={'center'}
+					>
 						<Heading as="h4" size="md" color={'gray.600'}>
 							{title}
 						</Heading>
@@ -38,5 +41,3 @@ const PageHeader = memo(
 		);
 	}
 );
-
-export default PageHeader;

@@ -12,7 +12,7 @@ import { Controller } from 'react-hook-form';
 import { ICheckboxGroupFieldProps } from 'types/fields';
 import { ALL_INDUSTRIES } from 'utils/Constants';
 
-const IndustriesPicker = forwardRef<ICheckboxGroupFieldProps, 'input'>(
+export const IndustriesPicker = forwardRef<ICheckboxGroupFieldProps, 'input'>(
 	(props, ref) => {
 		const {
 			name,
@@ -80,5 +80,3 @@ const IndustriesPicker = forwardRef<ICheckboxGroupFieldProps, 'input'>(
 		);
 	}
 );
-
-export default IndustriesPicker;

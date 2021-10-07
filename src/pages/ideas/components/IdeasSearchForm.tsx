@@ -1,13 +1,12 @@
 import { ButtonGroup, Heading } from '@chakra-ui/react';
-import { CancelButton } from 'components/buttons';
-import SubmitButton from 'components/buttons/SubmitButton';
+import { CancelButton, SubmitButton } from 'components/buttons';
 import Form from 'components/form/Form';
-import { InputField } from 'components/input/InputFields';
-import { SelectField } from 'components/input/SelectFields';
+import { useBaseForm } from 'components/form/hooks';
+import { InputField } from 'components/input/InputField';
+import { SelectField } from 'components/input/SelectField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 
 type IdeaSearch = {
@@ -20,7 +19,7 @@ type IdeaSearch = {
 const IdeasSearchForm = (): JSX.Element => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
-	const { handleSubmit, control, reset } = useForm<IdeaSearch>();
+	const { handleSubmit, control, reset } = useBaseForm<IdeaSearch>();
 	const router = useRouter();
 
 	const onClick = (values: IdeaSearch) => {
@@ -68,7 +67,11 @@ const IdeasSearchForm = (): JSX.Element => {
 	};
 
 	return (
-		<Form id={'ideaSearchForm'} name={'ideaSearchForm'} onSubmit={handleSubmit(onClick)}>
+		<Form
+			id={'ideaSearchForm'}
+			name={'ideaSearchForm'}
+			onSubmit={handleSubmit(onClick)}
+		>
 			<Heading
 				as={'h6'}
 				fontSize={'md'}
@@ -77,7 +80,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				mb={4}
 			>
 				Search ideas
-				</Heading>
+			</Heading>
 			<InputField
 				id="name"
 				name="name"
@@ -93,7 +96,6 @@ const IdeasSearchForm = (): JSX.Element => {
 				placeholder="industry"
 				control={control}
 				label={'Industry'}
-				size={'sm'}
 			/>
 			<SelectField
 				id="status"
@@ -102,7 +104,6 @@ const IdeasSearchForm = (): JSX.Element => {
 				placeholder="status"
 				control={control}
 				label={'Status'}
-				size={'sm'}
 			/>
 			<InputField
 				id="location"
@@ -115,12 +116,12 @@ const IdeasSearchForm = (): JSX.Element => {
 
 			{/* business status  */}
 			{/* ideas with questionnaires */}
-			<ButtonGroup pt={4} spacing={4}>
+			<ButtonGroup>
 				<CancelButton label={'Clear'} flex={1} onClick={onClear} />
 				<SubmitButton
+					name={'search-ideas-button'}
 					label={'Search'}
 					flex={2}
-					mt={0}
 					title={'Search ideas'}
 				/>
 			</ButtonGroup>

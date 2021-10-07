@@ -1,6 +1,5 @@
-import PageLayout from 'components/layouts/PageLayout';
-import { LastUpdatedAt } from 'components/shared/CreatedUpdatedAt';
-import WindowTitle from 'components/shared/WindowTitle';
+import { PageLayout } from 'components/layouts';
+import { DocumentTitle, LastUpdatedAt } from 'components/shared';
 import { useGetUserExperienceQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
@@ -20,7 +19,7 @@ const Profile = (): JSX.Element => {
 
 	return (
 		<React.Fragment>
-			<WindowTitle title="Profile" />
+			<DocumentTitle title="Profile" />
 			<PageLayout
 				title="Your profile"
 				action={updatedAt && <LastUpdatedAt date={updatedAt} />}

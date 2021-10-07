@@ -1,7 +1,6 @@
 import { Stack } from '@chakra-ui/layout';
+import { EditButton, SubmitButton } from 'components/buttons';
 import { DeleteIconButton } from 'components/buttons/DeleteButton';
-import EditButton from 'components/buttons/iconbuttons/EditButton';
-import SubmitButton from 'components/buttons/SubmitButton';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useDeleteIdeaMutation } from 'generated/graphql';
 import React, { memo, useCallback, useContext } from 'react';
@@ -33,19 +32,18 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 		});
 	}, []);
 
-	// <SubmitButton
-	// 				label={label ?? 'Update'}
-	// 				isLoading={isSubmitting}
-	// 				disabled={!isValid || isSubmitting}
-	// 			/>
-
 	const onEditClick = useCallback(() => {
 		setModalDrawer({
 			title: 'Edit idea',
 			isOpen: true,
 			body: <EditIdeaForm />,
 			actions: (
-				<SubmitButton form="editIdeaForm" label={'Save'} size={'sm'} />
+				<SubmitButton
+					name={'open-modal-drawer-edit-idea-button'}
+					form="editIdeaForm"
+					label={'Save'}
+					size={'sm'}
+				/>
 			),
 			hideFooter: true,
 			size: '2xl'

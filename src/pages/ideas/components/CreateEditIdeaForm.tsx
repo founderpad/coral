@@ -8,12 +8,12 @@ import {
 	CloseButton,
 	Link
 } from '@chakra-ui/react';
-import SubmitButton from 'components/buttons/SubmitButton';
+import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
-import { InputField } from 'components/input/InputFields';
-import { SelectField } from 'components/input/SelectFields';
-import { SwitchField } from 'components/input/SwitchFields';
-import { TextareaField } from 'components/input/TextareaFields';
+import { InputField } from 'components/input/InputField';
+import { SelectField } from 'components/input/SelectField';
+import { SwitchField } from 'components/input/SwitchField';
+import { TextareaField } from 'components/input/TextareaField';
 import { Ideas, useCreateIdeaMutation } from 'generated/graphql';
 import NextLink from 'next/link';
 import React, { useEffect } from 'react';
@@ -90,14 +90,14 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 					isRequired
 				/>
 
-				<TextareaField
+				{/* <TextareaField
 					id="missionstatement"
 					label="Mission statement"
 					name="mission_statement"
 					placeholder="Write a mission statement about your idea (max. 500 characters)"
 					control={control}
 					rules={{ maxLength: 500 }}
-				/>
+				/> */}
 
 				<SelectField
 					id="industry"
@@ -131,7 +131,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 					label="Your competitors"
 					placeholder="List your competitors about your idea"
 					control={control}
-				// rules={{ maxLength: 150 }}
+					// rules={{ maxLength: 150 }}
 				/>
 
 				<TextareaField
@@ -140,7 +140,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 					name="team"
 					placeholder="List each team member"
 					control={control}
-				// rules={{ maxLength: 150 }}
+					// rules={{ maxLength: 150 }}
 				/>
 
 				<TextareaField
@@ -149,7 +149,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 					name="additional_information"
 					placeholder="Any additional information"
 					control={control}
-				// rules={{ maxLength: 150 }}
+					// rules={{ maxLength: 150 }}
 				/>
 
 				{/* <FormControl>
@@ -205,6 +205,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: Ideas }): JSX.Element => {
 				)}
 
 				<SubmitButton
+					name={'create-idea-button'}
 					label={(idea ? 'Update your ' : 'Create your ') + 'idea'}
 					alignSelf={'center'}
 					isLoading={isSubmitting}

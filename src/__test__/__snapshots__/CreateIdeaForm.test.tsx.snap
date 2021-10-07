@@ -74,23 +74,6 @@ exports[`Create idea form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-0"
-          role="group"
-        >
-          <label
-            class="chakra-form__label css-1hrwh1j"
-            for="missionstatement"
-            id="missionstatement-label"
-          >
-            Mission statement
-          </label>
-          <textarea
-            class="chakra-textarea css-1xh66r"
-            id="missionstatement"
-            placeholder="Write a mission statement about your idea (max. 500 characters)"
-          />
-        </div>
-        <div
           class="chakra-form-control css-m5v8bu"
           role="group"
         >
@@ -112,11 +95,11 @@ exports[`Create idea form matches snapshot 1`] = `
             class="chakra-select__wrapper css-42b2qy"
           >
             <select
-              aria-label="industry"
+              aria-label="select-industry-field"
               aria-required="true"
               class="chakra-select css-z0iqzd"
-              id="industry"
-              name="industry"
+              id="select-industry-field"
+              name="select-industry-field"
               required=""
             >
               <option
@@ -241,11 +224,11 @@ exports[`Create idea form matches snapshot 1`] = `
             class="chakra-select__wrapper css-42b2qy"
           >
             <select
-              aria-label="status"
+              aria-label="select-status-field"
               aria-required="true"
               class="chakra-select css-z0iqzd"
-              id="status"
-              name="status"
+              id="select-status-field"
+              name="select-status-field"
               required=""
             >
               <option
@@ -387,10 +370,9 @@ exports[`Create idea form matches snapshot 1`] = `
           </div>
         </div>
         <button
-          aria-label="submit"
+          aria-label="create-idea-button"
           class="chakra-button css-1ac6dtc"
           disabled=""
-          name="submit"
           type="submit"
         >
           Create your idea

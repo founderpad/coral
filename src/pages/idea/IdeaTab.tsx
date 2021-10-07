@@ -1,9 +1,10 @@
 import { Divider, Flex, SimpleGrid, Stack } from '@chakra-ui/layout';
 import { TitleHeading } from 'components/heading';
-import Loading from 'components/shared/Loading';
+import { Loading } from 'components/shared';
 import { UserAvatarDetails } from 'components/shared/UserAvatar';
 import { useGetIdeaQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
+import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import React from 'react';
 import {
@@ -19,11 +20,10 @@ import IdeaHighlight from './components/IdeaHighlightBox';
 const IdeaTab = (): JSX.Element => {
 	const router = useRouter();
 	const user = useCurrentUser();
-	// const data = useGetIdea(router.query.id as string);
 
 	const { data } = useGetIdeaQuery({
 		variables: {
-			id: router.query.id as string
+			id: useQueryParam('id')
 		}
 	});
 

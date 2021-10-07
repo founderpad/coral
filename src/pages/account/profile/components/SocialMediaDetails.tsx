@@ -1,16 +1,19 @@
 import { Stack } from '@chakra-ui/react';
-import SubmitButton from 'components/buttons/SubmitButton';
-import Loading from 'components/shared/Loading';
-import TitleEditAction from 'components/shared/TitleEditAction';
+import { SubmitButton } from 'components/buttons';
+import { Loading, TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import {
-	User_Profile
-} from 'generated/graphql';
+import { User_Profile } from 'generated/graphql';
 import gql from 'graphql-tag';
 import { useCurrentUser } from 'hooks/auth';
 import { cache } from 'pages/_app';
 import React, { useContext } from 'react';
-import { IoGlobeSharp, IoLogoFacebook, IoLogoInstagram, IoLogoLinkedin, IoLogoTwitter } from 'react-icons/io5';
+import {
+	IoGlobeSharp,
+	IoLogoFacebook,
+	IoLogoInstagram,
+	IoLogoLinkedin,
+	IoLogoTwitter
+} from 'react-icons/io5';
 import SocialMediaDetailsForm from './forms/SocialMediaDetailsForm';
 import { LinkSectionLabel } from './ProfileSectionLabel';
 
@@ -36,7 +39,14 @@ const SocialMediaDetails = (): JSX.Element => {
 		setModalDrawer({
 			title: 'Your socials',
 			isOpen: true,
-			actions: <SubmitButton form="editSocialDetailsForm" label={'Save'} size={'sm'} />,
+			actions: (
+				<SubmitButton
+					name={'open-modal-drawer-socials-button'}
+					form="editSocialDetailsForm"
+					label={'Save'}
+					size={'sm'}
+				/>
+			),
 			body: <SocialMediaDetailsForm {...socials} />,
 			noBtnLabel: 'Cancel',
 			yesBtnLabel: 'Log out',
@@ -45,7 +55,7 @@ const SocialMediaDetails = (): JSX.Element => {
 		});
 	};
 
-	if (!socials) return <Loading small />
+	if (!socials) return <Loading small />;
 
 	return (
 		<Stack w={'full'} spacing={4} mb={4}>
@@ -70,11 +80,13 @@ const SocialMediaDetails = (): JSX.Element => {
 				label={'Facebook'}
 				icon={IoLogoFacebook}
 			/>
-			<LinkSectionLabel link={socials?.website} label={'Website'} icon={IoGlobeSharp} />
+			<LinkSectionLabel
+				link={socials?.website}
+				label={'Website'}
+				icon={IoGlobeSharp}
+			/>
 		</Stack>
 	);
 };
-
-
 
 export default SocialMediaDetails;

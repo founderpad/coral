@@ -1,8 +1,8 @@
 import Form from 'components/form/Form';
-import { InputField } from 'components/input/InputFields';
-import { SelectField } from 'components/input/SelectFields';
-import { SwitchField } from 'components/input/SwitchFields';
-import { TextareaField } from 'components/input/TextareaFields';
+import { InputField } from 'components/input/InputField';
+import { SelectField } from 'components/input/SelectField';
+import { SwitchField } from 'components/input/SwitchField';
+import { TextareaField } from 'components/input/TextareaField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { Ideas_Insert_Input, useUpdateIdeaMutation } from 'generated/graphql';
 import { useSuccessNotification } from 'hooks/toast';
@@ -66,7 +66,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				isRequired
 			/>
 
-			<TextareaField
+			{/* <TextareaField
 				id="missionstatement"
 				label="Mission statement"
 				name="mission_statement"
@@ -76,7 +76,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				control={control}
 				rules={{ maxLength: 500 }}
 				isRequired
-			/>
+			/> */}
 
 			<TextareaField
 				id="description"

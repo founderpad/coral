@@ -1,19 +1,15 @@
 import { render } from '__test__/testUtils';
 import store from 'utils/store';
 import { Provider } from 'react-redux';
-import PageLayout from '../components/layouts/PageLayout';
 import { Box } from '@chakra-ui/layout';
+import { PageLayout } from 'components/layouts';
 
 describe('PageLayout layout', () => {
 	it('matches PageLayout snapshot', () => {
 		const { asFragment } = render(
 			<Provider store={store}>
-				<PageLayout
-					title="Page layout test"
-				>
-					<Box>
-                        Children
-                    </Box>
+				<PageLayout title="Page layout test">
+					<Box>Children</Box>
 				</PageLayout>
 			</Provider>
 		);
@@ -23,12 +19,8 @@ describe('PageLayout layout', () => {
 	it('renders PageLayout with title', () => {
 		const { getByText } = render(
 			<Provider store={store}>
-				<PageLayout
-					title="Page layout test"
-				>
-					<Box>
-                        Children
-                    </Box>
+				<PageLayout title="Page layout test">
+					<Box>Children</Box>
 				</PageLayout>
 			</Provider>
 		);
@@ -38,12 +30,8 @@ describe('PageLayout layout', () => {
 	it('renders PageLayout with children component', () => {
 		const { getByText } = render(
 			<Provider store={store}>
-				<PageLayout
-					title="Page layout test"
-				>
-					<Box data>
-                        Children
-                    </Box>
+				<PageLayout title="Page layout test">
+					<Box data>Children</Box>
 				</PageLayout>
 			</Provider>
 		);

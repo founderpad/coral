@@ -5,10 +5,10 @@ import {
 	FormLabel
 } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
+import { useBaseForm } from 'components/form/hooks';
 import { useForgottenPassword } from 'hooks/auth';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { RegisterFormData } from 'types/auth';
+import { IRegisterFormData } from 'types/auth';
 import { EMAIL_REGEX } from 'utils/validators';
 
 const ForgottenPasswordForm = (): JSX.Element => {
@@ -16,7 +16,7 @@ const ForgottenPasswordForm = (): JSX.Element => {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting }
-	} = useForm<RegisterFormData>({ mode: 'onBlur' });
+	} = useBaseForm<IRegisterFormData>();
 	const onForgottenPassword = useForgottenPassword();
 
 	return (

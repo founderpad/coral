@@ -1,9 +1,9 @@
 import { FormControl, FormHelperText } from '@chakra-ui/form-control';
 import { Heading, Stack, Text } from '@chakra-ui/layout';
-import SubmitButton from 'components/buttons/SubmitButton';
-import { InputField } from 'components/input/InputFields';
-import { SelectField } from 'components/input/SelectFields';
-import { TextareaField } from 'components/input/TextareaFields';
+import { SubmitButton } from 'components/buttons';
+import { InputField } from 'components/input/InputField';
+import { SelectField } from 'components/input/SelectField';
+import { TextareaField } from 'components/input/TextareaField';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { TIdea } from 'types/idea';
@@ -55,7 +55,7 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 					isRequired
 				/>
 
-				<TextareaField
+				{/* <TextareaField
 					id="mission_statement"
 					label="Mission statement"
 					name="mission_statement"
@@ -65,7 +65,7 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 					control={control}
 					rules={{ maxLength: 150 }}
 					isRequired
-				/>
+				/> */}
 
 				<TextareaField
 					id="description"
@@ -146,6 +146,7 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 				</Stack> */}
 
 				<SubmitButton
+					name={'update-idea-confirm-button'}
 					label="Update your idea"
 					alignSelf={'center'}
 					isLoading={isSubmitting}

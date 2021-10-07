@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/modal';
 import { ButtonGroup, ModalProps } from '@chakra-ui/react';
 import { BaseButton, CancelButton } from 'components/buttons';
-import ModalDrawerFooterActions from 'components/shared/ModalDrawerFooterActions';
+import { ModalDrawerFooterActions } from 'components/shared';
 import React from 'react';
 
 type IModalProps = Omit<ModalProps, 'children'> & {
@@ -73,12 +73,15 @@ export const Modal = (props: IModalProps): JSX.Element => {
 						borderBottomWidth={1}
 					>
 						{title}
-						{actions &&
+						{actions && (
 							<ButtonGroup ml={'auto'} spacing={4}>
-								<CancelButton label={'Cancel'} onClick={onClose} />
+								<CancelButton
+									label={'Cancel'}
+									onClick={onClose}
+								/>
 								{actions}
 							</ButtonGroup>
-						}
+						)}
 					</ModalHeader>
 				)}
 				<ModalBody
@@ -95,12 +98,14 @@ export const Modal = (props: IModalProps): JSX.Element => {
 					<ModalFooter d={'flex'} w={'full'} p={4}>
 						<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
 							<BaseButton
+								name={'modal-actions-confirm-button'}
 								variant={'ghost'}
 								colorScheme={yesBtnColor ?? 'fpPrimary'}
-								label={yesBtnLabel ?? 'OK'}
 								onClick={onConfirm}
 								rounded={'md'}
-							/>
+							>
+								{yesBtnLabel ?? 'OK'}
+							</BaseButton>
 						</ModalDrawerFooterActions>
 					</ModalFooter>
 				)}

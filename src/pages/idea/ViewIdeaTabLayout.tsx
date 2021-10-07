@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { BoxLayout } from 'components/layouts';
 import TabLayout from 'components/layouts/TabLayout';
 import React from 'react';
 import IdeaTab from './IdeaTab';
@@ -17,9 +17,9 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 			isLazy
 		>
 			<IdeaTab />
-			<Box>Comments</Box>
-			<Box>Workboard</Box>
-			<Box>Metrics</Box>
+			<BoxLayout>Comments</BoxLayout>
+			<BoxLayout>Workboard</BoxLayout>
+			<BoxLayout>Metrics</BoxLayout>
 		</TabLayout>
 	);
 };

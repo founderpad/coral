@@ -7,11 +7,11 @@ import {
 import { Image } from '@chakra-ui/image';
 import { Input } from '@chakra-ui/input';
 import { Flex, Heading, Link, Stack, Text, VStack } from '@chakra-ui/layout';
+import { useBaseForm } from 'components/form/hooks';
 import { useForgottenPassword } from 'hooks/auth';
 import NextLink from 'next/link';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { RegisterFormData } from 'types/auth';
+import { IRegisterFormData } from 'types/auth';
 import { EMAIL_REGEX } from 'utils/validators';
 
 const ForgotPasswordForm = (): JSX.Element => {
@@ -19,7 +19,7 @@ const ForgotPasswordForm = (): JSX.Element => {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting }
-	} = useForm<RegisterFormData>({ mode: 'onBlur' });
+	} = useBaseForm<IRegisterFormData>();
 	const onResetPassword = useForgottenPassword();
 
 	return (

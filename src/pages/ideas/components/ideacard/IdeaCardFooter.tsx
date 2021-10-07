@@ -1,10 +1,12 @@
 import { Flex, HStack, Text } from '@chakra-ui/layout';
-import { PointSeparator } from 'components/shared/Separators';
-import Upvote from 'components/shared/Upvote';
+import { PointSeparator, Upvote } from 'components/shared';
 import { Idea_Preview } from 'generated/graphql';
 import React, { memo } from 'react';
 
-type TIdeaCardFooter = Pick<Idea_Preview, 'industry' | 'preview' | 'id' | 'idea_user' | 'idea_votes'>;
+type TIdeaCardFooter = Pick<
+	Idea_Preview,
+	'industry' | 'preview' | 'id' | 'idea_user' | 'idea_votes'
+>;
 
 const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 	const { industry, id, idea_user, idea_votes } = idea;
@@ -17,15 +19,24 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 			borderTop={0}
 			borderColor={'fpLightGrey.300'}
 		>
-
 			<HStack spacing={1}>
-				<Text fontSize={{ base: 'xs', sm: 'sm' }} color={'fpPrimary.500'} title={'The country where the created user of this idea lives'}>
+				<Text
+					fontSize={{ base: 'xs', sm: 'sm' }}
+					color={'fpPrimary.500'}
+					title={
+						'The country where the created user of this idea lives'
+					}
+				>
 					{idea_user.country}
 				</Text>
 			</HStack>
 			<PointSeparator small />
 			<HStack spacing={1}>
-				<Text fontSize={{ base: 'xs', sm: 'sm' }} color={'fpPrimary.500'} title={'The industry for this idea'}>
+				<Text
+					fontSize={{ base: 'xs', sm: 'sm' }}
+					color={'fpPrimary.500'}
+					title={'The industry for this idea'}
+				>
 					{industry}
 				</Text>
 			</HStack>

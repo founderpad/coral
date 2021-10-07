@@ -1,7 +1,7 @@
 import { Box, Text } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
 import AuthLayout from 'components/layouts/AuthLayout';
-import { BaseLink } from 'components/links';
+import { PrimaryLink } from 'components/links';
 import React from 'react';
 import { IoCheckmarkCircle } from 'react-icons/io5';
 
@@ -25,7 +25,9 @@ const Register = (): JSX.Element => {
 				<br />
 				Please check your junk folder if not received.
 			</Text>
-			<BaseLink title={'Go to the login page'} href="/login">Go to login</BaseLink>
+			<PrimaryLink title={'Go to the login page'} href="/login">
+				Go to login
+			</PrimaryLink>
 		</AuthLayout>
 	);
 };

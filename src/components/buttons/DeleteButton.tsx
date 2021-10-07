@@ -1,10 +1,10 @@
 import { Icon, IconButton, MenuButton } from '@chakra-ui/react';
 import { IoTrashSharp } from 'react-icons/io5';
-import { BaseButtonProps } from 'types/buttons';
 import { BaseButton } from '.';
+import { BaseButtonProps } from './types/buttons';
 
 const DeleteButton = (props: BaseButtonProps): JSX.Element => {
-	const { variant, label } = props;
+	const { variant, children } = props;
 
 	return (
 		<BaseButton
@@ -14,7 +14,7 @@ const DeleteButton = (props: BaseButtonProps): JSX.Element => {
 			// size={size ?? 'sm'}
 			borderWidth={1}
 		>
-			{label}
+			{children}
 		</BaseButton>
 	);
 };
@@ -26,14 +26,6 @@ const DeleteMenuButton = (props: BaseButtonProps): JSX.Element => {
 		</MenuButton>
 	);
 };
-
-const DeleteOutlinedButton = (props: BaseButtonProps): JSX.Element => (
-	<DeleteButton {...props} variant={'outline'} />
-);
-
-const DeleteGhostButton = (props: BaseButtonProps): JSX.Element => (
-	<DeleteButton {...props} variant={'ghost'} />
-);
 
 const DeleteIconButton = ({
 	onClick
@@ -52,10 +44,4 @@ const DeleteIconButton = ({
 	/>
 );
 
-export {
-	DeleteButton,
-	DeleteOutlinedButton,
-	DeleteMenuButton,
-	DeleteGhostButton,
-	DeleteIconButton
-};
+export { DeleteButton, DeleteMenuButton, DeleteIconButton };

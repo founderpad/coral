@@ -12,7 +12,7 @@ type Props = AvatarProps & {
 	createdAt?: string;
 };
 
-const UserAvatar = (props: AvatarProps): JSX.Element => {
+export const UserAvatar = (props: AvatarProps): JSX.Element => {
 	const avatarSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
 	const { rounded, size, ...rest } = props;
@@ -25,7 +25,7 @@ const UserAvatar = (props: AvatarProps): JSX.Element => {
 	);
 };
 
-const UserAvatarDetails = ({
+export const UserAvatarDetails = ({
 	email,
 	name,
 	src,
@@ -43,7 +43,7 @@ const UserAvatarDetails = ({
 	);
 };
 
-const CurrentUserAvatarDetails = memo((): JSX.Element => {
+export const CurrentUserAvatarDetails = memo((): JSX.Element => {
 	const user = useCurrentUser();
 	if (user)
 		return (
@@ -55,6 +55,3 @@ const CurrentUserAvatarDetails = memo((): JSX.Element => {
 		);
 	return null;
 });
-
-export { UserAvatarDetails, CurrentUserAvatarDetails };
-export default UserAvatar;

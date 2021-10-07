@@ -19,7 +19,18 @@ const MobileFilterMenu = (): JSX.Element => {
 		});
 	};
 
-	return <PrimaryButton label={'Search'} display={{ base: 'flex', md: 'none' }} size={'xs'} variant={'outline'} onClick={onClick} rightIcon={<IoChevronDownSharp />} />
+	return (
+		<PrimaryButton
+			name={'open-ideas-search-mobile-button'}
+			display={{ base: 'flex', md: 'none' }}
+			size={'xs'}
+			variant={'outline'}
+			onClick={onClick}
+			rightIcon={<IoChevronDownSharp />}
+		>
+			Search
+		</PrimaryButton>
+	);
 };
 
 export default MobileFilterMenu;

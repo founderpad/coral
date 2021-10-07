@@ -2,7 +2,7 @@ import { Link } from '@chakra-ui/react';
 import Router from 'next/router';
 import React from 'react';
 
-const GoBackButton = (): JSX.Element => {
+export const GoBackButton = (): JSX.Element => {
 	return (
 		<Link
 			onClick={() => Router.back()}
@@ -13,5 +13,3 @@ const GoBackButton = (): JSX.Element => {
 		</Link>
 	);
 };
-
-export default GoBackButton;

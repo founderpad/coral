@@ -1,14 +1,13 @@
-import PageHeader from 'components/shared/PageHeader';
+import { PageHeader } from 'components/shared';
 import { useGetIdea } from 'hooks/ideas';
-import { useRouter } from 'next/router';
+import { useQueryParam } from 'hooks/util';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 import CreateEditIdeaForm from '../components/CreateEditIdeaForm';
 
 const EditIdea = () => {
-	const router = useRouter();
-	const data = useGetIdea(router.query.id as string);
-	const idea = data.data;
+	const data = useGetIdea(useQueryParam('id'));
+	const idea = data?.data;
 
 	return (
 		<React.Fragment>

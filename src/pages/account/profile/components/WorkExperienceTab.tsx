@@ -1,11 +1,7 @@
 import { Stack, Text } from '@chakra-ui/layout';
-import {
-	Grid,
-	GridItem
-} from '@chakra-ui/react';
-import SubmitButton from 'components/buttons/SubmitButton';
-import Loading from 'components/shared/Loading';
-import TitleEditAction from 'components/shared/TitleEditAction';
+import { Grid, GridItem } from '@chakra-ui/react';
+import { SubmitButton } from 'components/buttons';
+import { Loading, TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import React, { memo, useContext } from 'react';
 import useProfileFragment from '../fragments/UserProfileFragment';
@@ -20,7 +16,14 @@ const WorkExperienceTab = (): JSX.Element => {
 		setModalDrawer({
 			title: 'Your experience',
 			isOpen: true,
-			actions: <SubmitButton form="editExperienceForm" label={'Save'} size={'sm'} />,
+			actions: (
+				<SubmitButton
+					name={'open-modal-drawer-experience-button'}
+					form="editExperienceForm"
+					label={'Save'}
+					size={'sm'}
+				/>
+			),
 			body: <ExperienceForm {...userProfile} />,
 			noBtnLabel: 'Cancel',
 			yesBtnLabel: 'Update',
@@ -30,7 +33,7 @@ const WorkExperienceTab = (): JSX.Element => {
 		});
 	};
 
-	if (!userProfile) return <Loading small />
+	if (!userProfile) return <Loading small />;
 
 	return (
 		<Stack>

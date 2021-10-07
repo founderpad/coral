@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/layout';
-import UserAvatar from 'components/shared/UserAvatar';
+import { UserAvatar } from 'components/shared';
 import { Idea_Preview } from 'generated/graphql';
 import React from 'react';
 import IdeaCardBody from './ideacard/IdeaCardBody';
@@ -18,7 +18,7 @@ const DesktopIdeaCard = (idea: Idea_Preview): JSX.Element => {
 				size={'md'}
 				transform={'translateX(-25%) translateY(-15%)'}
 				boxShadow={'md'}
-				src={idea_user.avatar_url}
+				src={idea_user?.avatar_url}
 			/>
 			<IdeaCardHeader {...idea} />
 			<Box hover={{ bg: 'fpGrey.900' }}>
