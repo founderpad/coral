@@ -3,7 +3,7 @@ import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 import ViewIdeaTabLayout from './ViewIdeaTabLayout';
 
-const ViewIdea = () => (
+export const ViewIdea = (): JSX.Element => (
 	<React.Fragment>
 		<DocumentTitle title="View idea" />
 		<ViewIdeaTabLayout />
