@@ -10,7 +10,7 @@ import React, { useContext } from 'react';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 
 type IdeaSearch = {
-	industry?: string;
+	field?: string;
 	name?: string;
 	is_new?: boolean;
 	status?: string;
@@ -29,7 +29,7 @@ const IdeasSearchForm = (): JSX.Element => {
 
 		const queryParams = JSON.parse(JSON.stringify(values));
 		!queryParams.name && delete queryParams['name'];
-		!queryParams.industry && delete queryParams['industry'];
+		!queryParams.field && delete queryParams['field'];
 		!queryParams.status && delete queryParams['status'];
 
 		router.push(
@@ -50,7 +50,7 @@ const IdeasSearchForm = (): JSX.Element => {
 		});
 		reset({
 			name: '',
-			industry: '',
+			field: '',
 			status: ''
 		});
 
@@ -90,12 +90,12 @@ const IdeasSearchForm = (): JSX.Element => {
 				size={'sm'}
 			/>
 			<SelectField
-				id="industry"
-				name="industry"
+				id="field"
+				name="field"
 				options={industriesList()}
-				placeholder="industry"
+				placeholder="field"
 				control={control}
-				label={'Industry'}
+				label={'Field'}
 			/>
 			<SelectField
 				id="status"

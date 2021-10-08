@@ -22,8 +22,8 @@ export const ViewIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 			</FormControl>
 
 			<FormControl>
-				<FormLabel>Industry</FormLabel>
-				<Text>{idea.industry}</Text>
+				<FormLabel>Field</FormLabel>
+				<Text>{idea.field}</Text>
 			</FormControl>
 
 			<FormControl>

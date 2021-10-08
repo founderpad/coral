@@ -104,12 +104,12 @@ const EditIdeaForm = (): ReactElement<any> => {
 			/>
 
 			<SelectField
-				id="industry"
-				name="industry"
-				label="What industry is your idea?"
-				error={errors['industry']}
-				errorText="Please select the industry for your idea."
-				placeholder="industry"
+				id="field"
+				name="field"
+				label="What field is your idea?"
+				error={errors['field']}
+				errorText="Please select the field for your idea."
+				placeholder="field"
 				size={'md'}
 				options={industriesList()}
 				control={control}

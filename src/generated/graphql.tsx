@@ -357,12 +357,12 @@ export type Citext_Comparison_Exp = {
 export type Idea_Preview = {
   __typename?: 'idea_preview';
   created_at?: Maybe<Scalars['timestamptz']>;
+  field?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   idea_user?: Maybe<Users>;
   /** An object relationship */
   idea_votes?: Maybe<Idea_Votes>;
-  industry?: Maybe<Scalars['String']>;
   is_new?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   preview?: Maybe<Scalars['String']>;
@@ -405,10 +405,10 @@ export type Idea_Preview_Bool_Exp = {
   _not?: Maybe<Idea_Preview_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Idea_Preview_Bool_Exp>>>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  field?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   idea_user?: Maybe<Users_Bool_Exp>;
   idea_votes?: Maybe<Idea_Votes_Bool_Exp>;
-  industry?: Maybe<String_Comparison_Exp>;
   is_new?: Maybe<Boolean_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   preview?: Maybe<String_Comparison_Exp>;
@@ -420,8 +420,8 @@ export type Idea_Preview_Bool_Exp = {
 export type Idea_Preview_Max_Fields = {
   __typename?: 'idea_preview_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  field?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
-  industry?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   preview?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
@@ -431,8 +431,8 @@ export type Idea_Preview_Max_Fields = {
 /** order by max() on columns of table "idea_preview" */
 export type Idea_Preview_Max_Order_By = {
   created_at?: Maybe<Order_By>;
+  field?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  industry?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   preview?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
@@ -443,8 +443,8 @@ export type Idea_Preview_Max_Order_By = {
 export type Idea_Preview_Min_Fields = {
   __typename?: 'idea_preview_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  field?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
-  industry?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   preview?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
@@ -454,8 +454,8 @@ export type Idea_Preview_Min_Fields = {
 /** order by min() on columns of table "idea_preview" */
 export type Idea_Preview_Min_Order_By = {
   created_at?: Maybe<Order_By>;
+  field?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  industry?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   preview?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
@@ -465,10 +465,10 @@ export type Idea_Preview_Min_Order_By = {
 /** ordering options when selecting data from "idea_preview" */
 export type Idea_Preview_Order_By = {
   created_at?: Maybe<Order_By>;
+  field?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   idea_user?: Maybe<Users_Order_By>;
   idea_votes?: Maybe<Idea_Votes_Order_By>;
-  industry?: Maybe<Order_By>;
   is_new?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   preview?: Maybe<Order_By>;
@@ -481,9 +481,9 @@ export type Idea_Preview_Select_Column =
   /** column name */
   | 'created_at'
   /** column name */
-  | 'id'
+  | 'field'
   /** column name */
-  | 'industry'
+  | 'id'
   /** column name */
   | 'is_new'
   /** column name */
@@ -797,6 +797,7 @@ export type Ideas = {
   created_at?: Maybe<Scalars['timestamptz']>;
   description: Scalars['String'];
   description_preview?: Maybe<Scalars['String']>;
+  field: Scalars['String'];
   id: Scalars['uuid'];
   /** An object relationship */
   idea_user?: Maybe<Users>;
@@ -804,7 +805,6 @@ export type Ideas = {
   idea_votes: Array<Idea_Votes>;
   /** An aggregated array relationship */
   idea_votes_aggregate: Idea_Votes_Aggregate;
-  industry: Scalars['String'];
   is_published?: Maybe<Scalars['Boolean']>;
   mission_statement?: Maybe<Scalars['String']>;
   name: Scalars['String'];
@@ -892,10 +892,10 @@ export type Ideas_Bool_Exp = {
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   description?: Maybe<String_Comparison_Exp>;
   description_preview?: Maybe<String_Comparison_Exp>;
+  field?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
   idea_user?: Maybe<Users_Bool_Exp>;
   idea_votes?: Maybe<Idea_Votes_Bool_Exp>;
-  industry?: Maybe<String_Comparison_Exp>;
   is_published?: Maybe<Boolean_Comparison_Exp>;
   mission_statement?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
@@ -917,9 +917,9 @@ export type Ideas_Insert_Input = {
   competitors?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   description_preview?: Maybe<Scalars['String']>;
+  field?: Maybe<Scalars['String']>;
   idea_user?: Maybe<Users_Obj_Rel_Insert_Input>;
   idea_votes?: Maybe<Idea_Votes_Arr_Rel_Insert_Input>;
-  industry?: Maybe<Scalars['String']>;
   is_published?: Maybe<Scalars['Boolean']>;
   mission_statement?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -936,8 +936,8 @@ export type Ideas_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   description_preview?: Maybe<Scalars['String']>;
+  field?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
-  industry?: Maybe<Scalars['String']>;
   mission_statement?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
@@ -954,8 +954,8 @@ export type Ideas_Max_Order_By = {
   created_at?: Maybe<Order_By>;
   description?: Maybe<Order_By>;
   description_preview?: Maybe<Order_By>;
+  field?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  industry?: Maybe<Order_By>;
   mission_statement?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
@@ -973,8 +973,8 @@ export type Ideas_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   description_preview?: Maybe<Scalars['String']>;
+  field?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
-  industry?: Maybe<Scalars['String']>;
   mission_statement?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
@@ -991,8 +991,8 @@ export type Ideas_Min_Order_By = {
   created_at?: Maybe<Order_By>;
   description?: Maybe<Order_By>;
   description_preview?: Maybe<Order_By>;
+  field?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  industry?: Maybe<Order_By>;
   mission_statement?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
@@ -1031,10 +1031,10 @@ export type Ideas_Order_By = {
   created_at?: Maybe<Order_By>;
   description?: Maybe<Order_By>;
   description_preview?: Maybe<Order_By>;
+  field?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   idea_user?: Maybe<Users_Order_By>;
   idea_votes_aggregate?: Maybe<Idea_Votes_Aggregate_Order_By>;
-  industry?: Maybe<Order_By>;
   is_published?: Maybe<Order_By>;
   mission_statement?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
@@ -1064,9 +1064,9 @@ export type Ideas_Select_Column =
   /** column name */
   | 'description_preview'
   /** column name */
-  | 'id'
+  | 'field'
   /** column name */
-  | 'industry'
+  | 'id'
   /** column name */
   | 'is_published'
   /** column name */
@@ -1090,7 +1090,7 @@ export type Ideas_Set_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   description_preview?: Maybe<Scalars['String']>;
-  industry?: Maybe<Scalars['String']>;
+  field?: Maybe<Scalars['String']>;
   is_published?: Maybe<Scalars['Boolean']>;
   mission_statement?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -1114,7 +1114,7 @@ export type Ideas_Update_Column =
   /** column name */
   | 'description_preview'
   /** column name */
-  | 'industry'
+  | 'field'
   /** column name */
   | 'is_published'
   /** column name */
@@ -2286,14 +2286,14 @@ export type UpdateIdeaMutationVariables = Exact<{
 }>;
 
 
-export type UpdateIdeaMutation = { __typename?: 'mutation_root', update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined } | null | undefined };
+export type UpdateIdeaMutation = { __typename?: 'mutation_root', update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined } | null | undefined };
 
 export type GetUserIdeasQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type GetUserIdeasQuery = { __typename?: 'query_root', ideas: Array<{ __typename?: 'ideas', name: string, description: string, industry: string, updated_at?: any | null | undefined, is_published?: boolean | null | undefined, user_id: any, id: any }> };
+export type GetUserIdeasQuery = { __typename?: 'query_root', ideas: Array<{ __typename?: 'ideas', name: string, description: string, field: string, updated_at?: any | null | undefined, is_published?: boolean | null | undefined, user_id: any, id: any }> };
 
 export type DeleteIdeaMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -2311,14 +2311,14 @@ export type GetIdeasQueryVariables = Exact<{
 }>;
 
 
-export type GetIdeasQuery = { __typename?: 'query_root', idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count?: number | null | undefined } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, industry?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, idea_votes?: { __typename?: 'idea_votes', idea: { __typename?: 'ideas', idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined }, idea_votes: Array<{ __typename?: 'idea_votes', vote_type: number }> } } | null | undefined, idea_user?: { __typename?: 'users', first_name?: string | null | undefined, country?: string | null | undefined, id: any, avatar_url?: string | null | undefined } | null | undefined }> };
+export type GetIdeasQuery = { __typename?: 'query_root', idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count?: number | null | undefined } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, idea_votes?: { __typename?: 'idea_votes', idea: { __typename?: 'ideas', idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined }, idea_votes: Array<{ __typename?: 'idea_votes', vote_type: number }> } } | null | undefined, idea_user?: { __typename?: 'users', first_name?: string | null | undefined, country?: string | null | undefined, id: any, avatar_url?: string | null | undefined } | null | undefined }> };
 
 export type GetIdeaQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetIdeaQuery = { __typename?: 'query_root', idea?: { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined, created_at?: any | null | undefined, idea_user?: { __typename?: 'users', avatar_url?: string | null | undefined, first_name?: string | null | undefined, country?: string | null | undefined, id: any } | null | undefined, idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined } } | null | undefined };
+export type GetIdeaQuery = { __typename?: 'query_root', idea?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined, created_at?: any | null | undefined, idea_user?: { __typename?: 'users', avatar_url?: string | null | undefined, first_name?: string | null | undefined, country?: string | null | undefined, id: any } | null | undefined, idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined } } | null | undefined };
 
 export type UpsertIdeaVoteMutationVariables = Exact<{
   idea_vote: Idea_Votes_Insert_Input;
@@ -2394,7 +2394,7 @@ export type SocialMediaFragmentFragment = { __typename?: 'user_profile', id: any
 
 export type ExperienceFragmentFragment = { __typename?: 'user_profile', id: any, background?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, availability?: number | null | undefined, startups?: number | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, specialist_industry?: string | null | undefined, business_description?: string | null | undefined, is_complete?: boolean | null | undefined };
 
-export type IdeaFragmentFragment = { __typename?: 'ideas', id: any, name: string, description: string, industry: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined };
+export type IdeaFragmentFragment = { __typename?: 'ideas', id: any, name: string, description: string, field: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined };
 
 export const ResumeFragmentFragmentDoc = gql`
     fragment ResumeFragment on user_profile {
@@ -2432,7 +2432,7 @@ export const IdeaFragmentFragmentDoc = gql`
   id
   name
   description
-  industry
+  field
   mission_statement
   competitors
   team
@@ -2521,7 +2521,7 @@ export const UpdateIdeaDocument = gql`
     id
     name
     description
-    industry
+    field
     mission_statement
     competitors
     team
@@ -2567,7 +2567,7 @@ export const GetUserIdeasDocument = gql`
   ) {
     name
     description
-    industry
+    field
     updated_at
     is_published
     user_id
@@ -2661,7 +2661,7 @@ export const GetIdeasDocument = gql`
     id
     name
     preview
-    industry
+    field
     status
     created_at
     is_new
@@ -2712,7 +2712,7 @@ export const GetIdeaDocument = gql`
     id
     name
     description
-    industry
+    field
     mission_statement
     competitors
     team

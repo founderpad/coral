@@ -5,7 +5,7 @@ import { TLabelProps } from './types';
 
 export const BaseLabel = (props: TLabelProps): JSX.Element => (
 	<Text
-		color={props.color}
+		color={props.color ?? 'black'}
 		fontSize={props.fontSize ?? 'sm'}
 		fontWeight={props.fontWeight}
 	>

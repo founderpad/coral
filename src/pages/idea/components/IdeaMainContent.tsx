@@ -15,19 +15,19 @@ export const IdeaMainContent = (props: Props): JSX.Element => {
 		<StackLayout spacing={12}>
 			<StackLayout spacing={2}>
 				<SubheadingText label={'Description'} />
-				<Label label={description} />
+				<Label label={description} color={'fpGrey.300'} />
 			</StackLayout>
 			<StackLayout spacing={2}>
 				<SubheadingText label={'Team'} />
-				<Label label={team} />
+				<Label label={team} color={'fpGrey.300'} />
 			</StackLayout>
 			<StackLayout spacing={2}>
 				<SubheadingText label={'Competitors'} />
-				<Label label={competitors} />
+				<Label label={competitors} color={'fpGrey.300'} />
 			</StackLayout>
 			<StackLayout spacing={2}>
 				<SubheadingText label={'Additional information'} />
-				<Label label={additional_information} />
+				<Label label={additional_information} color={'fpGrey.300'} />
 			</StackLayout>
 		</StackLayout>
 	);

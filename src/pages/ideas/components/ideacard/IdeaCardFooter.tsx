@@ -1,15 +1,16 @@
-import { Flex, HStack, Text } from '@chakra-ui/layout';
+import { Flex, Text } from '@chakra-ui/layout';
+import { StackLayout } from 'components/layouts';
 import { PointSeparator, Upvote } from 'components/shared';
 import { Idea_Preview } from 'generated/graphql';
 import React, { memo } from 'react';
 
 type TIdeaCardFooter = Pick<
 	Idea_Preview,
-	'industry' | 'preview' | 'id' | 'idea_user' | 'idea_votes'
+	'field' | 'preview' | 'id' | 'idea_user' | 'idea_votes'
 >;
 
 const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
-	const { industry, id, idea_user, idea_votes } = idea;
+	const { field, id, idea_user, idea_votes } = idea;
 
 	return (
 		<Flex
@@ -19,7 +20,7 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 			borderTop={0}
 			borderColor={'fpLightGrey.300'}
 		>
-			<HStack spacing={1}>
+			<StackLayout direction={'row'} spacing={1}>
 				<Text
 					fontSize={{ base: 'xs', sm: 'sm' }}
 					color={'fpPrimary.500'}
@@ -29,22 +30,21 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 				>
 					{idea_user.country}
 				</Text>
-			</HStack>
+			</StackLayout>
 			<PointSeparator small />
-			<HStack spacing={1}>
+			<StackLayout direction={'row'} spacing={1}>
 				<Text
 					fontSize={{ base: 'xs', sm: 'sm' }}
 					color={'fpPrimary.500'}
-					title={'The industry for this idea'}
+					title={'The field for this idea'}
 				>
-					{industry}
+					{field}
 				</Text>
-			</HStack>
-			<HStack
-				as={'span'}
-				alignItems={'center'}
+			</StackLayout>
+			<StackLayout
 				justifyContent={'flex-end'}
 				flex={1}
+				direction={'row'}
 				spacing={{ base: 2, sm: 4 }}
 			>
 				<Upvote {...idea_votes} ideaId={id} />
@@ -68,7 +68,7 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 						5
 					</Text>
 				</Flex> */}
-			</HStack>
+			</StackLayout>
 		</Flex>
 	);
 };

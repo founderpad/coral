@@ -12,7 +12,7 @@ const useIdeaFragment = (): Ideas => {
                 id
                 name
                 description
-                industry
+                field
                 mission_statement
                 competitors
                 team

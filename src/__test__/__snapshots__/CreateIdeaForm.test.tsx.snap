@@ -79,10 +79,10 @@ exports[`Create idea form matches snapshot 1`] = `
         >
           <label
             class="chakra-form__label css-1hrwh1j"
-            for="industry"
-            id="industry-label"
+            for="field"
+            id="field-label"
           >
-            What industry is your idea?
+            What field is your idea?
             <span
               aria-hidden="true"
               class="chakra-form__required-indicator css-0"
@@ -95,17 +95,17 @@ exports[`Create idea form matches snapshot 1`] = `
             class="chakra-select__wrapper css-42b2qy"
           >
             <select
-              aria-label="select-industry-field"
+              aria-label="select-field-field"
               aria-required="true"
               class="chakra-select css-z0iqzd"
-              id="select-industry-field"
-              name="select-industry-field"
+              id="select-field-field"
+              name="select-field-field"
               required=""
             >
               <option
                 value=""
               >
-                Select industry
+                Select field
               </option>
               <option
                 value="Agriculture"
@@ -237,24 +237,24 @@ exports[`Create idea form matches snapshot 1`] = `
                 Select status
               </option>
               <option
-                value="Idea generation and validation"
+                value="New idea"
               >
-                Idea generation and validation
+                New idea
               </option>
               <option
-                value="Building the founding team"
+                value="Building team"
               >
-                Building the founding team
+                Building team
               </option>
               <option
-                value="Pre-launch development and preparation"
+                value="Pre-launch"
               >
-                Pre-launch development and preparation
+                Pre-launch
               </option>
               <option
-                value="Launched and have live customers"
+                value="Launched"
               >
-                Launched and have live customers
+                Launched
               </option>
             </select>
             <div

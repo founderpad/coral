@@ -34,7 +34,7 @@ export const UserAvatarDetails = ({
 	return (
 		<Flex align={'center'}>
 			<UserAvatar src={src} />
-			<Box ml={4}>
+			<Box ml={2}>
 				<Label label={name} fontWeight={'medium'} />
 				{email && <SubLabel label={email} />}
 				{createdAt && <SubLabel label={createdAt} />}

@@ -40,21 +40,30 @@ const customTheme = extendTheme({
 		}
 	},
 	fonts: {
-		heading: 'Barlow',
-		body: 'Barlow',
-		text: 'Barlow',
-		menubar: 'Barlow',
-		button: 'Barlow'
+		heading: 'Roboto',
+		body: 'Roboto',
+		text: 'Roboto',
+		menubar: 'Roboto',
+		button: 'Roboto'
 	},
 	components: {
 		Button: {
 			baseStyle: {
-				rounded: 'sm'
+				rounded: 'md',
+				_focus: { boxShadow: 'none' },
+				fontWeight: 'medium'
+			}
+		},
+		Tabs: {
+			baseStyle: {
+				outline: 0,
+				_focus: { boxShadow: 'none' },
+				fontWeight: 'bold'
 			}
 		},
 		Input: {
 			baseStyle: {
-				rounded: 'sm'
+				rounded: 'md'
 			}
 		},
 		MenuItem: {
@@ -64,7 +73,7 @@ const customTheme = extendTheme({
 		},
 		Select: {
 			baseStyle: {
-				bgColor: 'red'
+				// bgColor: 'red'
 			}
 		},
 		Link: {
