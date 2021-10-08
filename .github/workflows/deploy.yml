@@ -27,14 +27,14 @@ jobs:
             - run: yarn install --frozen-lockfile
             - run: yarn build
 
-            - name: Deploy to pilot
-              id: pilot
-              uses: amondnet/vercel-action@v20
-              with:
-                  vercel-token: ${{ secrets.VERCEL_TOKEN }}
-                  vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-                  vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-                  scope: ${{ secrets.VERCEL_ORG_ID }}
+#             - name: Deploy to pilot
+#               id: pilot
+#               uses: amondnet/vercel-action@v20
+#               with:
+#                   vercel-token: ${{ secrets.VERCEL_TOKEN }}
+#                   vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+#                   vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+#                   scope: ${{ secrets.VERCEL_ORG_ID }}
 
             - name: Run tests against Vercel
               env:
