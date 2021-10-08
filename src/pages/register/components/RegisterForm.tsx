@@ -15,16 +15,12 @@ import LegalFooter from './LegalFooter';
 
 const userTypeOptions = () => (
 	<>
-		<option value={UserType.IDEAS}>I would like an idea validated</option>
-		<option value={UserType.STARTUP}>I would like to join a startup</option>
-		<option value={UserType.BRAINSTORM}>
-			I would like to brainstorm other ideas
-		</option>
-		<option disabled />
-		<option value={UserType.FOUNDER}>
-			I am looking to become a founder
-		</option>
-		<option value={UserType.INVESTOR}>I am looking to invest</option>
+		<option value={UserType.IDEAS}>Feedback on new idea</option>
+		<option value={UserType.STARTUP}>Join a startup</option>
+		<option value={UserType.BRAINSTORM}>Brainstorm other ideas</option>
+		{/* <option disabled /> */}
+		<option value={UserType.FOUNDER}>Become a founder</option>
+		{/* <option value={UserType.INVESTOR}>I am looking to invest</option> */}
 	</>
 );
 

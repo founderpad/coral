@@ -46,30 +46,22 @@ exports[`Register form matches snapshot 1`] = `
             <option
               value="IDEAS"
             >
-              I would like an idea validated
+              Feedback on new idea
             </option>
             <option
               value="STARTUP"
             >
-              I would like to join a startup
+              Join a startup
             </option>
             <option
               value="BRAINSTORM"
             >
-              I would like to brainstorm other ideas
+              Brainstorm other ideas
             </option>
-            <option
-              disabled=""
-            />
             <option
               value="FOUNDER"
             >
-              I am looking to become a founder
-            </option>
-            <option
-              value="INVESTOR"
-            >
-              I am looking to invest
+              Become a founder
             </option>
           </select>
           <div

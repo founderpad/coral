@@ -279,7 +279,8 @@ export const EXPERIENCE_SKILLS = [
 export const STARTUP_STATUS = [
 	{ key: 'exited', value: 'Exited the business' },
 	{ key: 'parttime', value: 'Still involved part time' },
-	{ key: 'fulltime', value: 'Still involved full time' }
+	{ key: 'fulltime', value: 'Still involved full time' },
+	{ key: 'none', value: 'Not involved in a startup' }
 ];
 
 export const IDEA_STATUS = [
