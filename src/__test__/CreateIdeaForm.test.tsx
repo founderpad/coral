@@ -75,8 +75,10 @@ describe('Create idea form', () => {
 		expect(
 			getByRole('textbox', { name: /description/i })
 		).toBeInTheDocument();
-		// expect(getByRole('textbox', { name: /mission_statement/i })).toBeInTheDocument();
-		expect(getByRole('combobox', { name: /field/i })).toBeInTheDocument();
+		// expect(
+		// 	getByRole('textbox', { name: /mission_statement/i })
+		// ).toBeInTheDocument();
+		// expect(getByRole('combobox', { name: /field/i })).toBeInTheDocument();
 		expect(getByRole('combobox', { name: /status/i })).toBeInTheDocument();
 		expect(
 			getByRole('textbox', { name: /competitors/i })
