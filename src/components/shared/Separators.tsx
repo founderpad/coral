@@ -1,4 +1,4 @@
-import { Box, ResponsiveValue } from '@chakra-ui/react';
+import { Box, BoxProps, ResponsiveValue } from '@chakra-ui/react';
 import React from 'react';
 
 // const PointSeparator = (): any => (
@@ -16,22 +16,6 @@ export const PointSeparator = ({
 	display?: ResponsiveValue<string>;
 	small?: boolean;
 }): JSX.Element => (
-	// <Box
-	// 	rounded={'full'}
-	// 	height={1}
-	// 	width={1}
-	// 	background={color ?? 'fpGrey.200'}
-	// 	display={display ?? 'block'}
-	// 	mx={'6px'}
-	// />
-	// <Box
-	// 	as={'span'}
-	// 	mx={1}
-	// 	display={display ?? 'block'}
-	// 	color={color ?? 'fpGrey.200'}
-	// >
-	// 	&middot;
-	// </Box>
 	<Box
 		as={'span'}
 		mx={'3px'}
@@ -40,4 +24,8 @@ export const PointSeparator = ({
 	>
 		{small ? <>&middot;</> : <>&bull;</>}
 	</Box>
+);
+
+export const LineSeparator = (props: BoxProps): JSX.Element => (
+	<Box {...props} as={'hr'} />
 );

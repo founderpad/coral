@@ -12,21 +12,24 @@ type Props = Pick<
 export const IdeaMainContent = (props: Props): JSX.Element => {
 	const { description, team, competitors, additional_information } = props;
 	return (
-		<StackLayout spacing={12}>
+		<StackLayout spacing={8}>
 			<StackLayout spacing={2}>
-				<SubheadingText label={'Description'} />
+				<SubheadingText label={'Description'} color={'fpGrey.900'} />
 				<Label label={description} color={'fpGrey.300'} />
 			</StackLayout>
 			<StackLayout spacing={2}>
-				<SubheadingText label={'Team'} />
+				<SubheadingText label={'Team'} color={'fpGrey.900'} />
 				<Label label={team} color={'fpGrey.300'} />
 			</StackLayout>
 			<StackLayout spacing={2}>
-				<SubheadingText label={'Competitors'} />
+				<SubheadingText label={'Competitors'} color={'fpGrey.900'} />
 				<Label label={competitors} color={'fpGrey.300'} />
 			</StackLayout>
 			<StackLayout spacing={2}>
-				<SubheadingText label={'Additional information'} />
+				<SubheadingText
+					label={'Additional information'}
+					color={'fpGrey.900'}
+				/>
 				<Label label={additional_information} color={'fpGrey.300'} />
 			</StackLayout>
 		</StackLayout>

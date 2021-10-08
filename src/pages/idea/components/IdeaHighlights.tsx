@@ -46,40 +46,11 @@ export const IdeaHighlights = memo(
 					display={{ base: 'flex', md: 'none' }}
 					flexWrap="wrap"
 					alignItems={'center'}
-					// css={{
-					// 	'> *': {
-					// 		marginRight: 4,
-					// 		marginBottom: 4
-					// 	}
-					// }}
 				>
 					<HighlightTag value={status} />
 					<HighlightTag value={field} />
 					<HighlightTag value={idea_user.country} />
 					<HighlightTag value={'4 documents'} />
-					{/* <Label
-						label={status}
-						fontSize={'xs'}
-						color={'fpPrimary.500'}
-					/>
-					<PointSeparator small />
-					<Label
-						label={field}
-						fontSize={'xs'}
-						color={'fpPrimary.500'}
-					/>
-					<PointSeparator small />
-					<Label
-						label={idea_user.country}
-						fontSize={'xs'}
-						color={'fpPrimary.500'}
-					/>
-					<PointSeparator small />
-					<Label
-						label={'4 supporting documents'}
-						fontSize={'xs'}
-						color={'fpPrimary.500'}
-					/> */}
 				</FlexLayout>
 			</React.Fragment>
 		);

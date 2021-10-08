@@ -1,13 +1,15 @@
+import Icon from '@chakra-ui/icon';
 import { Divider, GridItem, SimpleGrid } from '@chakra-ui/layout';
-import { TitleHeading } from 'components/heading';
+import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
-import { Loading } from 'components/shared';
+import { LineSeparator, Loading } from 'components/shared';
 import { UserAvatarDetails } from 'components/shared/UserAvatar';
 import { useGetIdeaQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { IoCheckmarkCircleSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 import IdeaHighlights from './components/IdeaHighlights';
 import IdeaMainContent from './components/IdeaMainContent';
@@ -58,8 +60,18 @@ const IdeaTab = (): JSX.Element => {
 				)}
 			</FlexLayout>
 
-			<TitleHeading label={name} />
-			<Divider />
+			<FlexLayout>
+				<SubheadingText label={name} color={'fpGrey.900'} />
+				{idea.is_published && (
+					<Icon
+						as={IoCheckmarkCircleSharp}
+						ml={2}
+						color={'green.500'}
+						fontSize={'xl'}
+					/>
+				)}
+			</FlexLayout>
+			<LineSeparator display={{ base: 'none', md: 'block' }} />
 			<SimpleGrid columns={{ base: 1, md: 12 }} gap={4}>
 				<GridItem
 					colSpan={{ md: 8 }}

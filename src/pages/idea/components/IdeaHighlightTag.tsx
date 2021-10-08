@@ -4,9 +4,9 @@ import React, { memo } from 'react';
 const HighlightTag = memo(
 	({ value }: { value: string }): JSX.Element => (
 		<Tag
-			bg={'transparent'}
+			background={'gray.50'}
 			borderWidth={1}
-			color={'fpPrimary.500'}
+			color={'fpGrey.900'}
 			mb={1}
 			mr={1}
 		>

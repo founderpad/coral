@@ -1,4 +1,5 @@
 export { CreatedAt, LastUpdatedAt } from './CreatedUpdatedAt';
+export { DocumentTitle } from './DocumentTitle';
 export { FileUploader } from './FileUploader';
 export { FixedSubheader } from './FixedSubheader';
 export { IndustriesPicker } from './IndustriesPicker';
@@ -8,13 +9,12 @@ export { NoResults } from './NoResults';
 export { PageHeader } from './PageHeader';
 export { Pagination } from './Pagination';
 export { SearchResultsLabel } from './SearchResultsLabel';
-export { PointSeparator } from './Separators';
+export { LineSeparator, PointSeparator } from './Separators';
 export { StickySubheader } from './StickySubheader';
 export { TitleEditAction } from './TitleEditAction';
 export { Upvote } from './Upvote';
 export {
+	CurrentUserAvatarDetails,
 	UserAvatar,
-	UserAvatarDetails,
-	CurrentUserAvatarDetails
+	UserAvatarDetails
 } from './UserAvatar';
-export { DocumentTitle } from './DocumentTitle';
