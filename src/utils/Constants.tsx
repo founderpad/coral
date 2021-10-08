@@ -283,11 +283,11 @@ export const STARTUP_STATUS = [
 ];
 
 export const IDEA_STATUS = [
-	{ key: 'generation', value: 'Idea generation and validation' },
-	{ key: 'team', value: 'Building the founding team' },
-	{ key: 'prelaunch', value: 'Pre-launch development and preparation' },
-	{ key: 'launched', value: 'Launched and have live customers' }
-]
+	{ key: 'new', value: 'New idea' },
+	{ key: 'team', value: 'Building team' },
+	{ key: 'prelaunch', value: 'Pre-launch' },
+	{ key: 'launch', value: 'Launched' }
+];
 
 export enum UserType {
 	FOUNDER = 'FOUNDER',
@@ -305,9 +305,9 @@ export const ideasStatusList = (): any =>
 	));
 
 export const industriesList = (): any =>
-	ALL_INDUSTRIES.map((industry) => (
-		<option key={industry.name} value={industry.name}>
-			{industry.name}
+	ALL_INDUSTRIES.map((field) => (
+		<option key={field.name} value={field.name}>
+			{field.name}
 		</option>
 	));
 

@@ -11,12 +11,12 @@ import {
 import IdeaHighlight from './IdeaHighlightBox';
 import HighlightTag from './IdeaHighlightTag';
 
-type IdeaHighlightsProps = Pick<Ideas, 'status' | 'industry'> &
+type IdeaHighlightsProps = Pick<Ideas, 'status' | 'field'> &
 	TNestedPick<Ideas, 'idea_user', 'country'>;
 
 export const IdeaHighlights = memo(
 	(props: IdeaHighlightsProps): JSX.Element => {
-		const { status, industry, idea_user } = props;
+		const { status, field, idea_user } = props;
 		return (
 			<React.Fragment>
 				<StackLayout spacing={4} display={{ base: 'none', md: 'flex' }}>
@@ -27,7 +27,7 @@ export const IdeaHighlights = memo(
 					/>
 					<IdeaHighlight
 						title={'Field'}
-						value={industry}
+						value={field}
 						icon={IoBusinessSharp}
 					/>
 					<IdeaHighlight
@@ -54,7 +54,7 @@ export const IdeaHighlights = memo(
 					// }}
 				>
 					<HighlightTag value={status} />
-					<HighlightTag value={industry} />
+					<HighlightTag value={field} />
 					<HighlightTag value={idea_user.country} />
 					<HighlightTag value={'4 documents'} />
 					{/* <Label
@@ -64,7 +64,7 @@ export const IdeaHighlights = memo(
 					/>
 					<PointSeparator small />
 					<Label
-						label={industry}
+						label={field}
 						fontSize={'xs'}
 						color={'fpPrimary.500'}
 					/>

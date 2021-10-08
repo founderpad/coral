@@ -6,11 +6,7 @@ import LogoutModal from 'components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from 'components/shared';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
-import {
-	IoEllipsisVertical,
-	IoPersonCircleSharp,
-	IoSettingsSharp
-} from 'react-icons/io5';
+import { IoEllipsisVertical } from 'react-icons/io5';
 
 const UserMenu = (): JSX.Element => {
 	const user = useCurrentUser().avatar_url;
@@ -35,34 +31,20 @@ const UserMenu = (): JSX.Element => {
 					<MenuItem
 						as={BaseLink}
 						href={'/account/profile'}
-						_hover={{ bg: 'fpLightGrey.100' }}
 						fontSize={'sm'}
-						color={'fpGrey.500'}
+						color={'fpGrey.300'}
 						fontWeight={'medium'}
-						icon={
-							<Icon
-								as={IoPersonCircleSharp}
-								fontSize={'large'}
-								color={'fpGrey.500'}
-							/>
-						}
+						_hover={{ color: 'fpGrey.900' }}
 					>
 						Profile
 					</MenuItem>
 					<MenuItem
 						as={BaseLink}
 						href={'/user/settings'}
-						_hover={{ bg: 'fpLightGrey.100' }}
 						fontSize={'sm'}
-						color={'fpGrey.500'}
+						color={'fpGrey.300'}
 						fontWeight={'medium'}
-						icon={
-							<Icon
-								as={IoSettingsSharp}
-								fontSize={'large'}
-								color={'fpGrey.500'}
-							/>
-						}
+						_hover={{ color: 'fpGrey.900' }}
 					>
 						Settings
 					</MenuItem>

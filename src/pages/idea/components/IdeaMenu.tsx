@@ -1,6 +1,5 @@
-import { Stack } from '@chakra-ui/layout';
-import { EditButton, SubmitButton } from 'components/buttons';
-import { DeleteIconButton } from 'components/buttons/DeleteButton';
+import { SubmitButton } from 'components/buttons';
+import { BaseMenu } from 'components/menu/BaseMenu';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useDeleteIdeaMutation } from 'generated/graphql';
 import React, { memo, useCallback, useContext } from 'react';
@@ -13,9 +12,6 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 		variables: {
 			id: ideaId
 		}
-		// onCompleted: (data) {
-
-		// }
 	});
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
@@ -51,14 +47,22 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 	}, []);
 
 	return (
-		<Stack
-			direction={'row'}
-			spacing={{ base: 2, sm: 4 }}
-			justifySelf={'flex-end'}
-		>
-			<EditButton onClick={onEditClick} aria-label={'Edit idea'} />
-			<DeleteIconButton onClick={onDeleteClick} />
-		</Stack>
+		<BaseMenu
+			options={[
+				{
+					title: 'Edit',
+					subTitle: 'Edit this idea',
+					onClick: () => onEditClick(),
+					divider: true
+				},
+				{
+					title: 'Delete',
+					subTitle: 'Delete this idea',
+					onClick: () => onDeleteClick(),
+					color: 'red.500'
+				}
+			]}
+		/>
 	);
 });
 

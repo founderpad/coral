@@ -81,11 +81,11 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 				/>
 
 				<SelectField
-					id="industry"
-					name="industry"
-					label="What industry is your idea?"
-					error={errors['industry']}
-					errorText="Please select the industry for your idea."
+					id="field"
+					name="field"
+					label="What field is your idea?"
+					error={errors['field']}
+					errorText="Please select the field for your idea."
 					options={industriesList()}
 					control={control}
 					isRequired

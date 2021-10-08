@@ -2,7 +2,7 @@ export type TIdea = {
 	id?: string;
 	name: string;
 	description: string;
-	industry: string;
+	field: string;
 	competitors: string;
 	team: string;
 	mission_statement: string;
@@ -21,7 +21,7 @@ export type TIdea = {
 
 export type TIdeaPreview = Pick<
 	TIdea,
-	'id' | 'user_id' | 'name' | 'created_at' | 'industry' | 'idea_user'
+	'id' | 'user_id' | 'name' | 'created_at' | 'field' | 'idea_user'
 > & {
 	preview: string;
 	is_new: boolean;

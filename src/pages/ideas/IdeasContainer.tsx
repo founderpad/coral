@@ -21,8 +21,8 @@ const queryBuilder = (): Idea_Preview_Bool_Exp => {
 		where.name = { _ilike: `%${useQueryParam('name')}%` };
 	}
 
-	if (router.query.industry) {
-		where.industry = { _eq: useQueryParam('industry') };
+	if (router.query.field) {
+		where.field = { _eq: useQueryParam('field') };
 	}
 
 	if (router.query.status) {

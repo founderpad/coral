@@ -38,14 +38,14 @@ export const useGetIdeas = (): QueryResult<{
 	total: number;
 }> => {
 	const router = useRouter();
-	const { name: searchTerm, industry: searchIndustry, is_new } = router.query;
+	const { name: searchTerm, field: searchIndustry, is_new } = router.query;
 	const page = parseInt(useQueryParam('page'));
 
 	const response = useQuery(GET_IDEAS, {
 		variables: {
 			offset: (page - 1) * 3,
 			name: searchTerm ? '%' + searchTerm + '%' : undefined,
-			industry: searchIndustry ? searchIndustry : undefined,
+			field: searchIndustry ? searchIndustry : undefined,
 			is_new: is_new ?? undefined
 		},
 		fetchPolicy: 'no-cache'

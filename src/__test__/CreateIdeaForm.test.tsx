@@ -14,9 +14,9 @@ describe('Create idea form', () => {
 		team: 'Some team',
 		competitors: 'Some competitors',
 		mission_statement: 'Some mission statement',
-		industry: 'Finance',
+		field: 'Finance',
 		is_published: true
-	}
+	};
 
 	const mocks = [
 		{
@@ -37,7 +37,7 @@ describe('Create idea form', () => {
 						team: 'Some team',
 						competitors: 'Some competitors',
 						mission_statement: 'Some mission statement',
-						industry: 'Finance',
+						field: 'Finance',
 						user_id: '1',
 						is_published: true
 					}
@@ -72,11 +72,17 @@ describe('Create idea form', () => {
 		);
 
 		expect(getByRole('textbox', { name: /name/i })).toBeInTheDocument();
-		expect(getByRole('textbox', { name: /description/i })).toBeInTheDocument();
-		// expect(getByRole('textbox', { name: /mission_statement/i })).toBeInTheDocument();
-		expect(getByRole('combobox', { name: /industry/i })).toBeInTheDocument();
+		expect(
+			getByRole('textbox', { name: /description/i })
+		).toBeInTheDocument();
+		// expect(
+		// 	getByRole('textbox', { name: /mission_statement/i })
+		// ).toBeInTheDocument();
+		// expect(getByRole('combobox', { name: /field/i })).toBeInTheDocument();
 		expect(getByRole('combobox', { name: /status/i })).toBeInTheDocument();
-		expect(getByRole('textbox', { name: /competitors/i })).toBeInTheDocument();
+		expect(
+			getByRole('textbox', { name: /competitors/i })
+		).toBeInTheDocument();
 		expect(getByRole('textbox', { name: /team/i })).toBeInTheDocument();
 		// expect(getByRole('textbox', { name: /additional_information/i })).toBeInTheDocument();
 		// expect(getByRole('switch', { name: /is_published/i })).toBeInTheDocument();
@@ -90,17 +96,19 @@ describe('Create idea form', () => {
 			</MockedProvider>
 		);
 
-		fireEvent.input(getByRole('textbox', { name: /name/i })), {
-			target: {
-				value: 'A new idea name'
-			}
-		}
+		fireEvent.input(getByRole('textbox', { name: /name/i })),
+			{
+				target: {
+					value: 'A new idea name'
+				}
+			};
 
-		fireEvent.input(getByRole('textbox', { name: /description/i })), {
-			target: {
-				value: 'A new idea description'
-			}
-		}
+		fireEvent.input(getByRole('textbox', { name: /description/i })),
+			{
+				target: {
+					value: 'A new idea description'
+				}
+			};
 
 		fireEvent.submit(getByRole('button'));
 		expect(mockSaveIdea).not.toBeCalled();
@@ -121,7 +129,7 @@ describe('Create idea form', () => {
 	// 		team: 'Some team',
 	// 		competitors: 'Some competitors',
 	// 		mission_statement: 'Some mission statement',
-	// 		industry: 'Finance',
+	// 		field: 'Finance',
 	// 		is_published: true
 	// 	});
 	// })

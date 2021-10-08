@@ -10,7 +10,12 @@ const DesktopIdeaCard = (idea: Idea_Preview): JSX.Element => {
 	const { idea_user } = idea;
 
 	return (
-		<Box position={'relative'} display={{ base: 'none', sm: 'block' }}>
+		<Box
+			title={'Posted idea'}
+			position={'relative'}
+			display={{ base: 'none', sm: 'block' }}
+			_hover={{ boxShadow: 'md' }}
+		>
 			<UserAvatar
 				position={'absolute'}
 				top={'0'}

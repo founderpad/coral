@@ -9,9 +9,9 @@ import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { formatDate } from 'utils/validators';
-import IdeaActions from './components/IdeaActions';
 import IdeaHighlights from './components/IdeaHighlights';
 import IdeaMainContent from './components/IdeaMainContent';
+import IdeaActions from './components/IdeaMenu';
 
 const IdeaTab = (): JSX.Element => {
 	const router = useRouter();
@@ -48,7 +48,11 @@ const IdeaTab = (): JSX.Element => {
 
 				{user?.id === user_id && (
 					<React.Fragment>
-						<Divider orientation={'vertical'} mx={6} />
+						<Divider
+							orientation={'vertical'}
+							mx={3}
+							display={{ base: 'none', sm: 'block' }}
+						/>
 						<IdeaActions ideaId={idea?.id} />
 					</React.Fragment>
 				)}

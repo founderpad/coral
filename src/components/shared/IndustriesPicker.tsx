@@ -44,10 +44,10 @@ export const IndustriesPicker = forwardRef<ICheckboxGroupFieldProps, 'input'>(
 						my={6}
 					>
 						{ALL_INDUSTRIES.map(
-							(industry): JSX.Element => (
+							(field): JSX.Element => (
 								<Controller
-									key={industry.name}
-									name={industry.name}
+									key={field.name}
+									name={field.name}
 									render={({
 										field,
 										fieldState: { error }
@@ -57,14 +57,14 @@ export const IndustriesPicker = forwardRef<ICheckboxGroupFieldProps, 'input'>(
 											rounded={'none'}
 											focusBorderColor={'gray.150'}
 											p={4}
-											value={industry.name}
+											value={field.name}
 											onChange={onChange}
 											isChecked={industries?.includes(
-												industry.name
+												field.name
 											)}
 											error={!!error}
 										>
-											{industry}
+											{field}
 										</Checkbox>
 									)}
 									control={control}

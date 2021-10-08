@@ -23,7 +23,7 @@ const TabLayout = (props: Props): JSX.Element => {
 	const { tabs, children, ...rest } = props;
 
 	return (
-		<Tabs {...rest} overflow={'hidden'} colorScheme={'fpPrimary'} height={'full'} d={'flex'} flexDirection={'column'} flex={1}>
+		<Tabs {...rest} overflow={'hidden'} colorScheme={'fpPrimary'}>
 			<TabList borderBottomWidth={1} px={4}>
 				{tabs?.map((tab) => (
 					<Tab
@@ -66,7 +66,7 @@ const TabLayout = (props: Props): JSX.Element => {
 					);
 				})}
 			</TabPanels>
-		</Tabs >
+		</Tabs>
 	);
 };
 

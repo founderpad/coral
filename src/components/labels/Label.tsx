@@ -9,3 +9,7 @@ export const Label = (props: TLabelProps): JSX.Element => (
 		color={props.color ?? 'fpGrey.900'}
 	/>
 );
+
+export const CaptionLabel = (props: TLabelProps): JSX.Element => (
+	<BaseLabel {...props} fontSize={'xs'} color={props.color ?? 'fpGrey.300'} />
+);

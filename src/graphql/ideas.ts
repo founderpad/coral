@@ -14,7 +14,7 @@ const UPDATE_IDEA = gql`
 			id
 			name
 			description
-			industry
+			field
 			mission_statement
 			competitors
 			team
@@ -34,7 +34,7 @@ const GET_USER_IDEAS = gql`
 		) {
 			name
 			description
-			industry
+			field
 			updated_at
 			is_published
 			user_id
@@ -93,7 +93,7 @@ const GET_IDEAS = gql`
 			id
 			name
 			preview
-			industry
+			field
 			status
 			created_at
 			is_new
@@ -113,7 +113,7 @@ const GET_IDEA = gql`
 			id
 			name
 			description
-			industry
+			field
 			mission_statement
 			competitors
 			team

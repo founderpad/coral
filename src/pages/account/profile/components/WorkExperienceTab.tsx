@@ -54,7 +54,7 @@ const WorkExperienceTab = (): JSX.Element => {
 				/>
 
 				<ExperienceLabel
-					label={'Your specialist industry'}
+					label={'Your specialist field'}
 					value={userProfile?.specialist_industry ?? 'Not set'}
 				/>
 

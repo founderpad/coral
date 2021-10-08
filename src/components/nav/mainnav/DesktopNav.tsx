@@ -1,9 +1,9 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import Icon from '@chakra-ui/icon';
-import { Flex, Link } from '@chakra-ui/layout';
+import { Link } from '@chakra-ui/layout';
 import { LinkButton } from 'components/buttons/BaseButton';
 import { BaseLabel } from 'components/labels/BaseLabel';
-import { BoxLayout, StackLayout } from 'components/layouts';
+import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
 import BasePopover from 'components/popover/BasePopover';
 import useUserProfile from 'hooks/user';
 import { useRouter } from 'next/router';
@@ -37,7 +37,7 @@ const DesktopNav = (): JSX.Element => {
 							color={
 								router.pathname === navItem.href
 									? 'fpPrimary.300'
-									: 'fpGrey.900'
+									: 'fpGrey.300'
 							}
 							_hover={{
 								textDecoration: 'none',
@@ -92,7 +92,7 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 					</BoxLayout>
 				</BoxLayout>
 
-				<Flex
+				<FlexLayout
 					transition={'all .3s ease'}
 					transform={'translateX(-10px)'}
 					opacity={0}
@@ -110,7 +110,7 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 						h={4}
 						as={IoChevronForwardSharp}
 					/>
-				</Flex>
+				</FlexLayout>
 			</StackLayout>
 		</NavLink>
 	</React.Fragment>
