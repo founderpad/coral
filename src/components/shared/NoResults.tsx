@@ -1,7 +1,12 @@
 import { Box } from '@chakra-ui/layout';
-import { Heading } from '@chakra-ui/react';
 import { GoBackButton } from 'components/buttons';
+import { SubheadingText } from 'components/heading';
 import React from 'react';
+
+type Props = {
+	label?: string;
+	back?: boolean;
+};
 
 /**
  * The @NoResults displays an empty container.
@@ -9,9 +14,9 @@ import React from 'react';
  * @param param0
  * @returns
  */
-export const NoResults = ({ label }: { label?: string }): JSX.Element => (
+export const NoResults = ({ label, back }: Props): JSX.Element => (
 	<React.Fragment>
-		<GoBackButton />
+		{back && <GoBackButton />}
 		<Box
 			display={'flex'}
 			flex={1}
@@ -20,9 +25,11 @@ export const NoResults = ({ label }: { label?: string }): JSX.Element => (
 			alignItems={'center'}
 			h={'full'}
 		>
-			<Heading variant={'h3'} size={'md'} color={'fpGrey.700'}>
+			{/* <Heading variant={'h3'} size={'md'} color={'fpGrey.700'}>
 				No {label ?? 'results'}.
-			</Heading>
+			</Heading> */}
+
+			<SubheadingText label={`No ${label ?? 'results'}.`} size={'sm'} />
 		</Box>
 	</React.Fragment>
 );

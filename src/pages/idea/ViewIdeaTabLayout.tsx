@@ -17,7 +17,7 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 			isLazy
 		>
 			<IdeaTab />
-			<BoxLayout>Comments</BoxLayout>
+			<BoxLayout>Comments coming soon</BoxLayout>
 			{/* <BoxLayout>Workboard</BoxLayout>
 			<BoxLayout>Metrics</BoxLayout> */}
 		</TabLayout>

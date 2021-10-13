@@ -13,7 +13,7 @@ type TIdeaCardHeader = Pick<
 
 const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 	const { name, idea_user, created_at, is_new } = idea;
-	const { id } = idea_user;
+	// const { id } = idea_user;
 
 	return (
 		<Flex
@@ -51,12 +51,12 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 					color={'fpGrey.300'}
 					fontWeight={'medium'}
 					as={BaseLink}
-					href={`/user/${id}`}
+					href={`/user/${idea_user?.id}`}
 					_hover={{ color: 'fpGrey.700' }}
 					mb={0}
 					title={'The user who posted this idea'}
 				>
-					Posted by {idea_user.first_name}
+					Posted by {idea_user?.first_name}
 				</Text>
 				<PointSeparator small />
 				<Text

@@ -35,12 +35,12 @@ const NavItems: Array<NavItem> = [
 				subLabel: 'View all ideas',
 				href: '/ideas?page=1'
 			},
-			{
-				label: 'Your ideas',
-				key: 'your-ideas',
-				subLabel: 'View the ideas you have posted',
-				href: '/ideas/my-ideas'
-			},
+			// {
+			// 	label: 'Your ideas',
+			// 	key: 'your-ideas',
+			// 	subLabel: 'View the ideas you have posted',
+			// 	href: '/ideas/my-ideas'
+			// },
 			{
 				label: 'Create idea',
 				key: 'create',

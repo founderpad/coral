@@ -3,7 +3,6 @@ import { HStack, Text } from '@chakra-ui/layout';
 import { BaseButton } from 'components/buttons';
 import { FlexLayout } from 'components/layouts';
 import { Idea_Votes, useUpsertIdeaVoteMutation } from 'generated/graphql';
-import { cache } from 'pages/_app';
 import React from 'react';
 import { IoArrowUpSharp } from 'react-icons/io5';
 
@@ -17,9 +16,9 @@ export const Upvote = (
 				vote_type: 1
 			}
 		},
-		onCompleted: (data) => {
-			console.log('data: ', data);
-			console.log('cache: ', cache);
+		onCompleted: () => {
+			// console.log('data: ', data);
+			// console.log('cache: ', cache);
 		}
 	});
 
