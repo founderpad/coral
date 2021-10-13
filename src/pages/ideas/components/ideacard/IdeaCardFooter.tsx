@@ -28,7 +28,7 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 						'The country where the created user of this idea lives'
 					}
 				>
-					{idea_user.country}
+					{idea_user?.country}
 				</Text>
 			</StackLayout>
 			<PointSeparator small />
