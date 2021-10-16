@@ -34,6 +34,11 @@ const UserImageUploader = (): JSX.Element => {
 					'https://backend-19728797.nhost.app/storage/o' + filePath
 				)
 			);
+			console.log('completed data: ', _data);
+			console.log(
+				'image url: ',
+				'https://backend-19728797.nhost.app/storage/o' + filePath
+			);
 			showSuccessNotification({
 				title: 'Your avatar has been updated'
 			});
