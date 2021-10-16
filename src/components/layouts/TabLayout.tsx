@@ -7,7 +7,7 @@ import {
 	Tabs,
 	TabsProps
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 type Props = Omit<TabsProps, 'children'> & {
 	tabs: TabProps[];
@@ -21,17 +21,31 @@ type TabProps = {
 
 const TabLayout = (props: Props): JSX.Element => {
 	const { tabs, children, ...rest } = props;
+	const [tabIndex, setTabIndex] = useState(0);
+
+	// const onChange = (index: number) =>
+	// 	useCallback(() => setTabIndex(index), [index]);
+
+	const onChange = useCallback((index) => setTabIndex(index), [tabIndex]);
 
 	return (
-		<Tabs {...rest} overflow={'hidden'} colorScheme={'fpPrimary'}>
-			<TabList borderBottomWidth={1} px={4}>
-				{tabs?.map((tab) => (
+		<Tabs
+			{...rest}
+			onChange={onChange}
+			overflow={'hidden'}
+			colorScheme={'fpPrimary'}
+		>
+			<TabList borderBottomWidth={1}>
+				{tabs?.map((tab: TabProps, key: number) => (
 					<Tab
-						color={'fpGrey.300'}
+						color={'fpGrey.200'}
 						fontSize={{ base: 'xs', sm: 'sm' }}
 						fontWeight={'medium'}
 						key={tab?.label}
 						px={{ lg: 0 }}
+						_hover={{
+							borderColor: tabIndex !== key && 'fpGrey.200'
+						}}
 						mr={4}
 					>
 						{tab?.icon && (

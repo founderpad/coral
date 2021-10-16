@@ -49,7 +49,12 @@ const LinkSectionLabel = ({
 }): JSX.Element => (
 	<ProfileSectionLabel label={label} icon={icon}>
 		{link && (
-			<PrimaryLink title={'Profile link'} href={link} isExternal>
+			<PrimaryLink
+				title={'Profile link'}
+				size={'xs'}
+				href={link}
+				isExternal
+			>
 				{label}
 			</PrimaryLink>
 		)}
