@@ -35,7 +35,7 @@ const UserActivityTab = (): JSX.Element => {
 
 const ActivityItem = (activity: Omit<Activity, 'id' | 'user_id' | 'user'>) => {
 	return (
-		<Flex py={2} flexDirection={'column'}>
+		<Flex p={0} flexDirection={'column'}>
 			<Flex justifyContent={'space-between'} alignItems={'flex-start'}>
 				<Flex flexDirection={'column'}>
 					<Text

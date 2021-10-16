@@ -1,6 +1,7 @@
 import { Stack, Text } from '@chakra-ui/layout';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
+import { Label } from 'components/labels';
 import { Loading, TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import React, { memo, useContext } from 'react';
@@ -43,6 +44,7 @@ const WorkExperienceTab = (): JSX.Element => {
 				templateColumns="repeat(12, 1fr)"
 				gap={{ md: 4 }}
 				display={{ base: 'bock', md: 'grid' }}
+				alignItems={'baseline'}
 			>
 				<ExperienceLabel
 					label={'Background'}
@@ -113,7 +115,7 @@ const ExperienceLabel = memo(
 				<GridItem colSpan={{ base: 12, md: 3 }}>
 					<Text
 						color={'fpGrey.900'}
-						fontSize={'md'}
+						fontSize={'sm'}
 						fontWeight={'medium'}
 					>
 						{label}
@@ -124,7 +126,13 @@ const ExperienceLabel = memo(
 					mb={{ base: 4, md: 0 }}
 					fontSize={{ base: 'sm', md: 'md' }}
 				>
-					<Text color={'fpGrey.700'}>{value}</Text>
+					{/* <Text color={'fpGrey.700'}>{value}</Text> */}
+					<Label
+						label={value ?? 'Not set'}
+						color={'fpGrey.300'}
+						textOverflow={'ellipsis'}
+						isTruncated
+					/>
 				</GridItem>
 			</React.Fragment>
 		);
