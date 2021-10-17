@@ -74,13 +74,13 @@ const IdeaTab = (): JSX.Element => {
 			<LineSeparator display={{ base: 'none', md: 'block' }} />
 			<SimpleGrid columns={{ base: 1, md: 12 }} gap={4}>
 				<GridItem
-					colSpan={{ md: 8 }}
+					colSpan={{ md: 9 }}
 					gridRowGap={4}
 					order={{ base: 2, md: 1 }}
 				>
 					<IdeaMainContent {...idea} />
 				</GridItem>
-				<GridItem colSpan={{ md: 4 }} order={{ base: 1, md: 2 }}>
+				<GridItem colSpan={{ md: 3 }} order={{ base: 1, md: 2 }}>
 					<IdeaHighlights {...idea} />
 				</GridItem>
 			</SimpleGrid>

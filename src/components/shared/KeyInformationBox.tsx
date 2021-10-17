@@ -5,22 +5,24 @@ import React from 'react';
 import { IconType } from 'react-icons/lib';
 
 /**
- * The @IdeaHighlight component displays a a highlight piece of information for the idea on the idea page.
+ * The @KeyInformationBox component displays a a highlight piece of information for the idea on the idea page.
  * @param param0
  * @returns
  */
-const IdeaHighlightBox = ({
+const KeyInformationBox = ({
 	title,
 	value,
-	icon
+	icon,
+	small
 }: {
 	title: string;
 	value: string;
 	icon?: IconType;
+	small?: boolean;
 }): JSX.Element => (
 	<StackLayout
 		spacing={1}
-		p={4}
+		p={small ? 0 : 4}
 		boxShadow={'sm'}
 		background={'gray.50'}
 		rounded={'md'}
@@ -37,4 +39,4 @@ const IdeaHighlightBox = ({
 	</StackLayout>
 );
 
-export default IdeaHighlightBox;
+export default KeyInformationBox;
