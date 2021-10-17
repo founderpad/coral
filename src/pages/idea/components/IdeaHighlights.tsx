@@ -1,4 +1,5 @@
 import { FlexLayout, StackLayout } from 'components/layouts';
+import KeyInformationBox from 'components/shared/KeyInformationBox';
 import { TNestedPick } from 'components/types';
 import { Ideas } from 'generated/graphql';
 import React, { memo } from 'react';
@@ -8,7 +9,6 @@ import {
 	IoDocumentsSharp,
 	IoLocationSharp
 } from 'react-icons/io5';
-import IdeaHighlight from './IdeaHighlightBox';
 import HighlightTag from './IdeaHighlightTag';
 
 type IdeaHighlightsProps = Pick<Ideas, 'status' | 'field'> &
@@ -20,22 +20,22 @@ export const IdeaHighlights = memo(
 		return (
 			<React.Fragment>
 				<StackLayout spacing={4} display={{ base: 'none', md: 'flex' }}>
-					<IdeaHighlight
+					<KeyInformationBox
 						title={'Stage'}
 						value={status}
 						icon={IoBulbSharp}
 					/>
-					<IdeaHighlight
+					<KeyInformationBox
 						title={'Field'}
 						value={field}
 						icon={IoBusinessSharp}
 					/>
-					<IdeaHighlight
+					<KeyInformationBox
 						title={'Location'}
 						value={idea_user.country}
 						icon={IoLocationSharp}
 					/>
-					<IdeaHighlight
+					<KeyInformationBox
 						title={'Documents'}
 						value={'4 supporting documents'}
 						icon={IoDocumentsSharp}

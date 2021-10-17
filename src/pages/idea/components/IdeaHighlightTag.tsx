@@ -2,7 +2,7 @@ import { Tag, TagLabel } from '@chakra-ui/tag';
 import React, { memo } from 'react';
 
 const HighlightTag = memo(
-	({ value }: { value: string }): JSX.Element => (
+	({ value }: { value: string | number }): JSX.Element => (
 		<Tag
 			background={'gray.50'}
 			borderWidth={1}

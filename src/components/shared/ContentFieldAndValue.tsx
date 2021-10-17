@@ -5,7 +5,7 @@ import React from 'react';
 
 type Props = {
 	title: string;
-	value: string;
+	value: string | number;
 };
 
 const ContentFieldAndValue = (props: Props): JSX.Element => {

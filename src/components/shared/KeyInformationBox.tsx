@@ -12,31 +12,33 @@ import { IconType } from 'react-icons/lib';
 const KeyInformationBox = ({
 	title,
 	value,
-	icon,
-	small
+	icon
 }: {
 	title: string;
-	value: string;
+	value: string | number;
 	icon?: IconType;
-	small?: boolean;
-}): JSX.Element => (
-	<StackLayout
-		spacing={1}
-		p={small ? 0 : 4}
-		boxShadow={'sm'}
-		background={'gray.50'}
-		rounded={'md'}
-		alignItems={'center'}
-		display={{ base: 'none', md: 'flex' }}
-	>
-		<SubheadingText
-			label={value}
-			icon={icon}
-			color={'fpGrey.900'}
-			size={'sm'}
-		/>
-		<Label label={title} color={'fpGrey.300'} />
-	</StackLayout>
-);
+}): JSX.Element => {
+	return (
+		<StackLayout
+			spacing={1}
+			p={4}
+			boxShadow={'sm'}
+			background={'gray.50'}
+			rounded={'md'}
+			alignItems={'center'}
+			justifyContent={'center'}
+			display={{ base: 'none', md: 'flex' }}
+		>
+			<SubheadingText
+				label={value}
+				icon={icon}
+				color={'fpGrey.900'}
+				size={'xs'}
+				textAlign={'center'}
+			/>
+			<Label label={title} color={'fpGrey.300'} fontSize={'xs'} />
+		</StackLayout>
+	);
+};
 
 export default KeyInformationBox;
