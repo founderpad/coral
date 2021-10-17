@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/layout';
+import { StackLayout } from 'components/layouts';
 import React, { FormHTMLAttributes, ReactElement } from 'react';
 
 type TFormProps = FormHTMLAttributes<HTMLFormElement> & {
@@ -15,8 +15,16 @@ const Form = (props: TFormProps): ReactElement<any> => {
 	const { children, name, ...rest } = props;
 
 	return (
-		<form {...rest} autoComplete={'off'} name={name} aria-label={name} noValidate>
-			<Stack spacing={4} flex={1}>{children}</Stack>
+		<form
+			{...rest}
+			autoComplete={'off'}
+			name={name}
+			aria-label={name}
+			noValidate
+		>
+			<StackLayout spacing={8} flex={1}>
+				{children}
+			</StackLayout>
 		</form>
 	);
 };

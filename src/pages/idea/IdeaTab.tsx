@@ -1,7 +1,8 @@
 import Icon from '@chakra-ui/icon';
-import { Divider, GridItem, SimpleGrid } from '@chakra-ui/layout';
+import { Divider } from '@chakra-ui/layout';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
+import ContentHighlightsLayout from 'components/layouts/ContentHighlightsLayout';
 import { LineSeparator, Loading } from 'components/shared';
 import { UserAvatarDetails } from 'components/shared/UserAvatar';
 import { useGetIdeaQuery } from 'generated/graphql';
@@ -9,10 +10,13 @@ import { useCurrentUser } from 'hooks/auth';
 import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { IoCheckmarkCircleSharp } from 'react-icons/io5';
+import {
+	IoBulbSharp,
+	IoBusinessSharp,
+	IoCheckmarkCircleSharp,
+	IoLocationSharp
+} from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
-import IdeaHighlights from './components/IdeaHighlights';
-import IdeaMainContent from './components/IdeaMainContent';
 import IdeaActions from './components/IdeaMenu';
 
 const IdeaTab = (): JSX.Element => {
@@ -30,7 +34,18 @@ const IdeaTab = (): JSX.Element => {
 	if (!data) return <Loading small />;
 	if (!idea) router.replace('/404');
 
-	const { name, idea_user, user_id, created_at } = idea;
+	const {
+		name,
+		idea_user,
+		user_id,
+		created_at,
+		description,
+		team,
+		competitors,
+		additional_information,
+		status,
+		field
+	} = idea;
 	const { avatar_url, first_name } = idea_user;
 
 	return (
@@ -72,18 +87,34 @@ const IdeaTab = (): JSX.Element => {
 				)}
 			</FlexLayout>
 			<LineSeparator display={{ base: 'none', md: 'block' }} />
-			<SimpleGrid columns={{ base: 1, md: 12 }} gap={4}>
-				<GridItem
-					colSpan={{ md: 8 }}
-					gridRowGap={4}
-					order={{ base: 2, md: 1 }}
-				>
-					<IdeaMainContent {...idea} />
-				</GridItem>
-				<GridItem colSpan={{ md: 4 }} order={{ base: 1, md: 2 }}>
-					<IdeaHighlights {...idea} />
-				</GridItem>
-			</SimpleGrid>
+
+			<ContentHighlightsLayout
+				content={[
+					{ title: 'Description', value: description },
+					{ ...(team && { title: 'Team', value: team }) },
+					{
+						...(competitors && {
+							title: 'Competitors',
+							value: competitors
+						})
+					},
+					{
+						...(additional_information && {
+							title: 'Additional information',
+							value: additional_information
+						})
+					}
+				]}
+				highlights={[
+					{ title: 'Stage', value: status, icon: IoBulbSharp },
+					{ title: 'Field', value: field, icon: IoBusinessSharp },
+					{
+						title: 'Location',
+						value: idea_user.country,
+						icon: IoLocationSharp
+					}
+				]}
+			/>
 		</StackLayout>
 	);
 };

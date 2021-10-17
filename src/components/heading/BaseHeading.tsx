@@ -3,7 +3,10 @@ import { Heading, HeadingProps } from '@chakra-ui/layout';
 import React from 'react';
 import { IconType } from 'react-icons';
 
-type BaseHeadingProps = HeadingProps & { label: string; icon?: IconType };
+type BaseHeadingProps = HeadingProps & {
+	label: string | number;
+	icon?: IconType;
+};
 
 const BaseHeading = (props: BaseHeadingProps): JSX.Element => {
 	const { label, color, size, icon } = props;

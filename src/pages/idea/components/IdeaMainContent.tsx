@@ -1,6 +1,5 @@
-import { SubheadingText } from 'components/heading';
-import { Label } from 'components/labels';
 import { StackLayout } from 'components/layouts';
+import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
 import { Ideas } from 'generated/graphql';
 import React from 'react';
 
@@ -13,25 +12,13 @@ export const IdeaMainContent = (props: Props): JSX.Element => {
 	const { description, team, competitors, additional_information } = props;
 	return (
 		<StackLayout spacing={8}>
-			<StackLayout spacing={2}>
-				<SubheadingText label={'Description'} color={'fpGrey.900'} />
-				<Label label={description} color={'fpGrey.300'} />
-			</StackLayout>
-			<StackLayout spacing={2}>
-				<SubheadingText label={'Team'} color={'fpGrey.900'} />
-				<Label label={team} color={'fpGrey.300'} />
-			</StackLayout>
-			<StackLayout spacing={2}>
-				<SubheadingText label={'Competitors'} color={'fpGrey.900'} />
-				<Label label={competitors} color={'fpGrey.300'} />
-			</StackLayout>
-			<StackLayout spacing={2}>
-				<SubheadingText
-					label={'Additional information'}
-					color={'fpGrey.900'}
-				/>
-				<Label label={additional_information} color={'fpGrey.300'} />
-			</StackLayout>
+			<ContentFieldAndValue title={'Description'} value={description} />
+			<ContentFieldAndValue title={'Team'} value={team} />
+			<ContentFieldAndValue title={'Competitors'} value={competitors} />
+			<ContentFieldAndValue
+				title={'Additional information'}
+				value={additional_information}
+			/>
 		</StackLayout>
 	);
 };
