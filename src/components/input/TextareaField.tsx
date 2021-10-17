@@ -51,9 +51,9 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 					)}
 					name={name}
 					control={control}
-					rules={{ required: !!errorText, ...rules }}
+					rules={{ required: !!errorText && isRequired, ...rules }}
 				/>
-				{error ? (
+				{error && errorText ? (
 					<FormErrorText label={errorText} />
 				) : (
 					helperText && <FormHelperText label={helperText} />

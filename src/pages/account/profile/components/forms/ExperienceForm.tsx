@@ -92,9 +92,10 @@ const ExperienceForm = (userProfile: User_Profile): ReactElement<any> => {
 				label="Background"
 				placeholder="Your background"
 				error={errors['background']}
-				errorText="You must input a background"
+				errorText="You must provide a background (max. 400 characters)"
 				name="background"
 				control={control}
+				rules={{ maxLength: 400 }}
 				isRequired
 			/>
 			<TextareaField
@@ -102,10 +103,10 @@ const ExperienceForm = (userProfile: User_Profile): ReactElement<any> => {
 				label="Personal statement"
 				placeholder="Your personal statement"
 				error={errors['statement']}
-				errorText="You must input a personal statement"
+				errorText="Your personal statement can not be more than 400 characters"
 				name="statement"
 				control={control}
-				isRequired
+				rules={{ maxLength: 400 }}
 			/>
 
 			<SelectField
