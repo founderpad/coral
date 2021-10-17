@@ -16,6 +16,7 @@ const UserProfileTabLayout = (): JSX.Element => {
 					{ label: 'Experience' },
 					{ label: 'Activity' }
 				]}
+				px={2}
 			>
 				<AboutTab />
 				<WorkExperienceTab />

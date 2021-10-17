@@ -20,7 +20,7 @@ type TabProps = {
 };
 
 const TabLayout = (props: Props): JSX.Element => {
-	const { tabs, children, ...rest } = props;
+	const { tabs, children, px, ...rest } = props;
 	const [tabIndex, setTabIndex] = useState(0);
 
 	// const onChange = (index: number) =>
@@ -42,7 +42,7 @@ const TabLayout = (props: Props): JSX.Element => {
 						fontSize={{ base: 'xs', sm: 'sm' }}
 						fontWeight={'medium'}
 						key={tab?.label}
-						px={{ lg: 0 }}
+						px={px ?? { lg: 2 }}
 						_hover={{
 							borderColor: tabIndex !== key && 'fpGrey.200'
 						}}
