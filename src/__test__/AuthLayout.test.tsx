@@ -1,8 +1,8 @@
 import LoginForm from 'pages/login/components/LoginForm';
 import RegisterForm from 'pages/register/components/RegisterForm';
-import { render } from '__test__/testUtils';
-import store from 'utils/store';
 import { Provider } from 'react-redux';
+import store from 'utils/store';
+import { render } from '__test__/testUtils';
 import AuthLayout from '../components/layouts/AuthLayout';
 
 describe('AuthLayout layout', () => {
