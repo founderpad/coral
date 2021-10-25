@@ -126,7 +126,7 @@ export const useGetAuthenticatedUser = (): any => {
 		onCompleted: (data) => {
 			const user = data.user;
 			dispatch(setUser(user as TUsers));
-			router.replace('/ideas?page=1');
+			router.replace('/app/ideas?page=1');
 		}
 	});
 };
