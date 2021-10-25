@@ -1,13 +1,13 @@
 import { Flex, Text } from '@chakra-ui/layout';
 import { BaseLink } from 'components/links';
 import { PointSeparator } from 'components/shared';
-import { Idea_Preview } from 'generated/graphql';
+import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
 import { formatDate } from 'utils/validators';
 import NewIdeaBadge from '../NewIdeaBadge';
 
 type TIdeaCardHeader = Pick<
-	Idea_Preview,
+	TIdea_Preview,
 	'name' | 'idea_user' | 'is_new' | 'created_at' | 'user_id'
 >;
 

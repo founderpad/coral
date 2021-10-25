@@ -2,12 +2,12 @@ import Icon from '@chakra-ui/icon';
 import { HStack, Text } from '@chakra-ui/layout';
 import { BaseButton } from 'components/buttons';
 import { FlexLayout } from 'components/layouts';
-import { Idea_Votes, useUpsertIdeaVoteMutation } from 'generated/graphql';
+import { TIdea_Votes, useUpsertIdeaVoteMutation } from 'generated/api';
 import React from 'react';
 import { IoArrowUpSharp } from 'react-icons/io5';
 
 export const Upvote = (
-	ideaVotes: Idea_Votes & { ideaId: string }
+	ideaVotes: TIdea_Votes & { ideaId: string }
 ): JSX.Element => {
 	const [upsertIdeaVote] = useUpsertIdeaVoteMutation({
 		variables: {

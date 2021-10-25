@@ -1,7 +1,7 @@
 import { FlexLayout, StackLayout } from 'components/layouts';
 import KeyInformationBox from 'components/shared/KeyInformationBox';
 import { TNestedPick } from 'components/types';
-import { Ideas } from 'generated/graphql';
+import { TIdeas } from 'generated/api';
 import React, { memo } from 'react';
 import {
 	IoBulbSharp,
@@ -11,8 +11,8 @@ import {
 } from 'react-icons/io5';
 import HighlightTag from './IdeaHighlightTag';
 
-type IdeaHighlightsProps = Pick<Ideas, 'status' | 'field'> &
-	TNestedPick<Ideas, 'idea_user', 'country'>;
+type IdeaHighlightsProps = Pick<TIdeas, 'status' | 'field'> &
+	TNestedPick<TIdeas, 'idea_user', 'country'>;
 
 export const IdeaHighlights = memo(
 	(props: IdeaHighlightsProps): JSX.Element => {

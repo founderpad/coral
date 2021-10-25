@@ -5,7 +5,7 @@ import { FlexLayout, StackLayout } from 'components/layouts';
 import ContentHighlightsLayout from 'components/layouts/ContentHighlightsLayout';
 import { LineSeparator, Loading } from 'components/shared';
 import { UserAvatarDetails } from 'components/shared/UserAvatar';
-import { useGetIdeaQuery } from 'generated/graphql';
+import { useGetIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';

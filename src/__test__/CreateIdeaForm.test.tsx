@@ -1,12 +1,12 @@
 import { MockedProvider } from '@apollo/client/testing';
 import { fireEvent } from '@testing-library/dom';
-import { Ideas } from 'generated/graphql';
+import { TIdeas } from 'generated/api';
 import { CREATE_IDEA } from 'graphql/ideas';
 import CreateEditIdeaForm from 'pages/ideas/components/CreateEditIdeaForm';
 import { render } from '__test__/testUtils';
 
 describe('Create idea form', () => {
-	const idea: Partial<Ideas> = {
+	const idea: Partial<TIdeas> = {
 		name: 'Idea name',
 		description: 'Some idea description',
 		additional_information: 'Some additional information',

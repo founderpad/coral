@@ -1,6 +1,6 @@
 import { useToast } from '@chakra-ui/toast';
 
-export const useNotification = () => {
+export const useNotification = (): any => {
 	const toast = useToast();
 
 	return ({
@@ -23,13 +23,13 @@ export const useNotification = () => {
 	};
 };
 
-export const useSuccessNotification = () => {
+export const useSuccessNotification = (): any => {
 	const notification = useNotification();
 	return ({ title, description }: { title: string; description?: string }) =>
 		notification({ title, description, status: 'success' });
 };
 
-export const useErrorNotification = () => {
+export const useErrorNotification = (): any => {
 	const notification = useNotification();
 	return ({ title, description }: { title: string; description?: string }) =>
 		notification({ title, description, status: 'error' });

@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
 import { useQueryParam } from "hooks/util";
 import { cache } from "pages/_app";
-import { Ideas } from './../../../generated/graphql';
+import { TIdeas } from './../../../generated/api';
 
-const useIdeaFragment = (): Ideas => {
+const useIdeaFragment = (): TIdeas => {
     const ideaId = useQueryParam('id');
     const result = cache.readFragment({
         id: `ideas:${ideaId}`, // The value of the idea's cache id
@@ -22,7 +22,7 @@ const useIdeaFragment = (): Ideas => {
                 status
             }
         `
-    }) as Ideas;
+    }) as TIdeas;
 
     return result;
 }

@@ -5,10 +5,10 @@ import Form from 'components/form/Form';
 import { NumberField, SelectField, TextareaField } from 'components/input';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import {
-	User_Profile,
-	User_Profile_Set_Input,
+	TUser_Profile,
+	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
-} from 'generated/graphql';
+} from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { useSuccessNotification } from 'hooks/toast';
 import { ReactElement, useContext, useState } from 'react';
@@ -21,7 +21,7 @@ import {
 	STARTUP_STATUS
 } from 'utils/Constants';
 
-const ExperienceForm = (userProfile: User_Profile): ReactElement<any> => {
+const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 	const dispatch = useDispatch();
 	const isProfileComplete = useCurrentUser().user_profile.is_complete;
 
@@ -34,7 +34,7 @@ const ExperienceForm = (userProfile: User_Profile): ReactElement<any> => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 	const { handleSubmit, control, getValues, setValue, formState } =
-		useForm<User_Profile_Set_Input>({
+		useForm<TUser_Profile_Set_Input>({
 			mode: 'all',
 			defaultValues: {
 				...rest

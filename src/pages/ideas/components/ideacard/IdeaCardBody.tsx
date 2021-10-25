@@ -1,10 +1,10 @@
 import { Text } from '@chakra-ui/layout';
 import { FlexLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
-import { Idea_Preview } from 'generated/graphql';
+import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 
-type TIdeaCardBody = Pick<Idea_Preview, 'name' | 'preview' | 'id' | 'status'>;
+type TIdeaCardBody = Pick<TIdea_Preview, 'name' | 'preview' | 'id' | 'status'>;
 
 const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 	const { id, preview, status } = idea;

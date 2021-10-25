@@ -1,9 +1,9 @@
-import { User_Profile } from "generated/graphql";
+import { TUser_Profile } from "generated/api";
 import gql from "graphql-tag";
 import { useCurrentUser } from "hooks/auth";
 import { cache } from "pages/_app";
 
-const useProfileFragment = (): User_Profile => {
+const useProfileFragment = (): TUser_Profile => {
     const user = useCurrentUser();
     const result = cache.readFragment({
         id: `user_profile:${user.user_profile.id}`, // The value of the profile's cache id
@@ -22,7 +22,7 @@ const useProfileFragment = (): User_Profile => {
                 is_complete
             }
         `
-    }) as User_Profile;
+    }) as TUser_Profile;
 
     return result;
 }

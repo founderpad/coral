@@ -25,7 +25,7 @@ const NavItems: Array<NavItem> = [
 	// 	href: '/dashboard'
 	// },
 	{
-		label: 'Ideas',
+		label: 'TIdeas',
 		key: 'ideas',
 		href: '/ideas?page=1',
 		children: [

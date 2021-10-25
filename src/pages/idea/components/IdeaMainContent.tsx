@@ -1,10 +1,10 @@
 import { StackLayout } from 'components/layouts';
 import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
-import { Ideas } from 'generated/graphql';
+import { TIdeas } from 'generated/api';
 import React from 'react';
 
 type Props = Pick<
-	Ideas,
+	TIdeas,
 	'description' | 'team' | 'competitors' | 'additional_information'
 >;
 
