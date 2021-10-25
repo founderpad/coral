@@ -3,8 +3,8 @@ import { InputField } from 'components/input/InputField';
 import { SelectField } from 'components/input/SelectField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import {
-	Users,
-	Users_Set_Input,
+	TUsers,
+	TUsers_Set_Input,
 	useUpdateUserPersonalDetailsMutation
 } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
@@ -28,12 +28,14 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 		control,
 		getValues,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<Pick<Users_Set_Input, 'first_name' | 'last_name' | 'country'>>({
-		mode: 'all',
-		defaultValues: {
-			...user
+	} = useForm<Pick<TUsers_Set_Input, 'first_name' | 'last_name' | 'country'>>(
+		{
+			mode: 'all',
+			defaultValues: {
+				...user
+			}
 		}
-	});
+	);
 
 	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
 		variables: {
@@ -46,7 +48,7 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 		},
 		onCompleted: (data) => {
 			const user = data.user;
-			dispatch(updatePersonalDetails(user as Users));
+			dispatch(updatePersonalDetails(user as TUsers));
 			setModalDrawer({
 				isOpen: false
 			});

@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Users } from 'generated/graphql';
+import { TUsers } from 'generated/graphql';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
-	user: null as Users
+	user: null as TUsers
 };
 
 const authSlice = createSlice({
 	name: 'authSlice',
 	initialState,
 	reducers: {
-		setUser(state, action: PayloadAction<Users>) {
+		setUser(state, action: PayloadAction<TUsers>) {
 			state.user = action.payload;
 		},
 		clearUser(state) {
@@ -26,7 +26,7 @@ const authSlice = createSlice({
 				}
 			};
 		},
-		updatePersonalDetails(state, action: PayloadAction<Users>) {
+		updatePersonalDetails(state, action: PayloadAction<TUsers>) {
 			state.user = {
 				...state.user,
 				...action.payload

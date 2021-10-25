@@ -1,16 +1,16 @@
 import {
-	MutationTuple,
-	QueryResult,
-	useMutation,
-	useQuery
+    MutationTuple,
+    QueryResult,
+    useMutation,
+    useQuery
 } from '@apollo/client';
-import { Ideas } from 'generated/graphql';
+import { TIdeas } from 'generated/graphql';
 import {
-	CREATE_IDEA,
-	DELETE_IDEA,
-	GET_IDEA,
-	GET_IDEAS,
-	GET_USER_IDEAS
+    CREATE_IDEA,
+    DELETE_IDEA,
+    GET_IDEA,
+    GET_IDEAS,
+    GET_USER_IDEAS
 } from 'graphql/ideas';
 import { useRouter } from 'next/router';
 import { TIdea, TIdeaPreview } from 'types/idea';
@@ -60,7 +60,7 @@ export const useGetIdeas = (): QueryResult<{
 	};
 };
 
-export const useGetIdea = (id: string): QueryResult<Ideas, any> => {
+export const useGetIdea = (id: string): QueryResult<TIdeas, any> => {
 	const response = useQuery(GET_IDEA, {
 		variables: { id }
 	});

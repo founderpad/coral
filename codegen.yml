@@ -22,7 +22,7 @@ generates:
             apolloReactHooksImportFrom: '@apollo/client'
             preResolveTypes: true
             reactApolloVersion: 3
-            immutableTypes: true
+            immutableTypes: false
             constEnums: true
             enumsAsTypes: true
             typesPrefix: T

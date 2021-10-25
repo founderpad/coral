@@ -1,8 +1,8 @@
 import { Divider, Stack } from '@chakra-ui/layout';
 import { Loading, NoResults } from 'components/shared';
 import {
-	Idea_Preview,
-	Idea_Preview_Bool_Exp,
+	TIdea_Preview,
+	TIdea_Preview_Bool_Exp,
 	useGetIdeasQuery
 } from 'generated/graphql';
 import { useQueryParam } from 'hooks/util';
@@ -13,9 +13,9 @@ import IdeaCard from './components/ideacard/IdeaCard';
 import IdeasActions from './components/IdeasActions';
 import IdeasPagination from './IdeasPagination';
 
-const queryBuilder = (): Idea_Preview_Bool_Exp => {
+const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 	const router = useRouter();
-	const where: Idea_Preview_Bool_Exp = {};
+	const where: TIdea_Preview_Bool_Exp = {};
 
 	if (router.query.name) {
 		where.name = { _ilike: `%${useQueryParam('name')}%` };
@@ -63,7 +63,7 @@ const IdeasContainer = (): JSX.Element => {
 				spacing={4}
 				mt={{ sm: 3 }}
 			>
-				{data?.idea_preview?.map((idea: Idea_Preview, key) => (
+				{data?.idea_preview?.map((idea: TIdea_Preview, key) => (
 					<React.Fragment key={idea.id}>
 						<IdeaCard {...idea} />
 						{key !== data.idea_preview?.length - 1 && <Divider />}

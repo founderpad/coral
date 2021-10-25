@@ -1,12 +1,12 @@
 import { Box } from '@chakra-ui/layout';
 import { UserAvatar } from 'components/shared';
-import { Idea_Preview } from 'generated/graphql';
+import { TIdea_Preview } from 'generated/graphql';
 import React from 'react';
 import IdeaCardBody from './ideacard/IdeaCardBody';
 import IdeaCardFooter from './ideacard/IdeaCardFooter';
 import IdeaCardHeader from './ideacard/IdeaCardHeader';
 
-const DesktopIdeaCard = (idea: Idea_Preview): JSX.Element => {
+const DesktopIdeaCard = (idea: TIdea_Preview): JSX.Element => {
 	const { idea_user } = idea;
 
 	return (

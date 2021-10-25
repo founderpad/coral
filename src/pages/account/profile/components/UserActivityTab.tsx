@@ -2,7 +2,7 @@ import { Stack } from '@chakra-ui/layout';
 import { Divider, Flex, Spinner, Text } from '@chakra-ui/react';
 import { PrimaryLink } from 'components/links';
 import { NoResults } from 'components/shared';
-import { Activity, useGetUserActivitiesQuery } from 'generated/graphql';
+import { TActivity, useGetUserActivitiesQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import { formatDate } from 'utils/validators';
@@ -33,7 +33,7 @@ const UserActivityTab = (): JSX.Element => {
 	);
 };
 
-const ActivityItem = (activity: Omit<Activity, 'id' | 'user_id' | 'user'>) => {
+const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => {
 	return (
 		<Flex p={0} flexDirection={'column'}>
 			<Flex justifyContent={'space-between'} alignItems={'flex-start'}>

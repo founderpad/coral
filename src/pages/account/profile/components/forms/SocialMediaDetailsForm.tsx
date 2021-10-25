@@ -2,8 +2,8 @@ import Form from 'components/form/Form';
 import { InputField } from 'components/input/InputField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import {
-	User_Profile,
-	User_Profile_Set_Input,
+	TUser_Profile,
+	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
 } from 'generated/graphql';
 import { useSuccessNotification } from 'hooks/toast';
@@ -11,14 +11,14 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { IoLogoLinkedin } from 'react-icons/io5';
 
-const SocialMediaDetailsForm = (socials: User_Profile): JSX.Element => {
+const SocialMediaDetailsForm = (socials: TUser_Profile): JSX.Element => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { __typename, user_id, ...rest } = socials;
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 	const { handleSubmit, control, formState, getValues } =
-		useForm<User_Profile_Set_Input>({
+		useForm<TUser_Profile_Set_Input>({
 			mode: 'all',
 			defaultValues: {
 				...rest

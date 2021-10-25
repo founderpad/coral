@@ -6,7 +6,7 @@ import AuthFilter from 'utils/AuthFilter';
 import IdeasSearchForm from './components/IdeasSearchForm';
 import IdeasContainer from './IdeasContainer';
 
-const Ideas = (): JSX.Element => (
+const TIdeas = (): JSX.Element => (
 	<React.Fragment>
 		<DocumentTitle title="All ideas" />
 		<PageLayout
@@ -47,4 +47,4 @@ const DesktopSearch = () => (
 	</StackLayout>
 );
 
-export default AuthFilter(Ideas);
+export default AuthFilter(TIdeas);

@@ -1,6 +1,6 @@
 import { QueryResult, useMutation, useQuery } from '@apollo/client';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useGetUserLazyQuery, Users } from 'generated/graphql';
+import { TUsers, useGetUserLazyQuery } from 'generated/graphql';
 import { USER_GET_EXPERIENCE, USER_UPDATE_EXPERIENCE } from 'graphql/user';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
@@ -125,7 +125,7 @@ export const useGetAuthenticatedUser = (): any => {
 		},
 		onCompleted: (data) => {
 			const user = data.user;
-			dispatch(setUser(user as Users));
+			dispatch(setUser(user as TUsers));
 			router.replace('/ideas?page=1');
 		}
 	});
@@ -209,7 +209,7 @@ export const useUpdateExperience = (userExperience: TExperience): any => {
 	});
 };
 
-export const useCurrentUser = (): Users => {
+export const useCurrentUser = (): TUsers => {
 	return useSelector((state: RootState) => state.authSlice.user);
 };
 

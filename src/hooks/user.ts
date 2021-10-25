@@ -1,5 +1,5 @@
-import { User_Profile } from './../generated/graphql';
+import { TUser_Profile } from './../generated/graphql';
 import { useCurrentUser } from './auth';
 
-const useUserProfile = (): User_Profile => useCurrentUser().user_profile;
+const useUserProfile = (): TUser_Profile => useCurrentUser().user_profile;
 export default useUserProfile;
