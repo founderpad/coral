@@ -5,7 +5,7 @@ import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
-} from 'generated/graphql';
+} from 'generated/api';
 import { useSuccessNotification } from 'hooks/toast';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';

@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/layout';
 import { FlexLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
-import { TIdea_Preview } from 'generated/graphql';
+import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 
 type TIdeaCardBody = Pick<TIdea_Preview, 'name' | 'preview' | 'id' | 'status'>;

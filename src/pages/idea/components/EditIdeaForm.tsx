@@ -4,7 +4,7 @@ import { SelectField } from 'components/input/SelectField';
 import { SwitchField } from 'components/input/SwitchField';
 import { TextareaField } from 'components/input/TextareaField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import { TIdeas_Insert_Input, useUpdateIdeaMutation } from 'generated/graphql';
+import { TIdeas_Insert_Input, useUpdateIdeaMutation } from 'generated/api';
 import { useSuccessNotification } from 'hooks/toast';
 import React, { ReactElement, useContext } from 'react';
 import { useForm } from 'react-hook-form';

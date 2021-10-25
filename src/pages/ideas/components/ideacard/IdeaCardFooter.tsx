@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/layout';
 import { StackLayout } from 'components/layouts';
 import { PointSeparator, Upvote } from 'components/shared';
-import { TIdea_Preview } from 'generated/graphql';
+import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
 
 type TIdeaCardFooter = Pick<

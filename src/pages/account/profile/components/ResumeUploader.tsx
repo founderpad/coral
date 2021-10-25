@@ -1,5 +1,5 @@
 import { FileUploader } from 'components/shared';
-import { TUser_Profile, useUpdateResumeMutation } from 'generated/graphql';
+import { TUser_Profile, useUpdateResumeMutation } from 'generated/api';
 import gql from 'graphql-tag';
 import { useCurrentUser } from 'hooks/auth';
 import { useSuccessNotification } from 'hooks/toast';
