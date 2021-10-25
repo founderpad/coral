@@ -87,7 +87,7 @@ exports[`AuthLayout layout matches AuthLayout snapshot 1`] = `
              
             <a
               class="chakra-link css-yye61v"
-              href="/register"
+              href="/app/register"
               title="Link to register an account"
             >
               Create one here

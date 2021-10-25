@@ -1,5 +1,5 @@
-import LoginForm from 'pages/login/components/LoginForm';
-import RegisterForm from 'pages/register/components/RegisterForm';
+import LoginForm from 'pages/app/login/components/LoginForm';
+import RegisterForm from 'pages/app/register/components/RegisterForm';
 import { Provider } from 'react-redux';
 import store from 'utils/store';
 import { render } from '__test__/testUtils';

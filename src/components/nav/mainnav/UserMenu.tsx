@@ -30,7 +30,7 @@ const UserMenu = (): JSX.Element => {
 				<MenuGroup>
 					<MenuItem
 						as={BaseLink}
-						href={'/account/profile'}
+						href={'/app/account/profile'}
 						fontSize={'sm'}
 						color={'fpGrey.300'}
 						fontWeight={'medium'}
@@ -40,7 +40,7 @@ const UserMenu = (): JSX.Element => {
 					</MenuItem>
 					<MenuItem
 						as={BaseLink}
-						href={'/user/settings'}
+						href={'/app/user/settings'}
 						fontSize={'sm'}
 						color={'fpGrey.300'}
 						fontWeight={'medium'}

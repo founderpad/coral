@@ -80,7 +80,7 @@ const ForgotPasswordForm = (): JSX.Element => {
 								>
 									Reset password
 								</Button>
-								<NextLink href="/login">
+								<NextLink href="/app/login">
 									<Link color={'gray.500'} size="xs">
 										Have an account? Login here
 									</Link>

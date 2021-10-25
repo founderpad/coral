@@ -16,7 +16,7 @@ const NoAccountFooter = memo(
 			</Text>
 			&nbsp;
 			<PrimaryLink
-				href="/register"
+				href="/app/register"
 				fontSize={'xs'}
 				title={'Link to register an account'}
 			>

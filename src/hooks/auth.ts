@@ -37,7 +37,7 @@ export const useRegister = (): any => {
 					}
 				}
 			});
-			router.push('/register/complete');
+			router.push('/app/register/complete');
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to create an account',

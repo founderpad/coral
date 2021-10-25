@@ -51,7 +51,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 					color={'fpGrey.300'}
 					fontWeight={'medium'}
 					as={BaseLink}
-					href={`/user/${idea_user?.id}`}
+					href={`/app/user/${idea_user?.id}`}
 					_hover={{ color: 'fpGrey.700' }}
 					mb={0}
 					title={'The user who posted this idea'}

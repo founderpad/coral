@@ -123,7 +123,7 @@ const ProfileNotSet = (): JSX.Element => (
 		right={4}
 		colorScheme={'red'}
 		variant={'outline'}
-		href={'/account/profile'}
+		href={'/app/account/profile'}
 	>
 		Profile not set
 	</LinkButton>
