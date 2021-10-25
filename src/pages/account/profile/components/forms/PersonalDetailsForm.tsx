@@ -6,7 +6,7 @@ import {
 	TUsers,
 	TUsers_Set_Input,
 	useUpdateUserPersonalDetailsMutation
-} from 'generated/api';
+} from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import { useSuccessNotification } from 'hooks/toast';
 import { ReactElement, useContext } from 'react';

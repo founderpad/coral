@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/layout';
 import { BaseLink } from 'components/links';
 import { PointSeparator } from 'components/shared';
-import { TIdea_Preview } from 'generated/api';
+import { TIdea_Preview } from 'generated/graphql';
 import React, { memo } from 'react';
 import { formatDate } from 'utils/validators';
 import NewIdeaBadge from '../NewIdeaBadge';

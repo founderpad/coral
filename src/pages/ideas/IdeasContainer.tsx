@@ -4,7 +4,7 @@ import {
 	TIdea_Preview,
 	TIdea_Preview_Bool_Exp,
 	useGetIdeasQuery
-} from 'generated/api';
+} from 'generated/graphql';
 import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import React from 'react';

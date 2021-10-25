@@ -1,6 +1,6 @@
 import { MockedProvider } from '@apollo/client/testing';
 import { fireEvent } from '@testing-library/dom';
-import { TIdeas } from 'generated/api';
+import { TIdeas } from 'generated/graphql';
 import { CREATE_IDEA } from 'graphql/ideas';
 import CreateEditIdeaForm from 'pages/ideas/components/CreateEditIdeaForm';
 import { render } from '__test__/testUtils';

@@ -7,7 +7,7 @@ documents:
     - ./src/**/*.tsx
     - ./src/**/*.ts
 generates:
-    ./src/generated/api.tsx:
+    ./src/generated/graphql.tsx:
         plugins:
             - typescript
             - typescript-operations

@@ -8,7 +8,7 @@ import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
-} from 'generated/api';
+} from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import { useSuccessNotification } from 'hooks/toast';
 import { ReactElement, useContext, useState } from 'react';

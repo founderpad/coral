@@ -1,4 +1,4 @@
-import { TIdea_Preview } from 'generated/api';
+import { TIdea_Preview } from 'generated/graphql';
 import React from 'react';
 import DesktopIdeaCard from '../DesktopIdeaCard';
 import MobileIdeaCard from '../MobileIdeaCard';

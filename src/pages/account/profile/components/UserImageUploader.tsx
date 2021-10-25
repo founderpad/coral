@@ -1,7 +1,7 @@
 import { UserAvatar } from 'components/shared';
 import ImageUploader from 'components/shared/imageuploader/ImageUploader';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useUpdateUserPersonalDetailsMutation } from 'generated/api';
+import { useUpdateUserPersonalDetailsMutation } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import { useSuccessNotification } from 'hooks/toast';
 import React, { useContext, useEffect, useState } from 'react';

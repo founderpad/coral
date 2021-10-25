@@ -1,7 +1,7 @@
 import { FlexLayout, StackLayout } from 'components/layouts';
 import KeyInformationBox from 'components/shared/KeyInformationBox';
 import { TNestedPick } from 'components/types';
-import { TIdeas } from 'generated/api';
+import { TIdeas } from 'generated/graphql';
 import React, { memo } from 'react';
 import {
 	IoBulbSharp,

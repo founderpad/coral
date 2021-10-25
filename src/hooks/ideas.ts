@@ -4,7 +4,7 @@ import {
     useMutation,
     useQuery
 } from '@apollo/client';
-import { TIdeas } from 'generated/api';
+import { TIdeas } from 'generated/graphql';
 import {
     CREATE_IDEA,
     DELETE_IDEA,

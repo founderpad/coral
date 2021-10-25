@@ -2,7 +2,7 @@ import { Stack } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
 import { Loading, TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import { TUser_Profile } from 'generated/api';
+import { TUser_Profile } from 'generated/graphql';
 import gql from 'graphql-tag';
 import { useCurrentUser } from 'hooks/auth';
 import { cache } from 'pages/_app';

@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/layout';
 import { UserAvatar } from 'components/shared';
-import { TIdea_Preview } from 'generated/api';
+import { TIdea_Preview } from 'generated/graphql';
 import React from 'react';
 import IdeaCardBody from './ideacard/IdeaCardBody';
 import IdeaCardFooter from './ideacard/IdeaCardFooter';

@@ -1,6 +1,6 @@
 import { PageLayout } from 'components/layouts';
 import { DocumentTitle, LastUpdatedAt } from 'components/shared';
-import { useGetUserExperienceQuery } from 'generated/api';
+import { useGetUserExperienceQuery } from 'generated/graphql';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';

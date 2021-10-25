@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TUsers } from 'generated/api';
+import { TUsers } from 'generated/graphql';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
