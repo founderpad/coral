@@ -1,7 +1,7 @@
 import { SubmitButton } from 'components/buttons';
 import { BaseMenu } from 'components/menu/BaseMenu';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useDeleteIdeaMutation } from 'generated/graphql';
+import { useDeleteIdeaMutation } from 'generated/api';
 import React, { memo, useCallback, useContext } from 'react';
 import EditIdeaForm from './EditIdeaForm';
 

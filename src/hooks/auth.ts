@@ -1,6 +1,6 @@
 import { QueryResult, useMutation, useQuery } from '@apollo/client';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import { TUsers, useGetUserLazyQuery } from 'generated/graphql';
+import { TUsers, useGetUserLazyQuery } from 'generated/api';
 import { USER_GET_EXPERIENCE, USER_UPDATE_EXPERIENCE } from 'graphql/user';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';

@@ -14,7 +14,7 @@ import { InputField } from 'components/input/InputField';
 import { SelectField } from 'components/input/SelectField';
 import { SwitchField } from 'components/input/SwitchField';
 import { TextareaField } from 'components/input/TextareaField';
-import { TIdeas, useCreateIdeaMutation } from 'generated/graphql';
+import { TIdeas, useCreateIdeaMutation } from 'generated/api';
 import NextLink from 'next/link';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';

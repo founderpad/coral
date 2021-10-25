@@ -2,7 +2,7 @@ import { Stack } from '@chakra-ui/layout';
 import { Divider, Flex, Spinner, Text } from '@chakra-ui/react';
 import { PrimaryLink } from 'components/links';
 import { NoResults } from 'components/shared';
-import { TActivity, useGetUserActivitiesQuery } from 'generated/graphql';
+import { TActivity, useGetUserActivitiesQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import { formatDate } from 'utils/validators';
