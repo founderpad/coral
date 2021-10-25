@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+import * as ApolloReactHooks from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -20,48 +21,48 @@ export type Scalars = {
 };
 
 /** expression to compare columns of type Boolean. All fields are combined with logical 'AND'. */
-export type Boolean_Comparison_Exp = {
-  _eq?: Maybe<Scalars['Boolean']>;
-  _gt?: Maybe<Scalars['Boolean']>;
-  _gte?: Maybe<Scalars['Boolean']>;
-  _in?: Maybe<Array<Scalars['Boolean']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['Boolean']>;
-  _lte?: Maybe<Scalars['Boolean']>;
-  _neq?: Maybe<Scalars['Boolean']>;
-  _nin?: Maybe<Array<Scalars['Boolean']>>;
+export type TBoolean_Comparison_Exp = {
+  readonly _eq?: Maybe<Scalars['Boolean']>;
+  readonly _gt?: Maybe<Scalars['Boolean']>;
+  readonly _gte?: Maybe<Scalars['Boolean']>;
+  readonly _in?: Maybe<ReadonlyArray<Scalars['Boolean']>>;
+  readonly _is_null?: Maybe<Scalars['Boolean']>;
+  readonly _lt?: Maybe<Scalars['Boolean']>;
+  readonly _lte?: Maybe<Scalars['Boolean']>;
+  readonly _neq?: Maybe<Scalars['Boolean']>;
+  readonly _nin?: Maybe<ReadonlyArray<Scalars['Boolean']>>;
 };
 
 /** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
-export type Int_Comparison_Exp = {
-  _eq?: Maybe<Scalars['Int']>;
-  _gt?: Maybe<Scalars['Int']>;
-  _gte?: Maybe<Scalars['Int']>;
-  _in?: Maybe<Array<Scalars['Int']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['Int']>;
-  _lte?: Maybe<Scalars['Int']>;
-  _neq?: Maybe<Scalars['Int']>;
-  _nin?: Maybe<Array<Scalars['Int']>>;
+export type TInt_Comparison_Exp = {
+  readonly _eq?: Maybe<Scalars['Int']>;
+  readonly _gt?: Maybe<Scalars['Int']>;
+  readonly _gte?: Maybe<Scalars['Int']>;
+  readonly _in?: Maybe<ReadonlyArray<Scalars['Int']>>;
+  readonly _is_null?: Maybe<Scalars['Boolean']>;
+  readonly _lt?: Maybe<Scalars['Int']>;
+  readonly _lte?: Maybe<Scalars['Int']>;
+  readonly _neq?: Maybe<Scalars['Int']>;
+  readonly _nin?: Maybe<ReadonlyArray<Scalars['Int']>>;
 };
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
-export type String_Comparison_Exp = {
-  _eq?: Maybe<Scalars['String']>;
-  _gt?: Maybe<Scalars['String']>;
-  _gte?: Maybe<Scalars['String']>;
-  _ilike?: Maybe<Scalars['String']>;
-  _in?: Maybe<Array<Scalars['String']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _like?: Maybe<Scalars['String']>;
-  _lt?: Maybe<Scalars['String']>;
-  _lte?: Maybe<Scalars['String']>;
-  _neq?: Maybe<Scalars['String']>;
-  _nilike?: Maybe<Scalars['String']>;
-  _nin?: Maybe<Array<Scalars['String']>>;
-  _nlike?: Maybe<Scalars['String']>;
-  _nsimilar?: Maybe<Scalars['String']>;
-  _similar?: Maybe<Scalars['String']>;
+export type TString_Comparison_Exp = {
+  readonly _eq?: Maybe<Scalars['String']>;
+  readonly _gt?: Maybe<Scalars['String']>;
+  readonly _gte?: Maybe<Scalars['String']>;
+  readonly _ilike?: Maybe<Scalars['String']>;
+  readonly _in?: Maybe<ReadonlyArray<Scalars['String']>>;
+  readonly _is_null?: Maybe<Scalars['Boolean']>;
+  readonly _like?: Maybe<Scalars['String']>;
+  readonly _lt?: Maybe<Scalars['String']>;
+  readonly _lte?: Maybe<Scalars['String']>;
+  readonly _neq?: Maybe<Scalars['String']>;
+  readonly _nilike?: Maybe<Scalars['String']>;
+  readonly _nin?: Maybe<ReadonlyArray<Scalars['String']>>;
+  readonly _nlike?: Maybe<Scalars['String']>;
+  readonly _nsimilar?: Maybe<Scalars['String']>;
+  readonly _similar?: Maybe<Scalars['String']>;
 };
 
 /**
@@ -71,189 +72,189 @@ export type String_Comparison_Exp = {
  * columns and relationships of "activity"
  *
  */
-export type Activity = {
-  __typename?: 'activity';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description: Scalars['String'];
-  event: Scalars['String'];
-  id: Scalars['uuid'];
-  idea_id?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  url?: Maybe<Scalars['String']>;
+export type TActivity = {
+  readonly __typename?: 'activity';
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description: Scalars['String'];
+  readonly event: Scalars['String'];
+  readonly id: Scalars['uuid'];
+  readonly idea_id?: Maybe<Scalars['uuid']>;
+  readonly type?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly url?: Maybe<Scalars['String']>;
   /** An object relationship */
-  user: Users;
-  user_id: Scalars['uuid'];
+  readonly user: TUsers;
+  readonly user_id: Scalars['uuid'];
 };
 
 /** aggregated selection of "activity" */
-export type Activity_Aggregate = {
-  __typename?: 'activity_aggregate';
-  aggregate?: Maybe<Activity_Aggregate_Fields>;
-  nodes: Array<Activity>;
+export type TActivity_Aggregate = {
+  readonly __typename?: 'activity_aggregate';
+  readonly aggregate?: Maybe<TActivity_Aggregate_Fields>;
+  readonly nodes: ReadonlyArray<TActivity>;
 };
 
 /** aggregate fields of "activity" */
-export type Activity_Aggregate_Fields = {
-  __typename?: 'activity_aggregate_fields';
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Activity_Max_Fields>;
-  min?: Maybe<Activity_Min_Fields>;
+export type TActivity_Aggregate_Fields = {
+  readonly __typename?: 'activity_aggregate_fields';
+  readonly count?: Maybe<Scalars['Int']>;
+  readonly max?: Maybe<TActivity_Max_Fields>;
+  readonly min?: Maybe<TActivity_Min_Fields>;
 };
 
 
 /** aggregate fields of "activity" */
-export type Activity_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Activity_Select_Column>>;
+export type TActivity_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<ReadonlyArray<TActivity_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "activity" */
-export type Activity_Aggregate_Order_By = {
-  count?: Maybe<Order_By>;
-  max?: Maybe<Activity_Max_Order_By>;
-  min?: Maybe<Activity_Min_Order_By>;
+export type TActivity_Aggregate_Order_By = {
+  readonly count?: Maybe<TOrder_By>;
+  readonly max?: Maybe<TActivity_Max_Order_By>;
+  readonly min?: Maybe<TActivity_Min_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "activity" */
-export type Activity_Arr_Rel_Insert_Input = {
-  data: Array<Activity_Insert_Input>;
-  on_conflict?: Maybe<Activity_On_Conflict>;
+export type TActivity_Arr_Rel_Insert_Input = {
+  readonly data: ReadonlyArray<TActivity_Insert_Input>;
+  readonly on_conflict?: Maybe<TActivity_On_Conflict>;
 };
 
 /** Boolean expression to filter rows from the table "activity". All fields are combined with a logical 'AND'. */
-export type Activity_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Activity_Bool_Exp>>>;
-  _not?: Maybe<Activity_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Activity_Bool_Exp>>>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  description?: Maybe<String_Comparison_Exp>;
-  event?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  idea_id?: Maybe<Uuid_Comparison_Exp>;
-  type?: Maybe<String_Comparison_Exp>;
-  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
-  url?: Maybe<String_Comparison_Exp>;
-  user?: Maybe<Users_Bool_Exp>;
-  user_id?: Maybe<Uuid_Comparison_Exp>;
+export type TActivity_Bool_Exp = {
+  readonly _and?: Maybe<ReadonlyArray<Maybe<TActivity_Bool_Exp>>>;
+  readonly _not?: Maybe<TActivity_Bool_Exp>;
+  readonly _or?: Maybe<ReadonlyArray<Maybe<TActivity_Bool_Exp>>>;
+  readonly created_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly description?: Maybe<TString_Comparison_Exp>;
+  readonly event?: Maybe<TString_Comparison_Exp>;
+  readonly id?: Maybe<TUuid_Comparison_Exp>;
+  readonly idea_id?: Maybe<TUuid_Comparison_Exp>;
+  readonly type?: Maybe<TString_Comparison_Exp>;
+  readonly updated_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly url?: Maybe<TString_Comparison_Exp>;
+  readonly user?: Maybe<TUsers_Bool_Exp>;
+  readonly user_id?: Maybe<TUuid_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "activity" */
-export type Activity_Constraint =
+export type TActivity_Constraint =
   /** unique or primary key constraint */
   | 'activity_pkey';
 
 /** input type for inserting data into table "activity" */
-export type Activity_Insert_Input = {
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  event?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  idea_id?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  url?: Maybe<Scalars['String']>;
-  user?: Maybe<Users_Obj_Rel_Insert_Input>;
-  user_id?: Maybe<Scalars['uuid']>;
+export type TActivity_Insert_Input = {
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description?: Maybe<Scalars['String']>;
+  readonly event?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly idea_id?: Maybe<Scalars['uuid']>;
+  readonly type?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly url?: Maybe<Scalars['String']>;
+  readonly user?: Maybe<TUsers_Obj_Rel_Insert_Input>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */
-export type Activity_Max_Fields = {
-  __typename?: 'activity_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  event?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  idea_id?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  url?: Maybe<Scalars['String']>;
-  user_id?: Maybe<Scalars['uuid']>;
+export type TActivity_Max_Fields = {
+  readonly __typename?: 'activity_max_fields';
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description?: Maybe<Scalars['String']>;
+  readonly event?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly idea_id?: Maybe<Scalars['uuid']>;
+  readonly type?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly url?: Maybe<Scalars['String']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "activity" */
-export type Activity_Max_Order_By = {
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  event?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  idea_id?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  url?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TActivity_Max_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly description?: Maybe<TOrder_By>;
+  readonly event?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly idea_id?: Maybe<TOrder_By>;
+  readonly type?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly url?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** aggregate min on columns */
-export type Activity_Min_Fields = {
-  __typename?: 'activity_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  event?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  idea_id?: Maybe<Scalars['uuid']>;
-  type?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  url?: Maybe<Scalars['String']>;
-  user_id?: Maybe<Scalars['uuid']>;
+export type TActivity_Min_Fields = {
+  readonly __typename?: 'activity_min_fields';
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description?: Maybe<Scalars['String']>;
+  readonly event?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly idea_id?: Maybe<Scalars['uuid']>;
+  readonly type?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly url?: Maybe<Scalars['String']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "activity" */
-export type Activity_Min_Order_By = {
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  event?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  idea_id?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  url?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TActivity_Min_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly description?: Maybe<TOrder_By>;
+  readonly event?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly idea_id?: Maybe<TOrder_By>;
+  readonly type?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly url?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** response of any mutation on the table "activity" */
-export type Activity_Mutation_Response = {
-  __typename?: 'activity_mutation_response';
+export type TActivity_Mutation_Response = {
+  readonly __typename?: 'activity_mutation_response';
   /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
+  readonly affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
-  returning: Array<Activity>;
+  readonly returning: ReadonlyArray<TActivity>;
 };
 
 /** input type for inserting object relation for remote table "activity" */
-export type Activity_Obj_Rel_Insert_Input = {
-  data: Activity_Insert_Input;
-  on_conflict?: Maybe<Activity_On_Conflict>;
+export type TActivity_Obj_Rel_Insert_Input = {
+  readonly data: TActivity_Insert_Input;
+  readonly on_conflict?: Maybe<TActivity_On_Conflict>;
 };
 
 /** on conflict condition type for table "activity" */
-export type Activity_On_Conflict = {
-  constraint: Activity_Constraint;
-  update_columns: Array<Activity_Update_Column>;
-  where?: Maybe<Activity_Bool_Exp>;
+export type TActivity_On_Conflict = {
+  readonly constraint: TActivity_Constraint;
+  readonly update_columns: ReadonlyArray<TActivity_Update_Column>;
+  readonly where?: Maybe<TActivity_Bool_Exp>;
 };
 
 /** ordering options when selecting data from "activity" */
-export type Activity_Order_By = {
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  event?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  idea_id?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  url?: Maybe<Order_By>;
-  user?: Maybe<Users_Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TActivity_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly description?: Maybe<TOrder_By>;
+  readonly event?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly idea_id?: Maybe<TOrder_By>;
+  readonly type?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly url?: Maybe<TOrder_By>;
+  readonly user?: Maybe<TUsers_Order_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** primary key columns input for table: "activity" */
-export type Activity_Pk_Columns_Input = {
-  id: Scalars['uuid'];
+export type TActivity_Pk_Columns_Input = {
+  readonly id: Scalars['uuid'];
 };
 
 /** select columns of table "activity" */
-export type Activity_Select_Column =
+export type TActivity_Select_Column =
   /** column name */
   | 'created_at'
   /** column name */
@@ -274,18 +275,18 @@ export type Activity_Select_Column =
   | 'user_id';
 
 /** input type for updating data in table "activity" */
-export type Activity_Set_Input = {
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  event?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  idea_id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['uuid']>;
+export type TActivity_Set_Input = {
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description?: Maybe<Scalars['String']>;
+  readonly event?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly idea_id?: Maybe<Scalars['uuid']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** update columns of table "activity" */
-export type Activity_Update_Column =
+export type TActivity_Update_Column =
   /** column name */
   | 'created_at'
   /** column name */
@@ -302,182 +303,182 @@ export type Activity_Update_Column =
   | 'user_id';
 
 /** columns and relationships of "auth.accounts" */
-export type Auth_Accounts = {
-  __typename?: 'auth_accounts';
-  email?: Maybe<Scalars['citext']>;
+export type TAuth_Accounts = {
+  readonly __typename?: 'auth_accounts';
+  readonly email?: Maybe<Scalars['citext']>;
   /** An object relationship */
-  user: Users;
+  readonly user: TUsers;
 };
 
 /** Boolean expression to filter rows from the table "auth.accounts". All fields are combined with a logical 'AND'. */
-export type Auth_Accounts_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Auth_Accounts_Bool_Exp>>>;
-  _not?: Maybe<Auth_Accounts_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Auth_Accounts_Bool_Exp>>>;
-  email?: Maybe<Citext_Comparison_Exp>;
-  user?: Maybe<Users_Bool_Exp>;
+export type TAuth_Accounts_Bool_Exp = {
+  readonly _and?: Maybe<ReadonlyArray<Maybe<TAuth_Accounts_Bool_Exp>>>;
+  readonly _not?: Maybe<TAuth_Accounts_Bool_Exp>;
+  readonly _or?: Maybe<ReadonlyArray<Maybe<TAuth_Accounts_Bool_Exp>>>;
+  readonly email?: Maybe<TCitext_Comparison_Exp>;
+  readonly user?: Maybe<TUsers_Bool_Exp>;
 };
 
 /** ordering options when selecting data from "auth.accounts" */
-export type Auth_Accounts_Order_By = {
-  email?: Maybe<Order_By>;
-  user?: Maybe<Users_Order_By>;
+export type TAuth_Accounts_Order_By = {
+  readonly email?: Maybe<TOrder_By>;
+  readonly user?: Maybe<TUsers_Order_By>;
 };
 
 /** primary key columns input for table: "auth.accounts" */
-export type Auth_Accounts_Pk_Columns_Input = {
-  id: Scalars['uuid'];
+export type TAuth_Accounts_Pk_Columns_Input = {
+  readonly id: Scalars['uuid'];
 };
 
 /** select columns of table "auth.accounts" */
-export type Auth_Accounts_Select_Column =
+export type TAuth_Accounts_Select_Column =
   /** column name */
   | 'email';
 
 /** expression to compare columns of type citext. All fields are combined with logical 'AND'. */
-export type Citext_Comparison_Exp = {
-  _eq?: Maybe<Scalars['citext']>;
-  _gt?: Maybe<Scalars['citext']>;
-  _gte?: Maybe<Scalars['citext']>;
-  _ilike?: Maybe<Scalars['String']>;
-  _in?: Maybe<Array<Scalars['citext']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _like?: Maybe<Scalars['String']>;
-  _lt?: Maybe<Scalars['citext']>;
-  _lte?: Maybe<Scalars['citext']>;
-  _neq?: Maybe<Scalars['citext']>;
-  _nilike?: Maybe<Scalars['String']>;
-  _nin?: Maybe<Array<Scalars['citext']>>;
-  _nlike?: Maybe<Scalars['String']>;
-  _nsimilar?: Maybe<Scalars['String']>;
-  _similar?: Maybe<Scalars['String']>;
+export type TCitext_Comparison_Exp = {
+  readonly _eq?: Maybe<Scalars['citext']>;
+  readonly _gt?: Maybe<Scalars['citext']>;
+  readonly _gte?: Maybe<Scalars['citext']>;
+  readonly _ilike?: Maybe<Scalars['String']>;
+  readonly _in?: Maybe<ReadonlyArray<Scalars['citext']>>;
+  readonly _is_null?: Maybe<Scalars['Boolean']>;
+  readonly _like?: Maybe<Scalars['String']>;
+  readonly _lt?: Maybe<Scalars['citext']>;
+  readonly _lte?: Maybe<Scalars['citext']>;
+  readonly _neq?: Maybe<Scalars['citext']>;
+  readonly _nilike?: Maybe<Scalars['String']>;
+  readonly _nin?: Maybe<ReadonlyArray<Scalars['citext']>>;
+  readonly _nlike?: Maybe<Scalars['String']>;
+  readonly _nsimilar?: Maybe<Scalars['String']>;
+  readonly _similar?: Maybe<Scalars['String']>;
 };
 
 /** columns and relationships of "idea_preview" */
-export type Idea_Preview = {
-  __typename?: 'idea_preview';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  field?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
+export type TIdea_Preview = {
+  readonly __typename?: 'idea_preview';
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly field?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
-  idea_user?: Maybe<Users>;
+  readonly idea_user?: Maybe<TUsers>;
   /** An object relationship */
-  idea_votes?: Maybe<Idea_Votes>;
-  is_new?: Maybe<Scalars['Boolean']>;
-  name?: Maybe<Scalars['String']>;
-  preview?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  user_id?: Maybe<Scalars['uuid']>;
+  readonly idea_votes?: Maybe<TIdea_Votes>;
+  readonly is_new?: Maybe<Scalars['Boolean']>;
+  readonly name?: Maybe<Scalars['String']>;
+  readonly preview?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregated selection of "idea_preview" */
-export type Idea_Preview_Aggregate = {
-  __typename?: 'idea_preview_aggregate';
-  aggregate?: Maybe<Idea_Preview_Aggregate_Fields>;
-  nodes: Array<Idea_Preview>;
+export type TIdea_Preview_Aggregate = {
+  readonly __typename?: 'idea_preview_aggregate';
+  readonly aggregate?: Maybe<TIdea_Preview_Aggregate_Fields>;
+  readonly nodes: ReadonlyArray<TIdea_Preview>;
 };
 
 /** aggregate fields of "idea_preview" */
-export type Idea_Preview_Aggregate_Fields = {
-  __typename?: 'idea_preview_aggregate_fields';
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Idea_Preview_Max_Fields>;
-  min?: Maybe<Idea_Preview_Min_Fields>;
+export type TIdea_Preview_Aggregate_Fields = {
+  readonly __typename?: 'idea_preview_aggregate_fields';
+  readonly count?: Maybe<Scalars['Int']>;
+  readonly max?: Maybe<TIdea_Preview_Max_Fields>;
+  readonly min?: Maybe<TIdea_Preview_Min_Fields>;
 };
 
 
 /** aggregate fields of "idea_preview" */
-export type Idea_Preview_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Idea_Preview_Select_Column>>;
+export type TIdea_Preview_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<ReadonlyArray<TIdea_Preview_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "idea_preview" */
-export type Idea_Preview_Aggregate_Order_By = {
-  count?: Maybe<Order_By>;
-  max?: Maybe<Idea_Preview_Max_Order_By>;
-  min?: Maybe<Idea_Preview_Min_Order_By>;
+export type TIdea_Preview_Aggregate_Order_By = {
+  readonly count?: Maybe<TOrder_By>;
+  readonly max?: Maybe<TIdea_Preview_Max_Order_By>;
+  readonly min?: Maybe<TIdea_Preview_Min_Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "idea_preview". All fields are combined with a logical 'AND'. */
-export type Idea_Preview_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Idea_Preview_Bool_Exp>>>;
-  _not?: Maybe<Idea_Preview_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Idea_Preview_Bool_Exp>>>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  field?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  idea_user?: Maybe<Users_Bool_Exp>;
-  idea_votes?: Maybe<Idea_Votes_Bool_Exp>;
-  is_new?: Maybe<Boolean_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  preview?: Maybe<String_Comparison_Exp>;
-  status?: Maybe<String_Comparison_Exp>;
-  user_id?: Maybe<Uuid_Comparison_Exp>;
+export type TIdea_Preview_Bool_Exp = {
+  readonly _and?: Maybe<ReadonlyArray<Maybe<TIdea_Preview_Bool_Exp>>>;
+  readonly _not?: Maybe<TIdea_Preview_Bool_Exp>;
+  readonly _or?: Maybe<ReadonlyArray<Maybe<TIdea_Preview_Bool_Exp>>>;
+  readonly created_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly field?: Maybe<TString_Comparison_Exp>;
+  readonly id?: Maybe<TUuid_Comparison_Exp>;
+  readonly idea_user?: Maybe<TUsers_Bool_Exp>;
+  readonly idea_votes?: Maybe<TIdea_Votes_Bool_Exp>;
+  readonly is_new?: Maybe<TBoolean_Comparison_Exp>;
+  readonly name?: Maybe<TString_Comparison_Exp>;
+  readonly preview?: Maybe<TString_Comparison_Exp>;
+  readonly status?: Maybe<TString_Comparison_Exp>;
+  readonly user_id?: Maybe<TUuid_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Idea_Preview_Max_Fields = {
-  __typename?: 'idea_preview_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  field?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  preview?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  user_id?: Maybe<Scalars['uuid']>;
+export type TIdea_Preview_Max_Fields = {
+  readonly __typename?: 'idea_preview_max_fields';
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly field?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly name?: Maybe<Scalars['String']>;
+  readonly preview?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "idea_preview" */
-export type Idea_Preview_Max_Order_By = {
-  created_at?: Maybe<Order_By>;
-  field?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  preview?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TIdea_Preview_Max_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly field?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly name?: Maybe<TOrder_By>;
+  readonly preview?: Maybe<TOrder_By>;
+  readonly status?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** aggregate min on columns */
-export type Idea_Preview_Min_Fields = {
-  __typename?: 'idea_preview_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  field?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  name?: Maybe<Scalars['String']>;
-  preview?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  user_id?: Maybe<Scalars['uuid']>;
+export type TIdea_Preview_Min_Fields = {
+  readonly __typename?: 'idea_preview_min_fields';
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly field?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly name?: Maybe<Scalars['String']>;
+  readonly preview?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "idea_preview" */
-export type Idea_Preview_Min_Order_By = {
-  created_at?: Maybe<Order_By>;
-  field?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  preview?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TIdea_Preview_Min_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly field?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly name?: Maybe<TOrder_By>;
+  readonly preview?: Maybe<TOrder_By>;
+  readonly status?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** ordering options when selecting data from "idea_preview" */
-export type Idea_Preview_Order_By = {
-  created_at?: Maybe<Order_By>;
-  field?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  idea_user?: Maybe<Users_Order_By>;
-  idea_votes?: Maybe<Idea_Votes_Order_By>;
-  is_new?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  preview?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TIdea_Preview_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly field?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly idea_user?: Maybe<TUsers_Order_By>;
+  readonly idea_votes?: Maybe<TIdea_Votes_Order_By>;
+  readonly is_new?: Maybe<TOrder_By>;
+  readonly name?: Maybe<TOrder_By>;
+  readonly preview?: Maybe<TOrder_By>;
+  readonly status?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** select columns of table "idea_preview" */
-export type Idea_Preview_Select_Column =
+export type TIdea_Preview_Select_Column =
   /** column name */
   | 'created_at'
   /** column name */
@@ -496,194 +497,194 @@ export type Idea_Preview_Select_Column =
   | 'user_id';
 
 /** columns and relationships of "idea_votes" */
-export type Idea_Votes = {
-  __typename?: 'idea_votes';
-  created_at: Scalars['timestamptz'];
+export type TIdea_Votes = {
+  readonly __typename?: 'idea_votes';
+  readonly created_at: Scalars['timestamptz'];
   /** An object relationship */
-  idea: Ideas;
-  idea_id: Scalars['uuid'];
-  updated_at: Scalars['timestamptz'];
+  readonly idea: TIdeas;
+  readonly idea_id: Scalars['uuid'];
+  readonly updated_at: Scalars['timestamptz'];
   /** An object relationship */
-  user: Users;
-  user_id: Scalars['uuid'];
-  vote_type: Scalars['Int'];
+  readonly user: TUsers;
+  readonly user_id: Scalars['uuid'];
+  readonly vote_type: Scalars['Int'];
 };
 
 /** aggregated selection of "idea_votes" */
-export type Idea_Votes_Aggregate = {
-  __typename?: 'idea_votes_aggregate';
-  aggregate?: Maybe<Idea_Votes_Aggregate_Fields>;
-  nodes: Array<Idea_Votes>;
+export type TIdea_Votes_Aggregate = {
+  readonly __typename?: 'idea_votes_aggregate';
+  readonly aggregate?: Maybe<TIdea_Votes_Aggregate_Fields>;
+  readonly nodes: ReadonlyArray<TIdea_Votes>;
 };
 
 /** aggregate fields of "idea_votes" */
-export type Idea_Votes_Aggregate_Fields = {
-  __typename?: 'idea_votes_aggregate_fields';
-  avg?: Maybe<Idea_Votes_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Idea_Votes_Max_Fields>;
-  min?: Maybe<Idea_Votes_Min_Fields>;
-  stddev?: Maybe<Idea_Votes_Stddev_Fields>;
-  stddev_pop?: Maybe<Idea_Votes_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Idea_Votes_Stddev_Samp_Fields>;
-  sum?: Maybe<Idea_Votes_Sum_Fields>;
-  var_pop?: Maybe<Idea_Votes_Var_Pop_Fields>;
-  var_samp?: Maybe<Idea_Votes_Var_Samp_Fields>;
-  variance?: Maybe<Idea_Votes_Variance_Fields>;
+export type TIdea_Votes_Aggregate_Fields = {
+  readonly __typename?: 'idea_votes_aggregate_fields';
+  readonly avg?: Maybe<TIdea_Votes_Avg_Fields>;
+  readonly count?: Maybe<Scalars['Int']>;
+  readonly max?: Maybe<TIdea_Votes_Max_Fields>;
+  readonly min?: Maybe<TIdea_Votes_Min_Fields>;
+  readonly stddev?: Maybe<TIdea_Votes_Stddev_Fields>;
+  readonly stddev_pop?: Maybe<TIdea_Votes_Stddev_Pop_Fields>;
+  readonly stddev_samp?: Maybe<TIdea_Votes_Stddev_Samp_Fields>;
+  readonly sum?: Maybe<TIdea_Votes_Sum_Fields>;
+  readonly var_pop?: Maybe<TIdea_Votes_Var_Pop_Fields>;
+  readonly var_samp?: Maybe<TIdea_Votes_Var_Samp_Fields>;
+  readonly variance?: Maybe<TIdea_Votes_Variance_Fields>;
 };
 
 
 /** aggregate fields of "idea_votes" */
-export type Idea_Votes_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TIdea_Votes_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "idea_votes" */
-export type Idea_Votes_Aggregate_Order_By = {
-  avg?: Maybe<Idea_Votes_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Idea_Votes_Max_Order_By>;
-  min?: Maybe<Idea_Votes_Min_Order_By>;
-  stddev?: Maybe<Idea_Votes_Stddev_Order_By>;
-  stddev_pop?: Maybe<Idea_Votes_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Idea_Votes_Stddev_Samp_Order_By>;
-  sum?: Maybe<Idea_Votes_Sum_Order_By>;
-  var_pop?: Maybe<Idea_Votes_Var_Pop_Order_By>;
-  var_samp?: Maybe<Idea_Votes_Var_Samp_Order_By>;
-  variance?: Maybe<Idea_Votes_Variance_Order_By>;
+export type TIdea_Votes_Aggregate_Order_By = {
+  readonly avg?: Maybe<TIdea_Votes_Avg_Order_By>;
+  readonly count?: Maybe<TOrder_By>;
+  readonly max?: Maybe<TIdea_Votes_Max_Order_By>;
+  readonly min?: Maybe<TIdea_Votes_Min_Order_By>;
+  readonly stddev?: Maybe<TIdea_Votes_Stddev_Order_By>;
+  readonly stddev_pop?: Maybe<TIdea_Votes_Stddev_Pop_Order_By>;
+  readonly stddev_samp?: Maybe<TIdea_Votes_Stddev_Samp_Order_By>;
+  readonly sum?: Maybe<TIdea_Votes_Sum_Order_By>;
+  readonly var_pop?: Maybe<TIdea_Votes_Var_Pop_Order_By>;
+  readonly var_samp?: Maybe<TIdea_Votes_Var_Samp_Order_By>;
+  readonly variance?: Maybe<TIdea_Votes_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "idea_votes" */
-export type Idea_Votes_Arr_Rel_Insert_Input = {
-  data: Array<Idea_Votes_Insert_Input>;
-  on_conflict?: Maybe<Idea_Votes_On_Conflict>;
+export type TIdea_Votes_Arr_Rel_Insert_Input = {
+  readonly data: ReadonlyArray<TIdea_Votes_Insert_Input>;
+  readonly on_conflict?: Maybe<TIdea_Votes_On_Conflict>;
 };
 
 /** aggregate avg on columns */
-export type Idea_Votes_Avg_Fields = {
-  __typename?: 'idea_votes_avg_fields';
-  vote_type?: Maybe<Scalars['Float']>;
+export type TIdea_Votes_Avg_Fields = {
+  readonly __typename?: 'idea_votes_avg_fields';
+  readonly vote_type?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "idea_votes" */
-export type Idea_Votes_Avg_Order_By = {
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Avg_Order_By = {
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** Boolean expression to filter rows from the table "idea_votes". All fields are combined with a logical 'AND'. */
-export type Idea_Votes_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Idea_Votes_Bool_Exp>>>;
-  _not?: Maybe<Idea_Votes_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Idea_Votes_Bool_Exp>>>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  idea?: Maybe<Ideas_Bool_Exp>;
-  idea_id?: Maybe<Uuid_Comparison_Exp>;
-  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
-  user?: Maybe<Users_Bool_Exp>;
-  user_id?: Maybe<Uuid_Comparison_Exp>;
-  vote_type?: Maybe<Int_Comparison_Exp>;
+export type TIdea_Votes_Bool_Exp = {
+  readonly _and?: Maybe<ReadonlyArray<Maybe<TIdea_Votes_Bool_Exp>>>;
+  readonly _not?: Maybe<TIdea_Votes_Bool_Exp>;
+  readonly _or?: Maybe<ReadonlyArray<Maybe<TIdea_Votes_Bool_Exp>>>;
+  readonly created_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly idea?: Maybe<TIdeas_Bool_Exp>;
+  readonly idea_id?: Maybe<TUuid_Comparison_Exp>;
+  readonly updated_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly user?: Maybe<TUsers_Bool_Exp>;
+  readonly user_id?: Maybe<TUuid_Comparison_Exp>;
+  readonly vote_type?: Maybe<TInt_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "idea_votes" */
-export type Idea_Votes_Constraint =
+export type TIdea_Votes_Constraint =
   /** unique or primary key constraint */
   | 'idea_votes_idea_id_user_id_key'
   /** unique or primary key constraint */
   | 'idea_votes_pkey';
 
 /** input type for incrementing integer column in table "idea_votes" */
-export type Idea_Votes_Inc_Input = {
-  vote_type?: Maybe<Scalars['Int']>;
+export type TIdea_Votes_Inc_Input = {
+  readonly vote_type?: Maybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "idea_votes" */
-export type Idea_Votes_Insert_Input = {
-  idea?: Maybe<Ideas_Obj_Rel_Insert_Input>;
-  idea_id?: Maybe<Scalars['uuid']>;
-  user?: Maybe<Users_Obj_Rel_Insert_Input>;
-  vote_type?: Maybe<Scalars['Int']>;
+export type TIdea_Votes_Insert_Input = {
+  readonly idea?: Maybe<TIdeas_Obj_Rel_Insert_Input>;
+  readonly idea_id?: Maybe<Scalars['uuid']>;
+  readonly user?: Maybe<TUsers_Obj_Rel_Insert_Input>;
+  readonly vote_type?: Maybe<Scalars['Int']>;
 };
 
 /** aggregate max on columns */
-export type Idea_Votes_Max_Fields = {
-  __typename?: 'idea_votes_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  idea_id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['uuid']>;
-  vote_type?: Maybe<Scalars['Int']>;
+export type TIdea_Votes_Max_Fields = {
+  readonly __typename?: 'idea_votes_max_fields';
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly idea_id?: Maybe<Scalars['uuid']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
+  readonly vote_type?: Maybe<Scalars['Int']>;
 };
 
 /** order by max() on columns of table "idea_votes" */
-export type Idea_Votes_Max_Order_By = {
-  created_at?: Maybe<Order_By>;
-  idea_id?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Max_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly idea_id?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** aggregate min on columns */
-export type Idea_Votes_Min_Fields = {
-  __typename?: 'idea_votes_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  idea_id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['uuid']>;
-  vote_type?: Maybe<Scalars['Int']>;
+export type TIdea_Votes_Min_Fields = {
+  readonly __typename?: 'idea_votes_min_fields';
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly idea_id?: Maybe<Scalars['uuid']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
+  readonly vote_type?: Maybe<Scalars['Int']>;
 };
 
 /** order by min() on columns of table "idea_votes" */
-export type Idea_Votes_Min_Order_By = {
-  created_at?: Maybe<Order_By>;
-  idea_id?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Min_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly idea_id?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** response of any mutation on the table "idea_votes" */
-export type Idea_Votes_Mutation_Response = {
-  __typename?: 'idea_votes_mutation_response';
+export type TIdea_Votes_Mutation_Response = {
+  readonly __typename?: 'idea_votes_mutation_response';
   /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
+  readonly affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
-  returning: Array<Idea_Votes>;
+  readonly returning: ReadonlyArray<TIdea_Votes>;
 };
 
 /** input type for inserting object relation for remote table "idea_votes" */
-export type Idea_Votes_Obj_Rel_Insert_Input = {
-  data: Idea_Votes_Insert_Input;
-  on_conflict?: Maybe<Idea_Votes_On_Conflict>;
+export type TIdea_Votes_Obj_Rel_Insert_Input = {
+  readonly data: TIdea_Votes_Insert_Input;
+  readonly on_conflict?: Maybe<TIdea_Votes_On_Conflict>;
 };
 
 /** on conflict condition type for table "idea_votes" */
-export type Idea_Votes_On_Conflict = {
-  constraint: Idea_Votes_Constraint;
-  update_columns: Array<Idea_Votes_Update_Column>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+export type TIdea_Votes_On_Conflict = {
+  readonly constraint: TIdea_Votes_Constraint;
+  readonly update_columns: ReadonlyArray<TIdea_Votes_Update_Column>;
+  readonly where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 /** ordering options when selecting data from "idea_votes" */
-export type Idea_Votes_Order_By = {
-  created_at?: Maybe<Order_By>;
-  idea?: Maybe<Ideas_Order_By>;
-  idea_id?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user?: Maybe<Users_Order_By>;
-  user_id?: Maybe<Order_By>;
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Order_By = {
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly idea?: Maybe<TIdeas_Order_By>;
+  readonly idea_id?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly user?: Maybe<TUsers_Order_By>;
+  readonly user_id?: Maybe<TOrder_By>;
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** primary key columns input for table: "idea_votes" */
-export type Idea_Votes_Pk_Columns_Input = {
-  idea_id: Scalars['uuid'];
-  user_id: Scalars['uuid'];
+export type TIdea_Votes_Pk_Columns_Input = {
+  readonly idea_id: Scalars['uuid'];
+  readonly user_id: Scalars['uuid'];
 };
 
 /** select columns of table "idea_votes" */
-export type Idea_Votes_Select_Column =
+export type TIdea_Votes_Select_Column =
   /** column name */
   | 'created_at'
   /** column name */
@@ -696,90 +697,90 @@ export type Idea_Votes_Select_Column =
   | 'vote_type';
 
 /** input type for updating data in table "idea_votes" */
-export type Idea_Votes_Set_Input = {
-  vote_type?: Maybe<Scalars['Int']>;
+export type TIdea_Votes_Set_Input = {
+  readonly vote_type?: Maybe<Scalars['Int']>;
 };
 
 /** aggregate stddev on columns */
-export type Idea_Votes_Stddev_Fields = {
-  __typename?: 'idea_votes_stddev_fields';
-  vote_type?: Maybe<Scalars['Float']>;
+export type TIdea_Votes_Stddev_Fields = {
+  readonly __typename?: 'idea_votes_stddev_fields';
+  readonly vote_type?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "idea_votes" */
-export type Idea_Votes_Stddev_Order_By = {
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Stddev_Order_By = {
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** aggregate stddev_pop on columns */
-export type Idea_Votes_Stddev_Pop_Fields = {
-  __typename?: 'idea_votes_stddev_pop_fields';
-  vote_type?: Maybe<Scalars['Float']>;
+export type TIdea_Votes_Stddev_Pop_Fields = {
+  readonly __typename?: 'idea_votes_stddev_pop_fields';
+  readonly vote_type?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "idea_votes" */
-export type Idea_Votes_Stddev_Pop_Order_By = {
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Stddev_Pop_Order_By = {
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** aggregate stddev_samp on columns */
-export type Idea_Votes_Stddev_Samp_Fields = {
-  __typename?: 'idea_votes_stddev_samp_fields';
-  vote_type?: Maybe<Scalars['Float']>;
+export type TIdea_Votes_Stddev_Samp_Fields = {
+  readonly __typename?: 'idea_votes_stddev_samp_fields';
+  readonly vote_type?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "idea_votes" */
-export type Idea_Votes_Stddev_Samp_Order_By = {
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Stddev_Samp_Order_By = {
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** aggregate sum on columns */
-export type Idea_Votes_Sum_Fields = {
-  __typename?: 'idea_votes_sum_fields';
-  vote_type?: Maybe<Scalars['Int']>;
+export type TIdea_Votes_Sum_Fields = {
+  readonly __typename?: 'idea_votes_sum_fields';
+  readonly vote_type?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "idea_votes" */
-export type Idea_Votes_Sum_Order_By = {
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Sum_Order_By = {
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** update columns of table "idea_votes" */
-export type Idea_Votes_Update_Column =
+export type TIdea_Votes_Update_Column =
   /** column name */
   | 'vote_type';
 
 /** aggregate var_pop on columns */
-export type Idea_Votes_Var_Pop_Fields = {
-  __typename?: 'idea_votes_var_pop_fields';
-  vote_type?: Maybe<Scalars['Float']>;
+export type TIdea_Votes_Var_Pop_Fields = {
+  readonly __typename?: 'idea_votes_var_pop_fields';
+  readonly vote_type?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "idea_votes" */
-export type Idea_Votes_Var_Pop_Order_By = {
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Var_Pop_Order_By = {
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** aggregate var_samp on columns */
-export type Idea_Votes_Var_Samp_Fields = {
-  __typename?: 'idea_votes_var_samp_fields';
-  vote_type?: Maybe<Scalars['Float']>;
+export type TIdea_Votes_Var_Samp_Fields = {
+  readonly __typename?: 'idea_votes_var_samp_fields';
+  readonly vote_type?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "idea_votes" */
-export type Idea_Votes_Var_Samp_Order_By = {
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Var_Samp_Order_By = {
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /** aggregate variance on columns */
-export type Idea_Votes_Variance_Fields = {
-  __typename?: 'idea_votes_variance_fields';
-  vote_type?: Maybe<Scalars['Float']>;
+export type TIdea_Votes_Variance_Fields = {
+  readonly __typename?: 'idea_votes_variance_fields';
+  readonly vote_type?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "idea_votes" */
-export type Idea_Votes_Variance_Order_By = {
-  vote_type?: Maybe<Order_By>;
+export type TIdea_Votes_Variance_Order_By = {
+  readonly vote_type?: Maybe<TOrder_By>;
 };
 
 /**
@@ -789,29 +790,29 @@ export type Idea_Votes_Variance_Order_By = {
  * columns and relationships of "ideas"
  *
  */
-export type Ideas = {
-  __typename?: 'ideas';
-  additional_information?: Maybe<Scalars['String']>;
-  business_plan?: Maybe<Scalars['String']>;
-  competitors?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description: Scalars['String'];
-  description_preview?: Maybe<Scalars['String']>;
-  field: Scalars['String'];
-  id: Scalars['uuid'];
+export type TIdeas = {
+  readonly __typename?: 'ideas';
+  readonly additional_information?: Maybe<Scalars['String']>;
+  readonly business_plan?: Maybe<Scalars['String']>;
+  readonly competitors?: Maybe<Scalars['String']>;
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description: Scalars['String'];
+  readonly description_preview?: Maybe<Scalars['String']>;
+  readonly field: Scalars['String'];
+  readonly id: Scalars['uuid'];
   /** An object relationship */
-  idea_user?: Maybe<Users>;
+  readonly idea_user?: Maybe<TUsers>;
   /** An array relationship */
-  idea_votes: Array<Idea_Votes>;
+  readonly idea_votes: ReadonlyArray<TIdea_Votes>;
   /** An aggregated array relationship */
-  idea_votes_aggregate: Idea_Votes_Aggregate;
-  is_published?: Maybe<Scalars['Boolean']>;
-  mission_statement?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
-  status?: Maybe<Scalars['String']>;
-  team?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id: Scalars['uuid'];
+  readonly idea_votes_aggregate: TIdea_Votes_Aggregate;
+  readonly is_published?: Maybe<Scalars['Boolean']>;
+  readonly mission_statement?: Maybe<Scalars['String']>;
+  readonly name: Scalars['String'];
+  readonly status?: Maybe<Scalars['String']>;
+  readonly team?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly user_id: Scalars['uuid'];
 };
 
 
@@ -822,12 +823,12 @@ export type Ideas = {
  * columns and relationships of "ideas"
  *
  */
-export type IdeasIdea_VotesArgs = {
-  distinct_on?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TIdeasIdea_VotesArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Votes_Order_By>>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Votes_Order_By>>;
+  where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 
@@ -838,219 +839,219 @@ export type IdeasIdea_VotesArgs = {
  * columns and relationships of "ideas"
  *
  */
-export type IdeasIdea_Votes_AggregateArgs = {
-  distinct_on?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TIdeasIdea_Votes_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Votes_Order_By>>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Votes_Order_By>>;
+  where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 /** aggregated selection of "ideas" */
-export type Ideas_Aggregate = {
-  __typename?: 'ideas_aggregate';
-  aggregate?: Maybe<Ideas_Aggregate_Fields>;
-  nodes: Array<Ideas>;
+export type TIdeas_Aggregate = {
+  readonly __typename?: 'ideas_aggregate';
+  readonly aggregate?: Maybe<TIdeas_Aggregate_Fields>;
+  readonly nodes: ReadonlyArray<TIdeas>;
 };
 
 /** aggregate fields of "ideas" */
-export type Ideas_Aggregate_Fields = {
-  __typename?: 'ideas_aggregate_fields';
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Ideas_Max_Fields>;
-  min?: Maybe<Ideas_Min_Fields>;
+export type TIdeas_Aggregate_Fields = {
+  readonly __typename?: 'ideas_aggregate_fields';
+  readonly count?: Maybe<Scalars['Int']>;
+  readonly max?: Maybe<TIdeas_Max_Fields>;
+  readonly min?: Maybe<TIdeas_Min_Fields>;
 };
 
 
 /** aggregate fields of "ideas" */
-export type Ideas_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Ideas_Select_Column>>;
+export type TIdeas_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<ReadonlyArray<TIdeas_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "ideas" */
-export type Ideas_Aggregate_Order_By = {
-  count?: Maybe<Order_By>;
-  max?: Maybe<Ideas_Max_Order_By>;
-  min?: Maybe<Ideas_Min_Order_By>;
+export type TIdeas_Aggregate_Order_By = {
+  readonly count?: Maybe<TOrder_By>;
+  readonly max?: Maybe<TIdeas_Max_Order_By>;
+  readonly min?: Maybe<TIdeas_Min_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "ideas" */
-export type Ideas_Arr_Rel_Insert_Input = {
-  data: Array<Ideas_Insert_Input>;
-  on_conflict?: Maybe<Ideas_On_Conflict>;
+export type TIdeas_Arr_Rel_Insert_Input = {
+  readonly data: ReadonlyArray<TIdeas_Insert_Input>;
+  readonly on_conflict?: Maybe<TIdeas_On_Conflict>;
 };
 
 /** Boolean expression to filter rows from the table "ideas". All fields are combined with a logical 'AND'. */
-export type Ideas_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Ideas_Bool_Exp>>>;
-  _not?: Maybe<Ideas_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Ideas_Bool_Exp>>>;
-  additional_information?: Maybe<String_Comparison_Exp>;
-  business_plan?: Maybe<String_Comparison_Exp>;
-  competitors?: Maybe<String_Comparison_Exp>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  description?: Maybe<String_Comparison_Exp>;
-  description_preview?: Maybe<String_Comparison_Exp>;
-  field?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  idea_user?: Maybe<Users_Bool_Exp>;
-  idea_votes?: Maybe<Idea_Votes_Bool_Exp>;
-  is_published?: Maybe<Boolean_Comparison_Exp>;
-  mission_statement?: Maybe<String_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  status?: Maybe<String_Comparison_Exp>;
-  team?: Maybe<String_Comparison_Exp>;
-  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
-  user_id?: Maybe<Uuid_Comparison_Exp>;
+export type TIdeas_Bool_Exp = {
+  readonly _and?: Maybe<ReadonlyArray<Maybe<TIdeas_Bool_Exp>>>;
+  readonly _not?: Maybe<TIdeas_Bool_Exp>;
+  readonly _or?: Maybe<ReadonlyArray<Maybe<TIdeas_Bool_Exp>>>;
+  readonly additional_information?: Maybe<TString_Comparison_Exp>;
+  readonly business_plan?: Maybe<TString_Comparison_Exp>;
+  readonly competitors?: Maybe<TString_Comparison_Exp>;
+  readonly created_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly description?: Maybe<TString_Comparison_Exp>;
+  readonly description_preview?: Maybe<TString_Comparison_Exp>;
+  readonly field?: Maybe<TString_Comparison_Exp>;
+  readonly id?: Maybe<TUuid_Comparison_Exp>;
+  readonly idea_user?: Maybe<TUsers_Bool_Exp>;
+  readonly idea_votes?: Maybe<TIdea_Votes_Bool_Exp>;
+  readonly is_published?: Maybe<TBoolean_Comparison_Exp>;
+  readonly mission_statement?: Maybe<TString_Comparison_Exp>;
+  readonly name?: Maybe<TString_Comparison_Exp>;
+  readonly status?: Maybe<TString_Comparison_Exp>;
+  readonly team?: Maybe<TString_Comparison_Exp>;
+  readonly updated_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly user_id?: Maybe<TUuid_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "ideas" */
-export type Ideas_Constraint =
+export type TIdeas_Constraint =
   /** unique or primary key constraint */
   | 'ideas_pkey';
 
 /** input type for inserting data into table "ideas" */
-export type Ideas_Insert_Input = {
-  additional_information?: Maybe<Scalars['String']>;
-  business_plan?: Maybe<Scalars['String']>;
-  competitors?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  description_preview?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['String']>;
-  idea_user?: Maybe<Users_Obj_Rel_Insert_Input>;
-  idea_votes?: Maybe<Idea_Votes_Arr_Rel_Insert_Input>;
-  is_published?: Maybe<Scalars['Boolean']>;
-  mission_statement?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  team?: Maybe<Scalars['String']>;
+export type TIdeas_Insert_Input = {
+  readonly additional_information?: Maybe<Scalars['String']>;
+  readonly business_plan?: Maybe<Scalars['String']>;
+  readonly competitors?: Maybe<Scalars['String']>;
+  readonly description?: Maybe<Scalars['String']>;
+  readonly description_preview?: Maybe<Scalars['String']>;
+  readonly field?: Maybe<Scalars['String']>;
+  readonly idea_user?: Maybe<TUsers_Obj_Rel_Insert_Input>;
+  readonly idea_votes?: Maybe<TIdea_Votes_Arr_Rel_Insert_Input>;
+  readonly is_published?: Maybe<Scalars['Boolean']>;
+  readonly mission_statement?: Maybe<Scalars['String']>;
+  readonly name?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly team?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
-export type Ideas_Max_Fields = {
-  __typename?: 'ideas_max_fields';
-  additional_information?: Maybe<Scalars['String']>;
-  business_plan?: Maybe<Scalars['String']>;
-  competitors?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  description_preview?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  mission_statement?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  team?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['uuid']>;
+export type TIdeas_Max_Fields = {
+  readonly __typename?: 'ideas_max_fields';
+  readonly additional_information?: Maybe<Scalars['String']>;
+  readonly business_plan?: Maybe<Scalars['String']>;
+  readonly competitors?: Maybe<Scalars['String']>;
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description?: Maybe<Scalars['String']>;
+  readonly description_preview?: Maybe<Scalars['String']>;
+  readonly field?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly mission_statement?: Maybe<Scalars['String']>;
+  readonly name?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly team?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "ideas" */
-export type Ideas_Max_Order_By = {
-  additional_information?: Maybe<Order_By>;
-  business_plan?: Maybe<Order_By>;
-  competitors?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  description_preview?: Maybe<Order_By>;
-  field?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mission_statement?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  team?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TIdeas_Max_Order_By = {
+  readonly additional_information?: Maybe<TOrder_By>;
+  readonly business_plan?: Maybe<TOrder_By>;
+  readonly competitors?: Maybe<TOrder_By>;
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly description?: Maybe<TOrder_By>;
+  readonly description_preview?: Maybe<TOrder_By>;
+  readonly field?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly mission_statement?: Maybe<TOrder_By>;
+  readonly name?: Maybe<TOrder_By>;
+  readonly status?: Maybe<TOrder_By>;
+  readonly team?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** aggregate min on columns */
-export type Ideas_Min_Fields = {
-  __typename?: 'ideas_min_fields';
-  additional_information?: Maybe<Scalars['String']>;
-  business_plan?: Maybe<Scalars['String']>;
-  competitors?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  description_preview?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  mission_statement?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  team?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['uuid']>;
+export type TIdeas_Min_Fields = {
+  readonly __typename?: 'ideas_min_fields';
+  readonly additional_information?: Maybe<Scalars['String']>;
+  readonly business_plan?: Maybe<Scalars['String']>;
+  readonly competitors?: Maybe<Scalars['String']>;
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description?: Maybe<Scalars['String']>;
+  readonly description_preview?: Maybe<Scalars['String']>;
+  readonly field?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly mission_statement?: Maybe<Scalars['String']>;
+  readonly name?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly team?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "ideas" */
-export type Ideas_Min_Order_By = {
-  additional_information?: Maybe<Order_By>;
-  business_plan?: Maybe<Order_By>;
-  competitors?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  description_preview?: Maybe<Order_By>;
-  field?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  mission_statement?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  team?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TIdeas_Min_Order_By = {
+  readonly additional_information?: Maybe<TOrder_By>;
+  readonly business_plan?: Maybe<TOrder_By>;
+  readonly competitors?: Maybe<TOrder_By>;
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly description?: Maybe<TOrder_By>;
+  readonly description_preview?: Maybe<TOrder_By>;
+  readonly field?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly mission_statement?: Maybe<TOrder_By>;
+  readonly name?: Maybe<TOrder_By>;
+  readonly status?: Maybe<TOrder_By>;
+  readonly team?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** response of any mutation on the table "ideas" */
-export type Ideas_Mutation_Response = {
-  __typename?: 'ideas_mutation_response';
+export type TIdeas_Mutation_Response = {
+  readonly __typename?: 'ideas_mutation_response';
   /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
+  readonly affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
-  returning: Array<Ideas>;
+  readonly returning: ReadonlyArray<TIdeas>;
 };
 
 /** input type for inserting object relation for remote table "ideas" */
-export type Ideas_Obj_Rel_Insert_Input = {
-  data: Ideas_Insert_Input;
-  on_conflict?: Maybe<Ideas_On_Conflict>;
+export type TIdeas_Obj_Rel_Insert_Input = {
+  readonly data: TIdeas_Insert_Input;
+  readonly on_conflict?: Maybe<TIdeas_On_Conflict>;
 };
 
 /** on conflict condition type for table "ideas" */
-export type Ideas_On_Conflict = {
-  constraint: Ideas_Constraint;
-  update_columns: Array<Ideas_Update_Column>;
-  where?: Maybe<Ideas_Bool_Exp>;
+export type TIdeas_On_Conflict = {
+  readonly constraint: TIdeas_Constraint;
+  readonly update_columns: ReadonlyArray<TIdeas_Update_Column>;
+  readonly where?: Maybe<TIdeas_Bool_Exp>;
 };
 
 /** ordering options when selecting data from "ideas" */
-export type Ideas_Order_By = {
-  additional_information?: Maybe<Order_By>;
-  business_plan?: Maybe<Order_By>;
-  competitors?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  description_preview?: Maybe<Order_By>;
-  field?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  idea_user?: Maybe<Users_Order_By>;
-  idea_votes_aggregate?: Maybe<Idea_Votes_Aggregate_Order_By>;
-  is_published?: Maybe<Order_By>;
-  mission_statement?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  team?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+export type TIdeas_Order_By = {
+  readonly additional_information?: Maybe<TOrder_By>;
+  readonly business_plan?: Maybe<TOrder_By>;
+  readonly competitors?: Maybe<TOrder_By>;
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly description?: Maybe<TOrder_By>;
+  readonly description_preview?: Maybe<TOrder_By>;
+  readonly field?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly idea_user?: Maybe<TUsers_Order_By>;
+  readonly idea_votes_aggregate?: Maybe<TIdea_Votes_Aggregate_Order_By>;
+  readonly is_published?: Maybe<TOrder_By>;
+  readonly mission_statement?: Maybe<TOrder_By>;
+  readonly name?: Maybe<TOrder_By>;
+  readonly status?: Maybe<TOrder_By>;
+  readonly team?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly user_id?: Maybe<TOrder_By>;
 };
 
 /** primary key columns input for table: "ideas" */
-export type Ideas_Pk_Columns_Input = {
-  id: Scalars['uuid'];
+export type TIdeas_Pk_Columns_Input = {
+  readonly id: Scalars['uuid'];
 };
 
 /** select columns of table "ideas" */
-export type Ideas_Select_Column =
+export type TIdeas_Select_Column =
   /** column name */
   | 'additional_information'
   /** column name */
@@ -1083,24 +1084,24 @@ export type Ideas_Select_Column =
   | 'user_id';
 
 /** input type for updating data in table "ideas" */
-export type Ideas_Set_Input = {
-  additional_information?: Maybe<Scalars['String']>;
-  business_plan?: Maybe<Scalars['String']>;
-  competitors?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  description_preview?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['String']>;
-  is_published?: Maybe<Scalars['Boolean']>;
-  mission_statement?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  team?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+export type TIdeas_Set_Input = {
+  readonly additional_information?: Maybe<Scalars['String']>;
+  readonly business_plan?: Maybe<Scalars['String']>;
+  readonly competitors?: Maybe<Scalars['String']>;
+  readonly created_at?: Maybe<Scalars['timestamptz']>;
+  readonly description?: Maybe<Scalars['String']>;
+  readonly description_preview?: Maybe<Scalars['String']>;
+  readonly field?: Maybe<Scalars['String']>;
+  readonly is_published?: Maybe<Scalars['Boolean']>;
+  readonly mission_statement?: Maybe<Scalars['String']>;
+  readonly name?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly team?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** update columns of table "ideas" */
-export type Ideas_Update_Column =
+export type TIdeas_Update_Column =
   /** column name */
   | 'additional_information'
   /** column name */
@@ -1129,244 +1130,244 @@ export type Ideas_Update_Column =
   | 'updated_at';
 
 /** expression to compare columns of type jsonb. All fields are combined with logical 'AND'. */
-export type Jsonb_Comparison_Exp = {
+export type TJsonb_Comparison_Exp = {
   /** is the column contained in the given json value */
-  _contained_in?: Maybe<Scalars['jsonb']>;
+  readonly _contained_in?: Maybe<Scalars['jsonb']>;
   /** does the column contain the given json value at the top level */
-  _contains?: Maybe<Scalars['jsonb']>;
-  _eq?: Maybe<Scalars['jsonb']>;
-  _gt?: Maybe<Scalars['jsonb']>;
-  _gte?: Maybe<Scalars['jsonb']>;
+  readonly _contains?: Maybe<Scalars['jsonb']>;
+  readonly _eq?: Maybe<Scalars['jsonb']>;
+  readonly _gt?: Maybe<Scalars['jsonb']>;
+  readonly _gte?: Maybe<Scalars['jsonb']>;
   /** does the string exist as a top-level key in the column */
-  _has_key?: Maybe<Scalars['String']>;
+  readonly _has_key?: Maybe<Scalars['String']>;
   /** do all of these strings exist as top-level keys in the column */
-  _has_keys_all?: Maybe<Array<Scalars['String']>>;
+  readonly _has_keys_all?: Maybe<ReadonlyArray<Scalars['String']>>;
   /** do any of these strings exist as top-level keys in the column */
-  _has_keys_any?: Maybe<Array<Scalars['String']>>;
-  _in?: Maybe<Array<Scalars['jsonb']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['jsonb']>;
-  _lte?: Maybe<Scalars['jsonb']>;
-  _neq?: Maybe<Scalars['jsonb']>;
-  _nin?: Maybe<Array<Scalars['jsonb']>>;
+  readonly _has_keys_any?: Maybe<ReadonlyArray<Scalars['String']>>;
+  readonly _in?: Maybe<ReadonlyArray<Scalars['jsonb']>>;
+  readonly _is_null?: Maybe<Scalars['Boolean']>;
+  readonly _lt?: Maybe<Scalars['jsonb']>;
+  readonly _lte?: Maybe<Scalars['jsonb']>;
+  readonly _neq?: Maybe<Scalars['jsonb']>;
+  readonly _nin?: Maybe<ReadonlyArray<Scalars['jsonb']>>;
 };
 
 /** mutation root */
-export type Mutation_Root = {
-  __typename?: 'mutation_root';
+export type TMutation_Root = {
+  readonly __typename?: 'mutation_root';
   /** delete data from the table: "idea_votes" */
-  delete_idea_votes?: Maybe<Idea_Votes_Mutation_Response>;
+  readonly delete_idea_votes?: Maybe<TIdea_Votes_Mutation_Response>;
   /** delete single row from the table: "idea_votes" */
-  delete_idea_votes_by_pk?: Maybe<Idea_Votes>;
+  readonly delete_idea_votes_by_pk?: Maybe<TIdea_Votes>;
   /** delete data from the table: "ideas" */
-  delete_ideas?: Maybe<Ideas_Mutation_Response>;
+  readonly delete_ideas?: Maybe<TIdeas_Mutation_Response>;
   /** delete single row from the table: "ideas" */
-  delete_ideas_by_pk?: Maybe<Ideas>;
+  readonly delete_ideas_by_pk?: Maybe<TIdeas>;
   /** insert data into the table: "activity" */
-  insert_activity?: Maybe<Activity_Mutation_Response>;
+  readonly insert_activity?: Maybe<TActivity_Mutation_Response>;
   /** insert a single row into the table: "activity" */
-  insert_activity_one?: Maybe<Activity>;
+  readonly insert_activity_one?: Maybe<TActivity>;
   /** insert data into the table: "idea_votes" */
-  insert_idea_votes?: Maybe<Idea_Votes_Mutation_Response>;
+  readonly insert_idea_votes?: Maybe<TIdea_Votes_Mutation_Response>;
   /** insert a single row into the table: "idea_votes" */
-  insert_idea_votes_one?: Maybe<Idea_Votes>;
+  readonly insert_idea_votes_one?: Maybe<TIdea_Votes>;
   /** insert data into the table: "ideas" */
-  insert_ideas?: Maybe<Ideas_Mutation_Response>;
+  readonly insert_ideas?: Maybe<TIdeas_Mutation_Response>;
   /** insert a single row into the table: "ideas" */
-  insert_ideas_one?: Maybe<Ideas>;
+  readonly insert_ideas_one?: Maybe<TIdeas>;
   /** insert data into the table: "users" */
-  insert_users?: Maybe<Users_Mutation_Response>;
+  readonly insert_users?: Maybe<TUsers_Mutation_Response>;
   /** insert a single row into the table: "users" */
-  insert_users_one?: Maybe<Users>;
+  readonly insert_users_one?: Maybe<TUsers>;
   /** update data of the table: "activity" */
-  update_activity?: Maybe<Activity_Mutation_Response>;
+  readonly update_activity?: Maybe<TActivity_Mutation_Response>;
   /** update single row of the table: "activity" */
-  update_activity_by_pk?: Maybe<Activity>;
+  readonly update_activity_by_pk?: Maybe<TActivity>;
   /** update data of the table: "idea_votes" */
-  update_idea_votes?: Maybe<Idea_Votes_Mutation_Response>;
+  readonly update_idea_votes?: Maybe<TIdea_Votes_Mutation_Response>;
   /** update single row of the table: "idea_votes" */
-  update_idea_votes_by_pk?: Maybe<Idea_Votes>;
+  readonly update_idea_votes_by_pk?: Maybe<TIdea_Votes>;
   /** update data of the table: "ideas" */
-  update_ideas?: Maybe<Ideas_Mutation_Response>;
+  readonly update_ideas?: Maybe<TIdeas_Mutation_Response>;
   /** update single row of the table: "ideas" */
-  update_ideas_by_pk?: Maybe<Ideas>;
+  readonly update_ideas_by_pk?: Maybe<TIdeas>;
   /** update data of the table: "user_profile" */
-  update_user_profile?: Maybe<User_Profile_Mutation_Response>;
+  readonly update_user_profile?: Maybe<TUser_Profile_Mutation_Response>;
   /** update single row of the table: "user_profile" */
-  update_user_profile_by_pk?: Maybe<User_Profile>;
+  readonly update_user_profile_by_pk?: Maybe<TUser_Profile>;
   /** update data of the table: "users" */
-  update_users?: Maybe<Users_Mutation_Response>;
+  readonly update_users?: Maybe<TUsers_Mutation_Response>;
   /** update single row of the table: "users" */
-  update_users_by_pk?: Maybe<Users>;
+  readonly update_users_by_pk?: Maybe<TUsers>;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Idea_VotesArgs = {
-  where: Idea_Votes_Bool_Exp;
+export type TMutation_RootDelete_Idea_VotesArgs = {
+  where: TIdea_Votes_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Idea_Votes_By_PkArgs = {
+export type TMutation_RootDelete_Idea_Votes_By_PkArgs = {
   idea_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_IdeasArgs = {
-  where: Ideas_Bool_Exp;
+export type TMutation_RootDelete_IdeasArgs = {
+  where: TIdeas_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Ideas_By_PkArgs = {
+export type TMutation_RootDelete_Ideas_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_ActivityArgs = {
-  objects: Array<Activity_Insert_Input>;
-  on_conflict?: Maybe<Activity_On_Conflict>;
+export type TMutation_RootInsert_ActivityArgs = {
+  objects: ReadonlyArray<TActivity_Insert_Input>;
+  on_conflict?: Maybe<TActivity_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Activity_OneArgs = {
-  object: Activity_Insert_Input;
-  on_conflict?: Maybe<Activity_On_Conflict>;
+export type TMutation_RootInsert_Activity_OneArgs = {
+  object: TActivity_Insert_Input;
+  on_conflict?: Maybe<TActivity_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Idea_VotesArgs = {
-  objects: Array<Idea_Votes_Insert_Input>;
-  on_conflict?: Maybe<Idea_Votes_On_Conflict>;
+export type TMutation_RootInsert_Idea_VotesArgs = {
+  objects: ReadonlyArray<TIdea_Votes_Insert_Input>;
+  on_conflict?: Maybe<TIdea_Votes_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Idea_Votes_OneArgs = {
-  object: Idea_Votes_Insert_Input;
-  on_conflict?: Maybe<Idea_Votes_On_Conflict>;
+export type TMutation_RootInsert_Idea_Votes_OneArgs = {
+  object: TIdea_Votes_Insert_Input;
+  on_conflict?: Maybe<TIdea_Votes_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_IdeasArgs = {
-  objects: Array<Ideas_Insert_Input>;
-  on_conflict?: Maybe<Ideas_On_Conflict>;
+export type TMutation_RootInsert_IdeasArgs = {
+  objects: ReadonlyArray<TIdeas_Insert_Input>;
+  on_conflict?: Maybe<TIdeas_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Ideas_OneArgs = {
-  object: Ideas_Insert_Input;
-  on_conflict?: Maybe<Ideas_On_Conflict>;
+export type TMutation_RootInsert_Ideas_OneArgs = {
+  object: TIdeas_Insert_Input;
+  on_conflict?: Maybe<TIdeas_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_UsersArgs = {
-  objects: Array<Users_Insert_Input>;
-  on_conflict?: Maybe<Users_On_Conflict>;
+export type TMutation_RootInsert_UsersArgs = {
+  objects: ReadonlyArray<TUsers_Insert_Input>;
+  on_conflict?: Maybe<TUsers_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Users_OneArgs = {
-  object: Users_Insert_Input;
-  on_conflict?: Maybe<Users_On_Conflict>;
+export type TMutation_RootInsert_Users_OneArgs = {
+  object: TUsers_Insert_Input;
+  on_conflict?: Maybe<TUsers_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_ActivityArgs = {
-  _set?: Maybe<Activity_Set_Input>;
-  where: Activity_Bool_Exp;
+export type TMutation_RootUpdate_ActivityArgs = {
+  _set?: Maybe<TActivity_Set_Input>;
+  where: TActivity_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Activity_By_PkArgs = {
-  _set?: Maybe<Activity_Set_Input>;
-  pk_columns: Activity_Pk_Columns_Input;
+export type TMutation_RootUpdate_Activity_By_PkArgs = {
+  _set?: Maybe<TActivity_Set_Input>;
+  pk_columns: TActivity_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Idea_VotesArgs = {
-  _inc?: Maybe<Idea_Votes_Inc_Input>;
-  _set?: Maybe<Idea_Votes_Set_Input>;
-  where: Idea_Votes_Bool_Exp;
+export type TMutation_RootUpdate_Idea_VotesArgs = {
+  _inc?: Maybe<TIdea_Votes_Inc_Input>;
+  _set?: Maybe<TIdea_Votes_Set_Input>;
+  where: TIdea_Votes_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Idea_Votes_By_PkArgs = {
-  _inc?: Maybe<Idea_Votes_Inc_Input>;
-  _set?: Maybe<Idea_Votes_Set_Input>;
-  pk_columns: Idea_Votes_Pk_Columns_Input;
+export type TMutation_RootUpdate_Idea_Votes_By_PkArgs = {
+  _inc?: Maybe<TIdea_Votes_Inc_Input>;
+  _set?: Maybe<TIdea_Votes_Set_Input>;
+  pk_columns: TIdea_Votes_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_IdeasArgs = {
-  _set?: Maybe<Ideas_Set_Input>;
-  where: Ideas_Bool_Exp;
+export type TMutation_RootUpdate_IdeasArgs = {
+  _set?: Maybe<TIdeas_Set_Input>;
+  where: TIdeas_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Ideas_By_PkArgs = {
-  _set?: Maybe<Ideas_Set_Input>;
-  pk_columns: Ideas_Pk_Columns_Input;
+export type TMutation_RootUpdate_Ideas_By_PkArgs = {
+  _set?: Maybe<TIdeas_Set_Input>;
+  pk_columns: TIdeas_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_User_ProfileArgs = {
-  _append?: Maybe<User_Profile_Append_Input>;
-  _delete_at_path?: Maybe<User_Profile_Delete_At_Path_Input>;
-  _delete_elem?: Maybe<User_Profile_Delete_Elem_Input>;
-  _delete_key?: Maybe<User_Profile_Delete_Key_Input>;
-  _inc?: Maybe<User_Profile_Inc_Input>;
-  _prepend?: Maybe<User_Profile_Prepend_Input>;
-  _set?: Maybe<User_Profile_Set_Input>;
-  where: User_Profile_Bool_Exp;
+export type TMutation_RootUpdate_User_ProfileArgs = {
+  _append?: Maybe<TUser_Profile_Append_Input>;
+  _delete_at_path?: Maybe<TUser_Profile_Delete_At_Path_Input>;
+  _delete_elem?: Maybe<TUser_Profile_Delete_Elem_Input>;
+  _delete_key?: Maybe<TUser_Profile_Delete_Key_Input>;
+  _inc?: Maybe<TUser_Profile_Inc_Input>;
+  _prepend?: Maybe<TUser_Profile_Prepend_Input>;
+  _set?: Maybe<TUser_Profile_Set_Input>;
+  where: TUser_Profile_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_User_Profile_By_PkArgs = {
-  _append?: Maybe<User_Profile_Append_Input>;
-  _delete_at_path?: Maybe<User_Profile_Delete_At_Path_Input>;
-  _delete_elem?: Maybe<User_Profile_Delete_Elem_Input>;
-  _delete_key?: Maybe<User_Profile_Delete_Key_Input>;
-  _inc?: Maybe<User_Profile_Inc_Input>;
-  _prepend?: Maybe<User_Profile_Prepend_Input>;
-  _set?: Maybe<User_Profile_Set_Input>;
-  pk_columns: User_Profile_Pk_Columns_Input;
+export type TMutation_RootUpdate_User_Profile_By_PkArgs = {
+  _append?: Maybe<TUser_Profile_Append_Input>;
+  _delete_at_path?: Maybe<TUser_Profile_Delete_At_Path_Input>;
+  _delete_elem?: Maybe<TUser_Profile_Delete_Elem_Input>;
+  _delete_key?: Maybe<TUser_Profile_Delete_Key_Input>;
+  _inc?: Maybe<TUser_Profile_Inc_Input>;
+  _prepend?: Maybe<TUser_Profile_Prepend_Input>;
+  _set?: Maybe<TUser_Profile_Set_Input>;
+  pk_columns: TUser_Profile_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_UsersArgs = {
-  _set?: Maybe<Users_Set_Input>;
-  where: Users_Bool_Exp;
+export type TMutation_RootUpdate_UsersArgs = {
+  _set?: Maybe<TUsers_Set_Input>;
+  where: TUsers_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Users_By_PkArgs = {
-  _set?: Maybe<Users_Set_Input>;
-  pk_columns: Users_Pk_Columns_Input;
+export type TMutation_RootUpdate_Users_By_PkArgs = {
+  _set?: Maybe<TUsers_Set_Input>;
+  pk_columns: TUsers_Pk_Columns_Input;
 };
 
 /** column ordering options */
-export type Order_By =
+export type TOrder_By =
   /** in the ascending order, nulls last */
   | 'asc'
   /** in the ascending order, nulls first */
@@ -1381,401 +1382,401 @@ export type Order_By =
   | 'desc_nulls_last';
 
 /** query root */
-export type Query_Root = {
-  __typename?: 'query_root';
+export type TQuery_Root = {
+  readonly __typename?: 'query_root';
   /** fetch data from the table: "activity" */
-  activity: Array<Activity>;
+  readonly activity: ReadonlyArray<TActivity>;
   /** fetch aggregated fields from the table: "activity" */
-  activity_aggregate: Activity_Aggregate;
+  readonly activity_aggregate: TActivity_Aggregate;
   /** fetch data from the table: "activity" using primary key columns */
-  activity_by_pk?: Maybe<Activity>;
+  readonly activity_by_pk?: Maybe<TActivity>;
   /** fetch data from the table: "auth.accounts" */
-  auth_accounts: Array<Auth_Accounts>;
+  readonly auth_accounts: ReadonlyArray<TAuth_Accounts>;
   /** fetch data from the table: "auth.accounts" using primary key columns */
-  auth_accounts_by_pk?: Maybe<Auth_Accounts>;
+  readonly auth_accounts_by_pk?: Maybe<TAuth_Accounts>;
   /** fetch data from the table: "idea_preview" */
-  idea_preview: Array<Idea_Preview>;
+  readonly idea_preview: ReadonlyArray<TIdea_Preview>;
   /** fetch aggregated fields from the table: "idea_preview" */
-  idea_preview_aggregate: Idea_Preview_Aggregate;
+  readonly idea_preview_aggregate: TIdea_Preview_Aggregate;
   /** fetch data from the table: "idea_votes" */
-  idea_votes: Array<Idea_Votes>;
+  readonly idea_votes: ReadonlyArray<TIdea_Votes>;
   /** fetch aggregated fields from the table: "idea_votes" */
-  idea_votes_aggregate: Idea_Votes_Aggregate;
+  readonly idea_votes_aggregate: TIdea_Votes_Aggregate;
   /** fetch data from the table: "idea_votes" using primary key columns */
-  idea_votes_by_pk?: Maybe<Idea_Votes>;
+  readonly idea_votes_by_pk?: Maybe<TIdea_Votes>;
   /** fetch data from the table: "ideas" */
-  ideas: Array<Ideas>;
+  readonly ideas: ReadonlyArray<TIdeas>;
   /** fetch aggregated fields from the table: "ideas" */
-  ideas_aggregate: Ideas_Aggregate;
+  readonly ideas_aggregate: TIdeas_Aggregate;
   /** fetch data from the table: "ideas" using primary key columns */
-  ideas_by_pk?: Maybe<Ideas>;
+  readonly ideas_by_pk?: Maybe<TIdeas>;
   /** fetch data from the table: "user_profile" */
-  user_profile: Array<User_Profile>;
+  readonly user_profile: ReadonlyArray<TUser_Profile>;
   /** fetch data from the table: "user_profile" using primary key columns */
-  user_profile_by_pk?: Maybe<User_Profile>;
+  readonly user_profile_by_pk?: Maybe<TUser_Profile>;
   /** fetch data from the table: "users" */
-  users: Array<Users>;
+  readonly users: ReadonlyArray<TUsers>;
   /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+  readonly users_by_pk?: Maybe<TUsers>;
 };
 
 
 /** query root */
-export type Query_RootActivityArgs = {
-  distinct_on?: Maybe<Array<Activity_Select_Column>>;
+export type TQuery_RootActivityArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TActivity_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Activity_Order_By>>;
-  where?: Maybe<Activity_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TActivity_Order_By>>;
+  where?: Maybe<TActivity_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootActivity_AggregateArgs = {
-  distinct_on?: Maybe<Array<Activity_Select_Column>>;
+export type TQuery_RootActivity_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TActivity_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Activity_Order_By>>;
-  where?: Maybe<Activity_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TActivity_Order_By>>;
+  where?: Maybe<TActivity_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootActivity_By_PkArgs = {
+export type TQuery_RootActivity_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** query root */
-export type Query_RootAuth_AccountsArgs = {
-  distinct_on?: Maybe<Array<Auth_Accounts_Select_Column>>;
+export type TQuery_RootAuth_AccountsArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TAuth_Accounts_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Auth_Accounts_Order_By>>;
-  where?: Maybe<Auth_Accounts_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TAuth_Accounts_Order_By>>;
+  where?: Maybe<TAuth_Accounts_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootAuth_Accounts_By_PkArgs = {
+export type TQuery_RootAuth_Accounts_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** query root */
-export type Query_RootIdea_PreviewArgs = {
-  distinct_on?: Maybe<Array<Idea_Preview_Select_Column>>;
+export type TQuery_RootIdea_PreviewArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Preview_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Preview_Order_By>>;
-  where?: Maybe<Idea_Preview_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Preview_Order_By>>;
+  where?: Maybe<TIdea_Preview_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootIdea_Preview_AggregateArgs = {
-  distinct_on?: Maybe<Array<Idea_Preview_Select_Column>>;
+export type TQuery_RootIdea_Preview_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Preview_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Preview_Order_By>>;
-  where?: Maybe<Idea_Preview_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Preview_Order_By>>;
+  where?: Maybe<TIdea_Preview_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootIdea_VotesArgs = {
-  distinct_on?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TQuery_RootIdea_VotesArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Votes_Order_By>>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Votes_Order_By>>;
+  where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootIdea_Votes_AggregateArgs = {
-  distinct_on?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TQuery_RootIdea_Votes_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Votes_Order_By>>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Votes_Order_By>>;
+  where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootIdea_Votes_By_PkArgs = {
+export type TQuery_RootIdea_Votes_By_PkArgs = {
   idea_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
 };
 
 
 /** query root */
-export type Query_RootIdeasArgs = {
-  distinct_on?: Maybe<Array<Ideas_Select_Column>>;
+export type TQuery_RootIdeasArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdeas_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Ideas_Order_By>>;
-  where?: Maybe<Ideas_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdeas_Order_By>>;
+  where?: Maybe<TIdeas_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootIdeas_AggregateArgs = {
-  distinct_on?: Maybe<Array<Ideas_Select_Column>>;
+export type TQuery_RootIdeas_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdeas_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Ideas_Order_By>>;
-  where?: Maybe<Ideas_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdeas_Order_By>>;
+  where?: Maybe<TIdeas_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootIdeas_By_PkArgs = {
+export type TQuery_RootIdeas_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** query root */
-export type Query_RootUser_ProfileArgs = {
-  distinct_on?: Maybe<Array<User_Profile_Select_Column>>;
+export type TQuery_RootUser_ProfileArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TUser_Profile_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<User_Profile_Order_By>>;
-  where?: Maybe<User_Profile_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TUser_Profile_Order_By>>;
+  where?: Maybe<TUser_Profile_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootUser_Profile_By_PkArgs = {
+export type TQuery_RootUser_Profile_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** query root */
-export type Query_RootUsersArgs = {
-  distinct_on?: Maybe<Array<Users_Select_Column>>;
+export type TQuery_RootUsersArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TUsers_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Users_Order_By>>;
-  where?: Maybe<Users_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TUsers_Order_By>>;
+  where?: Maybe<TUsers_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootUsers_By_PkArgs = {
+export type TQuery_RootUsers_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 /** subscription root */
-export type Subscription_Root = {
-  __typename?: 'subscription_root';
+export type TSubscription_Root = {
+  readonly __typename?: 'subscription_root';
   /** fetch data from the table: "activity" */
-  activity: Array<Activity>;
+  readonly activity: ReadonlyArray<TActivity>;
   /** fetch aggregated fields from the table: "activity" */
-  activity_aggregate: Activity_Aggregate;
+  readonly activity_aggregate: TActivity_Aggregate;
   /** fetch data from the table: "activity" using primary key columns */
-  activity_by_pk?: Maybe<Activity>;
+  readonly activity_by_pk?: Maybe<TActivity>;
   /** fetch data from the table: "auth.accounts" */
-  auth_accounts: Array<Auth_Accounts>;
+  readonly auth_accounts: ReadonlyArray<TAuth_Accounts>;
   /** fetch data from the table: "auth.accounts" using primary key columns */
-  auth_accounts_by_pk?: Maybe<Auth_Accounts>;
+  readonly auth_accounts_by_pk?: Maybe<TAuth_Accounts>;
   /** fetch data from the table: "idea_preview" */
-  idea_preview: Array<Idea_Preview>;
+  readonly idea_preview: ReadonlyArray<TIdea_Preview>;
   /** fetch aggregated fields from the table: "idea_preview" */
-  idea_preview_aggregate: Idea_Preview_Aggregate;
+  readonly idea_preview_aggregate: TIdea_Preview_Aggregate;
   /** fetch data from the table: "idea_votes" */
-  idea_votes: Array<Idea_Votes>;
+  readonly idea_votes: ReadonlyArray<TIdea_Votes>;
   /** fetch aggregated fields from the table: "idea_votes" */
-  idea_votes_aggregate: Idea_Votes_Aggregate;
+  readonly idea_votes_aggregate: TIdea_Votes_Aggregate;
   /** fetch data from the table: "idea_votes" using primary key columns */
-  idea_votes_by_pk?: Maybe<Idea_Votes>;
+  readonly idea_votes_by_pk?: Maybe<TIdea_Votes>;
   /** fetch data from the table: "ideas" */
-  ideas: Array<Ideas>;
+  readonly ideas: ReadonlyArray<TIdeas>;
   /** fetch aggregated fields from the table: "ideas" */
-  ideas_aggregate: Ideas_Aggregate;
+  readonly ideas_aggregate: TIdeas_Aggregate;
   /** fetch data from the table: "ideas" using primary key columns */
-  ideas_by_pk?: Maybe<Ideas>;
+  readonly ideas_by_pk?: Maybe<TIdeas>;
   /** fetch data from the table: "user_profile" */
-  user_profile: Array<User_Profile>;
+  readonly user_profile: ReadonlyArray<TUser_Profile>;
   /** fetch data from the table: "user_profile" using primary key columns */
-  user_profile_by_pk?: Maybe<User_Profile>;
+  readonly user_profile_by_pk?: Maybe<TUser_Profile>;
   /** fetch data from the table: "users" */
-  users: Array<Users>;
+  readonly users: ReadonlyArray<TUsers>;
   /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+  readonly users_by_pk?: Maybe<TUsers>;
 };
 
 
 /** subscription root */
-export type Subscription_RootActivityArgs = {
-  distinct_on?: Maybe<Array<Activity_Select_Column>>;
+export type TSubscription_RootActivityArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TActivity_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Activity_Order_By>>;
-  where?: Maybe<Activity_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TActivity_Order_By>>;
+  where?: Maybe<TActivity_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootActivity_AggregateArgs = {
-  distinct_on?: Maybe<Array<Activity_Select_Column>>;
+export type TSubscription_RootActivity_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TActivity_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Activity_Order_By>>;
-  where?: Maybe<Activity_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TActivity_Order_By>>;
+  where?: Maybe<TActivity_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootActivity_By_PkArgs = {
+export type TSubscription_RootActivity_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** subscription root */
-export type Subscription_RootAuth_AccountsArgs = {
-  distinct_on?: Maybe<Array<Auth_Accounts_Select_Column>>;
+export type TSubscription_RootAuth_AccountsArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TAuth_Accounts_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Auth_Accounts_Order_By>>;
-  where?: Maybe<Auth_Accounts_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TAuth_Accounts_Order_By>>;
+  where?: Maybe<TAuth_Accounts_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootAuth_Accounts_By_PkArgs = {
+export type TSubscription_RootAuth_Accounts_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** subscription root */
-export type Subscription_RootIdea_PreviewArgs = {
-  distinct_on?: Maybe<Array<Idea_Preview_Select_Column>>;
+export type TSubscription_RootIdea_PreviewArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Preview_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Preview_Order_By>>;
-  where?: Maybe<Idea_Preview_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Preview_Order_By>>;
+  where?: Maybe<TIdea_Preview_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootIdea_Preview_AggregateArgs = {
-  distinct_on?: Maybe<Array<Idea_Preview_Select_Column>>;
+export type TSubscription_RootIdea_Preview_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Preview_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Preview_Order_By>>;
-  where?: Maybe<Idea_Preview_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Preview_Order_By>>;
+  where?: Maybe<TIdea_Preview_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootIdea_VotesArgs = {
-  distinct_on?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TSubscription_RootIdea_VotesArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Votes_Order_By>>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Votes_Order_By>>;
+  where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootIdea_Votes_AggregateArgs = {
-  distinct_on?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TSubscription_RootIdea_Votes_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Votes_Order_By>>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Votes_Order_By>>;
+  where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootIdea_Votes_By_PkArgs = {
+export type TSubscription_RootIdea_Votes_By_PkArgs = {
   idea_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
 };
 
 
 /** subscription root */
-export type Subscription_RootIdeasArgs = {
-  distinct_on?: Maybe<Array<Ideas_Select_Column>>;
+export type TSubscription_RootIdeasArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdeas_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Ideas_Order_By>>;
-  where?: Maybe<Ideas_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdeas_Order_By>>;
+  where?: Maybe<TIdeas_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootIdeas_AggregateArgs = {
-  distinct_on?: Maybe<Array<Ideas_Select_Column>>;
+export type TSubscription_RootIdeas_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdeas_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Ideas_Order_By>>;
-  where?: Maybe<Ideas_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdeas_Order_By>>;
+  where?: Maybe<TIdeas_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootIdeas_By_PkArgs = {
+export type TSubscription_RootIdeas_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** subscription root */
-export type Subscription_RootUser_ProfileArgs = {
-  distinct_on?: Maybe<Array<User_Profile_Select_Column>>;
+export type TSubscription_RootUser_ProfileArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TUser_Profile_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<User_Profile_Order_By>>;
-  where?: Maybe<User_Profile_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TUser_Profile_Order_By>>;
+  where?: Maybe<TUser_Profile_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootUser_Profile_By_PkArgs = {
+export type TSubscription_RootUser_Profile_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** subscription root */
-export type Subscription_RootUsersArgs = {
-  distinct_on?: Maybe<Array<Users_Select_Column>>;
+export type TSubscription_RootUsersArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TUsers_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Users_Order_By>>;
-  where?: Maybe<Users_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TUsers_Order_By>>;
+  where?: Maybe<TUsers_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootUsers_By_PkArgs = {
+export type TSubscription_RootUsers_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 /** expression to compare columns of type timestamp. All fields are combined with logical 'AND'. */
-export type Timestamp_Comparison_Exp = {
-  _eq?: Maybe<Scalars['timestamp']>;
-  _gt?: Maybe<Scalars['timestamp']>;
-  _gte?: Maybe<Scalars['timestamp']>;
-  _in?: Maybe<Array<Scalars['timestamp']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['timestamp']>;
-  _lte?: Maybe<Scalars['timestamp']>;
-  _neq?: Maybe<Scalars['timestamp']>;
-  _nin?: Maybe<Array<Scalars['timestamp']>>;
+export type TTimestamp_Comparison_Exp = {
+  readonly _eq?: Maybe<Scalars['timestamp']>;
+  readonly _gt?: Maybe<Scalars['timestamp']>;
+  readonly _gte?: Maybe<Scalars['timestamp']>;
+  readonly _in?: Maybe<ReadonlyArray<Scalars['timestamp']>>;
+  readonly _is_null?: Maybe<Scalars['Boolean']>;
+  readonly _lt?: Maybe<Scalars['timestamp']>;
+  readonly _lte?: Maybe<Scalars['timestamp']>;
+  readonly _neq?: Maybe<Scalars['timestamp']>;
+  readonly _nin?: Maybe<ReadonlyArray<Scalars['timestamp']>>;
 };
 
 /** expression to compare columns of type timestamptz. All fields are combined with logical 'AND'. */
-export type Timestamptz_Comparison_Exp = {
-  _eq?: Maybe<Scalars['timestamptz']>;
-  _gt?: Maybe<Scalars['timestamptz']>;
-  _gte?: Maybe<Scalars['timestamptz']>;
-  _in?: Maybe<Array<Scalars['timestamptz']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['timestamptz']>;
-  _lte?: Maybe<Scalars['timestamptz']>;
-  _neq?: Maybe<Scalars['timestamptz']>;
-  _nin?: Maybe<Array<Scalars['timestamptz']>>;
+export type TTimestamptz_Comparison_Exp = {
+  readonly _eq?: Maybe<Scalars['timestamptz']>;
+  readonly _gt?: Maybe<Scalars['timestamptz']>;
+  readonly _gte?: Maybe<Scalars['timestamptz']>;
+  readonly _in?: Maybe<ReadonlyArray<Scalars['timestamptz']>>;
+  readonly _is_null?: Maybe<Scalars['Boolean']>;
+  readonly _lt?: Maybe<Scalars['timestamptz']>;
+  readonly _lte?: Maybe<Scalars['timestamptz']>;
+  readonly _neq?: Maybe<Scalars['timestamptz']>;
+  readonly _nin?: Maybe<ReadonlyArray<Scalars['timestamptz']>>;
 };
 
 /**
@@ -1785,30 +1786,30 @@ export type Timestamptz_Comparison_Exp = {
  * columns and relationships of "user_profile"
  *
  */
-export type User_Profile = {
-  __typename?: 'user_profile';
-  availability?: Maybe<Scalars['Int']>;
-  background?: Maybe<Scalars['String']>;
-  business_description?: Maybe<Scalars['String']>;
-  created_at: Scalars['timestamp'];
-  facebook?: Maybe<Scalars['String']>;
-  id: Scalars['uuid'];
-  industries?: Maybe<Scalars['jsonb']>;
-  instagram?: Maybe<Scalars['String']>;
-  is_complete?: Maybe<Scalars['Boolean']>;
-  linkedin?: Maybe<Scalars['String']>;
-  resume?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['jsonb']>;
-  specialist_industry?: Maybe<Scalars['String']>;
-  startups?: Maybe<Scalars['Int']>;
-  statement?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  twitter?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+export type TUser_Profile = {
+  readonly __typename?: 'user_profile';
+  readonly availability?: Maybe<Scalars['Int']>;
+  readonly background?: Maybe<Scalars['String']>;
+  readonly business_description?: Maybe<Scalars['String']>;
+  readonly created_at: Scalars['timestamp'];
+  readonly facebook?: Maybe<Scalars['String']>;
+  readonly id: Scalars['uuid'];
+  readonly industries?: Maybe<Scalars['jsonb']>;
+  readonly instagram?: Maybe<Scalars['String']>;
+  readonly is_complete?: Maybe<Scalars['Boolean']>;
+  readonly linkedin?: Maybe<Scalars['String']>;
+  readonly resume?: Maybe<Scalars['String']>;
+  readonly skills?: Maybe<Scalars['jsonb']>;
+  readonly specialist_industry?: Maybe<Scalars['String']>;
+  readonly startups?: Maybe<Scalars['Int']>;
+  readonly statement?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly twitter?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
   /** An object relationship */
-  user?: Maybe<Users>;
-  user_id?: Maybe<Scalars['uuid']>;
-  website?: Maybe<Scalars['String']>;
+  readonly user?: Maybe<TUsers>;
+  readonly user_id?: Maybe<Scalars['uuid']>;
+  readonly website?: Maybe<Scalars['String']>;
 };
 
 
@@ -1819,7 +1820,7 @@ export type User_Profile = {
  * columns and relationships of "user_profile"
  *
  */
-export type User_ProfileIndustriesArgs = {
+export type TUser_ProfileIndustriesArgs = {
   path?: Maybe<Scalars['String']>;
 };
 
@@ -1831,129 +1832,129 @@ export type User_ProfileIndustriesArgs = {
  * columns and relationships of "user_profile"
  *
  */
-export type User_ProfileSkillsArgs = {
+export type TUser_ProfileSkillsArgs = {
   path?: Maybe<Scalars['String']>;
 };
 
 /** append existing jsonb value of filtered columns with new jsonb value */
-export type User_Profile_Append_Input = {
-  industries?: Maybe<Scalars['jsonb']>;
-  skills?: Maybe<Scalars['jsonb']>;
+export type TUser_Profile_Append_Input = {
+  readonly industries?: Maybe<Scalars['jsonb']>;
+  readonly skills?: Maybe<Scalars['jsonb']>;
 };
 
 /** Boolean expression to filter rows from the table "user_profile". All fields are combined with a logical 'AND'. */
-export type User_Profile_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<User_Profile_Bool_Exp>>>;
-  _not?: Maybe<User_Profile_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<User_Profile_Bool_Exp>>>;
-  availability?: Maybe<Int_Comparison_Exp>;
-  background?: Maybe<String_Comparison_Exp>;
-  business_description?: Maybe<String_Comparison_Exp>;
-  created_at?: Maybe<Timestamp_Comparison_Exp>;
-  facebook?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  industries?: Maybe<Jsonb_Comparison_Exp>;
-  instagram?: Maybe<String_Comparison_Exp>;
-  is_complete?: Maybe<Boolean_Comparison_Exp>;
-  linkedin?: Maybe<String_Comparison_Exp>;
-  resume?: Maybe<String_Comparison_Exp>;
-  skills?: Maybe<Jsonb_Comparison_Exp>;
-  specialist_industry?: Maybe<String_Comparison_Exp>;
-  startups?: Maybe<Int_Comparison_Exp>;
-  statement?: Maybe<String_Comparison_Exp>;
-  status?: Maybe<String_Comparison_Exp>;
-  twitter?: Maybe<String_Comparison_Exp>;
-  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
-  user?: Maybe<Users_Bool_Exp>;
-  user_id?: Maybe<Uuid_Comparison_Exp>;
-  website?: Maybe<String_Comparison_Exp>;
+export type TUser_Profile_Bool_Exp = {
+  readonly _and?: Maybe<ReadonlyArray<Maybe<TUser_Profile_Bool_Exp>>>;
+  readonly _not?: Maybe<TUser_Profile_Bool_Exp>;
+  readonly _or?: Maybe<ReadonlyArray<Maybe<TUser_Profile_Bool_Exp>>>;
+  readonly availability?: Maybe<TInt_Comparison_Exp>;
+  readonly background?: Maybe<TString_Comparison_Exp>;
+  readonly business_description?: Maybe<TString_Comparison_Exp>;
+  readonly created_at?: Maybe<TTimestamp_Comparison_Exp>;
+  readonly facebook?: Maybe<TString_Comparison_Exp>;
+  readonly id?: Maybe<TUuid_Comparison_Exp>;
+  readonly industries?: Maybe<TJsonb_Comparison_Exp>;
+  readonly instagram?: Maybe<TString_Comparison_Exp>;
+  readonly is_complete?: Maybe<TBoolean_Comparison_Exp>;
+  readonly linkedin?: Maybe<TString_Comparison_Exp>;
+  readonly resume?: Maybe<TString_Comparison_Exp>;
+  readonly skills?: Maybe<TJsonb_Comparison_Exp>;
+  readonly specialist_industry?: Maybe<TString_Comparison_Exp>;
+  readonly startups?: Maybe<TInt_Comparison_Exp>;
+  readonly statement?: Maybe<TString_Comparison_Exp>;
+  readonly status?: Maybe<TString_Comparison_Exp>;
+  readonly twitter?: Maybe<TString_Comparison_Exp>;
+  readonly updated_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly user?: Maybe<TUsers_Bool_Exp>;
+  readonly user_id?: Maybe<TUuid_Comparison_Exp>;
+  readonly website?: Maybe<TString_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "user_profile" */
-export type User_Profile_Constraint =
+export type TUser_Profile_Constraint =
   /** unique or primary key constraint */
   | 'user_profile_pkey'
   /** unique or primary key constraint */
   | 'user_profile_user_id_key';
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
-export type User_Profile_Delete_At_Path_Input = {
-  industries?: Maybe<Array<Maybe<Scalars['String']>>>;
-  skills?: Maybe<Array<Maybe<Scalars['String']>>>;
+export type TUser_Profile_Delete_At_Path_Input = {
+  readonly industries?: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly skills?: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
-export type User_Profile_Delete_Elem_Input = {
-  industries?: Maybe<Scalars['Int']>;
-  skills?: Maybe<Scalars['Int']>;
+export type TUser_Profile_Delete_Elem_Input = {
+  readonly industries?: Maybe<Scalars['Int']>;
+  readonly skills?: Maybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
-export type User_Profile_Delete_Key_Input = {
-  industries?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['String']>;
+export type TUser_Profile_Delete_Key_Input = {
+  readonly industries?: Maybe<Scalars['String']>;
+  readonly skills?: Maybe<Scalars['String']>;
 };
 
 /** input type for incrementing integer column in table "user_profile" */
-export type User_Profile_Inc_Input = {
-  availability?: Maybe<Scalars['Int']>;
-  startups?: Maybe<Scalars['Int']>;
+export type TUser_Profile_Inc_Input = {
+  readonly availability?: Maybe<Scalars['Int']>;
+  readonly startups?: Maybe<Scalars['Int']>;
 };
 
 /** response of any mutation on the table "user_profile" */
-export type User_Profile_Mutation_Response = {
-  __typename?: 'user_profile_mutation_response';
+export type TUser_Profile_Mutation_Response = {
+  readonly __typename?: 'user_profile_mutation_response';
   /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
+  readonly affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
-  returning: Array<User_Profile>;
+  readonly returning: ReadonlyArray<TUser_Profile>;
 };
 
 /** on conflict condition type for table "user_profile" */
-export type User_Profile_On_Conflict = {
-  constraint: User_Profile_Constraint;
-  update_columns: Array<User_Profile_Update_Column>;
-  where?: Maybe<User_Profile_Bool_Exp>;
+export type TUser_Profile_On_Conflict = {
+  readonly constraint: TUser_Profile_Constraint;
+  readonly update_columns: ReadonlyArray<TUser_Profile_Update_Column>;
+  readonly where?: Maybe<TUser_Profile_Bool_Exp>;
 };
 
 /** ordering options when selecting data from "user_profile" */
-export type User_Profile_Order_By = {
-  availability?: Maybe<Order_By>;
-  background?: Maybe<Order_By>;
-  business_description?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  facebook?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  industries?: Maybe<Order_By>;
-  instagram?: Maybe<Order_By>;
-  is_complete?: Maybe<Order_By>;
-  linkedin?: Maybe<Order_By>;
-  resume?: Maybe<Order_By>;
-  skills?: Maybe<Order_By>;
-  specialist_industry?: Maybe<Order_By>;
-  startups?: Maybe<Order_By>;
-  statement?: Maybe<Order_By>;
-  status?: Maybe<Order_By>;
-  twitter?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user?: Maybe<Users_Order_By>;
-  user_id?: Maybe<Order_By>;
-  website?: Maybe<Order_By>;
+export type TUser_Profile_Order_By = {
+  readonly availability?: Maybe<TOrder_By>;
+  readonly background?: Maybe<TOrder_By>;
+  readonly business_description?: Maybe<TOrder_By>;
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly facebook?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly industries?: Maybe<TOrder_By>;
+  readonly instagram?: Maybe<TOrder_By>;
+  readonly is_complete?: Maybe<TOrder_By>;
+  readonly linkedin?: Maybe<TOrder_By>;
+  readonly resume?: Maybe<TOrder_By>;
+  readonly skills?: Maybe<TOrder_By>;
+  readonly specialist_industry?: Maybe<TOrder_By>;
+  readonly startups?: Maybe<TOrder_By>;
+  readonly statement?: Maybe<TOrder_By>;
+  readonly status?: Maybe<TOrder_By>;
+  readonly twitter?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly user?: Maybe<TUsers_Order_By>;
+  readonly user_id?: Maybe<TOrder_By>;
+  readonly website?: Maybe<TOrder_By>;
 };
 
 /** primary key columns input for table: "user_profile" */
-export type User_Profile_Pk_Columns_Input = {
-  id: Scalars['uuid'];
+export type TUser_Profile_Pk_Columns_Input = {
+  readonly id: Scalars['uuid'];
 };
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
-export type User_Profile_Prepend_Input = {
-  industries?: Maybe<Scalars['jsonb']>;
-  skills?: Maybe<Scalars['jsonb']>;
+export type TUser_Profile_Prepend_Input = {
+  readonly industries?: Maybe<Scalars['jsonb']>;
+  readonly skills?: Maybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "user_profile" */
-export type User_Profile_Select_Column =
+export type TUser_Profile_Select_Column =
   /** column name */
   | 'availability'
   /** column name */
@@ -1996,30 +1997,30 @@ export type User_Profile_Select_Column =
   | 'website';
 
 /** input type for updating data in table "user_profile" */
-export type User_Profile_Set_Input = {
-  availability?: Maybe<Scalars['Int']>;
-  background?: Maybe<Scalars['String']>;
-  business_description?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamp']>;
-  facebook?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  industries?: Maybe<Scalars['jsonb']>;
-  instagram?: Maybe<Scalars['String']>;
-  is_complete?: Maybe<Scalars['Boolean']>;
-  linkedin?: Maybe<Scalars['String']>;
-  resume?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['jsonb']>;
-  specialist_industry?: Maybe<Scalars['String']>;
-  startups?: Maybe<Scalars['Int']>;
-  statement?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  twitter?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  website?: Maybe<Scalars['String']>;
+export type TUser_Profile_Set_Input = {
+  readonly availability?: Maybe<Scalars['Int']>;
+  readonly background?: Maybe<Scalars['String']>;
+  readonly business_description?: Maybe<Scalars['String']>;
+  readonly created_at?: Maybe<Scalars['timestamp']>;
+  readonly facebook?: Maybe<Scalars['String']>;
+  readonly id?: Maybe<Scalars['uuid']>;
+  readonly industries?: Maybe<Scalars['jsonb']>;
+  readonly instagram?: Maybe<Scalars['String']>;
+  readonly is_complete?: Maybe<Scalars['Boolean']>;
+  readonly linkedin?: Maybe<Scalars['String']>;
+  readonly resume?: Maybe<Scalars['String']>;
+  readonly skills?: Maybe<Scalars['jsonb']>;
+  readonly specialist_industry?: Maybe<Scalars['String']>;
+  readonly startups?: Maybe<Scalars['Int']>;
+  readonly statement?: Maybe<Scalars['String']>;
+  readonly status?: Maybe<Scalars['String']>;
+  readonly twitter?: Maybe<Scalars['String']>;
+  readonly updated_at?: Maybe<Scalars['timestamptz']>;
+  readonly website?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "user_profile" */
-export type User_Profile_Update_Column =
+export type TUser_Profile_Update_Column =
   /** column name */
   | 'availability'
   /** column name */
@@ -2060,155 +2061,155 @@ export type User_Profile_Update_Column =
   | 'website';
 
 /** columns and relationships of "users" */
-export type Users = {
-  __typename?: 'users';
+export type TUsers = {
+  readonly __typename?: 'users';
   /** An object relationship */
-  account?: Maybe<Auth_Accounts>;
-  avatar_url?: Maybe<Scalars['String']>;
-  country?: Maybe<Scalars['String']>;
-  created_at: Scalars['timestamptz'];
-  display_name?: Maybe<Scalars['String']>;
-  first_name?: Maybe<Scalars['String']>;
-  id: Scalars['uuid'];
+  readonly account?: Maybe<TAuth_Accounts>;
+  readonly avatar_url?: Maybe<Scalars['String']>;
+  readonly country?: Maybe<Scalars['String']>;
+  readonly created_at: Scalars['timestamptz'];
+  readonly display_name?: Maybe<Scalars['String']>;
+  readonly first_name?: Maybe<Scalars['String']>;
+  readonly id: Scalars['uuid'];
   /** An array relationship */
-  idea_votes: Array<Idea_Votes>;
+  readonly idea_votes: ReadonlyArray<TIdea_Votes>;
   /** An aggregated array relationship */
-  idea_votes_aggregate: Idea_Votes_Aggregate;
-  last_name?: Maybe<Scalars['String']>;
-  updated_at: Scalars['timestamptz'];
+  readonly idea_votes_aggregate: TIdea_Votes_Aggregate;
+  readonly last_name?: Maybe<Scalars['String']>;
+  readonly updated_at: Scalars['timestamptz'];
   /** An array relationship */
-  user_activities: Array<Activity>;
+  readonly user_activities: ReadonlyArray<TActivity>;
   /** An aggregated array relationship */
-  user_activities_aggregate: Activity_Aggregate;
+  readonly user_activities_aggregate: TActivity_Aggregate;
   /** An object relationship */
-  user_profile?: Maybe<User_Profile>;
-  user_type?: Maybe<Scalars['String']>;
+  readonly user_profile?: Maybe<TUser_Profile>;
+  readonly user_type?: Maybe<Scalars['String']>;
 };
 
 
 /** columns and relationships of "users" */
-export type UsersIdea_VotesArgs = {
-  distinct_on?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TUsersIdea_VotesArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Votes_Order_By>>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Votes_Order_By>>;
+  where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 
 /** columns and relationships of "users" */
-export type UsersIdea_Votes_AggregateArgs = {
-  distinct_on?: Maybe<Array<Idea_Votes_Select_Column>>;
+export type TUsersIdea_Votes_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TIdea_Votes_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Idea_Votes_Order_By>>;
-  where?: Maybe<Idea_Votes_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TIdea_Votes_Order_By>>;
+  where?: Maybe<TIdea_Votes_Bool_Exp>;
 };
 
 
 /** columns and relationships of "users" */
-export type UsersUser_ActivitiesArgs = {
-  distinct_on?: Maybe<Array<Activity_Select_Column>>;
+export type TUsersUser_ActivitiesArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TActivity_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Activity_Order_By>>;
-  where?: Maybe<Activity_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TActivity_Order_By>>;
+  where?: Maybe<TActivity_Bool_Exp>;
 };
 
 
 /** columns and relationships of "users" */
-export type UsersUser_Activities_AggregateArgs = {
-  distinct_on?: Maybe<Array<Activity_Select_Column>>;
+export type TUsersUser_Activities_AggregateArgs = {
+  distinct_on?: Maybe<ReadonlyArray<TActivity_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Activity_Order_By>>;
-  where?: Maybe<Activity_Bool_Exp>;
+  order_by?: Maybe<ReadonlyArray<TActivity_Order_By>>;
+  where?: Maybe<TActivity_Bool_Exp>;
 };
 
 /** input type for inserting array relation for remote table "users" */
-export type Users_Arr_Rel_Insert_Input = {
-  data: Array<Users_Insert_Input>;
-  on_conflict?: Maybe<Users_On_Conflict>;
+export type TUsers_Arr_Rel_Insert_Input = {
+  readonly data: ReadonlyArray<TUsers_Insert_Input>;
+  readonly on_conflict?: Maybe<TUsers_On_Conflict>;
 };
 
 /** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
-export type Users_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Users_Bool_Exp>>>;
-  _not?: Maybe<Users_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Users_Bool_Exp>>>;
-  account?: Maybe<Auth_Accounts_Bool_Exp>;
-  avatar_url?: Maybe<String_Comparison_Exp>;
-  country?: Maybe<String_Comparison_Exp>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  display_name?: Maybe<String_Comparison_Exp>;
-  first_name?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  idea_votes?: Maybe<Idea_Votes_Bool_Exp>;
-  last_name?: Maybe<String_Comparison_Exp>;
-  updated_at?: Maybe<Timestamptz_Comparison_Exp>;
-  user_activities?: Maybe<Activity_Bool_Exp>;
-  user_profile?: Maybe<User_Profile_Bool_Exp>;
-  user_type?: Maybe<String_Comparison_Exp>;
+export type TUsers_Bool_Exp = {
+  readonly _and?: Maybe<ReadonlyArray<Maybe<TUsers_Bool_Exp>>>;
+  readonly _not?: Maybe<TUsers_Bool_Exp>;
+  readonly _or?: Maybe<ReadonlyArray<Maybe<TUsers_Bool_Exp>>>;
+  readonly account?: Maybe<TAuth_Accounts_Bool_Exp>;
+  readonly avatar_url?: Maybe<TString_Comparison_Exp>;
+  readonly country?: Maybe<TString_Comparison_Exp>;
+  readonly created_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly display_name?: Maybe<TString_Comparison_Exp>;
+  readonly first_name?: Maybe<TString_Comparison_Exp>;
+  readonly id?: Maybe<TUuid_Comparison_Exp>;
+  readonly idea_votes?: Maybe<TIdea_Votes_Bool_Exp>;
+  readonly last_name?: Maybe<TString_Comparison_Exp>;
+  readonly updated_at?: Maybe<TTimestamptz_Comparison_Exp>;
+  readonly user_activities?: Maybe<TActivity_Bool_Exp>;
+  readonly user_profile?: Maybe<TUser_Profile_Bool_Exp>;
+  readonly user_type?: Maybe<TString_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "users" */
-export type Users_Constraint =
+export type TUsers_Constraint =
   /** unique or primary key constraint */
   | 'users_pkey';
 
 /** input type for inserting data into table "users" */
-export type Users_Insert_Input = {
-  country?: Maybe<Scalars['String']>;
-  idea_votes?: Maybe<Idea_Votes_Arr_Rel_Insert_Input>;
-  user_activities?: Maybe<Activity_Arr_Rel_Insert_Input>;
+export type TUsers_Insert_Input = {
+  readonly country?: Maybe<Scalars['String']>;
+  readonly idea_votes?: Maybe<TIdea_Votes_Arr_Rel_Insert_Input>;
+  readonly user_activities?: Maybe<TActivity_Arr_Rel_Insert_Input>;
 };
 
 /** response of any mutation on the table "users" */
-export type Users_Mutation_Response = {
-  __typename?: 'users_mutation_response';
+export type TUsers_Mutation_Response = {
+  readonly __typename?: 'users_mutation_response';
   /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
+  readonly affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
-  returning: Array<Users>;
+  readonly returning: ReadonlyArray<TUsers>;
 };
 
 /** input type for inserting object relation for remote table "users" */
-export type Users_Obj_Rel_Insert_Input = {
-  data: Users_Insert_Input;
-  on_conflict?: Maybe<Users_On_Conflict>;
+export type TUsers_Obj_Rel_Insert_Input = {
+  readonly data: TUsers_Insert_Input;
+  readonly on_conflict?: Maybe<TUsers_On_Conflict>;
 };
 
 /** on conflict condition type for table "users" */
-export type Users_On_Conflict = {
-  constraint: Users_Constraint;
-  update_columns: Array<Users_Update_Column>;
-  where?: Maybe<Users_Bool_Exp>;
+export type TUsers_On_Conflict = {
+  readonly constraint: TUsers_Constraint;
+  readonly update_columns: ReadonlyArray<TUsers_Update_Column>;
+  readonly where?: Maybe<TUsers_Bool_Exp>;
 };
 
 /** ordering options when selecting data from "users" */
-export type Users_Order_By = {
-  account?: Maybe<Auth_Accounts_Order_By>;
-  avatar_url?: Maybe<Order_By>;
-  country?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  display_name?: Maybe<Order_By>;
-  first_name?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  idea_votes_aggregate?: Maybe<Idea_Votes_Aggregate_Order_By>;
-  last_name?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
-  user_activities_aggregate?: Maybe<Activity_Aggregate_Order_By>;
-  user_profile?: Maybe<User_Profile_Order_By>;
-  user_type?: Maybe<Order_By>;
+export type TUsers_Order_By = {
+  readonly account?: Maybe<TAuth_Accounts_Order_By>;
+  readonly avatar_url?: Maybe<TOrder_By>;
+  readonly country?: Maybe<TOrder_By>;
+  readonly created_at?: Maybe<TOrder_By>;
+  readonly display_name?: Maybe<TOrder_By>;
+  readonly first_name?: Maybe<TOrder_By>;
+  readonly id?: Maybe<TOrder_By>;
+  readonly idea_votes_aggregate?: Maybe<TIdea_Votes_Aggregate_Order_By>;
+  readonly last_name?: Maybe<TOrder_By>;
+  readonly updated_at?: Maybe<TOrder_By>;
+  readonly user_activities_aggregate?: Maybe<TActivity_Aggregate_Order_By>;
+  readonly user_profile?: Maybe<TUser_Profile_Order_By>;
+  readonly user_type?: Maybe<TOrder_By>;
 };
 
 /** primary key columns input for table: "users" */
-export type Users_Pk_Columns_Input = {
-  id: Scalars['uuid'];
+export type TUsers_Pk_Columns_Input = {
+  readonly id: Scalars['uuid'];
 };
 
 /** select columns of table "users" */
-export type Users_Select_Column =
+export type TUsers_Select_Column =
   /** column name */
   | 'avatar_url'
   /** column name */
@@ -2229,17 +2230,17 @@ export type Users_Select_Column =
   | 'user_type';
 
 /** input type for updating data in table "users" */
-export type Users_Set_Input = {
-  avatar_url?: Maybe<Scalars['String']>;
-  country?: Maybe<Scalars['String']>;
-  display_name?: Maybe<Scalars['String']>;
-  first_name?: Maybe<Scalars['String']>;
-  last_name?: Maybe<Scalars['String']>;
-  user_type?: Maybe<Scalars['String']>;
+export type TUsers_Set_Input = {
+  readonly avatar_url?: Maybe<Scalars['String']>;
+  readonly country?: Maybe<Scalars['String']>;
+  readonly display_name?: Maybe<Scalars['String']>;
+  readonly first_name?: Maybe<Scalars['String']>;
+  readonly last_name?: Maybe<Scalars['String']>;
+  readonly user_type?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "users" */
-export type Users_Update_Column =
+export type TUsers_Update_Column =
   /** column name */
   | 'avatar_url'
   /** column name */
@@ -2254,147 +2255,147 @@ export type Users_Update_Column =
   | 'user_type';
 
 /** expression to compare columns of type uuid. All fields are combined with logical 'AND'. */
-export type Uuid_Comparison_Exp = {
-  _eq?: Maybe<Scalars['uuid']>;
-  _gt?: Maybe<Scalars['uuid']>;
-  _gte?: Maybe<Scalars['uuid']>;
-  _in?: Maybe<Array<Scalars['uuid']>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _lt?: Maybe<Scalars['uuid']>;
-  _lte?: Maybe<Scalars['uuid']>;
-  _neq?: Maybe<Scalars['uuid']>;
-  _nin?: Maybe<Array<Scalars['uuid']>>;
+export type TUuid_Comparison_Exp = {
+  readonly _eq?: Maybe<Scalars['uuid']>;
+  readonly _gt?: Maybe<Scalars['uuid']>;
+  readonly _gte?: Maybe<Scalars['uuid']>;
+  readonly _in?: Maybe<ReadonlyArray<Scalars['uuid']>>;
+  readonly _is_null?: Maybe<Scalars['Boolean']>;
+  readonly _lt?: Maybe<Scalars['uuid']>;
+  readonly _lte?: Maybe<Scalars['uuid']>;
+  readonly _neq?: Maybe<Scalars['uuid']>;
+  readonly _nin?: Maybe<ReadonlyArray<Scalars['uuid']>>;
 };
 
-export type GetUserActivitiesQueryVariables = Exact<{
+export type TGetUserActivitiesQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type GetUserActivitiesQuery = { __typename?: 'query_root', activity: Array<{ __typename?: 'activity', idea_id?: any | null | undefined, event: string, description: string, url?: string | null | undefined, type?: string | null | undefined, created_at?: any | null | undefined }> };
+export type TGetUserActivitiesQuery = { readonly activity: ReadonlyArray<{ readonly __typename?: 'activity', readonly idea_id?: any | null | undefined, readonly event: string, readonly description: string, readonly url?: string | null | undefined, readonly type?: string | null | undefined, readonly created_at?: any | null | undefined }> };
 
-export type CreateIdeaMutationVariables = Exact<{
-  idea: Ideas_Insert_Input;
+export type TCreateIdeaMutationVariables = Exact<{
+  idea: TIdeas_Insert_Input;
 }>;
 
 
-export type CreateIdeaMutation = { __typename?: 'mutation_root', idea?: { __typename?: 'ideas', id: any } | null | undefined };
+export type TCreateIdeaMutation = { readonly idea?: { readonly __typename?: 'ideas', readonly id: any } | null | undefined };
 
-export type UpdateIdeaMutationVariables = Exact<{
-  idea: Ideas_Set_Input;
+export type TUpdateIdeaMutationVariables = Exact<{
+  idea: TIdeas_Set_Input;
   id: Scalars['uuid'];
 }>;
 
 
-export type UpdateIdeaMutation = { __typename?: 'mutation_root', update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined } | null | undefined };
+export type TUpdateIdeaMutation = { readonly update_ideas_by_pk?: { readonly __typename?: 'ideas', readonly id: any, readonly name: string, readonly description: string, readonly field: string, readonly mission_statement?: string | null | undefined, readonly competitors?: string | null | undefined, readonly team?: string | null | undefined, readonly additional_information?: string | null | undefined, readonly is_published?: boolean | null | undefined, readonly user_id: any, readonly status?: string | null | undefined } | null | undefined };
 
-export type GetUserIdeasQueryVariables = Exact<{
+export type TGetUserIdeasQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type GetUserIdeasQuery = { __typename?: 'query_root', ideas: Array<{ __typename?: 'ideas', name: string, description: string, field: string, updated_at?: any | null | undefined, is_published?: boolean | null | undefined, user_id: any, id: any }> };
+export type TGetUserIdeasQuery = { readonly ideas: ReadonlyArray<{ readonly __typename?: 'ideas', readonly name: string, readonly description: string, readonly field: string, readonly updated_at?: any | null | undefined, readonly is_published?: boolean | null | undefined, readonly user_id: any, readonly id: any }> };
 
-export type DeleteIdeaMutationVariables = Exact<{
+export type TDeleteIdeaMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteIdeaMutation = { __typename?: 'mutation_root', delete_ideas_by_pk?: { __typename?: 'ideas', id: any } | null | undefined };
+export type TDeleteIdeaMutation = { readonly delete_ideas_by_pk?: { readonly __typename?: 'ideas', readonly id: any } | null | undefined };
 
-export type GetIdeasQueryVariables = Exact<{
-  where?: Maybe<Idea_Preview_Bool_Exp>;
+export type TGetIdeasQueryVariables = Exact<{
+  where?: Maybe<TIdea_Preview_Bool_Exp>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Idea_Preview_Order_By> | Idea_Preview_Order_By>;
+  orderBy?: Maybe<ReadonlyArray<TIdea_Preview_Order_By> | TIdea_Preview_Order_By>;
   userId: Scalars['uuid'];
 }>;
 
 
-export type GetIdeasQuery = { __typename?: 'query_root', idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count?: number | null | undefined } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, idea_votes?: { __typename?: 'idea_votes', idea: { __typename?: 'ideas', idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined }, idea_votes: Array<{ __typename?: 'idea_votes', vote_type: number }> } } | null | undefined, idea_user?: { __typename?: 'users', first_name?: string | null | undefined, country?: string | null | undefined, id: any, avatar_url?: string | null | undefined } | null | undefined }> };
+export type TGetIdeasQuery = { readonly idea_preview_aggregate: { readonly __typename?: 'idea_preview_aggregate', readonly aggregate?: { readonly __typename?: 'idea_preview_aggregate_fields', readonly count?: number | null | undefined } | null | undefined }, readonly idea_preview: ReadonlyArray<{ readonly __typename?: 'idea_preview', readonly id?: any | null | undefined, readonly name?: string | null | undefined, readonly preview?: string | null | undefined, readonly field?: string | null | undefined, readonly status?: string | null | undefined, readonly created_at?: any | null | undefined, readonly is_new?: boolean | null | undefined, readonly idea_votes?: { readonly __typename?: 'idea_votes', readonly idea: { readonly __typename?: 'ideas', readonly idea_votes_aggregate: { readonly __typename?: 'idea_votes_aggregate', readonly aggregate?: { readonly __typename?: 'idea_votes_aggregate_fields', readonly sum?: { readonly __typename?: 'idea_votes_sum_fields', readonly vote_type?: number | null | undefined } | null | undefined } | null | undefined }, readonly idea_votes: ReadonlyArray<{ readonly __typename?: 'idea_votes', readonly vote_type: number }> } } | null | undefined, readonly idea_user?: { readonly __typename?: 'users', readonly first_name?: string | null | undefined, readonly country?: string | null | undefined, readonly id: any, readonly avatar_url?: string | null | undefined } | null | undefined }> };
 
-export type GetIdeaQueryVariables = Exact<{
+export type TGetIdeaQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetIdeaQuery = { __typename?: 'query_root', idea?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined, created_at?: any | null | undefined, idea_user?: { __typename?: 'users', avatar_url?: string | null | undefined, first_name?: string | null | undefined, country?: string | null | undefined, id: any } | null | undefined, idea_votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', sum?: { __typename?: 'idea_votes_sum_fields', vote_type?: number | null | undefined } | null | undefined } | null | undefined } } | null | undefined };
+export type TGetIdeaQuery = { readonly idea?: { readonly __typename?: 'ideas', readonly id: any, readonly name: string, readonly description: string, readonly field: string, readonly mission_statement?: string | null | undefined, readonly competitors?: string | null | undefined, readonly team?: string | null | undefined, readonly additional_information?: string | null | undefined, readonly is_published?: boolean | null | undefined, readonly user_id: any, readonly status?: string | null | undefined, readonly created_at?: any | null | undefined, readonly idea_user?: { readonly __typename?: 'users', readonly avatar_url?: string | null | undefined, readonly first_name?: string | null | undefined, readonly country?: string | null | undefined, readonly id: any } | null | undefined, readonly idea_votes_aggregate: { readonly __typename?: 'idea_votes_aggregate', readonly aggregate?: { readonly __typename?: 'idea_votes_aggregate_fields', readonly sum?: { readonly __typename?: 'idea_votes_sum_fields', readonly vote_type?: number | null | undefined } | null | undefined } | null | undefined } } | null | undefined };
 
-export type UpsertIdeaVoteMutationVariables = Exact<{
-  idea_vote: Idea_Votes_Insert_Input;
+export type TUpsertIdeaVoteMutationVariables = Exact<{
+  idea_vote: TIdea_Votes_Insert_Input;
 }>;
 
 
-export type UpsertIdeaVoteMutation = { __typename?: 'mutation_root', insert_idea_votes_one?: { __typename?: 'idea_votes', idea_id: any } | null | undefined };
+export type TUpsertIdeaVoteMutation = { readonly insert_idea_votes_one?: { readonly __typename?: 'idea_votes', readonly idea_id: any } | null | undefined };
 
-export type GetUserSocialsQueryVariables = Exact<{
+export type TGetUserSocialsQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetUserSocialsQuery = { __typename?: 'query_root', profile?: { __typename?: 'user_profile', linkedin?: string | null | undefined, twitter?: string | null | undefined, website?: string | null | undefined } | null | undefined };
+export type TGetUserSocialsQuery = { readonly profile?: { readonly __typename?: 'user_profile', readonly linkedin?: string | null | undefined, readonly twitter?: string | null | undefined, readonly website?: string | null | undefined } | null | undefined };
 
-export type GetUserQueryVariables = Exact<{
+export type TGetUserQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type GetUserQuery = { __typename?: 'query_root', user?: { __typename?: 'users', id: any, last_name?: string | null | undefined, first_name?: string | null | undefined, country?: string | null | undefined, avatar_url?: string | null | undefined, created_at: any, account?: { __typename?: 'auth_accounts', email?: any | null | undefined } | null | undefined, user_profile?: { __typename?: 'user_profile', id: any, is_complete?: boolean | null | undefined } | null | undefined } | null | undefined };
+export type TGetUserQuery = { readonly user?: { readonly __typename?: 'users', readonly id: any, readonly last_name?: string | null | undefined, readonly first_name?: string | null | undefined, readonly country?: string | null | undefined, readonly avatar_url?: string | null | undefined, readonly created_at: any, readonly account?: { readonly __typename?: 'auth_accounts', readonly email?: any | null | undefined } | null | undefined, readonly user_profile?: { readonly __typename?: 'user_profile', readonly id: any, readonly is_complete?: boolean | null | undefined } | null | undefined } | null | undefined };
 
-export type UpdateUserProfileMutationVariables = Exact<{
+export type TUpdateUserProfileMutationVariables = Exact<{
   id: Scalars['uuid'];
-  user_profile: User_Profile_Set_Input;
+  user_profile: TUser_Profile_Set_Input;
 }>;
 
 
-export type UpdateUserProfileMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: number | null | undefined, background?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, resume?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, business_description?: string | null | undefined, startups?: number | null | undefined, website?: string | null | undefined, skills?: any | null | undefined, is_complete?: boolean | null | undefined, specialist_industry?: string | null | undefined, updated_at?: any | null | undefined } | null | undefined };
+export type TUpdateUserProfileMutation = { readonly update_user_profile_by_pk?: { readonly __typename?: 'user_profile', readonly id: any, readonly availability?: number | null | undefined, readonly background?: string | null | undefined, readonly linkedin?: string | null | undefined, readonly twitter?: string | null | undefined, readonly instagram?: string | null | undefined, readonly facebook?: string | null | undefined, readonly resume?: string | null | undefined, readonly statement?: string | null | undefined, readonly status?: string | null | undefined, readonly business_description?: string | null | undefined, readonly startups?: number | null | undefined, readonly website?: string | null | undefined, readonly skills?: any | null | undefined, readonly is_complete?: boolean | null | undefined, readonly specialist_industry?: string | null | undefined, readonly updated_at?: any | null | undefined } | null | undefined };
 
-export type GetUserExperienceQueryVariables = Exact<{
+export type TGetUserExperienceQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetUserExperienceQuery = { __typename?: 'query_root', profile?: { __typename?: 'user_profile', id: any, user_id?: any | null | undefined, background?: string | null | undefined, statement?: string | null | undefined, startups?: number | null | undefined, status?: string | null | undefined, availability?: number | null | undefined, business_description?: string | null | undefined, specialist_industry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updated_at?: any | null | undefined, is_complete?: boolean | null | undefined } | null | undefined };
+export type TGetUserExperienceQuery = { readonly profile?: { readonly __typename?: 'user_profile', readonly id: any, readonly user_id?: any | null | undefined, readonly background?: string | null | undefined, readonly statement?: string | null | undefined, readonly startups?: number | null | undefined, readonly status?: string | null | undefined, readonly availability?: number | null | undefined, readonly business_description?: string | null | undefined, readonly specialist_industry?: string | null | undefined, readonly skills?: any | null | undefined, readonly resume?: string | null | undefined, readonly linkedin?: string | null | undefined, readonly twitter?: string | null | undefined, readonly instagram?: string | null | undefined, readonly facebook?: string | null | undefined, readonly website?: string | null | undefined, readonly updated_at?: any | null | undefined, readonly is_complete?: boolean | null | undefined } | null | undefined };
 
-export type UpdateUserExperienceMutationVariables = Exact<{
+export type TUpdateUserExperienceMutationVariables = Exact<{
   id: Scalars['uuid'];
-  userExperience: User_Profile_Set_Input;
+  userExperience: TUser_Profile_Set_Input;
 }>;
 
 
-export type UpdateUserExperienceMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, user_id?: any | null | undefined, background?: string | null | undefined, statement?: string | null | undefined, startups?: number | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, availability?: number | null | undefined, resume?: string | null | undefined, business_description?: string | null | undefined } | null | undefined };
+export type TUpdateUserExperienceMutation = { readonly update_user_profile_by_pk?: { readonly __typename?: 'user_profile', readonly id: any, readonly user_id?: any | null | undefined, readonly background?: string | null | undefined, readonly statement?: string | null | undefined, readonly startups?: number | null | undefined, readonly status?: string | null | undefined, readonly skills?: any | null | undefined, readonly availability?: number | null | undefined, readonly resume?: string | null | undefined, readonly business_description?: string | null | undefined } | null | undefined };
 
-export type UpdateResumeMutationVariables = Exact<{
+export type TUpdateResumeMutationVariables = Exact<{
   id: Scalars['uuid'];
-  resume: User_Profile_Set_Input;
+  resume: TUser_Profile_Set_Input;
 }>;
 
 
-export type UpdateResumeMutation = { __typename?: 'mutation_root', update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, resume?: string | null | undefined } | null | undefined };
+export type TUpdateResumeMutation = { readonly update_user_profile_by_pk?: { readonly __typename?: 'user_profile', readonly id: any, readonly resume?: string | null | undefined } | null | undefined };
 
-export type UpdateUserPersonalDetailsMutationVariables = Exact<{
+export type TUpdateUserPersonalDetailsMutationVariables = Exact<{
   id: Scalars['uuid'];
-  userPersonalDetails: Users_Set_Input;
+  userPersonalDetails: TUsers_Set_Input;
 }>;
 
 
-export type UpdateUserPersonalDetailsMutation = { __typename?: 'mutation_root', user?: { __typename?: 'users', first_name?: string | null | undefined, last_name?: string | null | undefined, country?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
+export type TUpdateUserPersonalDetailsMutation = { readonly user?: { readonly __typename?: 'users', readonly first_name?: string | null | undefined, readonly last_name?: string | null | undefined, readonly country?: string | null | undefined, readonly avatar_url?: string | null | undefined } | null | undefined };
 
-export type UpdateUserAvatarMutationVariables = Exact<{
+export type TUpdateUserAvatarMutationVariables = Exact<{
   id: Scalars['uuid'];
-  avatarUrl: Users_Set_Input;
+  avatarUrl: TUsers_Set_Input;
 }>;
 
 
-export type UpdateUserAvatarMutation = { __typename?: 'mutation_root', user?: { __typename?: 'users', avatar_url?: string | null | undefined } | null | undefined };
+export type TUpdateUserAvatarMutation = { readonly user?: { readonly __typename?: 'users', readonly avatar_url?: string | null | undefined } | null | undefined };
 
-export type ResumeFragmentFragment = { __typename?: 'user_profile', id: any, resume?: string | null | undefined };
+export type TResumeFragmentFragment = { readonly __typename?: 'user_profile', readonly id: any, readonly resume?: string | null | undefined };
 
-export type SocialMediaFragmentFragment = { __typename?: 'user_profile', id: any, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined };
+export type TSocialMediaFragmentFragment = { readonly __typename?: 'user_profile', readonly id: any, readonly linkedin?: string | null | undefined, readonly twitter?: string | null | undefined, readonly instagram?: string | null | undefined, readonly facebook?: string | null | undefined, readonly website?: string | null | undefined };
 
-export type ExperienceFragmentFragment = { __typename?: 'user_profile', id: any, background?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, availability?: number | null | undefined, startups?: number | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, specialist_industry?: string | null | undefined, business_description?: string | null | undefined, is_complete?: boolean | null | undefined };
+export type TExperienceFragmentFragment = { readonly __typename?: 'user_profile', readonly id: any, readonly background?: string | null | undefined, readonly statement?: string | null | undefined, readonly status?: string | null | undefined, readonly availability?: number | null | undefined, readonly startups?: number | null | undefined, readonly skills?: any | null | undefined, readonly resume?: string | null | undefined, readonly specialist_industry?: string | null | undefined, readonly business_description?: string | null | undefined, readonly is_complete?: boolean | null | undefined };
 
-export type IdeaFragmentFragment = { __typename?: 'ideas', id: any, name: string, description: string, field: string, mission_statement?: string | null | undefined, competitors?: string | null | undefined, team?: string | null | undefined, additional_information?: string | null | undefined, is_published?: boolean | null | undefined, user_id: any, status?: string | null | undefined };
+export type TIdeaFragmentFragment = { readonly __typename?: 'ideas', readonly id: any, readonly name: string, readonly description: string, readonly field: string, readonly mission_statement?: string | null | undefined, readonly competitors?: string | null | undefined, readonly team?: string | null | undefined, readonly additional_information?: string | null | undefined, readonly is_published?: boolean | null | undefined, readonly user_id: any, readonly status?: string | null | undefined };
 
 export const ResumeFragmentFragmentDoc = gql`
     fragment ResumeFragment on user_profile {
@@ -2471,17 +2472,17 @@ export const GetUserActivitiesDocument = gql`
  *   },
  * });
  */
-export function useGetUserActivitiesQuery(baseOptions: Apollo.QueryHookOptions<GetUserActivitiesQuery, GetUserActivitiesQueryVariables>) {
+export function useGetUserActivitiesQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetUserActivitiesQuery, TGetUserActivitiesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserActivitiesQuery, GetUserActivitiesQueryVariables>(GetUserActivitiesDocument, options);
+        return ApolloReactHooks.useQuery<TGetUserActivitiesQuery, TGetUserActivitiesQueryVariables>(GetUserActivitiesDocument, options);
       }
-export function useGetUserActivitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserActivitiesQuery, GetUserActivitiesQueryVariables>) {
+export function useGetUserActivitiesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetUserActivitiesQuery, TGetUserActivitiesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserActivitiesQuery, GetUserActivitiesQueryVariables>(GetUserActivitiesDocument, options);
+          return ApolloReactHooks.useLazyQuery<TGetUserActivitiesQuery, TGetUserActivitiesQueryVariables>(GetUserActivitiesDocument, options);
         }
 export type GetUserActivitiesQueryHookResult = ReturnType<typeof useGetUserActivitiesQuery>;
 export type GetUserActivitiesLazyQueryHookResult = ReturnType<typeof useGetUserActivitiesLazyQuery>;
-export type GetUserActivitiesQueryResult = Apollo.QueryResult<GetUserActivitiesQuery, GetUserActivitiesQueryVariables>;
+export type GetUserActivitiesQueryResult = Apollo.QueryResult<TGetUserActivitiesQuery, TGetUserActivitiesQueryVariables>;
 export const CreateIdeaDocument = gql`
     mutation createIdea($idea: ideas_insert_input!) {
   idea: insert_ideas_one(object: $idea) {
@@ -2489,7 +2490,7 @@ export const CreateIdeaDocument = gql`
   }
 }
     `;
-export type CreateIdeaMutationFn = Apollo.MutationFunction<CreateIdeaMutation, CreateIdeaMutationVariables>;
+export type TCreateIdeaMutationFn = Apollo.MutationFunction<TCreateIdeaMutation, TCreateIdeaMutationVariables>;
 
 /**
  * __useCreateIdeaMutation__
@@ -2508,13 +2509,13 @@ export type CreateIdeaMutationFn = Apollo.MutationFunction<CreateIdeaMutation, C
  *   },
  * });
  */
-export function useCreateIdeaMutation(baseOptions?: Apollo.MutationHookOptions<CreateIdeaMutation, CreateIdeaMutationVariables>) {
+export function useCreateIdeaMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TCreateIdeaMutation, TCreateIdeaMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateIdeaMutation, CreateIdeaMutationVariables>(CreateIdeaDocument, options);
+        return ApolloReactHooks.useMutation<TCreateIdeaMutation, TCreateIdeaMutationVariables>(CreateIdeaDocument, options);
       }
 export type CreateIdeaMutationHookResult = ReturnType<typeof useCreateIdeaMutation>;
-export type CreateIdeaMutationResult = Apollo.MutationResult<CreateIdeaMutation>;
-export type CreateIdeaMutationOptions = Apollo.BaseMutationOptions<CreateIdeaMutation, CreateIdeaMutationVariables>;
+export type CreateIdeaMutationResult = Apollo.MutationResult<TCreateIdeaMutation>;
+export type CreateIdeaMutationOptions = Apollo.BaseMutationOptions<TCreateIdeaMutation, TCreateIdeaMutationVariables>;
 export const UpdateIdeaDocument = gql`
     mutation updateIdea($idea: ideas_set_input!, $id: uuid!) {
   update_ideas_by_pk(pk_columns: {id: $id}, _set: $idea) {
@@ -2532,7 +2533,7 @@ export const UpdateIdeaDocument = gql`
   }
 }
     `;
-export type UpdateIdeaMutationFn = Apollo.MutationFunction<UpdateIdeaMutation, UpdateIdeaMutationVariables>;
+export type TUpdateIdeaMutationFn = Apollo.MutationFunction<TUpdateIdeaMutation, TUpdateIdeaMutationVariables>;
 
 /**
  * __useUpdateIdeaMutation__
@@ -2552,13 +2553,13 @@ export type UpdateIdeaMutationFn = Apollo.MutationFunction<UpdateIdeaMutation, U
  *   },
  * });
  */
-export function useUpdateIdeaMutation(baseOptions?: Apollo.MutationHookOptions<UpdateIdeaMutation, UpdateIdeaMutationVariables>) {
+export function useUpdateIdeaMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateIdeaMutation, TUpdateIdeaMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateIdeaMutation, UpdateIdeaMutationVariables>(UpdateIdeaDocument, options);
+        return ApolloReactHooks.useMutation<TUpdateIdeaMutation, TUpdateIdeaMutationVariables>(UpdateIdeaDocument, options);
       }
 export type UpdateIdeaMutationHookResult = ReturnType<typeof useUpdateIdeaMutation>;
-export type UpdateIdeaMutationResult = Apollo.MutationResult<UpdateIdeaMutation>;
-export type UpdateIdeaMutationOptions = Apollo.BaseMutationOptions<UpdateIdeaMutation, UpdateIdeaMutationVariables>;
+export type UpdateIdeaMutationResult = Apollo.MutationResult<TUpdateIdeaMutation>;
+export type UpdateIdeaMutationOptions = Apollo.BaseMutationOptions<TUpdateIdeaMutation, TUpdateIdeaMutationVariables>;
 export const GetUserIdeasDocument = gql`
     query getUserIdeas($user_id: uuid!) {
   ideas(
@@ -2592,17 +2593,17 @@ export const GetUserIdeasDocument = gql`
  *   },
  * });
  */
-export function useGetUserIdeasQuery(baseOptions: Apollo.QueryHookOptions<GetUserIdeasQuery, GetUserIdeasQueryVariables>) {
+export function useGetUserIdeasQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetUserIdeasQuery, TGetUserIdeasQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserIdeasQuery, GetUserIdeasQueryVariables>(GetUserIdeasDocument, options);
+        return ApolloReactHooks.useQuery<TGetUserIdeasQuery, TGetUserIdeasQueryVariables>(GetUserIdeasDocument, options);
       }
-export function useGetUserIdeasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserIdeasQuery, GetUserIdeasQueryVariables>) {
+export function useGetUserIdeasLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetUserIdeasQuery, TGetUserIdeasQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserIdeasQuery, GetUserIdeasQueryVariables>(GetUserIdeasDocument, options);
+          return ApolloReactHooks.useLazyQuery<TGetUserIdeasQuery, TGetUserIdeasQueryVariables>(GetUserIdeasDocument, options);
         }
 export type GetUserIdeasQueryHookResult = ReturnType<typeof useGetUserIdeasQuery>;
 export type GetUserIdeasLazyQueryHookResult = ReturnType<typeof useGetUserIdeasLazyQuery>;
-export type GetUserIdeasQueryResult = Apollo.QueryResult<GetUserIdeasQuery, GetUserIdeasQueryVariables>;
+export type GetUserIdeasQueryResult = Apollo.QueryResult<TGetUserIdeasQuery, TGetUserIdeasQueryVariables>;
 export const DeleteIdeaDocument = gql`
     mutation deleteIdea($id: uuid!) {
   delete_ideas_by_pk(id: $id) {
@@ -2610,7 +2611,7 @@ export const DeleteIdeaDocument = gql`
   }
 }
     `;
-export type DeleteIdeaMutationFn = Apollo.MutationFunction<DeleteIdeaMutation, DeleteIdeaMutationVariables>;
+export type TDeleteIdeaMutationFn = Apollo.MutationFunction<TDeleteIdeaMutation, TDeleteIdeaMutationVariables>;
 
 /**
  * __useDeleteIdeaMutation__
@@ -2629,13 +2630,13 @@ export type DeleteIdeaMutationFn = Apollo.MutationFunction<DeleteIdeaMutation, D
  *   },
  * });
  */
-export function useDeleteIdeaMutation(baseOptions?: Apollo.MutationHookOptions<DeleteIdeaMutation, DeleteIdeaMutationVariables>) {
+export function useDeleteIdeaMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TDeleteIdeaMutation, TDeleteIdeaMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteIdeaMutation, DeleteIdeaMutationVariables>(DeleteIdeaDocument, options);
+        return ApolloReactHooks.useMutation<TDeleteIdeaMutation, TDeleteIdeaMutationVariables>(DeleteIdeaDocument, options);
       }
 export type DeleteIdeaMutationHookResult = ReturnType<typeof useDeleteIdeaMutation>;
-export type DeleteIdeaMutationResult = Apollo.MutationResult<DeleteIdeaMutation>;
-export type DeleteIdeaMutationOptions = Apollo.BaseMutationOptions<DeleteIdeaMutation, DeleteIdeaMutationVariables>;
+export type DeleteIdeaMutationResult = Apollo.MutationResult<TDeleteIdeaMutation>;
+export type DeleteIdeaMutationOptions = Apollo.BaseMutationOptions<TDeleteIdeaMutation, TDeleteIdeaMutationVariables>;
 export const GetIdeasDocument = gql`
     query getIdeas($where: idea_preview_bool_exp, $limit: Int, $offset: Int, $orderBy: [idea_preview_order_by!], $userId: uuid!) {
   idea_preview_aggregate(where: $where) {
@@ -2695,17 +2696,17 @@ export const GetIdeasDocument = gql`
  *   },
  * });
  */
-export function useGetIdeasQuery(baseOptions: Apollo.QueryHookOptions<GetIdeasQuery, GetIdeasQueryVariables>) {
+export function useGetIdeasQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetIdeasQuery, TGetIdeasQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetIdeasQuery, GetIdeasQueryVariables>(GetIdeasDocument, options);
+        return ApolloReactHooks.useQuery<TGetIdeasQuery, TGetIdeasQueryVariables>(GetIdeasDocument, options);
       }
-export function useGetIdeasLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetIdeasQuery, GetIdeasQueryVariables>) {
+export function useGetIdeasLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetIdeasQuery, TGetIdeasQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetIdeasQuery, GetIdeasQueryVariables>(GetIdeasDocument, options);
+          return ApolloReactHooks.useLazyQuery<TGetIdeasQuery, TGetIdeasQueryVariables>(GetIdeasDocument, options);
         }
 export type GetIdeasQueryHookResult = ReturnType<typeof useGetIdeasQuery>;
 export type GetIdeasLazyQueryHookResult = ReturnType<typeof useGetIdeasLazyQuery>;
-export type GetIdeasQueryResult = Apollo.QueryResult<GetIdeasQuery, GetIdeasQueryVariables>;
+export type GetIdeasQueryResult = Apollo.QueryResult<TGetIdeasQuery, TGetIdeasQueryVariables>;
 export const GetIdeaDocument = gql`
     query getIdea($id: uuid!) {
   idea: ideas_by_pk(id: $id) {
@@ -2754,17 +2755,17 @@ export const GetIdeaDocument = gql`
  *   },
  * });
  */
-export function useGetIdeaQuery(baseOptions: Apollo.QueryHookOptions<GetIdeaQuery, GetIdeaQueryVariables>) {
+export function useGetIdeaQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetIdeaQuery, TGetIdeaQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetIdeaQuery, GetIdeaQueryVariables>(GetIdeaDocument, options);
+        return ApolloReactHooks.useQuery<TGetIdeaQuery, TGetIdeaQueryVariables>(GetIdeaDocument, options);
       }
-export function useGetIdeaLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetIdeaQuery, GetIdeaQueryVariables>) {
+export function useGetIdeaLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetIdeaQuery, TGetIdeaQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetIdeaQuery, GetIdeaQueryVariables>(GetIdeaDocument, options);
+          return ApolloReactHooks.useLazyQuery<TGetIdeaQuery, TGetIdeaQueryVariables>(GetIdeaDocument, options);
         }
 export type GetIdeaQueryHookResult = ReturnType<typeof useGetIdeaQuery>;
 export type GetIdeaLazyQueryHookResult = ReturnType<typeof useGetIdeaLazyQuery>;
-export type GetIdeaQueryResult = Apollo.QueryResult<GetIdeaQuery, GetIdeaQueryVariables>;
+export type GetIdeaQueryResult = Apollo.QueryResult<TGetIdeaQuery, TGetIdeaQueryVariables>;
 export const UpsertIdeaVoteDocument = gql`
     mutation upsertIdeaVote($idea_vote: idea_votes_insert_input!) {
   insert_idea_votes_one(
@@ -2775,7 +2776,7 @@ export const UpsertIdeaVoteDocument = gql`
   }
 }
     `;
-export type UpsertIdeaVoteMutationFn = Apollo.MutationFunction<UpsertIdeaVoteMutation, UpsertIdeaVoteMutationVariables>;
+export type TUpsertIdeaVoteMutationFn = Apollo.MutationFunction<TUpsertIdeaVoteMutation, TUpsertIdeaVoteMutationVariables>;
 
 /**
  * __useUpsertIdeaVoteMutation__
@@ -2794,13 +2795,13 @@ export type UpsertIdeaVoteMutationFn = Apollo.MutationFunction<UpsertIdeaVoteMut
  *   },
  * });
  */
-export function useUpsertIdeaVoteMutation(baseOptions?: Apollo.MutationHookOptions<UpsertIdeaVoteMutation, UpsertIdeaVoteMutationVariables>) {
+export function useUpsertIdeaVoteMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpsertIdeaVoteMutation, TUpsertIdeaVoteMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpsertIdeaVoteMutation, UpsertIdeaVoteMutationVariables>(UpsertIdeaVoteDocument, options);
+        return ApolloReactHooks.useMutation<TUpsertIdeaVoteMutation, TUpsertIdeaVoteMutationVariables>(UpsertIdeaVoteDocument, options);
       }
 export type UpsertIdeaVoteMutationHookResult = ReturnType<typeof useUpsertIdeaVoteMutation>;
-export type UpsertIdeaVoteMutationResult = Apollo.MutationResult<UpsertIdeaVoteMutation>;
-export type UpsertIdeaVoteMutationOptions = Apollo.BaseMutationOptions<UpsertIdeaVoteMutation, UpsertIdeaVoteMutationVariables>;
+export type UpsertIdeaVoteMutationResult = Apollo.MutationResult<TUpsertIdeaVoteMutation>;
+export type UpsertIdeaVoteMutationOptions = Apollo.BaseMutationOptions<TUpsertIdeaVoteMutation, TUpsertIdeaVoteMutationVariables>;
 export const GetUserSocialsDocument = gql`
     query getUserSocials($id: uuid!) {
   profile: user_profile_by_pk(id: $id) {
@@ -2827,17 +2828,17 @@ export const GetUserSocialsDocument = gql`
  *   },
  * });
  */
-export function useGetUserSocialsQuery(baseOptions: Apollo.QueryHookOptions<GetUserSocialsQuery, GetUserSocialsQueryVariables>) {
+export function useGetUserSocialsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetUserSocialsQuery, TGetUserSocialsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserSocialsQuery, GetUserSocialsQueryVariables>(GetUserSocialsDocument, options);
+        return ApolloReactHooks.useQuery<TGetUserSocialsQuery, TGetUserSocialsQueryVariables>(GetUserSocialsDocument, options);
       }
-export function useGetUserSocialsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserSocialsQuery, GetUserSocialsQueryVariables>) {
+export function useGetUserSocialsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetUserSocialsQuery, TGetUserSocialsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserSocialsQuery, GetUserSocialsQueryVariables>(GetUserSocialsDocument, options);
+          return ApolloReactHooks.useLazyQuery<TGetUserSocialsQuery, TGetUserSocialsQueryVariables>(GetUserSocialsDocument, options);
         }
 export type GetUserSocialsQueryHookResult = ReturnType<typeof useGetUserSocialsQuery>;
 export type GetUserSocialsLazyQueryHookResult = ReturnType<typeof useGetUserSocialsLazyQuery>;
-export type GetUserSocialsQueryResult = Apollo.QueryResult<GetUserSocialsQuery, GetUserSocialsQueryVariables>;
+export type GetUserSocialsQueryResult = Apollo.QueryResult<TGetUserSocialsQuery, TGetUserSocialsQueryVariables>;
 export const GetUserDocument = gql`
     query getUser($user_id: uuid!) {
   user: users_by_pk(id: $user_id) {
@@ -2874,17 +2875,17 @@ export const GetUserDocument = gql`
  *   },
  * });
  */
-export function useGetUserQuery(baseOptions: Apollo.QueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+export function useGetUserQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetUserQuery, TGetUserQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+        return ApolloReactHooks.useQuery<TGetUserQuery, TGetUserQueryVariables>(GetUserDocument, options);
       }
-export function useGetUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+export function useGetUserLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetUserQuery, TGetUserQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
+          return ApolloReactHooks.useLazyQuery<TGetUserQuery, TGetUserQueryVariables>(GetUserDocument, options);
         }
 export type GetUserQueryHookResult = ReturnType<typeof useGetUserQuery>;
 export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
-export type GetUserQueryResult = Apollo.QueryResult<GetUserQuery, GetUserQueryVariables>;
+export type GetUserQueryResult = Apollo.QueryResult<TGetUserQuery, TGetUserQueryVariables>;
 export const UpdateUserProfileDocument = gql`
     mutation updateUserProfile($id: uuid!, $user_profile: user_profile_set_input!) {
   update_user_profile_by_pk(pk_columns: {id: $id}, _set: $user_profile) {
@@ -2908,7 +2909,7 @@ export const UpdateUserProfileDocument = gql`
   }
 }
     `;
-export type UpdateUserProfileMutationFn = Apollo.MutationFunction<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>;
+export type TUpdateUserProfileMutationFn = Apollo.MutationFunction<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>;
 
 /**
  * __useUpdateUserProfileMutation__
@@ -2928,13 +2929,13 @@ export type UpdateUserProfileMutationFn = Apollo.MutationFunction<UpdateUserProf
  *   },
  * });
  */
-export function useUpdateUserProfileMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>) {
+export function useUpdateUserProfileMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>(UpdateUserProfileDocument, options);
+        return ApolloReactHooks.useMutation<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>(UpdateUserProfileDocument, options);
       }
 export type UpdateUserProfileMutationHookResult = ReturnType<typeof useUpdateUserProfileMutation>;
-export type UpdateUserProfileMutationResult = Apollo.MutationResult<UpdateUserProfileMutation>;
-export type UpdateUserProfileMutationOptions = Apollo.BaseMutationOptions<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>;
+export type UpdateUserProfileMutationResult = Apollo.MutationResult<TUpdateUserProfileMutation>;
+export type UpdateUserProfileMutationOptions = Apollo.BaseMutationOptions<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>;
 export const GetUserExperienceDocument = gql`
     query getUserExperience($id: uuid!) {
   profile: user_profile_by_pk(id: $id) {
@@ -2976,17 +2977,17 @@ export const GetUserExperienceDocument = gql`
  *   },
  * });
  */
-export function useGetUserExperienceQuery(baseOptions: Apollo.QueryHookOptions<GetUserExperienceQuery, GetUserExperienceQueryVariables>) {
+export function useGetUserExperienceQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetUserExperienceQuery, TGetUserExperienceQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetUserExperienceQuery, GetUserExperienceQueryVariables>(GetUserExperienceDocument, options);
+        return ApolloReactHooks.useQuery<TGetUserExperienceQuery, TGetUserExperienceQueryVariables>(GetUserExperienceDocument, options);
       }
-export function useGetUserExperienceLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserExperienceQuery, GetUserExperienceQueryVariables>) {
+export function useGetUserExperienceLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetUserExperienceQuery, TGetUserExperienceQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetUserExperienceQuery, GetUserExperienceQueryVariables>(GetUserExperienceDocument, options);
+          return ApolloReactHooks.useLazyQuery<TGetUserExperienceQuery, TGetUserExperienceQueryVariables>(GetUserExperienceDocument, options);
         }
 export type GetUserExperienceQueryHookResult = ReturnType<typeof useGetUserExperienceQuery>;
 export type GetUserExperienceLazyQueryHookResult = ReturnType<typeof useGetUserExperienceLazyQuery>;
-export type GetUserExperienceQueryResult = Apollo.QueryResult<GetUserExperienceQuery, GetUserExperienceQueryVariables>;
+export type GetUserExperienceQueryResult = Apollo.QueryResult<TGetUserExperienceQuery, TGetUserExperienceQueryVariables>;
 export const UpdateUserExperienceDocument = gql`
     mutation updateUserExperience($id: uuid!, $userExperience: user_profile_set_input!) {
   update_user_profile_by_pk(pk_columns: {id: $id}, _set: $userExperience) {
@@ -3003,7 +3004,7 @@ export const UpdateUserExperienceDocument = gql`
   }
 }
     `;
-export type UpdateUserExperienceMutationFn = Apollo.MutationFunction<UpdateUserExperienceMutation, UpdateUserExperienceMutationVariables>;
+export type TUpdateUserExperienceMutationFn = Apollo.MutationFunction<TUpdateUserExperienceMutation, TUpdateUserExperienceMutationVariables>;
 
 /**
  * __useUpdateUserExperienceMutation__
@@ -3023,13 +3024,13 @@ export type UpdateUserExperienceMutationFn = Apollo.MutationFunction<UpdateUserE
  *   },
  * });
  */
-export function useUpdateUserExperienceMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserExperienceMutation, UpdateUserExperienceMutationVariables>) {
+export function useUpdateUserExperienceMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateUserExperienceMutation, TUpdateUserExperienceMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateUserExperienceMutation, UpdateUserExperienceMutationVariables>(UpdateUserExperienceDocument, options);
+        return ApolloReactHooks.useMutation<TUpdateUserExperienceMutation, TUpdateUserExperienceMutationVariables>(UpdateUserExperienceDocument, options);
       }
 export type UpdateUserExperienceMutationHookResult = ReturnType<typeof useUpdateUserExperienceMutation>;
-export type UpdateUserExperienceMutationResult = Apollo.MutationResult<UpdateUserExperienceMutation>;
-export type UpdateUserExperienceMutationOptions = Apollo.BaseMutationOptions<UpdateUserExperienceMutation, UpdateUserExperienceMutationVariables>;
+export type UpdateUserExperienceMutationResult = Apollo.MutationResult<TUpdateUserExperienceMutation>;
+export type UpdateUserExperienceMutationOptions = Apollo.BaseMutationOptions<TUpdateUserExperienceMutation, TUpdateUserExperienceMutationVariables>;
 export const UpdateResumeDocument = gql`
     mutation updateResume($id: uuid!, $resume: user_profile_set_input!) {
   update_user_profile_by_pk(pk_columns: {id: $id}, _set: $resume) {
@@ -3038,7 +3039,7 @@ export const UpdateResumeDocument = gql`
   }
 }
     `;
-export type UpdateResumeMutationFn = Apollo.MutationFunction<UpdateResumeMutation, UpdateResumeMutationVariables>;
+export type TUpdateResumeMutationFn = Apollo.MutationFunction<TUpdateResumeMutation, TUpdateResumeMutationVariables>;
 
 /**
  * __useUpdateResumeMutation__
@@ -3058,13 +3059,13 @@ export type UpdateResumeMutationFn = Apollo.MutationFunction<UpdateResumeMutatio
  *   },
  * });
  */
-export function useUpdateResumeMutation(baseOptions?: Apollo.MutationHookOptions<UpdateResumeMutation, UpdateResumeMutationVariables>) {
+export function useUpdateResumeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateResumeMutation, TUpdateResumeMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateResumeMutation, UpdateResumeMutationVariables>(UpdateResumeDocument, options);
+        return ApolloReactHooks.useMutation<TUpdateResumeMutation, TUpdateResumeMutationVariables>(UpdateResumeDocument, options);
       }
 export type UpdateResumeMutationHookResult = ReturnType<typeof useUpdateResumeMutation>;
-export type UpdateResumeMutationResult = Apollo.MutationResult<UpdateResumeMutation>;
-export type UpdateResumeMutationOptions = Apollo.BaseMutationOptions<UpdateResumeMutation, UpdateResumeMutationVariables>;
+export type UpdateResumeMutationResult = Apollo.MutationResult<TUpdateResumeMutation>;
+export type UpdateResumeMutationOptions = Apollo.BaseMutationOptions<TUpdateResumeMutation, TUpdateResumeMutationVariables>;
 export const UpdateUserPersonalDetailsDocument = gql`
     mutation updateUserPersonalDetails($id: uuid!, $userPersonalDetails: users_set_input!) {
   user: update_users_by_pk(pk_columns: {id: $id}, _set: $userPersonalDetails) {
@@ -3075,7 +3076,7 @@ export const UpdateUserPersonalDetailsDocument = gql`
   }
 }
     `;
-export type UpdateUserPersonalDetailsMutationFn = Apollo.MutationFunction<UpdateUserPersonalDetailsMutation, UpdateUserPersonalDetailsMutationVariables>;
+export type TUpdateUserPersonalDetailsMutationFn = Apollo.MutationFunction<TUpdateUserPersonalDetailsMutation, TUpdateUserPersonalDetailsMutationVariables>;
 
 /**
  * __useUpdateUserPersonalDetailsMutation__
@@ -3095,13 +3096,13 @@ export type UpdateUserPersonalDetailsMutationFn = Apollo.MutationFunction<Update
  *   },
  * });
  */
-export function useUpdateUserPersonalDetailsMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserPersonalDetailsMutation, UpdateUserPersonalDetailsMutationVariables>) {
+export function useUpdateUserPersonalDetailsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateUserPersonalDetailsMutation, TUpdateUserPersonalDetailsMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateUserPersonalDetailsMutation, UpdateUserPersonalDetailsMutationVariables>(UpdateUserPersonalDetailsDocument, options);
+        return ApolloReactHooks.useMutation<TUpdateUserPersonalDetailsMutation, TUpdateUserPersonalDetailsMutationVariables>(UpdateUserPersonalDetailsDocument, options);
       }
 export type UpdateUserPersonalDetailsMutationHookResult = ReturnType<typeof useUpdateUserPersonalDetailsMutation>;
-export type UpdateUserPersonalDetailsMutationResult = Apollo.MutationResult<UpdateUserPersonalDetailsMutation>;
-export type UpdateUserPersonalDetailsMutationOptions = Apollo.BaseMutationOptions<UpdateUserPersonalDetailsMutation, UpdateUserPersonalDetailsMutationVariables>;
+export type UpdateUserPersonalDetailsMutationResult = Apollo.MutationResult<TUpdateUserPersonalDetailsMutation>;
+export type UpdateUserPersonalDetailsMutationOptions = Apollo.BaseMutationOptions<TUpdateUserPersonalDetailsMutation, TUpdateUserPersonalDetailsMutationVariables>;
 export const UpdateUserAvatarDocument = gql`
     mutation updateUserAvatar($id: uuid!, $avatarUrl: users_set_input!) {
   user: update_users_by_pk(pk_columns: {id: $id}, _set: $avatarUrl) {
@@ -3109,7 +3110,7 @@ export const UpdateUserAvatarDocument = gql`
   }
 }
     `;
-export type UpdateUserAvatarMutationFn = Apollo.MutationFunction<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>;
+export type TUpdateUserAvatarMutationFn = Apollo.MutationFunction<TUpdateUserAvatarMutation, TUpdateUserAvatarMutationVariables>;
 
 /**
  * __useUpdateUserAvatarMutation__
@@ -3129,10 +3130,10 @@ export type UpdateUserAvatarMutationFn = Apollo.MutationFunction<UpdateUserAvata
  *   },
  * });
  */
-export function useUpdateUserAvatarMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>) {
+export function useUpdateUserAvatarMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateUserAvatarMutation, TUpdateUserAvatarMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>(UpdateUserAvatarDocument, options);
+        return ApolloReactHooks.useMutation<TUpdateUserAvatarMutation, TUpdateUserAvatarMutationVariables>(UpdateUserAvatarDocument, options);
       }
 export type UpdateUserAvatarMutationHookResult = ReturnType<typeof useUpdateUserAvatarMutation>;
-export type UpdateUserAvatarMutationResult = Apollo.MutationResult<UpdateUserAvatarMutation>;
-export type UpdateUserAvatarMutationOptions = Apollo.BaseMutationOptions<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>;
+export type UpdateUserAvatarMutationResult = Apollo.MutationResult<TUpdateUserAvatarMutation>;
+export type UpdateUserAvatarMutationOptions = Apollo.BaseMutationOptions<TUpdateUserAvatarMutation, TUpdateUserAvatarMutationVariables>;

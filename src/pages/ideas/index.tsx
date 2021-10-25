@@ -39,6 +39,7 @@ const DesktopSearch = () => (
 		pr={6}
 		h={'full'}
 		bg={'white'}
+		spacing={1}
 		borderRightWidth={1}
 		borderRightColor={'fpLightGrey.300'}
 	>

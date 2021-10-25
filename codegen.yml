@@ -1,0 +1,29 @@
+schema:
+    - ${NEXT_PUBLIC_GRAPHQL_BACKEND}:
+        headers:
+            x-hasura-role: user
+            x-hasura-admin-secret: thisissomesecret
+documents:
+    - ./src/**/*.tsx
+    - ./src/**/*.ts
+generates:
+    ./src/generated/graphql.tsx:
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-react-apollo
+        config:
+            namingConvention: change-case-all#pascalCase
+            skipTypename: false
+            skipTypeNameForRoot: true
+            withHooks: true
+            withHOC: false
+            withComponent: false
+            apolloReactHooksImportFrom: '@apollo/client'
+            preResolveTypes: true
+            reactApolloVersion: 3
+            immutableTypes: true
+            constEnums: true
+            enumsAsTypes: true
+            typesPrefix: T
+

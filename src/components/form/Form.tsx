@@ -22,7 +22,7 @@ const Form = (props: TFormProps): ReactElement<any> => {
 			aria-label={name}
 			noValidate
 		>
-			<StackLayout spacing={8} flex={1}>
+			<StackLayout spacing={6} flex={1}>
 				{children}
 			</StackLayout>
 		</form>
