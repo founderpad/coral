@@ -1,6 +1,6 @@
 import { PageLayout } from 'components/layouts';
 import { DocumentTitle } from 'components/shared';
-import CreateEditIdeaForm from 'pages/ideas/components/CreateEditIdeaForm';
+import CreateEditIdeaForm from 'pages/app/ideas/components/CreateEditIdeaForm';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 
