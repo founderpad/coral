@@ -25,7 +25,7 @@ const LegalFooter = memo(
 			</Text>
 			<Text as={'div'} color={'gray.500'} fontSize={'xs'}>
 				Already have an account?{' '}
-				<PrimaryLink href="/login" title={'Link to login'}>
+				<PrimaryLink href="/app/login" title={'Link to login'}>
 					Login here
 				</PrimaryLink>
 			</Text>

@@ -18,7 +18,7 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 			borderColor={'fpLightGrey.300'}
 			flexDirection={'column'}
 			as={BaseLink}
-			href={`/idea/${id}`}
+			href={`/app/idea/${id}`}
 		>
 			<Text color={'fpGrey.700'} fontSize={'sm'} noOfLines={2} mb={'1px'}>
 				{preview}...

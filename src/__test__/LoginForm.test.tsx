@@ -1,15 +1,16 @@
 import { fireEvent, waitFor } from '@testing-library/dom';
+import LoginForm from 'pages/app/login/components/LoginForm';
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import store from 'utils/store';
 import { render } from '__test__/testUtils';
-import LoginForm from '../pages/login/components/LoginForm';
 
-const setup = () => render(
-	<Provider store={store}>
-		<LoginForm />
-	</Provider>
-);
+const setup = () =>
+	render(
+		<Provider store={store}>
+			<LoginForm />
+		</Provider>
+	);
 
 const mockLogin = jest.fn();
 jest.mock('hooks/auth', () => ({
@@ -35,7 +36,7 @@ describe('Login form', () => {
 		expect(getByRole('button', { name: /submit/i })).toBeDisabled();
 	});
 
-	test('should make login request on submit', async() => {
+	test('should make login request on submit', async () => {
 		const { getByPlaceholderText, getByRole } = setup();
 
 		const emailInput = getByPlaceholderText(/Email/i);
@@ -46,15 +47,16 @@ describe('Login form', () => {
 		expect(passwordInput.value).toBe('');
 
 		act(() => {
-			fireEvent.change(emailInput, { target: { value: 'jamie@gmail.com' }});
-			fireEvent.change(passwordInput, { target: { value: '123456' }});
+			fireEvent.change(emailInput, {
+				target: { value: 'jamie@gmail.com' }
+			});
+			fireEvent.change(passwordInput, { target: { value: '123456' } });
 		});
 
 		expect(emailInput.value).toBe('jamie@gmail.com');
 		expect(passwordInput.value).toBe('123456');
 
 		fireEvent.submit(submitButton);
-		await waitFor(() =>
-			expect(mockLogin).toHaveBeenCalledTimes(1));
+		await waitFor(() => expect(mockLogin).toHaveBeenCalledTimes(1));
 	});
 });

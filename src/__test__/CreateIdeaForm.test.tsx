@@ -2,7 +2,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import { fireEvent } from '@testing-library/dom';
 import { TIdeas } from 'generated/api';
 import { CREATE_IDEA } from 'graphql/ideas';
-import CreateEditIdeaForm from 'pages/ideas/components/CreateEditIdeaForm';
+import CreateEditIdeaForm from 'pages/app/ideas/components/CreateEditIdeaForm';
 import { render } from '__test__/testUtils';
 
 describe('Create idea form', () => {

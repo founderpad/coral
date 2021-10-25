@@ -232,7 +232,7 @@ exports[`Register form matches snapshot 1`] = `
             Already have an account? 
             <a
               class="chakra-link css-1lqupfn"
-              href="/login"
+              href="/app/login"
               title="Link to login"
             >
               Login here
