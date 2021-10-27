@@ -5,7 +5,7 @@ import React from 'react';
 
 type Props = BoxProps & {
 	title: string;
-	subtitle?: string;
+	subtitle?: React.ReactNode;
 	fixedHeader?: boolean;
 	action?: React.ReactNode;
 };
@@ -30,6 +30,7 @@ export const PageLayout = (props: Props): JSX.Element => {
 				d={'flex'}
 				flex={1}
 				w={'full'}
+				flexDirection={'column'}
 				p={p ?? { base: 4 }}
 				css={{
 					'> *:first-child': {

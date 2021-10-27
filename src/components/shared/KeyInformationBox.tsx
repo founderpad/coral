@@ -32,11 +32,11 @@ const KeyInformationBox = ({
 			<SubheadingText
 				label={value}
 				icon={icon}
-				color={'fpGrey.900'}
 				size={'xs'}
 				textAlign={'center'}
+				fontWeight={'light'}
 			/>
-			<Label label={title} color={'fpGrey.300'} fontSize={'xs'} />
+			<Label label={title} color={'gray.400'} fontSize={'xs'} />
 		</StackLayout>
 	);
 };

@@ -75,7 +75,6 @@ const IdeasSearchForm = (): JSX.Element => {
 			<Heading
 				as={'h6'}
 				fontSize={'md'}
-				color={'fpGrey.900'}
 				display={{ base: 'none', md: 'block' }}
 				mb={4}
 			>
@@ -116,7 +115,7 @@ const IdeasSearchForm = (): JSX.Element => {
 
 			{/* business status  */}
 			{/* ideas with questionnaires */}
-			<ButtonGroup>
+			<ButtonGroup pt={4} spacing={4}>
 				<CancelButton label={'Clear'} flex={1} onClick={onClear} />
 				<SubmitButton
 					name={'search-ideas-button'}

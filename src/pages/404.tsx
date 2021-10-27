@@ -11,7 +11,7 @@ const NotFound = (): JSX.Element => {
 			alignItems={'center'}
 			spacing={4}
 		>
-			<Heading color={'fpGrey.900'}>Page not found</Heading>
+			<Heading>Page not found</Heading>
 			<GoBackButton />
 		</Stack>
 	);

@@ -52,14 +52,9 @@ export const Drawer = ({
 				{title && (
 					<React.Fragment>
 						{!actions && (
-							<DrawerCloseButton
-								top={4}
-								right={4}
-								color={'fpGrey.500'}
-							/>
+							<DrawerCloseButton top={3} color={'black'} />
 						)}
 						<DrawerHeader
-							color={'fpGrey.900'}
 							fontWeight={'medium'}
 							fontSize={'lg'}
 							p={4}

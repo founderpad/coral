@@ -12,14 +12,11 @@ exports[`PageLayout layout matches PageLayout snapshot 1`] = `
         class="css-1lekzkb"
       >
         <h4
-          class="chakra-heading css-djevj3"
+          class="chakra-heading css-1xnzs7r"
         >
           Page layout test
         </h4>
       </div>
-      <h4
-        class="chakra-text css-ax9bdp"
-      />
     </header>
     <main
       class="css-kwwp0a"

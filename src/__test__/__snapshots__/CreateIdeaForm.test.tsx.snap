@@ -10,17 +10,17 @@ exports[`Create idea form matches snapshot 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-6epcyi"
+      class="chakra-stack css-km7s47"
     >
       <div
         class="chakra-stack css-1uxng5d"
       >
         <div
-          class="chakra-form-control css-1cmijj6"
+          class="chakra-form-control css-gwmwit"
           role="group"
         >
           <label
-            class="chakra-form__label css-1cz0ncb"
+            class="chakra-form__label css-1kr1wuy"
             for="name"
             id="name-label"
           >
@@ -36,7 +36,7 @@ exports[`Create idea form matches snapshot 1`] = `
           <input
             aria-label="name"
             aria-required="true"
-            class="chakra-input css-vnjr4l"
+            class="chakra-input css-ewkscn"
             control="[object Object]"
             errortext="Please enter a name for your idea"
             id="name"
@@ -52,7 +52,7 @@ exports[`Create idea form matches snapshot 1`] = `
           role="group"
         >
           <label
-            class="chakra-form__label css-1hrwh1j"
+            class="chakra-form__label css-1kr1wuy"
             for="description"
             id="description-label"
           >
@@ -78,7 +78,7 @@ exports[`Create idea form matches snapshot 1`] = `
           role="group"
         >
           <label
-            class="chakra-form__label css-1hrwh1j"
+            class="chakra-form__label css-1kr1wuy"
             for="field"
             id="field-label"
           >
@@ -97,7 +97,7 @@ exports[`Create idea form matches snapshot 1`] = `
             <select
               aria-label="select-field-field"
               aria-required="true"
-              class="chakra-select css-z0iqzd"
+              class="chakra-select css-1j1jvqa"
               id="select-field-field"
               name="select-field-field"
               required=""
@@ -207,7 +207,7 @@ exports[`Create idea form matches snapshot 1`] = `
           role="group"
         >
           <label
-            class="chakra-form__label css-1hrwh1j"
+            class="chakra-form__label css-1kr1wuy"
             for="status"
             id="status-label"
           >
@@ -226,7 +226,7 @@ exports[`Create idea form matches snapshot 1`] = `
             <select
               aria-label="select-status-field"
               aria-required="true"
-              class="chakra-select css-z0iqzd"
+              class="chakra-select css-1j1jvqa"
               id="select-status-field"
               name="select-status-field"
               required=""
@@ -281,7 +281,7 @@ exports[`Create idea form matches snapshot 1`] = `
           role="group"
         >
           <label
-            class="chakra-form__label css-1hrwh1j"
+            class="chakra-form__label css-1kr1wuy"
             for="competitors"
             id="competitors-label"
           >
@@ -298,7 +298,7 @@ exports[`Create idea form matches snapshot 1`] = `
           role="group"
         >
           <label
-            class="chakra-form__label css-1hrwh1j"
+            class="chakra-form__label css-1kr1wuy"
             for="team"
             id="team-label"
           >
@@ -315,7 +315,7 @@ exports[`Create idea form matches snapshot 1`] = `
           role="group"
         >
           <label
-            class="chakra-form__label css-1hrwh1j"
+            class="chakra-form__label css-1kr1wuy"
             for="additional_information"
             id="additional_information-label"
           >
@@ -332,7 +332,7 @@ exports[`Create idea form matches snapshot 1`] = `
           role="group"
         >
           <label
-            class="chakra-form__label css-k9vklr"
+            class="chakra-form__label css-as19zo"
             for="is_published"
             id="label-is_published"
           >

@@ -10,7 +10,7 @@ export const SubheadingText = (props: THeadingProps): JSX.Element => {
 		<BaseHeading
 			{...props}
 			size={props.size ?? size}
-			color={props.color ?? 'fpGrey.500'}
+			color={props.color ?? 'black'}
 		/>
 	);
 };

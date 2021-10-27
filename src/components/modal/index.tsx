@@ -66,7 +66,6 @@ export const Modal = (props: IModalProps): JSX.Element => {
 			>
 				{title && (
 					<ModalHeader
-						color={'fpGrey.900'}
 						fontWeight={'medium'}
 						fontSize={'xl'}
 						p={4}
@@ -89,7 +88,6 @@ export const Modal = (props: IModalProps): JSX.Element => {
 				<ModalBody
 					fontWeight={'normal'}
 					fontSize={'md'}
-					color={'gray.500'}
 					flex={1}
 					p={removePadding ? 0 : 4}
 					maxH={'100%'}

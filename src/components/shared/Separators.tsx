@@ -20,7 +20,7 @@ export const PointSeparator = ({
 		as={'span'}
 		mx={'3px'}
 		display={display ?? 'block'}
-		color={color ?? 'fpGrey.200'}
+		color={color ?? 'gray.400'}
 	>
 		{small ? <>&middot;</> : <>&bull;</>}
 	</Box>

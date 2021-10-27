@@ -10,19 +10,19 @@ exports[`Login form matches snapshot 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-6epcyi"
+      class="chakra-stack css-km7s47"
     >
       <div
         class="chakra-stack css-1moek9b"
       >
         <div
-          class="chakra-form-control css-1cmijj6"
+          class="chakra-form-control css-gwmwit"
           role="group"
         >
           <input
             aria-label="email"
             aria-required="true"
-            class="chakra-input css-vnjr4l"
+            class="chakra-input css-ewkscn"
             control="[object Object]"
             errortext="Please enter a valid email"
             id="email-email"
@@ -35,13 +35,13 @@ exports[`Login form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1cmijj6"
+          class="chakra-form-control css-gwmwit"
           role="group"
         >
           <input
             aria-label="password"
             aria-required="true"
-            class="chakra-input css-vnjr4l"
+            class="chakra-input css-ewkscn"
             control="[object Object]"
             errortext="Please enter a valid password between 6 and 20 characters."
             id="password-password"

@@ -1,6 +1,7 @@
-import { Flex, Text } from '@chakra-ui/layout';
+import { Flex } from '@chakra-ui/layout';
 import { StackLayout } from 'components/layouts';
-import { PointSeparator, Upvote } from 'components/shared';
+import { Upvote } from 'components/shared';
+import BaseTag from 'components/tags/BaseTag';
 import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
 
@@ -13,33 +14,14 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 	const { field, id, idea_user, idea_votes } = idea;
 
 	return (
-		<Flex
-			alignItems={'center'}
-			p={{ base: 2, sm: 3 }}
-			borderWidth={1}
-			borderTop={0}
-			borderColor={'fpLightGrey.300'}
-		>
+		<Flex alignItems={'center'} p={{ base: 2, sm: 3 }} borderTop={0}>
 			<StackLayout direction={'row'} spacing={1}>
-				<Text
-					fontSize={{ base: 'xs', sm: 'sm' }}
-					color={'fpPrimary.500'}
-					title={
-						'The country where the created user of this idea lives'
-					}
-				>
+				<BaseTag color={'fpPrimary.500'} bg={'transparent'}>
 					{idea_user?.country}
-				</Text>
-			</StackLayout>
-			<PointSeparator small />
-			<StackLayout direction={'row'} spacing={1}>
-				<Text
-					fontSize={{ base: 'xs', sm: 'sm' }}
-					color={'fpPrimary.500'}
-					title={'The field for this idea'}
-				>
+				</BaseTag>
+				<BaseTag color={'fpPrimary.500'} bg={'transparent'}>
 					{field}
-				</Text>
+				</BaseTag>
 			</StackLayout>
 			<StackLayout
 				justifyContent={'flex-end'}
@@ -48,26 +30,6 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 				spacing={{ base: 2, sm: 4 }}
 			>
 				<Upvote {...idea_votes} ideaId={id} />
-
-				{/* <Flex
-					alignItems={'center'}
-					cursor={'pointer'}
-					_hover={{ color: 'fpGrey.900' }}
-					color={'fpGrey.500'}
-				>
-					<Icon
-						as={IoChatboxEllipsesSharp}
-						fontSize={{ base: 'md', sm: 'xl' }}
-						title={'Number of comments on this idea'}
-						mr={{ base: 1, sm: 2 }}
-					/>
-					<Text
-						fontSize={{ base: 'xs', sm: 'sm' }}
-						fontWeight={'medium'}
-					>
-						5
-					</Text>
-				</Flex> */}
 			</StackLayout>
 		</Flex>
 	);

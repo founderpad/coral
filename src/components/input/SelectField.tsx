@@ -42,7 +42,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 							value={value}
 							_focus={{
 								borderWidth: 1,
-								borderColor: 'fpGrey.500'
+								borderColor: 'gray.500'
 							}}
 							onChange={onChange}
 							size={size ?? 'sm'}

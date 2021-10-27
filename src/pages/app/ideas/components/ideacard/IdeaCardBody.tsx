@@ -1,40 +1,40 @@
-import { Text } from '@chakra-ui/layout';
+import { Label } from 'components/labels';
 import { FlexLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
+import { SeeMoreLink } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 
-type TIdeaCardBody = Pick<TIdea_Preview, 'name' | 'preview' | 'id' | 'status'>;
+type TIdeaCardBody = Pick<
+	TIdea_Preview,
+	'name' | 'preview' | 'id' | 'status' | 'created_at' | 'idea_user'
+>;
 
 const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
-	const { id, preview, status } = idea;
+	const { id, preview } = idea;
 
 	return (
 		<FlexLayout
 			p={{ base: 2, sm: 3 }}
-			borderWidth={1}
-			borderBottom={0}
-			borderTop={0}
-			borderColor={'fpLightGrey.300'}
 			flexDirection={'column'}
 			as={BaseLink}
 			href={`/app/idea/${id}`}
 		>
-			<Text color={'fpGrey.700'} fontSize={'sm'} noOfLines={2} mb={'1px'}>
-				{preview}...
-			</Text>
-			<Text
-				color={'fpGrey.700'}
-				fontSize={'sm'}
-				fontWeight={'medium'}
+			<Label
+				fontSize={{ base: 'xs', sm: 'sm' }}
 				noOfLines={2}
-			>
-				{status}
-			</Text>
+				mb={'1px'}
+				label={
+					<>
+						{preview}... <SeeMoreLink href={`/app/idea/${id}`} />
+					</>
+				}
+				color={'gray.500'}
+				overflow={'hidden'}
+				isTruncated
+			/>
 		</FlexLayout>
 	);
 };
-
-// fontSize={{ base: 'sm', sm: 'md' }}
 
 export default IdeaCardBody;

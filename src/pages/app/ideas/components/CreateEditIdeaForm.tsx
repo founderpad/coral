@@ -185,7 +185,6 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					name="is_published"
 					label="Publish your idea"
 					helperText="You can change this after it's been created"
-					// defaultChecked={!idea || idea?.is_published}
 					defaultChecked={true}
 					control={control}
 				/>

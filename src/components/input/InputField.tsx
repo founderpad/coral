@@ -1,4 +1,4 @@
-import { FormControl, FormLabel } from '@chakra-ui/form-control';
+import { FormControl } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
 import {
 	FormHelperText,
@@ -7,7 +7,7 @@ import {
 	InputGroup,
 	InputLeftAddon
 } from '@chakra-ui/react';
-import { FormErrorText } from 'components/form';
+import { FormErrorText, FormLabelText } from 'components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'types/fields';
@@ -36,10 +36,12 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				w={{ base: 'full' }}
 				_focus={{
 					borderWidth: 1,
-					borderColor: 'fpGrey.500'
+					borderColor: 'gray.500'
 				}}
 			>
-				{label && <InputFieldLabel label={label} />}
+				{/* {label && <InputFieldLabel label={label} />} */}
+
+				{label && <FormLabelText label={label} />}
 				<Controller
 					render={({
 						field: { onChange, value },
@@ -52,7 +54,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							size={size ?? 'md'}
 							_focus={{
 								borderWidth: 1,
-								borderColor: 'fpGrey.500'
+								borderColor: 'gray.500'
 							}}
 							_
 							ref={ref}
@@ -77,11 +79,11 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 	}
 );
 
-const InputFieldLabel = ({ label }: { label: string }): JSX.Element => (
-	<FormLabel as="label" fontSize={'sm'} color={'fpGrey.900'} mb={'1px'}>
-		{label}
-	</FormLabel>
-);
+// const InputFieldLabel = ({ label }: { label: string }): JSX.Element => (
+// 	<FormLabel as="label" fontSize={'sm'} mb={'1px'} color={'black'}>
+// 		{label}
+// 	</FormLabel>
+// );
 
 // const InputFieldWithLabel = forwardRef<IInputFieldProps<any>, 'input'>(
 // 	(props, _ref): JSX.Element => (

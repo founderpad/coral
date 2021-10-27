@@ -15,7 +15,7 @@ export const SwitchField = forwardRef((props, ref) => {
 			<FormLabel
 				as={'label'}
 				fontSize={'sm'}
-				color={'gray.600'}
+				color={'black'}
 				htmlFor={id}
 				id={`label-${id}`}
 			>

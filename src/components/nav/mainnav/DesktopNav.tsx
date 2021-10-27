@@ -33,15 +33,19 @@ const DesktopNav = (): JSX.Element => {
 							p={2}
 							href={navItem.href ?? '#'}
 							fontSize={'sm'}
-							fontWeight={500}
+							fontWeight={
+								router.pathname === navItem.href
+									? 'medium'
+									: 'normal'
+							}
 							color={
 								router.pathname === navItem.href
-									? 'fpPrimary.300'
-									: 'fpGrey.300'
+									? 'black'
+									: 'gray.500'
 							}
 							_hover={{
 								textDecoration: 'none',
-								color: 'fpGrey.900'
+								color: 'black'
 							}}
 						>
 							{navItem.label}
@@ -70,7 +74,7 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 			display={'block'}
 			p={2}
 			rounded={'md'}
-			_hover={{ bg: useColorModeValue('gray.50', 'gray.900') }}
+			_hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
 		>
 			<StackLayout direction={'row'} spacing={2}>
 				<BoxLayout p={0} alignItems={'center'}>
@@ -84,8 +88,7 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 						<BaseLabel
 							transition={'all .3s ease'}
 							label={label}
-							color={'fpGrey.900'}
-							fontWeight={500}
+							color={'gray.700'}
 							_groupHover={{ color: 'fpGrey.900' }}
 						/>
 						<BaseLabel label={subLabel} color={'fpGrey.300'} />

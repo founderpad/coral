@@ -1,10 +1,9 @@
 import { Flex, Text } from '@chakra-ui/layout';
-import { BaseLink } from 'components/links';
-import { PointSeparator } from 'components/shared';
+import { FlexLayout } from 'components/layouts';
 import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
-import { formatDate } from 'utils/validators';
 import NewIdeaBadge from '../NewIdeaBadge';
+import PostedBy from './PostedBy';
 
 type TIdeaCardHeader = Pick<
 	TIdea_Preview,
@@ -12,8 +11,7 @@ type TIdeaCardHeader = Pick<
 >;
 
 const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
-	const { name, idea_user, created_at, is_new } = idea;
-	// const { id } = idea_user;
+	const { name, is_new } = idea;
 
 	return (
 		<Flex
@@ -28,46 +26,28 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 			justifyContent={{ sm: 'space-between' }}
 			overflowX={'hidden'}
 		>
-			<Flex alignItems={'center'} overflowX={'hidden'} mr={4}>
-				<Text
-					fontWeight={'bold'}
-					pl={{ sm: 10 }}
-					fontSize={'sm'}
-					color={'fpGrey.900'}
-					aria-label={'The name of the idea'}
-					title={'The name of this idea'}
-					whiteSpace={'nowrap'}
-					alignItems={'center'}
-					textOverflow={'ellipsis'}
-					isTruncated
-				>
-					{name}
-				</Text>
-				{is_new && <NewIdeaBadge />}
-			</Flex>
-			<Flex alignItems={'center'}>
-				<Text
-					fontSize={'xs'}
-					color={'fpGrey.300'}
-					fontWeight={'medium'}
-					as={BaseLink}
-					href={`/app/user/${idea_user?.id}`}
-					_hover={{ color: 'fpGrey.700' }}
-					mb={0}
-					title={'The user who posted this idea'}
-				>
-					Posted by {idea_user?.first_name}
-				</Text>
-				<PointSeparator small />
-				<Text
-					fontSize={'xs'}
-					color={'fpGrey.300'}
-					fontWeight={'medium'}
-					title={'When the idea was posted'}
-				>
-					{formatDate(created_at)}
-				</Text>
-			</Flex>
+			<FlexLayout
+				overflowX={'hidden'}
+				mr={4}
+				flexDirection={{ base: 'column', sm: 'row' }}
+			>
+				<FlexLayout>
+					<Text
+						fontWeight={'medium'}
+						pl={{ sm: 10 }}
+						fontSize={'sm'}
+						aria-label={'The name of the idea'}
+						title={'The name of this idea'}
+						whiteSpace={'nowrap'}
+						textOverflow={'ellipsis'}
+						isTruncated
+					>
+						{name}
+					</Text>
+					{is_new && <NewIdeaBadge />}
+				</FlexLayout>
+			</FlexLayout>
+			<PostedBy {...idea} />
 		</Flex>
 	);
 };

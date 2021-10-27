@@ -76,7 +76,7 @@ const IdeaTab = (): JSX.Element => {
 			</FlexLayout>
 
 			<FlexLayout>
-				<SubheadingText label={name} color={'fpGrey.900'} />
+				<SubheadingText label={name} />
 				{idea.is_published && (
 					<Icon
 						as={IoCheckmarkCircleSharp}

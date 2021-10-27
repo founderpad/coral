@@ -20,8 +20,7 @@ export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 			fontSize={'xs'}
 			d={'flex'}
 			textAlign={'end'}
-			color={'fpGrey.300'}
-			fontWeight={'medium'}
+			color={'gray.400'}
 			ml={'auto'}
 		>
 			{offset + 1} - {offset + pageSize} of {total}

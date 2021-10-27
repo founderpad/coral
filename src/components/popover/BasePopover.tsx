@@ -13,10 +13,15 @@ export const BasePopover = (props: Props): JSX.Element => {
 	const { children, trigger, triggerEl } = props;
 
 	return (
-		<Popover trigger={trigger ?? 'hover'} placement={'bottom-start'}>
+		<Popover
+			trigger={trigger ?? 'hover'}
+			placement={'bottom'}
+			// strategy={'fixed'}
+		>
 			<PopoverTrigger>{triggerEl}</PopoverTrigger>
 
 			{children && (
+				// <Portal>
 				<PopoverContent
 					border={0}
 					boxShadow={'xl'}
@@ -25,6 +30,7 @@ export const BasePopover = (props: Props): JSX.Element => {
 				>
 					{children}
 				</PopoverContent>
+				// </Portal>
 			)}
 		</Popover>
 	);

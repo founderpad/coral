@@ -6,7 +6,7 @@ export const Label = (props: TLabelProps): JSX.Element => (
 	<BaseLabel
 		{...props}
 		fontSize={props.fontSize ?? 'sm'}
-		color={props.color ?? 'fpGrey.900'}
+		color={props.color ?? 'black'}
 	/>
 );
 

@@ -9,6 +9,7 @@ export { NoResults } from './NoResults';
 export { PageHeader } from './PageHeader';
 export { Pagination } from './Pagination';
 export { SearchResultsLabel } from './SearchResultsLabel';
+export { SeeMoreLink } from './SeeMoreLink';
 export { LineSeparator, PointSeparator } from './Separators';
 export { StickySubheader } from './StickySubheader';
 export { TitleEditAction } from './TitleEditAction';

@@ -1,15 +1,10 @@
+import { FormLabel } from '@chakra-ui/react';
 import React, { memo } from 'react';
-import { FormLabel } from '@chakra-ui/react'
 
 export const FormLabelText = memo(({ label }: { label: string }) => (
-    <FormLabel
-        as={'label'}
-        fontSize={'sm'}
-        color={'gray.600'}
-        mb={'1px'}
-    >
-        {label}
-    </FormLabel>
+	<FormLabel as={'label'} fontSize={'sm'} mb={'1px'} color={'black'}>
+		{label}
+	</FormLabel>
 ));
 
 export default FormLabelText;

@@ -40,11 +40,12 @@ const customTheme = extendTheme({
 		}
 	},
 	fonts: {
-		heading: 'Roboto',
-		body: 'Roboto',
-		text: 'Roboto',
-		menubar: 'Roboto',
-		button: 'Roboto'
+		heading: 'Montserrat',
+		body: 'Hind',
+		text: 'Hind',
+		menubar: 'Hind',
+		button: 'Hind',
+		a: 'Montserrat'
 	},
 	components: {
 		Button: {

@@ -1,6 +1,7 @@
 import Icon from '@chakra-ui/icon';
-import { HStack, Text } from '@chakra-ui/layout';
+import { HStack } from '@chakra-ui/layout';
 import { BaseButton } from 'components/buttons';
+import { Label } from 'components/labels';
 import { FlexLayout } from 'components/layouts';
 import { TIdea_Votes, useUpsertIdeaVoteMutation } from 'generated/api';
 import React from 'react';
@@ -37,20 +38,24 @@ export const Upvote = (
 					variant={'unstyled'}
 					d={'flex'}
 					onClick={() => upsertIdeaVote()}
+					color={
+						ideaVotes?.idea?.idea_votes ? 'green.300' : 'gray.500'
+					}
 				>
-					<Icon as={IoArrowUpSharp} fontSize={'large'} mr={2} />
-					<Text
+					<Icon as={IoArrowUpSharp} fontSize={'large'} mr={1} />
+					<Label
 						fontSize={{ base: 'xs', sm: 'sm' }}
-						fontWeight={'medium'}
+						fontWeight={'normal'}
+						label={
+							ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum
+								.vote_type ?? 0
+						}
 						color={
 							ideaVotes?.idea?.idea_votes
 								? 'green.300'
-								: 'fpGrey.500'
+								: 'gray.500'
 						}
-					>
-						{ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum
-							.vote_type ?? 0}
-					</Text>
+					/>
 				</BaseButton>
 			</FlexLayout>
 

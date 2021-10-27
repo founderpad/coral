@@ -1,5 +1,6 @@
-import { Flex, Heading, Text } from '@chakra-ui/layout';
-import { Box } from '@chakra-ui/react';
+import { SubheadingText } from 'components/heading';
+import { Label } from 'components/labels';
+import { FlexLayout, StackLayout } from 'components/layouts';
 import React, { memo } from 'react';
 
 export const PageHeader = memo(
@@ -10,33 +11,38 @@ export const PageHeader = memo(
 		action
 	}: {
 		title: string;
-		subtitle?: string;
+		subtitle?: React.ReactNode;
 		fixedHeader?: boolean;
 		action?: React.ReactNode;
 	}) => {
 		return (
 			<React.Fragment>
-				<Box
+				<StackLayout
 					as={'header'}
 					bg={'transparent'}
 					p={{ base: 4 }}
 					position={fixedHeader ? 'fixed' : 'inherit'}
 					top={0}
 					w={'full'}
+					spacing={0}
 				>
-					<Flex
+					<FlexLayout
 						justifyContent={'space-between'}
 						alignItems={'center'}
 					>
-						<Heading as="h4" size="md" color={'gray.600'}>
-							{title}
-						</Heading>
+						<SubheadingText label={title} />
 						{action}
-					</Flex>
-					<Text as="h4" size="md" color={'gray.500'}>
-						{subtitle}
-					</Text>
-				</Box>
+					</FlexLayout>
+					{subtitle && (
+						<Label
+							as="h4"
+							fontSize="sm"
+							label={subtitle}
+							color={'gray.500'}
+							fontWeight={'medium'}
+						/>
+					)}
+				</StackLayout>
 			</React.Fragment>
 		);
 	}

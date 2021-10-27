@@ -13,7 +13,7 @@ exports[`Register form matches snapshot 1`] = `
         role="group"
       >
         <label
-          class="chakra-form__label css-1hrwh1j"
+          class="chakra-form__label css-1kr1wuy"
           for="type"
           id="type-label"
         >
@@ -33,7 +33,7 @@ exports[`Register form matches snapshot 1`] = `
             aria-describedby="type-helptext"
             aria-label="select-type-field"
             aria-required="true"
-            class="chakra-select css-z0iqzd"
+            class="chakra-select css-1j1jvqa"
             id="select-type-field"
             name="select-type-field"
             required=""
@@ -92,11 +92,11 @@ exports[`Register form matches snapshot 1`] = `
         class="chakra-stack css-x4fhqb"
       >
         <div
-          class="chakra-form-control css-1cmijj6"
+          class="chakra-form-control css-gwmwit"
           role="group"
         >
           <label
-            class="chakra-form__label css-1cz0ncb"
+            class="chakra-form__label css-1kr1wuy"
             for="firstName"
             id="firstName-label"
           >
@@ -112,7 +112,7 @@ exports[`Register form matches snapshot 1`] = `
           <input
             aria-label="firstName"
             aria-required="true"
-            class="chakra-input css-vnjr4l"
+            class="chakra-input css-ewkscn"
             control="[object Object]"
             errortext="You must input a first name"
             id="firstName"
@@ -125,11 +125,11 @@ exports[`Register form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1cmijj6"
+          class="chakra-form-control css-gwmwit"
           role="group"
         >
           <label
-            class="chakra-form__label css-1cz0ncb"
+            class="chakra-form__label css-1kr1wuy"
             for="lastName"
             id="lastName-label"
           >
@@ -137,7 +137,7 @@ exports[`Register form matches snapshot 1`] = `
           </label>
           <input
             aria-label="lastName"
-            class="chakra-input css-vnjr4l"
+            class="chakra-input css-ewkscn"
             control="[object Object]"
             id="lastName"
             label="Last name"
@@ -152,13 +152,13 @@ exports[`Register form matches snapshot 1`] = `
         class="chakra-stack css-1kii5if"
       >
         <div
-          class="chakra-form-control css-1cmijj6"
+          class="chakra-form-control css-gwmwit"
           role="group"
         >
           <input
             aria-label="email"
             aria-required="true"
-            class="chakra-input css-vnjr4l"
+            class="chakra-input css-ewkscn"
             control="[object Object]"
             errortext="Please enter a valid email"
             id="email-email"
@@ -171,13 +171,13 @@ exports[`Register form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-1cmijj6"
+          class="chakra-form-control css-gwmwit"
           role="group"
         >
           <input
             aria-label="password"
             aria-required="true"
-            class="chakra-input css-vnjr4l"
+            class="chakra-input css-ewkscn"
             control="[object Object]"
             errortext="Please enter a valid password between 6 and 20 characters."
             id="password-password"

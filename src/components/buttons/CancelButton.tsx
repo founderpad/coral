@@ -7,7 +7,12 @@ export const CancelButton = ({
 	...props
 }: ButtonProps & { label: string; form?: string }): JSX.Element => {
 	return (
-		<BaseButton {...props} name={'cancel-button'} colorScheme={'gray'}>
+		<BaseButton
+			{...props}
+			name={'cancel-button'}
+			variant={'outline'}
+			color={'black'}
+		>
 			{label ?? 'Cancel'}
 		</BaseButton>
 	);
