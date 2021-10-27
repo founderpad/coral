@@ -283,7 +283,12 @@ export const STARTUP_STATUS = [
 	{ key: 'none', value: 'Not involved in a startup' }
 ];
 
-export const IDEA_STATUS = [
+type IdeaStatus = {
+	readonly key: string;
+	readonly value: string;
+};
+
+export const IDEA_STATUS: IdeaStatus[] = [
 	{ key: 'new', value: 'New idea' },
 	{ key: 'team', value: 'Building team' },
 	{ key: 'prelaunch', value: 'Pre-launch' },

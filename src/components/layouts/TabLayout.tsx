@@ -33,19 +33,20 @@ const TabLayout = (props: Props): JSX.Element => {
 			{...rest}
 			onChange={onChange}
 			overflow={'hidden'}
-			colorScheme={'fpPrimary'}
+			colorScheme={'black'}
 		>
 			<TabList borderBottomWidth={1}>
 				{tabs?.map((tab: TabProps, key: number) => (
 					<Tab
-						color={'fpGrey.200'}
+						color={'gray.400'}
 						fontSize={{ base: 'xs', sm: 'sm' }}
 						fontWeight={'medium'}
 						key={tab?.label}
 						px={px ?? { lg: 2 }}
 						_hover={{
-							borderColor: tabIndex !== key && 'fpGrey.200'
+							borderColor: tabIndex !== key && 'gray.400'
 						}}
+						_selected={{ color: 'black', borderColor: 'black' }}
 						mr={4}
 					>
 						{tab?.icon && (

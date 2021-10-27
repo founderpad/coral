@@ -88,10 +88,14 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 						<BaseLabel
 							transition={'all .3s ease'}
 							label={label}
-							color={'gray.700'}
-							_groupHover={{ color: 'fpGrey.900' }}
+							color={'black'}
+							_groupHover={{ color: 'gray.900' }}
 						/>
-						<BaseLabel label={subLabel} color={'fpGrey.300'} />
+						<BaseLabel
+							label={subLabel}
+							color={'gray.400'}
+							fontWeight={'normal'}
+						/>
 					</BoxLayout>
 				</BoxLayout>
 
@@ -108,7 +112,7 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 					flex={1}
 				>
 					<Icon
-						color={'fpGrey.300'}
+						color={'gray.500'}
 						w={4}
 						h={4}
 						as={IoChevronForwardSharp}

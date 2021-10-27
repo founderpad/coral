@@ -1,6 +1,6 @@
-import { BoxLayout } from 'components/layouts';
 import TabLayout from 'components/layouts/TabLayout';
 import React from 'react';
+import CommentsTab from './CommentsTab';
 import IdeaTab from './IdeaTab';
 
 const ViewIdeaTabLayout = (): JSX.Element => {
@@ -18,7 +18,7 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 			isLazy
 		>
 			<IdeaTab />
-			<BoxLayout>Comments coming soon</BoxLayout>
+			<CommentsTab />
 			{/* <BoxLayout>Workboard</BoxLayout>
 			<BoxLayout>Metrics</BoxLayout> */}
 		</TabLayout>

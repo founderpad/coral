@@ -82,6 +82,11 @@ const NavItems: Array<NavItem> = [
 	// 	divider: true
 	// },
 	{
+		label: 'Messages',
+		key: 'messages',
+		href: '/app/messages'
+	},
+	{
 		label: (
 			<Flex display={'inline-flex'} alignItems={'center'}>
 				Coming soon{' '}

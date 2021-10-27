@@ -211,6 +211,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					disabled={!isValid || isSubmitting}
 					mt={'auto'}
 					minW={'xs'}
+					size={'md'}
 				/>
 			</Stack>
 		</Form>

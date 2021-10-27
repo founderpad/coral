@@ -1,4 +1,3 @@
-import { SubheadingText } from 'components/heading';
 import { Label } from 'components/labels';
 import { StackLayout } from 'components/layouts';
 import React from 'react';
@@ -17,28 +16,25 @@ const KeyInformationBox = ({
 	title: string;
 	value: string | number;
 	icon?: IconType;
-}): JSX.Element => {
-	return (
-		<StackLayout
-			spacing={1}
-			p={4}
-			boxShadow={'sm'}
-			background={'gray.50'}
-			rounded={'md'}
-			alignItems={'center'}
-			justifyContent={'center'}
-			display={{ base: 'none', md: 'flex' }}
-		>
-			<SubheadingText
-				label={value}
-				icon={icon}
-				size={'xs'}
-				textAlign={'center'}
-				fontWeight={'light'}
-			/>
-			<Label label={title} color={'gray.400'} fontSize={'xs'} />
-		</StackLayout>
-	);
-};
+}): JSX.Element => (
+	<StackLayout
+		spacing={1}
+		p={4}
+		boxShadow={'sm'}
+		background={'gray.50'}
+		rounded={'md'}
+		alignItems={'center'}
+		justifyContent={'center'}
+		display={{ base: 'none', md: 'flex' }}
+	>
+		<Label
+			label={value}
+			fontSize={'md'}
+			icon={icon}
+			fontWeight={'medium'}
+		/>
+		<Label label={title} color={'gray.500'} fontSize={'sm'} />
+	</StackLayout>
+);
 
 export default KeyInformationBox;

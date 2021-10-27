@@ -1,4 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
+import { StepsStyleConfig as Steps } from 'chakra-ui-steps';
 
 const customTheme = extendTheme({
 	colors: {
@@ -48,6 +49,7 @@ const customTheme = extendTheme({
 		a: 'Montserrat'
 	},
 	components: {
+		Steps,
 		Button: {
 			baseStyle: {
 				rounded: 'md',
