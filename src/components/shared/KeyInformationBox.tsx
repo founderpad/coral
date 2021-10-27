@@ -20,8 +20,9 @@ const KeyInformationBox = ({
 	<StackLayout
 		spacing={1}
 		p={4}
-		boxShadow={'sm'}
 		background={'gray.50'}
+		borderWidth={1}
+		borderColor={'gray.100'}
 		rounded={'md'}
 		alignItems={'center'}
 		justifyContent={'center'}
