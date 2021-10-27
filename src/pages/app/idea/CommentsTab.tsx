@@ -153,7 +153,7 @@ const CommentsList = () => (
 );
 
 const RepliesList = () => (
-	<StackLayout spacing={4}>
+	<StackLayout spacing={4} pt={4}>
 		{replies.map((reply, _index) => (
 			<MessageLayout
 				key={_index}
