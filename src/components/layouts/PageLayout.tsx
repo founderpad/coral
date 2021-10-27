@@ -18,10 +18,11 @@ export const PageLayout = (props: Props): JSX.Element => {
 	return (
 		<Flex
 			{...rest}
-			flex={1}
-			h={'full'}
+			// flex={1}
+			// h={'full'}
 			flexDirection={'column'}
-			position={'relative'}
+			// position={'relative'}
+			// overflow={'hidden'}
 			w={'full'}
 		>
 			<PageHeader {...headerProps} />
