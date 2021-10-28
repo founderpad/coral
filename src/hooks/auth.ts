@@ -71,7 +71,7 @@ export const useLogout = (): any => {
 
 	return async (): Promise<void> => {
 		try {
-			await router.replace('/loggedout');
+			await router.replace('/app/loggedout');
 			await auth.logout();
 			// dispatch(clearUser());
 		} catch (error) {
