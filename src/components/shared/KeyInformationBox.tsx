@@ -45,7 +45,7 @@ const KeyInformationBox = ({
 			fontWeight={'medium'}
 			display={{ base: 'none', md: 'flex' }}
 		/>
-		<Label label={title} color={'gray.500'} fontSize={'sm'} />
+		<Label label={title} color={'gray.400'} fontSize={'sm'} />
 	</StackLayout>
 );
 

@@ -18,15 +18,6 @@ const ProfileSectionLabel = memo(
 		<FlexLayout alignItems={'center'} wordBreak={'break-all'}>
 			{icon && <Icon as={icon} color={'gray.400'} mr={2} />}
 			{children ?? (
-				// <Text
-				// 	title={label}
-				// 	color={'fpGrey.300'}
-				// 	textOverflow={'ellipsis'}
-				// 	isTruncated
-				// >
-				// 	{label ?? 'Not set'}
-				// </Text>
-
 				<Label
 					label={label ?? 'Not set'}
 					color={'gray.400'}

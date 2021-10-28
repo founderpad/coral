@@ -140,7 +140,7 @@ export const FileUploader = (props: Props): JSX.Element => {
 						<input {...getInputProps()} />
 						<Flex
 							as="p"
-							color={'gray.500'}
+							color={'gray.400'}
 							alignItems={'center'}
 							flexDirection={'column'}
 						>
@@ -148,7 +148,7 @@ export const FileUploader = (props: Props): JSX.Element => {
 								as={IoCloudUploadSharp}
 								fontSize={'x-large'}
 								mb={2}
-								color={'gray.500'}
+								color={'gray.400'}
 							/>
 							<Text color={'gray.500'} fontSize={'sm'}>
 								{label}
@@ -191,7 +191,7 @@ const AddedFile = ({
 		<HStack alignItems={'center'}>
 			<Icon
 				as={IoDocumentSharp}
-				color={'gray.500'}
+				color={'gray.400'}
 				fontSize={'xx-large'}
 			/>
 			<Flex flexDirection={'column'}>

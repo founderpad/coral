@@ -10,7 +10,6 @@ const IdeasPagination = ({
 	const router = useRouter();
 	// const page = router.query.page;
 
-	// console.log('pages count: ', Math.ceil(pagesCount));
 	return (
 		<Pagination
 			// currentPage={0}

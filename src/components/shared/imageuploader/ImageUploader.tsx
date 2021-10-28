@@ -118,7 +118,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 	const getCropData = async () => {
 		const imageElement: any = cropperRef?.current;
 		const cropper: any = imageElement?.cropper;
-		console.log(cropper.getCroppedCanvas().toDataURL());
+		// console.log(cropper.getCroppedCanvas().toDataURL());
 
 		const res: Response = await fetch(
 			cropper.getCroppedCanvas().toDataURL()

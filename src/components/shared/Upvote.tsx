@@ -39,7 +39,7 @@ export const Upvote = (
 					d={'flex'}
 					onClick={() => upsertIdeaVote()}
 					color={
-						ideaVotes?.idea?.idea_votes ? 'green.300' : 'gray.500'
+						ideaVotes?.idea?.idea_votes ? 'green.300' : 'gray.400'
 					}
 				>
 					<Icon as={IoArrowUpSharp} fontSize={'large'} mr={1} />
@@ -53,7 +53,7 @@ export const Upvote = (
 						color={
 							ideaVotes?.idea?.idea_votes
 								? 'green.300'
-								: 'gray.500'
+								: 'gray.400'
 						}
 					/>
 				</BaseButton>

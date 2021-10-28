@@ -185,7 +185,7 @@ const Actions = () => (
 				mr={1}
 				size={'sm'}
 				fontWeight={'normal'}
-				color={'gray.500'}
+				color={'gray.400'}
 			/>
 		</BaseButton>
 		<BaseButton

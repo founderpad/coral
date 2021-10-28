@@ -20,7 +20,7 @@ const Investor = () => {
 					color={'goldenrod'}
 					fontSize={'xxx-large'}
 				/>
-				<Heading color={'gray.500'} mt={6}>
+				<Heading color={'gray.400'} mt={6}>
 					Mentor network coming soon
 				</Heading>
 			</Box>

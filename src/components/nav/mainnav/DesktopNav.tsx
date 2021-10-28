@@ -73,7 +73,7 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 			_hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
 		>
 			<StackLayout direction={'row'} spacing={2}>
-				<BoxLayout p={0} alignItems={'center'}>
+				<BoxLayout alignItems={'center'} p={2}>
 					{icon && <Icon as={icon} mr={2} />}
 					<BoxLayout
 						p={0}

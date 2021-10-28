@@ -10,7 +10,7 @@ export const BaseLabel = (props: TLabelProps): JSX.Element => (
 		fontWeight={props.fontWeight}
 	>
 		{props.icon && (
-			<Icon as={props.icon} mr={2} fontSize={'md'} color={'fpGrey.900'} />
+			<Icon as={props.icon} mr={2} fontSize={'md'} color={'gray.900'} />
 		)}
 		{props.label}
 	</Text>

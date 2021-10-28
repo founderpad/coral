@@ -14,7 +14,7 @@ const BaseHeading = (props: BaseHeadingProps): JSX.Element => {
 	return (
 		<Heading
 			size={size ?? 'sm'}
-			color={color ?? 'fpGrey.900'}
+			color={color ?? 'black'}
 			alignItems={'center'}
 			d={'flex'}
 		>

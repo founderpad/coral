@@ -9,6 +9,7 @@ import { useCurrentUser } from 'hooks/auth';
 import { cache } from 'pages/_app';
 import React, { useContext } from 'react';
 import {
+	IoGlobe,
 	IoLogoFacebook,
 	IoLogoInstagram,
 	IoLogoLinkedin,
@@ -64,7 +65,7 @@ const SocialMediaDetails = (): JSX.Element => {
 						as={IoLogoLinkedin}
 						color={'gray.400'}
 						_hover={{ color: 'linkedin.700', cursor: 'pointer' }}
-						boxSize={'6'}
+						boxSize={5}
 					/>
 				)}
 				{socials?.twitter && (
@@ -72,7 +73,7 @@ const SocialMediaDetails = (): JSX.Element => {
 						as={IoLogoTwitter}
 						color={'gray.400'}
 						_hover={{ color: 'twitter.500', cursor: 'pointer' }}
-						boxSize={'6'}
+						boxSize={5}
 					/>
 				)}
 				{socials?.instagram && (
@@ -84,7 +85,7 @@ const SocialMediaDetails = (): JSX.Element => {
 							color: 'black',
 							cursor: 'pointer'
 						}}
-						boxSize={'6'}
+						boxSize={5}
 					/>
 				)}
 				{socials?.facebook && (
@@ -92,7 +93,15 @@ const SocialMediaDetails = (): JSX.Element => {
 						as={IoLogoFacebook}
 						color={'gray.400'}
 						_hover={{ color: 'facebook.500', cursor: 'pointer' }}
-						boxSize={'6'}
+						boxSize={5}
+					/>
+				)}
+				{socials?.website && (
+					<Icon
+						as={IoGlobe}
+						color={'gray.400'}
+						_hover={{ color: 'green.500', cursor: 'pointer' }}
+						boxSize={5}
 					/>
 				)}
 			</StackLayout>

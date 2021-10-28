@@ -36,7 +36,7 @@ const EditCreateEditIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
 	// }, [data]);
 
 	const onUpdate = () => {
-		console.log('');
+		// console.log('');
 	};
 
 	return (
