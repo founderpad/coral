@@ -41,11 +41,11 @@ const customTheme = extendTheme({
 		}
 	},
 	fonts: {
-		// heading: {
-		// 	h1: {
+		heading: {
+			h1: {
 
-		// 	}
-		// },
+			}
+		},
 		body: 'Hind',
 		text: 'Hind',
 		menubar: 'Hind',
