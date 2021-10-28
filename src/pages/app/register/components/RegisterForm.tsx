@@ -57,6 +57,7 @@ const RegisterForm = (): JSX.Element => {
 						placeholder="First name"
 						control={control}
 						rules={{ maxLength: 20, minLength: 2 }}
+						size={'md'}
 						isRequired
 					/>
 					<InputField
@@ -65,6 +66,7 @@ const RegisterForm = (): JSX.Element => {
 						placeholder="Last name"
 						control={control}
 						rules={{ maxLength: 20 }}
+						size={'md'}
 					/>
 				</StackLayout>
 				<StackLayout>
@@ -74,6 +76,7 @@ const RegisterForm = (): JSX.Element => {
 						error={errors['email']}
 						errorText="Please enter a valid email"
 						control={control}
+						size={'md'}
 						isRequired
 					/>
 					<PasswordField
@@ -82,6 +85,7 @@ const RegisterForm = (): JSX.Element => {
 						error={errors['password']}
 						rules={{ maxLength: 20, minLength: 6 }}
 						control={control}
+						size={'md'}
 						isRequired
 					/>
 					<SubmitButton

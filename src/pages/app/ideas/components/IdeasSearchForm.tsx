@@ -1,9 +1,10 @@
-import { ButtonGroup, Heading } from '@chakra-ui/react';
+import { ButtonGroup } from '@chakra-ui/react';
 import { CancelButton, SubmitButton } from 'components/buttons';
 import Form from 'components/form/Form';
 import { useBaseForm } from 'components/form/hooks';
 import { InputField } from 'components/input/InputField';
 import { SelectField } from 'components/input/SelectField';
+import { Label } from 'components/labels';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
@@ -72,14 +73,22 @@ const IdeasSearchForm = (): JSX.Element => {
 			name={'ideaSearchForm'}
 			onSubmit={handleSubmit(onClick)}
 		>
-			<Heading
+			{/* <Heading
 				as={'h6'}
 				fontSize={'md'}
 				display={{ base: 'none', md: 'block' }}
 				mb={4}
 			>
 				Search ideas
-			</Heading>
+			</Heading> */}
+
+			<Label
+				label={'Search ideas'}
+				display={{ base: 'none', md: 'block' }}
+				fontSize={'md'}
+				fontWeight={'semibold'}
+				mb={4}
+			/>
 			<InputField
 				id="name"
 				name="name"

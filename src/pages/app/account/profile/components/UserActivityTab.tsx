@@ -34,30 +34,28 @@ const UserActivityTab = (): JSX.Element => {
 	);
 };
 
-const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => {
-	return (
-		<Flex p={0} flexDirection={'column'}>
-			<Flex justifyContent={'space-between'} alignItems={'flex-start'}>
-				<Flex flexDirection={'column'}>
-					<Label
-						fontSize={'sm'}
-						fontWeight={'md'}
-						label={activity.description}
-					/>
-					<PrimaryLink
-						href={activity?.url}
-						fontSize={'sm'}
-						title={'Link to view the idea'}
-					>
-						View this {activity.type}
-					</PrimaryLink>
-				</Flex>
-				<Text fontSize={'xs'} color={'fpGrey.300'}>
-					{formatDate(activity.created_at)}
-				</Text>
+const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => (
+	<Flex p={0} flexDirection={'column'}>
+		<Flex justifyContent={'space-between'} alignItems={'flex-start'}>
+			<Flex flexDirection={'column'}>
+				<Label
+					fontSize={'sm'}
+					fontWeight={'md'}
+					label={activity.description}
+				/>
+				<PrimaryLink
+					href={`/app/${activity?.url}`}
+					fontSize={'sm'}
+					title={'Link to view the idea'}
+				>
+					View this {activity.type}
+				</PrimaryLink>
 			</Flex>
+			<Text fontSize={'xs'} color={'fpGrey.300'}>
+				{formatDate(activity.created_at)}
+			</Text>
 		</Flex>
-	);
-};
+	</Flex>
+);
 
 export default UserActivityTab;

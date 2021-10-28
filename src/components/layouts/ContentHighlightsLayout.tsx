@@ -34,8 +34,17 @@ const ContentHighlightsLayout = (props: Props): JSX.Element => {
 					))}
 				</StackLayout>
 			</GridItem>
-			<GridItem colSpan={{ md: 4, lg: 3 }} order={{ base: 1, md: 2 }}>
-				<StackLayout spacing={4} display={{ base: 'none', md: 'flex' }}>
+			<GridItem
+				colSpan={{ md: 4, lg: 3 }}
+				order={{ base: 1, md: 2 }}
+				borderLeftWidth={1}
+				borderColor={'gray.100'}
+			>
+				<StackLayout
+					display={{ base: 'none', md: 'flex' }}
+					flex={1}
+					pl={4}
+				>
 					{highlights.map((h, key) => (
 						<KeyInformationBox key={key} {...h} />
 					))}

@@ -60,13 +60,13 @@ const UserImageUploader = (): JSX.Element => {
 	return (
 		<ImageUploader
 			title="Edit profile photo"
-			boxSize={150}
+			boxSize={140}
 			onUpload={uploadUserImage}
 			defaultSrc={avatar_url}
 		>
 			<UserAvatar
 				src={avatar_url}
-				boxSize={150}
+				boxSize={140}
 				rounded={'full'}
 				aria-label="Edit profile picture"
 			/>

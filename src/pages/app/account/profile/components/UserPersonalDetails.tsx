@@ -1,6 +1,6 @@
-import { Stack } from '@chakra-ui/layout';
-import { FlexProps } from '@chakra-ui/react';
+import { Box, FlexProps } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
+import { StackLayout } from 'components/layouts';
 import { TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useCurrentUser } from 'hooks/auth';
@@ -9,6 +9,8 @@ import { IoLocationSharp, IoMailSharp, IoTimeSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';
+import SocialMediaDetails from './SocialMediaDetails';
+import UserImageUploader from './UserImageUploader';
 
 type Props = Pick<FlexProps, 'display' | 'mb'>;
 
@@ -36,23 +38,33 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 	};
 
 	return (
-		<Stack {...props} spacing={1} w={'full'} mb={4}>
-			<TitleEditAction
-				title={user?.first_name + ' ' + user?.last_name}
-				onClick={onClick}
-			/>
+		<StackLayout spacing={2}>
+			<Box boxSize={'145px'}>
+				<UserImageUploader />
+			</Box>
 
-			<ProfileSectionLabel
-				label={user?.account.email}
-				icon={IoMailSharp}
-			/>
+			<StackLayout {...props} spacing={2} w={'full'} mb={4}>
+				<TitleEditAction
+					title={user?.first_name + ' ' + user?.last_name}
+					onClick={onClick}
+				/>
 
-			<ProfileSectionLabel label={user?.country} icon={IoLocationSharp} />
-			<ProfileSectionLabel
-				label={`Joined ` + formatDate(user?.created_at, true)}
-				icon={IoTimeSharp}
-			/>
-		</Stack>
+				<ProfileSectionLabel
+					label={user?.account.email}
+					icon={IoMailSharp}
+				/>
+
+				<ProfileSectionLabel
+					label={user?.country}
+					icon={IoLocationSharp}
+				/>
+				<ProfileSectionLabel
+					label={`Joined ` + formatDate(user?.created_at, true)}
+					icon={IoTimeSharp}
+				/>
+				<SocialMediaDetails />
+			</StackLayout>
+		</StackLayout>
 	);
 });
 

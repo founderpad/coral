@@ -26,7 +26,8 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 				mb={'1px'}
 				label={
 					<>
-						{preview}... <SeeMoreLink href={`/app/idea/${id}`} />
+						{preview}...{' '}
+						<SeeMoreLink href={`/app/idea/${id}`} label={'idea'} />
 					</>
 				}
 				color={'gray.500'}

@@ -38,14 +38,13 @@ const customTheme = extendTheme({
 			700: '#E9E9E9',
 			800: '#E7E7E7',
 			900: '#E2E2E2'
+		},
+		instagram: {
+			500: 'linear-gradient(45DEG, #405DE6, #5851DB, #C13584, #E1306C, #FD1D1D)'
 		}
 	},
 	fonts: {
-		heading: {
-			h1: {
-
-			}
-		},
+		heading: 'Montserrat',
 		body: 'Hind',
 		text: 'Hind',
 		menubar: 'Hind',
@@ -54,6 +53,13 @@ const customTheme = extendTheme({
 	},
 	components: {
 		Steps,
+		Divider: {
+			variants: {
+				solid: {
+					borderColor: 'gray.100'
+				}
+			}
+		},
 		Button: {
 			baseStyle: {
 				fontWeight: 'medium'
@@ -169,6 +175,29 @@ const customTheme = extendTheme({
 					minW: 6,
 					fontSize: 'xs',
 					px: 2
+				}
+			}
+		},
+		Menu: {
+			baseStyle: {
+				border: '1px solid',
+				borderColor: 'red.500',
+				item: {
+					// py: 1
+					_hover: {
+						bg: 'gray.100'
+					}
+				},
+				button: {
+					p: 1,
+					bg: 'transparent',
+					_hover: {
+						bg: 'red.500'
+					}
+				},
+				list: {
+					borderWidth: '1px',
+					borderColor: 'gray.100'
 				}
 			}
 		}

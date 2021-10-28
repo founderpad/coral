@@ -148,7 +148,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 				bg={'fpLightGrey.300'}
 				flex={1}
 				as={'label'}
-				boxSize={150}
+				boxSize={140}
 				justifyContent={'center'}
 				alignItems={'center'}
 				flexDirection={'column'}
@@ -182,7 +182,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 					className="image"
 					position={'relative'}
 					rounded={'full'}
-					boxSize={150}
+					boxSize={140}
 					css={{
 						'> img': {
 							maxWidth: '100%',

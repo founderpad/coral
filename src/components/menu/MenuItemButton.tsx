@@ -1,5 +1,5 @@
-import { Text } from '@chakra-ui/layout';
 import { MenuItem, MenuItemProps } from '@chakra-ui/menu';
+import { Label } from 'components/labels';
 import React from 'react';
 
 export type BaseMenuItemProps = Pick<MenuItemProps, 'color' | 'onClick'> & {
@@ -14,9 +14,11 @@ export const MenuItemButton = ({
 	...rest
 }: BaseMenuItemProps): JSX.Element => (
 	<MenuItem {...rest} flexDirection={'column'} alignItems={'flex-start'}>
-		<Text>{title}</Text>
-		<Text fontSize={'sm'} color={'fpGrey.300'}>
-			{subTitle}
-		</Text>
+		<Label label={title} fontWeight={'medium'} fontSize={'sm'} />
+		<Label
+			fontSize={'smaller'}
+			color={rest.color ?? 'gray.400'}
+			label={subTitle}
+		/>
 	</MenuItem>
 );

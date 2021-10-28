@@ -1,7 +1,7 @@
-import { Grid } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/layout';
 import React from 'react';
-import UserProfileDetails from '../components/UserProfileDetails';
-import UserProfileOverview from '../components/UserProfileOverview';
+import UserPersonalDetails from '../components/UserPersonalDetails';
+import UserProfileTabLayout from './UserProfileTabLayout';
 
 const ProfileLayout = (): JSX.Element => (
 	<Grid
@@ -10,8 +10,12 @@ const ProfileLayout = (): JSX.Element => (
 		template
 		w={'full'}
 	>
-		<UserProfileOverview />
-		<UserProfileDetails />
+		<GridItem colSpan={{ md: 3 }} display={{ base: 'none', md: 'block' }}>
+			<UserPersonalDetails mb={8} />
+		</GridItem>
+		<GridItem colSpan={{ base: 12, md: 9 }}>
+			<UserProfileTabLayout />
+		</GridItem>
 	</Grid>
 );
 

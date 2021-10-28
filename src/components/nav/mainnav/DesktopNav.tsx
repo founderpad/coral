@@ -6,14 +6,13 @@ import { BaseLabel } from 'components/labels/BaseLabel';
 import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
 import BasePopover from 'components/popover/BasePopover';
 import useUserProfile from 'hooks/user';
-import { useRouter } from 'next/router';
+import { usePathMatch } from 'hooks/util';
 import React from 'react';
 import { IoChevronForwardSharp } from 'react-icons/io5';
 import NavLink from '../components/NavLink';
 import NavItems, { NavItem } from './NavItems';
 
 const DesktopNav = (): JSX.Element => {
-	const router = useRouter();
 	const isComplete = useUserProfile().is_complete;
 
 	return (
@@ -34,12 +33,10 @@ const DesktopNav = (): JSX.Element => {
 							href={navItem.href ?? '#'}
 							fontSize={'sm'}
 							fontWeight={
-								router.pathname === navItem.href
-									? 'medium'
-									: 'normal'
+								usePathMatch(navItem.href) ? 'medium' : 'normal'
 							}
 							color={
-								router.pathname === navItem.href
+								usePathMatch(navItem.href)
 									? 'black'
 									: 'gray.500'
 							}
@@ -72,7 +69,6 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 			href={href}
 			role={'group'}
 			display={'block'}
-			p={2}
 			rounded={'md'}
 			_hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
 		>

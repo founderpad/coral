@@ -16,15 +16,7 @@ export const PageLayout = (props: Props): JSX.Element => {
 	const headerProps = { fixedHeader, title, subtitle, action };
 
 	return (
-		<Flex
-			{...rest}
-			// flex={1}
-			// h={'full'}
-			flexDirection={'column'}
-			// position={'relative'}
-			// overflow={'hidden'}
-			w={'full'}
-		>
+		<Flex {...rest} flexDirection={'column'} w={'full'}>
 			<PageHeader {...headerProps} />
 			<Box
 				as={'main'}

@@ -17,11 +17,11 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 		<Flex
 			px={1}
 			py={1}
-			bg={'fpLightGrey.300'}
+			bg={'gray.50'}
 			spacing={0}
 			borderWidth={1}
 			borderBottom={0}
-			borderColor={'fpLightGrey.300'}
+			borderColor={'gray.50'}
 			flexDirection={{ base: 'column', sm: 'row' }}
 			justifyContent={{ sm: 'space-between' }}
 			overflowX={'hidden'}

@@ -1,6 +1,6 @@
-import { Flex } from '@chakra-ui/layout';
 import { EditButton } from 'components/buttons';
 import { Label } from 'components/labels';
+import { FlexLayout } from 'components/layouts';
 import React, { memo } from 'react';
 
 export const TitleEditAction = memo(
@@ -10,30 +10,20 @@ export const TitleEditAction = memo(
 	}: {
 		title: string;
 		onClick?: () => void;
-	}): JSX.Element => {
-		return (
-			<Flex
-				justifyContent={'space-between'}
-				alignItems={'center'}
-				w={'full'}
-			>
-				{/* <Heading
-					color={'fpGrey.900'}
-					fontSize={{ base: 'md', md: 'large' }}
-				>
-					{title}
-				</Heading> */}
-				<Label
-					label={title}
-					color={'black'}
-					fontSize={'lg'}
-					fontWeight={'semibold'}
-				/>
+	}): JSX.Element => (
+		<FlexLayout
+			justifyContent={'space-between'}
+			alignItems={'center'}
+			w={'full'}
+		>
+			<Label
+				label={title}
+				color={'black'}
+				fontSize={'lg'}
+				fontWeight={'semibold'}
+			/>
 
-				{onClick && (
-					<EditButton onClick={onClick} aria-label={'Edit'} />
-				)}
-			</Flex>
-		);
-	}
+			{onClick && <EditButton onClick={onClick} aria-label={'Edit'} />}
+		</FlexLayout>
+	)
 );

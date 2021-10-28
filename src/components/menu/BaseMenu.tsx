@@ -10,28 +10,26 @@ export const BaseMenu = ({
 	options
 }: {
 	options: BaseMenuItemProps[];
-}): JSX.Element => {
-	return (
-		<Menu>
-			<MenuButton
-				p={1}
-				as={Button}
-				rounded={'full'}
-				cursor={'pointer'}
-				bg={'transparent'}
-			>
-				<Icon as={IoEllipsisVertical} color={'fpGrey.700'} />
-			</MenuButton>
-			<MenuList rounded={'none'} textAlign={'start'}>
-				{options?.map((option, key) => (
-					<React.Fragment key={key}>
-						<MenuItemButton {...option} />
-						{option.divider && <Divider />}
-					</React.Fragment>
-				))}
-			</MenuList>
-		</Menu>
-	);
-};
+}): JSX.Element => (
+	<Menu>
+		<MenuButton
+			p={1}
+			as={Button}
+			cursor={'pointer'}
+			bg={'transparent'}
+			rounded={'full'}
+		>
+			<Icon as={IoEllipsisVertical} color={'fpGrey.700'} />
+		</MenuButton>
+		<MenuList rounded={'none'} textAlign={'start'}>
+			{options?.map((option, key) => (
+				<React.Fragment key={key}>
+					<MenuItemButton {...option} />
+					{option.divider && <Divider />}
+				</React.Fragment>
+			))}
+		</MenuList>
+	</Menu>
+);
 
 export default BaseMenu;

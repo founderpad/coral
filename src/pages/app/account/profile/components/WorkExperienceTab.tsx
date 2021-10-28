@@ -57,13 +57,13 @@ const WorkExperienceTab = (): JSX.Element => {
 						value: userProfile?.specialist_industry ?? 'Not set'
 					},
 					{
-						title: 'No. of startups',
+						title: 'Previous startups',
 						value: userProfile?.startups
-							? `${userProfile?.startups} previous startups`
+							? `${userProfile?.startups} startups`
 							: 'Not set'
 					},
 					{
-						title: 'Current start-up status',
+						title: 'Start-up  status',
 						value: userProfile?.status ?? 'Not set'
 					},
 					{

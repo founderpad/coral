@@ -50,8 +50,6 @@ const ResumeUploader = (): JSX.Element => {
 				auth.getClaim('x-hasura-user-id') as string
 			}.${extension}?v=` + timestamp;
 
-		console.log('resume: ', resume);
-
 		try {
 			await storage.put(filePath, resume, null, (_d: any) => {
 				setFilePath(filePath);

@@ -18,10 +18,18 @@ const UserMenu = (): JSX.Element => {
 				rounded={'full'}
 				cursor={'pointer'}
 				bg={'transparent'}
+				_hover={{ bg: 'gray.100' }}
+				_active={{ bg: 'transparent' }}
 				ml={8}
+				css={{
+					'> *': {
+						display: 'flex',
+						alignItems: 'center'
+					}
+				}}
 			>
 				<UserAvatar size={'xs'} src={user} />
-				<Icon as={IoEllipsisVertical} ml={1} color={'fpGrey.700'} />
+				<Icon as={IoEllipsisVertical} ml={1} color={'gray.500'} />
 			</MenuButton>
 			<MenuList rounded={'none'} textAlign={'start'} p={4}>
 				<CurrentUserAvatarDetails />
@@ -32,9 +40,8 @@ const UserMenu = (): JSX.Element => {
 						as={BaseLink}
 						href={'/app/account/profile'}
 						fontSize={'sm'}
-						color={'fpGrey.300'}
-						fontWeight={'medium'}
-						_hover={{ color: 'fpGrey.900' }}
+						color={'gray.500'}
+						_hover={{ color: 'black' }}
 					>
 						Profile
 					</MenuItem>
@@ -42,9 +49,8 @@ const UserMenu = (): JSX.Element => {
 						as={BaseLink}
 						href={'/app/user/settings'}
 						fontSize={'sm'}
-						color={'fpGrey.300'}
-						fontWeight={'medium'}
-						_hover={{ color: 'fpGrey.900' }}
+						color={'gray.500'}
+						_hover={{ color: 'black' }}
 					>
 						Settings
 					</MenuItem>

@@ -28,7 +28,7 @@ const DesktopIdeaCard = (idea: TIdea_Preview): JSX.Element => {
 				src={idea_user?.avatar_url}
 			/>
 			<IdeaCardHeader {...idea} />
-			<Box hover={{ bg: 'fpGrey.900' }}>
+			<Box>
 				<IdeaCardBody {...idea} />
 				<IdeaCardFooter {...idea} />
 			</Box>

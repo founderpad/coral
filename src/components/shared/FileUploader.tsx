@@ -1,13 +1,13 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/layout';
-import { BoxProps, Icon, IconButton } from '@chakra-ui/react';
+import { BoxProps, Icon } from '@chakra-ui/react';
 import { PrimaryButton } from 'components/buttons';
 import { DeleteButton } from 'components/buttons/DeleteButton';
+import { FlexLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import {
 	IoCheckmarkCircleSharp,
-	IoCloseSharp,
 	IoCloudUploadSharp,
 	IoDocumentSharp
 } from 'react-icons/io5';
@@ -93,15 +93,14 @@ export const FileUploader = (props: Props): JSX.Element => {
 					>
 						Upload
 					</PrimaryButton>
-					<IconButton
-						aria-label={'Clear file'}
-						icon={<IoCloseSharp />}
-						variant={'ghost'}
-						rounded={'full'}
+
+					<DeleteButton
+						name={'remove-file'}
 						onClick={onRemoveFile(file)}
-						colorScheme={'red'}
-						fontSize={'x-large'}
-					/>
+						variant={'outline'}
+					>
+						Remove
+					</DeleteButton>
 				</HStack>
 			</Flex>
 		);
@@ -124,18 +123,18 @@ export const FileUploader = (props: Props): JSX.Element => {
 			)}
 			{!defaultSrc && !files.length && (
 				<>
-					<Box
+					<FlexLayout
 						d={'flex'}
 						justifyContent={'center'}
 						alignItems={'center'}
 						boxSize={'125px'}
 						p={2}
-						bgColor={'fpLightGrey.200'}
+						bgColor={'gray.100'}
 						border={'2px dashed'}
-						borderColor={'fpGrey.200'}
-						_hover={{ borderColor: 'fpGrey.300' }}
+						borderColor={'gray.300'}
+						_hover={{ borderColor: 'gray.400' }}
 						as="section"
-						mb={2}
+						cursor={'pointer'}
 						{...getRootProps()}
 					>
 						<input {...getInputProps()} />
@@ -149,17 +148,17 @@ export const FileUploader = (props: Props): JSX.Element => {
 								as={IoCloudUploadSharp}
 								fontSize={'x-large'}
 								mb={2}
-								color={'fpGrey.300'}
+								color={'gray.500'}
 							/>
-							<Text color={'fpGrey.300'} fontSize={'sm'}>
+							<Text color={'gray.500'} fontSize={'sm'}>
 								{label}
 							</Text>
 						</Flex>
-					</Box>
+					</FlexLayout>
 
 					<Text
 						fontSize={'sm'}
-						color={error ? 'red.500' : 'fpGrey.300'}
+						color={error ? 'red.500' : 'gray.400'}
 					>
 						{error ?? (
 							<>
@@ -192,7 +191,7 @@ const AddedFile = ({
 		<HStack alignItems={'center'}>
 			<Icon
 				as={IoDocumentSharp}
-				color={'fpGrey.300'}
+				color={'gray.500'}
 				fontSize={'xx-large'}
 			/>
 			<Flex flexDirection={'column'}>
@@ -203,7 +202,7 @@ const AddedFile = ({
 				>
 					View
 				</PrimaryLink>
-				<Text color={'fpGrey.300'} fontSize={'xs'}>
+				<Text color={'gray.400'} fontSize={'xs'}>
 					Added {formatTimestamp(src?.split('?v=')[1])}
 				</Text>
 			</Flex>

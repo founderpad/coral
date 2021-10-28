@@ -30,6 +30,7 @@ const LoginForm = (): JSX.Element => {
 					error={errors['email']}
 					errorText="Please enter a valid email"
 					control={control}
+					size={'md'}
 					isRequired
 				/>
 				<PasswordField
@@ -38,6 +39,7 @@ const LoginForm = (): JSX.Element => {
 					error={errors['password']}
 					rules={{ maxLength: 20, minLength: 6 }}
 					control={control}
+					size={'md'}
 					isRequired
 				/>
 

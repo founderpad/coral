@@ -17,22 +17,33 @@ const KeyInformationBox = ({
 	value: string | number;
 	icon?: IconType;
 }): JSX.Element => (
-	<StackLayout
-		spacing={1}
-		p={4}
-		background={'gray.50'}
-		borderWidth={1}
-		borderColor={'gray.100'}
-		rounded={'md'}
-		alignItems={'center'}
-		justifyContent={'center'}
-		display={{ base: 'none', md: 'flex' }}
-	>
+	// <StackLayout
+	// 	spacing={1}
+	// 	p={4}
+	// 	background={'gray.50'}
+	// 	borderWidth={1}
+	// 	borderColor={'gray.100'}
+	// 	rounded={'md'}
+	// 	alignItems={'center'}
+	// 	justifyContent={'center'}
+	// 	display={{ base: 'none', md: 'flex' }}
+	// >
+	// 	<Label
+	// 		label={value}
+	// 		fontSize={'sm'}
+	// 		icon={icon}
+	// 		fontWeight={'medium'}
+	// 	/>
+	// 	<Label label={title} color={'gray.500'} fontSize={'sm'} />
+	// </StackLayout>
+
+	<StackLayout alignItems={'center'} spacing={1} bg={'gray.50'} p={4}>
 		<Label
 			label={value}
-			fontSize={'md'}
+			fontSize={'sm'}
 			icon={icon}
 			fontWeight={'medium'}
+			display={{ base: 'none', md: 'flex' }}
 		/>
 		<Label label={title} color={'gray.500'} fontSize={'sm'} />
 	</StackLayout>
