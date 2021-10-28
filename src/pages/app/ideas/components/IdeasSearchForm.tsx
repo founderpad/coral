@@ -86,7 +86,6 @@ const IdeasSearchForm = (): JSX.Element => {
 				placeholder="Search name"
 				control={control}
 				label={'Name'}
-				size={'sm'}
 			/>
 			<SelectField
 				id="field"
@@ -110,7 +109,6 @@ const IdeasSearchForm = (): JSX.Element => {
 				placeholder="Search location"
 				control={control}
 				label={'Location'}
-				size={'sm'}
 			/>
 
 			{/* business status  */}

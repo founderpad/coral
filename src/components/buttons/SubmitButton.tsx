@@ -15,7 +15,6 @@ export const SubmitButton = ({
 			colorScheme={colorScheme ?? 'fpPrimary'}
 			isLoading={isLoading}
 			type={'submit'}
-			rounded={'md'}
 		>
 			{label}
 		</BaseButton>

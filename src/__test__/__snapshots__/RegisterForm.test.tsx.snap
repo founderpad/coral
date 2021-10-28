@@ -92,7 +92,7 @@ exports[`Register form matches snapshot 1`] = `
         class="chakra-stack css-x4fhqb"
       >
         <div
-          class="chakra-form-control css-gwmwit"
+          class="chakra-form-control css-1naxzcr"
           role="group"
         >
           <label
@@ -112,7 +112,7 @@ exports[`Register form matches snapshot 1`] = `
           <input
             aria-label="firstName"
             aria-required="true"
-            class="chakra-input css-ewkscn"
+            class="chakra-input css-0"
             control="[object Object]"
             errortext="You must input a first name"
             id="firstName"
@@ -125,7 +125,7 @@ exports[`Register form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-gwmwit"
+          class="chakra-form-control css-1naxzcr"
           role="group"
         >
           <label
@@ -137,7 +137,7 @@ exports[`Register form matches snapshot 1`] = `
           </label>
           <input
             aria-label="lastName"
-            class="chakra-input css-ewkscn"
+            class="chakra-input css-0"
             control="[object Object]"
             id="lastName"
             label="Last name"
@@ -152,13 +152,13 @@ exports[`Register form matches snapshot 1`] = `
         class="chakra-stack css-1kii5if"
       >
         <div
-          class="chakra-form-control css-gwmwit"
+          class="chakra-form-control css-1naxzcr"
           role="group"
         >
           <input
             aria-label="email"
             aria-required="true"
-            class="chakra-input css-ewkscn"
+            class="chakra-input css-0"
             control="[object Object]"
             errortext="Please enter a valid email"
             id="email-email"
@@ -171,13 +171,13 @@ exports[`Register form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-gwmwit"
+          class="chakra-form-control css-1naxzcr"
           role="group"
         >
           <input
             aria-label="password"
             aria-required="true"
-            class="chakra-input css-ewkscn"
+            class="chakra-input css-0"
             control="[object Object]"
             errortext="Please enter a valid password between 6 and 20 characters."
             id="password-password"
@@ -191,7 +191,7 @@ exports[`Register form matches snapshot 1`] = `
         </div>
         <button
           aria-label="submit-register-account"
-          class="chakra-button css-ivx7jm"
+          class="chakra-button css-uxt1e8"
           disabled=""
           id="submit-register-account"
           type="submit"

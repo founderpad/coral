@@ -34,10 +34,6 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				isInvalid={!!error}
 				isRequired={isRequired}
 				w={{ base: 'full' }}
-				_focus={{
-					borderWidth: 1,
-					borderColor: 'gray.500'
-				}}
 			>
 				{/* {label && <InputFieldLabel label={label} />} */}
 
@@ -50,19 +46,14 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 						<Input
 							{...props}
 							placeholder={placeholder}
-							rounded={'md'}
-							size={size ?? 'md'}
-							_focus={{
-								borderWidth: 1,
-								borderColor: 'gray.500'
-							}}
-							_
+							size={size ?? 'sm'}
 							ref={ref}
 							value={value}
 							onChange={onChange}
 							error={!!error}
 							name={name}
 							aria-label={name}
+							variant={'outline'}
 						/>
 					)}
 					name={name}

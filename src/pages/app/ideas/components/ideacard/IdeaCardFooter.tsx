@@ -16,12 +16,8 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 	return (
 		<Flex alignItems={'center'} p={{ base: 2, sm: 3 }} borderTop={0}>
 			<StackLayout direction={'row'} spacing={1}>
-				<BaseTag color={'fpPrimary.500'} bg={'transparent'}>
-					{idea_user?.country}
-				</BaseTag>
-				<BaseTag color={'fpPrimary.500'} bg={'transparent'}>
-					{field}
-				</BaseTag>
+				<BaseTag color={'fpPrimary.500'}>{idea_user?.country}</BaseTag>
+				<BaseTag color={'fpPrimary.500'}>{field}</BaseTag>
 			</StackLayout>
 			<StackLayout
 				justifyContent={'flex-end'}

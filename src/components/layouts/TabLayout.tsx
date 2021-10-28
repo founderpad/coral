@@ -20,7 +20,7 @@ type TabProps = {
 };
 
 const TabLayout = (props: Props): JSX.Element => {
-	const { tabs, children, px, ...rest } = props;
+	const { tabs, children, ...rest } = props;
 	const [tabIndex, setTabIndex] = useState(0);
 
 	// const onChange = (index: number) =>
@@ -34,21 +34,11 @@ const TabLayout = (props: Props): JSX.Element => {
 			onChange={onChange}
 			overflow={'hidden'}
 			colorScheme={'black'}
+			px={0}
 		>
-			<TabList borderBottomWidth={1}>
-				{tabs?.map((tab: TabProps, key: number) => (
-					<Tab
-						color={'gray.400'}
-						fontSize={{ base: 'xs', sm: 'sm' }}
-						fontWeight={'medium'}
-						key={tab?.label}
-						px={px ?? { lg: 2 }}
-						_hover={{
-							borderColor: tabIndex !== key && 'gray.400'
-						}}
-						_selected={{ color: 'black', borderColor: 'black' }}
-						mr={4}
-					>
+			<TabList>
+				{tabs?.map((tab) => (
+					<Tab key={tab?.label}>
 						{tab?.icon && (
 							<Icon
 								as={tab.icon}

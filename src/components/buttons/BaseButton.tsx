@@ -7,7 +7,7 @@ export const BaseButton = (props: BaseButtonProps): JSX.Element => {
 	const { children, size, name, ...rest } = props;
 
 	return (
-		<Button {...rest} size={size ?? 'sm'} rounded={'md'} aria-label={name}>
+		<Button {...rest} size={size ?? 'sm'} aria-label={name}>
 			{children}
 		</Button>
 	);
@@ -21,7 +21,6 @@ export const LinkButton = (props: LinkButtonProps): JSX.Element => {
 			{...rest}
 			as={BaseLink}
 			size={size ?? 'sm'}
-			rounded={'md'}
 			aria-label={name}
 			href={href}
 		/>

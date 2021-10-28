@@ -16,13 +16,13 @@ exports[`Login form matches snapshot 1`] = `
         class="chakra-stack css-1moek9b"
       >
         <div
-          class="chakra-form-control css-gwmwit"
+          class="chakra-form-control css-1naxzcr"
           role="group"
         >
           <input
             aria-label="email"
             aria-required="true"
-            class="chakra-input css-ewkscn"
+            class="chakra-input css-0"
             control="[object Object]"
             errortext="Please enter a valid email"
             id="email-email"
@@ -35,13 +35,13 @@ exports[`Login form matches snapshot 1`] = `
           />
         </div>
         <div
-          class="chakra-form-control css-gwmwit"
+          class="chakra-form-control css-1naxzcr"
           role="group"
         >
           <input
             aria-label="password"
             aria-required="true"
-            class="chakra-input css-ewkscn"
+            class="chakra-input css-0"
             control="[object Object]"
             errortext="Please enter a valid password between 6 and 20 characters."
             id="password-password"
@@ -55,7 +55,7 @@ exports[`Login form matches snapshot 1`] = `
         </div>
         <button
           aria-label="submit-login"
-          class="chakra-button css-ivx7jm"
+          class="chakra-button css-uxt1e8"
           disabled=""
           id="submit-login"
           type="submit"

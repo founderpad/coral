@@ -11,7 +11,7 @@ export const CancelButton = ({
 			{...props}
 			name={'cancel-button'}
 			variant={'outline'}
-			color={'black'}
+			// color={'black'}
 		>
 			{label ?? 'Cancel'}
 		</BaseButton>

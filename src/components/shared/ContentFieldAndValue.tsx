@@ -11,8 +11,7 @@ const ContentFieldAndValue = (props: Props): JSX.Element => {
 	const { title, value } = props;
 	return (
 		<StackLayout spacing={2}>
-			{/* <SubheadingText label={title} size={'sm'} /> */}
-			<Label label={title} fontWeight={'medium'} fontSize={'medium'} />
+			<Label label={title} fontWeight={'medium'} fontSize={'sm'} />
 			<Label label={value} color={'gray.400'} />
 		</StackLayout>
 	);

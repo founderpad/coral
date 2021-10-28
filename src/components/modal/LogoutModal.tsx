@@ -23,7 +23,7 @@ const LogoutModal = (): JSX.Element => {
 		<DeleteButton
 			name={'logout-modal-open-button'}
 			w={{ lg: 'full' }}
-			variant={'ghost'}
+			variant={'outline'}
 			onClick={onClick}
 		>
 			Log out

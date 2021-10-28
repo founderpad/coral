@@ -3,7 +3,7 @@ import { Divider } from '@chakra-ui/layout';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import ContentHighlightsLayout from 'components/layouts/ContentHighlightsLayout';
-import { LineSeparator, Loading } from 'components/shared';
+import { Loading } from 'components/shared';
 import { UserAvatarDetails } from 'components/shared/UserAvatar';
 import { useGetIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
@@ -86,7 +86,7 @@ const IdeaTab = (): JSX.Element => {
 					/>
 				)}
 			</FlexLayout>
-			<LineSeparator display={{ base: 'none', md: 'block' }} />
+			<Divider display={{ base: 'none', md: 'block' }} />
 
 			<ContentHighlightsLayout
 				content={[

@@ -167,15 +167,13 @@ const RepliesList = () => (
 );
 
 const Comment = (message: any) => (
-	<>
-		<MessageLayout
-			name={message.name}
-			date={message.date}
-			value={message.value}
-		>
-			<RepliesList />
-		</MessageLayout>
-	</>
+	<MessageLayout
+		name={message.name}
+		date={message.date}
+		value={message.value}
+	>
+		<RepliesList />
+	</MessageLayout>
 );
 
 const Actions = () => (

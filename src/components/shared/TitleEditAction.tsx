@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/layout';
 import { EditButton } from 'components/buttons';
-import { SubheadingText } from 'components/heading';
+import { Label } from 'components/labels';
 import React, { memo } from 'react';
 
 export const TitleEditAction = memo(
@@ -23,7 +23,12 @@ export const TitleEditAction = memo(
 				>
 					{title}
 				</Heading> */}
-				<SubheadingText label={title} color={'fpGrey.900'} />
+				<Label
+					label={title}
+					color={'black'}
+					fontSize={'lg'}
+					fontWeight={'semibold'}
+				/>
 
 				{onClick && (
 					<EditButton onClick={onClick} aria-label={'Edit'} />

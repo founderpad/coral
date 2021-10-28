@@ -16,7 +16,7 @@ exports[`Create idea form matches snapshot 1`] = `
         class="chakra-stack css-1uxng5d"
       >
         <div
-          class="chakra-form-control css-gwmwit"
+          class="chakra-form-control css-1naxzcr"
           role="group"
         >
           <label
@@ -36,7 +36,7 @@ exports[`Create idea form matches snapshot 1`] = `
           <input
             aria-label="name"
             aria-required="true"
-            class="chakra-input css-ewkscn"
+            class="chakra-input css-0"
             control="[object Object]"
             errortext="Please enter a name for your idea"
             id="name"
@@ -371,7 +371,7 @@ exports[`Create idea form matches snapshot 1`] = `
         </div>
         <button
           aria-label="create-idea-button"
-          class="chakra-button css-1ac6dtc"
+          class="chakra-button css-i8vml2"
           disabled=""
           type="submit"
         >

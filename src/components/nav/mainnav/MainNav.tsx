@@ -27,7 +27,7 @@ const MainNav = (): JSX.Element => {
 			<Flex
 				bg={useColorModeValue('white', 'gray.800')}
 				borderBottom={'1px solid'}
-				borderBottomColor={'fpLightGrey.300'}
+				borderBottomColor={'gray.100'}
 				zIndex={1100}
 				position={'sticky'}
 				top={0}
@@ -44,7 +44,11 @@ const MainNav = (): JSX.Element => {
 					position={'sticky'}
 					maxW={{ lg: '120ch' }}
 				>
-					<Flex alignItems={'center'} justifyContent={'space-between'} flex={1}>
+					<Flex
+						alignItems={'center'}
+						justifyContent={'space-between'}
+						flex={1}
+					>
 						<Flex alignItems={'center'}>
 							<Icon
 								display={{ base: 'inline-flex', md: 'none' }}

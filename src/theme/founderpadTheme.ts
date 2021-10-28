@@ -41,7 +41,11 @@ const customTheme = extendTheme({
 		}
 	},
 	fonts: {
-		heading: 'Montserrat',
+		// heading: {
+		// 	h1: {
+
+		// 	}
+		// },
 		body: 'Hind',
 		text: 'Hind',
 		menubar: 'Hind',
@@ -52,21 +56,72 @@ const customTheme = extendTheme({
 		Steps,
 		Button: {
 			baseStyle: {
-				rounded: 'md',
-				_focus: { boxShadow: 'none' },
 				fontWeight: 'medium'
+			},
+			variants: {
+				outline: {
+					borderColor: 'gray.100',
+				}
 			}
 		},
-		Tabs: {
-			baseStyle: {
-				outline: 0,
-				_focus: { boxShadow: 'none' },
-				fontWeight: 'bold'
+		Tags: {
+			variants: {
+				outline: {
+					borderColor: 'red.100',
+					background: 'red.500'
+				}
 			}
 		},
 		Input: {
-			baseStyle: {
-				rounded: 'md'
+			variants: {
+				outline: {
+					field: {
+						border: '1px solid',
+						borderColor: 'gray.100',
+						borderRadius: 'md',
+						size: 'sm',
+						_focus: {
+						  	borderColor: 'gray.300',
+							boxShadow: 'none'
+						},
+						_hover: {
+							borderColor: 'gray.300'
+						}
+					}
+				}
+			},
+			defaultProps: {
+				variant: 'outline'
+			}
+		},
+		Tabs: {
+			variants: {
+				line: {
+					tab: {
+						color: 'gray.400',
+						fontSize: { base: 'xs', sm: 'sm' },
+						fontWeight: 'medium',
+						borderBottomWidth: 2,
+						_selected: {
+							color: 'black',
+							borderColor: 'black'
+						},
+						_hover: {
+							borderColor: 'currentColor'
+						},
+						_disabled: {
+							opacity: 0.4,
+							cursor: 'not-allowed',
+						},
+						mr: 4,
+						px: 0
+					},
+					tablist: {
+						px: 2,
+						borderBottomWidth: 1,
+						borderBottomColor: 'gray.100'
+					}
+				}
 			}
 		},
 		MenuItem: {
