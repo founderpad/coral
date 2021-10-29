@@ -10,6 +10,7 @@ export const Loading = ({ small }: { small?: boolean }): JSX.Element => (
 			justifySelf={'center'}
 			color={'fpPrimary.500'}
 			size={small ? 'md' : 'xl'}
+			variant={'outline'}
 		/>
 	</Flex>
 );

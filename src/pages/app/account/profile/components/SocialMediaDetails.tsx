@@ -1,6 +1,6 @@
-import Icon from '@chakra-ui/icon';
 import { EditButton, SubmitButton } from 'components/buttons';
 import { FlexLayout, StackLayout } from 'components/layouts';
+import { IconLink } from 'components/links';
 import { Loading } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { TUser_Profile } from 'generated/api';
@@ -59,48 +59,55 @@ const SocialMediaDetails = (): JSX.Element => {
 
 	return (
 		<FlexLayout justifyContent={'space-between'} pt={6}>
-			<StackLayout direction={'row'} alignItems={'center'} spacing={2}>
+			<StackLayout direction={'row'} alignItems={'center'} spacing={3}>
 				{socials?.linkedin && (
-					<Icon
-						as={IoLogoLinkedin}
+					<IconLink
+						title={socials.linkedin}
+						href={socials.linkedin}
+						icon={IoLogoLinkedin}
 						color={'gray.400'}
 						_hover={{ color: 'linkedin.700', cursor: 'pointer' }}
 						boxSize={5}
 					/>
 				)}
 				{socials?.twitter && (
-					<Icon
-						as={IoLogoTwitter}
+					<IconLink
+						title={socials.twitter}
+						href={socials.twitter}
+						icon={IoLogoTwitter}
 						color={'gray.400'}
 						_hover={{ color: 'twitter.500', cursor: 'pointer' }}
 						boxSize={5}
 					/>
 				)}
 				{socials?.instagram && (
-					<Icon
-						as={IoLogoInstagram}
+					<IconLink
+						title={socials.instagram}
+						href={socials.instagram}
+						icon={IoLogoInstagram}
 						color={'gray.400'}
-						_hover={{
-							// bg: 'linear-gradient(45DEG, #405DE6, #5851DB, #C13584, #E1306C, #FD1D1D)',
-							color: 'black',
-							cursor: 'pointer'
-						}}
+						// bg: 'linear-gradient(45DEG, #405DE6, #5851DB, #C13584, #E1306C, #FD1D1D)',
+						_hover={{ color: 'instagram.500', cursor: 'pointer' }}
 						boxSize={5}
 					/>
 				)}
 				{socials?.facebook && (
-					<Icon
-						as={IoLogoFacebook}
+					<IconLink
+						title={socials.facebook}
+						href={socials.facebook}
+						icon={IoLogoFacebook}
 						color={'gray.400'}
 						_hover={{ color: 'facebook.500', cursor: 'pointer' }}
 						boxSize={5}
 					/>
 				)}
 				{socials?.website && (
-					<Icon
-						as={IoGlobe}
+					<IconLink
+						title={socials.website}
+						href={socials.website}
+						icon={IoGlobe}
 						color={'gray.400'}
-						_hover={{ color: 'green.500', cursor: 'pointer' }}
+						_hover={{ color: 'website.500', cursor: 'pointer' }}
 						boxSize={5}
 					/>
 				)}

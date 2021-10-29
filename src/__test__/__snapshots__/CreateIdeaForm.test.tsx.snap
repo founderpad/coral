@@ -67,7 +67,7 @@ exports[`Create idea form matches snapshot 1`] = `
           </label>
           <textarea
             aria-required="true"
-            class="chakra-textarea css-1xh66r"
+            class="chakra-textarea css-14w0bz"
             id="description"
             placeholder="Write a description about your idea (max. 500 characters)"
             required=""
@@ -97,7 +97,7 @@ exports[`Create idea form matches snapshot 1`] = `
             <select
               aria-label="select-field-field"
               aria-required="true"
-              class="chakra-select css-1j1jvqa"
+              class="chakra-select css-l83pm3"
               id="select-field-field"
               name="select-field-field"
               required=""
@@ -226,7 +226,7 @@ exports[`Create idea form matches snapshot 1`] = `
             <select
               aria-label="select-status-field"
               aria-required="true"
-              class="chakra-select css-1j1jvqa"
+              class="chakra-select css-l83pm3"
               id="select-status-field"
               name="select-status-field"
               required=""
@@ -288,7 +288,7 @@ exports[`Create idea form matches snapshot 1`] = `
             Your competitors
           </label>
           <textarea
-            class="chakra-textarea css-1xh66r"
+            class="chakra-textarea css-14w0bz"
             id="competitors"
             placeholder="List your competitors about your idea"
           />
@@ -305,7 +305,7 @@ exports[`Create idea form matches snapshot 1`] = `
             Your team
           </label>
           <textarea
-            class="chakra-textarea css-1xh66r"
+            class="chakra-textarea css-14w0bz"
             id="team"
             placeholder="List each team member"
           />
@@ -322,7 +322,7 @@ exports[`Create idea form matches snapshot 1`] = `
             Additional information
           </label>
           <textarea
-            class="chakra-textarea css-1xh66r"
+            class="chakra-textarea css-14w0bz"
             id="additional_information"
             placeholder="Any additional information"
           />

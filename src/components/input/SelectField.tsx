@@ -40,10 +40,6 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 							placeholder={`Select ${placeholder ?? 'option'}`}
 							rounded={'md'}
 							value={value}
-							_focus={{
-								borderWidth: 1,
-								borderColor: 'gray.500'
-							}}
 							onChange={onChange}
 							size={size ?? 'sm'}
 							error={!!error}

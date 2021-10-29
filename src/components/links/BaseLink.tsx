@@ -7,11 +7,7 @@ const BaseLink = (props: LinkProps & { title: string }): JSX.Element => {
 	const { href, children, color, _hover, ...rest } = props;
 	return (
 		<NextLink href={href} passHref>
-			<Link
-				{...rest}
-				color={color}
-				_hover={{ ..._hover, textDecoration: 'none' }}
-			>
+			<Link {...rest} color={color} _hover={{ ..._hover }}>
 				{children}
 			</Link>
 		</NextLink>

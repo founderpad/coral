@@ -36,11 +36,6 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 					}) => (
 						<Textarea
 							placeholder={placeholder}
-							rounded={'md'}
-							_focus={{
-								borderWidth: 1,
-								borderColor: 'fpGrey.500'
-							}}
 							ref={ref}
 							value={value}
 							onChange={onChange}

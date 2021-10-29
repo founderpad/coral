@@ -33,7 +33,7 @@ exports[`Register form matches snapshot 1`] = `
             aria-describedby="type-helptext"
             aria-label="select-type-field"
             aria-required="true"
-            class="chakra-select css-1j1jvqa"
+            class="chakra-select css-l83pm3"
             id="select-type-field"
             name="select-type-field"
             required=""
@@ -206,7 +206,7 @@ exports[`Register form matches snapshot 1`] = `
           >
             By continuing, you agree to founderpad's 
             <a
-              class="chakra-link css-1lqupfn"
+              class="chakra-link css-qgrdgl"
               href="https://www.founderpad.com/legal/terms"
               rel="noopener noreferrer"
               target="_blank"
@@ -216,7 +216,7 @@ exports[`Register form matches snapshot 1`] = `
             </a>
              and acknowledge that you've read our 
             <a
-              class="chakra-link css-1lqupfn"
+              class="chakra-link css-qgrdgl"
               href="https://www.founderpad.com/legal/privacy-policy"
               rel="noopener noreferrer"
               target="_blank"
@@ -231,7 +231,7 @@ exports[`Register form matches snapshot 1`] = `
           >
             Already have an account? 
             <a
-              class="chakra-link css-1lqupfn"
+              class="chakra-link css-qgrdgl"
               href="/app/login"
               title="Link to login"
             >
