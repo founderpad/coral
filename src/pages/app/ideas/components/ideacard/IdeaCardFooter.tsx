@@ -12,8 +12,6 @@ type TIdeaCardFooter = Pick<
 
 const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 	const { field, id, idea_user, idea_votes } = idea;
-
-	// p={{ base: 2, sm: 3 }}
 	return (
 		<Flex alignItems={'center'} borderTop={0}>
 			<StackLayout direction={'row'} spacing={2}>

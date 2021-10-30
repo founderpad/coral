@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/layout';
+import { Text } from '@chakra-ui/layout';
 import { FlexLayout } from 'components/layouts';
 import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
@@ -14,18 +14,18 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 	const { name, is_new } = idea;
 
 	return (
-		<Flex
-			// p={2}
-			// bg={'gray.100'}
-			spacing={0}
+		<FlexLayout
 			flexDirection={{ base: 'column', sm: 'row' }}
 			justifyContent={{ sm: 'space-between' }}
 		>
-			<FlexLayout mr={4} flexDirection={{ base: 'column', sm: 'row' }}>
+			<FlexLayout
+				mr={4}
+				flexDirection={{ base: 'column', sm: 'row' }}
+				alignItems={'center'}
+			>
 				<FlexLayout>
 					<Text
 						fontWeight={'medium'}
-						// pl={{ sm: 10 }}
 						fontSize={'sm'}
 						aria-label={'The name of the idea'}
 						title={'The name of this idea'}
@@ -39,7 +39,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 				</FlexLayout>
 			</FlexLayout>
 			<PostedBy {...idea} />
-		</Flex>
+		</FlexLayout>
 	);
 };
 

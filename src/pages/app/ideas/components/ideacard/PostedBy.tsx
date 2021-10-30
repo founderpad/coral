@@ -18,7 +18,7 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 			<UserAvatar
 				size={'sm'}
 				src={idea_user?.avatar_url}
-				borderWidth={6}
+				borderWidth={5}
 				display={{ base: 'none', sm: 'block' }}
 			/>
 			<BaseLink
