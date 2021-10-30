@@ -13,7 +13,7 @@ const overrides = {
         Badge,
         Input,
         Select: Input,
-        TextArea: Input,
+        Textarea: Input,
         Menu,
         Tags,
         Tabs,

@@ -1,6 +1,6 @@
 import { Checkbox } from '@chakra-ui/checkbox';
 import { FormControl, FormLabel } from '@chakra-ui/form-control';
-import { Heading, Stack } from '@chakra-ui/layout';
+import { Stack } from '@chakra-ui/layout';
 import Form from 'components/form/Form';
 import { NumberField, SelectField, TextareaField } from 'components/input';
 import ModalDrawerContext from 'context/ModalDrawerContext';
@@ -79,14 +79,6 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 		>
-			<Heading
-				fontSize={'lg'}
-				fontWeight={'medium'}
-				color={'fpGrey.300'}
-				pb={4}
-			>
-				Background details
-			</Heading>
 			<TextareaField
 				id="background"
 				label="Background"
@@ -116,16 +108,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 				placeholder="specialist field"
 				options={industriesList()}
 				control={control}
-				full
 			/>
-			<Heading
-				fontSize={'lg'}
-				py={4}
-				fontWeight={'medium'}
-				color={'fpGrey.300'}
-			>
-				Your previous startup experience
-			</Heading>
 
 			<Stack direction={{ base: 'column', md: 'row' }} spacing={6}>
 				<NumberField
@@ -166,7 +149,6 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 				))}
 				control={control}
 				isRequired
-				full
 			/>
 
 			<TextareaField

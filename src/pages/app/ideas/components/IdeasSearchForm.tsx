@@ -72,6 +72,7 @@ const IdeasSearchForm = (): JSX.Element => {
 			id={'ideaSearchForm'}
 			name={'ideaSearchForm'}
 			onSubmit={handleSubmit(onClick)}
+			stackProps={{ spacing: 3 }}
 		>
 			{/* <Heading
 				as={'h6'}
@@ -95,6 +96,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				placeholder="Search name"
 				control={control}
 				label={'Name'}
+				variant={'filled'}
 			/>
 			<SelectField
 				id="field"
@@ -103,6 +105,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				placeholder="field"
 				control={control}
 				label={'Field'}
+				variant={'filled'}
 			/>
 			<SelectField
 				id="status"
@@ -111,6 +114,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				placeholder="status"
 				control={control}
 				label={'Status'}
+				variant={'filled'}
 			/>
 			<InputField
 				id="location"
@@ -118,6 +122,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				placeholder="Search location"
 				control={control}
 				label={'Location'}
+				variant={'filled'}
 			/>
 
 			{/* business status  */}

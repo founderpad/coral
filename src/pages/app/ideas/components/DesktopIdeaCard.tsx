@@ -16,7 +16,8 @@ const DesktopIdeaCard = (idea: TIdea_Preview): JSX.Element => {
 			display={{ base: 'none', sm: 'block' }}
 			_hover={{ boxShadow: 'md' }}
 			borderWidth={1}
-			borderColor={'gray.100'}
+			borderColor={'gray.200'}
+			borderRadius={'md'}
 		>
 			<UserAvatar
 				position={'absolute'}

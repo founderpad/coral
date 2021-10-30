@@ -41,7 +41,7 @@ const DesktopSearch = () => (
 		bg={'white'}
 		spacing={1}
 		borderRightWidth={1}
-		borderRightColor={'fpLightGrey.300'}
+		borderRightColor={'gray.200'}
 	>
 		<IdeasSearchForm />
 	</StackLayout>

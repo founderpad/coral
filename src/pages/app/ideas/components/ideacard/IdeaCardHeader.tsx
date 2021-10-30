@@ -17,20 +17,12 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 		<Flex
 			px={1}
 			py={1}
-			bg={'gray.50'}
+			bg={'gray.100'}
 			spacing={0}
-			borderWidth={1}
-			borderBottom={0}
-			borderColor={'gray.50'}
 			flexDirection={{ base: 'column', sm: 'row' }}
 			justifyContent={{ sm: 'space-between' }}
-			overflowX={'hidden'}
 		>
-			<FlexLayout
-				overflowX={'hidden'}
-				mr={4}
-				flexDirection={{ base: 'column', sm: 'row' }}
-			>
+			<FlexLayout mr={4} flexDirection={{ base: 'column', sm: 'row' }}>
 				<FlexLayout>
 					<Text
 						fontWeight={'medium'}

@@ -2,7 +2,8 @@
 const Divider = {
     variants: {
         solid: {
-            borderColor: 'gray.100'
+            border: '1px solid',
+            borderColor: 'gray.200'
         }
     }
 }

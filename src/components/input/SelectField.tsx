@@ -37,6 +37,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 						fieldState: { error }
 					}) => (
 						<Select
+							variant={props.variant}
 							placeholder={`Select ${placeholder ?? 'option'}`}
 							rounded={'md'}
 							value={value}

@@ -5,7 +5,7 @@ const Button = {
     },
     variants: {
         outline: {
-            borderColor: 'gray.100',
+            borderColor: 'gray.200'
         }
     }
 }

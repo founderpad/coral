@@ -4,21 +4,38 @@ const Input = {
         outline: {
             field: {
                 border: '1px solid',
-                borderColor: 'gray.100',
+                borderColor: 'gray.200',
                 borderRadius: 'md',
-                size: 'sm',
                 _focus: {
-                    borderColor: 'gray.300',
+                    borderColor: 'gray.400',
                     boxShadow: 'none'
                 },
                 _hover: {
                     borderColor: 'gray.300'
+                },
+            }
+        },
+        filled: {
+            field: {
+                border: '1px solid',
+                borderColor: 'gray.100',
+                borderRadius: 'md',
+                _focus: {
+                    border: '1px solid',
+                    borderColor: 'gray.400',
+                    boxShadow: 'none'
                 }
             }
         }
     },
     defaultProps: {
-        variant: 'outline'
+        variant: 'outline',
+        size: 'sm',
+        borderRadius: 'md',
+        _focus: {
+            border: '1px solid',
+            borderColor: 'gray.200'
+        }
     }
 }
 
