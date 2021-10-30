@@ -72,7 +72,7 @@ const IdeasSearchForm = (): JSX.Element => {
 			id={'ideaSearchForm'}
 			name={'ideaSearchForm'}
 			onSubmit={handleSubmit(onClick)}
-			stackProps={{ spacing: 3 }}
+			stackProps={{ spacing: 4 }}
 		>
 			{/* <Heading
 				as={'h6'}

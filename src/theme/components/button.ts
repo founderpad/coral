@@ -5,7 +5,11 @@ const Button = {
     },
     variants: {
         outline: {
-            borderColor: 'gray.200'
+            borderColor: 'gray.200',
+            // _disabled: {
+            //     // backgroundColor: 'gray.200',
+            //     pointerEvents: 'none'
+            // }
         }
     }
 }

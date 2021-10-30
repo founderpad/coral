@@ -145,7 +145,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 			/>
 
 			<Flex
-				bg={'fpLightGrey.300'}
+				bg={'gray.900'}
 				flex={1}
 				as={'label'}
 				boxSize={140}

@@ -20,7 +20,7 @@ const ProfileSectionLabel = memo(
 			{children ?? (
 				<Label
 					label={label ?? 'Not set'}
-					color={'gray.400'}
+					color={'gray.500'}
 					textOverflow={'ellipsis'}
 					isTruncated
 				/>

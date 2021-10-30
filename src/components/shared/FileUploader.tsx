@@ -157,8 +157,9 @@ export const FileUploader = (props: Props): JSX.Element => {
 					</FlexLayout>
 
 					<Text
-						fontSize={'sm'}
+						fontSize={'smaller'}
 						color={error ? 'red.500' : 'gray.400'}
+						mt={2}
 					>
 						{error ?? (
 							<>

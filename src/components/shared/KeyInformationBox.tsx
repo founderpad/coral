@@ -37,7 +37,7 @@ const KeyInformationBox = ({
 	// 	<Label label={title} color={'gray.500'} fontSize={'sm'} />
 	// </StackLayout>
 
-	<StackLayout alignItems={'center'} spacing={1} bg={'gray.50'} p={4}>
+	<StackLayout alignItems={'center'} spacing={1} bg={'gray.100'} p={4}>
 		<Label
 			label={value}
 			fontSize={'sm'}
@@ -45,7 +45,7 @@ const KeyInformationBox = ({
 			fontWeight={'medium'}
 			display={{ base: 'none', md: 'flex' }}
 		/>
-		<Label label={title} color={'gray.400'} fontSize={'sm'} />
+		<Label label={title} color={'gray.500'} fontSize={'sm'} />
 	</StackLayout>
 );
 

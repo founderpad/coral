@@ -36,7 +36,7 @@ export const UserAvatarDetails = ({
 			<UserAvatar src={src} />
 			<Box ml={2}>
 				<Label label={name} fontWeight={'medium'} />
-				{email && <SubLabel label={email} />}
+				{email && <SubLabel label={email} color={'gray.500'} />}
 				{createdAt && <SubLabel label={createdAt} />}
 			</Box>
 		</Flex>
