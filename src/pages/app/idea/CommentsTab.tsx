@@ -101,41 +101,62 @@ const MessageLayout = ({
 	date,
 	value,
 	children,
-	actions = true
+	actions = true,
+	divider = false
 }: {
 	name: string;
 	date: string;
 	value: string;
 	children?: JSX.Element;
 	actions?: boolean;
+	divider?: boolean;
 }) => (
-	<StackLayout direction={'row'} spacing={2} w={'full'}>
-		<UserAvatar size={'sm'} />
-		<StackLayout spacing={0}>
-			<StackLayout
-				px={2}
-				py={1}
-				rounded={'none'}
-				borderWidth={1}
-				borderColor={'gray.100'}
-				borderBottomRadius={'md'}
-				borderTopRightRadius={'md'}
-				borderTopLeftRadius={'none'}
-				bg={'gray.50'}
-				spacing={0}
-			>
-				<FlexLayout alignItems={'baseline'}>
-					{' '}
-					<Label label={name} fontSize={'sm'} fontWeight={'medium'} />
-					<PointSeparator small />
-					<Label label={date} color={'gray.400'} fontSize={'xs'} />
-				</FlexLayout>
-				<Label label={value} color={'gray.500'} fontSize={'sm'} />
+	<>
+		{/* <Divider orientation={'vertical'} /> */}
+		<StackLayout
+			direction={'row'}
+			spacing={2}
+			w={'full'}
+			rounded={'none'}
+			borderLeftWidth={divider && 4}
+			pl={4}
+		>
+			{/* <Divider orientation={'vertical'} /> */}
+			<UserAvatar size={'sm'} />
+			<StackLayout spacing={0}>
+				<StackLayout
+					px={2}
+					py={1}
+					rounded={'none'}
+					borderWidth={1}
+					borderColor={'gray.100'}
+					borderBottomRadius={'md'}
+					borderTopRightRadius={'md'}
+					borderTopLeftRadius={'none'}
+					bg={'gray.50'}
+					spacing={0}
+				>
+					<FlexLayout alignItems={'baseline'}>
+						{' '}
+						<Label
+							label={name}
+							fontSize={'sm'}
+							fontWeight={'medium'}
+						/>
+						<PointSeparator small />
+						<Label
+							label={date}
+							color={'gray.400'}
+							fontSize={'xs'}
+						/>
+					</FlexLayout>
+					<Label label={value} color={'gray.500'} fontSize={'sm'} />
+				</StackLayout>
+				{actions && <Actions />}
+				{children}
 			</StackLayout>
-			{actions && <Actions />}
-			{children}
 		</StackLayout>
-	</StackLayout>
+	</>
 );
 
 const CommentsTab = (): JSX.Element => (
@@ -153,7 +174,7 @@ const CommentsList = () => (
 );
 
 const RepliesList = () => (
-	<StackLayout spacing={4} pt={4}>
+	<StackLayout spacing={4} pt={4} borderLeftWidth={2} rounded={'none'} pl={4}>
 		{replies.map((reply, _index) => (
 			<MessageLayout
 				key={_index}
@@ -171,6 +192,7 @@ const Comment = (message: any) => (
 		name={message.name}
 		date={message.date}
 		value={message.value}
+		divider={true}
 	>
 		<RepliesList />
 	</MessageLayout>
