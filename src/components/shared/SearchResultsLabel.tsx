@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/layout';
+import { Label } from 'components/labels';
 import { useRouter } from 'next/router';
 import React, { memo } from 'react';
 import { PointSeparator } from './Separators';
@@ -16,16 +16,19 @@ export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 	const offset = (parseInt(page as string) - 1) * limit;
 
 	return (
-		<Text
+		<Label
 			fontSize={'xs'}
 			d={'flex'}
 			textAlign={'end'}
-			color={'gray.400'}
+			color={'gray.500'}
 			ml={'auto'}
-		>
-			{offset + 1} - {offset + pageSize} of {total}
-			<PointSeparator />
-			Page {page} of {Math.ceil((total || 0) / limit)}
-		</Text>
+			label={
+				<>
+					{offset + 1} - {offset + pageSize} of {total}
+					<PointSeparator small />
+					Page {page} of {Math.ceil((total || 0) / limit)}
+				</>
+			}
+		/>
 	);
 });

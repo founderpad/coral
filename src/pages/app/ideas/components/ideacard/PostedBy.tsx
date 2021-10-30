@@ -1,7 +1,7 @@
-import { Text } from '@chakra-ui/layout';
+import { Label } from 'components/labels';
 import { FlexLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
-import { PointSeparator } from 'components/shared';
+import { PointSeparator, UserAvatar } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 import { formatDate } from 'utils/validators';
@@ -14,20 +14,29 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 		lineHeight={'16px'}
 		fontSize={{ base: '11px', sm: 'xs' }}
 	>
-		<Text
-			color={'gray.400'}
-			as={BaseLink}
-			href={`/app/user/${idea_user?.id}`}
-			_hover={{ color: 'fpGrey.700' }}
-			mb={0}
-			title={'The user who posted this idea'}
-		>
-			Posted by {idea_user?.first_name}
-		</Text>
-		<PointSeparator color={'gray.700'} small />
-		<Text color={'gray.400'} title={'When the idea was posted'}>
-			{formatDate(created_at)}
-		</Text>
+		<FlexLayout alignItems={'center'}>
+			<UserAvatar
+				size={'sm'}
+				src={idea_user?.avatar_url}
+				borderWidth={6}
+				display={{ base: 'none', sm: 'block' }}
+			/>
+			<BaseLink
+				href={`/app/user/${idea_user?.id}`}
+				title={'The user who posted this idea'}
+				_hover={{ color: 'gray.700' }}
+				color={'gray.500'}
+			>
+				Posted by {idea_user?.first_name}
+			</BaseLink>
+		</FlexLayout>
+		<PointSeparator color={'gray.500'} small />
+		<Label
+			color={'gray.500'}
+			title={'When the idea was posted'}
+			label={formatDate(created_at)}
+			fontSize={'xs'}
+		/>
 	</FlexLayout>
 );
 

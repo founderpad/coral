@@ -67,7 +67,7 @@ exports[`Create idea form matches snapshot 1`] = `
           </label>
           <textarea
             aria-required="true"
-            class="chakra-textarea css-14w0bz"
+            class="chakra-textarea css-1tf6n30"
             id="description"
             placeholder="Write a description about your idea (max. 500 characters)"
             required=""
@@ -288,7 +288,7 @@ exports[`Create idea form matches snapshot 1`] = `
             Your competitors
           </label>
           <textarea
-            class="chakra-textarea css-14w0bz"
+            class="chakra-textarea css-1tf6n30"
             id="competitors"
             placeholder="List your competitors about your idea"
           />
@@ -305,7 +305,7 @@ exports[`Create idea form matches snapshot 1`] = `
             Your team
           </label>
           <textarea
-            class="chakra-textarea css-14w0bz"
+            class="chakra-textarea css-1tf6n30"
             id="team"
             placeholder="List each team member"
           />
@@ -322,7 +322,7 @@ exports[`Create idea form matches snapshot 1`] = `
             Additional information
           </label>
           <textarea
-            class="chakra-textarea css-14w0bz"
+            class="chakra-textarea css-1tf6n30"
             id="additional_information"
             placeholder="Any additional information"
           />

@@ -42,6 +42,16 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							error={!!error}
 							size={size}
 							minH={'100px'}
+							borderWidth={1}
+							borderColor={'gray.200'}
+							_focus={{
+								borderColor: 'gray.400',
+								boxShadow: 'none'
+							}}
+							_hover={{
+								borderColor: 'gray.300'
+							}}
+							rounded={'md'}
 						/>
 					)}
 					name={name}

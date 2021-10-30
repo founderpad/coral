@@ -13,13 +13,14 @@ type TIdeaCardFooter = Pick<
 const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 	const { field, id, idea_user, idea_votes } = idea;
 
+	// p={{ base: 2, sm: 3 }}
 	return (
-		<Flex alignItems={'center'} p={{ base: 2, sm: 3 }} borderTop={0}>
+		<Flex alignItems={'center'} borderTop={0}>
 			<StackLayout direction={'row'} spacing={2}>
-				<BaseTag color={'fpPrimary.500'} bg={'trandparent'}>
+				<BaseTag color={'fpPrimary.500'} bg={'white'}>
 					{idea_user?.country}
 				</BaseTag>
-				<BaseTag color={'fpPrimary.500'} bg={'trandparent'}>
+				<BaseTag color={'fpPrimary.500'} bg={'white'}>
 					{field}
 				</BaseTag>
 			</StackLayout>

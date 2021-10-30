@@ -3,15 +3,15 @@ import { Text } from '@chakra-ui/layout';
 import React from 'react';
 import { TLabelProps } from './types';
 
-export const BaseLabel = (props: TLabelProps): JSX.Element => (
-	<Text
-		color={props.color ?? 'black'}
-		fontSize={props.fontSize ?? 'sm'}
-		fontWeight={props.fontWeight}
-	>
-		{props.icon && (
-			<Icon as={props.icon} mr={2} fontSize={'md'} color={'gray.900'} />
-		)}
-		{props.label}
+export const BaseLabel = ({
+	color = 'black',
+	fontSize = 'sm',
+	label,
+	icon,
+	...rest
+}: TLabelProps): JSX.Element => (
+	<Text {...rest} color={color} fontSize={fontSize} d={'flex'}>
+		{icon && <Icon as={icon} mr={2} fontSize={'md'} color={'gray.900'} />}
+		{label}
 	</Text>
 );

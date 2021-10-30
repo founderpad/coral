@@ -15,9 +15,8 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 
 	return (
 		<Flex
-			px={1}
-			py={1}
-			bg={'gray.100'}
+			// p={2}
+			// bg={'gray.100'}
 			spacing={0}
 			flexDirection={{ base: 'column', sm: 'row' }}
 			justifyContent={{ sm: 'space-between' }}
@@ -26,7 +25,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 				<FlexLayout>
 					<Text
 						fontWeight={'medium'}
-						pl={{ sm: 10 }}
+						// pl={{ sm: 10 }}
 						fontSize={'sm'}
 						aria-label={'The name of the idea'}
 						title={'The name of this idea'}

@@ -57,10 +57,13 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 							onChange={(_s, n) => onChange(n)}
 						>
 							<NumberInputField
-								rounded={'sm'}
+								rounded={'md'}
 								_focus={{
-									borderWidth: 1,
-									borderColor: 'fpGrey.500'
+									borderColor: 'gray.400',
+									boxShadow: 'none'
+								}}
+								_hover={{
+									borderColor: 'gray.300'
 								}}
 							/>
 							<NumberInputStepper>

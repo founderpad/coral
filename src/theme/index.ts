@@ -14,6 +14,7 @@ const overrides = {
         Input,
         Select: Input,
         Textarea: Input,
+        NumberInput: Input,
         Menu,
         Tags,
         Tabs,
