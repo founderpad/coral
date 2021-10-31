@@ -12,11 +12,11 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 	<React.Fragment>
 		<FlexLayout>
 			<StackLayout
-				// py={2}
-				pr={2}
+				pr={{ base: 1, sm: 2 }}
 				rounded={'none'}
 				justifyContent={'space-between'}
 				alignItems={'center'}
+				spacing={0}
 			>
 				<BaseButton
 					name={'upvote-idea-button'}
@@ -30,8 +30,8 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 					<Icon as={IoArrowUpSharp} fontSize={'md'} pt={0} />
 				</BaseButton>
 				<Label
-					fontSize={{ base: 'xs', sm: 'md' }}
-					fontWeight={'normal'}
+					fontSize={{ base: 'sm', sm: 'md' }}
+					fontWeight={'medium'}
 					label={'1'}
 					color={'gray.500'}
 				/>
