@@ -1,11 +1,10 @@
 import Icon from '@chakra-ui/icon';
-import { HStack } from '@chakra-ui/layout';
 import { BaseButton } from 'components/buttons';
 import { Label } from 'components/labels';
-import { FlexLayout } from 'components/layouts';
+import { StackLayout } from 'components/layouts';
 import { TIdea_Votes, useUpsertIdeaVoteMutation } from 'generated/api';
 import React from 'react';
-import { IoArrowUpSharp } from 'react-icons/io5';
+import { IoArrowDownSharp, IoArrowUpSharp } from 'react-icons/io5';
 
 export const Upvote = (
 	ideaVotes: TIdea_Votes & { ideaId: string }
@@ -14,7 +13,7 @@ export const Upvote = (
 		variables: {
 			idea_vote: {
 				idea_id: ideaVotes.ideaId,
-				vote_type: 1
+				vote_type: -1
 			}
 		},
 		onCompleted: () => {
@@ -24,54 +23,45 @@ export const Upvote = (
 	});
 
 	return (
-		<HStack
+		<StackLayout
+			pr={{ base: 1, sm: 0 }}
+			rounded={'none'}
+			justifyContent={'space-between'}
 			alignItems={'center'}
-			cursor={'pointer'}
-			title={'Upvote this idea'}
+			spacing={0}
 		>
-			<FlexLayout
-				alignItems={'baseline'}
-				color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'fpGrey.500'}
+			<BaseButton
+				name={'upvote-idea-button'}
+				variant={'ghost'}
+				d={'flex'}
+				css={{ width: '0.8em !important' }}
+				color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'gray.500'}
+				bg={ideaVotes?.idea?.idea_votes && 'green.50'}
+				_hover={{ bg: 'green.50' }}
+				onClick={() => upsertIdeaVote()}
 			>
-				<BaseButton
-					name={'upvote-idea-button'}
-					variant={'unstyled'}
-					d={'flex'}
-					onClick={() => upsertIdeaVote()}
-					color={
-						ideaVotes?.idea?.idea_votes ? 'green.300' : 'gray.400'
-					}
-				>
-					<Icon as={IoArrowUpSharp} fontSize={'large'} mr={1} />
-					<Label
-						fontSize={{ base: 'xs', sm: 'sm' }}
-						fontWeight={'normal'}
-						label={
-							ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum
-								.vote_type ?? 0
-						}
-						color={
-							ideaVotes?.idea?.idea_votes
-								? 'green.300'
-								: 'gray.400'
-						}
-					/>
-				</BaseButton>
-			</FlexLayout>
-
-			{/* <Flex>
-                <Icon
-                    as={IoArrowDownCircleOutline}
-                    color={ideaVotes?.idea?.idea_votes ? 'red.500' : 'fpGrey.500'}
-                    fontSize={{ base: 'md', sm: 'x-large' }}
-                    title={'Upvote this idea'}
-                    mr={2}
-                    cursor={'pointer'}
-                />
-                <Text fontSize={{ base: 'xs', sm: 'large' }} fontWeight={'medium'} color={ideaVotes?.idea?.idea_votes ? 'red.500' : 'fpGrey.500'}>
-                    {ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum.vote_type ?? 0}
-                </Text>
-            </Flex> */}
-		</HStack>
+				<Icon as={IoArrowUpSharp} fontSize={'md'} pt={0} />
+			</BaseButton>
+			<Label
+				fontSize={{ base: 'sm', sm: 'md' }}
+				fontWeight={'medium'}
+				label={
+					ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum
+						.vote_type ?? 0
+				}
+				color={'gray.500'}
+			/>
+			<BaseButton
+				name={'downvote-idea-button'}
+				variant={'ghost'}
+				d={'flex'}
+				css={{ width: '0.8em !important' }}
+				color={'gray.500'}
+				_hover={{ bg: 'red.50' }}
+				onClick={() => upsertIdeaVote()}
+			>
+				<Icon as={IoArrowDownSharp} fontSize={'md'} />
+			</BaseButton>
+		</StackLayout>
 	);
 };
