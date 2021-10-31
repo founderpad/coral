@@ -12,7 +12,8 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 	<React.Fragment>
 		<FlexLayout>
 			<StackLayout
-				py={2}
+				// py={2}
+				pr={2}
 				rounded={'none'}
 				justifyContent={'space-between'}
 				alignItems={'center'}
@@ -22,12 +23,11 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 					variant={'ghost'}
 					d={'flex'}
 					css={{ width: '0.8em !important' }}
-					py={1}
 					color={'gray.500'}
 					_hover={{ bg: 'green.50' }}
-					p={0}
+					pt={0}
 				>
-					<Icon as={IoArrowUpSharp} fontSize={'md'} />
+					<Icon as={IoArrowUpSharp} fontSize={'md'} pt={0} />
 				</BaseButton>
 				<Label
 					fontSize={{ base: 'xs', sm: 'md' }}
@@ -36,11 +36,10 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 					color={'gray.500'}
 				/>
 				<BaseButton
-					name={'upvote-idea-button'}
+					name={'downvote-idea-button'}
 					variant={'ghost'}
 					d={'flex'}
-					size={'xs'}
-					py={1}
+					css={{ width: '0.8em !important' }}
 					color={'gray.500'}
 					_hover={{ bg: 'red.50' }}
 					p={0}
