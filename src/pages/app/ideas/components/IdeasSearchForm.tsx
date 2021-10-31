@@ -74,15 +74,6 @@ const IdeasSearchForm = (): JSX.Element => {
 			onSubmit={handleSubmit(onClick)}
 			stackProps={{ spacing: 4 }}
 		>
-			{/* <Heading
-				as={'h6'}
-				fontSize={'md'}
-				display={{ base: 'none', md: 'block' }}
-				mb={4}
-			>
-				Search ideas
-			</Heading> */}
-
 			<Label
 				label={'Search ideas'}
 				display={{ base: 'none', md: 'block' }}

@@ -12,7 +12,7 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 	<React.Fragment>
 		<FlexLayout>
 			<StackLayout
-				pr={{ base: 1, sm: 2 }}
+				pr={{ base: 1, sm: 0 }}
 				rounded={'none'}
 				justifyContent={'space-between'}
 				alignItems={'center'}
