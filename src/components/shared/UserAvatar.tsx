@@ -15,14 +15,8 @@ type Props = AvatarProps & {
 export const UserAvatar = (props: AvatarProps): JSX.Element => {
 	const avatarSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
-	const { rounded, size, ...rest } = props;
-	return (
-		<Avatar
-			{...rest}
-			size={size ?? avatarSize}
-			rounded={rounded ?? 'full'}
-		/>
-	);
+	const { rounded = 'full', size, ...rest } = props;
+	return <Avatar {...rest} size={size ?? avatarSize} rounded={rounded} />;
 };
 
 export const UserAvatarDetails = ({

@@ -9,6 +9,7 @@ const ProfileLayout = (): JSX.Element => (
 		templateColumns="repeat(12, 1fr)"
 		template
 		w={'full'}
+		gridGap={6}
 	>
 		<GridItem colSpan={{ md: 3 }} display={{ base: 'none', md: 'block' }}>
 			<UserPersonalDetails mb={8} />

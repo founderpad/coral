@@ -74,7 +74,7 @@ const SocialMediaDetails = (): JSX.Element => {
 								color: 'linkedin.700',
 								cursor: 'pointer'
 							}}
-							boxSize={5}
+							iconProps={{ boxSize: 6 }}
 						/>
 					)}
 					{socials?.twitter && (
@@ -84,7 +84,7 @@ const SocialMediaDetails = (): JSX.Element => {
 							icon={IoLogoTwitter}
 							color={'gray.400'}
 							_hover={{ color: 'twitter.500', cursor: 'pointer' }}
-							boxSize={5}
+							iconProps={{ boxSize: 6 }}
 						/>
 					)}
 					{socials?.instagram && (
@@ -98,7 +98,7 @@ const SocialMediaDetails = (): JSX.Element => {
 								color: 'instagram.500',
 								cursor: 'pointer'
 							}}
-							boxSize={5}
+							iconProps={{ boxSize: 6 }}
 						/>
 					)}
 					{socials?.facebook && (
@@ -111,7 +111,7 @@ const SocialMediaDetails = (): JSX.Element => {
 								color: 'facebook.500',
 								cursor: 'pointer'
 							}}
-							boxSize={5}
+							iconProps={{ boxSize: 6 }}
 						/>
 					)}
 					{socials?.website && (
@@ -121,7 +121,7 @@ const SocialMediaDetails = (): JSX.Element => {
 							icon={IoGlobe}
 							color={'gray.400'}
 							_hover={{ color: 'website.500', cursor: 'pointer' }}
-							boxSize={5}
+							iconProps={{ boxSize: 6 }}
 						/>
 					)}
 				</StackLayout>
