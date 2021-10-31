@@ -4,10 +4,10 @@ import React from 'react';
 import { BaseButtonProps, LinkButtonProps } from './types/buttons';
 
 export const BaseButton = (props: BaseButtonProps): JSX.Element => {
-	const { children, size, name, ...rest } = props;
+	const { children, size = 'sm', name, ...rest } = props;
 
 	return (
-		<Button {...rest} size={size ?? 'sm'} aria-label={name}>
+		<Button {...rest} size={size} aria-label={name}>
 			{children}
 		</Button>
 	);
@@ -20,7 +20,7 @@ export const LinkButton = (props: LinkButtonProps): JSX.Element => {
 		<Button
 			{...rest}
 			as={BaseLink}
-			size={size ?? 'sm'}
+			size={size}
 			aria-label={name}
 			href={href}
 		/>

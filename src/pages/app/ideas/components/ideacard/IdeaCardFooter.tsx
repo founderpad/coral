@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/layout';
 import { StackLayout } from 'components/layouts';
-import { Upvote } from 'components/shared';
 import BaseTag from 'components/tags/BaseTag';
 import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
@@ -22,14 +21,14 @@ const IdeaCardFooter = (idea: TIdeaCardFooter): JSX.Element => {
 					{field}
 				</BaseTag>
 			</StackLayout>
-			<StackLayout
+			{/* <StackLayout
 				justifyContent={'flex-end'}
 				flex={1}
 				direction={'row'}
 				spacing={{ base: 2, sm: 4 }}
 			>
 				<Upvote {...idea_votes} ideaId={id} />
-			</StackLayout>
+			</StackLayout> */}
 		</Flex>
 	);
 };

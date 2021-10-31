@@ -18,11 +18,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 			flexDirection={{ base: 'column', sm: 'row' }}
 			justifyContent={{ sm: 'space-between' }}
 		>
-			<FlexLayout
-				mr={4}
-				flexDirection={{ base: 'column', sm: 'row' }}
-				alignItems={'center'}
-			>
+			<FlexLayout mr={4} flexDirection={{ base: 'column', sm: 'row' }}>
 				<FlexLayout>
 					<Text
 						fontWeight={'medium'}
