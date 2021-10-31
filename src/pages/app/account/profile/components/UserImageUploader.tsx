@@ -67,7 +67,6 @@ const UserImageUploader = (): JSX.Element => {
 			<UserAvatar
 				src={avatar_url}
 				boxSize={140}
-				rounded={'full'}
 				aria-label="Edit profile picture"
 			/>
 		</ImageUploader>

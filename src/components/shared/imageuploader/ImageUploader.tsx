@@ -156,28 +156,21 @@ export const ImageUploader = (props: Props): JSX.Element => {
 				rounded={'full'}
 				boxShadow={'lg'}
 			>
-				<Box
+				<EditButton
+					as={'label'}
+					onClick={undefined}
+					htmlFor={'image-upload'}
+					bg={'white'}
+					size={'sm'}
+					boxShadow={'md'}
+					cursor={'pointer'}
+					aria-label={props['aria-label']}
+					title={props.title}
 					position={'absolute'}
 					bottom={0}
 					transform={'translateY(25%)translateX(100%)'}
-					as={'label'}
-					cursor={'pointer'}
-					bg={'white'}
 					zIndex={1}
-					rounded={'full'}
-				>
-					<EditButton
-						as={'label'}
-						onClick={undefined}
-						htmlFor={'image-upload'}
-						bg={'white'}
-						boxShadow={'md'}
-						size={'sm'}
-						cursor={'pointer'}
-						aria-label={props['aria-label']}
-						title={props.title}
-					/>
-				</Box>
+				/>
 				<Box
 					className="image"
 					position={'relative'}

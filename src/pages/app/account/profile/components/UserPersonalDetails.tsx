@@ -1,4 +1,4 @@
-import { Box, FlexProps } from '@chakra-ui/react';
+import { FlexProps } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
 import { StackLayout } from 'components/layouts';
 import { TitleEditAction } from 'components/shared';
@@ -38,12 +38,9 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 	};
 
 	return (
-		<StackLayout spacing={2}>
-			<Box boxSize={'145px'}>
-				<UserImageUploader />
-			</Box>
-
-			<StackLayout {...props} spacing={2} w={'full'} mb={4}>
+		<StackLayout>
+			<UserImageUploader />
+			<StackLayout {...props} spacing={2} w={'full'}>
 				<TitleEditAction
 					title={user?.first_name + ' ' + user?.last_name}
 					onClick={onClick}
