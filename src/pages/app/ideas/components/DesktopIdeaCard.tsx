@@ -1,5 +1,4 @@
-import { StackLayout } from 'components/layouts';
-import { BaseLink } from 'components/links';
+import { Link, Stack } from '@chakra-ui/layout';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 import IdeaCardBody from './ideacard/IdeaCardBody';
@@ -7,7 +6,7 @@ import IdeaCardFooter from './ideacard/IdeaCardFooter';
 import IdeaCardHeader from './ideacard/IdeaCardHeader';
 
 const DesktopIdeaCard = (idea: TIdea_Preview): JSX.Element => (
-	<StackLayout
+	<Stack
 		title={'Posted idea'}
 		position={'relative'}
 		display={{ base: 'none', sm: 'block' }}
@@ -20,13 +19,13 @@ const DesktopIdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		p={2}
 		flex={1}
 		spacing={4}
-		as={BaseLink}
+		as={Link}
 		href={`/app/idea/${idea.id}`}
 	>
 		<IdeaCardHeader {...idea} />
 		<IdeaCardBody {...idea} />
 		<IdeaCardFooter {...idea} />
-	</StackLayout>
+	</Stack>
 );
 
 export default DesktopIdeaCard;
