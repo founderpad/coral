@@ -1,4 +1,5 @@
-import { Link, Stack } from '@chakra-ui/layout';
+import { Stack } from '@chakra-ui/layout';
+import { BaseLink } from 'components/links';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 import IdeaCardBody from './ideacard/IdeaCardBody';
@@ -19,7 +20,7 @@ const DesktopIdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		p={2}
 		flex={1}
 		spacing={4}
-		as={Link}
+		as={BaseLink}
 		href={`/app/idea/${idea.id}`}
 	>
 		<IdeaCardHeader {...idea} />
