@@ -13,7 +13,6 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		<FlexLayout>
 			<StackLayout
 				py={2}
-				// bg={'gray.50'}
 				rounded={'none'}
 				justifyContent={'space-between'}
 				alignItems={'center'}
