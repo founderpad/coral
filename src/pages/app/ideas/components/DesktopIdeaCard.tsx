@@ -11,10 +11,12 @@ const DesktopIdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		title={'Posted idea'}
 		position={'relative'}
 		display={{ base: 'none', sm: 'block' }}
+		borderWidth={1}
+		borderColor={'white'}
 		_hover={{
-			boxShadow: 'md',
-			// bg: 'gray.50',
-			borderWidth: 1,
+			boxShadow: 'sm',
+			bg: '#fbfcfd',
+			// opacity: '0.7',
 			borderColor: 'gray.100',
 			transition: 'ease-in .3s'
 		}}
