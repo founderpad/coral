@@ -13,7 +13,7 @@ export const Upvote = (
 		variables: {
 			idea_vote: {
 				idea_id: ideaVotes.ideaId,
-				vote_type: -1
+				vote_type: 1
 			}
 		},
 		onCompleted: () => {
@@ -24,7 +24,7 @@ export const Upvote = (
 
 	return (
 		<StackLayout
-			pr={{ base: 1, sm: 0 }}
+			pr={{ base: 1, sm: 2 }}
 			rounded={'none'}
 			justifyContent={'space-between'}
 			alignItems={'center'}

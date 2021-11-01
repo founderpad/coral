@@ -13,7 +13,9 @@ const DesktopIdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		display={{ base: 'none', sm: 'block' }}
 		_hover={{
 			boxShadow: 'md',
-			bg: 'gray.50',
+			// bg: 'gray.50',
+			borderWidth: 1,
+			borderColor: 'gray.100',
 			transition: 'ease-in .3s'
 		}}
 		borderRadius={'md'}
