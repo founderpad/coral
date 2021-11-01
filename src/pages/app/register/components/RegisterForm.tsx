@@ -1,3 +1,4 @@
+import { Divider } from '@chakra-ui/layout';
 import { SubmitButton } from 'components/buttons';
 import { useBaseForm } from 'components/form/hooks';
 import {
@@ -69,6 +70,7 @@ const RegisterForm = (): JSX.Element => {
 						size={'md'}
 					/>
 				</StackLayout>
+				<Divider width={'75%'} mx={'auto'} alignSelf={'center'} />
 				<StackLayout>
 					<EmailField
 						id="email"

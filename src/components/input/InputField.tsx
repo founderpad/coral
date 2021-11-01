@@ -120,6 +120,7 @@ export const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
 			type="email"
 			rules={{ pattern: EMAIL_REGEX }}
 			ref={ref}
+			label={props.showLabel && 'Email'}
 		/>
 	)
 );

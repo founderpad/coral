@@ -17,6 +17,7 @@ export interface IInputFieldProps<T extends FieldValues> extends InputProps {
 	max?: number;
 	leftIcon?: IconType | string;
 	rightIcon?: IconType | string;
+	showLabel?: boolean;
 }
 
 export interface ISelectFieldProps extends IInputFieldProps<any> {

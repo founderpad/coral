@@ -148,6 +148,10 @@ exports[`Register form matches snapshot 1`] = `
           />
         </div>
       </div>
+      <hr
+        aria-orientation="horizontal"
+        class="chakra-divider css-nlyxio"
+      />
       <div
         class="chakra-stack css-1kii5if"
       >
