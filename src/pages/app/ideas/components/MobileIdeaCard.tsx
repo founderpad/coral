@@ -10,7 +10,7 @@ const MobileIdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		title={'Posted idea'}
 		position={'relative'}
 		display={{ base: 'block', sm: 'none' }}
-		spacing={3}
+		spacing={4}
 	>
 		<IdeaCardHeader {...idea} />
 		<IdeaCardBody {...idea} />
