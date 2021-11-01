@@ -7,7 +7,7 @@ import { IconType } from 'react-icons/lib';
 
 const ProfileSectionLabel = memo(
 	({
-		label,
+		label = 'Not set',
 		icon,
 		children
 	}: {
@@ -18,12 +18,9 @@ const ProfileSectionLabel = memo(
 		<FlexLayout alignItems={'center'} wordBreak={'break-all'}>
 			{icon && <Icon as={icon} color={'gray.400'} mr={2} />}
 			{children ?? (
-				<Label
-					label={label ?? 'Not set'}
-					color={'gray.500'}
-					textOverflow={'ellipsis'}
-					isTruncated
-				/>
+				<Label color={'gray.500'} textOverflow={'ellipsis'} isTruncated>
+					{label}
+				</Label>
 			)}
 		</FlexLayout>
 	)

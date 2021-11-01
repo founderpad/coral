@@ -75,12 +75,13 @@ const IdeasSearchForm = (): JSX.Element => {
 			stackProps={{ spacing: 4 }}
 		>
 			<Label
-				label={'Search ideas'}
 				display={{ base: 'none', md: 'block' }}
 				fontSize={'md'}
 				fontWeight={'semibold'}
 				mb={4}
-			/>
+			>
+				Search ideas
+			</Label>
 			<InputField
 				id="name"
 				name="name"

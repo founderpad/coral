@@ -138,19 +138,17 @@ const MessageLayout = ({
 				>
 					<FlexLayout alignItems={'baseline'}>
 						{' '}
-						<Label
-							label={name}
-							fontSize={'sm'}
-							fontWeight={'medium'}
-						/>
+						<Label fontSize={'sm'} fontWeight={'medium'}>
+							{name}
+						</Label>
 						<PointSeparator small />
-						<Label
-							label={date}
-							color={'gray.400'}
-							fontSize={'xs'}
-						/>
+						<Label color={'gray.400'} fontSize={'xs'}>
+							{date}
+						</Label>
 					</FlexLayout>
-					<Label label={value} color={'gray.500'} fontSize={'sm'} />
+					<Label color={'gray.500'} fontSize={'sm'}>
+						{value}
+					</Label>
 				</StackLayout>
 				{actions && <Actions />}
 				{children}

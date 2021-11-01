@@ -34,9 +34,10 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 		<Label
 			color={'gray.500'}
 			title={'When the idea was posted'}
-			label={formatDate(created_at)}
 			fontSize={'xs'}
-		/>
+		>
+			{formatDate(created_at)}
+		</Label>
 	</FlexLayout>
 );
 

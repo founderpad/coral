@@ -1,8 +1,8 @@
-import { Flex, Text } from '@chakra-ui/layout';
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { useBaseForm } from 'components/form/hooks';
 import { EmailField, PasswordField } from 'components/input';
+import { Label } from 'components/labels';
 import { StackLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import { useLogin } from 'hooks/auth';
@@ -60,25 +60,16 @@ const LoginForm = (): JSX.Element => {
 
 const NoAccountFooter = memo(
 	(): JSX.Element => (
-		<Flex
-			spacing={6}
-			justifyContent={'center'}
-			w="full"
-			mt={'auto'}
-			mx={'auto'}
-		>
-			<Text color={'gray.500'} fontSize={'xs'}>
-				Don&apos;t have an account?
-			</Text>
-			&nbsp;
+		<Label color={'gray.500'} fontSize={'smaller'} alignSelf={'center'}>
+			Don&apos;t have an account?
 			<PrimaryLink
 				href="/app/register"
-				fontSize={'xs'}
 				title={'Link to register an account'}
 			>
+				{' '}
 				Create one here
 			</PrimaryLink>
-		</Flex>
+		</Label>
 	)
 );
 

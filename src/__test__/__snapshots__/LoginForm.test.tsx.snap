@@ -62,24 +62,18 @@ exports[`Login form matches snapshot 1`] = `
         >
           Login now
         </button>
-        <div
-          class="css-1l89r0h"
-          spacing="6"
+        <p
+          class="chakra-text css-1izd6ip"
         >
-          <p
-            class="chakra-text css-135297o"
-          >
-            Don't have an account?
-          </p>
-           
+          Don't have an account?
           <a
-            class="chakra-link css-1xcfk62"
+            class="chakra-link css-qgrdgl"
             href="/app/register"
             title="Link to register an account"
           >
-            Create one here
+             Create one here
           </a>
-        </div>
+        </p>
       </div>
     </div>
   </form>

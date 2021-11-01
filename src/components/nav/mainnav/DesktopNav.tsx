@@ -83,15 +83,14 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 					>
 						<BaseLabel
 							transition={'all .3s ease'}
-							label={label}
 							color={'black'}
 							_groupHover={{ color: 'gray.900' }}
-						/>
-						<BaseLabel
-							label={subLabel}
-							color={'gray.400'}
-							fontWeight={'normal'}
-						/>
+						>
+							{label}
+						</BaseLabel>
+						<BaseLabel color={'gray.400'} fontWeight={'normal'}>
+							{subLabel}
+						</BaseLabel>
 					</BoxLayout>
 				</BoxLayout>
 

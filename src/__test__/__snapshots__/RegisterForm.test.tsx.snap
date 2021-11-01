@@ -203,45 +203,41 @@ exports[`Register form matches snapshot 1`] = `
           Create account
         </button>
         <div
-          class="chakra-stack css-lxfrt4"
+          class="chakra-text css-1g9y1lt"
         >
-          <div
-            class="chakra-text css-135297o"
+          By continuing, you agree to founderpad's 
+          <a
+            class="chakra-link css-qgrdgl"
+            href="https://www.founderpad.com/legal/terms"
+            rel="noopener noreferrer"
+            target="_blank"
+            title="Link to Terms of Service"
           >
-            By continuing, you agree to founderpad's 
-            <a
-              class="chakra-link css-qgrdgl"
-              href="https://www.founderpad.com/legal/terms"
-              rel="noopener noreferrer"
-              target="_blank"
-              title="Link to Terms of Service"
-            >
-              Terms of Service
-            </a>
-             and acknowledge that you've read our 
-            <a
-              class="chakra-link css-qgrdgl"
-              href="https://www.founderpad.com/legal/privacy-policy"
-              rel="noopener noreferrer"
-              target="_blank"
-              title="Link to Privacy Policy"
-            >
-              Privacy Policy
-            </a>
-             
-          </div>
-          <div
-            class="chakra-text css-135297o"
+            Terms of Service
+          </a>
+           and acknowledge that you've read our 
+          <a
+            class="chakra-link css-qgrdgl"
+            href="https://www.founderpad.com/legal/privacy-policy"
+            rel="noopener noreferrer"
+            target="_blank"
+            title="Link to Privacy Policy"
           >
-            Already have an account? 
-            <a
-              class="chakra-link css-qgrdgl"
-              href="/app/login"
-              title="Link to login"
-            >
-              Login here
-            </a>
-          </div>
+            Privacy Policy
+          </a>
+           
+        </div>
+        <div
+          class="chakra-text css-1izd6ip"
+        >
+          Already have an account? 
+          <a
+            class="chakra-link css-qgrdgl"
+            href="/app/login"
+            title="Link to login"
+          >
+            Login here
+          </a>
         </div>
       </div>
     </div>

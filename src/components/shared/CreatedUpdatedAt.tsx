@@ -6,15 +6,13 @@ import { formatDate } from 'utils/validators';
 // const LastUpdatedAt = ({ date }: { date: string }): JSX.Element => <Text fontSize={'xs'} color={'fpGrey.300'}>Updated {formatDate(date, false, true)}</Text>
 
 export const LastUpdatedAt = ({ date }: { date: string }): JSX.Element => (
-	<SubLabel label={`Updated ${formatDate(date, false)}`} />
+	<SubLabel>Updated {formatDate(date, false)}</SubLabel>
 );
 
 export const CreatedAt = ({
 	date,
-	withTime
+	withTime = false
 }: {
 	date: string;
 	withTime?: boolean;
-}): JSX.Element => (
-	<SubLabel label={`Today at ${formatDate(date, withTime)}`} />
-);
+}): JSX.Element => <SubLabel>Today at ${formatDate(date, withTime)}</SubLabel>;

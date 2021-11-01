@@ -6,12 +6,12 @@ import { TLabelProps } from './types';
 export const BaseLabel = ({
 	color = 'black',
 	fontSize = 'sm',
-	label,
+	children,
 	icon,
 	...rest
 }: TLabelProps): JSX.Element => (
-	<Text {...rest} color={color} fontSize={fontSize} d={'flex'}>
+	<Text {...rest} color={color} fontSize={fontSize}>
 		{icon && <Icon as={icon} mr={2} fontSize={'md'} color={'gray.900'} />}
-		{label}
+		{children}
 	</Text>
 );

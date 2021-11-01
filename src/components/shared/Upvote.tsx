@@ -45,12 +45,11 @@ export const Upvote = (
 			<Label
 				fontSize={{ base: 'sm', sm: 'md' }}
 				fontWeight={'medium'}
-				label={
-					ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum
-						.vote_type ?? 0
-				}
 				color={'gray.500'}
-			/>
+			>
+				{ideaVotes?.idea?.idea_votes_aggregate.aggregate.sum
+					.vote_type ?? 0}
+			</Label>
 			<BaseButton
 				name={'downvote-idea-button'}
 				variant={'ghost'}

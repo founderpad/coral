@@ -21,10 +21,10 @@ const NewIdea = (): JSX.Element => (
 				<Label
 					fontSize={{ base: 'sm', sm: 'md' }}
 					fontWeight={'medium'}
-					label={
-						'You have an exciting new idea and want to share it with the community. We have you covered!'
-					}
-				/>
+				>
+					You have an exciting new idea and want to share it with the
+					community. We have you covered!
+				</Label>
 			</StackLayout>
 			<CreateEditIdeaForm />
 		</PageLayout>

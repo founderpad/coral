@@ -11,15 +11,15 @@ export type BaseMenuItemProps = Pick<MenuItemProps, 'color' | 'onClick'> & {
 export const MenuItemButton = ({
 	title,
 	subTitle,
+	color = 'black',
 	...rest
 }: BaseMenuItemProps): JSX.Element => (
 	<MenuItem {...rest} flexDirection={'column'} alignItems={'flex-start'}>
-		<Label
-			label={title}
-			fontWeight={'medium'}
-			fontSize={'sm'}
-			color={rest.color ?? 'black'}
-		/>
-		<Label fontSize={'smaller'} color={'gray.400'} label={subTitle} />
+		<Label fontWeight={'medium'} fontSize={'sm'} color={color}>
+			{title}
+		</Label>
+		<Label fontSize={'smaller'} color={'gray.400'}>
+			{subTitle}
+		</Label>
 	</MenuItem>
 );

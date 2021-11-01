@@ -1,12 +1,11 @@
 import { Stack } from '@chakra-ui/layout';
-import { Divider, Flex, Spinner, Text } from '@chakra-ui/react';
+import { Divider, Flex, Spinner } from '@chakra-ui/react';
 import { Label } from 'components/labels';
 import { PrimaryLink } from 'components/links';
 import { NoResults } from 'components/shared';
 import { TActivity, useGetUserActivitiesQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
-import { formatDate } from 'utils/validators';
 
 const UserActivityTab = (): JSX.Element => {
 	const user = useCurrentUser();
@@ -38,11 +37,9 @@ const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => (
 	<Flex p={0} flexDirection={'column'}>
 		<Flex justifyContent={'space-between'} alignItems={'flex-start'}>
 			<Flex flexDirection={'column'}>
-				<Label
-					fontSize={'sm'}
-					fontWeight={'md'}
-					label={activity.description}
-				/>
+				<Label fontSize={'sm'} fontWeight={'md'}>
+					{activity.description}
+				</Label>
 				<PrimaryLink
 					href={`/app/${activity?.url}`}
 					fontSize={'sm'}
@@ -51,9 +48,9 @@ const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => (
 					View this {activity.type}
 				</PrimaryLink>
 			</Flex>
-			<Text fontSize={'xs'} color={'fpGrey.300'}>
+			{/* <Text fontSize={'xs'} color={'fpGrey.300'}>
 				{formatDate(activity.created_at)}
-			</Text>
+			</Text> */}
 		</Flex>
 	</Flex>
 );

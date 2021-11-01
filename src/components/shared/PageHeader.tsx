@@ -37,10 +37,11 @@ export const PageHeader = memo(
 						<Label
 							as="h4"
 							fontSize="sm"
-							label={subtitle}
 							color={'gray.500'}
 							fontWeight={'medium'}
-						/>
+						>
+							{subtitle}
+						</Label>
 					)}
 				</StackLayout>
 			</React.Fragment>

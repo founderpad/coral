@@ -1,11 +1,11 @@
-import { Text, VStack } from '@chakra-ui/layout';
+import { Label } from 'components/labels';
 import { PrimaryLink } from 'components/links';
 import React, { memo } from 'react';
 
 const LegalFooter = memo(
 	(): JSX.Element => (
-		<VStack spacing={6} justifyContent={'center'} w="full" mx={'auto'}>
-			<Text as={'div'} color={'gray.500'} fontSize={'xs'}>
+		<React.Fragment>
+			<Label as={'div'} color={'gray.500'} fontSize={'smaller'}>
 				By continuing, you agree to founderpad&apos;s{' '}
 				<PrimaryLink
 					href="https://www.founderpad.com/legal/terms"
@@ -22,14 +22,19 @@ const LegalFooter = memo(
 				>
 					Privacy Policy
 				</PrimaryLink>{' '}
-			</Text>
-			<Text as={'div'} color={'gray.500'} fontSize={'xs'}>
+			</Label>
+			<Label
+				as={'div'}
+				color={'gray.500'}
+				fontSize={'smaller'}
+				alignSelf={'center'}
+			>
 				Already have an account?{' '}
 				<PrimaryLink href="/app/login" title={'Link to login'}>
 					Login here
 				</PrimaryLink>
-			</Text>
-		</VStack>
+			</Label>
+		</React.Fragment>
 	)
 );
 

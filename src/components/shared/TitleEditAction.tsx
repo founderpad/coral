@@ -16,12 +16,9 @@ export const TitleEditAction = memo(
 			alignItems={'center'}
 			w={'full'}
 		>
-			<Label
-				label={title}
-				color={'black'}
-				fontSize={'lg'}
-				fontWeight={'semibold'}
-			/>
+			<Label color={'black'} fontSize={'lg'} fontWeight={'semibold'}>
+				{title}
+			</Label>
 
 			{onClick && <EditButton onClick={onClick} aria-label={'Edit'} />}
 		</FlexLayout>

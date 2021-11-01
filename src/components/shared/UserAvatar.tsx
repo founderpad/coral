@@ -29,9 +29,9 @@ export const UserAvatarDetails = ({
 		<Flex align={'center'}>
 			<UserAvatar src={src} />
 			<Box ml={2}>
-				<Label label={name} fontWeight={'medium'} />
-				{email && <SubLabel label={email} color={'gray.500'} />}
-				{createdAt && <SubLabel label={createdAt} />}
+				<Label fontWeight={'medium'}>{name}</Label>
+				{email && <SubLabel color={'gray.500'}>{email}</SubLabel>}
+				{createdAt && <SubLabel>{createdAt}</SubLabel>}
 			</Box>
 		</Flex>
 	);
