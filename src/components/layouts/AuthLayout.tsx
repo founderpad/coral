@@ -24,6 +24,8 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => {
 				borderWidth={{ sm: '1px' }}
 				m={'auto'}
 				bg={'white'}
+				flex={{ base: 1, sm: 'none' }}
+				justifyContent={'center'}
 			>
 				<Image
 					src="/logo.svg"
