@@ -1,7 +1,7 @@
 import { createClient } from 'nhost-js-sdk';
 
 const nhostClient = createClient({
-	baseURL: process.env.NEXT_PUBLIC_BACKEND
+	baseURL: 'https://backend-19728797.nhost.app'
 });
 
 const auth = nhostClient.auth;
