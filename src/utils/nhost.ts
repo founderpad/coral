@@ -1,7 +1,7 @@
 import { createClient } from 'nhost-js-sdk';
 
 const nhostClient = createClient({
-	baseURL: process.env.NEXT_PUBLIC_NEXT_BACKEND
+	baseURL: process.env.NEXT_PUBLIC_BACKEND
 });
 
 const auth = nhostClient.auth;

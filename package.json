@@ -5,7 +5,7 @@
 	"license": "private",
 	"scripts": {
 		"dev": "next dev",
-		"build": "graphql-codegen --require dotenv/config --config codegen.yml && yarn test && next build",
+		"build": "graphql-codegen --require dotenv/config --config codegen.yml && next build",
 		"start": "next start",
 		"storybook": "start-storybook -p 6006",
 		"type-check": "tsc --pretty --noEmit",
