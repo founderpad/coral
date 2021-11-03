@@ -4,7 +4,6 @@ import {
 	AlertDescription,
 	AlertIcon,
 	AlertTitle,
-	Box,
 	CloseButton,
 	Link
 } from '@chakra-ui/react';
@@ -14,6 +13,7 @@ import { InputField } from 'components/input/InputField';
 import { SelectField } from 'components/input/SelectField';
 import { SwitchField } from 'components/input/SwitchField';
 import { TextareaField } from 'components/input/TextareaField';
+import { FlexLayout } from 'components/layouts';
 import { TIdeas, useCreateIdeaMutation } from 'generated/api';
 import NextLink from 'next/link';
 import React, { useEffect } from 'react';
@@ -224,28 +224,31 @@ const CreateUpdateSuccessAlert = ({
 }: {
 	isUpdate: boolean;
 	ideaId: string;
-}): JSX.Element => {
-	return (
-		<Alert status="success" variant={'left-accent'}>
-			<AlertIcon />
-			<Box flex="1">
-				<AlertTitle color={'fpGrey.900'} fontWeight={'bold'}>
-					Your idea has been {isUpdate ? 'updated' : 'created'}
-				</AlertTitle>
-				<AlertDescription display="block" fontSize={'sm'} mb={4}>
-					Your {isUpdate ? 'updated' : 'new'} idea has been added and
-					will be live to other founders.
-				</AlertDescription>
+}): JSX.Element => (
+	<Alert status="success" variant={'left-accent'}>
+		<AlertIcon />
+		<FlexLayout flexDirection={'column'}>
+			<AlertTitle color={'black'} fontWeight={'medium'}>
+				Your idea has been {isUpdate ? 'updated' : 'created'}
+			</AlertTitle>
+			<AlertDescription
+				display="block"
+				fontSize={'sm'}
+				mb={4}
+				color={'gray.700'}
+			>
+				Your {isUpdate ? 'updated' : 'new'} idea has been added and will
+				be live to other founders.
+			</AlertDescription>
 
-				<NextLink href={`/app/idea/${ideaId}`} passHref>
-					<Link color={'fpPrimary.500'} fontSize={'sm'}>
-						Click here to view your idea
-					</Link>
-				</NextLink>
-			</Box>
-			<CloseButton position="absolute" right="8px" top="8px" />
-		</Alert>
-	);
-};
+			<NextLink href={`/app/idea/${ideaId}`} passHref>
+				<Link color={'fpPrimary.500'} fontSize={'sm'}>
+					Click here to view your idea
+				</Link>
+			</NextLink>
+		</FlexLayout>
+		<CloseButton position="absolute" right="8px" top="8px" />
+	</Alert>
+);
 
 export default CreateEditIdeaForm;

@@ -1,12 +1,10 @@
-import { EditButton, SubmitButton } from 'components/buttons';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { IconLink } from 'components/links';
-import ModalDrawerContext from 'context/ModalDrawerContext';
 import { TUser_Profile } from 'generated/api';
 import gql from 'graphql-tag';
 import { useCurrentUser } from 'hooks/auth';
 import { cache } from 'pages/_app';
-import React, { useContext } from 'react';
+import React from 'react';
 import {
 	IoGlobe,
 	IoLogoFacebook,
@@ -14,11 +12,10 @@ import {
 	IoLogoLinkedin,
 	IoLogoTwitter
 } from 'react-icons/io5';
-import SocialMediaDetailsForm from './forms/SocialMediaDetailsForm';
 
 const SocialMediaDetails = (): JSX.Element => {
 	const user = useCurrentUser();
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const socials = cache.readFragment({
 		id: `user_profile:${user.user_profile.id}`, // The value of the profile's cache id
@@ -34,102 +31,114 @@ const SocialMediaDetails = (): JSX.Element => {
 		`
 	}) as TUser_Profile;
 
-	const onClick = () => {
-		setModalDrawer({
-			title: 'Your socials',
-			isOpen: true,
-			actions: (
-				<SubmitButton
-					name={'open-modal-drawer-socials-button'}
-					form="editSocialDetailsForm"
-					label={'Save'}
-					size={'sm'}
-				/>
-			),
-			body: <SocialMediaDetailsForm {...socials} />,
-			noBtnLabel: 'Cancel',
-			yesBtnLabel: 'Log out',
-			yesBtnColor: 'red',
-			hideFooter: true
-		});
-	};
+	// const socialsObj = [
+	// 	socials?.linkedin,
+	// 	socials?.twitter,
+	// 	socials?.instagram,
+	// 	socials?.facebook,
+	// 	socials?.website
+	// ];
 
-	// if (!socials) return <Loading small />;
+	// const onClick = () => {
+	// 	setModalDrawer({
+	// 		title: 'Your socials',
+	// 		isOpen: true,
+	// 		actions: (
+	// 			<SubmitButton
+	// 				name={'open-modal-drawer-socials-button'}
+	// 				form="editSocialDetailsForm"
+	// 				label={'Save'}
+	// 				size={'sm'}
+	// 			/>
+	// 		),
+	// 		body: <SocialMediaDetailsForm {...socials} />,
+	// 		noBtnLabel: 'Cancel',
+	// 		yesBtnLabel: 'Log out',
+	// 		yesBtnColor: 'red',
+	// 		hideFooter: true
+	// 	});
+	// };
 
-	if (socials)
-		return (
-			<FlexLayout justifyContent={'space-between'} pt={6}>
-				<StackLayout
-					direction={'row'}
-					alignItems={'center'}
-					spacing={3}
-				>
-					{socials?.linkedin && (
-						<IconLink
-							title={socials.linkedin}
-							href={socials.linkedin}
-							icon={IoLogoLinkedin}
-							color={'gray.400'}
-							_hover={{
-								color: 'linkedin.700',
-								cursor: 'pointer'
-							}}
-							iconProps={{ boxSize: 6 }}
-						/>
-					)}
-					{socials?.twitter && (
-						<IconLink
-							title={socials.twitter}
-							href={socials.twitter}
-							icon={IoLogoTwitter}
-							color={'gray.400'}
-							_hover={{ color: 'twitter.500', cursor: 'pointer' }}
-							iconProps={{ boxSize: 6 }}
-						/>
-					)}
-					{socials?.instagram && (
-						<IconLink
-							title={socials.instagram}
-							href={socials.instagram}
-							icon={IoLogoInstagram}
-							color={'gray.400'}
-							// bg: 'linear-gradient(45DEG, #405DE6, #5851DB, #C13584, #E1306C, #FD1D1D)',
-							_hover={{
-								color: 'instagram.500',
-								cursor: 'pointer'
-							}}
-							iconProps={{ boxSize: 6 }}
-						/>
-					)}
-					{socials?.facebook && (
-						<IconLink
-							title={socials.facebook}
-							href={socials.facebook}
-							icon={IoLogoFacebook}
-							color={'gray.400'}
-							_hover={{
-								color: 'facebook.500',
-								cursor: 'pointer'
-							}}
-							iconProps={{ boxSize: 6 }}
-						/>
-					)}
-					{socials?.website && (
-						<IconLink
-							title={socials.website}
-							href={socials.website}
-							icon={IoGlobe}
-							color={'gray.400'}
-							_hover={{ color: 'website.500', cursor: 'pointer' }}
-							iconProps={{ boxSize: 6 }}
-						/>
-					)}
-				</StackLayout>
-				<EditButton onClick={onClick} aria-label={'Edit'} />
-			</FlexLayout>
-		);
-
-	return null;
+	return (
+		<FlexLayout justifyContent={'space-between'} pt={6}>
+			{/* {Object.values(socialsObj).every(
+				(social) => social === undefined
+			) ? (
+				<ProfileSectionLabel label={'Socials not set'} />
+			) : (
+				<> */}
+			<StackLayout direction={'row'} alignItems={'center'} spacing={3}>
+				{socials?.linkedin && (
+					<IconLink
+						title={socials.linkedin}
+						href={socials.linkedin}
+						icon={IoLogoLinkedin}
+						color={'gray.400'}
+						_hover={{
+							color: 'linkedin.700',
+							cursor: 'pointer'
+						}}
+						iconProps={{ boxSize: 6 }}
+					/>
+				)}
+				{socials?.twitter && (
+					<IconLink
+						title={socials.twitter}
+						href={socials.twitter}
+						icon={IoLogoTwitter}
+						color={'gray.400'}
+						_hover={{
+							color: 'twitter.500',
+							cursor: 'pointer'
+						}}
+						iconProps={{ boxSize: 6 }}
+					/>
+				)}
+				{socials?.instagram && (
+					<IconLink
+						title={socials.instagram}
+						href={socials.instagram}
+						icon={IoLogoInstagram}
+						color={'gray.400'}
+						_hover={{
+							color: 'instagram.500',
+							cursor: 'pointer'
+						}}
+						iconProps={{ boxSize: 6 }}
+					/>
+				)}
+				{socials?.facebook && (
+					<IconLink
+						title={socials.facebook}
+						href={socials.facebook}
+						icon={IoLogoFacebook}
+						color={'gray.400'}
+						_hover={{
+							color: 'facebook.500',
+							cursor: 'pointer'
+						}}
+						iconProps={{ boxSize: 6 }}
+					/>
+				)}
+				{socials?.website && (
+					<IconLink
+						title={socials.website}
+						href={socials.website}
+						icon={IoGlobe}
+						color={'gray.400'}
+						_hover={{
+							color: 'website.500',
+							cursor: 'pointer'
+						}}
+						iconProps={{ boxSize: 6 }}
+					/>
+				)}
+			</StackLayout>
+			{/* <EditButton onClick={onClick} aria-label={'Edit'} /> */}
+			{/* </> */}
+			{/* )} */}
+		</FlexLayout>
+	);
 };
 
 export default SocialMediaDetails;

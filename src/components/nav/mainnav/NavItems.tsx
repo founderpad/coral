@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
-import { IoAddSharp, IoLockClosedSharp } from 'react-icons/io5';
+import { IoLockClosedSharp } from 'react-icons/io5';
 import { IconType } from 'react-icons/lib';
 
 export interface NavItem {
@@ -45,8 +45,8 @@ const NavItems: Array<NavItem> = [
 				label: 'Create idea',
 				key: 'create',
 				subLabel: 'Post a new idea to the community',
-				href: '/app/ideas/create',
-				icon: IoAddSharp
+				href: '/app/ideas/create'
+				// icon: IoAddSharp
 				// divider: true
 			}
 		]

@@ -11,12 +11,19 @@ type Props = BoxProps & {
 };
 
 export const PageLayout = (props: Props): JSX.Element => {
-	const { fixedHeader, title, subtitle, action, children, p, ...rest } =
-		props;
+	const {
+		fixedHeader,
+		title,
+		subtitle,
+		action,
+		children,
+		p = 4,
+		...rest
+	} = props;
 	const headerProps = { fixedHeader, title, subtitle, action };
 
 	return (
-		<Flex {...rest} flexDirection={'column'} w={'full'}>
+		<Flex {...rest} flexDirection={'column'} w={'full'} flex={1}>
 			<PageHeader {...headerProps} />
 			<Box
 				as={'main'}
@@ -24,7 +31,7 @@ export const PageLayout = (props: Props): JSX.Element => {
 				flex={1}
 				w={'full'}
 				flexDirection={'column'}
-				p={p ?? { base: 4 }}
+				p={p}
 				css={{
 					'> *:first-child': {
 						width: '100%'

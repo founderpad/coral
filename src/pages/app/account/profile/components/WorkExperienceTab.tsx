@@ -40,16 +40,24 @@ const WorkExperienceTab = (): JSX.Element => {
 			<TitleEditAction title="Your experience" onClick={onClick} />
 			<ContentHighlightsLayout
 				content={[
-					{ title: 'Background', value: userProfile?.background },
+					{
+						title: 'Background',
+						value: userProfile?.background ?? 'Not set'
+					},
 					{
 						title: 'Personal statement',
-						value: userProfile?.statement
+						value: userProfile?.statement ?? 'Not set'
 					},
 					{
 						title: 'Overview of businesses',
-						value: userProfile?.statement
+						value: userProfile?.business_description ?? 'Not set'
 					},
-					{ title: 'Skills', value: userProfile?.skills.join(', ') }
+					{
+						title: 'Skills',
+						value:
+							userProfile?.skills?.join(', ') ??
+							'No skills selected'
+					}
 				]}
 				highlights={[
 					{

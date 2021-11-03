@@ -4,10 +4,15 @@ import NextLink from 'next/link';
 import React from 'react';
 
 const BaseLink = (props: LinkProps & { title: string }): JSX.Element => {
-	const { href, children, color, _hover, ...rest } = props;
+	const { href, children, color = 'fpPrimary.500', _hover, ...rest } = props;
 	return (
 		<NextLink href={href} passHref>
-			<Link {...rest} color={color} _hover={{ ..._hover }}>
+			<Link
+				{...rest}
+				color={color}
+				_hover={{ ..._hover }}
+				alignItems={'center'}
+			>
 				{children}
 			</Link>
 		</NextLink>

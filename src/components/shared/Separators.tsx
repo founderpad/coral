@@ -1,4 +1,4 @@
-import { Box, BoxProps, ResponsiveValue } from '@chakra-ui/react';
+import { Box, Divider, DividerProps, ResponsiveValue } from '@chakra-ui/react';
 import React from 'react';
 
 // const PointSeparator = (): any => (
@@ -26,6 +26,7 @@ export const PointSeparator = ({
 	</Box>
 );
 
-export const LineSeparator = (props: BoxProps): JSX.Element => (
-	<Box {...props} as={'hr'} />
+export const LineSeparator = (props?: DividerProps): JSX.Element => (
+	// <Box {...props} as={'hr'} />
+	<Divider {...props} orientation={'vertical'} />
 );

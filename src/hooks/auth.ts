@@ -29,8 +29,7 @@ export const useRegister = (): any => {
 				password,
 				options: {
 					userData: <{ display_name: string; user_type: UserType }>{
-						display_name:
-							firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
+						display_name: firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
 						user_type: type,
 						first_name: firstName?.trim(),
 						last_name: lastName?.trim()
@@ -41,7 +40,7 @@ export const useRegister = (): any => {
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to create an account',
-				description: error.message
+				description: 'Please try again later.'
 			});
 		}
 	};

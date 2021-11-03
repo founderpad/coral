@@ -6,14 +6,19 @@ import AuthFilter from 'utils/AuthFilter';
 import IdeasSearchForm from './components/IdeasSearchForm';
 import IdeasContainer from './IdeasContainer';
 
-const TIdeas = (): JSX.Element => (
+const Ideas = (): JSX.Element => (
 	<React.Fragment>
 		<DocumentTitle title="All ideas" />
 		<PageLayout
 			title="All ideas"
 			subtitle="The latest ideas from other users"
 		>
-			<Grid templateColumns="repeat(7, 1fr)" gap={6} minH={'full'}>
+			<Grid
+				templateColumns="repeat(7, 1fr)"
+				gap={6}
+				minH={'full'}
+				flex={1}
+			>
 				<GridItem
 					display={{ base: 'none', md: 'block' }}
 					colSpan={{ md: 3, lg: 2 }}
@@ -48,4 +53,4 @@ const DesktopSearch = () => (
 	</StackLayout>
 );
 
-export default AuthFilter(TIdeas);
+export default AuthFilter(Ideas);
