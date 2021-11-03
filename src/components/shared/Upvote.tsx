@@ -29,6 +29,7 @@ export const Upvote = (
 			justifyContent={'space-between'}
 			alignItems={'center'}
 			spacing={0}
+			py={2}
 		>
 			<BaseButton
 				name={'upvote-idea-button'}
