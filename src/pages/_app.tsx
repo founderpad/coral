@@ -61,9 +61,7 @@ const App: FC<AppProps> = ({
 							<DrawerProvider>
 								<ModalDrawerProvider>
 									<BaseModal />
-									{/* <BaseDrawer /> */}
 									<BaseModalDrawer />
-
 									<Component {...pageProps} />
 								</ModalDrawerProvider>
 							</DrawerProvider>

@@ -15,4 +15,4 @@ export const CreatedAt = ({
 }: {
 	date: string;
 	withTime?: boolean;
-}): JSX.Element => <SubLabel>Today at ${formatDate(date, withTime)}</SubLabel>;
+}): JSX.Element => <SubLabel>Today at {formatDate(date, withTime)}</SubLabel>;

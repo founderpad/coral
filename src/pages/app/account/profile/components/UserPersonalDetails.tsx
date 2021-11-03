@@ -52,7 +52,7 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 				/>
 
 				<ProfileSectionLabel
-					label={user?.country}
+					label={user?.country ?? 'Location not set'}
 					icon={IoLocationSharp}
 				/>
 				<ProfileSectionLabel

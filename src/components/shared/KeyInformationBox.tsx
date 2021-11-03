@@ -17,7 +17,7 @@ const KeyInformationBox = ({
 	value: string | number;
 	icon?: IconType;
 }): JSX.Element => (
-	<StackLayout alignItems={'center'} spacing={1} bg={'gray.100'} p={4}>
+	<StackLayout alignItems={'center'} spacing={1} bg={'gray.50'} p={4}>
 		<Label
 			fontSize={'sm'}
 			icon={icon}

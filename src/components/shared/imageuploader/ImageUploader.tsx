@@ -1,6 +1,7 @@
-import { Box, BoxProps, Flex } from '@chakra-ui/react';
+import { Box, BoxProps } from '@chakra-ui/react';
 import { EditButton } from 'components/buttons';
 import { PrimaryButton } from 'components/buttons/PrimaryButton';
+import { FlexLayout } from 'components/layouts';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import 'cropperjs/dist/cropper.css';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -144,7 +145,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 				style={{ display: 'none' }}
 			/>
 
-			<Flex
+			<FlexLayout
 				bg={'gray.900'}
 				flex={1}
 				as={'label'}
@@ -168,8 +169,9 @@ export const ImageUploader = (props: Props): JSX.Element => {
 					title={props.title}
 					position={'absolute'}
 					bottom={0}
-					transform={'translateY(25%)translateX(100%)'}
+					transform={'translateY(5%) translateX(100%)'}
 					zIndex={1}
+					borderWidth={1}
 				/>
 				<Box
 					className="image"
@@ -200,7 +202,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 				>
 					{children}
 				</Box>
-			</Flex>
+			</FlexLayout>
 		</>
 	);
 };

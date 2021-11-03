@@ -112,27 +112,20 @@ const MessageLayout = ({
 	divider?: boolean;
 }) => (
 	<>
-		{/* <Divider orientation={'vertical'} /> */}
 		<StackLayout
 			direction={'row'}
 			spacing={2}
 			w={'full'}
 			rounded={'none'}
-			borderLeftWidth={divider && 4}
+			borderLeftWidth={divider && 3}
 			pl={4}
 		>
-			{/* <Divider orientation={'vertical'} /> */}
 			<UserAvatar size={'sm'} />
 			<StackLayout spacing={0}>
 				<StackLayout
 					px={2}
 					py={1}
-					rounded={'none'}
-					borderWidth={1}
-					borderColor={'gray.100'}
-					borderBottomRadius={'md'}
-					borderTopRightRadius={'md'}
-					borderTopLeftRadius={'none'}
+					boxShadow={'sm'}
 					bg={'gray.50'}
 					spacing={0}
 				>
@@ -146,7 +139,7 @@ const MessageLayout = ({
 							{date}
 						</Label>
 					</FlexLayout>
-					<Label color={'gray.500'} fontSize={'sm'}>
+					<Label color={'gray.500'} fontSize={'smaller'}>
 						{value}
 					</Label>
 				</StackLayout>
@@ -164,11 +157,11 @@ const CommentsTab = (): JSX.Element => (
 );
 
 const CommentsList = () => (
-	<>
+	<React.Fragment>
 		{comments.map((comment, _index) => (
 			<Comment key={_index} {...comment} />
 		))}
-	</>
+	</React.Fragment>
 );
 
 const RepliesList = () => (

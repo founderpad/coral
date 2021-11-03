@@ -1,14 +1,14 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
-import { LinkButton } from 'components/buttons/BaseButton';
 import { BaseLabel } from 'components/labels/BaseLabel';
 import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
+import { BaseLink } from 'components/links';
 import BasePopover from 'components/popover/BasePopover';
 import useUserProfile from 'hooks/user';
 import { usePathMatch } from 'hooks/util';
-import React from 'react';
-import { IoChevronForwardSharp } from 'react-icons/io5';
+import React, { memo } from 'react';
+import { IoAlertCircleOutline, IoChevronForwardSharp } from 'react-icons/io5';
 import NavLink from '../components/NavLink';
 import NavItems, { NavItem } from './NavItems';
 
@@ -118,17 +118,21 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 	</React.Fragment>
 );
 
-const ProfileNotSet = (): JSX.Element => (
-	<LinkButton
-		name={'profile-not-set-button'}
-		position={'fixed'}
-		right={4}
-		colorScheme={'red'}
-		variant={'outline'}
-		href={'/app/account/profile'}
-	>
-		Profile not set
-	</LinkButton>
+const ProfileNotSet = memo(
+	(): JSX.Element => (
+		<BaseLink
+			title={'Update your profile'}
+			href={'/app/account/profile'}
+			position={'fixed'}
+			right={4}
+			color={'red.500'}
+			_hover={{ color: 'red.700' }}
+			fontSize={'sm'}
+		>
+			<Icon as={IoAlertCircleOutline} mr={1} fontSize={'lg'} />
+			Profile not set
+		</BaseLink>
+	)
 );
 
 export default DesktopNav;

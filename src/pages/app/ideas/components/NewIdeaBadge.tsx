@@ -9,7 +9,7 @@ const NewIdeaBadge = (): JSX.Element => {
 			<Tag
 				bgColor={'green.300'}
 				variant={'subtle'}
-				ml={2}
+				mr={2}
 				color={'white'}
 				fontWeight={'medium'}
 				fontSize={{ base: 'xx-small', sm: 'xs' }}
@@ -26,7 +26,7 @@ const NewIdeaBadge = (): JSX.Element => {
 				bgColor={'green.300'}
 				rounded={'md'}
 				display={{ base: 'block', sm: 'none' }}
-				ml={2}
+				mr={2}
 			></Box> */}
 		</React.Fragment>
 	);

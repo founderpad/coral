@@ -14,8 +14,13 @@ export const MenuItemButton = ({
 	color = 'black',
 	...rest
 }: BaseMenuItemProps): JSX.Element => (
-	<MenuItem {...rest} flexDirection={'column'} alignItems={'flex-start'}>
-		<Label fontWeight={'medium'} fontSize={'sm'} color={color}>
+	<MenuItem
+		{...rest}
+		flexDirection={'column'}
+		alignItems={'flex-start'}
+		p={1}
+	>
+		<Label fontWeight={'medium'} fontSize={'smaller'} color={color}>
 			{title}
 		</Label>
 		<Label fontSize={'smaller'} color={'gray.400'}>

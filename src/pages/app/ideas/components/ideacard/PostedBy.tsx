@@ -10,6 +10,7 @@ type TProps = Pick<TIdea_Preview, 'idea_user' | 'created_at'>;
 
 export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 	<FlexLayout
+		position={'relative'}
 		alignItems={'center'}
 		lineHeight={'16px'}
 		fontSize={{ base: '11px', sm: 'xs' }}
