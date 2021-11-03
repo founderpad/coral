@@ -16,7 +16,7 @@ exports[`Logged out page matches snapshot 1`] = `
       You've logged out successfully
     </h2>
     <a
-      class="chakra-link css-vbnms2"
+      class="chakra-link css-1qholc2"
       href="/app/login"
       title="Log in"
     >
