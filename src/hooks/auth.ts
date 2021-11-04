@@ -212,6 +212,10 @@ export const useCurrentUser = (): TUsers => {
 	return useSelector((state: RootState) => state.authSlice.user);
 };
 
+export const useClaim = (): string => {
+	return auth.getClaim('x-hasura-user-id') as string
+}
+
 // export const useUpdateUserAvatar = () => {
 // 	// return (filePath: string): any =>
 // 	// return useUpdateUserPersonalDetailsMutation({
