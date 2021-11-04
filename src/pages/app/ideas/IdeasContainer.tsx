@@ -5,10 +5,10 @@ import {
 	TIdea_Preview_Bool_Exp,
 	useGetIdeasQuery
 } from 'generated/api';
+import { useClaim } from 'hooks/auth';
 import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { auth } from 'utils/nhost';
 import IdeaCard from './components/ideacard/IdeaCard';
 import IdeasActions from './components/IdeasActions';
 import IdeasPagination from './IdeasPagination';
@@ -41,7 +41,7 @@ const IdeasContainer = (): JSX.Element => {
 			orderBy: {
 				created_at: 'desc'
 			},
-			userId: auth.getClaim('x-hasura-user-id') as string
+			userId: useClaim()
 		}
 	});
 
