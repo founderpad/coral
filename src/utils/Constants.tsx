@@ -283,6 +283,16 @@ export const STARTUP_STATUS = [
 	{ key: 'none', value: 'Not involved in a startup' }
 ];
 
+export const REPORT_REASONS = [
+	'Abusive or harmful content',
+	'Sexualised content',
+	'Discrimination',
+	'Hate speech',
+	'Terrorism',
+	'Spam',
+	'Harrassment'
+];
+
 type IdeaStatus = {
 	readonly key: string;
 	readonly value: string;
@@ -323,3 +333,16 @@ export const countriesList = (): any =>
 			{country}
 		</option>
 	));
+
+export const reportReasonsList = (): any =>
+	REPORT_REASONS.map((reportReason) => (
+		<option key={reportReason} value={reportReason}>
+			{reportReason}
+		</option>
+	));
+
+export enum MenuActionType {
+	EDIT,
+	DELETE,
+	REPORT
+}

@@ -1,4 +1,5 @@
 import Icon from '@chakra-ui/icon';
+import { Divider } from '@chakra-ui/layout';
 import { MenuItem, MenuItemProps } from '@chakra-ui/menu';
 import { Label } from 'components/labels';
 import React from 'react';
@@ -11,19 +12,27 @@ export type BaseMenuItemProps = Pick<MenuItemProps, 'color' | 'onClick'> & {
 	icon?: IconType;
 };
 
-export const MenuItemButton = ({
+export const BaseMenuItem = ({
 	title,
 	subTitle,
 	color = 'black',
 	icon,
+	divider = false,
 	...rest
 }: BaseMenuItemProps): JSX.Element => (
-	<MenuItem {...rest} alignItems={'center'} icon={icon && <Icon as={icon} />}>
-		<Label fontWeight={'medium'} fontSize={'smaller'} color={color}>
-			{title}
-		</Label>
-		<Label fontSize={'smaller'} color={'gray.400'}>
-			{subTitle}
-		</Label>
-	</MenuItem>
+	<React.Fragment>
+		<MenuItem
+			{...rest}
+			alignItems={'center'}
+			icon={icon && <Icon as={icon} />}
+		>
+			<Label fontWeight={'medium'} fontSize={'smaller'} color={color}>
+				{title}
+			</Label>
+			<Label fontSize={'smaller'} color={'gray.400'}>
+				{subTitle}
+			</Label>
+		</MenuItem>
+		{divider && <Divider />}
+	</React.Fragment>
 );

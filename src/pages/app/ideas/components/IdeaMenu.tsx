@@ -1,33 +1,32 @@
 import { BaseMenu } from 'components/menu';
+import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
+import { TIdea_Preview, TReport_Insert_Input } from 'generated/api';
 import React from 'react';
-import { IoFlagSharp, IoShareSocial } from 'react-icons/io5';
 
 // enum ACTION_TYPE {
 // 	SHARE,
 // 	REPORT
 // }
 
-export const IdeaMenu = ({ ideaId }: { ideaId: string }): JSX.Element => {
+type TIdeaProps = Pick<TIdea_Preview, 'id' | 'idea_user'>;
+
+export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
+	const report: TReport_Insert_Input = {
+		type: 'IDEA',
+		reportedId: idea?.id,
+		reportedUserId: idea?.idea_user.id
+	};
+
 	return (
-		<BaseMenu
-			boxProps={{ mt: 2 }}
-			options={[
-				{
-					title: 'Share',
-					subTitle: 'Share this idea',
-					onClick: (_e) => console.log('', ideaId),
-					divider: true,
-					icon: IoShareSocial
-				},
-				{
-					title: 'Report',
-					subTitle: 'Report this idea',
-					onClick: (_e) => console.log(''),
-					icon: IoFlagSharp
-					// color: 'red.500'
-				}
-			]}
-		/>
+		<BaseMenu>
+			{/* <BaseMenuItem
+				title={'Share'}
+				subTitle={'Share this idea'}
+				icon={IoShareSocialSharp}
+				divider={true}
+			/> */}
+			<ReportMenu title={'idea'} report={report} />
+		</BaseMenu>
 	);
 };
 

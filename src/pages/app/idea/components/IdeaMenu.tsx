@@ -1,4 +1,5 @@
 import { SubmitButton } from 'components/buttons';
+import { BaseMenuItem } from 'components/menu';
 import { BaseMenu } from 'components/menu/BaseMenu';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useDeleteIdeaMutation } from 'generated/api';
@@ -48,24 +49,41 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 	}, []);
 
 	return (
-		<BaseMenu
-			options={[
-				{
-					title: 'Edit',
-					subTitle: 'Edit this idea',
-					onClick: () => onEditClick(),
-					divider: true,
-					icon: IoPencilSharp
-				},
-				{
-					title: 'Delete',
-					subTitle: 'Delete this idea',
-					onClick: () => onDeleteClick(),
-					icon: IoTrashBin,
-					color: 'red.500'
-				}
-			]}
-		/>
+		// <BaseMenu
+		// 	options={[
+		// 		{
+		// 			title: 'Edit',
+		// 			subTitle: 'Edit this idea',
+		// 			onClick: () => onEditClick(),
+		// 			divider: true,
+		// 			icon: IoPencilSharp
+		// 		},
+		// 		{
+		// 			title: 'Delete',
+		// 			subTitle: 'Delete this idea',
+		// 			onClick: () => onDeleteClick(),
+		// 			icon: IoTrashBin,
+		// 			color: 'red.500'
+		// 		}
+		// 	]}
+		// />
+
+		<BaseMenu>
+			<BaseMenuItem
+				title={'Edit'}
+				subTitle={'Edit this idea'}
+				icon={IoPencilSharp}
+				onClick={onEditClick}
+				divider={true}
+			/>
+			<BaseMenuItem
+				title={'Delete'}
+				subTitle={'Delete this idea'}
+				icon={IoTrashBin}
+				onClick={onDeleteClick}
+				color={'red.500'}
+			/>
+		</BaseMenu>
 	);
 });
 

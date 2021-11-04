@@ -1,7 +1,7 @@
 import { Label } from 'components/labels';
 import { FlexLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
-import { PointSeparator, UserAvatar } from 'components/shared';
+import { PointSeparator } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 import { formatDate } from 'utils/validators';
@@ -16,20 +16,21 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 		fontSize={{ base: '11px', sm: 'xs' }}
 	>
 		<FlexLayout alignItems={'center'}>
-			<UserAvatar
-				size={'sm'}
-				src={idea_user?.avatar_url}
-				borderWidth={5}
-				display={{ base: 'none', sm: 'block' }}
-			/>
 			<BaseLink
 				href={`/app/user/${idea_user?.id}`}
 				title={'The user who posted this idea'}
 				_hover={{ color: 'gray.700' }}
 				color={'gray.500'}
 			>
-				Posted by {idea_user?.first_name}
+				{idea_user?.first_name}
 			</BaseLink>
+			<Label
+				color={'gray.500'}
+				title={'When the idea was posted'}
+				fontSize={'xs'}
+			>
+				, {idea_user.country}
+			</Label>
 		</FlexLayout>
 		<PointSeparator color={'gray.500'} small />
 		<Label
