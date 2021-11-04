@@ -26,7 +26,7 @@ const ReportMenu = ({
 			body: <ReportForm title={title} report={report} />,
 			actions: (
 				<SubmitButton
-					name={'open-modal-drawer-experience-button'}
+					name={'open-modal-drawer-button'}
 					form="reportForm"
 					label={'Report'}
 					size={'sm'}
