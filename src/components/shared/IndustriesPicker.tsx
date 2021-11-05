@@ -1,4 +1,3 @@
-import { Checkbox, CheckboxGroup } from '@chakra-ui/checkbox';
 import {
 	FormControl,
 	FormErrorMessage,
@@ -6,7 +5,7 @@ import {
 	FormLabel
 } from '@chakra-ui/form-control';
 import { Flex } from '@chakra-ui/layout';
-import { forwardRef } from '@chakra-ui/react';
+import { Checkbox, CheckboxGroup, forwardRef } from '@chakra-ui/react';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { ICheckboxGroupFieldProps } from 'types/fields';

@@ -2,7 +2,7 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
 import { Flex, Stack, Text } from '@chakra-ui/layout';
-import { Collapse } from '@chakra-ui/transition';
+import { Collapse } from '@chakra-ui/react';
 import CustomLink from 'components/input/Links';
 import React, { memo } from 'react';
 import { IoChevronDownSharp } from 'react-icons/io5';

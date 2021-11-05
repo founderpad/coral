@@ -1,6 +1,13 @@
 import { Button } from '@chakra-ui/button';
-import { Menu, MenuButton, MenuDivider, MenuList } from '@chakra-ui/menu';
-import { Icon, MenuGroup, MenuItem } from '@chakra-ui/react';
+import {
+	Icon,
+	Menu,
+	MenuButton,
+	MenuDivider,
+	MenuGroup,
+	MenuItem,
+	MenuList
+} from '@chakra-ui/react';
 import { BaseLink } from 'components/links';
 import LogoutModal from 'components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from 'components/shared';

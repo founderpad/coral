@@ -4,7 +4,7 @@ import {
 	PopoverContent,
 	PopoverProps,
 	PopoverTrigger
-} from '@chakra-ui/popover';
+} from '@chakra-ui/react';
 import React from 'react';
 
 type Props = PopoverProps & { triggerEl: React.ReactNode };

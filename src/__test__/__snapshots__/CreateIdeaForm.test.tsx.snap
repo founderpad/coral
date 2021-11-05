@@ -339,7 +339,7 @@ exports[`Create idea form matches snapshot 1`] = `
             Publish your idea
           </label>
           <label
-            class="chakra-switch css-evm8da"
+            class="chakra-switch css-tpdwuk"
             data-checked=""
             role="switch"
           >

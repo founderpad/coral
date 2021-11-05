@@ -1,6 +1,6 @@
-import { Checkbox } from '@chakra-ui/checkbox';
 import { FormControl, FormLabel } from '@chakra-ui/form-control';
 import { Stack } from '@chakra-ui/layout';
+import { Checkbox } from '@chakra-ui/react';
 import Form from 'components/form/Form';
 import { NumberField, SelectField, TextareaField } from 'components/input';
 import ModalDrawerContext from 'context/ModalDrawerContext';
