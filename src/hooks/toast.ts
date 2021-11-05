@@ -1,4 +1,4 @@
-import { useToast } from '@chakra-ui/toast';
+import { useToast } from '@chakra-ui/react';
 
 export const useNotification = (): any => {
 	const toast = useToast();

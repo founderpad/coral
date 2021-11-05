@@ -1,12 +1,14 @@
 import {
+	ButtonGroup,
 	Modal as ChakraModal,
 	ModalBody,
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
-	ModalOverlay
-} from '@chakra-ui/modal';
-import { ButtonGroup, ModalProps, useBreakpointValue } from '@chakra-ui/react';
+	ModalOverlay,
+	ModalProps,
+	useBreakpointValue
+} from '@chakra-ui/react';
 import { BaseButton, CancelButton } from 'components/buttons';
 import { ModalDrawerFooterActions } from 'components/shared';
 import React from 'react';

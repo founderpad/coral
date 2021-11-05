@@ -2,16 +2,16 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
 import { Image } from '@chakra-ui/image';
 import { Container, Flex } from '@chakra-ui/layout';
-import { MenuDivider } from '@chakra-ui/menu';
 import {
 	Drawer,
 	DrawerBody,
 	DrawerCloseButton,
 	DrawerContent,
 	DrawerHeader,
-	DrawerOverlay
-} from '@chakra-ui/modal';
-import { Icon } from '@chakra-ui/react';
+	DrawerOverlay,
+	Icon,
+	MenuDivider
+} from '@chakra-ui/react';
 import React, { memo } from 'react';
 import { IoMenuSharp } from 'react-icons/io5';
 import DesktopNav from './DesktopNav';
