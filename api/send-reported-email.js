@@ -15,7 +15,7 @@ export default async (req, res) => {
 		Source: 'jamie@founderpad.com',
 		Destination: {
 			ToAddresses: [
-				'toby@founderpad.com'
+				'jamie@founderpad.com'
 			],
 		},
 		// CcAddresses: [
