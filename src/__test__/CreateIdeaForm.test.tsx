@@ -3,6 +3,7 @@ import { fireEvent } from '@testing-library/dom';
 import { TIdeas } from 'generated/api';
 import { CREATE_IDEA } from 'graphql/ideas';
 import CreateEditIdeaForm from 'pages/app/ideas/components/CreateEditIdeaForm';
+import { act } from 'react-dom/test-utils';
 import { render } from '__test__/testUtils';
 
 describe('Create idea form', () => {
@@ -90,21 +91,23 @@ describe('Create idea form', () => {
 			</MockedProvider>
 		);
 
-		fireEvent.input(getByRole('textbox', { name: /name/i })),
-			{
-				target: {
-					value: 'A new idea name'
-				}
-			};
+		act(() => {
+			fireEvent.input(getByRole('textbox', { name: /name/i })),
+				{
+					target: {
+						value: 'A new idea name'
+					}
+				};
 
-		fireEvent.input(getByRole('textbox', { name: /description/i })),
-			{
-				target: {
-					value: 'A new idea description'
-				}
-			};
+			fireEvent.input(getByRole('textbox', { name: /description/i })),
+				{
+					target: {
+						value: 'A new idea description'
+					}
+				};
 
-		fireEvent.submit(getByRole('button'));
+			fireEvent.submit(getByRole('button'));
+		});
 		expect(mockSaveIdea).not.toBeCalled();
 	});
 
