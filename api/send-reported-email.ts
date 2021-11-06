@@ -1,6 +1,5 @@
-import { Request, Response } from "express";
 
-export default (_req: Request, res: Response): any => {
+export default (_req, res): any => {
 
     console.log('CUSTOM API')
 	res.send('OKAY1')
