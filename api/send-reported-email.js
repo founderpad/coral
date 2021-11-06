@@ -9,7 +9,7 @@ const CONFIG = {
 
 const AWS_SES = new AWS.SES(CONFIG);
 
-export default async(_req, _res) => {
+module.exports = async (_req, _rest) => {
 
     // const CONFIG = {
     //     apiVersion: '2010-12-01',
