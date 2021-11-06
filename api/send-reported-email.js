@@ -29,7 +29,7 @@ export default async (req, res) => {
 					Data: `<html>
 								<head></head>
 								<body>
-									<p>Your ${req.body.event.data.new.type.toLowerCase()} has been reported for the following reason: ${req.body.event.data.new.reason}.</p>
+									<p>Your ${req.body.event.data.new.type.toLowerCase()} has been reported for the following reason(s): ${req.body.event.data.new.reason}.</p>
 									<p>We will carefully monitor this and take action if necessary.</p><br/>
 									<strong>The founderpad team</strong>
 								</body>
