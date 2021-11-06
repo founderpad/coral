@@ -480,6 +480,30 @@
 - table:
     schema: public
     name: report
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        fromUserId:
+          _eq: X-Hasura-User-Id
+      set:
+        fromUserId: x-hasura-User-Id
+      columns:
+      - id
+      - fromUserId
+      - reportedUserId
+      - reportedId
+      - type
+      - reason
+      - created_at
+      - updated_at
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      filter: {}
 - table:
     schema: public
     name: user_profile
