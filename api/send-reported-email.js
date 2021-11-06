@@ -26,12 +26,19 @@ export default async (req, res) => {
 		  	Body: {
 				Html: {
 			  		Charset: 'UTF-8',
-			  		Data: 'YOU HAVE BEEN REPORTED FOR DELIVERING SUCH DELICIOUS DOUGHNUTS! (AUTOMATED EMAIL)'
+					Data: `<html>
+								<head></head>
+								<body>
+									<p>Your ${req.body.event.data.new.type.toLowerCase()} has been reported for the following reason: ${req.body.event.data.new.reason}.</p>
+									<p>We will carefully monitor this and take action if necessary.</p><br/>
+									<strong>The founderpad team</strong>
+								</body>
+							</html>`
 				}
 		  	},
 		  	Subject: {
 				Charset: 'UTF-8',
-				Data: `Your ${req.body.event.data.new.type} has been reported`,
+				Data: `Your ${req.body.event.data.new.type.toLowerCase()} has been reported`,
 		  	}
 		},
 	};
