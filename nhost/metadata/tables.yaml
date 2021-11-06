@@ -1,0 +1,711 @@
+- table:
+    schema: auth
+    name: account_providers
+  object_relationships:
+  - name: account
+    using:
+      foreign_key_constraint_on: account_id
+  - name: provider
+    using:
+      foreign_key_constraint_on: auth_provider
+- table:
+    schema: auth
+    name: account_roles
+  object_relationships:
+  - name: account
+    using:
+      foreign_key_constraint_on: account_id
+  - name: roleByRole
+    using:
+      foreign_key_constraint_on: role
+- table:
+    schema: auth
+    name: accounts
+  object_relationships:
+  - name: role
+    using:
+      foreign_key_constraint_on: default_role
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  array_relationships:
+  - name: account_providers
+    using:
+      foreign_key_constraint_on:
+        column: account_id
+        table:
+          schema: auth
+          name: account_providers
+  - name: account_roles
+    using:
+      foreign_key_constraint_on:
+        column: account_id
+        table:
+          schema: auth
+          name: account_roles
+  - name: refresh_tokens
+    using:
+      foreign_key_constraint_on:
+        column: account_id
+        table:
+          schema: auth
+          name: refresh_tokens
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - email
+      filter: {}
+  - role: user
+    permission:
+      columns:
+      - email
+      filter: {}
+- table:
+    schema: auth
+    name: providers
+  array_relationships:
+  - name: account_providers
+    using:
+      foreign_key_constraint_on:
+        column: auth_provider
+        table:
+          schema: auth
+          name: account_providers
+- table:
+    schema: auth
+    name: refresh_tokens
+  object_relationships:
+  - name: account
+    using:
+      foreign_key_constraint_on: account_id
+- table:
+    schema: auth
+    name: roles
+  array_relationships:
+  - name: account_roles
+    using:
+      foreign_key_constraint_on:
+        column: role
+        table:
+          schema: auth
+          name: account_roles
+  - name: accounts
+    using:
+      foreign_key_constraint_on:
+        column: default_role
+        table:
+          schema: auth
+          name: accounts
+- table:
+    schema: public
+    name: activity
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: me
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - description
+      - event
+      - type
+      - url
+      - created_at
+      - updated_at
+      - id
+      - idea_id
+      - user_id
+      backend_only: false
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - description
+      - event
+      - type
+      - url
+      - created_at
+      - updated_at
+      - id
+      - idea_id
+      - user_id
+      backend_only: false
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - id
+      - user_id
+      - event
+      - description
+      - created_at
+      - updated_at
+      - idea_id
+      - url
+      - type
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - description
+      - event
+      - type
+      - url
+      - created_at
+      - updated_at
+      - id
+      - idea_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: me
+    permission:
+      columns:
+      - created_at
+      - description
+      - event
+      - id
+      - idea_id
+      - updated_at
+      - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  - role: user
+    permission:
+      columns:
+      - created_at
+      - description
+      - event
+      - id
+      - idea_id
+      - updated_at
+      - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+- table:
+    schema: public
+    name: idea_preview
+  object_relationships:
+  - name: idea_user
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: users
+        column_mapping:
+          user_id: id
+  - name: idea_votes
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: idea_votes
+        column_mapping:
+          id: idea_id
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - id
+      - user_id
+      - name
+      - status
+      - created_at
+      - preview
+      - field
+      - is_new
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - is_new
+      - field
+      - name
+      - preview
+      - status
+      - created_at
+      - id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+- table:
+    schema: public
+    name: idea_votes
+  object_relationships:
+  - name: idea
+    using:
+      foreign_key_constraint_on: idea_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: me
+    permission:
+      check: {}
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - idea_id
+      - vote_type
+      backend_only: false
+  - role: user
+    permission:
+      check: {}
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - idea_id
+      - vote_type
+      backend_only: false
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - vote_type
+      - created_at
+      - updated_at
+      - idea_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - created_at
+      - id
+      - idea_id
+      - updated_at
+      - user_id
+      - vote_type
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: me
+    permission:
+      columns:
+      - vote_type
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  - role: user
+    permission:
+      columns:
+      - vote_type
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: me
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: ideas
+  object_relationships:
+  - name: idea_user
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: users
+        column_mapping:
+          user_id: id
+  array_relationships:
+  - name: idea_votes
+    using:
+      foreign_key_constraint_on:
+        column: idea_id
+        table:
+          schema: public
+          name: idea_votes
+  insert_permissions:
+  - role: me
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - additional_information
+      - business_plan
+      - competitors
+      - description
+      - description_preview
+      - field
+      - is_published
+      - mission_statement
+      - name
+      - status
+      - team
+      backend_only: false
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - additional_information
+      - business_plan
+      - competitors
+      - description
+      - description_preview
+      - field
+      - is_published
+      - mission_statement
+      - name
+      - status
+      - team
+      backend_only: false
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - additional_information
+      - business_plan
+      - competitors
+      - created_at
+      - description
+      - description_preview
+      - id
+      - field
+      - is_published
+      - mission_statement
+      - name
+      - status
+      - team
+      - updated_at
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - additional_information
+      - business_plan
+      - competitors
+      - created_at
+      - description
+      - description_preview
+      - id
+      - field
+      - is_published
+      - mission_statement
+      - name
+      - status
+      - team
+      - updated_at
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: me
+    permission:
+      columns:
+      - additional_information
+      - business_plan
+      - competitors
+      - description
+      - description_preview
+      - field
+      - is_published
+      - mission_statement
+      - name
+      - status
+      - team
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        user_id: x-hasura-User-Id
+  - role: user
+    permission:
+      columns:
+      - additional_information
+      - business_plan
+      - competitors
+      - created_at
+      - description
+      - description_preview
+      - field
+      - is_published
+      - mission_statement
+      - name
+      - status
+      - team
+      - updated_at
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        user_id: x-hasura-User-Id
+  delete_permissions:
+  - role: me
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: report
+- table:
+    schema: public
+    name: user_profile
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - availability
+      - background
+      - business_description
+      - created_at
+      - facebook
+      - id
+      - industries
+      - instagram
+      - is_complete
+      - linkedin
+      - resume
+      - skills
+      - specialist_industry
+      - startups
+      - statement
+      - status
+      - twitter
+      - updated_at
+      - user_id
+      - website
+      filter: {}
+  - role: user
+    permission:
+      columns:
+      - availability
+      - background
+      - business_description
+      - created_at
+      - facebook
+      - id
+      - industries
+      - instagram
+      - is_complete
+      - linkedin
+      - resume
+      - skills
+      - specialist_industry
+      - startups
+      - statement
+      - status
+      - twitter
+      - updated_at
+      - user_id
+      - website
+      filter: {}
+  update_permissions:
+  - role: me
+    permission:
+      columns:
+      - availability
+      - background
+      - business_description
+      - created_at
+      - facebook
+      - id
+      - industries
+      - instagram
+      - is_complete
+      - linkedin
+      - resume
+      - skills
+      - specialist_industry
+      - startups
+      - statement
+      - status
+      - twitter
+      - updated_at
+      - user_id
+      - website
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        user_id: x-hasura-User-Id
+  - role: user
+    permission:
+      columns:
+      - availability
+      - background
+      - business_description
+      - created_at
+      - facebook
+      - id
+      - industries
+      - instagram
+      - is_complete
+      - linkedin
+      - resume
+      - skills
+      - specialist_industry
+      - startups
+      - statement
+      - status
+      - twitter
+      - updated_at
+      - user_id
+      - website
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        user_id: x-hasura-User-Id
+- table:
+    schema: public
+    name: users
+  object_relationships:
+  - name: account
+    using:
+      manual_configuration:
+        remote_table:
+          schema: auth
+          name: accounts
+        column_mapping:
+          id: user_id
+  - name: user_profile
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: user_profile
+        column_mapping:
+          id: user_id
+  array_relationships:
+  - name: idea_votes
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: idea_votes
+  - name: user_activities
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: activity
+  insert_permissions:
+  - role: me
+    permission:
+      check:
+        id:
+          _eq: X-Hasura-User-Id
+      set:
+        id: x-hasura-User-Id
+      columns:
+      - country
+      backend_only: false
+  - role: user
+    permission:
+      check:
+        id:
+          _eq: X-Hasura-User-Id
+      set:
+        id: x-hasura-User-Id
+      columns:
+      - country
+      backend_only: false
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - avatar_url
+      - country
+      - created_at
+      - display_name
+      - first_name
+      - id
+      - last_name
+      - updated_at
+      - user_type
+      filter: {}
+  - role: user
+    permission:
+      columns:
+      - avatar_url
+      - country
+      - created_at
+      - display_name
+      - first_name
+      - id
+      - last_name
+      - updated_at
+      - user_type
+      filter: {}
+  update_permissions:
+  - role: me
+    permission:
+      columns:
+      - avatar_url
+      - country
+      - display_name
+      - first_name
+      - last_name
+      - user_type
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        id: x-hasura-User-Id
+  - role: user
+    permission:
+      columns:
+      - avatar_url
+      - country
+      - display_name
+      - first_name
+      - last_name
+      - user_type
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        id: x-hasura-User-Id
