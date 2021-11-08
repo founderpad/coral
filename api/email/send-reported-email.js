@@ -20,7 +20,6 @@ const AWS_SES = new AWS.SES(CONFIG);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default async (req, res) => {
-	console.log('process: ', process.env.AWS_ACCESS_KEY_ID);
 	await AWS_SES.sendEmail({
 		Source: 'jamie@founderpad.com',
 		Destination: {
