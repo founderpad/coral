@@ -33,7 +33,7 @@ export default async (req, res) => {
 			},
 			Subject: {
 				Charset: 'UTF-8',
-				Data: `Your ${req.body.event.data.new.type.toLowerCase()} has been reported.`
+				Data: `Your ${req.body.event.data.new.type.toLowerCase()} has been reported`
 			}
 		}
 	}).promise();

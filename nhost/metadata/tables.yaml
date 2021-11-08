@@ -497,6 +497,8 @@
       - reason
       - created_at
       - updated_at
+      - recipientEmail
+      - recipientName
       backend_only: false
   select_permissions:
   - role: user

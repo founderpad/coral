@@ -14,8 +14,8 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 	const { name, is_new } = idea;
 
 	return (
-		<>
-			<FlexLayout>
+		<React.Fragment>
+			<FlexLayout alignItems={'baseline'}>
 				{is_new && <NewIdeaBadge />}
 				<Label
 					d={'flex'}
@@ -31,7 +31,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 				</Label>
 			</FlexLayout>
 			<PostedBy {...idea} />
-		</>
+		</React.Fragment>
 	);
 };
 

@@ -24,13 +24,15 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 			>
 				{idea_user?.first_name}
 			</BaseLink>
-			<Label
-				color={'gray.500'}
-				title={'When the idea was posted'}
-				fontSize={'xs'}
-			>
-				, {idea_user.country}
-			</Label>
+			{idea_user.country && (
+				<Label
+					color={'gray.500'}
+					title={'When the idea was posted'}
+					fontSize={'xs'}
+				>
+					, {idea_user.country}
+				</Label>
+			)}
 		</FlexLayout>
 		<PointSeparator color={'gray.500'} small />
 		<Label
