@@ -13,7 +13,7 @@ export default async (req, res) => {
 	await AWS_SES.sendEmail({
 		Source: 'jamie@founderpad.com',
 		Destination: {
-			ToAddresses: [`jamie@founderpad.com`]
+			ToAddresses: [`jamie.gary.lee@gmail.com`]
 		},
 		Message: {
 			Body: {
