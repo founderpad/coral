@@ -14,7 +14,9 @@ export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 	const report: TReport_Insert_Input = {
 		type: 'IDEA',
 		reportedId: idea?.id,
-		reportedUserId: idea?.idea_user.id
+		reportedUserId: idea?.idea_user.id,
+		recipientName: idea?.idea_user.first_name,
+		recipientEmail: idea?.idea_user.account.email
 	};
 
 	return (

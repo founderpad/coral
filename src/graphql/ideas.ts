@@ -69,13 +69,24 @@ const DELETE_IDEA = gql`
 // `;
 
 const GET_IDEAS = gql`
-	query getIdeas ($where: idea_preview_bool_exp, $limit: Int, $offset: Int, $orderBy: [idea_preview_order_by!], $userId: uuid!)  {
+	query getIdeas(
+		$where: idea_preview_bool_exp
+		$limit: Int
+		$offset: Int
+		$orderBy: [idea_preview_order_by!]
+		$userId: uuid!
+	) {
 		idea_preview_aggregate(where: $where) {
 			aggregate {
 				count
 			}
-		},
-		idea_preview(where: $where, limit: $limit offset: $offset, order_by: $orderBy) {
+		}
+		idea_preview(
+			where: $where
+			limit: $limit
+			offset: $offset
+			order_by: $orderBy
+		) {
 			idea_votes {
 				idea {
 					idea_votes_aggregate {
@@ -85,10 +96,10 @@ const GET_IDEAS = gql`
 							}
 						}
 					}
-					idea_votes(where: { user_id: { _eq: $userId }}) {
+					idea_votes(where: { user_id: { _eq: $userId } }) {
 						vote_type
 					}
-			  	}
+				}
 			}
 			id
 			name
@@ -102,6 +113,9 @@ const GET_IDEAS = gql`
 				country
 				id
 				avatar_url
+				account {
+					email
+				}
 			}
 		}
 	}
@@ -132,7 +146,7 @@ const GET_IDEA = gql`
 				aggregate {
 					sum {
 						vote_type
-				  	}
+					}
 				}
 			}
 		}
@@ -142,9 +156,9 @@ const GET_IDEA = gql`
 const UPSERT_IDEA_UPVOTE = gql`
 	mutation upsertIdeaVote($idea_vote: idea_votes_insert_input!) {
 		insert_idea_votes_one(
-			object: $idea_vote,
+			object: $idea_vote
 			on_conflict: {
-				constraint: idea_votes_pkey,
+				constraint: idea_votes_pkey
 				update_columns: vote_type
 			}
 		) {
