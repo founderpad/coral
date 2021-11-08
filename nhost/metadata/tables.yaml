@@ -514,7 +514,7 @@
       num_retries: 0
       interval_sec: 10
       timeout_sec: 60
-    webhook: '{{NHOST_CUSTOM_API_URL}}/send-reported-email'
+    webhook: '{{NHOST_CUSTOM_API_URL}}/email/send-reported-email'
     headers:
     - value: '{{NHOST_WEBHOOK_SECRET}}'
       name: x-webhook-secret
