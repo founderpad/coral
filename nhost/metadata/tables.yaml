@@ -489,16 +489,17 @@
       set:
         fromUserId: x-hasura-User-Id
       columns:
-      - id
-      - fromUserId
-      - reportedUserId
-      - reportedId
-      - type
-      - reason
+      - content
       - created_at
-      - updated_at
+      - fromUserId
+      - id
+      - reason
       - recipientEmail
       - recipientName
+      - reportedId
+      - reportedUserId
+      - type
+      - updated_at
       backend_only: false
   select_permissions:
   - role: user
