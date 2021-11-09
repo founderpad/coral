@@ -1,6 +1,5 @@
+import AWS from 'aws-sdk';
 import { Request, Response } from 'express';
-
-const AWS = require('aws-sdk');
 
 const CONFIG = {
 	apiVersion: '2010-12-01',
