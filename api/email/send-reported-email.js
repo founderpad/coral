@@ -10,7 +10,7 @@ const CONFIG = {
 const AWS_SES = new AWS.SES(CONFIG);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default async (req, res) => {
+export default (req, res) => {
 	// await AWS_SES.sendEmail({
 	// 	Source: 'jamie@founderpad.com',
 	// 	Destination: {
@@ -48,7 +48,7 @@ export default async (req, res) => {
 	// 	}
 	// }).promise();
 
-	await AWS_SES.sendEmail({
+	AWS_SES.sendEmail({
 		Source: 'jamie@founderpad.com',
 		Destination: {
 			// ToAddresses: [`${req.body.event.data.new.recipientEmail}`],
@@ -67,7 +67,7 @@ export default async (req, res) => {
 				}
 			}
 		}
-	}).promise();
+	});
 
 	res.send('Email sent successfully');
 };
