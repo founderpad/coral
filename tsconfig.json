@@ -53,8 +53,5 @@
     "**/*.tsx",
     "**/*.js",
     "src/utils/AuthFilter.jsx"
-  ],
-  "references": [
-	  { "path": "./api" }
   ]
 }
