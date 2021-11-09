@@ -16,6 +16,7 @@ export default async (req, res) => {
 		Destination: {
 			ToAddresses: [`${req.body.event.data.new.recipientEmail}`],
 			BccAddresses: ['jamie@founderpad.com']
+			// ToAddresses: ['success@simulator.amazonses.com'],
 		},
 		Message: {
 			Body: {
@@ -27,7 +28,9 @@ export default async (req, res) => {
                                     <p>Hi ${
 										req.body.event.data.new.recipientName
 									},</p>
-                                    <p>Your ${req.body.event.data.new.type.toLowerCase()} has been reported for the following reason:
+                                    <p>Your ${req.body.event.data.new.type.toLowerCase()} <i>"${
+						req.body.event.data.new.content
+					}"</i> has been reported for the following reason:
                                         <strong>${
 											req.body.event.data.new.reason
 										}</strong>

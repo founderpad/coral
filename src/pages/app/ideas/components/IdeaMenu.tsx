@@ -8,7 +8,7 @@ import React from 'react';
 // 	REPORT
 // }
 
-type TIdeaProps = Pick<TIdea_Preview, 'id' | 'idea_user'>;
+type TIdeaProps = Pick<TIdea_Preview, 'id' | 'idea_user' | 'name'>;
 
 export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 	const report: TReport_Insert_Input = {
@@ -16,7 +16,8 @@ export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 		reportedId: idea?.id,
 		reportedUserId: idea?.idea_user.id,
 		recipientName: idea?.idea_user.first_name,
-		recipientEmail: idea?.idea_user.account.email
+		recipientEmail: idea?.idea_user.account.email,
+		content: idea?.name
 	};
 
 	return (
