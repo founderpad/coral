@@ -1,4 +1,5 @@
-const AWS = require('aws-sdk');
+import AWS from 'aws-sdk';
+import { Request, Response } from 'express';
 
 const CONFIG = {
 	apiVersion: '2010-12-01',
@@ -10,7 +11,7 @@ const CONFIG = {
 const AWS_SES = new AWS.SES(CONFIG);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default async (req, res) => {
+export default async (req: Request, res: Response) => {
 	await AWS_SES.sendEmail({
 		Source: 'jamie@founderpad.com',
 		Destination: {
