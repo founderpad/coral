@@ -9,8 +9,7 @@
         "composite": true,
         "forceConsistentCasingInFileNames": true,
         "module": "esnext",
-        "moduleResolution": "node",
-        // "target": "esnext"
+        "moduleResolution": "node"
     },
     "exclude": [ "node_modules" ],
     "include": [ "**/*.ts" ]
