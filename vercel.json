@@ -2,17 +2,5 @@
 	"github": {
 		"enabled": false,
 		"silent": true
-	},
-	"rewrites": [
-		{
-			"source": "/:path*",
-			"has": [
-				{
-					"type": "host",
-					"value": "app.founderpad.com"
-				}
-			],
-			"destination": "/app/:path*"
-		}
-	]
+	}
 }
