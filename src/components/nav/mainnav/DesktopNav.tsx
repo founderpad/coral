@@ -122,7 +122,7 @@ const ProfileNotSet = memo(
 	(): JSX.Element => (
 		<BaseLink
 			title={'Update your profile'}
-			href={'/app/account/profile'}
+			href={'/account/profile'}
 			position={'fixed'}
 			right={4}
 			color={'red.500'}

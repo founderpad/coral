@@ -80,7 +80,7 @@ const ForgotPasswordForm = (): JSX.Element => {
 								>
 									Reset password
 								</Button>
-								<NextLink href="/app/login">
+								<NextLink href="/login">
 									<Link color={'gray.500'} size="xs">
 										Have an account? Login here
 									</Link>
@@ -90,15 +90,6 @@ const ForgotPasswordForm = (): JSX.Element => {
 					</form>
 				</Stack>
 			</Flex>
-			{/* <Flex flex={1} display={{ base: 'none', md: 'flex' }} flexDirection='column' alignItems='center' justifyContent='center'>
-                <Heading mb={10} fontSize={'2xl'}>Create your vision and stand out from the crowd</Heading>
-                <Image
-                    alt={'Stand out image'}
-                    src={
-                        'https://minio-19728797.nhost.app/nhost/founderpad-assets/stand_out.svg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=3ec88dd8e741adc8059970ea94833c9d%2F20210606%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210606T111416Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=4101ae22d32948e713b7b5ea263058e18aab3fe7d1ba3c9f5083495bb16a6ded'
-                    }   
-                />
-            </Flex> */}
 		</Stack>
 	);
 };

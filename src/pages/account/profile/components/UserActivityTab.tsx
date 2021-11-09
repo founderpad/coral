@@ -41,7 +41,7 @@ const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => (
 					{activity.description}
 				</Label>
 				<PrimaryLink
-					href={`/app/${activity?.url}`}
+					href={`/${activity?.url}`}
 					fontSize={'sm'}
 					title={'Link to view the idea'}
 				>

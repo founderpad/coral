@@ -13,7 +13,7 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		<FlexLayout
 			flexDirection={'column'}
 			as={BaseLink}
-			href={`/app/idea/${idea.id}`}
+			href={`/idea/${idea.id}`}
 			alignItems={'flex-start'}
 			_hover={{
 				borderColor: 'gray.50',

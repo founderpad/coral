@@ -30,7 +30,7 @@ const LegalFooter = memo(
 				alignSelf={'center'}
 			>
 				Already have an account?{' '}
-				<PrimaryLink href="/app/login" title={'Link to login'}>
+				<PrimaryLink href="/login" title={'Link to login'}>
 					Login here
 				</PrimaryLink>
 			</Label>

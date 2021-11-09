@@ -25,7 +25,7 @@ const Register = (): JSX.Element => {
 				<br />
 				Please check your junk folder if not received.
 			</Text>
-			<PrimaryLink title={'Go to the login page'} href="/app/login">
+			<PrimaryLink title={'Go to the login page'} href="/login">
 				Go to login
 			</PrimaryLink>
 		</AuthLayout>

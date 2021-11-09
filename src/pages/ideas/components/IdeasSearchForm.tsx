@@ -35,7 +35,7 @@ const IdeasSearchForm = (): JSX.Element => {
 
 		router.push(
 			{
-				pathname: '/app/ideas',
+				pathname: '/ideas',
 				query: { ...queryParams, page: 1 }
 			},
 			undefined,
@@ -57,7 +57,7 @@ const IdeasSearchForm = (): JSX.Element => {
 
 		router.push(
 			{
-				pathname: '/app/ideas',
+				pathname: '/ideas',
 				query: { page: 1 }
 			},
 			undefined,

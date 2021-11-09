@@ -27,13 +27,13 @@ const NavItems: Array<NavItem> = [
 	{
 		label: 'Ideas',
 		key: 'ideas',
-		href: '/app/ideas?page=1',
+		href: '/ideas?page=1',
 		children: [
 			{
 				label: 'All ideas',
 				key: 'all-ideas',
 				subLabel: 'View all ideas',
-				href: '/app/ideas?page=1'
+				href: '/ideas?page=1'
 			},
 			// {
 			// 	label: 'Your ideas',
@@ -45,7 +45,7 @@ const NavItems: Array<NavItem> = [
 				label: 'Create idea',
 				key: 'create',
 				subLabel: 'Post a new idea to the community',
-				href: '/app/ideas/create'
+				href: '/ideas/create'
 				// icon: IoAddSharp
 				// divider: true
 			}
@@ -84,7 +84,7 @@ const NavItems: Array<NavItem> = [
 	{
 		label: 'Messages',
 		key: 'messages',
-		href: '/app/messages'
+		href: '/messages'
 	},
 	{
 		label: (
@@ -94,7 +94,7 @@ const NavItems: Array<NavItem> = [
 			</Flex>
 		),
 		key: 'mentor-network',
-		href: '/app/mentor',
+		href: '/mentor',
 		divider: true
 	}
 ];

@@ -241,7 +241,7 @@ const CreateUpdateSuccessAlert = ({
 				be live to other founders.
 			</AlertDescription>
 
-			<NextLink href={`/app/idea/${ideaId}`} passHref>
+			<NextLink href={`/idea/${ideaId}`} passHref>
 				<Link color={'fpPrimary.500'} fontSize={'sm'}>
 					Click here to view your idea
 				</Link>

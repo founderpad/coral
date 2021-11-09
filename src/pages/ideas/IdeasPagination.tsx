@@ -17,7 +17,7 @@ const IdeasPagination = ({
 			onPageChange={(page: string) => {
 				router.push(
 					{
-						pathname: '/app/ideas',
+						pathname: '/ideas',
 						query: { ...router.query, page }
 					},
 					undefined,

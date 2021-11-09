@@ -14,7 +14,7 @@ const LoggedOut = (): JSX.Element => {
 	return (
 		<AuthLayout header="You've logged out successfully" title="Logged out">
 			<BaseLink
-				href={'/app/login'}
+				href={'/login'}
 				title={'Log in'}
 				textAlign={'center'}
 				color={'fpPrimary.500'}

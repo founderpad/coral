@@ -62,10 +62,7 @@ const NoAccountFooter = memo(
 	(): JSX.Element => (
 		<Label color={'gray.500'} fontSize={'smaller'} alignSelf={'center'}>
 			Don&apos;t have an account?
-			<PrimaryLink
-				href="/app/register"
-				title={'Link to register an account'}
-			>
+			<PrimaryLink href="/register" title={'Link to register an account'}>
 				{' '}
 				Create one here
 			</PrimaryLink>

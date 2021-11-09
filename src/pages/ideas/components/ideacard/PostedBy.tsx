@@ -17,7 +17,7 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 	>
 		<FlexLayout alignItems={'center'}>
 			<BaseLink
-				href={`/app/user/${idea_user?.id}`}
+				href={`/user/${idea_user?.id}`}
 				title={'The user who posted this idea'}
 				_hover={{ color: 'gray.700' }}
 				color={'gray.500'}
