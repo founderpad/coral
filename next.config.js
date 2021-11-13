@@ -17,7 +17,7 @@ module.exports = {
 
 				{
 					source: '/',
-					destination: '/login'
+					destination: 'https://founderpad-24c952.webflow.io/'
 				}
 			]
 		};
