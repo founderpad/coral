@@ -205,6 +205,7 @@
         remote_table:
           schema: public
           name: users
+        insertion_order: null
         column_mapping:
           user_id: id
   - name: idea_votes
@@ -213,6 +214,7 @@
         remote_table:
           schema: public
           name: idea_votes
+        insertion_order: null
         column_mapping:
           id: idea_id
   select_permissions:
@@ -331,6 +333,7 @@
         remote_table:
           schema: public
           name: users
+        insertion_order: null
         column_mapping:
           user_id: id
   array_relationships:
@@ -646,6 +649,7 @@
         remote_table:
           schema: auth
           name: accounts
+        insertion_order: null
         column_mapping:
           id: user_id
   - name: user_profile
@@ -654,6 +658,7 @@
         remote_table:
           schema: public
           name: user_profile
+        insertion_order: null
         column_mapping:
           id: user_id
   array_relationships:
