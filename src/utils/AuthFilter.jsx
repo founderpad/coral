@@ -15,7 +15,7 @@ export default function AuthFilter(Component) {
 			return <div>Checking auth...</div>;
 		}
 
-		if (!signedIn) router.push('/login');
+		if (!signedIn) router.push('/');
 
 		return (
 			<MainLayout>

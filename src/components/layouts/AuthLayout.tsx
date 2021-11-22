@@ -1,4 +1,3 @@
-import { Image } from '@chakra-ui/image';
 import { Heading } from '@chakra-ui/layout';
 import { DocumentTitle } from 'components/shared';
 import React from 'react';
@@ -26,18 +25,20 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => {
 				bg={'white'}
 				flex={{ base: 1, sm: 'none' }}
 				justifyContent={'center'}
+				id={'auth-container'}
 			>
-				<Image
-					src="/logo.svg"
+				{/* <Image
+					src="/logo-text.svg"
 					mx="auto"
 					alt="logo"
 					height="40px"
 					width="200px"
-				/>
+				/> */}
 				<Heading
 					textAlign={'center'}
+					fontWeight={'semibold'}
 					fontSize={'2xl'}
-					color={'gray.600'}
+					color={'black'}
 				>
 					{header}
 				</Heading>
