@@ -1,8 +1,10 @@
 Coral is [founderpad's](https://www.founderpad.com/) client facing application, which is used by founders alike to create and seek feedback from the community on their ideas. It is the founder platform.
 
-It's built using React ([Next.js](https://nextjs.org/)) on the client side, which interfaces with a GraphQL API ([Hasura](https://hasura.io/)) and Postgres database on the backend. Currently we are using [Nhost](https://nhost.io/) (an open source alternative to Firebase) to manage our cloud infrastructure. As the project and team expands, we will migrate everything to AWS and utilise containerization to handle all of the dev ops needs.
+It's built using React ([Next.js](https://nextjs.org/)) on the client side, which interfaces with a GraphQL API ([Hasura](https://hasura.io/)) and Postgres database on the backend. Currently we are using [Nhost](https://nhost.io/) (an open source alternative to Firebase) as a wrapper to bundle these necessary tools together into a serverless architecture. As the project and team expands, we will migrate everything to AWS and utilise containerization to handle all of the dev ops needs ourselves for maximum flexibility.
 
-The advantage of using Nhost for the MVP is it's built using open source tools, so we will be able to deploy separately in the future if/when necessary. Under the hood, Nhost (v1) deploys the application to Digital Ocean, and v2 will be migrating this across to AWS.
+The advantage of using Nhost for the MVP is it's built using open source tools, so we will be able to deploy separately in the future if/when necessary. Under the hood, Nhost (v1) deploys the application to Digital Ocean, and v2 will be migrating this across to AWS. There is no vendor lock-in which is particularly enticing as deploying these services ourselves will be straightforward in the future.
+
+It should more or less involve creating a docker-compose file with these services and depeloying to Fargate (just an example).
 
 It is deployed to [Vercel](https://vercel.com/) via our CI/CD pipeline which uses [GitHub Actions](https://github.com/features/actions).
 
@@ -23,6 +25,7 @@ It is deployed to [Vercel](https://vercel.com/) via our CI/CD pipeline which use
 -   [iTerm2](https://iterm2.com/)
 -   [Docker](https://www.docker.com/)
 -   [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+-   [Ngrok](https://ngrok.com/)(Mine is installed via Homebrew)
 
 First, before you can clone the project, you must set up your SSH key in your GitHub settings. This is more secure than using HTTPS, and it alleviates the need to enter your credentials frequently.
 
@@ -51,7 +54,7 @@ We use Jest and React Testing Library to build our test suite. In the future, we
 ## React (NextJS) application
 
 ## API (Node)
-Typically we would provide a standalone API deployed to AWS (Fargate, EC2 etc), but Nhost provides us with the ablity to create a custom API to facilitate any custom business logic that we may need. An example of this is sending emails to users to inform them when their idea or comment has been reported and we take it from there.
+Typically we would provide a standalone API deployed to AWS (Fargate, EC2 etc), but Nhost provides us with the ablity to create a custom API to facilitate any custom business logic that we may need. An example of this is sending emails to users to inform them when their idea or comment has been reported and we take it from there. This works by way of webhooks.
 
 This API is accessed inside the project at its root `/api` (not to be confused with NextJS' API routes at `/src/pages/api`).
 
@@ -60,3 +63,8 @@ This API isn't too dissimilar from Next's API routes, but it is specific to Nhos
 It is a rather vanilla Node API, and we use it mainly in an event-driven way that responds to Hasura events. E.g., when a record is inserted into the report table we act on this by firing the `/api/email/send-reported-email.js`.
 
 Future changes will include an endpoint to faciliate Stripe customer sign ups so that the application will able to accept Stripe payments.
+
+## Testing build locally
+We use [Ngrok](https://ngrok.com/) to test our build locally befoore any commits. This ensures we test over HTTPS and mimic a production-like environment but on our local instance.
+
+Ensure the application is running (`yarn dev`) and in a separate iTerm2 tab (or VSCode terminal) run `yarn ngrok`. This will provide a forwarding address (e.g., https://8400-86-3-111-125.ngrok.io) which you can paste into your browser address bar.
