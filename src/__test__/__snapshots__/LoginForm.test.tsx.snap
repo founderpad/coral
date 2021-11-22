@@ -68,7 +68,7 @@ exports[`Login form matches snapshot 1`] = `
           Don't have an account?
           <a
             class="chakra-link css-ntv2za"
-            href="/app/register"
+            href="/register"
             title="Link to register an account"
           >
              Create one here

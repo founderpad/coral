@@ -1,8 +1,8 @@
 schema:
     - ${NEXT_PUBLIC_GRAPHQL_BACKEND}:
-        headers:
-            x-hasura-role: ${BACKEND_ROLE}
-            x-hasura-admin-secret: ${BACKEND_SECRET}
+          headers:
+              x-hasura-role: ${BACKEND_ROLE}
+              x-hasura-admin-secret: ${BACKEND_SECRET}
 documents:
     - ./src/**/*.tsx
     - ./src/**/*.ts
@@ -12,6 +12,7 @@ generates:
             - typescript
             - typescript-operations
             - typescript-react-apollo
+            - typescript-resolvers
         config:
             namingConvention: change-case-all#pascalCase
             skipTypename: false
@@ -26,4 +27,3 @@ generates:
             constEnums: true
             enumsAsTypes: true
             typesPrefix: T
-

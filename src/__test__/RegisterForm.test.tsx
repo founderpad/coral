@@ -1,5 +1,5 @@
 import { fireEvent, waitFor } from '@testing-library/dom';
-import RegisterForm from 'pages/app/register/components/RegisterForm';
+import RegisterForm from 'pages/register/components/RegisterForm';
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import store from 'utils/store';

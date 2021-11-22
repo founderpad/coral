@@ -45,7 +45,7 @@ const UserMenu = (): JSX.Element => {
 				<MenuGroup>
 					<MenuItem
 						as={BaseLink}
-						href={'/app/account/profile'}
+						href={'/account/profile'}
 						fontSize={'sm'}
 						color={'gray.500'}
 						_hover={{ color: 'black' }}
@@ -54,7 +54,7 @@ const UserMenu = (): JSX.Element => {
 					</MenuItem>
 					<MenuItem
 						as={BaseLink}
-						href={'/app/user/settings'}
+						href={'/user/settings'}
 						fontSize={'sm'}
 						color={'gray.500'}
 						_hover={{ color: 'black' }}

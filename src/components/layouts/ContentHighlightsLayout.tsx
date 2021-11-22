@@ -1,7 +1,7 @@
 import { GridItem, SimpleGrid } from '@chakra-ui/layout';
 import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
 import KeyInformationBox from 'components/shared/KeyInformationBox';
-import HighlightTag from 'pages/app/idea/components/IdeaHighlightTag';
+import HighlightTag from 'pages/idea/components/IdeaHighlightTag';
 import React from 'react';
 import { IconType } from 'react-icons';
 import { FlexLayout } from './FlexLayout';

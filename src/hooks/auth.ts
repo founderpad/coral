@@ -29,14 +29,15 @@ export const useRegister = (): any => {
 				password,
 				options: {
 					userData: <{ display_name: string; user_type: UserType }>{
-						display_name: firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
+						display_name:
+							firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
 						user_type: type,
 						first_name: firstName?.trim(),
 						last_name: lastName?.trim()
 					}
 				}
 			});
-			router.push('/app/register/complete');
+			router.push('/register/complete');
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to create an account',
@@ -70,7 +71,7 @@ export const useLogout = (): any => {
 
 	return async (): Promise<void> => {
 		try {
-			await router.replace('/app/loggedout');
+			await router.replace('/loggedout');
 			await auth.logout();
 			// dispatch(clearUser());
 		} catch (error) {
@@ -86,9 +87,7 @@ export const useForgottenPassword = (): any => {
 	const showSuccessNotification = useSuccessNotification();
 	const showErrorNotification = useErrorNotification();
 
-	return async ({
-		email
-	}: Pick<IAuthFormData, 'email'>): Promise<void> => {
+	return async ({ email }: Pick<IAuthFormData, 'email'>): Promise<void> => {
 		try {
 			await auth.requestPasswordChange(email);
 			showSuccessNotification({
@@ -125,7 +124,7 @@ export const useGetAuthenticatedUser = (): any => {
 		onCompleted: (data) => {
 			const user = data.user;
 			dispatch(setUser(user as TUsers));
-			router.replace('/app/ideas?page=1');
+			router.replace('/ideas?page=1');
 		}
 	});
 };
@@ -213,8 +212,8 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useClaim = (): string => {
-	return auth.getClaim('x-hasura-user-id') as string
-}
+	return auth.getClaim('x-hasura-user-id') as string;
+};
 
 // export const useUpdateUserAvatar = () => {
 // 	// return (filePath: string): any =>

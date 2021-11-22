@@ -1,5 +1,5 @@
 import { fireEvent, waitFor } from '@testing-library/dom';
-import LoginForm from 'pages/app/login/components/LoginForm';
+import LoginForm from 'pages/login/components/LoginForm';
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import store from 'utils/store';

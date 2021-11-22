@@ -41,7 +41,7 @@ export const Pagination = (props: Props): JSX.Element => {
 						onClick={() =>
 							router.push(
 								{
-									pathname: '/app/ideas',
+									pathname: '/ideas',
 									query: { ...router.query, page: p }
 								},
 								undefined,
