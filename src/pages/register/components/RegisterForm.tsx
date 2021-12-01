@@ -96,7 +96,8 @@ const RegisterForm = (): JSX.Element => {
 						label={'Create account'}
 						isLoading={isSubmitting}
 						disabled={!isValid || isSubmitting}
-						size={'md'}
+						size={'lg'}
+						fontWeight={'semibold'}
 						full
 					/>
 					<LegalFooter />

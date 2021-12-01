@@ -46,10 +46,11 @@ const LoginForm = (): JSX.Element => {
 				<SubmitButton
 					id={'submit-login'}
 					name={'submit-login'}
-					label="Login now"
+					label="Log in"
 					isLoading={isSubmitting}
 					disabled={!isValid || isSubmitting}
-					size={'md'}
+					size={'lg'}
+					fontWeight={'semibold'}
 					full
 				/>
 				<NoAccountFooter />

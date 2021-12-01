@@ -195,7 +195,7 @@ exports[`Register form matches snapshot 1`] = `
         </div>
         <button
           aria-label="submit-register-account"
-          class="chakra-button css-uxt1e8"
+          class="chakra-button css-3w39eu"
           disabled=""
           id="submit-register-account"
           type="submit"
