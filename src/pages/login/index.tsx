@@ -3,7 +3,7 @@ import React from 'react';
 import LoginForm from './components/LoginForm';
 
 const Login = (): JSX.Element => (
-	<AuthLayout header="Login" title="Login">
+	<AuthLayout header="Log in to founderpad" title="Log in">
 		<LoginForm />
 	</AuthLayout>
 );

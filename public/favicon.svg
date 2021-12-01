@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8.4666662mm"
+   height="8.4666662mm"
+   viewBox="0 0 8.4666662 8.4666662"
+   version="1.1"
+   id="svg856"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   sodipodi:docname="favicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview858"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="6.2217172"
+     inkscape:cx="45.16438"
+     inkscape:cy="35.118922"
+     inkscape:window-width="2064"
+     inkscape:window-height="1081"
+     inkscape:window-x="2416"
+     inkscape:window-y="166"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs853" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-102.70931,-171.00641)">
+    <g
+       style="fill:none"
+       id="g96997"
+       transform="matrix(0.07175141,0,0,0.07175141,102.70931,171.00641)">
+      <rect
+         width="118"
+         height="118"
+         rx="25"
+         fill="#2ba4c9"
+         id="rect96988"
+         x="0"
+         y="0" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Initials"
+     transform="translate(-102.70931,-171.00641)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:-0.0182471px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0608231"
+       x="100.50254"
+       y="184.49139"
+       id="text91024"
+       transform="scale(1.0444197,0.9574695)"><tspan
+         sodipodi:role="line"
+         id="tspan91022"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:5.64444px;font-family:'Sansita Swashed';-inkscape-font-specification:'Sansita Swashed Medium';fill:#ffffff;fill-opacity:1;stroke-width:0.0608231"
+         x="100.50254"
+         y="184.49139"
+         dx="0 -0.44">fp</tspan></text>
+  </g>
+</svg>

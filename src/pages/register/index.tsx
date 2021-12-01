@@ -5,7 +5,7 @@ import RegisterForm from './components/RegisterForm';
 const Register = (): JSX.Element => {
 	return (
 		<AuthLayout
-			header="Register"
+			header="Register an account on founderpad to get started"
 			subheader="Get started by creating an account below"
 			title="Register"
 		>

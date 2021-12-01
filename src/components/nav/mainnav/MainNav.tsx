@@ -57,7 +57,11 @@ const MainNav = (): JSX.Element => {
 								fontSize={'2xl'}
 								onClick={onToggle}
 							/>
-							<Image src="/logo.svg" alt="logo" h={'20px'} />
+							<Image
+								src="/founderpad-text.svg"
+								alt="logo"
+								h={'20px'}
+							/>
 						</Flex>
 						<DesktopNav />
 						<UserMenu />

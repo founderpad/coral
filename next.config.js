@@ -49,15 +49,11 @@ module.exports = {
 				},
 				{
 					source: '/about',
-					destination: '/about.html'
+					destination: '/about-us.html'
 				},
 				{
 					source: '/faqs',
 					destination: '/faqs.html'
-				},
-				{
-					source: '/contact',
-					destination: '/contact'
 				},
 				{
 					source: '/contact',
@@ -74,6 +70,10 @@ module.exports = {
 				{
 					source: '/acceptable-use-policy',
 					destination: '/acceptable-use-policy.html'
+				},
+				{
+					source: '/terms-of-service',
+					destination: '/terms-of-service.html'
 				}
 			]
 		};

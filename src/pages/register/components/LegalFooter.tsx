@@ -8,7 +8,7 @@ const LegalFooter = memo(
 			<Label as={'div'} color={'gray.500'} fontSize={'smaller'}>
 				By continuing, you agree to founderpad&apos;s{' '}
 				<PrimaryLink
-					href="https://www.founderpad.com/legal/terms"
+					href="/terms-of-conditions"
 					title={'Link to Terms of Service'}
 					isExternal
 				>
@@ -16,7 +16,7 @@ const LegalFooter = memo(
 				</PrimaryLink>{' '}
 				and acknowledge that you&apos;ve read our{' '}
 				<PrimaryLink
-					href="https://www.founderpad.com/legal/privacy-policy"
+					href="/privacy-policy"
 					title={'Link to Privacy Policy'}
 					isExternal
 				>

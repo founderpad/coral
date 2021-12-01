@@ -208,7 +208,7 @@ exports[`Register form matches snapshot 1`] = `
           By continuing, you agree to founderpad's 
           <a
             class="chakra-link css-ntv2za"
-            href="https://www.founderpad.com/legal/terms"
+            href="/terms-of-conditions"
             rel="noopener noreferrer"
             target="_blank"
             title="Link to Terms of Service"
@@ -218,7 +218,7 @@ exports[`Register form matches snapshot 1`] = `
            and acknowledge that you've read our 
           <a
             class="chakra-link css-ntv2za"
-            href="https://www.founderpad.com/legal/privacy-policy"
+            href="/privacy-policy"
             rel="noopener noreferrer"
             target="_blank"
             title="Link to Privacy Policy"
