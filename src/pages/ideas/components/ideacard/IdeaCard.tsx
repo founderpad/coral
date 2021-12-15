@@ -24,7 +24,7 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		>
 			<IdeaCardHeader {...idea} />
 			<IdeaCardBody {...idea} />
-			<IdeaCardFooter ideaId={idea.id} />
+			<IdeaCardFooter />
 			{/* <Upvote {...idea.idea_votes} ideaId={idea.id} /> */}
 		</FlexLayout>
 		<IdeaMenu {...idea} />

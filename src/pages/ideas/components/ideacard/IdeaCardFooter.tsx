@@ -4,7 +4,7 @@ import { StackLayout } from 'components/layouts';
 import React, { memo } from 'react';
 import { IoFlagSharp } from 'react-icons/io5';
 
-const IdeaCardFooter = ({ ideaId: string }): JSX.Element => {
+const IdeaCardFooter = (): JSX.Element => {
 	const onAction = (e) => {
 		e.stopPropagation();
 		// OR
