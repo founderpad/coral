@@ -1,15 +1,14 @@
 import { FlexLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
-import { Upvote } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 import IdeaMenu from '../IdeaMenu';
 import IdeaCardBody from './IdeaCardBody';
+import IdeaCardFooter from './IdeaCardFooter';
 import IdeaCardHeader from './IdeaCardHeader';
 
 const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 	<FlexLayout flex={1}>
-		<Upvote {...idea.idea_votes} ideaId={idea.id} />
 		<FlexLayout
 			flexDirection={'column'}
 			as={BaseLink}
@@ -25,6 +24,8 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 		>
 			<IdeaCardHeader {...idea} />
 			<IdeaCardBody {...idea} />
+			<IdeaCardFooter ideaId={idea.id} />
+			{/* <Upvote {...idea.idea_votes} ideaId={idea.id} /> */}
 		</FlexLayout>
 		<IdeaMenu {...idea} />
 	</FlexLayout>

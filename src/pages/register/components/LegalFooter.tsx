@@ -5,7 +5,7 @@ import React, { memo } from 'react';
 const LegalFooter = memo(
 	(): JSX.Element => (
 		<React.Fragment>
-			<Label as={'div'} color={'gray.500'} fontSize={'smaller'}>
+			<Label as={'div'} color={'gray.500'} fontSize={'x-small'}>
 				By continuing, you agree to founderpad&apos;s{' '}
 				<PrimaryLink
 					href="/terms-of-conditions"
@@ -20,13 +20,13 @@ const LegalFooter = memo(
 					title={'Link to Privacy Policy'}
 					isExternal
 				>
-					Privacy Policy
+					Privacy Policy.
 				</PrimaryLink>{' '}
 			</Label>
 			<Label
 				as={'div'}
 				color={'gray.500'}
-				fontSize={'smaller'}
+				fontSize={'x-small'}
 				alignSelf={'center'}
 			>
 				Already have an account?{' '}

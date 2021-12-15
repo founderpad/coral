@@ -30,7 +30,7 @@ describe('Register form', () => {
 
 	it('should render RegisterForm fields', () => {
 		const { getByRole } = setup();
-		expect(getByRole('combobox')).toBeInTheDocument();
+		// expect(getByRole('combobox')).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'firstName' })).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'lastName' })).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'email' })).toBeInTheDocument();
@@ -56,21 +56,21 @@ describe('Register form', () => {
 	test('should make register request on submit', async () => {
 		const { getByRole, getByPlaceholderText } = setup();
 
-		const typeInput = getByRole('combobox', { name: /type/i });
+		// const typeInput = getByRole('combobox', { name: /type/i });
 		const firstNameInput = getByRole('textbox', { name: /firstName/i });
 		const lastNameInput = getByRole('textbox', { name: /lastName/i });
 		const emailInput = getByRole('textbox', { name: /email/i });
 		const passwordInput = getByPlaceholderText(/Password/i);
 		const submitButton = getByRole('button', { name: /submit/i });
 
-		expect(typeInput.value).toBe('');
+		// expect(typeInput.value).toBe('');
 		expect(firstNameInput.value).toBe('');
 		expect(lastNameInput.value).toBe('');
 		expect(emailInput.value).toBe('');
 		expect(passwordInput.value).toBe('');
 
 		act(() => {
-			fireEvent.change(typeInput, { target: { value: 'IDEAS' } });
+			// fireEvent.change(typeInput, { target: { value: 'IDEAS' } });
 			fireEvent.change(firstNameInput, { target: { value: 'Jamie' } });
 			fireEvent.change(lastNameInput, { target: { value: 'Lee' } });
 			fireEvent.change(emailInput, {
@@ -79,7 +79,7 @@ describe('Register form', () => {
 			fireEvent.change(passwordInput, { target: { value: '123456' } });
 		});
 
-		expect(typeInput.value).toBe('IDEAS');
+		// expect(typeInput.value).toBe('IDEAS');
 		expect(firstNameInput.value).toBe('Jamie');
 		expect(lastNameInput.value).toBe('Lee');
 		expect(emailInput.value).toBe('jamie@gmail.com');

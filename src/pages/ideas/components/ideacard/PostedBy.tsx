@@ -20,13 +20,13 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 				href={`/user/${idea_user?.id}`}
 				title={'The user who posted this idea'}
 				_hover={{ color: 'gray.700' }}
-				color={'gray.500'}
+				color={'gray.400'}
 			>
 				{idea_user?.first_name}
 			</BaseLink>
 			{idea_user.country && (
 				<Label
-					color={'gray.500'}
+					color={'gray.400'}
 					title={'When the idea was posted'}
 					fontSize={'xs'}
 				>
@@ -36,7 +36,7 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 		</FlexLayout>
 		<PointSeparator color={'gray.500'} small />
 		<Label
-			color={'gray.500'}
+			color={'gray.400'}
 			title={'When the idea was posted'}
 			fontSize={'xs'}
 		>

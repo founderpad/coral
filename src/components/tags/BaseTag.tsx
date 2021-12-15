@@ -3,7 +3,7 @@ import React from 'react';
 
 export const BaseTag = (props: TagProps): JSX.Element => (
 	<Tag background={props.bg} borderWidth={1} color={props.color}>
-		<TagLabel fontSize={'xs'} fontWeight={'normal'}>
+		<TagLabel fontSize={'xs'} fontWeight={'light'}>
 			{props.children}
 		</TagLabel>
 	</Tag>

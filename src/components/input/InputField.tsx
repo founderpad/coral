@@ -35,8 +35,6 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				isRequired={isRequired}
 				w={{ base: 'full' }}
 			>
-				{/* {label && <InputFieldLabel label={label} />} */}
-
 				{label && <FormLabelText label={label} />}
 				<Controller
 					render={({
@@ -134,6 +132,7 @@ export const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
 			type="password"
 			errorText="Please enter a valid password between 6 and 20 characters."
 			rules={{ maxLength: 20, minLength: 6 }}
+			fontSize={'sm'}
 			ref={ref}
 		/>
 	)

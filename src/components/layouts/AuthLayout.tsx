@@ -11,42 +11,40 @@ interface Props {
 	subheader?: string;
 }
 
-const AuthLayout = ({ header, children, title }: Props): JSX.Element => {
-	return (
-		<React.Fragment>
-			<DocumentTitle title={title} />
-			<StackLayout
-				minW={{ base: 'full', sm: '450px' }}
-				maxW={{ base: 'full', sm: '600px' }}
-				borderColor={'gray.100'}
-				p={8}
-				boxShadow={{ sm: 'sm' }}
-				borderWidth={{ sm: '1px' }}
-				m={'auto'}
-				bg={'white'}
-				flex={{ base: 1, sm: 'none' }}
-				justifyContent={'center'}
-				id={'auth-container'}
+const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
+	<React.Fragment>
+		<DocumentTitle title={title} />
+		<StackLayout
+			minW={{ base: 'full', sm: '400px' }}
+			maxW={{ base: 'full', sm: '300px' }}
+			borderColor={'gray.100'}
+			p={8}
+			boxShadow={{ sm: 'sm' }}
+			borderWidth={{ sm: '1px' }}
+			m={'auto'}
+			bg={'white'}
+			flex={{ base: 1, sm: 'none' }}
+			justifyContent={'center'}
+			id={'auth-container'}
+		>
+			<Image
+				src="/founderpad-text.svg"
+				mx="auto"
+				alt="logo"
+				height="30px"
+			/>
+			<Heading
+				textAlign={'center'}
+				fontWeight={'normal'}
+				fontSize={'md'}
+				color={'black'}
+				pb={8}
 			>
-				<Image
-					src="/founderpad-text.svg"
-					mx="auto"
-					alt="logo"
-					height="40px"
-				/>
-				<Heading
-					textAlign={'center'}
-					fontWeight={'medium'}
-					fontSize={'lg'}
-					color={'black'}
-					pb={8}
-				>
-					{header}
-				</Heading>
-				{children}
-			</StackLayout>
-		</React.Fragment>
-	);
-};
+				{header}
+			</Heading>
+			{children}
+		</StackLayout>
+	</React.Fragment>
+);
 
 export default AuthLayout;

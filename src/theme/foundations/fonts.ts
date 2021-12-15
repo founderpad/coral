@@ -1,10 +1,10 @@
 const Fonts = {
 	heading: 'Inter',
-	body: 'Hind',
-	text: 'Hind',
-	menubar: 'Hind',
-	button: 'Hind',
-	a: 'Montserrat'
+	body: 'Inter',
+	text: 'Inter',
+	menubar: 'Inter',
+	button: 'Inter',
+	a: 'Inter'
 };
 
 export default Fonts;

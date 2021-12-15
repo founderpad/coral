@@ -13,68 +13,64 @@ exports[`Login form matches snapshot 1`] = `
       class="chakra-stack css-6epcyi"
     >
       <div
-        class="chakra-stack css-1moek9b"
+        class="chakra-form-control css-1naxzcr"
+        role="group"
       >
-        <div
-          class="chakra-form-control css-1naxzcr"
-          role="group"
-        >
-          <input
-            aria-label="email"
-            aria-required="true"
-            class="chakra-input css-0"
-            control="[object Object]"
-            errortext="Please enter a valid email"
-            id="email-email"
-            name="email"
-            placeholder="Email"
-            required=""
-            rules="[object Object]"
-            type="email"
-            value=""
-          />
-        </div>
-        <div
-          class="chakra-form-control css-1naxzcr"
-          role="group"
-        >
-          <input
-            aria-label="password"
-            aria-required="true"
-            class="chakra-input css-0"
-            control="[object Object]"
-            errortext="Please enter a valid password between 6 and 20 characters."
-            id="password-password"
-            name="password"
-            placeholder="Password"
-            required=""
-            rules="[object Object]"
-            type="password"
-            value=""
-          />
-        </div>
-        <button
-          aria-label="submit-login"
-          class="chakra-button css-3w39eu"
-          disabled=""
-          id="submit-login"
-          type="submit"
-        >
-          Log in
-        </button>
-        <p
-          class="chakra-text css-1izd6ip"
-        >
-          Don't have an account?
-          <a
-            class="chakra-link css-ntv2za"
-            href="/register"
-            title="Link to register an account"
-          >
-             Create one here
-          </a>
-        </p>
+        <input
+          aria-label="email"
+          aria-required="true"
+          class="chakra-input css-g5hezf"
+          control="[object Object]"
+          errortext="Please enter a valid email"
+          id="email-email"
+          name="email"
+          placeholder="Email"
+          required=""
+          rules="[object Object]"
+          type="email"
+          value=""
+        />
       </div>
+      <div
+        class="chakra-form-control css-1naxzcr"
+        role="group"
+      >
+        <input
+          aria-label="password"
+          aria-required="true"
+          class="chakra-input css-g5hezf"
+          control="[object Object]"
+          errortext="Please enter a valid password between 6 and 20 characters."
+          id="password-password"
+          name="password"
+          placeholder="Password"
+          required=""
+          rules="[object Object]"
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        aria-label="submit-login"
+        class="chakra-button css-fo5uud"
+        disabled=""
+        id="submit-login"
+        type="submit"
+      >
+        Log in
+      </button>
+      <p
+        class="chakra-text css-1fihqrz"
+      >
+        Don't have an account?
+        <a
+          class="chakra-link css-ntv2za"
+          href="/register"
+          title="Link to register an account"
+        >
+           Create one here
+        </a>
+      </p>
     </div>
   </form>
 </DocumentFragment>

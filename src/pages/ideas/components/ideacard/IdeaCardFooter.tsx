@@ -4,7 +4,7 @@ import { StackLayout } from 'components/layouts';
 import React, { memo } from 'react';
 import { IoFlagSharp } from 'react-icons/io5';
 
-const IdeaCardFooter = (): JSX.Element => {
+const IdeaCardFooter = ({ ideaId: string }): JSX.Element => {
 	const onAction = (e) => {
 		e.stopPropagation();
 		// OR
@@ -12,17 +12,16 @@ const IdeaCardFooter = (): JSX.Element => {
 	};
 
 	return (
-		// <Flex alignItems={'center'} borderTop={0}>
 		<StackLayout
 			direction={'row'}
 			spacing={2}
-			justifyContent={'flex-end'}
+			// justifyContent={'flex-end'}
 			w={'full'}
 		>
 			<IconButton
 				aria-label={'report-button'}
 				variant={'unstyled'}
-				color={'black'}
+				color={'gray.400'}
 				onClick={onAction}
 			>
 				<Icon as={IoFlagSharp} />
