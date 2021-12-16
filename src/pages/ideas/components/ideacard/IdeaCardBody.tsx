@@ -1,6 +1,6 @@
 import { Label } from 'components/labels';
 import { StackLayout } from 'components/layouts';
-import { PointSeparator } from 'components/shared';
+import BaseTag from 'components/tags/BaseTag';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 
@@ -15,7 +15,7 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 	return (
 		<React.Fragment>
 			<Label
-				my={4}
+				my={6}
 				d={'flex'}
 				color={'gray.500'}
 				overflow={'hidden'}
@@ -44,19 +44,12 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
 			spacing={1}
 			full
 		>
-			{/* <BaseTag color={'fpPrimary.500'} bg={'white'}>
+			<BaseTag color={'fpPrimary.500'} bg={'white'} fontSize={'x-small'}>
 				{status}
 			</BaseTag>
-			<BaseTag color={'fpPrimary.500'} bg={'white'}>
+			<BaseTag color={'fpPrimary.500'} bg={'white'} fontSize={'x-small'}>
 				{field}
-			</BaseTag> */}
-			<Label color={'fpPrimary.500'} fontSize={'xs'}>
-				{status}
-			</Label>
-			<PointSeparator small />
-			<Label color={'fpPrimary.500'} fontSize={'xs'}>
-				{field}
-			</Label>
+			</BaseTag>
 		</StackLayout>
 	);
 };

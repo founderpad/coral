@@ -2,9 +2,10 @@ import React from 'react';
 import { BaseLabel } from './BaseLabel';
 import { TLabelProps } from './types';
 
-export const Label = ({ ...rest }: TLabelProps): JSX.Element => (
-	<BaseLabel {...rest} fontSize={'sm'} />
-);
+export const Label = ({
+	fontSize = 'sm',
+	...rest
+}: TLabelProps): JSX.Element => <BaseLabel {...rest} fontSize={fontSize} />;
 
 export const CaptionLabel = ({
 	color = 'gray.400',

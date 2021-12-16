@@ -60,7 +60,7 @@ exports[`Login form matches snapshot 1`] = `
         Log in
       </button>
       <p
-        class="chakra-text css-1l1acq"
+        class="chakra-text css-1fihqrz"
       >
         Don't have an account?
         <a

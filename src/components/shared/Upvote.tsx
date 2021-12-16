@@ -59,18 +59,23 @@ export const Upvote = (
 		// 	</BaseButton>
 		// </StackLayout>
 
-		<StackLayout borderTop={'1px solid red'} full>
+		<StackLayout px={2}>
 			<BaseButton
 				name={'upvote-idea-button'}
-				variant={'ghost'}
+				variant={'unstyled'}
 				d={'flex'}
 				css={{ width: '0.8em !important' }}
 				color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'gray.500'}
-				bg={ideaVotes?.idea?.idea_votes && 'green.50'}
-				_hover={{ bg: 'green.50' }}
 				onClick={() => upsertIdeaVote()}
 			>
-				<Icon as={IoArrowUpSharp} fontSize={'md'} pt={0} />
+				<Icon
+					as={IoArrowUpSharp}
+					fontSize={'md'}
+					pt={0}
+					mr={1}
+					_hover={{ color: 'green.300' }}
+				/>
+				{/* 4 */}
 			</BaseButton>
 		</StackLayout>
 	);

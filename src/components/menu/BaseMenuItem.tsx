@@ -26,10 +26,10 @@ export const BaseMenuItem = ({
 			alignItems={'center'}
 			icon={icon && <Icon as={icon} />}
 		>
-			<Label fontWeight={'medium'} fontSize={'smaller'} color={color}>
+			<Label fontWeight={'medium'} fontSize={'small'} color={color}>
 				{title}
 			</Label>
-			<Label fontSize={'smaller'} color={'gray.400'}>
+			<Label fontSize={'x-small'} color={'gray.400'}>
 				{subTitle}
 			</Label>
 		</MenuItem>

@@ -1,4 +1,4 @@
-import { Divider, Stack } from '@chakra-ui/layout';
+import { Stack } from '@chakra-ui/layout';
 import { Loading, NoResults } from 'components/shared';
 import {
 	TIdea_Preview,
@@ -60,13 +60,13 @@ const IdeasContainer = (): JSX.Element => {
 				display={'flex'}
 				flex={1}
 				bg={'white'}
-				spacing={4}
+				spacing={6}
 				mt={{ sm: 3 }}
 			>
-				{data?.idea_preview?.map((idea: TIdea_Preview, key) => (
+				{data?.idea_preview?.map((idea: TIdea_Preview) => (
 					<React.Fragment key={idea.id}>
 						<IdeaCard {...idea} />
-						{key !== data.idea_preview?.length - 1 && <Divider />}
+						{/* {key !== data.idea_preview?.length - 1 && <Divider />} */}
 					</React.Fragment>
 				))}
 			</Stack>

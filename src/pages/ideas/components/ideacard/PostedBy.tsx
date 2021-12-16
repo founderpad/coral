@@ -1,4 +1,4 @@
-import { Label } from 'components/labels';
+import { CaptionLabel } from 'components/labels';
 import { FlexLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
 import { PointSeparator } from 'components/shared';
@@ -12,36 +12,27 @@ export const PostedBy = ({ idea_user, created_at }: TProps): JSX.Element => (
 	<FlexLayout
 		position={'relative'}
 		alignItems={'center'}
-		lineHeight={'16px'}
+		lineHeight={'0.875rem'}
 		fontSize={{ base: '11px', sm: 'xs' }}
 	>
-		<FlexLayout alignItems={'center'}>
-			<BaseLink
-				href={`/user/${idea_user?.id}`}
-				title={'The user who posted this idea'}
-				_hover={{ color: 'gray.700' }}
-				color={'gray.400'}
-			>
-				{idea_user?.first_name}
-			</BaseLink>
-			{idea_user.country && (
-				<Label
-					color={'gray.400'}
-					title={'When the idea was posted'}
-					fontSize={'xs'}
-				>
-					, {idea_user.country}
-				</Label>
-			)}
-		</FlexLayout>
-		<PointSeparator color={'gray.500'} small />
-		<Label
+		<BaseLink
+			href={`/user/${idea_user?.id}`}
+			title={'The user who posted this idea'}
+			_hover={{ color: 'gray.700' }}
 			color={'gray.400'}
-			title={'When the idea was posted'}
-			fontSize={'xs'}
+			fontSize={'x-small'}
 		>
+			{idea_user?.first_name}
+		</BaseLink>
+		<CaptionLabel d={'flex'}>
+			{idea_user.country && (
+				<>
+					<PointSeparator small /> {idea_user.country}
+				</>
+			)}
+			<PointSeparator small />
 			{formatDate(created_at)}
-		</Label>
+		</CaptionLabel>
 	</FlexLayout>
 );
 

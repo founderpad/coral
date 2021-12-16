@@ -1,4 +1,4 @@
-import { FlexLayout } from 'components/layouts';
+import { FlexLayout, StackLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
@@ -30,7 +30,7 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 			<IdeaMenu {...idea} />
 		</FlexLayout> */}
 
-		<FlexLayout flex={1}>
+		<StackLayout flex={1} spacing={0}>
 			<FlexLayout
 				flexDirection={'column'}
 				as={BaseLink}
@@ -42,13 +42,14 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 					bg: 'gray.50'
 				}}
 				p={2}
+				mb={2}
 				flex={1}
 			>
 				<IdeaCardHeader {...idea} />
 				<IdeaCardBody {...idea} />
-				<IdeaCardFooter />
 			</FlexLayout>
-		</FlexLayout>
+			<IdeaCardFooter {...idea} />
+		</StackLayout>
 	</>
 );
 
