@@ -78,7 +78,11 @@ const MainNav = (): JSX.Element => {
 				<DrawerOverlay />
 				<DrawerContent>
 					<DrawerHeader>
-						<Image src="/logo.svg" alt="logo" h={'20px'} />
+						<Image
+							src="/founderpad-text.svg"
+							alt="logo"
+							h={'20px'}
+						/>
 						<DrawerCloseButton />
 					</DrawerHeader>
 					<MenuDivider />

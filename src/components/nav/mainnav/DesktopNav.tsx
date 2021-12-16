@@ -29,23 +29,30 @@ const DesktopNav = (): JSX.Element => {
 					key={navItem.key}
 					triggerEl={
 						<Link
-							p={2}
+							px={2}
 							href={navItem.href ?? '#'}
-							fontSize={'sm'}
+							fontSize={'small'}
 							fontWeight={
 								usePathMatch(navItem.href) ? 'medium' : 'normal'
 							}
 							color={
 								usePathMatch(navItem.href)
-									? 'black'
+									? 'gray.900'
 									: 'gray.500'
 							}
 							_hover={{
 								textDecoration: 'none',
-								color: 'black'
+								color: 'gray.900'
 							}}
 						>
 							{navItem.label}
+							{navItem.rightIcon && (
+								<Icon
+									color={'inherit'}
+									ml={1}
+									as={navItem.rightIcon}
+								/>
+							)}
 						</Link>
 					}
 				>
@@ -85,10 +92,15 @@ const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
 							transition={'all .3s ease'}
 							color={'black'}
 							_groupHover={{ color: 'gray.900' }}
+							fontSize={'small'}
 						>
 							{label}
 						</BaseLabel>
-						<BaseLabel color={'gray.400'} fontWeight={'normal'}>
+						<BaseLabel
+							color={'gray.400'}
+							fontWeight={'normal'}
+							fontSize={'smaller'}
+						>
 							{subLabel}
 						</BaseLabel>
 					</BoxLayout>

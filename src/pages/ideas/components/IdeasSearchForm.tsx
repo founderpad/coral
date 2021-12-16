@@ -87,7 +87,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				name="name"
 				placeholder="Search name"
 				control={control}
-				label={'Name'}
+				// label={'Name'}
 				variant={'filled'}
 			/>
 			<SelectField
@@ -96,7 +96,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				options={industriesList()}
 				placeholder="field"
 				control={control}
-				label={'Field'}
+				// label={'Field'}
 				variant={'filled'}
 			/>
 			<SelectField
@@ -105,7 +105,7 @@ const IdeasSearchForm = (): JSX.Element => {
 				options={ideasStatusList()}
 				placeholder="status"
 				control={control}
-				label={'Status'}
+				// label={'Status'}
 				variant={'filled'}
 			/>
 			<InputField
@@ -113,9 +113,13 @@ const IdeasSearchForm = (): JSX.Element => {
 				name="location"
 				placeholder="Search location"
 				control={control}
-				label={'Location'}
+				// label={'Location'}
 				variant={'filled'}
 			/>
+
+			<Label fontSize={'x-small'} textAlign={'end'}>
+				More coming soon
+			</Label>
 
 			{/* business status  */}
 			{/* ideas with questionnaires */}

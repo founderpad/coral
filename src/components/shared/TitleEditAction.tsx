@@ -1,5 +1,5 @@
+import { Heading } from '@chakra-ui/layout';
 import { EditButton } from 'components/buttons';
-import { Label } from 'components/labels';
 import { FlexLayout } from 'components/layouts';
 import React, { memo } from 'react';
 
@@ -16,9 +16,9 @@ export const TitleEditAction = memo(
 			alignItems={'center'}
 			w={'full'}
 		>
-			<Label color={'black'} fontSize={'lg'} fontWeight={'semibold'}>
+			<Heading size={'h6'} color={'gray.900'}>
 				{title}
-			</Label>
+			</Heading>
 
 			{onClick && <EditButton onClick={onClick} aria-label={'Edit'} />}
 		</FlexLayout>

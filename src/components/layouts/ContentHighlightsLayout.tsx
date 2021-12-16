@@ -37,8 +37,8 @@ const ContentHighlightsLayout = (props: Props): JSX.Element => {
 			<GridItem
 				colSpan={{ md: 4, lg: 3 }}
 				order={{ base: 1, md: 2 }}
-				borderLeftWidth={1}
-				borderColor={'gray.100'}
+				borderLeftWidth={{ base: 'none', md: '1px' }}
+				borderLeftColor={'gray.100'}
 			>
 				<StackLayout
 					display={{ base: 'none', md: 'flex' }}

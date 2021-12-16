@@ -11,7 +11,7 @@ const Ideas = (): JSX.Element => (
 		<DocumentTitle title="All ideas" />
 		<PageLayout
 			title="All ideas"
-			subtitle="The latest ideas from other users"
+			subtitle="The latest ideas from the community."
 		>
 			<Grid
 				templateColumns="repeat(7, 1fr)"

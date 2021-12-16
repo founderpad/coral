@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
-import { IoLockClosedSharp } from 'react-icons/io5';
+import { IoChevronDownSharp, IoLockClosedSharp } from 'react-icons/io5';
 import { IconType } from 'react-icons/lib';
 
 export interface NavItem {
@@ -10,6 +10,7 @@ export interface NavItem {
 	children?: NavItem[];
 	href?: string;
 	icon?: IconType;
+	rightIcon?: IconType;
 	divider?: boolean;
 }
 
@@ -28,6 +29,7 @@ const NavItems: Array<NavItem> = [
 		label: 'Ideas',
 		key: 'ideas',
 		href: '/ideas?page=1',
+		rightIcon: IoChevronDownSharp,
 		children: [
 			{
 				label: 'All ideas',

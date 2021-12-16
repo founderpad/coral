@@ -12,6 +12,8 @@ const DeleteButton = (props: BaseButtonProps): JSX.Element => {
 			colorScheme={'red'}
 			variant={variant ?? 'solid'}
 			borderWidth={0}
+			fontSize={'small'}
+			mr={'auto'}
 		>
 			{children}
 		</BaseButton>

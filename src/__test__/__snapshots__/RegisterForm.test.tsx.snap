@@ -93,7 +93,7 @@ exports[`Register form matches snapshot 1`] = `
         Create account
       </button>
       <div
-        class="chakra-text css-wbdulw"
+        class="chakra-text css-11ox3m3"
       >
         By continuing, you agree to founderpad's 
         <a
@@ -118,7 +118,7 @@ exports[`Register form matches snapshot 1`] = `
          
       </div>
       <div
-        class="chakra-text css-1fihqrz"
+        class="chakra-text css-1l1acq"
       >
         Already have an account? 
         <a

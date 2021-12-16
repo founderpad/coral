@@ -38,7 +38,7 @@ const TabLayout = (props: Props): JSX.Element => {
 		>
 			<TabList>
 				{tabs?.map((tab) => (
-					<Tab key={tab?.label}>
+					<Tab key={tab?.label} fontSize={'small'}>
 						{tab?.icon && (
 							<Icon
 								as={tab.icon}

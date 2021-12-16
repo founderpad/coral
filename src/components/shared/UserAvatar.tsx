@@ -1,7 +1,7 @@
 import { Avatar } from '@chakra-ui/avatar';
 import { Box, Flex } from '@chakra-ui/layout';
 import { AvatarProps, useBreakpointValue } from '@chakra-ui/react';
-import { Label, SubLabel } from 'components/labels';
+import { SubLabel } from 'components/labels';
 import { useCurrentUser } from 'hooks/auth';
 import React, { memo } from 'react';
 
@@ -29,8 +29,10 @@ export const UserAvatarDetails = ({
 		<Flex align={'center'}>
 			<UserAvatar src={src} />
 			<Box ml={2}>
-				<Label fontWeight={'medium'}>{name}</Label>
-				{email && <SubLabel color={'gray.500'}>{email}</SubLabel>}
+				<SubLabel fontWeight={'medium'} fontSize={'xs'}>
+					{name}
+				</SubLabel>
+				{email && <SubLabel color={'gray.400'}>{email}</SubLabel>}
 				{createdAt && <SubLabel>{createdAt}</SubLabel>}
 			</Box>
 		</Flex>

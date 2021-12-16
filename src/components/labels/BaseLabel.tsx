@@ -4,7 +4,7 @@ import React from 'react';
 import { TLabelProps } from './types';
 
 export const BaseLabel = ({
-	color = 'black',
+	color = 'gray.900',
 	fontSize = 'sm',
 	children,
 	icon,
