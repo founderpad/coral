@@ -157,7 +157,7 @@ export const FileUploader = (props: Props): JSX.Element => {
 						</Flex>
 					</FlexLayout>
 
-					<Text
+					<CaptionLabel
 						fontSize={'smaller'}
 						color={error ? 'red.500' : 'gray.400'}
 						mt={2}
@@ -169,7 +169,7 @@ export const FileUploader = (props: Props): JSX.Element => {
 								Supported formats: .pdf, .doc, .docx, .txt
 							</>
 						)}
-					</Text>
+					</CaptionLabel>
 				</>
 			)}
 		</Box>

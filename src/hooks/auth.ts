@@ -7,7 +7,6 @@ import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from 'slices/auth';
 import { IAuthFormData, IRegisterFormData, TExperience } from 'types/auth';
-import { UserType } from 'utils/Constants';
 import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
 import { useErrorNotification, useSuccessNotification } from './toast';
@@ -20,18 +19,17 @@ export const useRegister = (): any => {
 		email,
 		password,
 		firstName,
-		lastName,
-		type
+		lastName
 	}: IRegisterFormData): Promise<void> => {
 		try {
 			await auth.register({
 				email,
 				password,
 				options: {
-					userData: <{ display_name: string; user_type: UserType }>{
+					userData: <{ display_name: string }>{
 						display_name:
 							firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
-						user_type: type,
+						// user_type: type,
 						first_name: firstName?.trim(),
 						last_name: lastName?.trim()
 					}

@@ -1,6 +1,7 @@
-import { FormControl, FormLabel } from '@chakra-ui/form-control';
+import { FormControl } from '@chakra-ui/form-control';
 import { Stack } from '@chakra-ui/layout';
 import { Checkbox } from '@chakra-ui/react';
+import { FormLabelText } from 'components/form';
 import Form from 'components/form/Form';
 import { NumberField, SelectField, TextareaField } from 'components/input';
 import ModalDrawerContext from 'context/ModalDrawerContext';
@@ -78,6 +79,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 			onSubmit={handleSubmit(updateUserProfileMutation)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}
+			stackProps={{ spacing: 10 }}
 		>
 			<TextareaField
 				id="background"
@@ -160,9 +162,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 			/>
 
 			<FormControl>
-				<FormLabel as={'label'} fontSize={'sm'} color={'gray.600'}>
-					Your skills
-				</FormLabel>
+				<FormLabelText label={'Your skills'} />
 				{EXPERIENCE_SKILLS.map(
 					(es: string): JSX.Element => (
 						<Controller
@@ -177,9 +177,9 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 									p={2}
 									onChange={onSkillsToggle}
 									colorScheme={'fpPrimary'}
-									color={'fpGrey.700'}
+									color={'fpGrey.400'}
 									ref={ref}
-									size={'md'}
+									size={'sm'}
 									isChecked={selectedSkills.includes(es)}
 								>
 									{es}

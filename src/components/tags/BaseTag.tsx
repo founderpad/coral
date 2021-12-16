@@ -2,7 +2,12 @@ import { Tag, TagLabel, TagProps } from '@chakra-ui/tag';
 import React from 'react';
 
 export const BaseTag = (props: TagProps): JSX.Element => (
-	<Tag background={props.bg} borderWidth={1} color={props.color}>
+	<Tag
+		background={props.bg}
+		borderWidth={1}
+		color={props.color}
+		rounded={'sm'}
+	>
 		<TagLabel fontSize={props.fontSize ?? 'xs'} fontWeight={'light'}>
 			{props.children}
 		</TagLabel>

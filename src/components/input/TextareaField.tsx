@@ -51,7 +51,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							_hover={{
 								borderColor: 'gray.300'
 							}}
-							rounded={'md'}
+							rounded={'sm'}
 						/>
 					)}
 					name={name}

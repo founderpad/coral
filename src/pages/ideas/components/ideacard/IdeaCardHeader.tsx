@@ -15,22 +15,26 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 
 	return (
 		<React.Fragment>
-			<FlexLayout alignItems={'baseline'}>
+			<FlexLayout alignItems={'stretch'}>
 				{is_new && <NewIdeaBadge />}
-				<Label
-					d={'flex'}
-					w={'full'}
-					overflow={'hidden'}
-					fontWeight={'medium'}
-					fontSize={{ base: 'smaller', sm: 'sm' }}
-					css={{ whiteSpace: 'normal' }}
-					noOfLines={1}
-					isTruncated
-				>
-					{name}
-				</Label>
+				<FlexLayout direction={'column'}>
+					<Label
+						d={'flex'}
+						w={'full'}
+						overflow={'hidden'}
+						fontWeight={'medium'}
+						fontSize={{ base: 'smaller', sm: 'sm' }}
+						css={{ whiteSpace: 'normal' }}
+						wordBreak={'break-word'}
+						noOfLines={1}
+						isTruncated
+					>
+						{name}
+						{/* dfgdhgijhgighihfdiughiufghfiughfduhuigheruifgnhurtighufsvgfuvsiorghreiufhvurthguierfhiuhsgiuehrgiuhhjfoadshfihfiarefhdifhgiubdsiugsbfiushgifhsiudghiu */}
+					</Label>
+					<PostedBy {...idea} />
+				</FlexLayout>
 			</FlexLayout>
-			<PostedBy {...idea} />
 		</React.Fragment>
 	);
 };

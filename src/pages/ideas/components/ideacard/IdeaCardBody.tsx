@@ -25,7 +25,7 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 				noOfLines={2}
 				isTruncated
 			>
-				{preview}
+				{preview}...
 			</Label>
 			<IdeaCardBodyBadges {...idea} />
 		</React.Fragment>
@@ -41,7 +41,7 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
 			flex={1}
 			alignItems={'center'}
 			justifyContent={'flex-end'}
-			spacing={1}
+			spacing={2}
 			full
 		>
 			<BaseTag color={'fpPrimary.500'} bg={'white'} fontSize={'x-small'}>

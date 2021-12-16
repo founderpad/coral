@@ -46,16 +46,19 @@ const IdeasContainer = (): JSX.Element => {
 	});
 
 	if (loading) return <Loading small />;
-	if (!loading && data?.idea_preview.length < 1) return <NoResults back />;
+	// if (!loading && data?.idea_preview.length < 1) return <NoResults />;
 
 	return (
 		<React.Fragment>
-			{data?.idea_preview.length > 0 && data?.idea_preview_aggregate && (
-				<IdeasActions
-					total={data?.idea_preview_aggregate.aggregate.count}
-					pageSize={data?.idea_preview.length}
-				/>
-			)}
+			{/* {data?.idea_preview.length > 0 && data?.idea_preview_aggregate && ( */}
+			<IdeasActions
+				total={data?.idea_preview_aggregate.aggregate.count}
+				pageSize={data?.idea_preview.length}
+				hasResults={data?.idea_preview.length > 0}
+			/>
+			{/* )} */}
+
+			{!loading && data?.idea_preview.length < 1 && <NoResults back />}
 			<Stack
 				display={'flex'}
 				flex={1}

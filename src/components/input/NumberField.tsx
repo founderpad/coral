@@ -2,7 +2,6 @@ import {
 	FormControl,
 	FormErrorMessage,
 	FormHelperText,
-	FormLabel,
 	forwardRef,
 	NumberDecrementStepper,
 	NumberIncrementStepper,
@@ -10,6 +9,7 @@ import {
 	NumberInputField,
 	NumberInputStepper
 } from '@chakra-ui/react';
+import { FormLabelText } from 'components/form';
 import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'types/fields';
 
@@ -35,14 +35,7 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 				isRequired={isRequired}
 				w={{ base: 'full' }}
 			>
-				<FormLabel
-					as="label"
-					fontSize={'sm'}
-					color={'fpGrey.900'}
-					mb={'1px'}
-				>
-					{label}
-				</FormLabel>
+				<FormLabelText label={label} />
 				<Controller
 					render={({
 						field: { onChange, value },
@@ -57,7 +50,7 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 							onChange={(_s, n) => onChange(n)}
 						>
 							<NumberInputField
-								rounded={'md'}
+								rounded={'sm'}
 								_focus={{
 									borderColor: 'gray.400',
 									boxShadow: 'none'

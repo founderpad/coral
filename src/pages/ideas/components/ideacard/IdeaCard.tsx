@@ -44,6 +44,7 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 				p={2}
 				mb={2}
 				flex={1}
+				rounded={'sm'}
 			>
 				<IdeaCardHeader {...idea} />
 				<IdeaCardBody {...idea} />
