@@ -26,37 +26,56 @@ export default (req, res) => {
 	                            <head>
 									<style>
 										@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
 										body { font-family: 'Inter', sans-serif; }
+										main {
+											display: flex;
+											flex-direction: column;
+											flex: 1
+										}
+										#container {
+											border: 1px solid red;
+											background-color: #f6f6f6;
+											flex: 1;
+											margin: 32px auto;
+											padding: 32px;
+											max-width: 600px;
+										}
 									</style>
 								</head>
 	                            <body>
-								<h3>Hey ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h3>
-								<p>
-									We are really excited to have you aboard, and hope you are just as excited as us at the prospect of
-									getting feedback on your business ideas, innovating, and launching to the world. 🚀
-								</p><br/>
-							  
-							
-								<h4>Getting started</h4>
-								<p>
-									Click <a href="http://localhost:3000/login" style="text-decoration: none;">here</a>
-									to login and get started immediately. Network, post ideas and collaborate!
-								</p>
-								<br/>
-							
-								<h4>FAQs</h4>
-								<p>
-									If you have any questions, they may already be covered inside our FAQs <a href="https://www.founderpad.com/faqs" target="_blank">here</a>.<br/><br/>
-							
-									Can't find an answer to what you're looking for? No problem!
-									We're always keen to hear feedback on the platform and how we can improve it.<br/><br/>
-							
-									Feel free to email us here at <a href="mailto:countact@founderpad.com">contact@founderpad.com</a> if you have any questions about the platform.
-								</p><br/><br/>
-							
-								We hope you enjoy what we have to offer, and look forward to the extensive updates we have coming in the future.<br/><br/>
-							
-								<strong>The founderpad team</strong>
+									<main>
+										<img src="https://uploads-ssl.webflow.com/618baf9523fc4b77ae274f4d/619795e5097b40a696abf9f1_text.svg" height="40" />
+										<div id="container">
+											<h3>Hi ${req.body.event.data.new.display_name}, <br/>welcome to founderpad! 🎉 </h3>
+											<p>
+												We are really excited to have you aboard, and hope you are just as excited as us at the prospect of
+												getting feedback on your business ideas, innovating, and launching to the world. 🚀
+											</p><br/>
+										
+										
+											<h4>Getting started</h4>
+											<p>
+												Click <a href="http://www.founderpad.com/login" target="_blank" style="text-decoration: none;">here</a>
+												to login and get started immediately. Network, post ideas and collaborate!
+											</p>
+											<br/>
+										
+											<h4>FAQs</h4>
+											<p>
+												If you have any questions, they may already be covered inside our FAQs <a href="https://www.founderpad.com/faqs" target="_blank" style="text-decoration: none;">here</a>.<br/><br/>
+										
+												Can't find an answer to what you're looking for? No problem!
+												We're always keen to hear feedback on the platform and how we can improve it.<br/><br/>
+										
+												Feel free to email us here at <a href="mailto:countact@founderpad.com" target="_blank" style="text-decoration: none;">contact@founderpad.com</a> if you have any questions about the platform.
+											</p><br/><br/>
+										
+											<p>We hope you enjoy what we have to offer, and look forward to the extensive updates we have coming in the future.</p><br/><br/>
+										
+											<strong>The founderpad team</strong>
+										</div>
+									</main>
 	                            </body>
 	                        </html>`
 				}
