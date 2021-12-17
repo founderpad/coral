@@ -10,8 +10,8 @@ const POST_COMMENT = gql`
 `;
 
 const POST_REPLY = gql`
-	mutation postReply($reply: idea_replies_insert_input!) {
-		idea: insert_idea_replies_one(object: $reply) {
+	mutation postReply($reply: idea_comment_replies_insert_input!) {
+		idea: insert_idea_comment_replies_one(object: $reply) {
 			comment_id
 			id
 		}
@@ -26,34 +26,35 @@ const GET_COMMENTS_FOR_IDEA = gql`
 			value
 			idea_id
 			user {
+				id
 				display_name
 				avatar_url
-				id
 			}
 		}
 	}
 `;
 
-// const GET_REPLIES_FOR_COMMENT = gql`
-// 	query getRepliesForComment($commentId: uuid!) {
-// 		replies: comment_replies(where: { comment_id: { _eq: $commentId } }) {
-// 			idea_replies {
-// 				id
-// 				comment_id
-// 				value
-// 				updated_at
-// 				user {
-// 					display_name
-// 					avatar_url
-// 				}
-// 			}
-// 		}
-// 	}
-// `;
+const GET_REPLIES_FOR_COMMENT = gql`
+	query getRepliesForComment($commentId: uuid!) {
+		replies: idea_comment_replies(
+			where: { comment_id: { _eq: $commentId } }
+		) {
+			id
+			comment_id
+			value
+			updated_at
+			user {
+				id
+				display_name
+				avatar_url
+			}
+		}
+	}
+`;
 
 export {
 	POST_COMMENT,
 	POST_REPLY,
-	GET_COMMENTS_FOR_IDEA
-	// GET_REPLIES_FOR_COMMENT
+	GET_COMMENTS_FOR_IDEA,
+	GET_REPLIES_FOR_COMMENT
 };

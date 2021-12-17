@@ -8,7 +8,10 @@ import {
 } from 'components/shared';
 import PostComment from 'components/shared/PostComment';
 import PostReplyComment from 'components/shared/PostReplyComment';
-import { useGetCommentsForIdeaQuery } from 'generated/api';
+import {
+	useGetCommentsForIdeaQuery,
+	useGetRepliesForCommentQuery
+} from 'generated/api';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { formatDate } from 'utils/validators';
@@ -18,6 +21,7 @@ const MessageLayout = ({
 	date,
 	value,
 	children,
+	commentId,
 	actions = true,
 	divider = false
 }: {
@@ -25,6 +29,7 @@ const MessageLayout = ({
 	date: string;
 	value: string;
 	children?: JSX.Element;
+	commentId?: string;
 	actions?: boolean;
 	divider?: boolean;
 }): JSX.Element => (
@@ -60,7 +65,7 @@ const MessageLayout = ({
 						{value}
 					</Label>
 				</StackLayout>
-				{actions && <Actions />}
+				{actions && <Actions commentId={commentId} />}
 				{children}
 			</StackLayout>
 		</StackLayout>
@@ -106,8 +111,12 @@ const CommentsList = (): JSX.Element => {
 	);
 };
 
-const RepliesList = (replies: any): JSX.Element => {
-	// console.log('replies: ', replies);
+const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
+	const { data } = useGetRepliesForCommentQuery({
+		variables: {
+			commentId
+		}
+	});
 
 	return (
 		<StackLayout
@@ -117,7 +126,7 @@ const RepliesList = (replies: any): JSX.Element => {
 			rounded={'none'}
 			pl={4}
 		>
-			{/* {replies?.map((reply, _index) => (
+			{data?.replies?.map((reply, _index) => (
 				<MessageLayout
 					key={_index}
 					user={reply.user.display_name}
@@ -125,7 +134,7 @@ const RepliesList = (replies: any): JSX.Element => {
 					value={reply.value}
 					actions={false}
 				/>
-			))} */}
+			))}
 		</StackLayout>
 	);
 };
@@ -137,15 +146,16 @@ const Comment = (comment: any): JSX.Element => {
 			date={comment.updated_at}
 			value={comment.value}
 			divider={true}
+			commentId={comment.id}
 		>
-			{comment?.idea_replies?.length > 0 && (
-				<RepliesList {...comment?.idea_replies} />
-			)}
+			{/* {comment?.idea_replies?.length > 0 && ( */}
+			<RepliesList commentId={comment.id} />
+			{/* )} */}
 		</MessageLayout>
 	);
 };
 
-const Actions = (): JSX.Element => (
+const Actions = ({ commentId }: { commentId: string }): JSX.Element => (
 	<StackLayout direction={'row'} spacing={1} alignItems={'center'}>
 		{/* <BaseButton name={'upvote-idea-button'} variant={'unstyled'} d={'flex'}>
 			<Icon
@@ -157,7 +167,7 @@ const Actions = (): JSX.Element => (
 				color={'gray.400'}
 			/>
 		</BaseButton> */}
-		<PostReplyComment />
+		<PostReplyComment commentId={commentId} />
 	</StackLayout>
 );
 
