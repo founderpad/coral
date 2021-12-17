@@ -26,7 +26,7 @@ export default (req, res) => {
 	                            <head></head>
 	                            <body>
 	                                <p>Hi ${
-										req.body.event.data.new.recipientName
+										req.body.event.data.new.recipient_name
 									},</p>
 	                                <p>Your ${req.body.event.data.new.type.toLowerCase()} <i>"${
 						req.body.event.data.new.content

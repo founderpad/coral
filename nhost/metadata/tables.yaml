@@ -609,20 +609,20 @@
   - role: user
     permission:
       check:
-        fromUserId:
+        from_user_id:
           _eq: X-Hasura-User-Id
       set:
-        fromUserId: x-hasura-User-Id
+        from_user_id: x-hasura-User-Id
       columns:
       - content
       - created_at
-      - fromUserId
+      - from_user_id
       - id
       - reason
-      - recipientEmail
-      - recipientName
-      - reportedId
-      - reportedUserId
+      - recipient_email
+      - recipient_name
+      - reported_id
+      - reported_user_id
       - type
       - updated_at
       backend_only: false
@@ -642,7 +642,7 @@
       num_retries: 0
       interval_sec: 10
       timeout_sec: 60
-    webhook: '{{NHOST_CUSTOM_API_URL}}/email/send-reported-email'
+    webhook: '{{NHOST_CUSTOM_API_URL}}/email/report/send-reported-email'
     headers:
     - value: '{{NHOST_WEBHOOK_SECRET}}'
       name: x-webhook-secret
@@ -871,3 +871,20 @@
       check: null
       set:
         id: x-hasura-User-Id
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+  event_triggers:
+  - name: send-welcome-email
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      num_retries: 0
+      interval_sec: 10
+      timeout_sec: 60
+    webhook: '{{NHOST_CUSTOM_API_URL}}/email/user/send-welcome-email'

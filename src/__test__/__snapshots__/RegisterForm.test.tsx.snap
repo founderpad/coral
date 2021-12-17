@@ -8,7 +8,6 @@ exports[`Register form matches snapshot 1`] = `
     id="register-form"
     name="register-form"
     novalidate=""
-    style="flex: 1;"
   >
     <div
       class="chakra-stack css-6epcyi"
