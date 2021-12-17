@@ -1,117 +1,34 @@
-import Icon from '@chakra-ui/icon';
-import { BaseButton } from 'components/buttons';
-import { Label } from 'components/labels';
+import { CaptionLabel, Label, SubLabel } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
-import { PointSeparator, UserAvatar } from 'components/shared';
+import {
+	Loading,
+	NoResults,
+	PointSeparator,
+	UserAvatar
+} from 'components/shared';
+import PostComment from 'components/shared/PostComment';
+import PostReplyComment from 'components/shared/PostReplyComment';
+import { useGetCommentsForIdeaQuery } from 'generated/api';
+import { useRouter } from 'next/router';
 import React from 'react';
-import { IoArrowUpSharp } from 'react-icons/io5';
-
-const comments = [
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'I really like the premise of the idea, but have you considered x, y and z? The only reason I raise this is because you are potentially entering a very saturated market. It is a great idea though!! :)',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	}
-];
-
-const replies = [
-	{
-		name: 'message 1',
-		user: 'Jamie Lee',
-		value: 'I really like the premise of the idea, but have you considered x, y and z? The only reason I raise this is because you are potentially entering a very saturated market. It is a great idea though!! :)',
-		date: '10 Oct, 21:00'
-	},
-	{
-		name: 'message 1',
-		user: 'Bob Jones',
-		value: 'Some message',
-		date: '10 Oct, 21:00'
-	}
-];
+import { formatDate } from 'utils/validators';
 
 const MessageLayout = ({
-	name,
+	user,
 	date,
 	value,
 	children,
 	actions = true,
 	divider = false
 }: {
-	name: string;
+	user: string;
 	date: string;
 	value: string;
 	children?: JSX.Element;
 	actions?: boolean;
 	divider?: boolean;
-}) => (
-	<>
+}): JSX.Element => (
+	<React.Fragment>
 		<StackLayout
 			direction={'row'}
 			spacing={2}
@@ -121,7 +38,7 @@ const MessageLayout = ({
 			pl={4}
 		>
 			<UserAvatar size={'sm'} />
-			<StackLayout spacing={0}>
+			<StackLayout spacing={0} w={{ base: 'full', sm: 800 }}>
 				<StackLayout
 					px={2}
 					py={1}
@@ -129,17 +46,17 @@ const MessageLayout = ({
 					bg={'gray.50'}
 					spacing={0}
 				>
-					<FlexLayout alignItems={'baseline'}>
+					<FlexLayout alignItems={'center'}>
 						{' '}
-						<Label fontSize={'sm'} fontWeight={'medium'}>
-							{name}
-						</Label>
+						<SubLabel fontWeight={'medium'}>{user}</SubLabel>
 						<PointSeparator small />
-						<Label color={'gray.400'} fontSize={'xs'}>
-							{date}
-						</Label>
+						<CaptionLabel>{formatDate(date, true)}</CaptionLabel>
 					</FlexLayout>
-					<Label color={'gray.500'} fontSize={'smaller'}>
+					<Label
+						color={'gray.500'}
+						fontSize={'small'}
+						fontWeight={'normal'}
+					>
 						{value}
 					</Label>
 				</StackLayout>
@@ -147,51 +64,90 @@ const MessageLayout = ({
 				{children}
 			</StackLayout>
 		</StackLayout>
-	</>
-);
-
-const CommentsTab = (): JSX.Element => (
-	<StackLayout w={'full'} spacing={8}>
-		<CommentsList />
-	</StackLayout>
-);
-
-const CommentsList = () => (
-	<React.Fragment>
-		{comments.map((comment, _index) => (
-			<Comment key={_index} {...comment} />
-		))}
 	</React.Fragment>
 );
 
-const RepliesList = () => (
-	<StackLayout spacing={4} pt={4} borderLeftWidth={2} rounded={'none'} pl={4}>
-		{replies.map((reply, _index) => (
-			<MessageLayout
-				key={_index}
-				name={reply.name}
-				date={reply.date}
-				value={reply.value}
-				actions={false}
-			/>
-		))}
+const TabActions = (): JSX.Element => {
+	return (
+		<FlexLayout justifyContent={'flex-end'}>
+			<PostComment />
+		</FlexLayout>
+	);
+};
+
+const CommentsTab = (): JSX.Element => (
+	<StackLayout w={'full'} spacing={8}>
+		<TabActions />
+		<FlexLayout direction={'column'}>
+			<CommentsList />
+		</FlexLayout>
 	</StackLayout>
 );
 
-const Comment = (message: any) => (
-	<MessageLayout
-		name={message.name}
-		date={message.date}
-		value={message.value}
-		divider={true}
-	>
-		<RepliesList />
-	</MessageLayout>
-);
+const CommentsList = (): JSX.Element => {
+	const router = useRouter();
 
-const Actions = () => (
+	const { data, loading } = useGetCommentsForIdeaQuery({
+		variables: {
+			ideaId: router.query.id
+		}
+	});
+
+	if (loading) return <Loading small />;
+	if (!loading && data?.comments.length < 1)
+		return <NoResults label={'comments yet'} />;
+
+	return (
+		<StackLayout w={'full'}>
+			{data?.comments.map((comment, _index) => (
+				<Comment key={comment.id} {...comment} />
+			))}
+		</StackLayout>
+	);
+};
+
+const RepliesList = (replies: any): JSX.Element => {
+	// console.log('replies: ', replies);
+
+	return (
+		<StackLayout
+			spacing={4}
+			pt={4}
+			borderLeftWidth={2}
+			rounded={'none'}
+			pl={4}
+		>
+			{/* {replies?.map((reply, _index) => (
+				<MessageLayout
+					key={_index}
+					user={reply.user.display_name}
+					date={reply.updated_at}
+					value={reply.value}
+					actions={false}
+				/>
+			))} */}
+		</StackLayout>
+	);
+};
+
+const Comment = (comment: any): JSX.Element => {
+	return (
+		<MessageLayout
+			user={comment.user.display_name}
+			date={comment.updated_at}
+			value={comment.value}
+			divider={true}
+		>
+			{comment?.idea_replies?.length > 0 && (
+				<RepliesList {...comment?.idea_replies} />
+			)}
+		</MessageLayout>
+	);
+};
+
+const Actions = (): JSX.Element => (
 	<StackLayout direction={'row'} spacing={1} alignItems={'center'}>
-		<BaseButton name={'upvote-idea-button'} variant={'unstyled'} d={'flex'}>
+		{/* <BaseButton name={'upvote-idea-button'} variant={'unstyled'} d={'flex'}>
 			<Icon
 				as={IoArrowUpSharp}
 				fontSize={'sm'}
@@ -200,14 +156,8 @@ const Actions = () => (
 				fontWeight={'normal'}
 				color={'gray.400'}
 			/>
-		</BaseButton>
-		<BaseButton
-			name={'reply-button'}
-			variant={'unstyled'}
-			fontSize={'small'}
-		>
-			Reply
-		</BaseButton>
+		</BaseButton> */}
+		<PostReplyComment />
 	</StackLayout>
 );
 

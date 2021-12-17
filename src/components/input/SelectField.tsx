@@ -47,6 +47,8 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 							id={`select-${name}-field`}
 							name={`select-${name}-field`}
 							aria-label={`select-${name}-field`}
+							fontSize={'small'}
+							color={'gray.500'}
 						>
 							{options}
 						</Select>

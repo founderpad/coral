@@ -8,6 +8,7 @@ exports[`Register form matches snapshot 1`] = `
     id="register-form"
     name="register-form"
     novalidate=""
+    style="flex: 1;"
   >
     <div
       class="chakra-stack css-6epcyi"
@@ -19,7 +20,7 @@ exports[`Register form matches snapshot 1`] = `
         <input
           aria-label="firstName"
           aria-required="true"
-          class="chakra-input css-g5hezf"
+          class="chakra-input css-1ea8r9w"
           control="[object Object]"
           errortext="You must input a first name"
           id="firstName"
@@ -36,7 +37,7 @@ exports[`Register form matches snapshot 1`] = `
       >
         <input
           aria-label="lastName"
-          class="chakra-input css-g5hezf"
+          class="chakra-input css-1ea8r9w"
           control="[object Object]"
           id="lastName"
           name="lastName"
@@ -52,7 +53,7 @@ exports[`Register form matches snapshot 1`] = `
         <input
           aria-label="email"
           aria-required="true"
-          class="chakra-input css-g5hezf"
+          class="chakra-input css-1ea8r9w"
           control="[object Object]"
           errortext="Please enter a valid email"
           id="email-email"
@@ -71,7 +72,7 @@ exports[`Register form matches snapshot 1`] = `
         <input
           aria-label="password"
           aria-required="true"
-          class="chakra-input css-g5hezf"
+          class="chakra-input css-1ea8r9w"
           control="[object Object]"
           errortext="Please enter a valid password between 6 and 20 characters."
           id="password-password"

@@ -197,6 +197,73 @@
       check: null
 - table:
     schema: public
+    name: idea_comments
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  array_relationships:
+  - name: idea_replies
+    using:
+      foreign_key_constraint_on:
+        column: comment_id
+        table:
+          schema: public
+          name: idea_replies
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - idea_id
+      - value
+      backend_only: false
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - value
+      - created_at
+      - updated_at
+      - id
+      - idea_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - value
+      - created_at
+      - updated_at
+      - id
+      - idea_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - value
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: {}
+      set:
+        user_id: x-hasura-User-Id
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
     name: idea_preview
   object_relationships:
   - name: idea_user
@@ -244,6 +311,60 @@
       allow_aggregations: true
 - table:
     schema: public
+    name: idea_replies
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - value
+      backend_only: false
+  select_permissions:
+  - role: me
+    permission:
+      columns:
+      - id
+      - comment_id
+      - user_id
+      - value
+      filter: {}
+      allow_aggregations: true
+  - role: user
+    permission:
+      columns:
+      - comment_id
+      - created_at
+      - id
+      - updated_at
+      - user_id
+      - value
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - value
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
     name: idea_votes
   object_relationships:
   - name: idea
@@ -275,11 +396,12 @@
   - role: me
     permission:
       columns:
+      - idea_id
+      - user_id
       - vote_type
       - created_at
       - updated_at
-      - idea_id
-      - user_id
+      - id
       filter: {}
       allow_aggregations: true
   - role: user

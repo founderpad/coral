@@ -167,6 +167,14 @@ const UPSERT_IDEA_UPVOTE = gql`
 	}
 `;
 
+// const UPVOTE_IDEA = gql`
+// 	mutation ($idea_vote: idea_votes_insert_input!) {
+// 		insert_idea_votes_one(objects: $idea_vote) {
+// 			affected_rows
+// 		}
+// 	}
+// `;
+
 export {
 	CREATE_IDEA,
 	GET_USER_IDEAS,

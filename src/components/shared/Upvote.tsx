@@ -2,20 +2,30 @@ import Icon from '@chakra-ui/icon';
 import { BaseButton } from 'components/buttons';
 import { StackLayout } from 'components/layouts';
 import { TIdea_Votes, useUpsertIdeaVoteMutation } from 'generated/api';
+import { GET_IDEAS } from 'graphql/ideas';
 import React from 'react';
 import { IoArrowUpSharp } from 'react-icons/io5';
 
 export const Upvote = (
 	ideaVotes: TIdea_Votes & { ideaId: string }
 ): JSX.Element => {
+	// const [upsertIdeaVote] = useUpsertIdeaVoteMutation({
+	// 	variables: {
+	// 		idea_vote: {
+	// 			idea_id: ideaVotes.ideaId,
+	// 			vote_type: 1
+	// 		}
+	// 	}
+	// });
+
 	const [upsertIdeaVote] = useUpsertIdeaVoteMutation({
 		variables: {
 			idea_vote: {
 				idea_id: ideaVotes.ideaId,
 				vote_type: 1
 			}
-		}
-		// onCompleted: () => {}
+		},
+		refetchQueries: [{ query: GET_IDEAS }]
 	});
 
 	return (

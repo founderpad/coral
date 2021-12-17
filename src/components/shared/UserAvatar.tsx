@@ -1,7 +1,7 @@
 import { Avatar } from '@chakra-ui/avatar';
 import { Box, Flex } from '@chakra-ui/layout';
 import { AvatarProps, useBreakpointValue } from '@chakra-ui/react';
-import { SubLabel } from 'components/labels';
+import { CaptionLabel, SubLabel } from 'components/labels';
 import { useCurrentUser } from 'hooks/auth';
 import React, { memo } from 'react';
 
@@ -33,7 +33,9 @@ export const UserAvatarDetails = ({
 					{name}
 				</SubLabel>
 				{email && <SubLabel color={'gray.400'}>{email}</SubLabel>}
-				{createdAt && <SubLabel>{createdAt}</SubLabel>}
+				{createdAt && (
+					<CaptionLabel color={'gray.400'}>{createdAt}</CaptionLabel>
+				)}
 			</Box>
 		</Flex>
 	);

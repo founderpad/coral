@@ -51,6 +51,8 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							error={!!error}
 							name={name}
 							aria-label={name}
+							fontSize={'small'}
+							color={'gray.500'}
 						/>
 					)}
 					name={name}

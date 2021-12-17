@@ -8,6 +8,7 @@ exports[`Login form matches snapshot 1`] = `
     id="login-form"
     name="loginform"
     novalidate=""
+    style="flex: 1;"
   >
     <div
       class="chakra-stack css-6epcyi"
@@ -19,7 +20,7 @@ exports[`Login form matches snapshot 1`] = `
         <input
           aria-label="email"
           aria-required="true"
-          class="chakra-input css-g5hezf"
+          class="chakra-input css-1ea8r9w"
           control="[object Object]"
           errortext="Please enter a valid email"
           id="email-email"
@@ -38,7 +39,7 @@ exports[`Login form matches snapshot 1`] = `
         <input
           aria-label="password"
           aria-required="true"
-          class="chakra-input css-g5hezf"
+          class="chakra-input css-1ea8r9w"
           control="[object Object]"
           errortext="Please enter a valid password between 6 and 20 characters."
           id="password-password"

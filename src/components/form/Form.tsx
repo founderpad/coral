@@ -22,6 +22,7 @@ const Form = (props: TFormProps): ReactElement<any> => {
 			name={name}
 			aria-label={name}
 			noValidate
+			style={{ flex: 1 }}
 			{...rest}
 		>
 			<StackLayout

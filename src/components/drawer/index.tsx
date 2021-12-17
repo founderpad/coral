@@ -56,7 +56,7 @@ export const Drawer = ({
 						)}
 						<DrawerHeader
 							fontWeight={'medium'}
-							fontSize={'lg'}
+							fontSize={'md'}
 							p={4}
 							display={'flex'}
 							alignItems={'center'}

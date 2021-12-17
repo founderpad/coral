@@ -54,6 +54,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 			label={'Update idea'}
+			stackProps={{ spacing: 8 }}
 		>
 			<InputField
 				id="name"
@@ -97,7 +98,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				error={errors['status']}
 				errorText="Please select the status for your idea."
 				placeholder="status"
-				size={'md'}
+				size={'sm'}
 				options={ideasStatusList()}
 				control={control}
 				isRequired
@@ -110,7 +111,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				error={errors['field']}
 				errorText="Please select the field for your idea."
 				placeholder="field"
-				size={'md'}
+				size={'sm'}
 				options={industriesList()}
 				control={control}
 				isRequired
