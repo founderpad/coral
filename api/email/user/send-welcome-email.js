@@ -23,15 +23,40 @@ export default (req, res) => {
 				Html: {
 					Charset: 'UTF-8',
 					Data: `<html>
-	                            <head></head>
+	                            <head>
+									<style>
+										@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+										body { font-family: 'Inter', sans-serif; }
+									</style>
+								</head>
 	                            <body>
-	                                <p>Welcome to founderpad, ${req.body.event.data.new.display_name}. Great to have you aboard 😊</p>
-	                                <p>
-                                        Click <a href="http://localhost:3000/login" style="text-decoration: none;">here</a>
-										to login and start creating your first idea, or by collaborating on others.
-	                                </p><br/>
-
-                                    <strong>The founderpad team</strong>
+								<h3>Hey ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h3>
+								<p>
+									We are really excited to have you aboard, and hope you are just as excited as us at the prospect of
+									getting feedback on your business ideas, innovating, and launching to the world. 🚀
+								</p><br/>
+							  
+							
+								<h4>Getting started</h4>
+								<p>
+									Click <a href="http://localhost:3000/login" style="text-decoration: none;">here</a>
+									to login and get started immediately. Network, post ideas and collaborate!
+								</p>
+								<br/>
+							
+								<h4>FAQs</h4>
+								<p>
+									If you have any questions, they may already be covered inside our FAQs <a href="https://www.founderpad.com/faqs" target="_blank">here</a>.<br/><br/>
+							
+									Can't find an answer to what you're looking for? No problem!
+									We're always keen to hear feedback on the platform and how we can improve it.<br/><br/>
+							
+									Feel free to email us here at <a href="mailto:countact@founderpad.com">contact@founderpad.com</a> if you have any questions about the platform.
+								</p><br/><br/>
+							
+								We hope you enjoy what we have to offer, and look forward to the extensive updates we have coming in the future.<br/><br/>
+							
+								<strong>The founderpad team</strong>
 	                            </body>
 	                        </html>`
 				}
