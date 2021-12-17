@@ -17,7 +17,6 @@ export const BaseMenu = ({
 	boxProps?: BoxProps;
 }): JSX.Element => (
 	<BoxLayout {...boxProps} p={0}>
-		{/* <Divider orientation={'vertical'} /> */}
 		<Menu>
 			<MenuButton
 				p={1}

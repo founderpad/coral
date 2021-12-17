@@ -1,11 +1,13 @@
 import { CaptionLabel, Label, SubLabel } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
+import { BaseMenu } from 'components/menu';
 import {
 	Loading,
 	NoResults,
 	PointSeparator,
 	UserAvatar
 } from 'components/shared';
+import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
 import PostComment from 'components/shared/PostComment';
 import PostReplyComment from 'components/shared/PostReplyComment';
 import {
@@ -17,60 +19,65 @@ import React from 'react';
 import { formatDate } from 'utils/validators';
 
 const MessageLayout = ({
-	user,
-	date,
-	value,
 	children,
-	commentId,
+	comment,
 	actions = true,
 	divider = false
 }: {
-	user: string;
-	date: string;
-	value: string;
 	children?: JSX.Element;
-	commentId?: string;
+	comment: any;
 	actions?: boolean;
 	divider?: boolean;
-}): JSX.Element => (
-	<React.Fragment>
-		<StackLayout
-			direction={'row'}
-			spacing={2}
-			w={'full'}
-			rounded={'none'}
-			borderLeftWidth={divider && 3}
-			pl={4}
-		>
-			<UserAvatar size={'sm'} />
-			<StackLayout spacing={0} w={{ base: 'full', sm: 800 }}>
-				<StackLayout
-					px={2}
-					py={1}
-					boxShadow={'sm'}
-					bg={'gray.50'}
-					spacing={0}
-				>
-					<FlexLayout alignItems={'center'}>
-						{' '}
-						<SubLabel fontWeight={'medium'}>{user}</SubLabel>
-						<PointSeparator small />
-						<CaptionLabel>{formatDate(date, true)}</CaptionLabel>
-					</FlexLayout>
-					<Label
-						color={'gray.500'}
-						fontSize={'small'}
-						fontWeight={'normal'}
+}): JSX.Element => {
+	return (
+		<React.Fragment>
+			<StackLayout
+				direction={'row'}
+				spacing={2}
+				w={'full'}
+				rounded={'none'}
+				borderLeftWidth={divider && 3}
+				pl={4}
+			>
+				<UserAvatar size={'sm'} />
+				<StackLayout spacing={0} w={{ base: 'full' }}>
+					<StackLayout
+						px={2}
+						py={1}
+						boxShadow={'sm'}
+						bg={'gray.50'}
+						spacing={0}
 					>
-						{value}
-					</Label>
+						<FlexLayout
+							alignItems={'center'}
+							justifyContent={'space-between'}
+						>
+							<FlexLayout alignItems={'center'}>
+								<SubLabel fontWeight={'medium'}>
+									{comment?.user.display_name}
+								</SubLabel>
+								<PointSeparator small />
+								<CaptionLabel>
+									{formatDate(comment?.updated_at, true)}
+								</CaptionLabel>
+							</FlexLayout>
+							<CommentMenu {...comment} />
+						</FlexLayout>
+						<Label
+							color={'gray.500'}
+							fontSize={'small'}
+							fontWeight={'normal'}
+						>
+							{comment?.value}
+						</Label>
+					</StackLayout>
+					<Actions showReply={!!actions} {...comment} />
+					{children}
 				</StackLayout>
-				{actions && <Actions commentId={commentId} />}
-				{children}
 			</StackLayout>
-		</StackLayout>
-	</React.Fragment>
-);
+		</React.Fragment>
+	);
+};
 
 const TabActions = (): JSX.Element => {
 	return (
@@ -127,35 +134,24 @@ const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
 			pl={4}
 		>
 			{data?.replies?.map((reply, _index) => (
-				<MessageLayout
-					key={_index}
-					user={reply.user.display_name}
-					date={reply.updated_at}
-					value={reply.value}
-					actions={false}
-				/>
+				<MessageLayout key={_index} actions={false} comment={reply} />
 			))}
 		</StackLayout>
 	);
 };
 
-const Comment = (comment: any): JSX.Element => {
-	return (
-		<MessageLayout
-			user={comment.user.display_name}
-			date={comment.updated_at}
-			value={comment.value}
-			divider={true}
-			commentId={comment.id}
-		>
-			{/* {comment?.idea_replies?.length > 0 && ( */}
-			<RepliesList commentId={comment.id} />
-			{/* )} */}
-		</MessageLayout>
-	);
-};
+const Comment = (comment: any): JSX.Element => (
+	<MessageLayout comment={comment} divider={true}>
+		{/* {comment?.idea_replies?.length > 0 && ( */}
+		<RepliesList commentId={comment.id} />
+		{/* )} */}
+	</MessageLayout>
+);
 
-const Actions = ({ commentId }: { commentId: string }): JSX.Element => (
+const Actions = (
+	{ showReply }: { showReply: boolean },
+	comment: any
+): JSX.Element => (
 	<StackLayout direction={'row'} spacing={1} alignItems={'center'}>
 		{/* <BaseButton name={'upvote-idea-button'} variant={'unstyled'} d={'flex'}>
 			<Icon
@@ -167,8 +163,42 @@ const Actions = ({ commentId }: { commentId: string }): JSX.Element => (
 				color={'gray.400'}
 			/>
 		</BaseButton> */}
-		<PostReplyComment commentId={commentId} />
+		{showReply && <PostReplyComment commentId={comment.id} />}
 	</StackLayout>
 );
+
+const CommentMenu = (comment: any): JSX.Element => {
+	console.log('comment: ', comment);
+	return (
+		<BaseMenu>
+			<ReportMenu
+				title={'comment'}
+				// co
+				report={{
+					type: 'COMMENT',
+					reported_user_id: comment.user.id,
+					recipient_name: comment.user.display_name,
+					recipient_email: comment.user.account.email,
+					content: comment.value
+				}}
+			/>
+		</BaseMenu>
+	);
+};
+
+// const ReportComment = ({
+// 	id,
+// 	type
+// }: {
+// 	id: string;
+// 	type: string;
+// }): JSX.Element => {
+// 	return (
+// 		// <IconButton aria-label={'Report'} size={'sm'} variant={'unstyled'}>
+// 		// 	<Icon as={IoFlagSharp} />
+// 		// </IconButton>
+
+// 	);
+// };
 
 export default CommentsTab;

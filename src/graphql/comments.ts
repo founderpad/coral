@@ -29,6 +29,9 @@ const GET_COMMENTS_FOR_IDEA = gql`
 				id
 				display_name
 				avatar_url
+				account {
+					email
+				}
 			}
 		}
 	}
@@ -47,6 +50,9 @@ const GET_REPLIES_FOR_COMMENT = gql`
 				id
 				display_name
 				avatar_url
+				account {
+					email
+				}
 			}
 		}
 	}

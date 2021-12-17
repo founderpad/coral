@@ -25,7 +25,7 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 				noOfLines={2}
 				isTruncated
 			>
-				{preview}...
+				{preview.length <= 25 ? preview : `${preview}...`}
 			</Label>
 			<IdeaCardBodyBadges {...idea} />
 		</React.Fragment>

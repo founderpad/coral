@@ -1,7 +1,7 @@
 import { CancelButton, PrimaryButton, SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { TextareaField } from 'components/input';
-import { StackLayout } from 'components/layouts';
+import { FlexLayout, StackLayout } from 'components/layouts';
 import {
 	TIdea_Comments_Insert_Input,
 	usePostReplyMutation
@@ -55,9 +55,22 @@ const PostReplyComment = ({
 	};
 
 	return (
-		<>
+		<FlexLayout
+			flexDirection={'column'}
+			alignItems={'flex-start'}
+			w={'full'}
+		>
 			{' '}
-			{showReplyField ? (
+			<PrimaryButton
+				name={'reply-to-comment'}
+				onClick={onShowReplyClick}
+				variant={'unstyled'}
+				color={'gray.500'}
+				fontSize={'xs'}
+			>
+				Reply
+			</PrimaryButton>
+			{showReplyField && (
 				<Form
 					id={'postReplyToCommentForm'}
 					name={'postReplyToCommentForm'}
@@ -65,6 +78,7 @@ const PostReplyComment = ({
 					isSubmitting={isSubmitting}
 					isValid={isValid}
 					stackProps={{ mt: 2, w: 'full' }}
+					style={{ flex: 1, width: '100%' }}
 				>
 					<TextareaField
 						id="value"
@@ -95,18 +109,8 @@ const PostReplyComment = ({
 						/>
 					</StackLayout>
 				</Form>
-			) : (
-				<PrimaryButton
-					name={'reply-to-comment'}
-					onClick={onShowReplyClick}
-					variant={'unstyled'}
-					color={'gray.500'}
-					fontSize={'xs'}
-				>
-					Reply
-				</PrimaryButton>
 			)}
-		</>
+		</FlexLayout>
 	);
 };
 

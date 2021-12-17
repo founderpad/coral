@@ -1,6 +1,7 @@
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { SelectField } from 'components/input';
+import { Label } from 'components/labels';
 import { BaseMenuItem } from 'components/menu';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { TReport_Insert_Input, useCreateReportMutation } from 'generated/api';
@@ -42,7 +43,7 @@ const ReportMenu = ({
 	return (
 		<BaseMenuItem
 			title={'Report'}
-			subTitle={'Report this idea'}
+			subTitle={`Report this ${title.toLowerCase()}`}
 			icon={IoFlagSharp}
 			onClick={onClick}
 		/>
@@ -51,9 +52,11 @@ const ReportMenu = ({
 
 const ReportForm = ({
 	title,
+	content = '',
 	report
 }: {
 	title: string;
+	content?: string;
 	report: TReport_Insert_Input;
 }) => {
 	const {
@@ -87,6 +90,7 @@ const ReportForm = ({
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 		>
+			{content && <Label>{content}</Label>}
 			<SelectField
 				id="reason"
 				name="reason"

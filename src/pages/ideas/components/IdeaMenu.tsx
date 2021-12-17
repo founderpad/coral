@@ -12,7 +12,6 @@ type TIdeaProps = Pick<TIdea_Preview, 'id' | 'idea_user' | 'name'>;
 
 export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 	const report: TReport_Insert_Input = {
-		type: 'IDEA',
 		reported_id: idea?.id,
 		reported_user_id: idea?.idea_user.id,
 		recipient_name: idea?.idea_user.first_name,
