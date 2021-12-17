@@ -65,11 +65,11 @@ const PostComment = (): JSX.Element => {
 					isValid={isValid}
 				>
 					<TextareaField
-						id="value"
-						name="value"
-						placeholder="What do you think of this idea?"
+						id={'value'}
+						name={'value'}
+						placeholder={'What do you think of this idea?'}
 						error={errors['value']}
-						errorText="Your comment can not be empty."
+						errorText={'Your comment can not be empty.'}
 						control={control}
 					/>
 				</Form>
@@ -77,7 +77,7 @@ const PostComment = (): JSX.Element => {
 			actions: (
 				<SubmitButton
 					name={'open-modal-drawer-post-comment-button'}
-					form="postCommentForm"
+					form={'postCommentForm'}
 					label={'Post'}
 				/>
 			),
@@ -87,7 +87,7 @@ const PostComment = (): JSX.Element => {
 
 	return (
 		<PrimaryButton name={'add-comment'} onClick={onClick}>
-			<Icon as={IoAddSharp} mr={2} /> Post
+			<Icon as={IoAddSharp} mr={2} /> Add comment
 		</PrimaryButton>
 	);
 };

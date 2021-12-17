@@ -15,21 +15,28 @@
 import { TIndustry } from 'types/idea';
 
 export const ALL_INDUSTRIES: TIndustry[] = [
-	{ name: 'Agriculture', color: 'brown' },
-	{ name: 'Education', color: 'blue' },
-	{ name: 'Engineering', color: 'orange' },
-	{ name: 'Food & Drink', color: 'yellow' },
-	{ name: 'Media', color: 'purple' },
-	{ name: 'Medical', color: 'green' },
-	{ name: 'Online Services', color: 'blue' },
-	{ name: 'Other', color: 'grey' },
-	{ name: 'Professional Services', color: 'grey' },
-	{ name: 'Retail', color: 'red' },
-	{ name: 'Sports', color: 'green' },
-	{ name: 'Technology', color: 'fpPrimary' },
-	{ name: 'Tourism', color: 'orange' },
-	{ name: 'Transport', color: 'black' },
-	{ name: 'Utilities', color: 'purple' }
+	{ name: 'Aerospace', color: 'brown' },
+	{ name: 'Agriculture', color: 'blue' },
+	{ name: 'Clothing', color: 'orange' },
+	{ name: 'Construction', color: 'yellow' },
+	{ name: 'Crypto', color: 'purple' },
+	{ name: 'Education', color: 'green' },
+	{ name: 'Engineering', color: 'blue' },
+	{ name: 'Entertainment', color: 'grey' },
+	{ name: 'Food & Drink', color: 'grey' },
+	{ name: 'Gaming', color: 'red' },
+	{ name: 'Hospitality', color: 'green' },
+	{ name: 'Manufacturing', color: 'fpPrimary' },
+	{ name: 'Media', color: 'orange' },
+	{ name: 'Medical', color: 'black' },
+	{ name: 'Online', color: 'purple' },
+	{ name: 'Professional Services', color: 'purple' },
+	{ name: 'Retail', color: 'purple' },
+	{ name: 'Technology', color: 'purple' },
+	{ name: 'Tourism', color: 'purple' },
+	{ name: 'Transport', color: 'purple' },
+	{ name: 'Utilities', color: 'purple' },
+	{ name: 'Other', color: 'purple' }
 ];
 
 export const ALL_COUNTRIES = [
