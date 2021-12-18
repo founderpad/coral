@@ -33,7 +33,7 @@ export default (req, res) => {
 											flex: 1
 										}
 										#container {
-											background-color: #f9f9f9;
+											background-color: #F7FAFC;
 											flex: 1;
 											margin: 32px auto;
 											padding: 32px;
@@ -43,11 +43,12 @@ export default (req, res) => {
 								</head>
 	                            <body>
 									<main>
-										<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo.svg" height="30" />
+										// <img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo.svg" height="30" />
+										<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo200x41.png" />
 										<div id="container">
 											<h3>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h3>
 											<p>
-												We are really excited to have you aboard, and hope you are just as excited as us at the prospect of
+												We are really excited to have you on board, and hope you are just as excited as us at the prospect of
 												getting feedback on your business ideas, innovating, and launching to the world. 🚀
 											</p><br/>
 										
