@@ -45,14 +45,25 @@ export default (req, res) => {
 										display: flex;
 										justify-content: center;
 									}
-									#container {
+									table {
 										background-color: #F7FAFC;
 										display: flex;
 										flex: 1;
 										margin: 32px auto;
-										padding: 32px;
-										max-width: 600px;
+										padding: 0 32px;
+										max-width: 700px;
 										flex-direction: column;
+										border-collapse: separate;
+										border-spacing: 0 32px;
+									}
+									#founderpadlogo {
+										display: flex;
+										justify-content: center;
+									}
+									th {
+										display: flex;
+										justify-content: center;
+										background-color: white;
 									}
 									h2, h3 {
 										margin-bottom: 0;
@@ -60,39 +71,63 @@ export default (req, res) => {
 								</style>
 							</head>
 							<body>
-								<header>
+								<span id="founderpadlogo">
 									<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo200x41.png" />
-								</header>
-								<main>
-									<div id="container">
-										<h2>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h2>
-										<p>
-											We are really excited to have you on board, and hope you are just as excited as us at the prospect of
-											getting feedback on your business ideas, innovating, and launching to the world. 🚀
-										</p><br/>
-									
-									
-										<h3>Getting started</h3>
-										<p>
-											Click <a href="http://www.founderpad.com/login" target="_blank" style="text-decoration: none;">here</a>
-											to login and get started immediately. Network, post ideas and collaborate!
-										</p><br/>
-									
-										<h3>FAQs</h3>
-										<p>
-											If you have any questions, they may already be covered inside our FAQs <a href="https://www.founderpad.com/faqs" target="_blank" style="text-decoration: none;">here</a>.<br/><br/>
-									
-											Can't find an answer to what you're looking for? No problem!
-											We're always keen to hear feedback on the platform and how we can improve it.<br/><br/>
-									
-											Feel free to email us here at <a href="mailto:countact@founderpad.com" target="_blank" style="text-decoration: none;">contact@founderpad.com</a> if you have any questions about the platform.
-										</p><br/><br/>
-									
-										<p>We hope you enjoy what we have to offer, and look forward to the extensive updates we have coming in the future.</p><br/><br/>
-									
-										<strong>The founderpad team</strong>
-									</div>
-								</main>
+								</span>
+								<table>
+									<tr>
+										<td><h2>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h2></td>
+										<tr>
+											<td>
+												We are really excited to have you on board, and hope you are just as excited as us at the prospect of
+												getting feedback on your business ideas, innovating, and launching to the world. 🚀
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h3>
+													Getting started
+												</h3>
+												<p>
+													Click <a href="http://www.founderpad.com/login" target="_blank" style="text-decoration: none;">here</a>
+													to login and get started immediately. Network, post ideas and collaborate!
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h3>
+													FAQs
+												</h3>
+												<p>
+													If you have any questions, they may already be covered inside our FAQs 
+													<a href="https://www.founderpad.com/faqs" target="_blank" style="text-decoration: none;">here</a>.<br/><br/>
+													Can't find an answer to what you're looking for? No problem!
+													We're always keen to hear feedback on the platform and how we can improve it.<br/><br/>
+													Feel free to email us here at 
+													<a href="mailto:countact@founderpad.com" target="_blank" style="text-decoration: none;">contact@founderpad.com</a> 
+													if you have any questions about the platform.
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h3>
+													Thanks for joining
+												</h3>
+												<p>
+													We hope you enjoy what we have to offer, and look forward to the extensive updates we have 
+													coming in the future.
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>The founderpad team</strong>
+											</td>
+										</tr>
+									</tr>
+								</table>
 							</body>
 						</html>
 					`
