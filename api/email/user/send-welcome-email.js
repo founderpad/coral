@@ -33,8 +33,15 @@ export default (req, res) => {
 											align-items: center;
 											flex: 1
 										}
+										#header {
+											display: flex;
+											flex: 1;
+											justify-content: center;
+											width: 100%;
+										}
 										#container {
 											background-color: #F7FAFC;
+											display: flex;
 											flex: 1;
 											margin: 32px auto;
 											padding: 32px;
@@ -44,6 +51,9 @@ export default (req, res) => {
 								</head>
 	                            <body>
 									<main>
+										<div id="header">
+											<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo200x41.png" />
+										</div>
 										<div id="container">
 											<h3>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h3>
 											<p>
