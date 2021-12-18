@@ -125,9 +125,10 @@ export default (req, res) => {
 																Our Development
 															</h3>
 															<p>
-																This is our pre-beta launch, and we have an extensive list of features and functionality that we will be
+																This is our beta launch, and we have an extensive list of features and functionality that we will be
 																adding to the site soon. If you think of anything that could be improved, or you would like to see added,
-																fill in our Typeform <a href="https://hof63dkitgi.typeform.com/to/DYQnGCYY">here</a>.
+																fill in our Typeform
+																<a href="https://hof63dkitgi.typeform.com/to/DYQnGCYY" target="_blank" style="text-decoration: none;">here</a>.
 															</p>
 														</td>
 													</tr>

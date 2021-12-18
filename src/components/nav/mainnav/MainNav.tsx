@@ -72,7 +72,7 @@ const MainNav = (): JSX.Element => {
 									rounded={'sm'}
 									ml={2}
 								>
-									Pre-Beta
+									Beta
 								</Tag>
 							</FlexLayout>
 						</Flex>
@@ -104,7 +104,7 @@ const MainNav = (): JSX.Element => {
 								rounded={'sm'}
 								ml={2}
 							>
-								Pre-Beta
+								Beta
 							</Tag>
 						</FlexLayout>
 						<DrawerCloseButton />

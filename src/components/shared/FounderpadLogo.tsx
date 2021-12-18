@@ -28,7 +28,7 @@ const FounderpadLogoWithBadge = ({ w }: { w: number }): JSX.Element => (
 			rounded={'sm'}
 			ml={2}
 		>
-			Pre-Beta
+			Beta
 		</Tag>
 	</FlexLayout>
 );
