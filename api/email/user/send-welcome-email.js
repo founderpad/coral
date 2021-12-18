@@ -88,11 +88,11 @@ export default (req, res) => {
 										<td>
 											<table id="inner-container">
 												<tr>
-													<td><h2>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h2></td>
+													<td><h2>Hi ${req.body.event.data.new.display_name}, welcome to founderpad!</h2></td>
 													<tr>
 														<td>
-															We are really excited to have you on board, and hope you are just as excited as us at the prospect of
-															getting feedback on your business ideas, innovating, and launching to the world. 🚀
+															We are excited to have you on board, and we hope that you are just as excited at the prospect of getting valuable feedback on your business idea, 
+															forming a team and launching a startup, all from the founderpad platform.
 														</td>
 													</tr>
 													<tr>
@@ -102,7 +102,7 @@ export default (req, res) => {
 															</h3>
 															<p>
 																Click <a href="http://www.founderpad.com/login" target="_blank" style="text-decoration: none;">here</a>
-																to login and get started immediately. Network, post ideas and collaborate!
+																to login, get started, and post your first idea!
 															</p>
 														</td>
 													</tr>
@@ -112,24 +112,22 @@ export default (req, res) => {
 																FAQs
 															</h3>
 															<p>
-																If you have any questions, they may already be covered inside our FAQs 
+																If you have any questions, please check our FAQs
 																<a href="https://www.founderpad.com/faqs" target="_blank" style="text-decoration: none;">here</a>.<br/><br/>
-																Can't find an answer to what you're looking for? No problem!
-																We're always keen to hear feedback on the platform and how we can improve it.<br/><br/>
-																Feel free to email us here at 
-																<a href="mailto:countact@founderpad.com" target="_blank" style="text-decoration: none;">contact@founderpad.com</a> 
-																if you have any questions about the platform.
+																Can't find an answer to your question? You can email us at 
+																<a href="mailto:countact@founderpad.com" target="_blank" style="text-decoration: none;">contact@founderpad.com</a>
 															</p>
 														</td>
 													</tr>
 													<tr>
 														<td>
 															<h3>
-																Thanks for joining
+																Our Development
 															</h3>
 															<p>
-																We hope you enjoy what we have to offer, and look forward to the extensive updates we have 
-																coming in the future.
+																This is our pre-beta launch, and we have an extensive list of features and functionality that we will be
+																adding to the site soon. If you think of anything that could be improved, or you would like to see added,
+																fill in our Typeform <a href="https://hof63dkitgi.typeform.com/to/DYQnGCYY">here</a>.
 															</p>
 														</td>
 													</tr>

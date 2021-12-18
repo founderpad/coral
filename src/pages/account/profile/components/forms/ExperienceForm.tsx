@@ -4,6 +4,7 @@ import { Checkbox } from '@chakra-ui/react';
 import { FormLabelText } from 'components/form';
 import Form from 'components/form/Form';
 import { NumberField, SelectField, TextareaField } from 'components/input';
+import { Label } from 'components/labels';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import {
 	TUser_Profile,
@@ -180,9 +181,15 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 									color={'fpGrey.400'}
 									ref={ref}
 									size={'sm'}
+									fontSize={'xs'}
 									isChecked={selectedSkills.includes(es)}
 								>
-									{es}
+									<Label
+										color={'gray.500'}
+										fontSize={'smaller'}
+									>
+										{es}
+									</Label>
 								</Checkbox>
 							)}
 							control={control}

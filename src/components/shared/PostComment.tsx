@@ -79,6 +79,7 @@ const PostComment = (): JSX.Element => {
 					name={'open-modal-drawer-post-comment-button'}
 					form={'postCommentForm'}
 					label={'Post'}
+					size={'xs'}
 				/>
 			),
 			hideFooter: true
@@ -86,7 +87,7 @@ const PostComment = (): JSX.Element => {
 	};
 
 	return (
-		<PrimaryButton name={'add-comment'} onClick={onClick}>
+		<PrimaryButton name={'add-comment'} onClick={onClick} size={'xs'}>
 			<Icon as={IoAddSharp} color={'white'} fontSize={'lg'} mr={2} /> Add
 		</PrimaryButton>
 	);

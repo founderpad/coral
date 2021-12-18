@@ -21,7 +21,7 @@ const WorkExperienceTab = (): JSX.Element => {
 					name={'open-modal-drawer-experience-button'}
 					form="editExperienceForm"
 					label={'Save'}
-					size={'sm'}
+					size={'xs'}
 				/>
 			),
 			body: <ExperienceForm {...userProfile} />,

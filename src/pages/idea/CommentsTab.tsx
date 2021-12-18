@@ -168,12 +168,10 @@ const Actions = (
 );
 
 const CommentMenu = (comment: any): JSX.Element => {
-	console.log('comment: ', comment);
 	return (
 		<BaseMenu>
 			<ReportMenu
 				title={'comment'}
-				// co
 				report={{
 					type: 'COMMENT',
 					reported_user_id: comment.user.id,

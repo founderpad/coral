@@ -77,10 +77,11 @@ export const Modal = (props: IModalProps): JSX.Element => {
 					>
 						{title}
 						{actions && (
-							<ButtonGroup ml={'auto'} spacing={4}>
+							<ButtonGroup ml={'auto'} spacing={4} size={'xs'}>
 								<CancelButton
 									label={'Cancel'}
 									onClick={onClose}
+									size={'xs'}
 								/>
 								{actions}
 							</ButtonGroup>

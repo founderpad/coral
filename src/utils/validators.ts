@@ -9,11 +9,12 @@ export const formatDate = (dateStr: string, withTime?: boolean): string => {
 	const date = new Date(dateStr);
 
 	if (isToday(date))
-		return 'Today' + (withTime ? `, ${format(date, 'HH:mm')}` : '');
+		return 'Today' + (withTime ? ` at ${format(date, 'HH:mm')}` : '');
 	if (isYesterday(date))
-		return 'Yesterday' + (withTime ? `, ${format(date, 'HH:mm')}` : '');
+		return 'Yesterday' + (withTime ? ` at ${format(date, 'HH:mm')}` : '');
 	return (
-		format(date, 'dd MMM') + (withTime ? `, ${format(date, 'HH:mm')}` : '')
+		format(date, 'dd MMM') +
+		(withTime ? ` at ${format(date, 'HH:mm')}` : '')
 	);
 };
 

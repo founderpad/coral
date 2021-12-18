@@ -40,7 +40,7 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 					name={'open-modal-drawer-edit-idea-button'}
 					form={'editIdeaForm'}
 					label={'Save'}
-					size={'sm'}
+					size={'xs'}
 				/>
 			),
 			hideFooter: true,
