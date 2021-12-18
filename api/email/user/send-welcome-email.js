@@ -30,6 +30,7 @@ export default (req, res) => {
 										main {
 											display: flex;
 											flex-direction: column;
+											align-items: center;
 											flex: 1
 										}
 										#container {
@@ -43,8 +44,6 @@ export default (req, res) => {
 								</head>
 	                            <body>
 									<main>
-										// <img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo.svg" height="30" />
-										<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo200x41.png" />
 										<div id="container">
 											<h3>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h3>
 											<p>
