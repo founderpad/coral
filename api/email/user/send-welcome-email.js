@@ -61,7 +61,7 @@ export default (req, res) => {
 										max-width: 700px;
 										flex-direction: column;
 										border-collapse: separate;
-										border-spacing: 0 32px;
+										border-spacing: 0 24px;
 									}
 									#founderpadlogo {
 										display: flex;
@@ -113,7 +113,7 @@ export default (req, res) => {
 															</h3>
 															<p>
 																If you have any questions, please check our FAQs
-																<a href="https://www.founderpad.com/faqs" target="_blank" style="text-decoration: none;">here</a>.<br/><br/>
+																<a href="https://www.founderpad.com/faqs" target="_blank" style="text-decoration: none;">here</a>.<br/>
 																Can't find an answer to your question? You can email us at 
 																<a href="mailto:countact@founderpad.com" target="_blank" style="text-decoration: none;">contact@founderpad.com</a>
 															</p>
