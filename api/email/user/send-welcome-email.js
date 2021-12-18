@@ -92,7 +92,7 @@ export default (req, res) => {
 													<tr>
 														<td>
 															We are excited to have you on board, and we hope that you are just as excited at the prospect of getting valuable feedback on your business idea, 
-															forming a team and launching a startup, all from the founderpad platform.
+															forming a team and launching a startup - all from the founderpad platform.
 														</td>
 													</tr>
 													<tr>
