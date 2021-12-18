@@ -44,7 +44,7 @@ export default (req, res) => {
 								</head>
 	                            <body>
 									<main>
-										<img src="https://uploads-ssl.webflow.com/618baf9523fc4b77ae274f4d/619795e5097b40a696abf9f1_text.svg" height="40" />
+										<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo.svg" height="40" />
 										<div id="container">
 											<h3>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h3>
 											<p>
