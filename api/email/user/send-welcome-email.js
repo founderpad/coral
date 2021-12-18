@@ -27,18 +27,23 @@ export default (req, res) => {
 							<head>
 								<style>
 									@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
-									body { font-family: 'Inter', sans-serif; }
+									body { 
+										font-family: 'Inter', sans-serif;
+										display: flex;
+										flex: 1;
+										width: 100vw;
+										justify-content: center;
+										flex-direction: column;
+									}
 									main {
 										display: flex;
 										flex-direction: column;
 										align-items: center;
 										flex: 1
 									}
-									#header {
+									header {
 										display: flex;
-										flex: 1;
 										justify-content: center;
-										width: 100%;
 									}
 									#container {
 										background-color: #F7FAFC;
@@ -49,29 +54,29 @@ export default (req, res) => {
 										max-width: 600px;
 										flex-direction: column;
 									}
-									h3 {
+									h2, h3 {
 										margin-bottom: 0;
 									}
 								</style>
 							</head>
 							<body>
+								<header>
+									<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo200x41.png" />
+								</header>
 								<main>
-									<div id="header">
-										<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo200x41.png" />
-									</div>
 									<div id="container">
 										<h2>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h2>
 										<p>
 											We are really excited to have you on board, and hope you are just as excited as us at the prospect of
 											getting feedback on your business ideas, innovating, and launching to the world. 🚀
-										</p>
+										</p><br/>
 									
 									
 										<h3>Getting started</h3>
 										<p>
 											Click <a href="http://www.founderpad.com/login" target="_blank" style="text-decoration: none;">here</a>
 											to login and get started immediately. Network, post ideas and collaborate!
-										</p>
+										</p><br/>
 									
 										<h3>FAQs</h3>
 										<p>
@@ -89,7 +94,8 @@ export default (req, res) => {
 									</div>
 								</main>
 							</body>
-						</html>`
+						</html>
+					`
 				}
 			},
 			Subject: {
