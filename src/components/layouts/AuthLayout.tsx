@@ -1,6 +1,6 @@
-import { Image } from '@chakra-ui/image';
 import { Heading } from '@chakra-ui/layout';
 import { DocumentTitle } from 'components/shared';
+import FounderpadLogo from 'components/shared/FounderpadLogo';
 import React from 'react';
 import { StackLayout } from './StackLayout';
 
@@ -27,18 +27,13 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
 			justifyContent={'center'}
 			id={'auth-container'}
 		>
-			<Image
-				src="/founderpad-text.svg"
-				mx="auto"
-				alt="logo"
-				height="30px"
-			/>
+			<FounderpadLogo mx={'auto'} w={'180px'} />
 			<Heading
 				textAlign={'center'}
 				fontWeight={'normal'}
 				fontSize={'md'}
 				color={'black'}
-				pb={8}
+				pb={6}
 			>
 				{header}
 			</Heading>

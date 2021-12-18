@@ -1,6 +1,5 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
-import { Image } from '@chakra-ui/image';
 import { Container, Flex } from '@chakra-ui/layout';
 import {
 	Drawer,
@@ -12,6 +11,8 @@ import {
 	Icon,
 	MenuDivider
 } from '@chakra-ui/react';
+import FounderpadLogo from 'components/shared/FounderpadLogo';
+import Image from 'next/image';
 import React, { memo } from 'react';
 import { IoMenuSharp } from 'react-icons/io5';
 import DesktopNav from './DesktopNav';
@@ -57,11 +58,7 @@ const MainNav = (): JSX.Element => {
 								fontSize={'2xl'}
 								onClick={onToggle}
 							/>
-							<Image
-								src="/founderpad-text.svg"
-								alt="logo"
-								h={'20px'}
-							/>
+							<FounderpadLogo height={'21px'} />
 						</Flex>
 						<DesktopNav />
 						<UserMenu />

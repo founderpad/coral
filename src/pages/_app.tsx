@@ -1,13 +1,9 @@
 import { InMemoryCache } from '@apollo/client';
 import { offsetLimitPagination } from '@apollo/client/utilities';
 import { ChakraProvider } from '@chakra-ui/react';
-// import '@fontsource/hind/300.css';
-// import '@fontsource/hind/400.css';
-// import '@fontsource/hind/500.css';
-// import '@fontsource/hind/600.css';
-// import '@fontsource/hind/700.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
+import '@fontsource/sansita-swashed/600.css';
 // import '@fontsource/montserrat/500.css';
 // import '@fontsource/montserrat/700.css';
 import { NhostApolloProvider } from '@nhost/react-apollo';

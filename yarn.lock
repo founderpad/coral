@@ -1300,20 +1300,15 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/hind@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/@fontsource/hind/-/hind-4.5.0.tgz"
-  integrity sha512-b3kiB0DH++3ojfW1qKgQ84FT7Oi9LmEhuq8uNmbrT+rD2VidhSJZG3K67gT+7dIp4OwHTAw4PEgFMfOtSDbdrg==
-
 "@fontsource/inter@^4.5.1":
   version "4.5.1"
   resolved "https://registry.npmjs.org/@fontsource/inter/-/inter-4.5.1.tgz"
   integrity sha512-mvtOvXNNVLlF1p/UbLgLrmz2RCOl6Ow+TqyiK10SosoLKX7edsXYiHFHb7XIZdjII6F2sJVPPsJXWhBnbXT2DQ==
 
-"@fontsource/montserrat@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.npmjs.org/@fontsource/montserrat/-/montserrat-4.5.1.tgz"
-  integrity sha512-xdMkzsnFlzDt5Vj9+AWuUp4Vd9F3hYN2I0GTZZYscWN/bQ20wVOGtdWLO8Okfv7SZ9t/z39/EayAAt+f/8tAvw==
+"@fontsource/sansita-swashed@^4.5.1":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/sansita-swashed/-/sansita-swashed-4.5.0.tgz#a4498061ec8ba706c822bf40ab66b12a3e8d0d77"
+  integrity sha512-PLlTTC/45OIGZ9Tg4nIwrioV6qRF4SWg8LKxJyIRPbr7o4gYpFnUWw3FTkXiHrsvEL3DnHtv8vDce/uCpL5pxg==
 
 "@graphql-codegen/cli@^2.2.0":
   version "2.2.2"

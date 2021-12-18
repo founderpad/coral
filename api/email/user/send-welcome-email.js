@@ -34,8 +34,7 @@ export default (req, res) => {
 											flex: 1
 										}
 										#container {
-											border: 1px solid red;
-											background-color: #f6f6f6;
+											background-color: #f9f9f9;
 											flex: 1;
 											margin: 32px auto;
 											padding: 32px;
@@ -47,7 +46,7 @@ export default (req, res) => {
 									<main>
 										<img src="https://uploads-ssl.webflow.com/618baf9523fc4b77ae274f4d/619795e5097b40a696abf9f1_text.svg" height="40" />
 										<div id="container">
-											<h3>Hi ${req.body.event.data.new.display_name}, <br/>welcome to founderpad! 🎉 </h3>
+											<h3>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h3>
 											<p>
 												We are really excited to have you aboard, and hope you are just as excited as us at the prospect of
 												getting feedback on your business ideas, innovating, and launching to the world. 🚀
