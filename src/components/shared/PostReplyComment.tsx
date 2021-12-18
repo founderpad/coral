@@ -6,7 +6,6 @@ import {
 	TIdea_Comments_Insert_Input,
 	usePostReplyMutation
 } from 'generated/api';
-import { GET_REPLIES_FOR_COMMENT } from 'graphql/comments';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -34,14 +33,14 @@ const PostReplyComment = ({
 				value: getValues('value')
 			}
 		},
-		refetchQueries: [
-			{
-				query: GET_REPLIES_FOR_COMMENT,
-				variables: {
-					commentId
-				}
-			}
-		],
+		// refetchQueries: [
+		// 	{
+		// 		query: GET_REPLIES_FOR_COMMENT,
+		// 		variables: {
+		// 			commentId
+		// 		}
+		// 	}
+		// ],
 		onCompleted: () => {
 			setShowReplyField(!showReplyField);
 		}

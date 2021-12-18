@@ -7,7 +7,6 @@ import {
 	TIdea_Comments_Insert_Input,
 	usePostCommentMutation
 } from 'generated/api';
-import { GET_COMMENTS_FOR_IDEA } from 'graphql/comments';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
@@ -34,14 +33,14 @@ const PostComment = (): JSX.Element => {
 				value: getValues('value')
 			}
 		},
-		refetchQueries: [
-			{
-				query: GET_COMMENTS_FOR_IDEA,
-				variables: {
-					ideaId: router.query.id
-				}
-			}
-		],
+		// refetchQueries: [
+		// 	{
+		// 		query: GET_COMMENTS_FOR_IDEA,
+		// 		variables: {
+		// 			ideaId: router.query.id
+		// 		}
+		// 	}
+		// ],
 		onCompleted: () => {
 			setModalDrawer({
 				isOpen: false

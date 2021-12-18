@@ -11,8 +11,8 @@ import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
 import PostComment from 'components/shared/PostComment';
 import PostReplyComment from 'components/shared/PostReplyComment';
 import {
-	useGetCommentsForIdeaQuery,
-	useGetRepliesForCommentQuery
+	useGetCommentsForIdeaSubscription,
+	useGetRepliesForCommentSubscription
 } from 'generated/api';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -71,7 +71,7 @@ const MessageLayout = ({
 							{comment?.value}
 						</Label>
 					</StackLayout>
-					<Actions showReply={!!actions} {...comment} />
+					<Actions showReply={!!actions} comment={comment} />
 					{children}
 				</StackLayout>
 			</StackLayout>
@@ -99,7 +99,7 @@ const CommentsTab = (): JSX.Element => (
 const CommentsList = (): JSX.Element => {
 	const router = useRouter();
 
-	const { data, loading } = useGetCommentsForIdeaQuery({
+	const { data, loading } = useGetCommentsForIdeaSubscription({
 		variables: {
 			ideaId: router.query.id
 		}
@@ -119,25 +119,32 @@ const CommentsList = (): JSX.Element => {
 };
 
 const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
-	const { data } = useGetRepliesForCommentQuery({
+	const { data } = useGetRepliesForCommentSubscription({
 		variables: {
 			commentId
 		}
 	});
 
-	return (
-		<StackLayout
-			spacing={4}
-			pt={4}
-			borderLeftWidth={2}
-			rounded={'none'}
-			pl={4}
-		>
-			{data?.replies?.map((reply, _index) => (
-				<MessageLayout key={_index} actions={false} comment={reply} />
-			))}
-		</StackLayout>
-	);
+	if (data?.replies?.length)
+		return (
+			<StackLayout
+				spacing={4}
+				pt={4}
+				borderLeftWidth={2}
+				rounded={'none'}
+				pl={4}
+			>
+				{data?.replies?.map((reply, _index) => (
+					<MessageLayout
+						key={_index}
+						actions={false}
+						comment={reply}
+					/>
+				))}
+			</StackLayout>
+		);
+
+	return null;
 };
 
 const Comment = (comment: any): JSX.Element => (
@@ -148,12 +155,16 @@ const Comment = (comment: any): JSX.Element => (
 	</MessageLayout>
 );
 
-const Actions = (
-	{ showReply }: { showReply: boolean },
-	comment: any
-): JSX.Element => (
-	<StackLayout direction={'row'} spacing={1} alignItems={'center'}>
-		{/* <BaseButton name={'upvote-idea-button'} variant={'unstyled'} d={'flex'}>
+const Actions = ({
+	showReply,
+	comment
+}: {
+	showReply: boolean;
+	comment: any;
+}): JSX.Element => {
+	return (
+		<StackLayout direction={'row'} spacing={1} alignItems={'center'}>
+			{/* <BaseButton name={'upvote-idea-button'} variant={'unstyled'} d={'flex'}>
 			<Icon
 				as={IoArrowUpSharp}
 				fontSize={'sm'}
@@ -163,9 +174,10 @@ const Actions = (
 				color={'gray.400'}
 			/>
 		</BaseButton> */}
-		{showReply && <PostReplyComment commentId={comment.id} />}
-	</StackLayout>
-);
+			{showReply && <PostReplyComment commentId={comment.id} />}
+		</StackLayout>
+	);
+};
 
 const CommentMenu = (comment: any): JSX.Element => {
 	return (
@@ -183,20 +195,5 @@ const CommentMenu = (comment: any): JSX.Element => {
 		</BaseMenu>
 	);
 };
-
-// const ReportComment = ({
-// 	id,
-// 	type
-// }: {
-// 	id: string;
-// 	type: string;
-// }): JSX.Element => {
-// 	return (
-// 		// <IconButton aria-label={'Report'} size={'sm'} variant={'unstyled'}>
-// 		// 	<Icon as={IoFlagSharp} />
-// 		// </IconButton>
-
-// 	);
-// };
 
 export default CommentsTab;

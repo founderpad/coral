@@ -19,8 +19,11 @@ const POST_REPLY = gql`
 `;
 
 const GET_COMMENTS_FOR_IDEA = gql`
-	query getCommentsForIdea($ideaId: uuid!) {
-		comments: idea_comments(where: { idea_id: { _eq: $ideaId } }) {
+	subscription getCommentsForIdea($ideaId: uuid!) {
+		comments: idea_comments(
+			where: { idea_id: { _eq: $ideaId } }
+			order_by: { updated_at: asc }
+		) {
 			id
 			updated_at
 			value
@@ -38,9 +41,10 @@ const GET_COMMENTS_FOR_IDEA = gql`
 `;
 
 const GET_REPLIES_FOR_COMMENT = gql`
-	query getRepliesForComment($commentId: uuid!) {
+	subscription getRepliesForComment($commentId: uuid!) {
 		replies: idea_comment_replies(
 			where: { comment_id: { _eq: $commentId } }
+			order_by: { updated_at: asc }
 		) {
 			id
 			comment_id
