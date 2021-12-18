@@ -27,7 +27,11 @@ export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 				icon={IoShareSocialSharp}
 				divider={true}
 			/> */}
-			<ReportMenu title={'idea'} report={report} />
+			<ReportMenu
+				title={'idea'}
+				report={report}
+				content={`"${idea.name}"`}
+			/>
 		</BaseMenu>
 	);
 };

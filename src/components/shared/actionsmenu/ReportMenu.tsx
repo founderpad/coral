@@ -14,9 +14,11 @@ import { reportReasonsList } from 'utils/Constants';
 
 const ReportMenu = ({
 	title,
+	content,
 	report
 }: {
 	title: string;
+	content: any;
 	report: TReport_Insert_Input;
 }): JSX.Element => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
@@ -25,13 +27,15 @@ const ReportMenu = ({
 		setModalDrawer({
 			title: `Report ${title}`,
 			isOpen: true,
-			body: <ReportForm title={title} report={report} />,
+			body: (
+				<ReportForm title={title} report={report} content={content} />
+			),
 			actions: (
 				<SubmitButton
 					name={'open-modal-drawer-button'}
 					form="reportForm"
 					label={'Report'}
-					size={'sm'}
+					size={'xs'}
 				/>
 			),
 			handler: () => console.log(''),
@@ -52,11 +56,11 @@ const ReportMenu = ({
 
 const ReportForm = ({
 	title,
-	content = '',
+	content = undefined,
 	report
 }: {
 	title: string;
-	content?: string;
+	content?: any;
 	report: TReport_Insert_Input;
 }) => {
 	const {

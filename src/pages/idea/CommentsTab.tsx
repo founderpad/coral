@@ -184,6 +184,7 @@ const CommentMenu = (comment: any): JSX.Element => {
 		<BaseMenu>
 			<ReportMenu
 				title={'comment'}
+				content={`"${comment.value}"`}
 				report={{
 					type: 'COMMENT',
 					reported_user_id: comment.user.id,
