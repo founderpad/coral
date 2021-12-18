@@ -87,7 +87,7 @@ const PostComment = (): JSX.Element => {
 
 	return (
 		<PrimaryButton name={'add-comment'} onClick={onClick}>
-			<Icon as={IoAddSharp} mr={2} /> Add comment
+			<Icon as={IoAddSharp} color={'white'} fontSize={'lg'} mr={2} /> Add
 		</PrimaryButton>
 	);
 };

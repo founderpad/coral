@@ -9,10 +9,11 @@ import {
 	DrawerHeader,
 	DrawerOverlay,
 	Icon,
-	MenuDivider
+	MenuDivider,
+	Tag
 } from '@chakra-ui/react';
+import { FlexLayout } from 'components/layouts';
 import FounderpadLogo from 'components/shared/FounderpadLogo';
-import Image from 'next/image';
 import React, { memo } from 'react';
 import { IoMenuSharp } from 'react-icons/io5';
 import DesktopNav from './DesktopNav';
@@ -58,7 +59,22 @@ const MainNav = (): JSX.Element => {
 								fontSize={'2xl'}
 								onClick={onToggle}
 							/>
-							<FounderpadLogo w={'100px'} />
+							<FlexLayout mx={'auto'} alignItems={'center'}>
+								<FounderpadLogo w={'100px'} />
+								<Tag
+									bg={'fpPrimary.700'}
+									color={'white'}
+									textTransform={'capitalize'}
+									fontWeight={'medium'}
+									textAlign={'center'}
+									verticalAlign={'center'}
+									fontSize={'x-small'}
+									rounded={'sm'}
+									ml={2}
+								>
+									Pre-Beta
+								</Tag>
+							</FlexLayout>
 						</Flex>
 						<DesktopNav />
 						<UserMenu />
@@ -75,11 +91,22 @@ const MainNav = (): JSX.Element => {
 				<DrawerOverlay />
 				<DrawerContent>
 					<DrawerHeader>
-						<Image
-							src="/founderpad-text.svg"
-							alt="logo"
-							h={'20px'}
-						/>
+						<FlexLayout mx={'auto'} alignItems={'center'}>
+							<FounderpadLogo w={'100px'} />
+							<Tag
+								bg={'fpPrimary.700'}
+								color={'white'}
+								textTransform={'capitalize'}
+								fontWeight={'medium'}
+								textAlign={'center'}
+								verticalAlign={'center'}
+								fontSize={'x-small'}
+								rounded={'sm'}
+								ml={2}
+							>
+								Pre-Beta
+							</Tag>
+						</FlexLayout>
 						<DrawerCloseButton />
 					</DrawerHeader>
 					<MenuDivider />

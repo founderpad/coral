@@ -1,7 +1,9 @@
 import { Heading } from '@chakra-ui/layout';
+import { Tag } from '@chakra-ui/tag';
 import { DocumentTitle } from 'components/shared';
 import FounderpadLogo from 'components/shared/FounderpadLogo';
 import React from 'react';
+import { FlexLayout } from './FlexLayout';
 import { StackLayout } from './StackLayout';
 
 interface Props {
@@ -27,13 +29,27 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
 			justifyContent={'center'}
 			id={'auth-container'}
 		>
-			<FounderpadLogo mx={'auto'} />
+			<FlexLayout mx={'auto'} alignItems={'center'}>
+				<FounderpadLogo />
+				<Tag
+					bg={'fpPrimary.700'}
+					color={'white'}
+					textTransform={'capitalize'}
+					fontWeight={'medium'}
+					textAlign={'center'}
+					verticalAlign={'center'}
+					fontSize={'sm'}
+					rounded={'sm'}
+				>
+					Pre-Beta
+				</Tag>
+			</FlexLayout>
 			<Heading
 				textAlign={'center'}
 				fontWeight={'normal'}
 				fontSize={'md'}
 				color={'black'}
-				pb={6}
+				py={4}
 			>
 				{header}
 			</Heading>
