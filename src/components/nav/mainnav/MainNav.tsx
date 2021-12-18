@@ -58,7 +58,7 @@ const MainNav = (): JSX.Element => {
 								fontSize={'2xl'}
 								onClick={onToggle}
 							/>
-							<FounderpadLogo height={'21px'} />
+							<FounderpadLogo w={'100px'} />
 						</Flex>
 						<DesktopNav />
 						<UserMenu />

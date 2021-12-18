@@ -27,7 +27,7 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
 			justifyContent={'center'}
 			id={'auth-container'}
 		>
-			<FounderpadLogo mx={'auto'} w={'180px'} />
+			<FounderpadLogo mx={'auto'} />
 			<Heading
 				textAlign={'center'}
 				fontWeight={'normal'}

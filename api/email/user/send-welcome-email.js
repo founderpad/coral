@@ -26,7 +26,6 @@ export default (req, res) => {
 	                            <head>
 									<style>
 										@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
-
 										body { font-family: 'Inter', sans-serif; }
 										main {
 											display: flex;
@@ -44,7 +43,7 @@ export default (req, res) => {
 								</head>
 	                            <body>
 									<main>
-										<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo.svg" height="40" />
+										<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo.svg" height="30" />
 										<div id="container">
 											<h3>Hi ${req.body.event.data.new.display_name}, welcome to founderpad! 🎉 </h3>
 											<p>

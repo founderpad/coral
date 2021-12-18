@@ -3,7 +3,7 @@ import { BoxLayout } from 'components/layouts';
 import Image from 'next/image';
 
 const FounderpadLogo = (props: BoxProps): JSX.Element => (
-	<BoxLayout position={'relative'} w={'100px'} {...props}>
+	<BoxLayout position={'relative'} w={'180px'} {...props}>
 		<Image
 			src="/founderpad-logo.svg"
 			alt="logo"
