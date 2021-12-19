@@ -7,8 +7,10 @@ export const BaseTag = (props: TagProps): JSX.Element => (
 		borderWidth={1}
 		color={props.color}
 		rounded={'sm'}
+		d={'flex'}
+		{...props}
 	>
-		<TagLabel fontSize={props.fontSize ?? 'xs'} fontWeight={'light'}>
+		<TagLabel fontSize={props.fontSize ?? 'smaller'} fontWeight={'light'}>
 			{props.children}
 		</TagLabel>
 	</Tag>

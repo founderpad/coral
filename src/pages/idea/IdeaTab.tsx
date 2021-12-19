@@ -18,6 +18,7 @@ import {
 } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 import IdeaActions from './components/IdeaMenu';
+import InterestedIdea from './components/InterestedIdea';
 
 const IdeaTab = (): JSX.Element => {
 	const router = useRouter();
@@ -75,16 +76,19 @@ const IdeaTab = (): JSX.Element => {
 				)}
 			</FlexLayout>
 
-			<FlexLayout>
-				<SubheadingText label={name} />
-				{idea.is_published && (
-					<Icon
-						as={IoCheckmarkCircleSharp}
-						ml={2}
-						color={'green.500'}
-						fontSize={'xl'}
-					/>
-				)}
+			<FlexLayout justifyContent={'space-between'}>
+				<FlexLayout alignItems={'center'}>
+					<SubheadingText label={name} />
+					{idea.is_published && (
+						<Icon
+							as={IoCheckmarkCircleSharp}
+							ml={2}
+							color={'green.500'}
+							fontSize={'xl'}
+						/>
+					)}
+					<InterestedIdea ideaId={idea?.id} />
+				</FlexLayout>
 			</FlexLayout>
 			<Divider display={{ base: 'none', md: 'block' }} />
 

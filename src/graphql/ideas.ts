@@ -51,6 +51,20 @@ const DELETE_IDEA = gql`
 	}
 `;
 
+const INSERT_INTERESTED_IDEA = gql`
+	mutation insertInterestedIdea($ideaId: uuid!) {
+		insert_interested_ideas_one(object: { idea_id: $ideaId }) {
+			idea_id
+		}
+		update_ideas_by_pk(
+			pk_columns: { id: $ideaId }
+			_inc: { interested: 1 }
+		) {
+			id
+		}
+	}
+`;
+
 // const GET_IDEAS = gql`
 // 	subscription getIdeas {
 // 		ideas(
@@ -108,6 +122,7 @@ const GET_IDEAS = gql`
 			status
 			created_at
 			is_new
+			interested
 			idea_user {
 				first_name
 				country
@@ -182,5 +197,6 @@ export {
 	GET_IDEA,
 	UPDATE_IDEA,
 	DELETE_IDEA,
-	UPSERT_IDEA_UPVOTE
+	UPSERT_IDEA_UPVOTE,
+	INSERT_INTERESTED_IDEA
 };

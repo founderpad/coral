@@ -343,27 +343,29 @@
   - role: me
     permission:
       columns:
-      - id
-      - user_id
+      - is_new
+      - interested
+      - field
       - name
+      - preview
       - status
       - created_at
-      - preview
-      - field
-      - is_new
+      - id
+      - user_id
       filter: {}
       allow_aggregations: true
   - role: user
     permission:
       columns:
-      - is_new
-      - field
-      - name
-      - preview
-      - status
-      - created_at
       - id
       - user_id
+      - name
+      - status
+      - created_at
+      - interested
+      - preview
+      - field
+      - is_new
       filter: {}
       allow_aggregations: true
 - table:
@@ -579,6 +581,7 @@
       - description
       - description_preview
       - field
+      - interested
       - is_published
       - mission_statement
       - name
@@ -602,6 +605,45 @@
       filter:
         user_id:
           _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: interested_ideas
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: me
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - idea_id
+      backend_only: false
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - idea_id
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - created_at
+      - updated_at
+      - id
+      - idea_id
+      - user_id
+      filter: {}
+      allow_aggregations: true
 - table:
     schema: public
     name: report

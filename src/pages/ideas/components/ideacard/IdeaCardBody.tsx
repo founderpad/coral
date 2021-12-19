@@ -1,12 +1,12 @@
 import { Label } from 'components/labels';
-import { StackLayout } from 'components/layouts';
+import { FlexLayout, StackLayout } from 'components/layouts';
 import BaseTag from 'components/tags/BaseTag';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 
 type TIdeaCardBody = Pick<
 	TIdea_Preview,
-	'preview' | 'field' | 'idea_user' | 'status'
+	'preview' | 'field' | 'idea_user' | 'status' | 'interested'
 >;
 
 const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
@@ -33,24 +33,46 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 };
 
 export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
-	const { field, status } = idea;
+	const { field, status, interested } = idea;
 
 	return (
-		<StackLayout
+		<FlexLayout
 			direction={'row'}
 			flex={1}
 			alignItems={'center'}
-			justifyContent={'flex-end'}
-			spacing={2}
-			full
+			justifyContent={'space-between'}
+			w={'full'}
 		>
-			<BaseTag color={'fpPrimary.500'} bg={'white'} fontSize={'x-small'}>
-				{status}
-			</BaseTag>
-			<BaseTag color={'fpPrimary.500'} bg={'white'} fontSize={'x-small'}>
-				{field}
-			</BaseTag>
-		</StackLayout>
+			<StackLayout spacing={2} direction={'row'}>
+				<BaseTag
+					color={'fpPrimary.500'}
+					bg={'white'}
+					fontSize={'x-small'}
+				>
+					{status}
+				</BaseTag>
+				<BaseTag
+					color={'fpPrimary.500'}
+					bg={'white'}
+					fontSize={'x-small'}
+				>
+					{field}
+				</BaseTag>
+			</StackLayout>
+			{interested > 0 && (
+				<BaseTag
+					bg={'fpPrimary.500'}
+					color={'white'}
+					fontSize={'x-small'}
+					alignItems={'center'}
+					justifyContent={'center'}
+					borderWidth={0}
+				>
+					{/* <Icon as={IoStarSharp} mr={1} /> */}
+					{interested} interested
+				</BaseTag>
+			)}
+		</FlexLayout>
 	);
 };
 
