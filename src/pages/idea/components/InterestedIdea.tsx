@@ -1,10 +1,18 @@
+import Icon from '@chakra-ui/icon';
 import { PrimaryButton } from 'components/buttons';
-import { Label } from 'components/labels';
+import { SubLabel } from 'components/labels';
 import { useInsertInterestedIdeaMutation } from 'generated/api';
 import React, { useState } from 'react';
+import { IoStarSharp } from 'react-icons/io5';
 
-const InterestedIdea = ({ ideaId }: { ideaId: string }) => {
-	const [interested, setInterested] = useState(false);
+const InterestedIdea = ({
+	ideaId,
+	hasInterest
+}: {
+	ideaId: string;
+	hasInterest: boolean;
+}): JSX.Element => {
+	const [interested, setInterested] = useState(hasInterest);
 
 	const [insertInterestedIdeaMutation] = useInsertInterestedIdeaMutation({
 		variables: {
@@ -25,9 +33,9 @@ const InterestedIdea = ({ ideaId }: { ideaId: string }) => {
 
 	if (interested)
 		return (
-			<Label color={'green.500'} ml={12}>
-				You have expressed an interest in this idea
-			</Label>
+			<SubLabel color={'green.500'} alignItems={'center'}>
+				You have expressed interest in this idea
+			</SubLabel>
 		);
 
 	return (
@@ -35,9 +43,12 @@ const InterestedIdea = ({ ideaId }: { ideaId: string }) => {
 			name={'interested-idea-button'}
 			variant={'outline'}
 			onClick={() => insertInterestedIdeaMutation()}
-			ml={12}
+			fontSize={{ base: 'xs' }}
+			alignItems={'center'}
+			alignContent={'baseline'}
+			leftIcon={<Icon as={IoStarSharp} />}
 		>
-			I&apos;m interested
+			I&apos;m Interested
 		</PrimaryButton>
 	);
 };

@@ -1,8 +1,10 @@
+import Icon from '@chakra-ui/icon';
 import { Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import BaseTag from 'components/tags/BaseTag';
 import { TIdea_Preview } from 'generated/api';
 import React from 'react';
+import { IoStarSharp } from 'react-icons/io5';
 
 type TIdeaCardBody = Pick<
 	TIdea_Preview,
@@ -60,17 +62,16 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
 				</BaseTag>
 			</StackLayout>
 			{interested > 0 && (
-				<BaseTag
-					bg={'fpPrimary.500'}
-					color={'white'}
-					fontSize={'x-small'}
-					alignItems={'center'}
-					justifyContent={'center'}
-					borderWidth={0}
-				>
-					{/* <Icon as={IoStarSharp} mr={1} /> */}
-					{interested} interested
-				</BaseTag>
+				<FlexLayout color={'yellow.500'}>
+					<Icon as={IoStarSharp} mr={1} p={0} />
+					<Label
+						fontSize={'xs'}
+						alignItems={'baseline'}
+						color={'yellow.500'}
+					>
+						{interested} interested
+					</Label>
+				</FlexLayout>
 			)}
 		</FlexLayout>
 	);

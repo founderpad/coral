@@ -8,9 +8,10 @@ export const PrimaryButton = (props: BaseButtonProps): JSX.Element => {
 		<BaseButton
 			{...props}
 			colorScheme={'fpPrimary'}
+			borderColor={'initial'}
 			variant={variant ?? 'solid'}
 			size={size ?? 'sm'}
-			minW={'50px'}
+			minW={'40px'}
 			rounded={'md'}
 		>
 			{children}

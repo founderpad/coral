@@ -26,7 +26,8 @@ const IdeaTab = (): JSX.Element => {
 
 	const { data } = useGetIdeaQuery({
 		variables: {
-			id: useQueryParam('id')
+			id: useQueryParam('id'),
+			userId: user?.id
 		}
 	});
 
@@ -50,7 +51,7 @@ const IdeaTab = (): JSX.Element => {
 	const { avatar_url, first_name } = idea_user;
 
 	return (
-		<StackLayout spacing={6}>
+		<StackLayout>
 			<FlexLayout
 				alignItems={'center'}
 				justifyContent={{ base: 'space-between', sm: 'flex-end' }}
@@ -76,7 +77,7 @@ const IdeaTab = (): JSX.Element => {
 				)}
 			</FlexLayout>
 
-			<FlexLayout justifyContent={'space-between'}>
+			<StackLayout spacing={2}>
 				<FlexLayout alignItems={'center'}>
 					<SubheadingText label={name} />
 					{idea.is_published && (
@@ -87,9 +88,14 @@ const IdeaTab = (): JSX.Element => {
 							fontSize={'xl'}
 						/>
 					)}
-					<InterestedIdea ideaId={idea?.id} />
 				</FlexLayout>
-			</FlexLayout>
+				<StackLayout direction={'row'} spacing={0}>
+					<InterestedIdea
+						ideaId={idea?.id}
+						hasInterest={!!data?.has_interest?.id}
+					/>
+				</StackLayout>
+			</StackLayout>
 			<Divider display={{ base: 'none', md: 'block' }} />
 
 			<ContentHighlightsLayout

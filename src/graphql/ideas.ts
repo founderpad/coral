@@ -137,13 +137,12 @@ const GET_IDEAS = gql`
 `;
 
 const GET_IDEA = gql`
-	query getIdea($id: uuid!) {
+	query getIdea($id: uuid!, $userId: uuid!) {
 		idea: ideas_by_pk(id: $id) {
 			id
 			name
 			description
 			field
-			mission_statement
 			competitors
 			team
 			additional_information
@@ -164,6 +163,9 @@ const GET_IDEA = gql`
 					}
 				}
 			}
+		}
+		has_interest: interested_ideas_by_pk(idea_id: $id, user_id: $userId) {
+			id
 		}
 	}
 `;
