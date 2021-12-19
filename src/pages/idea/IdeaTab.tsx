@@ -1,3 +1,4 @@
+import { Divider } from '@chakra-ui/layout';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, UserAvatarDetails } from 'components/shared';
@@ -17,6 +18,7 @@ import {
 } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 import IdeaActions from './components/IdeaMenu';
+import InterestedIdea from './components/InterestedIdea';
 
 const IdeaTab = (): JSX.Element => {
 	const router = useRouter();
@@ -45,6 +47,7 @@ const IdeaTab = (): JSX.Element => {
 		additional_information,
 		status,
 		field,
+		id,
 		interested
 	} = idea;
 	const { avatar_url, first_name } = idea_user;
@@ -74,7 +77,12 @@ const IdeaTab = (): JSX.Element => {
 				flexDirection={'column'}
 			>
 				<SubheadingText label={name} />
-				<StackLayout direction={'row'} spacing={2} pt={2}>
+				<StackLayout
+					direction={'row'}
+					spacing={2}
+					pt={2}
+					alignItems={'center'}
+				>
 					{idea.is_published && (
 						<BaseTag
 							bg={'green.500'}
@@ -89,6 +97,14 @@ const IdeaTab = (): JSX.Element => {
 							{interested} interested
 						</BaseTag>
 					)}
+					<Divider
+						orientation={'vertical'}
+						display={{ base: 'none', md: 'block' }}
+					/>
+					<InterestedIdea
+						ideaId={id}
+						hasInterest={!!data.has_interest?.id}
+					/>
 				</StackLayout>
 			</FlexLayout>
 
@@ -98,12 +114,12 @@ const IdeaTab = (): JSX.Element => {
 				tags={[
 					{
 						title: 'Stage',
-						value: idea?.status,
+						value: status,
 						icon: IoTrendingUpSharp
 					},
 					{
 						title: 'Field',
-						value: idea?.field,
+						value: field,
 						icon: IoBulbSharp
 					},
 					{
