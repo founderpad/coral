@@ -2,6 +2,7 @@ import { Divider } from '@chakra-ui/layout';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, UserAvatarDetails } from 'components/shared';
+import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
 import KeyInformationBox from 'components/shared/KeyInformationBox';
 import BaseTag from 'components/tags/BaseTag';
 import { useGetIdeaQuery } from 'generated/api';
@@ -64,16 +65,7 @@ const IdeaTab = (): JSX.Element => {
 					createdAt={formatDate(created_at, true)}
 				/>
 
-				{user?.id === user_id && (
-					<React.Fragment>
-						<Divider
-							orientation={'vertical'}
-							mx={3}
-							display={{ base: 'none', sm: 'block' }}
-						/>
-						<IdeaActions ideaId={idea?.id} />
-					</React.Fragment>
-				)}
+				{user?.id === user_id && <IdeaActions ideaId={idea?.id} />}
 			</FlexLayout>
 
 			<FlexLayout
@@ -100,18 +92,22 @@ const IdeaTab = (): JSX.Element => {
 				</StackLayout>
 			</FlexLayout>
 
-			{/* <StackLayout direction={'row'} spacing={0}>
+			{/* 
+				<StackLayout direction={'row'} spacing={0}>
 					<InterestedIdea
 						ideaId={idea?.id}
 						hasInterest={!!data?.has_interest?.id}
 					/>
-				</StackLayout> */}
+				</StackLayout>
+			*/}
 
-			{/* <StackLayout spacing={8}>
+			{/* 
+				<StackLayout spacing={8}>
 					{content.map((c, key) => (
 						<ContentFieldAndValue key={key} {...c} />
 					))}
-				</StackLayout> */}
+				</StackLayout>
+			*/}
 
 			<Divider />
 
@@ -149,6 +145,29 @@ const IdeaTab = (): JSX.Element => {
 			</StackLayout>
 
 			<Divider />
+
+			<StackLayout spacing={8}>
+				{/* {content.map((c, key) => (
+						<ContentFieldAndValue key={key} {...c} />
+					))} */}
+				<ContentFieldAndValue
+					title={'Description'}
+					value={description}
+				/>
+				{team && <ContentFieldAndValue title={'Team'} value={team} />}
+				{competitors && (
+					<ContentFieldAndValue
+						title={'Competitors'}
+						value={competitors}
+					/>
+				)}
+				{additional_information && (
+					<ContentFieldAndValue
+						title={'Additional information'}
+						value={additional_information}
+					/>
+				)}
+			</StackLayout>
 
 			{/* <ContentHighlightsLayout
 				content={[
