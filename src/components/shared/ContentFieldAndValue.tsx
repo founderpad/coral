@@ -1,4 +1,4 @@
-import { Label, SubLabel } from 'components/labels';
+import { Label } from 'components/labels';
 import { StackLayout } from 'components/layouts';
 import React from 'react';
 
@@ -9,8 +9,8 @@ interface Props {
 
 const ContentFieldAndValue = (props: Props): JSX.Element => (
 	<StackLayout spacing={0}>
-		<Label>{props.title}</Label>
-		<SubLabel color={'gray.400'}>{props.value}</SubLabel>
+		<Label mb={1}>{props.title}</Label>
+		<Label color={'gray.400'}>{props.value}</Label>
 	</StackLayout>
 );
 

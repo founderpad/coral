@@ -1,9 +1,17 @@
-import { Stack } from '@chakra-ui/layout';
 import { SubmitButton } from 'components/buttons';
-import ContentHighlightsLayout from 'components/layouts/ContentHighlightsLayout';
+import { StackLayout } from 'components/layouts';
 import { Loading, TitleEditAction } from 'components/shared';
+import AppDivider from 'components/shared/AppDivider';
+import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
+import OverviewTags from 'components/shared/OverviewTags';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import React, { useContext } from 'react';
+import {
+	IoAnalyticsSharp,
+	IoBulbSharp,
+	IoRocketSharp,
+	IoTimeSharp
+} from 'react-icons/io5';
 import useProfileFragment from '../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
@@ -36,55 +44,64 @@ const WorkExperienceTab = (): JSX.Element => {
 	if (!userProfile) return <Loading small />;
 
 	return (
-		<Stack>
+		<StackLayout>
 			<TitleEditAction title="Your experience" onClick={onClick} />
-			<ContentHighlightsLayout
-				content={[
-					{
-						title: 'Background',
-						value: userProfile?.background ?? 'Not set'
-					},
-					{
-						title: 'Personal statement',
-						value: userProfile?.statement ?? 'Not set'
-					},
-					{
-						title: 'Overview of businesses',
-						value: userProfile?.business_description ?? 'Not set'
-					},
-					{
-						title: 'Skills',
-						value:
-							userProfile?.skills?.join(', ') ??
-							'No skills selected'
-					}
-				]}
-				highlights={[
+			<OverviewTags
+				tags={[
 					{
 						title: 'Specialist field',
-						value: userProfile?.specialist_industry ?? 'Not set'
+						value: userProfile?.specialist_industry ?? 'Not set',
+						icon: IoBulbSharp
 					},
 					{
 						title: 'Previous startups',
 						value: userProfile?.startups
 							? `${userProfile?.startups} startups`
-							: 'Not set'
+							: 'Not set',
+						icon: IoRocketSharp
 					},
 					{
-						title: 'Start-up  status',
-						value: userProfile?.status ?? 'Not set'
+						title: 'Startup status',
+						value: userProfile?.status ?? 'Not set',
+						icon: IoAnalyticsSharp
 					},
 					{
-						title: 'Availability',
+						title: 'Availability (hours)',
 						value: userProfile?.availability
 							? `${userProfile?.availability} hours per week`
-							: 'Not set'
+							: 'Not set',
+						icon: IoTimeSharp
 					}
 				]}
 			/>
+
+			<AppDivider display={{ base: 'block', md: 'none' }} />
+
+			<StackLayout>
+				<ContentFieldAndValue
+					title={'Background'}
+					value={userProfile?.background ?? 'Not set'}
+				/>
+				<ContentFieldAndValue
+					title={'Personal statement'}
+					value={userProfile?.statement ?? 'Not set'}
+				/>
+				<ContentFieldAndValue
+					title={'Overview of businesses'}
+					value={userProfile?.business_description ?? 'Not set'}
+				/>
+				<ContentFieldAndValue
+					title={'Skills'}
+					value={
+						userProfile?.skills?.join(', ') ?? 'No skills selected'
+					}
+				/>
+			</StackLayout>
+			<AppDivider />
+
 			<TitleEditAction title="Your resume" />
 			<ResumeUploader />
-		</Stack>
+		</StackLayout>
 	);
 };
 

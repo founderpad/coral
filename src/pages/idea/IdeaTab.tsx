@@ -1,9 +1,9 @@
-import { Divider } from '@chakra-ui/layout';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, UserAvatarDetails } from 'components/shared';
+import AppDivider from 'components/shared/AppDivider';
 import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
-import KeyInformationBox from 'components/shared/KeyInformationBox';
+import OverviewTags from 'components/shared/OverviewTags';
 import BaseTag from 'components/tags/BaseTag';
 import { useGetIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
@@ -74,7 +74,7 @@ const IdeaTab = (): JSX.Element => {
 				flexDirection={'column'}
 			>
 				<SubheadingText label={name} />
-				<StackLayout direction={'row'} spacing={2} mt={1}>
+				<StackLayout direction={'row'} spacing={2} pt={2}>
 					{idea.is_published && (
 						<BaseTag
 							bg={'green.500'}
@@ -92,42 +92,29 @@ const IdeaTab = (): JSX.Element => {
 				</StackLayout>
 			</FlexLayout>
 
-			<Divider />
+			<AppDivider />
 
-			<StackLayout
-				direction={{ base: 'column', md: 'row' }}
-				spacing={{ base: 0, md: 12 }}
-				alignItems={{ base: 'flex-start', md: 'center' }}
-			>
-				<KeyInformationBox
-					title={'Stage'}
-					value={idea?.status}
-					icon={{
-						type: IoTrendingUpSharp,
-						color: 'fpPrimary.500'
-					}}
-				/>
-				<KeyInformationBox
-					title={'Field'}
-					value={idea?.field}
-					icon={{
-						type: IoBulbSharp,
-						color: 'fpPrimary.500'
-					}}
-				/>
-				{idea_user?.country && (
-					<KeyInformationBox
-						title={'Location'}
-						value={idea_user?.country}
-						icon={{
-							type: IoLocationSharp,
-							color: 'fpPrimary.500'
-						}}
-					/>
-				)}
-			</StackLayout>
+			<OverviewTags
+				tags={[
+					{
+						title: 'Stage',
+						value: idea?.status,
+						icon: IoTrendingUpSharp
+					},
+					{
+						title: 'Field',
+						value: idea?.field,
+						icon: IoBulbSharp
+					},
+					{
+						title: 'Location',
+						value: idea_user?.country,
+						icon: IoLocationSharp
+					}
+				]}
+			/>
 
-			<Divider />
+			<AppDivider />
 
 			<StackLayout>
 				<ContentFieldAndValue

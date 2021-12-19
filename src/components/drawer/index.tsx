@@ -68,6 +68,7 @@ export const Drawer = ({
 									<CancelButton
 										label={'Cancel'}
 										onClick={onClose}
+										size={'xs'}
 									/>
 									{actions}
 								</ButtonGroup>

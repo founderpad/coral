@@ -29,7 +29,7 @@ export const BaseMenuItem = ({
 			<Label fontWeight={'medium'} fontSize={'small'} color={color}>
 				{title}
 			</Label>
-			<Label fontSize={'x-small'} color={'gray.400'}>
+			<Label fontSize={'xs'} color={'gray.400'}>
 				{subTitle}
 			</Label>
 		</MenuItem>

@@ -9,7 +9,12 @@ export const StackLayout = ({
 	const { children, spacing, rounded = 'md', ...rest } = props;
 
 	return (
-		<Stack {...rest} rounded={rounded} spacing={spacing ?? 6}>
+		<Stack
+			{...rest}
+			rounded={rounded}
+			spacing={spacing ?? 6}
+			css={{ marginTop: 0 }}
+		>
 			{children}
 		</Stack>
 	);

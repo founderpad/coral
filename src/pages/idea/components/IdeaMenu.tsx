@@ -49,25 +49,6 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 	}, []);
 
 	return (
-		// <BaseMenu
-		// 	options={[
-		// 		{
-		// 			title: 'Edit',
-		// 			subTitle: 'Edit this idea',
-		// 			onClick: () => onEditClick(),
-		// 			divider: true,
-		// 			icon: IoPencilSharp
-		// 		},
-		// 		{
-		// 			title: 'Delete',
-		// 			subTitle: 'Delete this idea',
-		// 			onClick: () => onDeleteClick(),
-		// 			icon: IoTrashBin,
-		// 			color: 'red.500'
-		// 		}
-		// 	]}
-		// />
-
 		<BaseMenu>
 			<BaseMenuItem
 				title={'Edit'}
