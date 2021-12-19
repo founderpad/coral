@@ -92,23 +92,6 @@ const IdeaTab = (): JSX.Element => {
 				</StackLayout>
 			</FlexLayout>
 
-			{/* 
-				<StackLayout direction={'row'} spacing={0}>
-					<InterestedIdea
-						ideaId={idea?.id}
-						hasInterest={!!data?.has_interest?.id}
-					/>
-				</StackLayout>
-			*/}
-
-			{/* 
-				<StackLayout spacing={8}>
-					{content.map((c, key) => (
-						<ContentFieldAndValue key={key} {...c} />
-					))}
-				</StackLayout>
-			*/}
-
 			<Divider />
 
 			<StackLayout
@@ -146,10 +129,7 @@ const IdeaTab = (): JSX.Element => {
 
 			<Divider />
 
-			<StackLayout spacing={8}>
-				{/* {content.map((c, key) => (
-						<ContentFieldAndValue key={key} {...c} />
-					))} */}
+			<StackLayout>
 				<ContentFieldAndValue
 					title={'Description'}
 					value={description}
