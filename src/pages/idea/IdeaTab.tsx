@@ -125,7 +125,7 @@ const IdeaTab = (): JSX.Element => {
 					value={idea?.status}
 					icon={{
 						type: IoTrendingUpSharp,
-						color: 'green.500'
+						color: 'fpPrimary.500'
 					}}
 				/>
 				<KeyInformationBox
@@ -133,7 +133,7 @@ const IdeaTab = (): JSX.Element => {
 					value={idea?.field}
 					icon={{
 						type: IoBulbSharp,
-						color: 'gold'
+						color: 'fpPrimary.500'
 					}}
 				/>
 				{idea_user?.country && (
@@ -142,7 +142,7 @@ const IdeaTab = (): JSX.Element => {
 						value={idea_user?.country}
 						icon={{
 							type: IoLocationSharp,
-							color: 'purple.500'
+							color: 'fpPrimary.500'
 						}}
 					/>
 				)}
