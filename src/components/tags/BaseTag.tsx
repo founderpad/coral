@@ -10,7 +10,7 @@ export const BaseTag = (props: TagProps): JSX.Element => (
 		d={'flex'}
 		{...props}
 	>
-		<TagLabel fontSize={props.fontSize ?? 'smaller'} fontWeight={'light'}>
+		<TagLabel fontSize={{ base: 'smaller', sm: 'xs' }} fontWeight={'light'}>
 			{props.children}
 		</TagLabel>
 	</Tag>

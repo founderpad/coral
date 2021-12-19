@@ -150,6 +150,7 @@ const GET_IDEA = gql`
 			user_id
 			status
 			created_at
+			interested
 			idea_user {
 				avatar_url
 				first_name

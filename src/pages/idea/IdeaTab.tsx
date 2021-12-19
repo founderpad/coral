@@ -1,10 +1,9 @@
-import Icon from '@chakra-ui/icon';
 import { Divider } from '@chakra-ui/layout';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
-import ContentHighlightsLayout from 'components/layouts/ContentHighlightsLayout';
-import { Loading } from 'components/shared';
-import { UserAvatarDetails } from 'components/shared/UserAvatar';
+import { Loading, UserAvatarDetails } from 'components/shared';
+import KeyInformationBox from 'components/shared/KeyInformationBox';
+import BaseTag from 'components/tags/BaseTag';
 import { useGetIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { useQueryParam } from 'hooks/util';
@@ -12,13 +11,11 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import {
 	IoBulbSharp,
-	IoBusinessSharp,
-	IoCheckmarkCircleSharp,
-	IoLocationSharp
+	IoLocationSharp,
+	IoTrendingUpSharp
 } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 import IdeaActions from './components/IdeaMenu';
-import InterestedIdea from './components/InterestedIdea';
 
 const IdeaTab = (): JSX.Element => {
 	const router = useRouter();
@@ -46,7 +43,8 @@ const IdeaTab = (): JSX.Element => {
 		competitors,
 		additional_information,
 		status,
-		field
+		field,
+		interested
 	} = idea;
 	const { avatar_url, first_name } = idea_user;
 
@@ -54,7 +52,8 @@ const IdeaTab = (): JSX.Element => {
 		<StackLayout>
 			<FlexLayout
 				alignItems={'center'}
-				justifyContent={{ base: 'space-between', sm: 'flex-end' }}
+				justifyContent={'space-between'}
+				mb={4}
 			>
 				<UserAvatarDetails
 					rounded={'full'}
@@ -77,28 +76,81 @@ const IdeaTab = (): JSX.Element => {
 				)}
 			</FlexLayout>
 
-			<StackLayout spacing={2}>
-				<FlexLayout alignItems={'center'}>
-					<SubheadingText label={name} />
+			<FlexLayout
+				flex={1}
+				wordBreak={'break-all'}
+				flexDirection={'column'}
+			>
+				<SubheadingText label={name} />
+				<StackLayout direction={'row'} spacing={2} mt={1}>
 					{idea.is_published && (
-						<Icon
-							as={IoCheckmarkCircleSharp}
-							ml={2}
-							color={'green.500'}
-							fontSize={'xl'}
-						/>
+						<BaseTag
+							bg={'green.500'}
+							borderWidth={0}
+							color={'white'}
+						>
+							Published
+						</BaseTag>
 					)}
-				</FlexLayout>
-				<StackLayout direction={'row'} spacing={0}>
+					{interested > 0 && (
+						<BaseTag bg={'gold'} borderWidth={0}>
+							{interested} interested
+						</BaseTag>
+					)}
+				</StackLayout>
+			</FlexLayout>
+
+			{/* <StackLayout direction={'row'} spacing={0}>
 					<InterestedIdea
 						ideaId={idea?.id}
 						hasInterest={!!data?.has_interest?.id}
 					/>
-				</StackLayout>
-			</StackLayout>
-			<Divider display={{ base: 'none', md: 'block' }} />
+				</StackLayout> */}
 
-			<ContentHighlightsLayout
+			{/* <StackLayout spacing={8}>
+					{content.map((c, key) => (
+						<ContentFieldAndValue key={key} {...c} />
+					))}
+				</StackLayout> */}
+
+			<Divider />
+
+			<StackLayout
+				direction={{ base: 'column', md: 'row' }}
+				spacing={{ base: 0, md: 12 }}
+				alignItems={{ base: 'flex-start', md: 'center' }}
+			>
+				<KeyInformationBox
+					title={'Stage'}
+					value={idea?.status}
+					icon={{
+						type: IoTrendingUpSharp,
+						color: 'green.500'
+					}}
+				/>
+				<KeyInformationBox
+					title={'Field'}
+					value={idea?.field}
+					icon={{
+						type: IoBulbSharp,
+						color: 'gold'
+					}}
+				/>
+				{idea_user?.country && (
+					<KeyInformationBox
+						title={'Location'}
+						value={idea_user?.country}
+						icon={{
+							type: IoLocationSharp,
+							color: 'purple.500'
+						}}
+					/>
+				)}
+			</StackLayout>
+
+			<Divider />
+
+			{/* <ContentHighlightsLayout
 				content={[
 					{ title: 'Description', value: description },
 					{ ...(team && { title: 'Team', value: team }) },
@@ -124,7 +176,7 @@ const IdeaTab = (): JSX.Element => {
 						icon: IoLocationSharp
 					}
 				]}
-			/>
+			/> */}
 		</StackLayout>
 	);
 };

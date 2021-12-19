@@ -539,8 +539,9 @@
       - created_at
       - description
       - description_preview
-      - id
       - field
+      - id
+      - interested
       - is_published
       - mission_statement
       - name
