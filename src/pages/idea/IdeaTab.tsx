@@ -1,10 +1,10 @@
 import { SubheadingText } from 'components/heading';
+import { Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
-import { Loading, UserAvatarDetails } from 'components/shared';
+import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
 import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
 import OverviewTags from 'components/shared/OverviewTags';
-import BaseTag from 'components/tags/BaseTag';
 import { useGetIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { useQueryParam } from 'hooks/util';
@@ -18,6 +18,7 @@ import {
 import { formatDate } from 'utils/validators';
 import IdeaActions from './components/IdeaMenu';
 import InterestedIdea from './components/InterestedIdea';
+import InterestedTotal from './components/InterestedTotal';
 
 const IdeaTab = (): JSX.Element => {
 	const router = useRouter();
@@ -82,15 +83,14 @@ const IdeaTab = (): JSX.Element => {
 					pt={2}
 					alignItems={'center'}
 				>
-					<BaseTag bg={'green.500'} borderWidth={0} color={'white'}>
+					<Label
+						color={'green.500'}
+						fontSize={{ base: 'xs', sm: 'smaller' }}
+					>
 						Published
-					</BaseTag>
-
-					{interested > 0 && (
-						<BaseTag bg={'gold'} borderWidth={0}>
-							{interested} interested
-						</BaseTag>
-					)}
+					</Label>
+					<PointSeparator small />
+					<InterestedTotal total={interested} />
 				</StackLayout>
 			</FlexLayout>
 
@@ -147,34 +147,6 @@ const IdeaTab = (): JSX.Element => {
 					/>
 				)}
 			</StackLayout>
-
-			{/* <ContentHighlightsLayout
-				content={[
-					{ title: 'Description', value: description },
-					{ ...(team && { title: 'Team', value: team }) },
-					{
-						...(competitors && {
-							title: 'Competitors',
-							value: competitors
-						})
-					},
-					{
-						...(additional_information && {
-							title: 'Additional information',
-							value: additional_information
-						})
-					}
-				]}
-				highlights={[
-					{ title: 'Stage', value: status, icon: IoBulbSharp },
-					{ title: 'Field', value: field, icon: IoBusinessSharp },
-					{
-						title: 'Location',
-						value: idea_user.country,
-						icon: IoLocationSharp
-					}
-				]}
-			/> */}
 		</StackLayout>
 	);
 };

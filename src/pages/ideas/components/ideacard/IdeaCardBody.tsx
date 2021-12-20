@@ -1,10 +1,9 @@
-import Icon from '@chakra-ui/icon';
 import { Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import BaseTag from 'components/tags/BaseTag';
 import { TIdea_Preview } from 'generated/api';
+import InterestedTotal from 'pages/idea/components/InterestedTotal';
 import React from 'react';
-import { IoStarSharp } from 'react-icons/io5';
 
 type TIdeaCardBody = Pick<
 	TIdea_Preview,
@@ -46,33 +45,14 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
 			w={'full'}
 		>
 			<StackLayout spacing={2} direction={'row'}>
-				<BaseTag
-					color={'fpPrimary.500'}
-					bg={'white'}
-					fontSize={'x-small'}
-				>
+				<BaseTag color={'fpPrimary.500'} bg={'white'}>
 					{status}
 				</BaseTag>
-				<BaseTag
-					color={'fpPrimary.500'}
-					bg={'white'}
-					fontSize={'x-small'}
-				>
+				<BaseTag color={'fpPrimary.500'} bg={'white'}>
 					{field}
 				</BaseTag>
 			</StackLayout>
-			{interested > 0 && (
-				<FlexLayout color={'yellow.500'}>
-					<Icon as={IoStarSharp} mr={1} p={0} />
-					<Label
-						fontSize={'xs'}
-						alignItems={'baseline'}
-						color={'yellow.500'}
-					>
-						{interested} interested
-					</Label>
-				</FlexLayout>
-			)}
+			<InterestedTotal total={interested} />
 		</FlexLayout>
 	);
 };
