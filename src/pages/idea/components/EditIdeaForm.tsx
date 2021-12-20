@@ -67,18 +67,6 @@ const EditIdeaForm = (): ReactElement<any> => {
 				isRequired
 			/>
 
-			{/* <TextareaField
-				id="missionstatement"
-				label="Mission statement"
-				name="mission_statement"
-				placeholder="Write a mission statement about your idea (max. 500 characters)"
-				error={errors['mission_statement']}
-				errorText="Please enter your mission statement (max. 500 characters)"
-				control={control}
-				rules={{ maxLength: 500 }}
-				isRequired
-			/> */}
-
 			<TextareaField
 				id="description"
 				label="Description of your idea"

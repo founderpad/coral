@@ -25,8 +25,9 @@ const useIdeaFragment = (): TIdeas => {
 	}) as TIdeas;
 
 	console.log('result: ', cache);
+	console.log('idea: ', ideaId);
 
-	return result;
+	if (result) return result;
 };
 
 export default useIdeaFragment;
