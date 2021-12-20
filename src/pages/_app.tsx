@@ -45,10 +45,13 @@ const App: FC<AppProps> = ({
 	Component,
 	pageProps
 }: AppProps): ReactElement => {
+	// usePushNotifications();
+
 	return (
 		<React.Fragment>
 			<Head>
 				<link rel="shortcut icon" href="/favicon.svg" />
+				<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
 			</Head>
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>

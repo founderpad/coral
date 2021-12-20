@@ -1,15 +1,19 @@
 import MainNav from 'components/nav/mainnav/MainNav';
+import { usePushNotifications } from 'hooks/notifications';
 import React, { FC } from 'react';
 import MainContainer from '../containers/MainContainer';
 
 export const MainLayout: FC<{ children: JSX.Element }> = ({
 	children
-}): JSX.Element => (
-	<React.Fragment>
-		<MainNav />
-		<MainContainer>{children}</MainContainer>
-	</React.Fragment>
-);
+}): JSX.Element => {
+	usePushNotifications();
+	return (
+		<React.Fragment>
+			<MainNav />
+			<MainContainer>{children}</MainContainer>
+		</React.Fragment>
+	);
+};
 
 // const FooterLink = ({
 // 	href,

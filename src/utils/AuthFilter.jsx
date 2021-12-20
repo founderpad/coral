@@ -18,9 +18,16 @@ export default function AuthFilter(Component) {
 		if (!signedIn) router.push('/');
 
 		return (
-			<MainLayout>
+			<>
+				<head>
+                    <script
+                        src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+                    ></script>
+                </head>
+				<MainLayout>
 				<Component {...arguments} />
 			</MainLayout>
+			</>
 		);
 	};
 }

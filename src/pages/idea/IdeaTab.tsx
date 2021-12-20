@@ -90,15 +90,15 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 
 			<AppDivider />
 
-			{idea.user_id !== user.id && (
-				<React.Fragment>
-					<InterestedIdea
-						ideaId={id}
-						hasInterest={!!data.has_interest?.id}
-					/>
-					<AppDivider />
-				</React.Fragment>
-			)}
+			{/* {idea.user_id !== user.id && ( */}
+			<React.Fragment>
+				<InterestedIdea
+					ideaId={id}
+					hasInterest={!!data.has_interest?.id}
+				/>
+				<AppDivider />
+			</React.Fragment>
+			{/* )} */}
 
 			<OverviewTags
 				tags={[

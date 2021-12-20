@@ -5,7 +5,7 @@ import { USER_GET_EXPERIENCE, USER_UPDATE_EXPERIENCE } from 'graphql/user';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from 'slices/auth';
+import { clearUser, setUser } from 'slices/auth';
 import { IAuthFormData, IRegisterFormData, TExperience } from 'types/auth';
 import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
@@ -64,14 +64,14 @@ export const useLogin = (): any => {
 
 export const useLogout = (): any => {
 	const showErrorNotification = useErrorNotification();
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const router = useRouter();
 
 	return async (): Promise<void> => {
 		try {
 			await router.replace('/loggedout');
 			await auth.logout();
-			// dispatch(clearUser());
+			dispatch(clearUser());
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to logout',
@@ -205,8 +205,13 @@ export const useUpdateExperience = (userExperience: TExperience): any => {
 	});
 };
 
-export const useCurrentUser = (): TUsers =>
-	useSelector((state: RootState) => state.authSlice.user);
+export const useCurrentUser = (): TUsers => {
+	try {
+		return useSelector((state: RootState) => state.authSlice.user);
+	} catch (e) {
+		return undefined;
+	}
+};
 
 export const useClaim = (): string =>
 	auth.getClaim('x-hasura-user-id') as string;

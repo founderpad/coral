@@ -26,7 +26,6 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
 			m={'auto'}
 			bg={'white'}
 			flex={{ base: 1, sm: 'none' }}
-			justifyContent={'center'}
 			id={'auth-container'}
 		>
 			<FlexLayout mx={'auto'} alignItems={'center'}>
