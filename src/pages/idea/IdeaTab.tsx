@@ -101,12 +101,12 @@ const IdeaTab = (): JSX.Element => {
 						orientation={'vertical'}
 						display={{ base: 'none', md: 'block' }}
 					/>
-					<InterestedIdea
-						ideaId={id}
-						hasInterest={!!data.has_interest?.id}
-					/>
 				</StackLayout>
 			</FlexLayout>
+
+			<AppDivider />
+
+			<InterestedIdea ideaId={id} hasInterest={!!data.has_interest?.id} />
 
 			<AppDivider />
 

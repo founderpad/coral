@@ -43,8 +43,6 @@ const InterestedIdea = ({
 			name={'interested-idea-button'}
 			variant={'outline'}
 			onClick={() => insertInterestedIdeaMutation()}
-			fontSize={{ base: 'xs', md: 'smaller' }}
-			size={'xs'}
 			alignItems={'center'}
 			position={'relative'}
 			w={'fit-content'}
