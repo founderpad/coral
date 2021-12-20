@@ -1305,7 +1305,7 @@
   resolved "https://registry.npmjs.org/@fontsource/inter/-/inter-4.5.1.tgz"
   integrity sha512-mvtOvXNNVLlF1p/UbLgLrmz2RCOl6Ow+TqyiK10SosoLKX7edsXYiHFHb7XIZdjII6F2sJVPPsJXWhBnbXT2DQ==
 
-"@fontsource/sansita-swashed@^4.5.1":
+"@fontsource/sansita-swashed@4.5.0":
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/@fontsource/sansita-swashed/-/sansita-swashed-4.5.0.tgz#a4498061ec8ba706c822bf40ab66b12a3e8d0d77"
   integrity sha512-PLlTTC/45OIGZ9Tg4nIwrioV6qRF4SWg8LKxJyIRPbr7o4gYpFnUWw3FTkXiHrsvEL3DnHtv8vDce/uCpL5pxg==

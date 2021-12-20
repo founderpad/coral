@@ -4,8 +4,6 @@ import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
 import '@fontsource/sansita-swashed/600.css';
-// import '@fontsource/montserrat/500.css';
-// import '@fontsource/montserrat/700.css';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
 import { createStore } from '@reduxjs/toolkit';

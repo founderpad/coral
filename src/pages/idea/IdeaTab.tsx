@@ -1,4 +1,3 @@
-import { Divider } from '@chakra-ui/layout';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, UserAvatarDetails } from 'components/shared';
@@ -83,32 +82,29 @@ const IdeaTab = (): JSX.Element => {
 					pt={2}
 					alignItems={'center'}
 				>
-					{idea.is_published && (
-						<BaseTag
-							bg={'green.500'}
-							borderWidth={0}
-							color={'white'}
-						>
-							Published
-						</BaseTag>
-					)}
+					<BaseTag bg={'green.500'} borderWidth={0} color={'white'}>
+						Published
+					</BaseTag>
+
 					{interested > 0 && (
 						<BaseTag bg={'gold'} borderWidth={0}>
 							{interested} interested
 						</BaseTag>
 					)}
-					<Divider
-						orientation={'vertical'}
-						display={{ base: 'none', md: 'block' }}
-					/>
 				</StackLayout>
 			</FlexLayout>
 
 			<AppDivider />
 
-			<InterestedIdea ideaId={id} hasInterest={!!data.has_interest?.id} />
-
-			<AppDivider />
+			{idea.user_id !== user.id && (
+				<React.Fragment>
+					<InterestedIdea
+						ideaId={id}
+						hasInterest={!!data.has_interest?.id}
+					/>
+					<AppDivider />
+				</React.Fragment>
+			)}
 
 			<OverviewTags
 				tags={[
