@@ -1,5 +1,4 @@
 import { SubheadingText } from 'components/heading';
-import { Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
@@ -19,6 +18,7 @@ import { formatDate } from 'utils/validators';
 import IdeaActions from './components/IdeaMenu';
 import InterestedIdea from './components/InterestedIdea';
 import InterestedTotal from './components/InterestedTotal';
+import PublishedLabel from './components/PublishedLabel';
 
 const IdeaTab = (): JSX.Element => {
 	const router = useRouter();
@@ -34,7 +34,8 @@ const IdeaTab = (): JSX.Element => {
 	const idea = data?.idea;
 
 	if (!data) return <Loading small />;
-	if (!idea || !idea.is_published) router.replace('/404');
+	if (!idea || (!idea.is_published && idea.user_id !== user.id))
+		router.replace('/404');
 
 	const {
 		name,
@@ -83,14 +84,13 @@ const IdeaTab = (): JSX.Element => {
 					pt={2}
 					alignItems={'center'}
 				>
-					<Label
-						color={'green.500'}
-						fontSize={{ base: 'xs', sm: 'smaller' }}
-					>
-						Published
-					</Label>
-					<PointSeparator small />
-					<InterestedTotal total={interested} />
+					<PublishedLabel />
+					{idea?.interested > 0 && (
+						<>
+							<PointSeparator small />
+							<InterestedTotal total={idea.interested} />
+						</>
+					)}
 				</StackLayout>
 			</FlexLayout>
 

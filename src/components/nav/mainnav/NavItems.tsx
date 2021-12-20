@@ -37,6 +37,12 @@ const NavItems: Array<NavItem> = [
 				subLabel: 'View all ideas',
 				href: '/ideas?page=1'
 			},
+			{
+				label: 'My ideas',
+				key: 'my-ideas',
+				subLabel: 'View your ideas',
+				href: '/ideas/my-ideas'
+			},
 			// {
 			// 	label: 'Your ideas',
 			// 	key: 'your-ideas',
@@ -47,9 +53,9 @@ const NavItems: Array<NavItem> = [
 				label: 'Create idea',
 				key: 'create',
 				subLabel: 'Post a new idea to the community',
-				href: '/ideas/create'
+				href: '/ideas/create',
 				// icon: IoAddSharp
-				// divider: true
+				divider: true
 			}
 		]
 	},

@@ -25,7 +25,8 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			rules,
 			label,
 			name,
-			size
+			size,
+			fontSize
 		} = props;
 
 		return (
@@ -51,7 +52,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							error={!!error}
 							name={name}
 							aria-label={name}
-							fontSize={'small'}
+							fontSize={fontSize ?? 'small'}
 							color={'gray.500'}
 						/>
 					)}

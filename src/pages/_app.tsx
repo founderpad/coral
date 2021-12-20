@@ -44,36 +44,40 @@ const AppWrapper = (children: any) => (
 const App: FC<AppProps> = ({
 	Component,
 	pageProps
-}: AppProps): ReactElement => (
-	<React.Fragment>
-		<Head>
-			<link rel="shortcut icon" href="/favicon.svg" />
-		</Head>
-		<Provider store={store}>
-			<PersistGate persistor={persistor}>
-				<NhostAuthProvider auth={auth}>
-					<NhostApolloProvider
-						auth={auth}
-						gqlEndpoint={process.env.NEXT_PUBLIC_GRAPHQL_BACKEND}
-						cache={cache}
-					>
-						<ChakraProvider theme={theme} resetCSS>
-							<ModalProvider>
-								<DrawerProvider>
-									<ModalDrawerProvider>
-										<BaseModal />
-										<BaseModalDrawer />
-										<Component {...pageProps} />
-									</ModalDrawerProvider>
-								</DrawerProvider>
-							</ModalProvider>
-						</ChakraProvider>
-					</NhostApolloProvider>
-				</NhostAuthProvider>
-			</PersistGate>
-		</Provider>
-	</React.Fragment>
-);
+}: AppProps): ReactElement => {
+	return (
+		<React.Fragment>
+			<Head>
+				<link rel="shortcut icon" href="/favicon.svg" />
+			</Head>
+			<Provider store={store}>
+				<PersistGate persistor={persistor}>
+					<NhostAuthProvider auth={auth}>
+						<NhostApolloProvider
+							auth={auth}
+							gqlEndpoint={
+								process.env.NEXT_PUBLIC_GRAPHQL_BACKEND
+							}
+							cache={cache}
+						>
+							<ChakraProvider theme={theme} resetCSS>
+								<ModalProvider>
+									<DrawerProvider>
+										<ModalDrawerProvider>
+											<BaseModal />
+											<BaseModalDrawer />
+											<Component {...pageProps} />
+										</ModalDrawerProvider>
+									</DrawerProvider>
+								</ModalProvider>
+							</ChakraProvider>
+						</NhostApolloProvider>
+					</NhostAuthProvider>
+				</PersistGate>
+			</Provider>
+		</React.Fragment>
+	);
+};
 
 const cache = new InMemoryCache({
 	// addTypename: false,

@@ -205,13 +205,11 @@ export const useUpdateExperience = (userExperience: TExperience): any => {
 	});
 };
 
-export const useCurrentUser = (): TUsers => {
-	return useSelector((state: RootState) => state.authSlice.user);
-};
+export const useCurrentUser = (): TUsers =>
+	useSelector((state: RootState) => state.authSlice.user);
 
-export const useClaim = (): string => {
-	return auth.getClaim('x-hasura-user-id') as string;
-};
+export const useClaim = (): string =>
+	auth.getClaim('x-hasura-user-id') as string;
 
 // export const useUpdateUserAvatar = () => {
 // 	// return (filePath: string): any =>

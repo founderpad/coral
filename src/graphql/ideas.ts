@@ -26,23 +26,6 @@ const UPDATE_IDEA = gql`
 	}
 `;
 
-const GET_USER_IDEAS = gql`
-	query getUserIdeas($user_id: uuid!) {
-		ideas(
-			where: { user_id: { _eq: "de0f34ae-8986-4534-b3b7-60d6ce0babb2" } }
-			order_by: { updated_at: desc }
-		) {
-			name
-			description
-			field
-			updated_at
-			is_published
-			user_id
-			id
-		}
-	}
-`;
-
 const DELETE_IDEA = gql`
 	mutation deleteIdea($id: uuid!) {
 		delete_ideas_by_pk(id: $id) {
@@ -132,6 +115,24 @@ const GET_IDEAS = gql`
 					email
 				}
 			}
+		}
+	}
+`;
+
+const GET_USER_IDEAS = gql`
+	query getUserIdeas($userId: uuid!) {
+		user_ideas: ideas(
+			where: { user_id: { _eq: $userId } }
+			order_by: { updated_at: desc }
+		) {
+			id
+			name
+			description
+			field
+			status
+			created_at
+			is_published
+			interested
 		}
 	}
 `;

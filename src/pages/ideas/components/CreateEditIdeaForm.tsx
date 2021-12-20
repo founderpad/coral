@@ -1,11 +1,9 @@
-import { Stack } from '@chakra-ui/layout';
 import {
 	Alert,
 	AlertDescription,
 	AlertIcon,
 	AlertTitle,
-	CloseButton,
-	Link
+	CloseButton
 } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
@@ -13,9 +11,10 @@ import { InputField } from 'components/input/InputField';
 import { SelectField } from 'components/input/SelectField';
 import { SwitchField } from 'components/input/SwitchField';
 import { TextareaField } from 'components/input/TextareaField';
-import { FlexLayout } from 'components/layouts';
+import { FlexLayout, StackLayout } from 'components/layouts';
+import { PrimaryLink } from 'components/links';
+import AppDivider from 'components/shared/AppDivider';
 import { TIdeas, useCreateIdeaMutation } from 'generated/api';
-import NextLink from 'next/link';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ideasStatusList, industriesList } from 'utils/Constants';
@@ -66,17 +65,22 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 			noValidate
 		>
 			{' '}
-			<Stack spacing={8} d={'flex'} bg={'white'}>
+			<StackLayout spacing={10}>
 				<InputField
 					id="name"
 					name="name"
 					label="Name of your idea"
-					placeholder="Name of your idea"
+					placeholder="Name of your idea (max. 100 characters)"
 					error={errors['name']}
 					errorText="Please enter a name for your idea"
 					control={control}
+					rules={{ maxLength: 100 }}
+					size={'lg'}
+					fontSize={'lg'}
 					isRequired
 				/>
+
+				<AppDivider />
 
 				<TextareaField
 					id="description"
@@ -89,15 +93,6 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					rules={{ maxLength: 500 }}
 					isRequired
 				/>
-
-				{/* <TextareaField
-					id="missionstatement"
-					label="Mission statement"
-					name="mission_statement"
-					placeholder="Write a mission statement about your idea (max. 500 characters)"
-					control={control}
-					rules={{ maxLength: 500 }}
-				/> */}
 
 				<SelectField
 					id="field"
@@ -129,18 +124,22 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					id="competitors"
 					name="competitors"
 					label="Your competitors"
-					placeholder="List your competitors about your idea"
+					placeholder="List your competitors (max. 200 characters)"
 					control={control}
-					// rules={{ maxLength: 150 }}
+					error={errors['competitors']}
+					errorText="Competitors must not be more than 200 characters"
+					rules={{ maxLength: 200 }}
 				/>
 
 				<TextareaField
 					id="team"
 					label="Your team"
 					name="team"
-					placeholder="List each team member"
+					placeholder="List your team (max. 200 characters)"
 					control={control}
-					// rules={{ maxLength: 150 }}
+					error={errors['team']}
+					errorText="Team must not be more than 200 characters"
+					rules={{ maxLength: 200 }}
 				/>
 
 				<TextareaField
@@ -149,7 +148,9 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					name="additional_information"
 					placeholder="Any additional information"
 					control={control}
-					// rules={{ maxLength: 150 }}
+					error={errors['additional_information']}
+					errorText="Additional information must not be more than 200 characters"
+					rules={{ maxLength: 200 }}
 				/>
 
 				{/* <FormControl>
@@ -210,10 +211,10 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					isLoading={isSubmitting}
 					disabled={!isValid || isSubmitting}
 					mt={'auto'}
-					minW={'xs'}
+					w={{ base: 'full', sm: 'xs' }}
 					size={'md'}
 				/>
-			</Stack>
+			</StackLayout>
 		</Form>
 	);
 };
@@ -228,24 +229,26 @@ const CreateUpdateSuccessAlert = ({
 	<Alert status="success" variant={'left-accent'}>
 		<AlertIcon />
 		<FlexLayout flexDirection={'column'}>
-			<AlertTitle color={'black'} fontWeight={'medium'}>
+			<AlertTitle color={'black'} fontWeight={'medium'} fontSize={'md'}>
 				Your idea has been {isUpdate ? 'updated' : 'created'}
 			</AlertTitle>
 			<AlertDescription
 				display="block"
-				fontSize={'sm'}
+				fontSize={'small'}
 				mb={4}
-				color={'gray.700'}
+				color={'gray.500'}
 			>
-				Your {isUpdate ? 'updated' : 'new'} idea has been added and will
-				be live to other founders.
+				Your {isUpdate ? 'updated' : 'new'} idea has been created and,
+				if published, will be live to other users.
 			</AlertDescription>
 
-			<NextLink href={`/idea/${ideaId}`} passHref>
-				<Link color={'fpPrimary.500'} fontSize={'sm'}>
-					Click here to view your idea
-				</Link>
-			</NextLink>
+			<PrimaryLink
+				title={'View your idea'}
+				href={`/idea/${ideaId}`}
+				fontSize={'smaller'}
+			>
+				Click here to view your idea
+			</PrimaryLink>
 		</FlexLayout>
 		<CloseButton position="absolute" right="8px" top="8px" />
 	</Alert>

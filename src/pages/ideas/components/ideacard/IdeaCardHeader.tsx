@@ -30,7 +30,6 @@ const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
 						isTruncated
 					>
 						{name}
-						{/* dfgdhgijhgighihfdiughiufghfiughfduhuigheruifgnhurtighufsvgfuvsiorghreiufhvurthguierfhiuhsgiuehrgiuhhjfoadshfihfiarefhdifhgiubdsiugsbfiushgifhsiudghiu */}
 					</Label>
 					<PostedBy {...idea} />
 				</FlexLayout>

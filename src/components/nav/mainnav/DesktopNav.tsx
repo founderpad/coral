@@ -5,6 +5,7 @@ import { BaseLabel } from 'components/labels/BaseLabel';
 import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
 import BasePopover from 'components/popover/BasePopover';
+import AppDivider from 'components/shared/AppDivider';
 import useUserProfile from 'hooks/user';
 import { usePathMatch } from 'hooks/util';
 import React, { memo } from 'react';
@@ -70,8 +71,9 @@ const DesktopNav = (): JSX.Element => {
 	);
 };
 
-const DesktopSubNav = ({ label, subLabel, href, icon }: NavItem) => (
+const DesktopSubNav = ({ label, subLabel, href, icon, divider }: NavItem) => (
 	<React.Fragment>
+		{divider && <AppDivider />}
 		<NavLink
 			href={href}
 			role={'group'}
