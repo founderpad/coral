@@ -187,8 +187,10 @@ const GET_IDEA_INTERESTED_USERS = gql`
 	query getIdeaInterestedUsers($ideaId: uuid!) {
 		interested_users: interested_ideas(
 			where: { idea_id: { _eq: $ideaId } }
+			order_by: { created_at: desc }
 		) {
 			id
+			created_at
 			user {
 				display_name
 				avatar_url

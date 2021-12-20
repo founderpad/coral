@@ -1,0 +1,1 @@
+CREATE TABLE "public"."user_preferences"("user_id" uuid NOT NULL, "notifications" boolean NOT NULL DEFAULT true, "message" boolean NOT NULL DEFAULT true, PRIMARY KEY ("user_id") , FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON UPDATE restrict ON DELETE restrict, UNIQUE ("user_id"));
