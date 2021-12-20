@@ -34,7 +34,7 @@ const IdeaTab = (): JSX.Element => {
 	const idea = data?.idea;
 
 	if (!data) return <Loading small />;
-	if (!idea) router.replace('/404');
+	if (!idea || !idea.is_published) router.replace('/404');
 
 	const {
 		name,
