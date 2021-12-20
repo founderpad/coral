@@ -8,12 +8,11 @@ const useIdeaFragment = (): TIdeas => {
 	const result = cache.readFragment({
 		id: `ideas:${ideaId}`, // The value of the idea's cache id
 		fragment: gql`
-			fragment IdeaFragment on ideas {
+			fragment idea on ideas {
 				id
 				name
 				description
 				field
-				mission_statement
 				competitors
 				team
 				additional_information
@@ -21,13 +20,25 @@ const useIdeaFragment = (): TIdeas => {
 				user_id
 				status
 			}
-		`
+		`,
+		fragmentName: 'idea'
 	}) as TIdeas;
+
+	// const result = cache.readFragment({
+	// 	id: `ideas:4eb35925-1c42-41b1-93ed-cbcb1d392c8b`, // The value of the idea's cache id
+	// 	fragment: gql`
+	// 		fragment idea on ideas {
+	// 			id
+	// 		}
+	// 	`,
+	// 	fragmentName: 'idea'
+	// }) as TIdeas;
 
 	console.log('result: ', cache);
 	console.log('idea: ', ideaId);
 
 	if (result) return result;
+	return null;
 };
 
 export default useIdeaFragment;
