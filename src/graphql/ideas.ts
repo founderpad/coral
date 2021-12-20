@@ -123,13 +123,10 @@ const GET_USER_IDEAS = gql`
 	query getUserIdeas($userId: uuid!) {
 		user_ideas: ideas(
 			where: { user_id: { _eq: $userId } }
-			order_by: { updated_at: desc }
+			order_by: { created_at: desc }
 		) {
 			id
 			name
-			description
-			field
-			status
 			created_at
 			is_published
 			interested
@@ -186,6 +183,23 @@ const UPSERT_IDEA_UPVOTE = gql`
 	}
 `;
 
+const GET_IDEA_INTERESTED_USERS = gql`
+	query getIdeaInterestedUsers($ideaId: uuid!) {
+		interested_users: interested_ideas(
+			where: { idea_id: { _eq: $ideaId } }
+		) {
+			id
+			user {
+				display_name
+				avatar_url
+				account {
+					email
+				}
+			}
+		}
+	}
+`;
+
 // const UPVOTE_IDEA = gql`
 // 	mutation ($idea_vote: idea_votes_insert_input!) {
 // 		insert_idea_votes_one(objects: $idea_vote) {
@@ -202,5 +216,6 @@ export {
 	UPDATE_IDEA,
 	DELETE_IDEA,
 	UPSERT_IDEA_UPVOTE,
-	INSERT_INTERESTED_IDEA
+	INSERT_INTERESTED_IDEA,
+	GET_IDEA_INTERESTED_USERS
 };

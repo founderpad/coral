@@ -4,9 +4,8 @@ import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
 import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
 import OverviewTags from 'components/shared/OverviewTags';
-import { useGetIdeaQuery } from 'generated/api';
+import { TGetIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
-import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
 import React from 'react';
 import {
@@ -20,20 +19,14 @@ import InterestedIdea from './components/InterestedIdea';
 import InterestedTotal from './components/InterestedTotal';
 import PublishedLabel from './components/PublishedLabel';
 
-const IdeaTab = (): JSX.Element => {
+const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 	const router = useRouter();
 	const user = useCurrentUser();
-
-	const { data } = useGetIdeaQuery({
-		variables: {
-			id: useQueryParam('id'),
-			userId: user?.id
-		}
-	});
-
 	const idea = data?.idea;
 
 	if (!data) return <Loading small />;
+
+	// Only enable the id creator to view their own idea if it's unpublished
 	if (!idea || (!idea.is_published && idea.user_id !== user.id))
 		router.replace('/404');
 
@@ -49,7 +42,8 @@ const IdeaTab = (): JSX.Element => {
 		status,
 		field,
 		id,
-		interested
+		interested,
+		is_published
 	} = idea;
 	const { avatar_url, first_name } = idea_user;
 
@@ -84,11 +78,11 @@ const IdeaTab = (): JSX.Element => {
 					pt={2}
 					alignItems={'center'}
 				>
-					<PublishedLabel />
-					{idea?.interested > 0 && (
+					<PublishedLabel isPublished={is_published} />
+					{interested > 0 && (
 						<>
 							<PointSeparator small />
-							<InterestedTotal total={idea.interested} />
+							<InterestedTotal total={interested} />
 						</>
 					)}
 				</StackLayout>
