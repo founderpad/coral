@@ -82,10 +82,11 @@ const PostReplyComment = ({
 					<TextareaField
 						id="value"
 						name="value"
-						placeholder="Post a reply to this comment"
+						placeholder="Post a reply"
 						error={errors['value']}
 						errorText="Your reply can not be empty."
 						control={control}
+						bg={'white'}
 						w={'full'}
 						size={'xs'}
 					/>

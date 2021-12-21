@@ -1,4 +1,4 @@
-import { CaptionLabel, Label, SubLabel } from 'components/labels';
+import { CaptionLabel, Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { BaseMenu } from 'components/menu';
 import {
@@ -47,7 +47,7 @@ const MessageLayout = ({
 				// borderLeftWidth={divider && 3}
 				// pl={4}
 			>
-				<UserAvatar size={'sm'} />
+				<UserAvatar size={'xs'} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
 					<StackLayout
 						px={2}
@@ -61,9 +61,9 @@ const MessageLayout = ({
 							justifyContent={'space-between'}
 						>
 							<FlexLayout alignItems={'center'}>
-								<SubLabel fontWeight={'medium'}>
+								<Label fontWeight={'medium'} fontSize={'xs'}>
 									{comment?.user.display_name}
-								</SubLabel>
+								</Label>
 								<PointSeparator small />
 								<CaptionLabel>
 									{formatDate(comment?.updated_at, true)}
@@ -73,7 +73,7 @@ const MessageLayout = ({
 						</FlexLayout>
 						<Label
 							color={'gray.500'}
-							fontSize={'small'}
+							fontSize={'xs'}
 							fontWeight={'normal'}
 						>
 							{comment?.value}

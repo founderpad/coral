@@ -165,12 +165,12 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 
 const CommentsGrid = (): JSX.Element => (
 	<BoxLayout
-		w={325}
+		w={300}
 		borderLeftWidth={1}
 		transition={'ease-in-out'}
 		transitionDelay={'1s'}
 		flexDirection={'column'}
-		bg={'gray.100'}
+		style={{ background: '#f3f3f3' }}
 		p={0}
 	>
 		<Label p={4} fontSize={'md'}>

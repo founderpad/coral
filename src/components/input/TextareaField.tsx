@@ -47,6 +47,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							fontSize={'small'}
 							color={'gray.500'}
 							resize={'vertical'}
+							bg={'white'}
 							_focus={{
 								borderColor: 'gray.400',
 								boxShadow: 'none'
