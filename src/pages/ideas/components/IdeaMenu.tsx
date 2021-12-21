@@ -16,7 +16,8 @@ export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 		reported_user_id: idea?.idea_user.id,
 		recipient_name: idea?.idea_user.first_name,
 		recipient_email: idea?.idea_user.account.email,
-		content: idea?.name
+		content: idea?.name,
+		type: 'IDEA'
 	};
 
 	return (
