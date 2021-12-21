@@ -1,4 +1,4 @@
-import Icon from '@chakra-ui/icon';
+import { Icon } from '@chakra-ui/react';
 import { PrimaryButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
 import { Label } from 'components/labels';
@@ -18,7 +18,7 @@ import {
 	IoTrendingUpSharp
 } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
-import CommentsTab from './CommentsTab';
+import { CommentsList } from './CommentsTab';
 import IdeaActions from './components/IdeaMenu';
 import InterestedTotal from './components/InterestedTotal';
 import PublishedLabel from './components/PublishedLabel';
@@ -62,8 +62,13 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 	const { avatar_url, first_name } = idea_user;
 
 	return (
-		<StackLayout direction={'row'} flex={1} rounded={'none'}>
-			<StackLayout p={4} flex={1}>
+		<StackLayout
+			direction={'row'}
+			flex={1}
+			rounded={'none'}
+			overflowY={'hidden'}
+		>
+			<StackLayout p={4} flex={1} overflowY={'auto'}>
 				<FlexLayout
 					alignItems={'center'}
 					justifyContent={'space-between'}
@@ -104,7 +109,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 							leftIcon={<Icon as={IoChatbubbleEllipsesSharp} />}
 							onClick={onShowCommentsClick}
 						>
-							Comments
+							{showComments ? 'Hide comments' : 'Comments'}
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
@@ -153,13 +158,31 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 					)}
 				</StackLayout>
 			</StackLayout>
-			{showComments && (
-				<>
-					{/* <Label>All comments</Label> */}
-					<CommentsGrid />
-				</>
-			)}
+			{showComments && <CommentsGrid />}
 		</StackLayout>
+
+		// <StackLayout
+		// 	bg={'red.100'}
+		// 	p={2}
+		// 	spacing={12}
+		// 	flex={1}
+		// 	overflowY={'auto'}
+		// 	rounded={'none'}
+		// 	h={'full'}
+		// 	minH={'1px'}
+		// >
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// 	<Heading>Test</Heading>
+		// </StackLayout>
 	);
 };
 
@@ -171,12 +194,13 @@ const CommentsGrid = (): JSX.Element => (
 		transitionDelay={'1s'}
 		flexDirection={'column'}
 		style={{ background: '#f3f3f3' }}
-		p={0}
+		overflowY={'auto'}
+		p={2}
 	>
-		<Label p={4} fontSize={'md'}>
+		<Label pb={8} fontSize={'md'} w={'full'}>
 			All comments
 		</Label>
-		<CommentsTab />
+		<CommentsList />
 	</BoxLayout>
 
 	// <Drawer isOpen={true} placement={'right'} onClose={() => {}}>

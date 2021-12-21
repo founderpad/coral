@@ -32,7 +32,7 @@ const GET_COMMENTS_FOR_IDEA = gql`
 			idea_id
 			user {
 				id
-				display_name
+				first_name
 				avatar_url
 				account {
 					email

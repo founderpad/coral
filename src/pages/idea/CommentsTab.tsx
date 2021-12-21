@@ -1,3 +1,6 @@
+import Icon from '@chakra-ui/icon';
+import { Box } from '@chakra-ui/layout';
+import { BaseButton } from 'components/buttons';
 import { CaptionLabel, Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { BaseMenu } from 'components/menu';
@@ -15,22 +18,13 @@ import {
 } from 'generated/api';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import { IoArrowUpSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
-
-const CommentsTab = (): JSX.Element => (
-	<StackLayout w={'full'} spacing={8} p={4}>
-		{/* <TabActions /> */}
-		<FlexLayout direction={'column'}>
-			<CommentsList />
-		</FlexLayout>
-	</StackLayout>
-);
 
 const MessageLayout = ({
 	children,
 	comment,
-	actions = true,
-	divider = false
+	actions = true
 }: {
 	children?: JSX.Element;
 	comment: any;
@@ -44,8 +38,6 @@ const MessageLayout = ({
 				spacing={2}
 				w={'full'}
 				rounded={'none'}
-				// borderLeftWidth={divider && 3}
-				// pl={4}
 			>
 				<UserAvatar size={'xs'} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
@@ -61,15 +53,19 @@ const MessageLayout = ({
 							justifyContent={'space-between'}
 						>
 							<FlexLayout alignItems={'center'}>
-								<Label fontWeight={'medium'} fontSize={'xs'}>
-									{comment?.user.display_name}
+								<Label
+									fontWeight={'medium'}
+									fontSize={'xs'}
+									maxW={'80%'}
+									isTruncated
+								>
+									{comment?.user.first_name}
 								</Label>
 								<PointSeparator small />
 								<CaptionLabel>
 									{formatDate(comment?.updated_at, true)}
 								</CaptionLabel>
 							</FlexLayout>
-							{/* <CommentMenu {...comment} /> */}
 						</FlexLayout>
 						<Label
 							color={'gray.500'}
@@ -93,7 +89,67 @@ const MessageLayout = ({
 // 	</FlexLayout>
 // );
 
-const CommentsList = (): JSX.Element => {
+const Comment = (comment: any): JSX.Element => (
+	<MessageLayout comment={comment} divider={true}>
+		{/* {comment?.idea_replies?.length > 0 && ( */}
+		<RepliesList commentId={comment.id} />
+		{/* )} */}
+	</MessageLayout>
+);
+
+const Actions = ({
+	showReply,
+	comment
+}: {
+	showReply: boolean;
+	comment: any;
+}): JSX.Element => {
+	return (
+		<StackLayout
+			direction={'row'}
+			spacing={1}
+			alignItems={'center'}
+			justifyContent={'space-between'}
+		>
+			<BaseButton
+				name={'upvote-idea-button'}
+				variant={'unstyled'}
+				d={'flex'}
+			>
+				<Icon
+					as={IoArrowUpSharp}
+					fontSize={'sm'}
+					mr={1}
+					size={'sm'}
+					fontWeight={'normal'}
+					color={'gray.400'}
+				/>
+			</BaseButton>
+			{showReply && <PostReplyComment commentId={comment.id} />}
+			<CommentMenu {...comment} />
+		</StackLayout>
+	);
+};
+
+const CommentMenu = (comment: any): JSX.Element => {
+	return (
+		<BaseMenu>
+			<ReportMenu
+				title={'comment'}
+				content={`"${comment.value}"`}
+				report={{
+					type: 'COMMENT',
+					reported_user_id: comment.user.id,
+					recipient_name: comment.user.display_name,
+					recipient_email: comment.user.account.email,
+					content: comment.value
+				}}
+			/>
+		</BaseMenu>
+	);
+};
+
+export const CommentsList = (): JSX.Element => {
 	const router = useRouter();
 
 	const { data, loading, fetchMore } = useGetCommentsForIdeaQuery({
@@ -127,6 +183,7 @@ const CommentsList = (): JSX.Element => {
 			{data?.comments.map((comment, _index) => (
 				<Comment key={comment.id} {...comment} />
 			))}
+			<Box>Write message here</Box>
 		</StackLayout>
 	);
 };
@@ -140,13 +197,7 @@ const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
 
 	if (data?.replies?.length)
 		return (
-			<StackLayout
-				spacing={4}
-				pt={4}
-				// borderLeftWidth={2}
-				rounded={'none'}
-				pl={2}
-			>
+			<StackLayout spacing={4} mt={4} rounded={'none'} pl={2}>
 				{data?.replies?.map((reply, _index) => (
 					<MessageLayout
 						key={_index}
@@ -160,60 +211,4 @@ const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
 	return null;
 };
 
-const Comment = (comment: any): JSX.Element => (
-	<MessageLayout comment={comment} divider={true}>
-		{/* {comment?.idea_replies?.length > 0 && ( */}
-		<RepliesList commentId={comment.id} />
-		{/* )} */}
-	</MessageLayout>
-);
-
-const Actions = ({
-	showReply,
-	comment
-}: {
-	showReply: boolean;
-	comment: any;
-}): JSX.Element => {
-	return (
-		<StackLayout
-			direction={'row'}
-			spacing={1}
-			alignItems={'center'}
-			justifyContent={'space-between'}
-		>
-			{/* <BaseButton name={'upvote-idea-button'} variant={'unstyled'} d={'flex'}>
-			<Icon
-				as={IoArrowUpSharp}
-				fontSize={'sm'}
-				mr={1}
-				size={'sm'}
-				fontWeight={'normal'}
-				color={'gray.400'}
-			/>
-		</BaseButton> */}
-			{showReply && <PostReplyComment commentId={comment.id} />}
-			<CommentMenu {...comment} />
-		</StackLayout>
-	);
-};
-
-const CommentMenu = (comment: any): JSX.Element => {
-	return (
-		<BaseMenu>
-			<ReportMenu
-				title={'comment'}
-				content={`"${comment.value}"`}
-				report={{
-					type: 'COMMENT',
-					reported_user_id: comment.user.id,
-					recipient_name: comment.user.display_name,
-					recipient_email: comment.user.account.email,
-					content: comment.value
-				}}
-			/>
-		</BaseMenu>
-	);
-};
-
-export default CommentsTab;
+export default CommentsList;
