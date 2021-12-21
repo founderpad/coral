@@ -19,8 +19,10 @@ const POST_REPLY = gql`
 `;
 
 const GET_COMMENTS_FOR_IDEA = gql`
-	subscription getCommentsForIdea($ideaId: uuid!) {
+	query getCommentsForIdea($ideaId: uuid!, $offset: Int, $limit: Int) {
 		comments: idea_comments(
+			offset: $offset
+			limit: $limit
 			where: { idea_id: { _eq: $ideaId } }
 			order_by: { updated_at: asc }
 		) {

@@ -8,15 +8,23 @@ import {
 	UserAvatar
 } from 'components/shared';
 import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
-import PostComment from 'components/shared/PostComment';
 import PostReplyComment from 'components/shared/PostReplyComment';
 import {
-	useGetCommentsForIdeaSubscription,
+	useGetCommentsForIdeaQuery,
 	useGetRepliesForCommentSubscription
 } from 'generated/api';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { formatDate } from 'utils/validators';
+
+const CommentsTab = (): JSX.Element => (
+	<StackLayout w={'full'} spacing={8} p={4}>
+		{/* <TabActions /> */}
+		<FlexLayout direction={'column'}>
+			<CommentsList />
+		</FlexLayout>
+	</StackLayout>
+);
 
 const MessageLayout = ({
 	children,
@@ -36,8 +44,8 @@ const MessageLayout = ({
 				spacing={2}
 				w={'full'}
 				rounded={'none'}
-				borderLeftWidth={divider && 3}
-				pl={4}
+				// borderLeftWidth={divider && 3}
+				// pl={4}
 			>
 				<UserAvatar size={'sm'} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
@@ -45,7 +53,7 @@ const MessageLayout = ({
 						px={2}
 						py={1}
 						boxShadow={'sm'}
-						bg={'gray.50'}
+						bg={'white'}
 						spacing={0}
 					>
 						<FlexLayout
@@ -61,7 +69,7 @@ const MessageLayout = ({
 									{formatDate(comment?.updated_at, true)}
 								</CaptionLabel>
 							</FlexLayout>
-							<CommentMenu {...comment} />
+							{/* <CommentMenu {...comment} /> */}
 						</FlexLayout>
 						<Label
 							color={'gray.500'}
@@ -79,38 +87,43 @@ const MessageLayout = ({
 	);
 };
 
-const TabActions = (): JSX.Element => {
-	return (
-		<FlexLayout justifyContent={'flex-end'}>
-			<PostComment />
-		</FlexLayout>
-	);
-};
-
-const CommentsTab = (): JSX.Element => (
-	<StackLayout w={'full'} spacing={8}>
-		<TabActions />
-		<FlexLayout direction={'column'}>
-			<CommentsList />
-		</FlexLayout>
-	</StackLayout>
-);
+// const TabActions = (): JSX.Element => (
+// 	<FlexLayout justifyContent={'flex-end'}>
+// 		<PostComment />
+// 	</FlexLayout>
+// );
 
 const CommentsList = (): JSX.Element => {
 	const router = useRouter();
 
-	const { data, loading } = useGetCommentsForIdeaSubscription({
+	const { data, loading, fetchMore } = useGetCommentsForIdeaQuery({
 		variables: {
-			ideaId: router.query.id
+			ideaId: router.query.id,
+			offset: 0,
+			limit: 30
 		}
 	});
+
+	useEffect(() => {
+		window.addEventListener('scroll', onScrollToBottom);
+		return () => window.removeEventListener('scroll', onScrollToBottom);
+	});
+
+	const onScrollToBottom = (e) => {
+		if (
+			e.target.scrollTop + e.target.clientHeight ===
+			e.target.scrollHeight
+		) {
+			console.log('LOAD MORE');
+		}
+	};
 
 	if (loading) return <Loading small />;
 	if (!loading && data?.comments.length < 1)
 		return <NoResults label={'comments yet'} />;
 
 	return (
-		<StackLayout w={'full'}>
+		<StackLayout w={'full'} p={0}>
 			{data?.comments.map((comment, _index) => (
 				<Comment key={comment.id} {...comment} />
 			))}
@@ -130,9 +143,9 @@ const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
 			<StackLayout
 				spacing={4}
 				pt={4}
-				borderLeftWidth={2}
+				// borderLeftWidth={2}
 				rounded={'none'}
-				pl={4}
+				pl={2}
 			>
 				{data?.replies?.map((reply, _index) => (
 					<MessageLayout
@@ -163,7 +176,12 @@ const Actions = ({
 	comment: any;
 }): JSX.Element => {
 	return (
-		<StackLayout direction={'row'} spacing={1} alignItems={'center'}>
+		<StackLayout
+			direction={'row'}
+			spacing={1}
+			alignItems={'center'}
+			justifyContent={'space-between'}
+		>
 			{/* <BaseButton name={'upvote-idea-button'} variant={'unstyled'} d={'flex'}>
 			<Icon
 				as={IoArrowUpSharp}
@@ -175,6 +193,7 @@ const Actions = ({
 			/>
 		</BaseButton> */}
 			{showReply && <PostReplyComment commentId={comment.id} />}
+			<CommentMenu {...comment} />
 		</StackLayout>
 	);
 };

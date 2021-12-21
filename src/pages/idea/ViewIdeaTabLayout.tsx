@@ -27,7 +27,7 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 			]}
 			overflow={'hidden'}
 			minH={'full'}
-			px={2}
+			flex={1}
 			isLazy
 		>
 			<IdeaTab data={data} />

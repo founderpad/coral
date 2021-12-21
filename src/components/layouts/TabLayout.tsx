@@ -35,6 +35,8 @@ const TabLayout = (props: Props): JSX.Element => {
 			overflow={'hidden'}
 			colorScheme={'black'}
 			px={0}
+			d={'flex'}
+			flexDirection={'column'}
 		>
 			<TabList>
 				{tabs?.map((tab) => (
@@ -51,12 +53,14 @@ const TabLayout = (props: Props): JSX.Element => {
 					</Tab>
 				))}
 			</TabList>
-			<TabPanels d={'flex'} flex={1} h={'full'}>
+			<TabPanels d={'flex'} flex={1} overflowY={'hidden'}>
 				{children?.map((tp, key) => {
 					return (
 						<TabPanel
 							key={key}
-							py={4}
+							// py={4}
+							overflowY={'hidden'}
+							p={0}
 							display={'flex'}
 							flex={1}
 							css={{
