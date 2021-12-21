@@ -1,8 +1,7 @@
 import { Icon } from '@chakra-ui/react';
 import { PrimaryButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
-import { Label } from 'components/labels';
-import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
+import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
 import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
@@ -67,6 +66,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 			flex={1}
 			rounded={'none'}
 			overflowY={'hidden'}
+			spacing={0}
 		>
 			<StackLayout p={4} flex={1} overflowY={'auto'}>
 				<FlexLayout
@@ -158,7 +158,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 					)}
 				</StackLayout>
 			</StackLayout>
-			{showComments && <CommentsGrid />}
+			{showComments && <CommentsList />}
 		</StackLayout>
 
 		// <StackLayout
@@ -187,21 +187,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 };
 
 const CommentsGrid = (): JSX.Element => (
-	<BoxLayout
-		w={300}
-		borderLeftWidth={1}
-		transition={'ease-in-out'}
-		transitionDelay={'1s'}
-		flexDirection={'column'}
-		style={{ background: '#f3f3f3' }}
-		overflowY={'auto'}
-		p={2}
-	>
-		<Label pb={8} fontSize={'md'} w={'full'}>
-			All comments
-		</Label>
-		<CommentsList />
-	</BoxLayout>
+	<CommentsList />
 
 	// <Drawer isOpen={true} placement={'right'} onClose={() => {}}>
 	// 	<DrawerContent position={'relative'}>

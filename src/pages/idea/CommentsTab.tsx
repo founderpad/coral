@@ -1,8 +1,9 @@
 import Icon from '@chakra-ui/icon';
 import { Box } from '@chakra-ui/layout';
 import { BaseButton } from 'components/buttons';
+import BaseHeading from 'components/heading/BaseHeading';
 import { CaptionLabel, Label } from 'components/labels';
-import { FlexLayout, StackLayout } from 'components/layouts';
+import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
 import { BaseMenu } from 'components/menu';
 import {
 	Loading,
@@ -45,7 +46,7 @@ const MessageLayout = ({
 						px={2}
 						py={1}
 						boxShadow={'sm'}
-						bg={'white'}
+						bg={'gray.100'}
 						spacing={0}
 					>
 						<FlexLayout
@@ -179,12 +180,41 @@ export const CommentsList = (): JSX.Element => {
 		return <NoResults label={'comments yet'} />;
 
 	return (
-		<StackLayout w={'full'} p={0}>
-			{data?.comments.map((comment, _index) => (
-				<Comment key={comment.id} {...comment} />
-			))}
-			<Box>Write message here</Box>
-		</StackLayout>
+		<BoxLayout
+			w={'full'}
+			h={'full'}
+			d={'flex'}
+			flexDirection={'column'}
+			flexWrap={'nowrap'}
+			width={325}
+			borderLeftWidth={1}
+			transition={'ease-in-out'}
+			transitionDelay={'1s'}
+			p={0}
+			justifyContent={'center'}
+		>
+			<BaseHeading
+				label={`All comments (${data?.comments?.length})`}
+				fontSize={'sm'}
+				as={'h4'}
+				flexShrink={0}
+				p={4}
+				borderBottomWidth={1}
+			/>
+			<StackLayout
+				flexGrow={1}
+				overflowY={'auto'}
+				minHeight={'2em'}
+				p={4}
+			>
+				{data?.comments.map((comment, _index) => (
+					<Comment key={comment.id} {...comment} />
+				))}
+			</StackLayout>
+			<Box flexShrink={0} p={4} borderTopWidth={1}>
+				Footer
+			</Box>
+		</BoxLayout>
 	);
 };
 

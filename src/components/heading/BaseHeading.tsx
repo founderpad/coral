@@ -17,6 +17,7 @@ const BaseHeading = (props: BaseHeadingProps): JSX.Element => {
 			color={color ?? 'black'}
 			alignItems={'center'}
 			d={'flex'}
+			{...props}
 		>
 			{icon && <Icon as={icon} mr={2} />}
 			{label}
