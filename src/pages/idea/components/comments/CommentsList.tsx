@@ -49,7 +49,12 @@ const MessageLayout = ({
 }): JSX.Element => {
 	return (
 		<React.Fragment>
-			<StackLayout direction={'row'} spacing={2} w={'full'}>
+			<StackLayout
+				direction={'row'}
+				spacing={2}
+				w={'full'}
+				id={comment.id}
+			>
 				<UserAvatar size={'xs'} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
 					<ChatContainer>
