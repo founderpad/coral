@@ -4,7 +4,7 @@ import { FlexLayout, StackLayout } from 'components/layouts';
 import { Upvote } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
-import { IoChatboxOutline } from 'react-icons/io5';
+import { IoChatboxSharp } from 'react-icons/io5';
 import IdeaMenu from '../IdeaMenu';
 
 const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
@@ -31,7 +31,7 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 				{idea.number_of_comments > 0 && (
 					<FlexLayout alignItems={'center'}>
 						<Icon
-							as={IoChatboxOutline}
+							as={IoChatboxSharp}
 							fontSize={'lg'}
 							pt={0}
 							mr={1}

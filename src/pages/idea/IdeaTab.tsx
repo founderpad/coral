@@ -1,4 +1,3 @@
-import Icon from '@chakra-ui/icon';
 import { PrimaryButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
@@ -12,7 +11,6 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import {
 	IoBulbSharp,
-	IoChatbubbleEllipsesSharp,
 	IoLocationSharp,
 	IoTrendingUpSharp
 } from 'react-icons/io5';
@@ -60,6 +58,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 		field,
 		id,
 		number_of_interested,
+		number_of_comments,
 		is_published
 	} = idea;
 	const { avatar_url, first_name } = idea_user;
@@ -92,7 +91,10 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 
 				<FlexLayout wordBreak={'break-all'} flexDirection={'column'}>
 					<SubheadingText>{name}</SubheadingText>
-					<FlexLayout justifyContent={'space-between'}>
+					<FlexLayout
+						justifyContent={'space-between'}
+						alignItems={'center'}
+					>
 						<StackLayout
 							direction={'row'}
 							spacing={2}
@@ -112,10 +114,13 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 						<PrimaryButton
 							name={'show-comments'}
 							variant={'ghost'}
-							leftIcon={<Icon as={IoChatbubbleEllipsesSharp} />}
 							onClick={onShowCommentsClick}
+							display={{ base: 'none', md: 'block' }}
+							alignContent={'center'}
 						>
-							Comments
+							{number_of_comments > 0
+								? number_of_comments + ' comment(s)'
+								: 'Comments'}
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
