@@ -44,7 +44,7 @@ const MainNav = (): JSX.Element => {
 					align={'center'}
 					justifySelf={'center'}
 					position={'sticky'}
-					maxW={{ lg: '120ch' }}
+					maxW={{ lg: '95ch' }}
 				>
 					<Flex
 						alignItems={'center'}

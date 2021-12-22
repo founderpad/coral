@@ -32,8 +32,6 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 			),
 			body: <PersonalDetailsForm />,
 			noBtnLabel: 'Cancel',
-			yesBtnLabel: 'Log out',
-			yesBtnColor: 'red',
 			hideFooter: true
 		});
 	};

@@ -80,11 +80,11 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 						createdAt={formatDate(created_at, true)}
 					/>
 
-					{user?.id === user_id && <IdeaActions ideaId={idea?.id} />}
+					{user?.id === user_id && <IdeaActions ideaId={id} />}
 				</FlexLayout>
 
 				<FlexLayout wordBreak={'break-all'} flexDirection={'column'}>
-					<SubheadingText label={name} />
+					<SubheadingText>{name}</SubheadingText>
 					<FlexLayout justifyContent={'space-between'}>
 						<StackLayout
 							direction={'row'}
@@ -154,8 +154,9 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 						/>
 					)}
 				</StackLayout>
+				<CommentsList display={{ base: 'none', md: 'flex' }} />
 			</StackLayout>
-			<CommentsList display={{ base: 'none', md: 'flex' }} />
+			{/* <CommentsList display={{ base: 'none', md: 'flex' }} /> */}
 		</StackLayout>
 	);
 };

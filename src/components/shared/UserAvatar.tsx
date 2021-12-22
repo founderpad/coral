@@ -28,8 +28,8 @@ export const UserAvatarDetails = ({
 	return (
 		<Flex align={'center'}>
 			<UserAvatar src={src} />
-			<Box ml={2}>
-				<SubLabel fontWeight={'medium'} fontSize={'xs'}>
+			<Box ml={2} wordBreak={'break-all'}>
+				<SubLabel fontWeight={'medium'} fontSize={'xs'} isTruncated>
 					{name}
 				</SubLabel>
 				{email && <SubLabel color={'gray.400'}>{email}</SubLabel>}

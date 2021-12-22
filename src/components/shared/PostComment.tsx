@@ -1,7 +1,7 @@
 import { IconButton } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
+import { Textarea } from '@chakra-ui/textarea';
 import { Form } from 'components/form';
-import { TextareaField } from 'components/input';
 import { StackLayout } from 'components/layouts';
 import {
 	TIdea_Comments_Insert_Input,
@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { IoSendSharp } from 'react-icons/io5';
+import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';
 
 const PostComment = (): JSX.Element => {
@@ -114,16 +115,21 @@ const PostComment = (): JSX.Element => {
 					isValid={isValid}
 					style={{ width: '100%' }}
 				>
-					<TextareaField
+					<Textarea
 						id={'value'}
-						name={'value'}
+						minH={'unset'}
 						placeholder={'Write your comment here'}
-						control={control}
 						borderWidth={0}
 						w={'full'}
+						as={ResizeTextarea}
+						maxRows={3}
 						resize={'none'}
 						maxH={'100px'}
 						title={'Write your comment here'}
+						_focus={{
+							borderColor: 'gray.400',
+							boxShadow: 'none'
+						}}
 					/>
 				</Form>
 

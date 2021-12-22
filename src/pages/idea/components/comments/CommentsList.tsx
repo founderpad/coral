@@ -19,16 +19,15 @@ import {
 	useGetRepliesForCommentSubscription
 } from 'generated/api';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { IoArrowUpSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 
 const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 	<StackLayout
-		px={2}
-		py={1}
+		pb={2}
 		boxShadow={'sm'}
-		bg={'gray.100'}
+		// bg={'gray.50'}
 		spacing={0}
 		style={{
 			borderRadius: '0 10px 10px'
@@ -58,7 +57,7 @@ const MessageLayout = ({
 							alignItems={'center'}
 							justifyContent={'space-between'}
 						>
-							<FlexLayout alignItems={'center'}>
+							<FlexLayout alignItems={'center'} mb={1}>
 								<Label
 									fontWeight={'medium'}
 									fontSize={'xs'}
@@ -88,12 +87,6 @@ const MessageLayout = ({
 		</React.Fragment>
 	);
 };
-
-// const TabActions = (): JSX.Element => (
-// 	<FlexLayout justifyContent={'flex-end'}>
-// 		<PostComment />
-// 	</FlexLayout>
-// );
 
 const Comment = (comment: any): JSX.Element => (
 	<MessageLayout comment={comment} divider={true}>
@@ -161,8 +154,6 @@ export const CommentsList = ({
 	display?: StackProps['display'];
 }): JSX.Element => {
 	const router = useRouter();
-	// const containerRef = useRef(undefined);
-	const ref = useRef<HTMLInputElement>(null);
 
 	const { data, loading, fetchMore } = useGetCommentsForIdeaQuery({
 		variables: {
@@ -172,35 +163,10 @@ export const CommentsList = ({
 		}
 	});
 
-	// const { ref, scrollToBottom } = useScrollToBottom(data);
-
-	useEffect(() => {
-		if (ref.current) {
-			console.log('ref: ', ref);
-			ref.current?.scrollIntoView({
-				behavior: 'smooth',
-				block: 'nearest',
-				inline: 'start'
-			});
-		}
-	});
-
 	useEffect(() => {
 		window.addEventListener('scroll', onScrollToBottom);
 		return () => window.removeEventListener('scroll', onScrollToBottom);
 	});
-
-	// useEffect(() => {
-	// 	if (containerRef.current) {
-	// 		console.log('container current: ', containerRef.current);
-
-	// 		containerRef.current.scrollIntoView({
-	// 			behavior: 'smooth',
-	// 			block: 'end',
-	// 			inline: 'nearest'
-	// 		});
-	// 	}
-	// }, [containerRef.current]);
 
 	const onScrollToBottom = (e) => {
 		if (
@@ -212,8 +178,6 @@ export const CommentsList = ({
 	};
 
 	if (loading) return <Loading small />;
-	// if (!loading && data?.comments.length < 1)
-	// 	return <NoResults label={'comments yet'} />;
 
 	return (
 		<BoxLayout
@@ -222,22 +186,28 @@ export const CommentsList = ({
 			d={'flex'}
 			flexDirection={'column'}
 			flexWrap={'nowrap'}
-			maxW={{ base: '100%', md: 340 }}
+			// maxW={{ base: '100%', md: 340 }}
+
 			transition={'ease-in-out'}
 			transitionDelay={'1s'}
 			p={0}
 			justifyContent={'center'}
 			display={display}
-			borderLeftWidth={{ md: 1 }}
 		>
 			<BaseHeading
-				label={`All comments (${data?.comments?.length})`}
 				fontSize={'sm'}
 				as={'h4'}
 				flexShrink={0}
-				p={4}
+				py={4}
+				px={{ base: 4, md: 0 }}
+				borderTopWidth={{ base: 0, md: 1 }}
 				borderBottomWidth={1}
-			/>
+			>
+				All comments ({data?.comments?.length})
+			</BaseHeading>
+			<Box flexShrink={0} p={4}>
+				<PostComment />
+			</Box>
 			{data?.comments.length < 1 ? (
 				<NoResults label={'comments yet'} />
 			) : (
@@ -246,16 +216,15 @@ export const CommentsList = ({
 					overflowY={'auto'}
 					minHeight={'2em'}
 					p={4}
-					ref={ref}
 				>
 					{data?.comments.map((comment, _index) => (
 						<Comment key={comment.id} {...comment} />
 					))}
 				</StackLayout>
 			)}
-			<Box flexShrink={0} py={2} px={4} borderTopWidth={1}>
+			{/* <Box flexShrink={0} py={2} px={4} borderTopWidth={1}>
 				<PostComment />
-			</Box>
+			</Box> */}
 		</BoxLayout>
 	);
 };

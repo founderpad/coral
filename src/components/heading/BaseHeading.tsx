@@ -4,23 +4,23 @@ import React from 'react';
 import { IconType } from 'react-icons';
 
 type BaseHeadingProps = HeadingProps & {
-	label: string | number;
 	icon?: IconType;
 };
 
 const BaseHeading = (props: BaseHeadingProps): JSX.Element => {
-	const { label, color, size, icon } = props;
+	const { children, color, size, icon } = props;
 
 	return (
 		<Heading
+			{...props}
 			size={size ?? 'md'}
 			color={color ?? 'black'}
 			alignItems={'center'}
 			d={'flex'}
-			{...props}
+			mb={1}
 		>
 			{icon && <Icon as={icon} mr={2} />}
-			{label}
+			{children}
 		</Heading>
 	);
 };
