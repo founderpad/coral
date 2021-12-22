@@ -99,7 +99,6 @@ const PostComment = (): JSX.Element => {
 					id={'value'}
 					minH={'unset'}
 					placeholder={'Write your comment here'}
-					borderWidth={0}
 					w={'full'}
 					as={ResizeTextarea}
 					onChange={onValueChange}
@@ -117,8 +116,8 @@ const PostComment = (): JSX.Element => {
 
 				<IconButton
 					aria-label={'send-message'}
-					variant={'unstyled'}
-					color={'fpPrimary.500'}
+					variant={'ghost'}
+					colorScheme={'fpPrimary'}
 					title={'Send message'}
 					type={'submit'}
 					onClick={() => postCommentMutation()}
