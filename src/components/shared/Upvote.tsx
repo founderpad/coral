@@ -1,6 +1,5 @@
 import Icon from '@chakra-ui/icon';
 import { BaseButton } from 'components/buttons';
-import { StackLayout } from 'components/layouts';
 import { TIdea_Votes, useUpsertIdeaVoteMutation } from 'generated/api';
 import { GET_IDEAS } from 'graphql/ideas';
 import React from 'react';
@@ -69,24 +68,22 @@ export const Upvote = (
 		// 	</BaseButton>
 		// </StackLayout>
 
-		<StackLayout px={2}>
-			<BaseButton
-				name={'upvote-idea-button'}
-				variant={'unstyled'}
-				d={'flex'}
-				css={{ width: '0.8em !important' }}
-				color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'gray.500'}
-				onClick={() => upsertIdeaVote()}
-			>
-				<Icon
-					as={IoArrowUpSharp}
-					fontSize={'md'}
-					pt={0}
-					mr={1}
-					_hover={{ color: 'green.300' }}
-				/>
-				{/* 4 */}
-			</BaseButton>
-		</StackLayout>
+		<BaseButton
+			name={'upvote-idea-button'}
+			variant={'unstyled'}
+			d={'flex'}
+			css={{ width: '0.8em !important' }}
+			color={ideaVotes?.idea?.idea_votes ? 'green.300' : 'gray.500'}
+			onClick={() => upsertIdeaVote()}
+		>
+			<Icon
+				as={IoArrowUpSharp}
+				fontSize={'md'}
+				pt={0}
+				mr={1}
+				_hover={{ color: 'green.300' }}
+			/>
+			{/* 4 */}
+		</BaseButton>
 	);
 };
