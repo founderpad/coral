@@ -155,7 +155,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 					)}
 				</StackLayout>
 			</StackLayout>
-			{<CommentsList />}
+			<CommentsList display={{ base: 'none', md: 'flex' }} />
 		</StackLayout>
 	);
 };

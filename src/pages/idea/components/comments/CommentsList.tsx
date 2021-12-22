@@ -1,5 +1,5 @@
 import Icon from '@chakra-ui/icon';
-import { Box } from '@chakra-ui/layout';
+import { Box, StackProps } from '@chakra-ui/layout';
 import { BaseButton } from 'components/buttons';
 import BaseHeading from 'components/heading/BaseHeading';
 import { CaptionLabel, Label } from 'components/labels';
@@ -155,7 +155,11 @@ const CommentMenu = (comment: any): JSX.Element => {
 	);
 };
 
-export const CommentsList = (): JSX.Element => {
+export const CommentsList = ({
+	display = 'flex'
+}: {
+	display?: StackProps['display'];
+}): JSX.Element => {
 	const router = useRouter();
 	// const containerRef = useRef(undefined);
 	const ref = useRef<HTMLInputElement>(null);
@@ -218,12 +222,13 @@ export const CommentsList = (): JSX.Element => {
 			d={'flex'}
 			flexDirection={'column'}
 			flexWrap={'nowrap'}
-			maxW={340}
-			// borderLeftWidth={1}
+			maxW={{ base: '100%', md: 340 }}
 			transition={'ease-in-out'}
 			transitionDelay={'1s'}
 			p={0}
 			justifyContent={'center'}
+			display={display}
+			borderLeftWidth={1}
 		>
 			<BaseHeading
 				label={`All comments (${data?.comments?.length})`}

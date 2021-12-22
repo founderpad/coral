@@ -98,10 +98,6 @@ const PostComment = (): JSX.Element => {
 	// };
 
 	return (
-		// <PrimaryButton name={'add-comment'} onClick={onClick} size={'xs'}>
-		// 	<Icon as={IoAddSharp} color={'white'} fontSize={'lg'} mr={2} /> Add
-		// </PrimaryButton>
-
 		<StackLayout spacing={2} d={'flex'} justifyContent={'flex-end'}>
 			<StackLayout
 				direction={'row'}
@@ -118,16 +114,6 @@ const PostComment = (): JSX.Element => {
 					isValid={isValid}
 					style={{ width: '100%' }}
 				>
-					{/* <InputField
-						id={'value'}
-						name={'value'}
-						placeholder={'Write your comment here'}
-						control={control}
-						borderWidth={0}
-						w={'full'}
-						title={'Write your comment here'}
-					/> */}
-
 					<TextareaField
 						id={'value'}
 						name={'value'}

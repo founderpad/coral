@@ -28,6 +28,8 @@ const TabLayout = (props: Props): JSX.Element => {
 
 	const onChange = useCallback((index) => setTabIndex(index), [tabIndex]);
 
+	console.log('children: ', tabs);
+
 	return (
 		<Tabs
 			{...rest}
@@ -38,20 +40,22 @@ const TabLayout = (props: Props): JSX.Element => {
 			d={'flex'}
 			flexDirection={'column'}
 		>
-			<TabList>
-				{tabs?.map((tab) => (
-					<Tab key={tab?.label} fontSize={'small'}>
-						{tab?.icon && (
-							<Icon
-								as={tab.icon}
-								mr={2}
-								fontSize={'xl'}
-								display={{ base: 'none', sm: 'block' }}
-							/>
-						)}
-						{tab?.label}
-					</Tab>
-				))}
+			<TabList px={4}>
+				{tabs
+					?.filter((tab) => Object.keys(tab).length !== 0)
+					.map((tab) => (
+						<Tab key={tab?.label} fontSize={'small'}>
+							{tab?.icon && (
+								<Icon
+									as={tab.icon}
+									mr={2}
+									fontSize={'xl'}
+									display={{ base: 'none', sm: 'block' }}
+								/>
+							)}
+							{tab?.label}
+						</Tab>
+					))}
 			</TabList>
 			<TabPanels d={'flex'} flex={1} overflowY={'hidden'}>
 				{children?.map((tp, key) => {

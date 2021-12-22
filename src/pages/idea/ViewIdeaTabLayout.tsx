@@ -22,8 +22,8 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 		<TabLayout
 			tabs={[
 				{ label: 'Idea' },
-				{ ...(useMobile() && { label: 'Comments' }) },
-				{ ...(isIdeaCreator ? { label: 'Interest' } : null) }
+				{ ...(useMobile() ? { label: 'Comments' } : undefined) },
+				{ ...(isIdeaCreator ? { label: 'Interest' } : undefined) }
 			]}
 			overflow={'hidden'}
 			minH={'full'}
