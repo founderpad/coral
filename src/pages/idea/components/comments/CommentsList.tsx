@@ -212,8 +212,8 @@ export const CommentsList = ({
 	};
 
 	if (loading) return <Loading small />;
-	if (!loading && data?.comments.length < 1)
-		return <NoResults label={'comments yet'} />;
+	// if (!loading && data?.comments.length < 1)
+	// 	return <NoResults label={'comments yet'} />;
 
 	return (
 		<BoxLayout
@@ -228,7 +228,7 @@ export const CommentsList = ({
 			p={0}
 			justifyContent={'center'}
 			display={display}
-			borderLeftWidth={1}
+			borderLeftWidth={{ md: 1 }}
 		>
 			<BaseHeading
 				label={`All comments (${data?.comments?.length})`}
@@ -238,17 +238,21 @@ export const CommentsList = ({
 				p={4}
 				borderBottomWidth={1}
 			/>
-			<StackLayout
-				flexGrow={1}
-				overflowY={'auto'}
-				minHeight={'2em'}
-				p={4}
-				ref={ref}
-			>
-				{data?.comments.map((comment, _index) => (
-					<Comment key={comment.id} {...comment} />
-				))}
-			</StackLayout>
+			{data?.comments.length < 1 ? (
+				<NoResults label={'comments yet'} />
+			) : (
+				<StackLayout
+					flexGrow={1}
+					overflowY={'auto'}
+					minHeight={'2em'}
+					p={4}
+					ref={ref}
+				>
+					{data?.comments.map((comment, _index) => (
+						<Comment key={comment.id} {...comment} />
+					))}
+				</StackLayout>
+			)}
 			<Box flexShrink={0} py={2} px={4} borderTopWidth={1}>
 				<PostComment />
 			</Box>
