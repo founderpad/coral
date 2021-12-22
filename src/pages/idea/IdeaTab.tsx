@@ -1,5 +1,3 @@
-import { Icon } from '@chakra-ui/react';
-import { PrimaryButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
@@ -12,12 +10,11 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import {
 	IoBulbSharp,
-	IoChatbubbleEllipsesSharp,
 	IoLocationSharp,
 	IoTrendingUpSharp
 } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
-import { CommentsList } from './CommentsTab';
+import { CommentsList } from './components/comments/CommentsList';
 import IdeaActions from './components/IdeaMenu';
 import InterestedTotal from './components/InterestedTotal';
 import PublishedLabel from './components/PublishedLabel';
@@ -103,14 +100,14 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 								</>
 							)}
 						</StackLayout>
-						<PrimaryButton
+						{/* <PrimaryButton
 							name={'show-comments'}
 							variant={'ghost'}
 							leftIcon={<Icon as={IoChatbubbleEllipsesSharp} />}
 							onClick={onShowCommentsClick}
 						>
 							{showComments ? 'Hide comments' : 'Comments'}
-						</PrimaryButton>
+						</PrimaryButton> */}
 					</FlexLayout>
 				</FlexLayout>
 				<AppDivider />
@@ -158,49 +155,9 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 					)}
 				</StackLayout>
 			</StackLayout>
-			{showComments && <CommentsList />}
+			{<CommentsList />}
 		</StackLayout>
-
-		// <StackLayout
-		// 	bg={'red.100'}
-		// 	p={2}
-		// 	spacing={12}
-		// 	flex={1}
-		// 	overflowY={'auto'}
-		// 	rounded={'none'}
-		// 	h={'full'}
-		// 	minH={'1px'}
-		// >
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// 	<Heading>Test</Heading>
-		// </StackLayout>
 	);
 };
-
-const CommentsGrid = (): JSX.Element => (
-	<CommentsList />
-
-	// <Drawer isOpen={true} placement={'right'} onClose={() => {}}>
-	// 	<DrawerContent position={'relative'}>
-	// 		<DrawerCloseButton />
-	// 		<DrawerHeader>All comments</DrawerHeader>
-
-	// 		<DrawerBody>
-	// 			<CommentsTab />
-	// 		</DrawerBody>
-
-	// 		<DrawerFooter></DrawerFooter>
-	// 	</DrawerContent>
-	// </Drawer>
-);
 
 export default IdeaTab;

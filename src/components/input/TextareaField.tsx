@@ -18,7 +18,9 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 			name,
 			control,
 			rules,
-			size
+			size,
+			width,
+			maxH = '150px'
 		} = props;
 
 		return (
@@ -41,12 +43,13 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							onChange={onChange}
 							error={!!error}
 							size={size}
-							maxH={'150px'}
+							maxH={maxH}
 							borderWidth={1}
 							borderColor={'gray.200'}
 							fontSize={'small'}
 							color={'gray.500'}
 							resize={'vertical'}
+							w={width}
 							bg={'white'}
 							_focus={{
 								borderColor: 'gray.400',

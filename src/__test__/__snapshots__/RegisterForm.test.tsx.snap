@@ -10,7 +10,7 @@ exports[`Register form matches snapshot 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-1q3c89a"
+      class="chakra-stack css-k0yr9b"
     >
       <div
         class="chakra-form-control css-1naxzcr"

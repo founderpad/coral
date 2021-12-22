@@ -1,21 +1,17 @@
 import { Stack, StackProps } from '@chakra-ui/layout';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-export const StackLayout = ({
-	...props
-}: StackProps & {
-	full?: boolean;
-}): JSX.Element => {
-	const { children, spacing, rounded = 'md', ...rest } = props;
-
-	return (
-		<Stack
-			{...rest}
-			rounded={rounded}
-			spacing={spacing ?? 6}
-			css={{ marginTop: 0 }}
-		>
-			{children}
-		</Stack>
-	);
-};
+export const StackLayout = forwardRef<HTMLDivElement, StackProps>(
+	({ ...props }: StackProps, ref): JSX.Element => {
+		const { spacing = 6, rounded = 'sm', ...rest } = props;
+		return (
+			<Stack
+				{...rest}
+				ref={ref}
+				rounded={rounded}
+				spacing={spacing}
+				css={{ marginTop: 0 }}
+			/>
+		);
+	}
+);

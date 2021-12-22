@@ -12,15 +12,31 @@ import {
 	UserAvatar
 } from 'components/shared';
 import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
+import PostComment from 'components/shared/PostComment';
 import PostReplyComment from 'components/shared/PostReplyComment';
 import {
 	useGetCommentsForIdeaQuery,
 	useGetRepliesForCommentSubscription
 } from 'generated/api';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { IoArrowUpSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
+
+const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
+	<StackLayout
+		px={2}
+		py={1}
+		boxShadow={'sm'}
+		bg={'gray.100'}
+		spacing={0}
+		style={{
+			borderRadius: '0 10px 10px'
+		}}
+	>
+		{children}
+	</StackLayout>
+);
 
 const MessageLayout = ({
 	children,
@@ -34,21 +50,10 @@ const MessageLayout = ({
 }): JSX.Element => {
 	return (
 		<React.Fragment>
-			<StackLayout
-				direction={'row'}
-				spacing={2}
-				w={'full'}
-				rounded={'none'}
-			>
+			<StackLayout direction={'row'} spacing={2} w={'full'}>
 				<UserAvatar size={'xs'} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
-					<StackLayout
-						px={2}
-						py={1}
-						boxShadow={'sm'}
-						bg={'gray.100'}
-						spacing={0}
-					>
+					<ChatContainer>
 						<FlexLayout
 							alignItems={'center'}
 							justifyContent={'space-between'}
@@ -75,7 +80,7 @@ const MessageLayout = ({
 						>
 							{comment?.value}
 						</Label>
-					</StackLayout>
+					</ChatContainer>
 					<Actions showReply={!!actions} comment={comment} />
 					{children}
 				</StackLayout>
@@ -152,6 +157,8 @@ const CommentMenu = (comment: any): JSX.Element => {
 
 export const CommentsList = (): JSX.Element => {
 	const router = useRouter();
+	// const containerRef = useRef(undefined);
+	const ref = useRef<HTMLInputElement>(null);
 
 	const { data, loading, fetchMore } = useGetCommentsForIdeaQuery({
 		variables: {
@@ -161,10 +168,35 @@ export const CommentsList = (): JSX.Element => {
 		}
 	});
 
+	// const { ref, scrollToBottom } = useScrollToBottom(data);
+
+	useEffect(() => {
+		if (ref.current) {
+			console.log('ref: ', ref);
+			ref.current?.scrollIntoView({
+				behavior: 'smooth',
+				block: 'nearest',
+				inline: 'start'
+			});
+		}
+	});
+
 	useEffect(() => {
 		window.addEventListener('scroll', onScrollToBottom);
 		return () => window.removeEventListener('scroll', onScrollToBottom);
 	});
+
+	// useEffect(() => {
+	// 	if (containerRef.current) {
+	// 		console.log('container current: ', containerRef.current);
+
+	// 		containerRef.current.scrollIntoView({
+	// 			behavior: 'smooth',
+	// 			block: 'end',
+	// 			inline: 'nearest'
+	// 		});
+	// 	}
+	// }, [containerRef.current]);
 
 	const onScrollToBottom = (e) => {
 		if (
@@ -186,7 +218,7 @@ export const CommentsList = (): JSX.Element => {
 			d={'flex'}
 			flexDirection={'column'}
 			flexWrap={'nowrap'}
-			width={325}
+			maxW={340}
 			borderLeftWidth={1}
 			transition={'ease-in-out'}
 			transitionDelay={'1s'}
@@ -206,13 +238,14 @@ export const CommentsList = (): JSX.Element => {
 				overflowY={'auto'}
 				minHeight={'2em'}
 				p={4}
+				ref={ref}
 			>
 				{data?.comments.map((comment, _index) => (
 					<Comment key={comment.id} {...comment} />
 				))}
 			</StackLayout>
-			<Box flexShrink={0} p={4} borderTopWidth={1}>
-				Footer
+			<Box flexShrink={0} py={2} px={4} borderTopWidth={1}>
+				<PostComment />
 			</Box>
 		</BoxLayout>
 	);

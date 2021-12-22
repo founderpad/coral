@@ -3,7 +3,6 @@ import { Input } from '@chakra-ui/input';
 import {
 	FormHelperText,
 	forwardRef,
-	Icon,
 	InputGroup,
 	InputLeftAddon
 } from '@chakra-ui/react';
@@ -88,25 +87,23 @@ export const InputFieldWithLabelAndIcon = forwardRef<
 	IInputFieldProps<any>,
 	'input'
 >((props, _ref): JSX.Element => {
-	const { leftIcon, rightIcon } = props;
+	const { leftEl, rightEl } = props;
 	return (
 		// <InputFieldLabel {...props}>
 		<InputGroup>
-			{leftIcon && (
+			{leftEl && (
 				<InputLeftAddon
 					fontSize={'large'}
 					borderRadius={0}
 					bg={'white'}
 				>
-					{typeof leftIcon === 'string' ? (
-						leftIcon
-					) : (
-						<Icon as={leftIcon} />
-					)}
+					{leftEl}
 				</InputLeftAddon>
 			)}
 			<InputField {...props} />
-			{rightIcon && <InputLeftAddon>{rightIcon}</InputLeftAddon>}
+			{rightEl && (
+				<InputLeftAddon bg={'transparent'}>{rightEl}</InputLeftAddon>
+			)}
 		</InputGroup>
 		// </InputFieldLabel>
 	);

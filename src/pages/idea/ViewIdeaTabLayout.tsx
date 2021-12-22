@@ -1,9 +1,9 @@
 import TabLayout from 'components/layouts/TabLayout';
 import { useGetIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
-import { useQueryParam } from 'hooks/util';
+import { useMobile, useQueryParam } from 'hooks/util';
 import React from 'react';
-import CommentsTab from './CommentsTab';
+import { CommentsList } from './components/comments';
 import InterestedUsersTab from './components/InterestedUsersTab';
 import IdeaTab from './IdeaTab';
 
@@ -22,7 +22,7 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 		<TabLayout
 			tabs={[
 				{ label: 'Idea' },
-				{ label: 'Comments' },
+				{ ...(useMobile() && { label: 'Comments' }) },
 				{ ...(isIdeaCreator ? { label: 'Interest' } : null) }
 			]}
 			overflow={'hidden'}
@@ -31,7 +31,7 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 			isLazy
 		>
 			<IdeaTab data={data} />
-			<CommentsTab />
+			{useMobile() && <CommentsList />}
 			{isIdeaCreator && <InterestedUsersTab ideaId={data?.idea?.id} />}
 		</TabLayout>
 	);

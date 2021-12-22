@@ -47,7 +47,7 @@ const ReportMenu = ({
 	return (
 		<BaseMenuItem
 			title={'Report'}
-			subTitle={`Report this ${title.toLowerCase()}`}
+			// subTitle={`Report this ${title.toLowerCase()}`}
 			icon={IoFlagSharp}
 			onClick={onClick}
 		/>

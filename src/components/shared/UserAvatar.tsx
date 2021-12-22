@@ -53,3 +53,12 @@ export const CurrentUserAvatarDetails = memo((): JSX.Element => {
 		);
 	return null;
 });
+
+export const CurrentUserAvatar = memo(
+	({ small }: { small?: boolean }): JSX.Element => {
+		const user = useCurrentUser();
+		return (
+			<UserAvatar src={user.avatar_url} size={small ? 'xs' : 'inherit'} />
+		);
+	}
+);
