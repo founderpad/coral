@@ -17,6 +17,7 @@ export interface IInputFieldProps<T extends FieldValues> extends InputProps {
 	leftEl?: JSX.Element;
 	rightEl?: JSX.Element;
 	showLabel?: boolean;
+	maxRows?: number;
 }
 
 export interface ISelectFieldProps extends IInputFieldProps<any> {

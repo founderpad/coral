@@ -1,7 +1,7 @@
 import { IconButton } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { Form } from 'components/form';
-import { InputField } from 'components/input';
+import { TextareaField } from 'components/input';
 import { StackLayout } from 'components/layouts';
 import {
 	TIdea_Comments_Insert_Input,
@@ -118,13 +118,25 @@ const PostComment = (): JSX.Element => {
 					isValid={isValid}
 					style={{ width: '100%' }}
 				>
-					<InputField
+					{/* <InputField
 						id={'value'}
 						name={'value'}
 						placeholder={'Write your comment here'}
 						control={control}
 						borderWidth={0}
 						w={'full'}
+						title={'Write your comment here'}
+					/> */}
+
+					<TextareaField
+						id={'value'}
+						name={'value'}
+						placeholder={'Write your comment here'}
+						control={control}
+						borderWidth={0}
+						w={'full'}
+						resize={'none'}
+						maxH={'100px'}
 						title={'Write your comment here'}
 					/>
 				</Form>
@@ -134,7 +146,7 @@ const PostComment = (): JSX.Element => {
 					variant={'unstyled'}
 					color={'fpPrimary.500'}
 					title={'Send message'}
-					visibility={watchMessageValue ? 'visible' : 'hidden'}
+					visibility={watchMessageValue ? 'visible' : 'collapse'}
 				>
 					<Icon as={IoSendSharp} />
 				</IconButton>

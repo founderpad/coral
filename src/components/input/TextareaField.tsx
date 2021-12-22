@@ -3,6 +3,7 @@ import { FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
 import { FormErrorText, FormLabelText } from 'components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import ResizeTextarea from 'react-textarea-autosize';
 import { IInputFieldProps } from 'types/fields';
 
 export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
@@ -20,7 +21,10 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 			rules,
 			size,
 			width,
-			maxH = '150px'
+			maxH = '150px',
+			borderWidth = 1,
+			maxRows = 2,
+			resize = 'vertical'
 		} = props;
 
 		return (
@@ -41,14 +45,17 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							ref={ref}
 							value={value}
 							onChange={onChange}
-							error={!!error}
+							// error={!!error}
+							minH="unset"
 							size={size}
 							maxH={maxH}
-							borderWidth={1}
+							borderWidth={borderWidth}
 							borderColor={'gray.200'}
 							fontSize={'small'}
 							color={'gray.500'}
-							resize={'vertical'}
+							resize={resize}
+							as={ResizeTextarea}
+							maxRows={maxRows}
 							w={width}
 							bg={'white'}
 							_focus={{

@@ -219,7 +219,7 @@ export const CommentsList = (): JSX.Element => {
 			flexDirection={'column'}
 			flexWrap={'nowrap'}
 			maxW={340}
-			borderLeftWidth={1}
+			// borderLeftWidth={1}
 			transition={'ease-in-out'}
 			transitionDelay={'1s'}
 			p={0}
