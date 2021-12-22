@@ -21,7 +21,8 @@ const PostComment = (): JSX.Element => {
 			comment: {
 				idea_id: useIdeaFragment().id,
 				value
-			}
+			},
+			ideaId: useIdeaFragment().id
 		},
 		refetchQueries: [
 			{

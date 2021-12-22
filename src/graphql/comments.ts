@@ -1,18 +1,38 @@
 import gql from 'graphql-tag';
 
 const POST_COMMENT = gql`
-	mutation postComment($comment: idea_comments_insert_input!) {
+	mutation postComment(
+		$comment: idea_comments_insert_input!
+		$ideaId: uuid!
+	) {
 		idea: insert_idea_comments_one(object: $comment) {
 			idea_id
+			id
+		}
+
+		update_ideas_by_pk(
+			pk_columns: { id: $ideaId }
+			_inc: { number_of_comments: 1 }
+		) {
 			id
 		}
 	}
 `;
 
 const POST_REPLY = gql`
-	mutation postReply($reply: idea_comment_replies_insert_input!) {
+	mutation postReply(
+		$reply: idea_comment_replies_insert_input!
+		$commentId: uuid!
+	) {
 		idea: insert_idea_comment_replies_one(object: $reply) {
 			comment_id
+			id
+		}
+
+		update_idea_comments_by_pk(
+			pk_columns: { id: $commentId }
+			_inc: { number_of_replies: 1 }
+		) {
 			id
 		}
 	}

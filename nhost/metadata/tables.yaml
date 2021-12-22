@@ -294,18 +294,20 @@
   - role: user
     permission:
       columns:
-      - value
       - created_at
-      - updated_at
       - id
       - idea_id
+      - number_of_replies
+      - updated_at
       - user_id
+      - value
       filter: {}
       allow_aggregations: true
   update_permissions:
   - role: user
     permission:
       columns:
+      - number_of_replies
       - value
       filter:
         user_id:
@@ -344,7 +346,9 @@
     permission:
       columns:
       - is_new
-      - interested
+      - number_of_comments
+      - number_of_interested
+      - number_of_upvotes
       - field
       - name
       - preview
@@ -353,6 +357,7 @@
       - id
       - user_id
       filter: {}
+      limit: 25
       allow_aggregations: true
   - role: user
     permission:
@@ -362,11 +367,14 @@
       - name
       - status
       - created_at
-      - interested
+      - number_of_interested
+      - number_of_comments
+      - number_of_upvotes
       - preview
       - field
       - is_new
       filter: {}
+      limit: 25
       allow_aggregations: true
 - table:
     schema: public
@@ -519,11 +527,14 @@
       - created_at
       - description
       - description_preview
-      - id
       - field
+      - id
       - is_published
       - mission_statement
       - name
+      - number_of_comments
+      - number_of_interested
+      - number_of_upvotes
       - status
       - team
       - updated_at
@@ -541,10 +552,12 @@
       - description_preview
       - field
       - id
-      - interested
       - is_published
       - mission_statement
       - name
+      - number_of_comments
+      - number_of_interested
+      - number_of_upvotes
       - status
       - team
       - updated_at
@@ -564,6 +577,9 @@
       - is_published
       - mission_statement
       - name
+      - number_of_comments
+      - number_of_interested
+      - number_of_upvotes
       - status
       - team
       filter:
@@ -580,15 +596,15 @@
       - competitors
       - created_at
       - description
-      - description_preview
       - field
-      - interested
       - is_published
       - mission_statement
       - name
+      - number_of_comments
+      - number_of_interested
+      - number_of_upvotes
       - status
       - team
-      - updated_at
       filter:
         user_id:
           _eq: X-Hasura-User-Id

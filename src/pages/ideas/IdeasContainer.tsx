@@ -45,6 +45,8 @@ const IdeasContainer = (): JSX.Element => {
 		}
 	});
 
+	console.log('ideas: ', data);
+
 	if (loading) return <Loading small />;
 	// if (!loading && data?.idea_preview.length < 1) return <NoResults />;
 

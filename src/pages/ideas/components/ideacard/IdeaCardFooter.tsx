@@ -1,7 +1,9 @@
-import { StackLayout } from 'components/layouts';
+import Icon from '@chakra-ui/icon';
+import { FlexLayout, StackLayout } from 'components/layouts';
 import { Upvote } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
+import { IoChatboxEllipsesSharp } from 'react-icons/io5';
 import IdeaMenu from '../IdeaMenu';
 
 const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
@@ -23,7 +25,18 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 			borderTopWidth={1}
 			borderTopColor={'gray.100'}
 		>
-			<Upvote {...idea.idea_votes} ideaId={idea.id} />
+			<FlexLayout>
+				<Upvote {...idea.idea_votes} ideaId={idea.id} />
+				{idea.number_of_comments > 0 && (
+					<Icon
+						as={IoChatboxEllipsesSharp}
+						fontSize={'md'}
+						pt={0}
+						mr={1}
+						_hover={{ color: 'green.300' }}
+					/>
+				)}
+			</FlexLayout>
 			<IdeaMenu {...idea} />
 			{/* <IconButton
 				aria-label={'report-button'}

@@ -41,7 +41,7 @@ const INSERT_INTERESTED_IDEA = gql`
 		}
 		update_ideas_by_pk(
 			pk_columns: { id: $ideaId }
-			_inc: { interested: 1 }
+			_inc: { number_of_interested: 1 }
 		) {
 			id
 		}
@@ -105,7 +105,9 @@ const GET_IDEAS = gql`
 			status
 			created_at
 			is_new
-			interested
+			number_of_interested
+			number_of_comments
+			number_of_upvotes
 			idea_user {
 				first_name
 				country
@@ -129,7 +131,9 @@ const GET_USER_IDEAS = gql`
 			name
 			created_at
 			is_published
-			interested
+			number_of_interested
+			number_of_upvotes
+			number_of_comments
 		}
 	}
 `;
@@ -148,7 +152,9 @@ const GET_IDEA = gql`
 			user_id
 			status
 			created_at
-			interested
+			number_of_interested
+			number_of_comments
+			number_of_upvotes
 			idea_user {
 				avatar_url
 				first_name
