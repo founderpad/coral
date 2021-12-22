@@ -4,7 +4,7 @@ import { FlexLayout, StackLayout } from 'components/layouts';
 import { Upvote } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
-import { IoChatboxEllipsesSharp } from 'react-icons/io5';
+import { IoChatboxOutline } from 'react-icons/io5';
 import IdeaMenu from '../IdeaMenu';
 
 const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
@@ -31,13 +31,13 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 				{idea.number_of_comments > 0 && (
 					<FlexLayout alignItems={'center'}>
 						<Icon
-							as={IoChatboxEllipsesSharp}
-							fontSize={'md'}
+							as={IoChatboxOutline}
+							fontSize={'lg'}
 							pt={0}
 							mr={1}
 							color={'gray.500'}
 						/>
-						<Label color={'gray.500'} fontSize={'xs'}>
+						<Label color={'gray.500'} fontSize={'sm'}>
 							{idea.number_of_comments}
 						</Label>
 					</FlexLayout>

@@ -78,7 +78,7 @@ export const Upvote = (
 		>
 			<Icon
 				as={IoArrowUpSharp}
-				fontSize={'md'}
+				fontSize={'lg'}
 				pt={0}
 				mr={1}
 				_hover={{ color: 'green.300' }}

@@ -193,6 +193,7 @@ export const CommentsList = ({
 			p={0}
 			justifyContent={'center'}
 			display={display}
+			id={'idea-comments'}
 		>
 			<BaseHeading
 				fontSize={'sm'}

@@ -1,3 +1,5 @@
+import Icon from '@chakra-ui/icon';
+import { PrimaryButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
@@ -10,6 +12,7 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import {
 	IoBulbSharp,
+	IoChatbubbleEllipsesSharp,
 	IoLocationSharp,
 	IoTrendingUpSharp
 } from 'react-icons/io5';
@@ -26,6 +29,10 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 
 	const onShowCommentsClick = useCallback(() => {
 		setShowComments(!showComments);
+
+		document.getElementById('idea-comments').scrollIntoView({
+			behavior: 'smooth'
+		});
 	}, [showComments]);
 
 	const idea = data?.idea;
@@ -52,7 +59,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 		status,
 		field,
 		id,
-		interested,
+		number_of_interested,
 		is_published
 	} = idea;
 	const { avatar_url, first_name } = idea_user;
@@ -93,21 +100,23 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 							alignItems={'center'}
 						>
 							<PublishedLabel isPublished={is_published} />
-							{interested > 0 && (
+							{number_of_interested > 0 && (
 								<>
 									<PointSeparator small />
-									<InterestedTotal total={interested} />
+									<InterestedTotal
+										total={number_of_interested}
+									/>
 								</>
 							)}
 						</StackLayout>
-						{/* <PrimaryButton
+						<PrimaryButton
 							name={'show-comments'}
 							variant={'ghost'}
 							leftIcon={<Icon as={IoChatbubbleEllipsesSharp} />}
 							onClick={onShowCommentsClick}
 						>
-							{showComments ? 'Hide comments' : 'Comments'}
-						</PrimaryButton> */}
+							Comments
+						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
 				<AppDivider />
