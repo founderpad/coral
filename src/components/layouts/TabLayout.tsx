@@ -28,8 +28,6 @@ const TabLayout = (props: Props): JSX.Element => {
 
 	const onChange = useCallback((index) => setTabIndex(index), [tabIndex]);
 
-	console.log('children: ', tabs);
-
 	return (
 		<Tabs
 			{...rest}

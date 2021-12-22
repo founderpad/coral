@@ -157,9 +157,9 @@ export const CommentsList = ({
 
 	const { data, loading, fetchMore } = useGetCommentsForIdeaQuery({
 		variables: {
-			ideaId: router.query.id,
-			offset: 0,
-			limit: 30
+			ideaId: router.query.id
+			// offset: 0,
+			// limit: 30
 		}
 	});
 
@@ -239,13 +239,15 @@ const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
 	if (data?.replies?.length)
 		return (
 			<StackLayout spacing={4} mt={4} rounded={'none'} pl={2}>
-				{data?.replies?.map((reply, _index) => (
-					<MessageLayout
-						key={_index}
-						actions={false}
-						comment={reply}
-					/>
-				))}
+				{data?.replies?.map((reply, _index) => {
+					return (
+						<MessageLayout
+							key={_index}
+							actions={false}
+							comment={reply}
+						/>
+					);
+				})}
 			</StackLayout>
 		);
 

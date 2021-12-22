@@ -19,12 +19,10 @@ const POST_REPLY = gql`
 `;
 
 const GET_COMMENTS_FOR_IDEA = gql`
-	query getCommentsForIdea($ideaId: uuid!, $offset: Int, $limit: Int) {
+	query getCommentsForIdea($ideaId: uuid!) {
 		comments: idea_comments(
-			offset: $offset
-			limit: $limit
 			where: { idea_id: { _eq: $ideaId } }
-			order_by: { updated_at: asc }
+			order_by: { updated_at: desc }
 		) {
 			id
 			updated_at
@@ -54,7 +52,7 @@ const GET_REPLIES_FOR_COMMENT = gql`
 			updated_at
 			user {
 				id
-				display_name
+				first_name
 				avatar_url
 				account {
 					email
