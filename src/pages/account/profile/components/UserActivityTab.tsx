@@ -23,7 +23,7 @@ const UserActivityTab = (): JSX.Element => {
 	if (activities?.length < 1) return <NoResults label={'activity'} />;
 
 	return (
-		<Stack>
+		<Stack p={4}>
 			{activities?.map((activity) => (
 				<React.Fragment key={activity.idea_id}>
 					<ActivityItem {...activity} />

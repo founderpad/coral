@@ -44,7 +44,7 @@ const WorkExperienceTab = (): JSX.Element => {
 	if (!userProfile) return <Loading small />;
 
 	return (
-		<StackLayout>
+		<StackLayout p={4}>
 			<TitleEditAction title="Your experience" onClick={onClick} />
 			<OverviewTags
 				tags={[
