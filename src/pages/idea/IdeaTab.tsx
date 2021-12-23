@@ -97,7 +97,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 					>
 						<StackLayout
 							direction={'row'}
-							spacing={2}
+							spacing={{ base: 0, md: 1 }}
 							pt={2}
 							alignItems={'center'}
 						>
