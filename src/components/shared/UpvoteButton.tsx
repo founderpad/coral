@@ -5,12 +5,12 @@ import { IoArrowUpSharp } from 'react-icons/io5';
 
 export const UpvoteButton = ({
 	onClick,
-	isUpvoted,
+	hasUserUpvoted,
 	name,
 	votesTotal
 }: {
 	onClick: () => void;
-	isUpvoted: boolean;
+	hasUserUpvoted: boolean;
 	name: string;
 	votesTotal?: number;
 }) => {
@@ -20,7 +20,7 @@ export const UpvoteButton = ({
 			variant={'unstyled'}
 			d={'flex'}
 			css={{ width: '0.8em !important' }}
-			color={isUpvoted ? 'green.300' : 'gray.400'}
+			color={hasUserUpvoted ? 'green.300' : 'gray.400'}
 			onClick={onClick}
 		>
 			<Icon
@@ -30,7 +30,7 @@ export const UpvoteButton = ({
 				mr={1}
 				_hover={{ color: 'green.300' }}
 			/>
-			{votesTotal}
+			{votesTotal > 0 && votesTotal}
 		</BaseButton>
 	);
 };

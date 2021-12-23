@@ -14,7 +14,7 @@ const IdeaUpvote = ({
 	// const isUpvote = voteType === 1;
 
 	const votesTotal =
-		ideaVotes.idea?.idea_votes_aggregate.aggregate.count ?? 0;
+		ideaVotes?.idea.idea_votes_aggregate.aggregate.count ?? 0;
 
 	console.log('222: ', ideaId, ideaVotes);
 
@@ -47,7 +47,7 @@ const IdeaUpvote = ({
 		<UpvoteButton
 			onClick={toggleUpvote}
 			name={'idea'}
-			isUpvoted={true}
+			hasUserUpvoted={true}
 			votesTotal={votesTotal}
 		/>
 	);
