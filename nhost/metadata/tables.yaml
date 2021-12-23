@@ -324,6 +324,14 @@
 - table:
     schema: public
     name: idea_preview
+  configuration:
+    custom_root_fields: {}
+    custom_column_names:
+      number_of_upvotes: totalUpvotes
+      number_of_comments: totalComments
+      number_of_interested: totalInterest
+      is_new: isNew
+      created_at: createdAt
   object_relationships:
   - name: idea_user
     using:
@@ -333,6 +341,7 @@
           name: users
         column_mapping:
           user_id: id
+  array_relationships:
   - name: idea_votes
     using:
       manual_configuration:
@@ -357,7 +366,6 @@
       - id
       - user_id
       filter: {}
-      limit: 25
       allow_aggregations: true
   - role: user
     permission:
@@ -374,7 +382,6 @@
       - field
       - is_new
       filter: {}
-      limit: 25
       allow_aggregations: true
 - table:
     schema: public
@@ -423,6 +430,7 @@
       - updated_at
       - user_id
       filter: {}
+      limit: 20
       allow_aggregations: true
   delete_permissions:
   - role: me
@@ -831,13 +839,6 @@
         column_mapping:
           id: user_id
   array_relationships:
-  - name: idea_votes
-    using:
-      foreign_key_constraint_on:
-        column: user_id
-        table:
-          schema: public
-          name: idea_votes
   - name: user_activities
     using:
       foreign_key_constraint_on:

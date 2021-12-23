@@ -84,28 +84,15 @@ const GET_IDEAS = gql`
 			offset: $offset
 			order_by: $orderBy
 		) {
-			idea_votes {
-				idea {
-					idea_votes_aggregate {
-						aggregate {
-							count(columns: id)
-						}
-					}
-					idea_votes(where: { user_id: { _eq: $userId } }) {
-						id
-					}
-				}
-			}
 			id
 			name
 			preview
 			field
 			status
-			created_at
-			is_new
-			number_of_interested
-			number_of_comments
-			number_of_upvotes
+			createdAt
+			isNew
+			totalInterest
+			totalComments
 			idea_user {
 				first_name
 				country
@@ -114,6 +101,14 @@ const GET_IDEAS = gql`
 				account {
 					email
 				}
+			}
+			idea_votes_aggregate {
+				aggregate {
+					count(columns: id)
+				}
+			}
+			idea_votes(where: { user_id: { _eq: $userId } }) {
+				id
 			}
 		}
 	}
@@ -215,8 +210,10 @@ const INSERT_IDEA_UPVOTE = gql`
 
 const DELETE_IDEA_UPVOTE = gql`
 	mutation deleteIdeaUpvote($idea_id: uuid!, $user_id: uuid!) {
-		delete_idea_votes_by_pk(idea_id: $idea_id, user_id: $user_id) {
-			id
+		delete_idea_votes(
+			where: { user_id: { _eq: $user_id }, idea_id: { _eq: $idea_id } }
+		) {
+			affected_rows
 		}
 	}
 `;

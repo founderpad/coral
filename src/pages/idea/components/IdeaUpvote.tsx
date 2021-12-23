@@ -1,25 +1,28 @@
 import { UpvoteButton } from 'components/shared/UpvoteButton';
 import {
-	TIdea_Votes,
+	TIdea_Preview,
 	useDeleteIdeaUpvoteMutation,
 	useInsertIdeaUpvoteMutation
 } from 'generated/api';
 import { useClaim } from 'hooks/auth';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
-const IdeaUpvote = ({
-	ideaId,
-	ideaVotes
-}: {
-	ideaId: string;
-	ideaVotes: TIdea_Votes | null;
-}): JSX.Element => {
-	const votesTotal =
-		ideaVotes?.idea.idea_votes_aggregate.aggregate.count ?? 0;
+const IdeaUpvote = (idea: TIdea_Preview): JSX.Element => {
+	const [upvote, setUpvote] = useState({
+		hasUserUpvoted: idea.idea_votes?.length > 0,
+		votesTotal: idea.idea_votes_aggregate?.aggregate.count ?? 0
+	});
 
-	const hasUserUpvoted = !!ideaVotes?.idea.idea_votes;
+	const { hasUserUpvoted, votesTotal } = upvote;
 
-	console.log('222: ', ideaId, ideaVotes);
+	// const [hasUserUpvoted, setHasUserUpvoted] = useState(
+	// 	!!ideaVotes?.idea.idea_votes
+	// );
+	// const [votesTotal, setVotesTotal] = useState(
+	// 	ideaVotes?.idea.idea_votes_aggregate.aggregate.count ?? 0
+	// );
+
+	// console.log('222: ', ideaId, ideaVotes);
 
 	// const [upsertIdeaVote] = useUpsertIdeaVoteMutation({
 	// 	variables: {
@@ -54,21 +57,27 @@ const IdeaUpvote = ({
 	const [insertIdeaUpvote] = useInsertIdeaUpvoteMutation({
 		variables: {
 			idea_vote: {
-				idea_id: ideaId
+				idea_id: idea.id
 			}
+		},
+		onCompleted: () => {
+			setUpvote({ hasUserUpvoted: true, votesTotal: votesTotal + 1 });
 		}
 	});
 
 	const [deleteIdeaUpvote] = useDeleteIdeaUpvoteMutation({
 		variables: {
-			idea_id: ideaId,
+			idea_id: idea.id,
 			user_id: useClaim()
+		},
+		onCompleted: () => {
+			setUpvote({ hasUserUpvoted: false, votesTotal: votesTotal - 1 });
 		}
 	});
 
 	const toggleUpvote = useCallback(() => {
 		hasUserUpvoted ? deleteIdeaUpvote() : insertIdeaUpvote();
-	}, []);
+	}, [hasUserUpvoted]);
 
 	return (
 		<UpvoteButton

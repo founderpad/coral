@@ -7,7 +7,7 @@ import React from 'react';
 
 type TIdeaCardBody = Pick<
 	TIdea_Preview,
-	'preview' | 'field' | 'idea_user' | 'status' | 'interested'
+	'preview' | 'field' | 'idea_user' | 'status' | 'totalInterest'
 >;
 
 const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
@@ -34,7 +34,7 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 };
 
 export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
-	const { field, status, interested } = idea;
+	const { field, status, totalInterest } = idea;
 
 	return (
 		<FlexLayout
@@ -52,7 +52,7 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
 					{field}
 				</BaseTag>
 			</StackLayout>
-			<InterestedTotal total={interested} />
+			<InterestedTotal total={totalInterest} />
 		</FlexLayout>
 	);
 };

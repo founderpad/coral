@@ -14,6 +14,8 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 	// 	e.preventDefault();
 	// };
 
+	const { id, idea_votes, totalComments } = idea;
+
 	return (
 		<StackLayout
 			direction={'row'}
@@ -28,8 +30,8 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 		>
 			<StackLayout direction={'row'} spacing={4} alignItems={'center'}>
 				{/* <Upvote {...idea.idea_votes} ideaId={idea.id} /> */}
-				<IdeaUpvote ideaId={idea.id} ideaVotes={idea.idea_votes} />
-				{idea.number_of_comments > 0 && (
+				<IdeaUpvote {...idea} />
+				{totalComments > 0 && (
 					<FlexLayout alignItems={'center'}>
 						<Icon
 							as={IoChatboxSharp}
@@ -39,7 +41,7 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 							color={'gray.400'}
 						/>
 						<Label color={'gray.400'} fontSize={'sm'}>
-							{idea.number_of_comments}
+							{totalComments}
 						</Label>
 					</FlexLayout>
 				)}
