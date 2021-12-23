@@ -204,11 +204,19 @@ const GET_IDEA_INTERESTED_USERS = gql`
 	}
 `;
 
-const UPVOTE_IDEA = gql`
-	mutation ($idea_vote: idea_votes_insert_input!) {
+const INSERT_IDEA_UPVOTE = gql`
+	mutation insertIdeaUpvote($idea_vote: idea_votes_insert_input!) {
 		insert_idea_votes_one(object: $idea_vote) {
 			id
 			idea_id
+		}
+	}
+`;
+
+const DELETE_IDEA_UPVOTE = gql`
+	mutation deleteIdeaUpvote($id: uuid!) {
+		delete_idea_votes_by_pk(id: $id) {
+			id
 		}
 	}
 `;
@@ -223,5 +231,6 @@ export {
 	// UPSERT_IDEA_UPVOTE,
 	INSERT_INTERESTED_IDEA,
 	GET_IDEA_INTERESTED_USERS,
-	UPVOTE_IDEA
+	INSERT_IDEA_UPVOTE,
+	DELETE_IDEA_UPVOTE
 };
