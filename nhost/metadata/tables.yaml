@@ -394,7 +394,6 @@
         user_id: x-hasura-User-Id
       columns:
       - idea_id
-      - vote_type
       backend_only: false
   - role: user
     permission:
@@ -403,18 +402,16 @@
         user_id: x-hasura-User-Id
       columns:
       - idea_id
-      - vote_type
       backend_only: false
   select_permissions:
   - role: me
     permission:
       columns:
-      - idea_id
-      - user_id
-      - vote_type
       - created_at
-      - updated_at
       - id
+      - idea_id
+      - updated_at
+      - user_id
       filter: {}
       allow_aggregations: true
   - role: user
@@ -425,26 +422,8 @@
       - idea_id
       - updated_at
       - user_id
-      - vote_type
       filter: {}
       allow_aggregations: true
-  update_permissions:
-  - role: me
-    permission:
-      columns:
-      - vote_type
-      filter:
-        user_id:
-          _eq: X-Hasura-User-Id
-      check: null
-  - role: user
-    permission:
-      columns:
-      - vote_type
-      filter:
-        user_id:
-          _eq: X-Hasura-User-Id
-      check: null
   delete_permissions:
   - role: me
     permission:

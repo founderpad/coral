@@ -214,8 +214,8 @@ const INSERT_IDEA_UPVOTE = gql`
 `;
 
 const DELETE_IDEA_UPVOTE = gql`
-	mutation deleteIdeaUpvote($id: uuid!) {
-		delete_idea_votes_by_pk(id: $id) {
+	mutation deleteIdeaUpvote($idea_id: uuid!, $user_id: uuid!) {
+		delete_idea_votes_by_pk(idea_id: $idea_id, user_id: $user_id) {
 			id
 		}
 	}
