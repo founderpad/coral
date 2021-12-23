@@ -204,13 +204,14 @@ const GET_IDEA_INTERESTED_USERS = gql`
 	}
 `;
 
-// const UPVOTE_IDEA = gql`
-// 	mutation ($idea_vote: idea_votes_insert_input!) {
-// 		insert_idea_votes_one(objects: $idea_vote) {
-// 			affected_rows
-// 		}
-// 	}
-// `;
+const UPVOTE_IDEA = gql`
+	mutation ($idea_vote: idea_votes_insert_input!) {
+		insert_idea_votes_one(object: $idea_vote) {
+			id
+			idea_id
+		}
+	}
+`;
 
 export {
 	CREATE_IDEA,
@@ -221,5 +222,6 @@ export {
 	DELETE_IDEA,
 	// UPSERT_IDEA_UPVOTE,
 	INSERT_INTERESTED_IDEA,
-	GET_IDEA_INTERESTED_USERS
+	GET_IDEA_INTERESTED_USERS,
+	UPVOTE_IDEA
 };
