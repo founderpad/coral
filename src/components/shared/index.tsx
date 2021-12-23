@@ -13,7 +13,7 @@ export { SeeMoreLink } from './SeeMoreLink';
 export { LineSeparator, PointSeparator } from './Separators';
 export { StickySubheader } from './StickySubheader';
 export { TitleEditAction } from './TitleEditAction';
-export { Upvote } from './Upvote';
+// export { Upvote } from './Upvote';
 export {
 	CurrentUserAvatarDetails,
 	UserAvatar,

@@ -1,7 +1,6 @@
 import Icon from '@chakra-ui/icon';
 import { Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
-import { Upvote } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import React, { memo } from 'react';
 import { IoChatboxSharp } from 'react-icons/io5';
@@ -27,7 +26,7 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 			borderTopColor={'gray.100'}
 		>
 			<StackLayout direction={'row'} spacing={2} alignItems={'center'}>
-				<Upvote {...idea.idea_votes} ideaId={idea.id} />
+				{/* <Upvote {...idea.idea_votes} ideaId={idea.id} /> */}
 				{idea.number_of_comments > 0 && (
 					<FlexLayout alignItems={'center'}>
 						<Icon

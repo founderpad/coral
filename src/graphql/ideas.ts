@@ -88,13 +88,11 @@ const GET_IDEAS = gql`
 				idea {
 					idea_votes_aggregate {
 						aggregate {
-							sum {
-								vote_type
-							}
+							count(columns: id)
 						}
 					}
 					idea_votes(where: { user_id: { _eq: $userId } }) {
-						vote_type
+						id
 					}
 				}
 			}
@@ -163,9 +161,7 @@ const GET_IDEA = gql`
 			}
 			idea_votes_aggregate {
 				aggregate {
-					sum {
-						vote_type
-					}
+					count(columns: id)
 				}
 			}
 		}
@@ -175,19 +171,19 @@ const GET_IDEA = gql`
 	}
 `;
 
-const UPSERT_IDEA_UPVOTE = gql`
-	mutation upsertIdeaVote($idea_vote: idea_votes_insert_input!) {
-		insert_idea_votes_one(
-			object: $idea_vote
-			on_conflict: {
-				constraint: idea_votes_pkey
-				update_columns: vote_type
-			}
-		) {
-			idea_id
-		}
-	}
-`;
+// const UPSERT_IDEA_UPVOTE = gql`
+// 	mutation upsertIdeaVote($idea_vote: idea_votes_insert_input!) {
+// 		insert_idea_votes_one(
+// 			object: $idea_vote
+// 			on_conflict: {
+// 				constraint: idea_votes_pkey
+// 				update_columns: vote_type
+// 			}
+// 		) {
+// 			idea_id
+// 		}
+// 	}
+// `;
 
 const GET_IDEA_INTERESTED_USERS = gql`
 	query getIdeaInterestedUsers($ideaId: uuid!) {
@@ -223,7 +219,7 @@ export {
 	GET_IDEA,
 	UPDATE_IDEA,
 	DELETE_IDEA,
-	UPSERT_IDEA_UPVOTE,
+	// UPSERT_IDEA_UPVOTE,
 	INSERT_INTERESTED_IDEA,
 	GET_IDEA_INTERESTED_USERS
 };
