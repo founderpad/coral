@@ -21,6 +21,7 @@ export const MainLayout: FC<{ children: JSX.Element }> = ({
 				borderWidth={{ base: 0, lg: 1 }}
 				borderColor={'gray.100'}
 				marginY={{ base: 0, lg: 6 }}
+				p={{ base: 0, sm: 4 }}
 				// overflowY={'auto'}
 				position={'relative'}
 			>

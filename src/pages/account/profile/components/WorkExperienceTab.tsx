@@ -46,6 +46,7 @@ const WorkExperienceTab = (): JSX.Element => {
 	return (
 		<StackLayout p={4}>
 			<TitleEditAction title="Your experience" onClick={onClick} />
+			<AppDivider />
 			<OverviewTags
 				tags={[
 					{
@@ -75,9 +76,9 @@ const WorkExperienceTab = (): JSX.Element => {
 				]}
 			/>
 
-			<AppDivider display={{ base: 'block', md: 'none' }} />
+			<AppDivider />
 
-			<StackLayout>
+			<StackLayout spacing={8}>
 				<ContentFieldAndValue
 					title={'Background'}
 					value={userProfile?.background ?? 'Not set'}
@@ -97,6 +98,7 @@ const WorkExperienceTab = (): JSX.Element => {
 					}
 				/>
 			</StackLayout>
+
 			<AppDivider />
 
 			<TitleEditAction title="Your resume" />

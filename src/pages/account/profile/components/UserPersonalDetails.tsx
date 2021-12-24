@@ -37,7 +37,7 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 	};
 
 	return (
-		<StackLayout p={4}>
+		<StackLayout>
 			<UserImageUploader />
 			<StackLayout {...props} spacing={2} w={'full'}>
 				<TitleEditAction

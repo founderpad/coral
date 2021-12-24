@@ -16,11 +16,11 @@ const ProfileSectionLabel = memo(
 		children?: React.ReactNode;
 	}) => (
 		<FlexLayout alignItems={'center'} wordBreak={'break-all'}>
-			{icon && <Icon as={icon} color={'gray.400'} mr={2} />}
+			{icon && <Icon as={icon} color={'gray.500'} mr={2} />}
 			{children ?? (
 				<SubLabel
 					textOverflow={'ellipsis'}
-					color={'gray.400'}
+					color={'gray.500'}
 					isTruncated
 				>
 					{label}

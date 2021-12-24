@@ -1,3 +1,4 @@
+import { StackProps } from '@chakra-ui/layout';
 import { StackLayout } from 'components/layouts';
 import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
@@ -17,9 +18,15 @@ interface IOverviewTag {
  * The @OverviewTags display a stack of components of key information (see idea and user profile)
  */
 const OverviewTags = memo(
-	({ tags }: { tags: Array<IOverviewTag> }): JSX.Element => (
+	({
+		tags,
+		direction
+	}: {
+		tags: Array<IOverviewTag>;
+		direction?: StackProps['direction'];
+	}): JSX.Element => (
 		<StackLayout
-			direction={{ base: 'column', lg: 'row' }}
+			direction={direction ?? { base: 'column', lg: 'row' }}
 			spacing={{ base: 0, lg: 12 }}
 			alignItems={{ base: 'flex-start', lg: 'center' }}
 		>

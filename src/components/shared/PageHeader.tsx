@@ -30,7 +30,7 @@ export const PageHeader = memo(
 						justifyContent={'space-between'}
 						alignItems={'center'}
 					>
-						<SubheadingText label={title} />
+						<SubheadingText>{title}</SubheadingText>
 						{action}
 					</FlexLayout>
 					{subtitle && (

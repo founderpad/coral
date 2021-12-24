@@ -90,6 +90,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 				errorText="You must provide a background (max. 400 characters)"
 				name="background"
 				control={control}
+				minH={'100px'}
 				rules={{ maxLength: 400 }}
 				isRequired
 			/>
