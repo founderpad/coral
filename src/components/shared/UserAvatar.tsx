@@ -1,58 +1,97 @@
 import { Avatar } from '@chakra-ui/avatar';
-import { Box, Flex } from '@chakra-ui/layout';
-import { AvatarProps, useBreakpointValue } from '@chakra-ui/react';
-import { CaptionLabel, SubLabel } from 'components/labels';
+import { AvatarProps, StackProps, useBreakpointValue } from '@chakra-ui/react';
+import { CaptionLabel, Label } from 'components/labels';
+import { StackLayout } from 'components/layouts';
 import { useCurrentUser } from 'hooks/auth';
 import React, { memo } from 'react';
 
 type Props = AvatarProps & {
-	name: string;
 	email?: string;
 	children?: string;
 	createdAt?: string;
+	direction?: StackProps['direction'];
 };
 
-export const UserAvatar = (props: AvatarProps): JSX.Element => {
+export const UserAvatar = (props: Props): JSX.Element => {
 	const avatarSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
-	const { rounded = 'full', size, ...rest } = props;
-	return <Avatar {...rest} size={size ?? avatarSize} rounded={rounded} />;
+	const { size, ...rest } = props;
+	return (
+		<Avatar
+			{...rest}
+			name={'user-avatar'}
+			size={size ?? avatarSize}
+			rounded={'full'}
+			bg={'fpPrimary.500'}
+			color={'white'}
+		/>
+	);
 };
 
 export const UserAvatarDetails = ({
 	email,
 	name,
 	src,
-	createdAt
+	createdAt,
+	size = 'md',
+	direction = 'row'
 }: Props): JSX.Element => {
 	return (
-		<Flex align={'center'}>
-			<UserAvatar src={src} />
-			<Box ml={2} wordBreak={'break-all'}>
-				<SubLabel fontWeight={'medium'} fontSize={'xs'} isTruncated>
+		<StackLayout
+			align={'center'}
+			wordBreak={'break-all'}
+			direction={direction}
+			spacing={2}
+		>
+			<UserAvatar src={src} size={size} direction={direction} />
+			<StackLayout
+				spacing={0}
+				ml={2}
+				alignItems={direction === 'column' ? 'center' : 'flex-start'}
+			>
+				<Label
+					fontWeight={'medium'}
+					fontSize={'small'}
+					wordBreak={'break-all'}
+				>
 					{name}
-				</SubLabel>
-				{email && <SubLabel color={'gray.400'}>{email}</SubLabel>}
+				</Label>
+				{email && (
+					<Label color={'gray.500'} fontSize={'xs'}>
+						{email}
+					</Label>
+				)}
 				{createdAt && (
 					<CaptionLabel color={'gray.400'}>{createdAt}</CaptionLabel>
 				)}
-			</Box>
-		</Flex>
+			</StackLayout>
+		</StackLayout>
 	);
 };
 
-export const CurrentUserAvatarDetails = memo((): JSX.Element => {
-	const user = useCurrentUser();
-	if (user)
-		return (
-			<UserAvatarDetails
-				name={user.first_name + ' ' + user.last_name}
-				email={user.account.email}
-				src={user.avatar_url}
-			/>
-		);
-	return null;
-});
+export const CurrentUserAvatarDetails = memo(
+	({
+		size,
+		direction
+	}: {
+		size?: Props['size'];
+		direction?: StackProps['direction'];
+	}): JSX.Element => {
+		const user = useCurrentUser();
+
+		if (user)
+			return (
+				<UserAvatarDetails
+					name={user.first_name + ' ' + user.last_name}
+					email={user.account.email}
+					src={user.avatar_url}
+					size={size}
+					direction={direction}
+				/>
+			);
+		return null;
+	}
+);
 
 export const CurrentUserAvatar = memo(
 	({ small }: { small?: boolean }): JSX.Element => {

@@ -38,8 +38,8 @@ const UserMenu = (): JSX.Element => {
 				<UserAvatar size={'xs'} src={user} />
 				<Icon as={IoEllipsisVertical} ml={1} color={'gray.500'} />
 			</MenuButton>
-			<MenuList rounded={'none'} textAlign={'start'} p={4}>
-				<CurrentUserAvatarDetails />
+			<MenuList rounded={'none'} textAlign={'start'} p={4} maxW={200}>
+				<CurrentUserAvatarDetails size={'md'} direction={'column'} />
 
 				<MenuDivider my={4} />
 				<MenuGroup>
