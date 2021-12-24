@@ -32,6 +32,7 @@ const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 		style={{
 			borderRadius: '0 10px 10px'
 		}}
+		wordBreak={'break-all'}
 	>
 		{children}
 	</StackLayout>
@@ -245,7 +246,7 @@ const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
 
 	if (data?.replies?.length)
 		return (
-			<StackLayout spacing={4} mt={4} rounded={'none'} pl={2}>
+			<StackLayout spacing={4} pt={4} rounded={'none'} pl={2}>
 				{data?.replies?.map((reply, _index) => {
 					return (
 						<MessageLayout

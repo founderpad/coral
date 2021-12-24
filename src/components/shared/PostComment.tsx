@@ -114,15 +114,18 @@ const PostComment = (): JSX.Element => {
 					as={ResizeTextarea}
 					onChange={onValueChange}
 					value={value}
-					borderWidth={0}
+					borderWidth={2}
+					borderColor={'white'}
 					maxRows={3}
 					resize={'none'}
 					maxH={'100px'}
 					p={2}
 					title={'Write your comment here'}
+					_hover={{
+						borderColor: 'transparent'
+					}}
 					_focus={{
-						borderColor: 'gray.400',
-						boxShadow: 'none'
+						borderColor: 'transparent'
 					}}
 				/>
 
