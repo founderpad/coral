@@ -203,6 +203,17 @@
     using:
       foreign_key_constraint_on: user_id
   insert_permissions:
+  - role: me
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - comment_id
+      - value
+      backend_only: false
   - role: user
     permission:
       check:
@@ -238,6 +249,14 @@
       filter: {}
       allow_aggregations: true
   update_permissions:
+  - role: me
+    permission:
+      columns:
+      - value
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
   - role: user
     permission:
       columns:
@@ -260,7 +279,7 @@
     using:
       foreign_key_constraint_on: user_id
   array_relationships:
-  - name: idea_replies
+  - name: replies
     using:
       foreign_key_constraint_on:
         column: comment_id
@@ -333,7 +352,7 @@
       is_new: isNew
       created_at: createdAt
   object_relationships:
-  - name: idea_user
+  - name: user
     using:
       manual_configuration:
         remote_table:
@@ -342,7 +361,7 @@
         column_mapping:
           user_id: id
   array_relationships:
-  - name: idea_votes
+  - name: votes
     using:
       manual_configuration:
         remote_table:
@@ -447,7 +466,7 @@
     schema: public
     name: ideas
   object_relationships:
-  - name: idea_user
+  - name: user
     using:
       manual_configuration:
         remote_table:
@@ -456,7 +475,7 @@
         column_mapping:
           user_id: id
   array_relationships:
-  - name: idea_votes
+  - name: votes
     using:
       foreign_key_constraint_on:
         column: idea_id

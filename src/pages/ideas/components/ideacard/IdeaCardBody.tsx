@@ -1,13 +1,13 @@
 import { Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
-import BaseTag from 'components/tags/BaseTag';
+import { PointSeparator } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
 import InterestedTotal from 'pages/idea/components/InterestedTotal';
 import React from 'react';
 
 type TIdeaCardBody = Pick<
 	TIdea_Preview,
-	'preview' | 'field' | 'idea_user' | 'status' | 'totalInterest'
+	'preview' | 'field' | 'user' | 'status' | 'totalInterest'
 >;
 
 const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
@@ -44,13 +44,20 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
 			justifyContent={'space-between'}
 			w={'full'}
 		>
-			<StackLayout spacing={2} direction={'row'}>
-				<BaseTag color={'fpPrimary.500'} bg={'white'}>
+			<StackLayout spacing={0} direction={'row'} alignItems={'center'}>
+				{/* <BaseTag color={'fpPrimary.500'} bg={'white'}>
 					{status}
 				</BaseTag>
 				<BaseTag color={'fpPrimary.500'} bg={'white'}>
 					{field}
-				</BaseTag>
+				</BaseTag> */}
+				<Label color={'fpPrimary.400'} fontSize={'xs'}>
+					{status}
+				</Label>
+				<PointSeparator small />
+				<Label color={'fpPrimary.500'} fontSize={'xs'}>
+					{field}
+				</Label>
 			</StackLayout>
 			<InterestedTotal total={totalInterest} />
 		</FlexLayout>

@@ -3,8 +3,6 @@ import Icon from '@chakra-ui/icon';
 import { Textarea } from '@chakra-ui/textarea';
 import { StackLayout } from 'components/layouts';
 import { usePostCommentMutation } from 'generated/api';
-import { GET_COMMENTS_FOR_IDEA } from 'graphql/comments';
-import { useRouter } from 'next/router';
 import useIdeaFragment from 'pages/idea/fragments/IdeaFragment';
 import React, { useCallback, useState } from 'react';
 import { IoSendSharp } from 'react-icons/io5';
@@ -12,26 +10,38 @@ import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';
 
 const PostComment = (): JSX.Element => {
-	const router = useRouter();
 	const [value, setValue] = useState('');
 	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
-			comment: {
+			ideaComment: {
 				idea_id: useIdeaFragment().id,
 				value
-			},
-			ideaId: useIdeaFragment().id
-		},
-		refetchQueries: [
-			{
-				query: GET_COMMENTS_FOR_IDEA,
-				variables: {
-					ideaId: useIdeaFragment().id
-				}
 			}
-		],
+		},
+		update(cache, mutationResult) {
+			cache.modify({
+				fields: {
+					idea_comments: (previous, { toReference }) => {
+						const result = [
+							...previous,
+							toReference(mutationResult.data.addIdeaComment)
+						];
+
+						console.log('result: ', result);
+					}
+				}
+			});
+		},
+		// refetchQueries: [
+		// 	{
+		// 		query: GET_COMMENTS_FOR_IDEA,
+		// 		variables: {
+		// 			ideaId: useIdeaFragment().id
+		// 		}
+		// 	}
+		// ],
 		onCompleted: () => {
 			// setModalDrawer({
 			// 	isOpen: false
@@ -104,6 +114,7 @@ const PostComment = (): JSX.Element => {
 					as={ResizeTextarea}
 					onChange={onValueChange}
 					value={value}
+					borderWidth={0}
 					maxRows={3}
 					resize={'none'}
 					maxH={'100px'}

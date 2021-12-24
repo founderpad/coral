@@ -22,7 +22,7 @@ import PublishedLabel from './components/PublishedLabel';
 
 const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 	const router = useRouter();
-	const user = useCurrentUser();
+	const auth = useCurrentUser();
 	const [showComments, setShowComments] = useState(false);
 
 	const onShowCommentsClick = useCallback(() => {
@@ -35,6 +35,8 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 
 	const idea = data?.idea;
 
+	// console.log('comments: ', useIdeaCommentsQuery(idea?.id)?.length);
+
 	if (!data) return <Loading small />;
 
 	// const onShowCommentsClick = () => {
@@ -42,12 +44,12 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 	// };
 
 	// Only enable the id creator to view their own idea if it's unpublished
-	if (!idea || (!idea.is_published && idea.user_id !== user.id))
+	if (!idea || (!idea.is_published && idea.user_id !== auth.id))
 		router.replace('/404');
 
 	const {
 		name,
-		idea_user,
+		user,
 		user_id,
 		created_at,
 		description,
@@ -61,7 +63,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 		number_of_comments,
 		is_published
 	} = idea;
-	const { avatar_url, first_name } = idea_user;
+	const { avatar_url, first_name } = user;
 
 	return (
 		<StackLayout
@@ -118,9 +120,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 							display={{ base: 'none', md: 'block' }}
 							alignContent={'center'}
 						>
-							{number_of_comments > 0
-								? number_of_comments + ' comment(s)'
-								: 'Comments'}
+							View comments
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
@@ -139,7 +139,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 						},
 						{
 							title: 'Location',
-							value: idea_user?.country,
+							value: user?.country,
 							icon: IoLocationSharp
 						}
 					]}

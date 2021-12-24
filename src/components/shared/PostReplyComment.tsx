@@ -1,59 +1,50 @@
-import { CancelButton, PrimaryButton, SubmitButton } from 'components/buttons';
-import { Form } from 'components/form';
-import { TextareaField } from 'components/input';
+import { ButtonGroup } from '@chakra-ui/button';
+import { Textarea } from '@chakra-ui/textarea';
+import { CancelButton, PrimaryButton } from 'components/buttons';
 import { FlexLayout, StackLayout } from 'components/layouts';
-import {
-	TIdea_Comments_Insert_Input,
-	usePostReplyMutation
-} from 'generated/api';
-import { GET_REPLIES_FOR_COMMENT } from 'graphql/comments';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { usePostReplyMutation } from 'generated/api';
+import React, { useCallback, useState } from 'react';
+import ResizeTextarea from 'react-textarea-autosize';
 
 const PostReplyComment = ({
 	commentId
 }: {
 	commentId: string;
 }): JSX.Element => {
-	const {
-		handleSubmit,
-		control,
-		getValues,
-		reset,
-		formState: { errors, isSubmitting, isValid }
-	} = useForm<Pick<TIdea_Comments_Insert_Input, 'value'>>({
-		mode: 'all'
-	});
-
 	const [showReplyField, setShowReplyField] = useState(false);
+	const [value, setValue] = useState('');
 
 	const [postReplyMutation] = usePostReplyMutation({
 		variables: {
-			reply: {
+			ideaReply: {
 				comment_id: commentId,
-				value: getValues('value')
-			},
-			commentId
-		},
-		refetchQueries: [
-			{
-				query: GET_REPLIES_FOR_COMMENT,
-				variables: {
-					commentId
-				}
+				value
 			}
-		],
+		},
+		// refetchQueries: [
+		// 	{
+		// 		query: GET_REPLIES_FOR_COMMENT,
+		// 		variables: {
+		// 			commentId
+		// 		}
+		// 	}
+		// ],
 		onCompleted: () => {
 			setShowReplyField(!showReplyField);
 		}
 	});
 
 	const onShowReplyClick = () => {
-		reset({
-			value: ''
-		});
 		setShowReplyField(!showReplyField);
+		setValue('');
 	};
+
+	const onValueChange = useCallback(
+		(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+			setValue(e.target.value);
+		},
+		[value]
+	);
 
 	return (
 		<FlexLayout
@@ -72,45 +63,47 @@ const PostReplyComment = ({
 				Reply
 			</PrimaryButton>
 			{showReplyField && (
-				<Form
-					id={'postReplyToCommentForm'}
-					name={'postReplyToCommentForm'}
-					onSubmit={handleSubmit(postReplyMutation)}
-					isSubmitting={isSubmitting}
-					isValid={isValid}
-					stackProps={{ mt: 2, w: 'full' }}
-					style={{ flex: 1, width: '100%' }}
+				<StackLayout
+					mt={1}
+					spacing={2}
+					justifyContent={'space-between'}
+					alignItems={'flex-end'}
+					w={'full'}
 				>
-					<TextareaField
-						id="value"
-						name="value"
-						placeholder="Post a reply"
-						error={errors['value']}
-						errorText="Your reply can not be empty."
-						control={control}
-						bg={'white'}
+					<Textarea
+						name={'value'}
+						id={'value'}
+						minH={'unset'}
+						placeholder={'Write your reply here'}
 						w={'full'}
-						size={'xs'}
+						as={ResizeTextarea}
+						onChange={onValueChange}
+						value={value}
+						maxRows={3}
+						resize={'none'}
+						maxH={'100px'}
+						p={2}
+						title={'Write your reply here'}
+						_focus={{
+							borderColor: 'gray.400',
+							boxShadow: 'none'
+						}}
 					/>
-					<StackLayout
-						direction={'row'}
-						spacing={2}
-						mt={0}
-						justifyContent={'flex-end'}
-					>
+					<ButtonGroup alignItems={'center'}>
 						<CancelButton
 							label={'Cancel'}
 							size={'xs'}
 							onClick={onShowReplyClick}
 						/>
-						<SubmitButton
-							name={'open-modal-drawer-post-reply-button'}
-							form="postReplyToCommentForm"
-							label={'Post'}
+						<PrimaryButton
+							name={'send-reply'}
 							size={'xs'}
-						/>
-					</StackLayout>
-				</Form>
+							onClick={() => postReplyMutation()}
+						>
+							Send
+						</PrimaryButton>
+					</ButtonGroup>
+				</StackLayout>
 			)}
 		</FlexLayout>
 	);

@@ -1,39 +1,21 @@
 import gql from 'graphql-tag';
 
-const POST_COMMENT = gql`
-	mutation postComment(
-		$comment: idea_comments_insert_input!
-		$ideaId: uuid!
-	) {
-		idea: insert_idea_comments_one(object: $comment) {
+const POST_COMMENT_FOR_IDEA = gql`
+	mutation postComment($ideaComment: idea_comments_insert_input!) {
+		addIdeaComment: insert_idea_comments_one(object: $ideaComment) {
 			idea_id
 			id
-		}
-
-		update_ideas_by_pk(
-			pk_columns: { id: $ideaId }
-			_inc: { number_of_comments: 1 }
-		) {
-			id
+			value
 		}
 	}
 `;
 
-const POST_REPLY = gql`
-	mutation postReply(
-		$reply: idea_comment_replies_insert_input!
-		$commentId: uuid!
-	) {
-		idea: insert_idea_comment_replies_one(object: $reply) {
+const POST_REPLY_FOR_IDEA = gql`
+	mutation postReply($ideaReply: idea_comment_replies_insert_input!) {
+		addIdeaReply: insert_idea_comment_replies_one(object: $ideaReply) {
 			comment_id
 			id
-		}
-
-		update_idea_comments_by_pk(
-			pk_columns: { id: $commentId }
-			_inc: { number_of_replies: 1 }
-		) {
-			id
+			value
 		}
 	}
 `;
@@ -61,7 +43,7 @@ const GET_COMMENTS_FOR_IDEA = gql`
 `;
 
 const GET_REPLIES_FOR_COMMENT = gql`
-	subscription getRepliesForComment($commentId: uuid!) {
+	query getRepliesForComment($commentId: uuid!) {
 		replies: idea_comment_replies(
 			where: { comment_id: { _eq: $commentId } }
 			order_by: { updated_at: asc }
@@ -83,8 +65,8 @@ const GET_REPLIES_FOR_COMMENT = gql`
 `;
 
 export {
-	POST_COMMENT,
-	POST_REPLY,
+	POST_COMMENT_FOR_IDEA,
+	POST_REPLY_FOR_IDEA,
 	GET_COMMENTS_FOR_IDEA,
 	GET_REPLIES_FOR_COMMENT
 };

@@ -9,8 +9,8 @@ import React, { useCallback, useState } from 'react';
 
 const IdeaUpvote = (idea: TIdea_Preview): JSX.Element => {
 	const [upvote, setUpvote] = useState({
-		hasUserUpvoted: idea.idea_votes?.length > 0,
-		votesTotal: idea.idea_votes_aggregate?.aggregate.count ?? 0
+		hasUserUpvoted: idea.votes?.length > 0,
+		votesTotal: idea.votes_aggregate?.aggregate.count ?? 0
 	});
 
 	const { hasUserUpvoted, votesTotal } = upvote;

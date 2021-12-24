@@ -93,7 +93,7 @@ const GET_IDEAS = gql`
 			isNew
 			totalInterest
 			totalComments
-			idea_user {
+			user {
 				first_name
 				country
 				id
@@ -102,12 +102,12 @@ const GET_IDEAS = gql`
 					email
 				}
 			}
-			idea_votes_aggregate {
+			votes_aggregate {
 				aggregate {
 					count(columns: id)
 				}
 			}
-			idea_votes(where: { user_id: { _eq: $userId } }) {
+			hasVoted: votes(where: { user_id: { _eq: $userId } }) {
 				id
 			}
 		}
@@ -148,19 +148,19 @@ const GET_IDEA = gql`
 			number_of_interested
 			number_of_comments
 			number_of_upvotes
-			idea_user {
+			user {
 				avatar_url
 				first_name
 				country
 				id
 			}
-			idea_votes_aggregate {
+			votes_aggregate {
 				aggregate {
 					count(columns: id)
 				}
 			}
 		}
-		has_interest: interested_ideas_by_pk(idea_id: $id, user_id: $userId) {
+		hasInterest: interested_ideas_by_pk(idea_id: $id, user_id: $userId) {
 			id
 		}
 	}

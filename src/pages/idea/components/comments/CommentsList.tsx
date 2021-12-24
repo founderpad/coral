@@ -16,7 +16,7 @@ import PostComment from 'components/shared/PostComment';
 import PostReplyComment from 'components/shared/PostReplyComment';
 import {
 	useGetCommentsForIdeaQuery,
-	useGetRepliesForCommentSubscription
+	useGetRepliesForCommentQuery
 } from 'generated/api';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
@@ -165,7 +165,9 @@ export const CommentsList = ({
 			ideaId: router.query.id
 			// offset: 0,
 			// limit: 30
-		}
+		},
+		// fetchPolicy: 'network-only',
+		fetchPolicy: 'cache-first'
 	});
 
 	useEffect(() => {
@@ -192,7 +194,6 @@ export const CommentsList = ({
 			flexDirection={'column'}
 			flexWrap={'nowrap'}
 			// maxW={{ base: '100%', md: 340 }}
-
 			transition={'ease-in-out'}
 			transitionDelay={'1s'}
 			p={0}
@@ -236,7 +237,7 @@ export const CommentsList = ({
 };
 
 const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
-	const { data } = useGetRepliesForCommentSubscription({
+	const { data } = useGetRepliesForCommentQuery({
 		variables: {
 			commentId
 		}

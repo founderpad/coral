@@ -12,7 +12,7 @@ import {
 	IoRocketSharp,
 	IoTimeSharp
 } from 'react-icons/io5';
-import useProfileFragment from '../fragments/UserProfileFragment';
+import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
 

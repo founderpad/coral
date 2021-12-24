@@ -6,9 +6,9 @@ import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 import { formatDate } from 'utils/validators';
 
-type TProps = Pick<TIdea_Preview, 'idea_user' | 'createdAt'>;
+type TProps = Pick<TIdea_Preview, 'user' | 'createdAt'>;
 
-export const PostedBy = ({ idea_user, createdAt }: TProps): JSX.Element => (
+export const PostedBy = ({ user, createdAt }: TProps): JSX.Element => (
 	<FlexLayout
 		position={'relative'}
 		alignItems={'center'}
@@ -16,18 +16,18 @@ export const PostedBy = ({ idea_user, createdAt }: TProps): JSX.Element => (
 		fontSize={{ base: '11px', sm: 'xs' }}
 	>
 		<BaseLink
-			href={`/user/${idea_user?.id}`}
+			href={`/user/${user?.id}`}
 			title={'The user who posted this idea'}
 			_hover={{ color: 'gray.700' }}
 			color={'gray.400'}
 			fontSize={'x-small'}
 		>
-			{idea_user?.first_name}
+			{user?.first_name}
 		</BaseLink>
 		<CaptionLabel d={'flex'}>
-			{idea_user.country && (
+			{user.country && (
 				<>
-					<PointSeparator small /> {idea_user.country}
+					<PointSeparator small /> {user.country}
 				</>
 			)}
 			<PointSeparator small />
