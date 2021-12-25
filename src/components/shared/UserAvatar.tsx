@@ -78,13 +78,19 @@ export const CurrentUserAvatarDetails = memo(
 		direction?: StackProps['direction'];
 	}): JSX.Element => {
 		const user = useCurrentUser();
+		const {
+			first_name,
+			last_name,
+			avatar_url,
+			account: { email }
+		} = user;
 
 		if (user)
 			return (
 				<UserAvatarDetails
-					name={user.first_name + ' ' + user.last_name}
-					email={user.account.email}
-					src={user.avatar_url}
+					name={`${first_name} ${last_name}`}
+					email={email}
+					src={avatar_url}
 					size={size}
 					direction={direction}
 				/>
@@ -95,9 +101,7 @@ export const CurrentUserAvatarDetails = memo(
 
 export const CurrentUserAvatar = memo(
 	({ small }: { small?: boolean }): JSX.Element => {
-		const user = useCurrentUser();
-		return (
-			<UserAvatar src={user.avatar_url} size={small ? 'xs' : 'inherit'} />
-		);
+		const { avatar_url } = useCurrentUser();
+		return <UserAvatar src={avatar_url} size={small ? 'xs' : 'inherit'} />;
 	}
 );

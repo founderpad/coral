@@ -8,10 +8,6 @@ interface IOverviewTag {
 	title: string;
 	value: string;
 	icon?: IconType;
-	// icon?: {
-	// 	type: IconType;
-	// 	color: ColorProps['color'];
-	// };
 }
 
 /**
@@ -22,26 +18,21 @@ const OverviewTags = memo(
 		tags,
 		direction
 	}: {
-		tags: Array<IOverviewTag>;
+		tags: readonly IOverviewTag[];
 		direction?: StackProps['direction'];
-	}): JSX.Element => (
-		<StackLayout
-			direction={direction ?? { base: 'column', lg: 'row' }}
-			spacing={{ base: 0, lg: 12 }}
-			alignItems={{ base: 'flex-start', lg: 'center' }}
-		>
-			{tags?.map((overviewTag, key) => {
-				return (
-					<KeyInformationBox
-						key={key}
-						title={overviewTag.title}
-						value={overviewTag.value}
-						icon={overviewTag.icon}
-					/>
-				);
-			})}
-		</StackLayout>
-	)
+	}): JSX.Element => {
+		return (
+			<StackLayout
+				direction={direction ?? { base: 'column', lg: 'row' }}
+				spacing={{ base: 0, lg: 12 }}
+				alignItems={{ base: 'flex-start', lg: 'center' }}
+			>
+				{tags?.map((overviewTag, key) => (
+					<KeyInformationBox key={key} {...overviewTag} />
+				))}
+			</StackLayout>
+		);
+	}
 );
 
 export default OverviewTags;

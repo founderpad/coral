@@ -17,6 +17,13 @@ type Props = Pick<FlexProps, 'display' | 'mb'>;
 const UserPersonalInformation = memo((props: Props): JSX.Element => {
 	const user = useCurrentUser();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const {
+		first_name,
+		last_name,
+		country,
+		created_at,
+		account: { email }
+	} = user;
 
 	const onClick = () => {
 		setModalDrawer({
@@ -41,21 +48,18 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 			<UserImageUploader />
 			<StackLayout {...props} spacing={2} w={'full'}>
 				<TitleEditAction
-					title={user?.first_name + ' ' + user?.last_name}
+					title={`${first_name} ${last_name}`}
 					onClick={onClick}
 				/>
 
-				<ProfileSectionLabel
-					label={user?.account.email}
-					icon={IoMailSharp}
-				/>
+				<ProfileSectionLabel label={email} icon={IoMailSharp} />
 
 				<ProfileSectionLabel
-					label={user?.country ?? 'Location not set'}
+					label={country ?? 'Location not set'}
 					icon={IoLocationSharp}
 				/>
 				<ProfileSectionLabel
-					label={`Joined ` + formatDate(user?.created_at, true)}
+					label={`Joined ` + formatDate(created_at, true)}
 					icon={IoTimeSharp}
 				/>
 				<SocialMediaDetails />

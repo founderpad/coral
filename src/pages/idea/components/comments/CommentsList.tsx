@@ -48,6 +48,8 @@ const MessageLayout = ({
 	actions?: boolean;
 	divider?: boolean;
 }): JSX.Element => {
+	const { user, updated_at, value } = comment;
+	const { first_name } = user;
 	return (
 		<React.Fragment>
 			<StackLayout
@@ -70,11 +72,11 @@ const MessageLayout = ({
 									maxW={'80%'}
 									isTruncated
 								>
-									{comment?.user.first_name}
+									{first_name}
 								</Label>
 								<PointSeparator small />
 								<CaptionLabel>
-									{formatDate(comment?.updated_at, true)}
+									{formatDate(updated_at, true)}
 								</CaptionLabel>
 							</FlexLayout>
 						</FlexLayout>
@@ -83,7 +85,7 @@ const MessageLayout = ({
 							fontSize={'xs'}
 							fontWeight={'normal'}
 						>
-							{comment?.value}
+							{value}
 						</Label>
 					</ChatContainer>
 					<Actions showReply={!!actions} comment={comment} />
@@ -109,6 +111,7 @@ const Actions = ({
 	showReply: boolean;
 	comment: any;
 }): JSX.Element => {
+	const { id } = comment;
 	return (
 		<StackLayout
 			direction={'row'}
@@ -130,24 +133,30 @@ const Actions = ({
 					color={'gray.400'}
 				/>
 			</BaseButton>
-			{showReply && <PostReplyComment commentId={comment.id} />}
+			{showReply && <PostReplyComment commentId={id} />}
 			<CommentMenu {...comment} />
 		</StackLayout>
 	);
 };
 
 const CommentMenu = (comment: any): JSX.Element => {
+	const { value, user } = comment;
+	const {
+		id,
+		display_name,
+		account: { email }
+	} = user;
 	return (
 		<BaseMenu>
 			<ReportMenu
 				title={'comment'}
-				content={`"${comment.value}"`}
+				content={`"${value}"`}
 				report={{
 					type: 'COMMENT',
-					reported_user_id: comment.user.id,
-					recipient_name: comment.user.display_name,
-					recipient_email: comment.user.account.email,
-					content: comment.value
+					reported_user_id: id,
+					recipient_name: display_name,
+					recipient_email: email,
+					content: value
 				}}
 			/>
 		</BaseMenu>
@@ -167,8 +176,8 @@ export const CommentsList = ({
 			// offset: 0,
 			// limit: 30
 		},
-		// fetchPolicy: 'network-only',
-		fetchPolicy: 'cache-first'
+		fetchPolicy: 'network-only',
+		nextFetchPolicy: 'cache-first'
 	});
 
 	useEffect(() => {
