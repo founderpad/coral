@@ -15,45 +15,6 @@ const IdeaUpvote = (idea: TIdea_Preview): JSX.Element => {
 
 	const { hasUserUpvoted, votesTotal } = upvote;
 
-	// const [hasUserUpvoted, setHasUserUpvoted] = useState(
-	// 	!!ideaVotes?.idea.idea_votes
-	// );
-	// const [votesTotal, setVotesTotal] = useState(
-	// 	ideaVotes?.idea.idea_votes_aggregate.aggregate.count ?? 0
-	// );
-
-	// console.log('222: ', ideaId, ideaVotes);
-
-	// const [upsertIdeaVote] = useUpsertIdeaVoteMutation({
-	// 	variables: {
-	// 		idea_vote: {
-	// 			idea_id: ideaId,
-	// 			vote_type: isUpvote ? -1 : 1
-	// 		},
-	// 		ideaId,
-	// 		count: isUpvote ? -1 : 1
-	// 	},
-	// 	refetchQueries: [{ query: GET_IDEAS }]
-	// });
-
-	// const [upsertIdeaVote] = useUpvoteIdeaMutation({
-	// 	variables: {
-	// 		idea_vote: {
-	// 			idea_id: ideaId
-	// 		}
-	// 	},
-	// 	refetchQueries: [{ query: GET_IDEAS }]
-	// });
-
-	// const [upsertIdeaVote] = useUpvoteIdeaMutation({
-	// 	variables: {
-	// 		idea_vote: {
-	// 			idea_id: ideaId
-	// 		}
-	// 	},
-	// 	refetchQueries: [{ query: GET_IDEAS }]
-	// });
-
 	const [insertIdeaUpvote] = useInsertIdeaUpvoteMutation({
 		variables: {
 			idea_vote: {

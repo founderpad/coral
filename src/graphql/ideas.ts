@@ -107,7 +107,7 @@ const GET_IDEAS = gql`
 					count(columns: id)
 				}
 			}
-			hasVoted: votes(where: { user_id: { _eq: $userId } }) {
+			votes(where: { user_id: { _eq: $userId } }) {
 				id
 			}
 		}
