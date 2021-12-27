@@ -29,7 +29,7 @@ const WorkExperienceTab = (): JSX.Element => {
 		business_description,
 		background,
 		skills
-	} = userProfile;
+	} = userProfile ?? {};
 
 	const onClick = () => {
 		setModalDrawer({

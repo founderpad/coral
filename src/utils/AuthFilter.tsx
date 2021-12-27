@@ -4,8 +4,10 @@ import { useAuth } from '@nhost/react-auth';
 import MainLayout from 'components/layouts/MainLayout';
 // import { useCurrentUser } from 'hooks/auth';
 import { useRouter } from 'next/dist/client/router';
+import Head from 'next/head';
+import React from 'react';
 
-export default function AuthFilter(Component) {
+export default function AuthFilter(Component: any) {
 	return () => {
 		const { signedIn } = useAuth();
 		// const user = useCurrentUser();
@@ -18,16 +20,14 @@ export default function AuthFilter(Component) {
 		if (!signedIn) router.push('/');
 
 		return (
-			<>
-				<head>
-                    <script
-                        src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-                    ></script>
-                </head>
+			<React.Fragment>
+				<Head>
+					<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
+				</Head>
 				<MainLayout>
-				<Component {...arguments} />
-			</MainLayout>
-			</>
+					<Component {...arguments} />
+				</MainLayout>
+			</React.Fragment>
 		);
 	};
 }

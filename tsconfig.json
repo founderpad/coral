@@ -52,6 +52,6 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    "src/utils/AuthFilter.jsx"
+    "src/utils/AuthFilter.tsx"
   ]
 }
