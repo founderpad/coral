@@ -3,6 +3,7 @@ import {
 	Tab,
 	TabList,
 	TabPanel,
+	TabPanelProps,
 	TabPanels,
 	Tabs,
 	TabsProps
@@ -42,7 +43,7 @@ const TabLayout = (props: Props): JSX.Element => {
 				{tabs
 					?.filter((tab) => Object.keys(tab).length !== 0)
 					.map((tab) => (
-						<Tab key={tab?.label} fontSize={'small'}>
+						<Tab {...tab} key={tab?.label} fontSize={'small'}>
 							{tab?.icon && (
 								<Icon
 									as={tab.icon}
@@ -56,11 +57,11 @@ const TabLayout = (props: Props): JSX.Element => {
 					))}
 			</TabList>
 			<TabPanels d={'flex'} flex={1} overflowY={'hidden'}>
-				{children?.map((tp, key) => {
+				{children?.map((tp: TabPanelProps, key) => {
 					return (
 						<TabPanel
+							{...tp}
 							key={key}
-							// py={4}
 							overflowY={'hidden'}
 							p={0}
 							display={'flex'}

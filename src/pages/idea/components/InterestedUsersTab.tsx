@@ -1,5 +1,5 @@
 import { StackLayout } from 'components/layouts';
-import { UserAvatarDetails } from 'components/shared';
+import { Loading, UserAvatarDetails } from 'components/shared';
 import { useGetIdeaInterestedUsersQuery } from 'generated/api';
 import React from 'react';
 import { formatDate } from 'utils/validators';
@@ -11,8 +11,10 @@ const InterestedUsersTab = ({ ideaId }: { ideaId: string }) => {
 		}
 	});
 
+	if (!data) return <Loading small />;
+
 	return (
-		<StackLayout>
+		<StackLayout p={4}>
 			{data?.interested_users.map((interestedUser) => (
 				<UserAvatarDetails
 					src={interestedUser.user.avatar_url}

@@ -16,23 +16,22 @@ const ViewIdeaTabLayout = (): JSX.Element => {
 		}
 	});
 
-	const isIdeaCreator = data?.idea?.user_id === user.id;
+	const isIdeaUser = data?.idea?.user_id === user.id;
 
 	return (
 		<TabLayout
 			tabs={[
 				{ label: 'Idea' },
-				{ ...(useMobile() ? { label: 'Comments' } : undefined) },
-				{ ...(isIdeaCreator ? { label: 'Interest' } : undefined) }
+				{ ...(isIdeaUser && { label: 'Interest' }) },
+				{ ...(useMobile() && { label: 'Comments' }) }
 			]}
 			overflow={'hidden'}
 			minH={'full'}
 			flex={1}
-			isLazy
 		>
 			<IdeaTab data={data} />
+			{<InterestedUsersTab ideaId={data?.idea?.id} />}
 			{useMobile() && <CommentsList />}
-			{isIdeaCreator && <InterestedUsersTab ideaId={data?.idea?.id} />}
 		</TabLayout>
 	);
 };

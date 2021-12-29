@@ -17,6 +17,7 @@ import {
 import { formatDate } from 'utils/validators';
 import { CommentsList } from './components/comments/CommentsList';
 import IdeaActions from './components/IdeaMenu';
+import InterestedIdea from './components/InterestedIdea';
 import InterestedTotal from './components/InterestedTotal';
 import PublishedLabel from './components/PublishedLabel';
 
@@ -60,7 +61,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 		field,
 		id,
 		number_of_interested,
-		number_of_comments,
+		// number_of_comments,
 		is_published
 	} = idea;
 	const { avatar_url, first_name } = user;
@@ -124,6 +125,15 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
+				{idea.user_id !== auth.id && (
+					<React.Fragment>
+						<AppDivider />
+						<InterestedIdea
+							ideaId={id}
+							hasInterest={!!data?.hasInterest?.id}
+						/>
+					</React.Fragment>
+				)}
 				<AppDivider />
 				<OverviewTags
 					tags={[
@@ -170,7 +180,6 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 				</StackLayout>
 				<CommentsList display={{ base: 'none', md: 'flex' }} />
 			</StackLayout>
-			{/* <CommentsList display={{ base: 'none', md: 'flex' }} /> */}
 		</StackLayout>
 	);
 };
