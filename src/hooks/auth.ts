@@ -1,4 +1,5 @@
-import { QueryResult, useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
+import { useAuth } from '@nhost/react-auth';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { TUsers, useGetUserLazyQuery } from 'generated/api';
 import { USER_GET_EXPERIENCE, USER_UPDATE_EXPERIENCE } from 'graphql/user';
@@ -11,7 +12,7 @@ import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
 import { useErrorNotification, useSuccessNotification } from './toast';
 
-export const useRegister = (): any => {
+export const useRegister = () => {
 	const showErrorNotification = useErrorNotification();
 	const router = useRouter();
 
@@ -45,7 +46,7 @@ export const useRegister = (): any => {
 	};
 };
 
-export const useLogin = (): any => {
+export const useLogin = () => {
 	const showErrorNotification = useErrorNotification();
 	const [getAuthUser] = useGetAuthenticatedUser();
 
@@ -62,7 +63,7 @@ export const useLogin = (): any => {
 	};
 };
 
-export const useLogout = (): any => {
+export const useLogout = () => {
 	const showErrorNotification = useErrorNotification();
 	// const dispatch = useDispatch();
 
@@ -78,7 +79,7 @@ export const useLogout = (): any => {
 	};
 };
 
-export const useForgottenPassword = (): any => {
+export const useForgottenPassword = () => {
 	const showSuccessNotification = useSuccessNotification();
 	const showErrorNotification = useErrorNotification();
 
@@ -108,7 +109,7 @@ export const useForgottenPassword = (): any => {
 // 	getUser();
 // };
 
-export const useGetAuthenticatedUser = (): any => {
+export const useGetAuthenticatedUser = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 
@@ -168,7 +169,7 @@ export const useGetAuthenticatedUser = (): any => {
 // 	});
 // };
 
-export const useGetExperience = (id: string): QueryResult<TExperience, any> => {
+export const useGetExperience = (id: string) => {
 	const response = useQuery(USER_GET_EXPERIENCE, {
 		variables: {
 			id: id
@@ -179,7 +180,7 @@ export const useGetExperience = (id: string): QueryResult<TExperience, any> => {
 	return { ...response, data: response.data?.profile as TExperience };
 };
 
-export const useUpdateExperience = (userExperience: TExperience): any => {
+export const useUpdateExperience = (userExperience: TExperience) => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 
@@ -210,8 +211,14 @@ export const useCurrentUser = (): TUsers => {
 	}
 };
 
-export const useClaim = (): string =>
-	auth.getClaim('x-hasura-user-id') as string;
+export const useCheckLoggedIn = () => {
+	const { signedIn } = useAuth();
+	const router = useRouter();
+
+	if (signedIn) router.back();
+};
+
+export const useClaim = () => auth.getClaim('x-hasura-user-id') as string;
 
 // export const useUpdateUserAvatar = () => {
 // 	// return (filePath: string): any =>

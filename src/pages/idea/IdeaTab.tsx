@@ -36,13 +36,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 
 	const idea = data?.idea;
 
-	// console.log('comments: ', useIdeaCommentsQuery(idea?.id)?.length);
-
 	if (!data) return <Loading small />;
-
-	// const onShowCommentsClick = () => {
-	// 	setShowComments(!showComments);
-	// };
 
 	// Only enable the id creator to view their own idea if it's unpublished
 	if (!idea || (!idea.is_published && idea.user_id !== auth.id))
@@ -106,12 +100,12 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
 						>
 							<PublishedLabel isPublished={is_published} />
 							{number_of_interested > 0 && (
-								<>
+								<React.Fragment>
 									<PointSeparator small />
 									<InterestedTotal
 										total={number_of_interested}
 									/>
-								</>
+								</React.Fragment>
 							)}
 						</StackLayout>
 						<PrimaryButton
