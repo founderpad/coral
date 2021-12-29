@@ -58,7 +58,7 @@ const MessageLayout = ({
 				w={'full'}
 				id={comment.id}
 			>
-				<UserAvatar size={'xs'} />
+				<UserAvatar size={'sm'} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
 					<ChatContainer>
 						<FlexLayout
@@ -218,9 +218,9 @@ export const CommentsList = ({
 				py={4}
 				px={{ base: 4, md: 0 }}
 				borderTopWidth={{ base: 0, md: 1 }}
-				borderBottomWidth={1}
+				// borderBottomWidth={1}
 			>
-				All comments ({data?.comments?.length})
+				{data?.comments?.length} Comments
 			</BaseHeading>
 			<Box flexShrink={0} p={4}>
 				<PostComment />

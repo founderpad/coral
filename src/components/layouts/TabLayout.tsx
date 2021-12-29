@@ -9,6 +9,7 @@ import {
 	TabsProps
 } from '@chakra-ui/react';
 import React, { useCallback, useState } from 'react';
+import { IconType } from 'react-icons/lib';
 
 type Props = Omit<TabsProps, 'children'> & {
 	tabs: TabProps[];
@@ -17,15 +18,12 @@ type Props = Omit<TabsProps, 'children'> & {
 
 type TabProps = {
 	label: string;
-	icon?: any; //React.ComponentProps<'svg'>;
+	icon?: IconType;
 };
 
 const TabLayout = (props: Props): JSX.Element => {
 	const { tabs, children, ...rest } = props;
 	const [tabIndex, setTabIndex] = useState(0);
-
-	// const onChange = (index: number) =>
-	// 	useCallback(() => setTabIndex(index), [index]);
 
 	const onChange = useCallback((index) => setTabIndex(index), [tabIndex]);
 

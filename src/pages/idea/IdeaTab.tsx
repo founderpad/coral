@@ -21,7 +21,7 @@ import InterestedIdea from './components/InterestedIdea';
 import InterestedTotal from './components/InterestedTotal';
 import PublishedLabel from './components/PublishedLabel';
 
-const IdeaTab = ({ data }: { data: TGetIdeaQuery }): JSX.Element => {
+const IdeaTab = ({ data }: { data: TGetIdeaQuery }) => {
 	const router = useRouter();
 	const auth = useCurrentUser();
 	const [showComments, setShowComments] = useState(false);

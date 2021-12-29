@@ -102,6 +102,6 @@ export const CurrentUserAvatarDetails = memo(
 export const CurrentUserAvatar = memo(
 	({ small }: { small?: boolean }): JSX.Element => {
 		const { avatar_url } = useCurrentUser();
-		return <UserAvatar src={avatar_url} size={small ? 'xs' : 'inherit'} />;
+		return <UserAvatar src={avatar_url} size={small ? 'sm' : 'inherit'} />;
 	}
 );
