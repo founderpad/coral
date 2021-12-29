@@ -5,7 +5,7 @@ import { USER_GET_EXPERIENCE, USER_UPDATE_EXPERIENCE } from 'graphql/user';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearUser, setUser } from 'slices/auth';
+import { setUser } from 'slices/auth';
 import { IAuthFormData, IRegisterFormData, TExperience } from 'types/auth';
 import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
@@ -64,14 +64,11 @@ export const useLogin = (): any => {
 
 export const useLogout = (): any => {
 	const showErrorNotification = useErrorNotification();
-	const dispatch = useDispatch();
-	const router = useRouter();
+	// const dispatch = useDispatch();
 
 	return async (): Promise<void> => {
 		try {
-			await router.replace('/loggedout');
 			await auth.logout();
-			dispatch(clearUser());
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to logout',

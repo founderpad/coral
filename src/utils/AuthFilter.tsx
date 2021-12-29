@@ -17,7 +17,7 @@ export default function AuthFilter(Component: any) {
 			return <div>Checking auth...</div>;
 		}
 
-		if (!signedIn) router.push('/');
+		if (!signedIn) router.push('/login');
 
 		return (
 			<React.Fragment>
