@@ -68,3 +68,10 @@ Future changes will include an endpoint to faciliate Stripe customer sign ups so
 We use [Ngrok](https://ngrok.com/) to test our build locally befoore any commits. This ensures we test over HTTPS and mimic a production-like environment but on our local instance.
 
 Ensure the application is running (`yarn dev`) and in a separate iTerm2 tab (or VSCode terminal) run `yarn ngrok`. This will provide a forwarding address (e.g., https://8400-86-3-111-125.ngrok.io) which you can paste into your browser address bar.
+
+## Debugging locally
+When our local environment is running, we can debug and test the output of the serverless functions by access the Docker logs with the following command:
+`docker logs nhost_api --follow`
+
+This will provide us with a live tail of the logs so we can see what's happening.
+
