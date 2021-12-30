@@ -60,6 +60,7 @@ var sendNotification = function (data) {
 export default (req, res) => {
 	const fromUserId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
+	const ideaId = req.body.event.data.new.idea_id;
 
 	// const message = createMessage(fromUserId, targetUserId);
 
@@ -67,8 +68,9 @@ export default (req, res) => {
 		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
 		en: 'text',
 		contents: {
-			en: 'Somebody is interested in your idea 🚀. <a href="http://localhost:3000/ideas?page=1">Click here to see who they are</a>'
+			en: 'Somebody is interested in your idea! 🚀 Click here to see who they are.'
 		},
+		url: `http://localhost:3000/idea/${ideaId}`,
 		include_external_user_ids: [targetUserId]
 	};
 

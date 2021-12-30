@@ -28,9 +28,9 @@ export const usePushNotifications = () => {
 			});
 		}
 
-		return () => {
-			window.OneSignal = undefined;
-		};
+		// return () => {
+		// 	window.OneSignal = undefined;
+		// };
 	}, []);
 
 	useEffect(() => {
