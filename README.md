@@ -17,6 +17,7 @@ It is deployed to [Vercel](https://vercel.com/) via our CI/CD pipeline which use
     -   Prettier - Code formatter (make sure this is set to be your default formatter)
     -   Bracket Pair Colorizer - A customizable extension for colorizing matching brackets
     -   Auto Import - Automatically finds, parses and provides code actions and code completion for all available imports. Works with Typescript and TSX
+    -   GraphQL (Syntax highlighting, validation etc)
     -   Git History
     -   GitLens
     -   JavaScript (ES6) code snippets
