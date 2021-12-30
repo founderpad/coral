@@ -5,7 +5,7 @@ import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
 import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
 import OverviewTags from 'components/shared/OverviewTags';
-import { TGetIdeaQuery } from 'generated/api';
+import { TIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
@@ -21,7 +21,7 @@ import InterestedIdea from './components/InterestedIdea';
 import InterestedTotal from './components/InterestedTotal';
 import PublishedLabel from './components/PublishedLabel';
 
-const IdeaTab = ({ data }: { data: TGetIdeaQuery }) => {
+const IdeaTab = ({ data }: { data: TIdeaQuery }) => {
 	const router = useRouter();
 	const auth = useCurrentUser();
 	const [showComments, setShowComments] = useState(false);

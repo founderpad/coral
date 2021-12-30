@@ -18,7 +18,7 @@ import {
 	useCommentsForIdeaQuery,
 	useRepliesForCommentQuery
 } from 'generated/api';
-import { useRouter } from 'next/router';
+import { useQueryParam } from 'hooks/util';
 import React, { useEffect } from 'react';
 import { IoArrowUpSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
@@ -50,6 +50,15 @@ const MessageLayout = ({
 }): JSX.Element => {
 	const { user, updated_at, value } = comment;
 	const { first_name } = user;
+	const anchoredId = useQueryParam('d');
+	useEffect(() => {
+		if (!!anchoredId) {
+			document.getElementById(anchoredId)?.scrollIntoView({
+				behavior: 'smooth'
+			});
+		}
+	});
+
 	return (
 		<React.Fragment>
 			<StackLayout
@@ -57,6 +66,8 @@ const MessageLayout = ({
 				spacing={2}
 				w={'full'}
 				id={comment.id}
+				p={2}
+				bg={!!anchoredId && anchoredId === comment.id && 'gray.50'}
 			>
 				<UserAvatar size={'sm'} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
@@ -113,7 +124,6 @@ const Actions = ({
 }): JSX.Element => {
 	const { id } = comment;
 
-	console.log('comment: ', comment);
 	return (
 		<StackLayout
 			direction={'row'}
@@ -175,11 +185,9 @@ export const CommentsList = ({
 }: {
 	display?: StackProps['display'];
 }): JSX.Element => {
-	const router = useRouter();
-
 	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
-			ideaId: router.query.id
+			ideaId: useQueryParam('id')
 			// offset: 0,
 			// limit: 30
 		},
@@ -225,7 +233,6 @@ export const CommentsList = ({
 				py={4}
 				px={{ base: 4, md: 0 }}
 				borderTopWidth={{ base: 0, md: 1 }}
-				// borderBottomWidth={1}
 			>
 				{data?.comments?.length} Comments
 			</BaseHeading>
@@ -235,12 +242,7 @@ export const CommentsList = ({
 			{data?.comments.length < 1 ? (
 				<NoResults label={'comments yet'} />
 			) : (
-				<StackLayout
-					flexGrow={1}
-					overflowY={'auto'}
-					minHeight={'2em'}
-					p={4}
-				>
+				<StackLayout flexGrow={1} overflowY={'auto'} minHeight={'2em'}>
 					{data?.comments.map((comment, _index) => (
 						<Comment key={comment.id} {...comment} />
 					))}
@@ -262,7 +264,7 @@ const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
 
 	if (data?.replies?.length)
 		return (
-			<StackLayout spacing={4} pt={4} rounded={'none'} pl={2}>
+			<StackLayout spacing={0} pt={4} rounded={'none'} pl={2}>
 				{data?.replies?.map((reply, _index) => {
 					return (
 						<MessageLayout

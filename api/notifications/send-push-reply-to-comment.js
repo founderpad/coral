@@ -37,15 +37,13 @@ export default (req, res) => {
 	const ideaId = req.body.event.data.new.idea_id;
 	const id = req.body.event.data.new.id;
 
-	// const message = createMessage(fromUserId, targetUserId);
-
 	const message = {
 		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
 		en: 'text',
 		contents: {
 			en: 'Somebody replied to your comment. Click here to see it.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}`,
+		url: `http://localhost:3000/idea/${ideaId}?d=${id}`,
 		include_external_user_ids: [targetUserId]
 	};
 

@@ -43,7 +43,7 @@ export default (req, res) => {
 		contents: {
 			en: 'You have received a new comment on your idea. Click here to view it.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}#${id}`,
+		url: `http://localhost:3000/idea/${ideaId}?d=${id}`,
 		include_external_user_ids: [targetUserId]
 	};
 
