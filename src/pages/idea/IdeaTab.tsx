@@ -119,15 +119,16 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }) => {
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
-				{idea.user_id !== auth.id && (
-					<React.Fragment>
-						<AppDivider />
-						<InterestedIdea
-							ideaId={id}
-							hasInterest={!!data?.hasInterest?.id}
-						/>
-					</React.Fragment>
-				)}
+				{/* {idea.user_id !== auth.id && ( */}
+				<React.Fragment>
+					<AppDivider />
+					<InterestedIdea
+						ideaUserId={user_id}
+						ideaId={id}
+						hasInterest={!!data?.hasInterest?.id}
+					/>
+				</React.Fragment>
+				{/* )} */}
 				<AppDivider />
 				<OverviewTags
 					tags={[

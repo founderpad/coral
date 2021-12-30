@@ -7,16 +7,19 @@ import { IoStarSharp } from 'react-icons/io5';
 
 const InterestedIdea = ({
 	ideaId,
+	ideaUserId,
 	hasInterest
 }: {
 	ideaId: string;
+	ideaUserId: string;
 	hasInterest: boolean;
 }): JSX.Element => {
 	const [interested, setInterested] = useState(hasInterest);
 
 	const [insertInterestedIdeaMutation] = useInsertInterestedIdeaMutation({
 		variables: {
-			ideaId
+			ideaId,
+			targetUserId: ideaUserId
 		},
 		// refetchQueries: [
 		// 	{
@@ -46,6 +49,8 @@ const InterestedIdea = ({
 			alignItems={'center'}
 			position={'relative'}
 			w={'fit-content'}
+			size={'lg'}
+			fontSize={'small'}
 		>
 			<Icon
 				as={IoStarSharp}

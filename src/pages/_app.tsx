@@ -10,6 +10,7 @@ import { createStore } from '@reduxjs/toolkit';
 import BaseModal from 'components/modal/BaseModal';
 import BaseModalDrawer from 'components/modal/BaseModalDrawer';
 import 'focus-visible/dist/focus-visible';
+import { useTrackAnalytics } from 'hooks/util';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import DrawerProvider from 'provider/DrawerProvider';
@@ -46,6 +47,8 @@ const App: FC<AppProps> = ({
 	pageProps
 }: AppProps): ReactElement => {
 	// usePushNotifications();
+
+	useTrackAnalytics();
 
 	return (
 		<React.Fragment>

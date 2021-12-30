@@ -1,4 +1,5 @@
 import { useBreakpointValue } from '@chakra-ui/react';
+import * as ga from 'lib/ga';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 
@@ -37,4 +38,24 @@ export const useScrollToBottom = (data?: any) => {
 	});
 
 	return { ref, scrollToBottom };
+};
+
+export const useTrackAnalytics = () => {
+	const router = useRouter();
+
+	useEffect(() => {
+		const handleRouteChange = (url: string) => {
+			ga.pageview(url);
+		};
+
+		// When the component is mounted, subscribe to router changes
+		// and log those page views
+		router.events.on('routeChangeComplete', handleRouteChange);
+
+		// If the component is unmounted, unsubscribe
+		// from the event with the `off` method
+		return () => {
+			router.events.off('routeChangeComplete', handleRouteChange);
+		};
+	}, [router.events]);
 };

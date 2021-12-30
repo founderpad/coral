@@ -16,7 +16,7 @@ const PostComment = (): JSX.Element => {
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
 			ideaComment: {
-				idea_id: useIdeaFragment().id,
+				idea_id: useIdeaFragment()?.id,
 				value
 			}
 		},

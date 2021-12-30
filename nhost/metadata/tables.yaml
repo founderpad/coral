@@ -645,6 +645,7 @@
         user_id: x-hasura-User-Id
       columns:
       - idea_id
+      - target_user_id
       backend_only: false
   - role: user
     permission:
@@ -655,6 +656,7 @@
         user_id: x-hasura-User-Id
       columns:
       - idea_id
+      - target_user_id
       backend_only: false
   select_permissions:
   - role: user
@@ -664,6 +666,7 @@
       - updated_at
       - id
       - idea_id
+      - target_user_id
       - user_id
       filter: {}
       allow_aggregations: true
@@ -677,7 +680,7 @@
       num_retries: 0
       interval_sec: 10
       timeout_sec: 60
-    webhook: '{{NHOST_CUSTOM_API_URL}}/notification/send-push-interested-idea'
+    webhook: '{{NHOST_CUSTOM_API_URL}}/notifications/send-push-interested-idea'
 - table:
     schema: public
     name: report

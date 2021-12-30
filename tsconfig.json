@@ -40,6 +40,9 @@
     ],
     "@utils/*": [
       "./src/utils/*"
+    ],
+    "@lib/*": [
+      "./src/lib/*"
     ]
   },
   "exclude": [
@@ -53,5 +56,5 @@
     "**/*.tsx",
     "**/*.js",
     "src/utils/AuthFilter.tsx"
-  ]
+, "lib/index.jsx"  ]
 }

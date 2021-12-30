@@ -66,10 +66,14 @@ export const useLogin = () => {
 export const useLogout = () => {
 	const showErrorNotification = useErrorNotification();
 	// const dispatch = useDispatch();
+	// const client = usePushClient();
 
 	return async (): Promise<void> => {
 		try {
 			await auth.logout();
+			// client.push(function () {
+			// 	client.removeExternalUserId();
+			// });
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to logout',

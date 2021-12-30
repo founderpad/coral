@@ -35,8 +35,10 @@ const DELETE_IDEA = gql`
 `;
 
 const INSERT_INTERESTED_IDEA = gql`
-	mutation insertInterestedIdea($ideaId: uuid!) {
-		insert_interested_ideas_one(object: { idea_id: $ideaId }) {
+	mutation insertInterestedIdea($ideaId: uuid!, $targetUserId: uuid!) {
+		insert_interested_ideas_one(
+			object: { idea_id: $ideaId, target_user_id: $targetUserId }
+		) {
 			idea_id
 		}
 		update_ideas_by_pk(
