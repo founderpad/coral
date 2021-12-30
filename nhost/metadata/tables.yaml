@@ -273,6 +273,17 @@
       filter:
         user_id:
           _eq: X-Hasura-User-Id
+  event_triggers:
+  - name: send-push-reply-to-comment
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      num_retries: 0
+      interval_sec: 10
+      timeout_sec: 60
+    webhook: '{{NHOST_CUSTOM_API_URL}}/notifications/send-push-reply-to-comment'
 - table:
     schema: public
     name: idea_comments
@@ -346,6 +357,17 @@
       filter:
         user_id:
           _eq: X-Hasura-User-Id
+  event_triggers:
+  - name: send-push-new-comment
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      num_retries: 0
+      interval_sec: 10
+      timeout_sec: 60
+    webhook: '{{NHOST_CUSTOM_API_URL}}/notifications/send-push-new-comment'
 - table:
     schema: public
     name: idea_preview

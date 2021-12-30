@@ -42,7 +42,7 @@ export default (req, res) => {
 		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
 		en: 'text',
 		contents: {
-			en: 'Somebody is interested in your idea! 🚀 Click here to see who they are.'
+			en: 'Somebody replied to your comment. Click here to see it.'
 		},
 		url: `http://localhost:3000/idea/${ideaId}`,
 		include_external_user_ids: [targetUserId]
