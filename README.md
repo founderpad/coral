@@ -75,3 +75,5 @@ When our local environment is running, we can debug and test the output of the s
 
 This will provide us with a live tail of the logs so we can see what's happening.
 
+## Adding NPM libraries
+If you're going to add a new library, make sure you add it in to the correct `package.json` file. If it's client side for the React project then install it in the root `package.json`, but if it's for the custom serverless API, then install it to `/api/package.json`
