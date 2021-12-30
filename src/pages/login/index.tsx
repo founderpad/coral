@@ -8,7 +8,7 @@ const Login = (): JSX.Element => {
 	const { signedIn } = useAuth();
 	const router = useRouter();
 
-	if (signedIn) router.back();
+	if (signedIn) router.push('/ideas?page=1');
 
 	return (
 		<AuthLayout header="Log in to founderpad" title="Log in">

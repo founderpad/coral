@@ -212,6 +212,7 @@
         user_id: x-hasura-User-Id
       columns:
       - comment_id
+      - idea_id
       - target_user_id
       - value
       backend_only: false
@@ -224,6 +225,7 @@
         user_id: x-hasura-User-Id
       columns:
       - comment_id
+      - idea_id
       - target_user_id
       - value
       backend_only: false
@@ -231,12 +233,13 @@
   - role: me
     permission:
       columns:
-      - value
-      - created_at
-      - updated_at
       - comment_id
+      - created_at
       - id
+      - idea_id
+      - updated_at
       - user_id
+      - value
       filter: {}
       allow_aggregations: true
   - role: user
@@ -245,6 +248,7 @@
       - comment_id
       - created_at
       - id
+      - idea_id
       - updated_at
       - user_id
       - value

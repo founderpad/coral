@@ -35,6 +35,7 @@ export default (req, res) => {
 	const fromUserId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
+	const id = req.body.event.data.new.id;
 
 	// const message = createMessage(fromUserId, targetUserId);
 
@@ -48,5 +49,5 @@ export default (req, res) => {
 		include_external_user_ids: [targetUserId]
 	};
 
-	sendNotification(message);
+	if (fromUserId !== targetUserId) sendNotification(message);
 };

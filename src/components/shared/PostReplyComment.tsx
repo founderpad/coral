@@ -3,6 +3,7 @@ import { Textarea } from '@chakra-ui/textarea';
 import { CancelButton, PrimaryButton } from 'components/buttons';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { usePostReplyMutation } from 'generated/api';
+import useIdeaFragment from 'pages/idea/fragments/IdeaFragment';
 import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 
@@ -21,6 +22,7 @@ const PostReplyComment = ({
 			ideaReply: {
 				comment_id: commentId,
 				target_user_id: commentUserId,
+				idea_id: useIdeaFragment()?.id,
 				value
 			}
 		},

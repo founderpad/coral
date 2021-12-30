@@ -55,7 +55,6 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }) => {
 		field,
 		id,
 		number_of_interested,
-		// number_of_comments,
 		is_published
 	} = idea;
 	const { avatar_url, first_name } = user;
@@ -77,7 +76,7 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }) => {
 					<UserAvatarDetails
 						rounded={'full'}
 						name={`Published by ${
-							user.id === user_id ? 'you' : first_name
+							auth.id === user_id ? 'you' : first_name
 						}`}
 						src={avatar_url}
 						createdAt={formatDate(created_at, true)}
@@ -119,16 +118,16 @@ const IdeaTab = ({ data }: { data: TGetIdeaQuery }) => {
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
-				{/* {idea.user_id !== auth.id && ( */}
-				<React.Fragment>
-					<AppDivider />
-					<InterestedIdea
-						ideaUserId={user_id}
-						ideaId={id}
-						hasInterest={!!data?.hasInterest?.id}
-					/>
-				</React.Fragment>
-				{/* )} */}
+				{idea.user_id !== auth.id && (
+					<React.Fragment>
+						<AppDivider />
+						<InterestedIdea
+							ideaUserId={user_id}
+							ideaId={id}
+							hasInterest={!!data?.hasInterest?.id}
+						/>
+					</React.Fragment>
+				)}
 				<AppDivider />
 				<OverviewTags
 					tags={[

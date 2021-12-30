@@ -8,7 +8,7 @@ const Register = (): JSX.Element => {
 	const { signedIn } = useAuth();
 	const router = useRouter();
 
-	if (signedIn) router.back();
+	if (signedIn) router.push('/ideas?page=1');
 	return (
 		<AuthLayout
 			header="Register an account to get started"

@@ -1,5 +1,5 @@
 import { useAuth } from '@nhost/react-auth';
-import { TUsers, useGetUserLazyQuery } from 'generated/api';
+import { TUsers, useUserLazyQuery } from 'generated/api';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from 'slices/auth';
@@ -113,7 +113,7 @@ export const useGetAuthenticatedUser = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 
-	return useGetUserLazyQuery({
+	return useUserLazyQuery({
 		variables: {
 			user_id: auth.getClaim('x-hasura-user-id') as string
 		},

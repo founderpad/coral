@@ -35,6 +35,7 @@ export default (req, res) => {
 	const fromUserId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
+	const id = req.body.event.data.new.id;
 
 	const message = {
 		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
@@ -42,9 +43,9 @@ export default (req, res) => {
 		contents: {
 			en: 'You have received a new comment on your idea. Click here to view it.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}`,
+		url: `http://localhost:3000/idea/${ideaId}#${id}`,
 		include_external_user_ids: [targetUserId]
 	};
 
-	sendNotification(message);
+	if (fromUserId !== targetUserId) sendNotification(message);
 };
