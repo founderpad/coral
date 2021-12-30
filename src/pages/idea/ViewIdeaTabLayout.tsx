@@ -1,5 +1,5 @@
 import TabLayout from 'components/layouts/TabLayout';
-import { useGetIdeaQuery } from 'generated/api';
+import { useIdeaQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { useMobile, useQueryParam } from 'hooks/util';
 import React from 'react';
@@ -9,7 +9,7 @@ import IdeaTab from './IdeaTab';
 
 const ViewIdeaTabLayout = (): JSX.Element => {
 	const user = useCurrentUser();
-	const { data } = useGetIdeaQuery({
+	const { data } = useIdeaQuery({
 		variables: {
 			id: useQueryParam('id'),
 			userId: user?.id

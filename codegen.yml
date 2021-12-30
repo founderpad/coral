@@ -4,8 +4,8 @@ schema:
               x-hasura-role: ${BACKEND_ROLE}
               x-hasura-admin-secret: ${BACKEND_SECRET}
 documents:
-    - ./src/**/*.tsx
-    - ./src/**/*.ts
+    - ./src/**/*.gql
+    - ./src/**/*.graphql
 generates:
     ./src/generated/api.tsx:
         plugins:

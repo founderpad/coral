@@ -15,8 +15,8 @@ import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
 import PostComment from 'components/shared/PostComment';
 import PostReplyComment from 'components/shared/PostReplyComment';
 import {
-	useGetCommentsForIdeaQuery,
-	useGetRepliesForCommentQuery
+	useCommentsForIdeaQuery,
+	useRepliesForCommentQuery
 } from 'generated/api';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
@@ -170,7 +170,7 @@ export const CommentsList = ({
 }): JSX.Element => {
 	const router = useRouter();
 
-	const { data, loading, fetchMore } = useGetCommentsForIdeaQuery({
+	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
 			ideaId: router.query.id
 			// offset: 0,
@@ -247,7 +247,7 @@ export const CommentsList = ({
 };
 
 const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
-	const { data } = useGetRepliesForCommentQuery({
+	const { data } = useRepliesForCommentQuery({
 		variables: {
 			commentId
 		}

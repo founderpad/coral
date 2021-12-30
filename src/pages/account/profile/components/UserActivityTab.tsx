@@ -3,7 +3,7 @@ import { Divider, Flex, Spinner } from '@chakra-ui/react';
 import { CaptionLabel, SubLabel } from 'components/labels';
 import { PrimaryLink } from 'components/links';
 import { NoResults } from 'components/shared';
-import { TActivity, useGetUserActivitiesQuery } from 'generated/api';
+import { TActivity, useUserActivityQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import { formatDate } from 'utils/validators';
@@ -11,7 +11,7 @@ import { formatDate } from 'utils/validators';
 const UserActivityTab = (): JSX.Element => {
 	const user = useCurrentUser();
 
-	const { data, loading } = useGetUserActivitiesQuery({
+	const { data, loading } = useUserActivityQuery({
 		variables: {
 			user_id: user.id
 		}

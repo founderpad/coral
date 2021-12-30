@@ -1,0 +1,168 @@
+mutation CreateIdea($idea: ideas_insert_input!) {
+	idea: insert_ideas_one(object: $idea) {
+		id
+	}
+}
+
+mutation UpdateIdea($idea: ideas_set_input!, $id: uuid!) {
+	update_ideas_by_pk(pk_columns: { id: $id }, _set: $idea) {
+		id
+		name
+		description
+		field
+		mission_statement
+		competitors
+		team
+		additional_information
+		is_published
+		user_id
+		status
+	}
+}
+
+mutation DeleteIdea($id: uuid!) {
+	delete_ideas_by_pk(id: $id) {
+		id
+	}
+}
+
+mutation CreateInterestedIdea($ideaId: uuid!, $targetUserId: uuid!) {
+	insert_interested_ideas_one(
+		object: { idea_id: $ideaId, target_user_id: $targetUserId }
+	) {
+		idea_id
+	}
+	update_ideas_by_pk(
+		pk_columns: { id: $ideaId }
+		_inc: { number_of_interested: 1 }
+	) {
+		id
+	}
+}
+
+query Ideas(
+	$where: idea_preview_bool_exp
+	$limit: Int
+	$offset: Int
+	$orderBy: [idea_preview_order_by!]
+	$userId: uuid!
+) {
+	idea_preview_aggregate(where: $where) {
+		aggregate {
+			count
+		}
+	}
+	idea_preview(
+		where: $where
+		limit: $limit
+		offset: $offset
+		order_by: $orderBy
+	) {
+		id
+		name
+		preview
+		field
+		status
+		createdAt
+		isNew
+		totalInterest
+		totalComments
+		user {
+			first_name
+			country
+			id
+			avatar_url
+			account {
+				email
+			}
+		}
+		votes_aggregate {
+			aggregate {
+				count(columns: id)
+			}
+		}
+		votes(where: { user_id: { _eq: $userId } }) {
+			id
+		}
+	}
+}
+
+query UserIdeas($userId: uuid!) {
+	user_ideas: ideas(
+		where: { user_id: { _eq: $userId } }
+		order_by: { created_at: desc }
+	) {
+		id
+		name
+		created_at
+		is_published
+		number_of_interested
+		number_of_upvotes
+		number_of_comments
+	}
+}
+
+query Idea($id: uuid!, $userId: uuid!) {
+	idea: ideas_by_pk(id: $id) {
+		id
+		name
+		description
+		field
+		competitors
+		team
+		additional_information
+		is_published
+		user_id
+		status
+		created_at
+		number_of_interested
+		number_of_comments
+		number_of_upvotes
+		user {
+			avatar_url
+			first_name
+			country
+			id
+		}
+		votes_aggregate {
+			aggregate {
+				count(columns: id)
+			}
+		}
+	}
+	hasInterest: interested_ideas_by_pk(idea_id: $id, user_id: $userId) {
+		id
+	}
+}
+
+query IdeaInterestedUsers($ideaId: uuid!) {
+	interested_users: interested_ideas(
+		where: { idea_id: { _eq: $ideaId } }
+		order_by: { created_at: desc }
+	) {
+		id
+		created_at
+		user {
+			display_name
+			avatar_url
+			account {
+				email
+			}
+		}
+	}
+}
+
+mutation InsertIdeaUpvote($idea_vote: idea_votes_insert_input!) {
+	insert_idea_votes_one(object: $idea_vote) {
+		id
+		idea_id
+	}
+}
+
+mutation DeleteIdeaUpvote($idea_id: uuid!, $user_id: uuid!) {
+	delete_idea_votes(
+		where: { user_id: { _eq: $user_id }, idea_id: { _eq: $idea_id } }
+	) {
+		affected_rows
+	}
+}

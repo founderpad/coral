@@ -3,7 +3,6 @@ import { Textarea } from '@chakra-ui/textarea';
 import { CancelButton, PrimaryButton } from 'components/buttons';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { usePostReplyMutation } from 'generated/api';
-import { GET_REPLIES_FOR_COMMENT } from 'graphql/comments';
 import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 
@@ -22,14 +21,14 @@ const PostReplyComment = ({
 				value
 			}
 		},
-		refetchQueries: [
-			{
-				query: GET_REPLIES_FOR_COMMENT,
-				variables: {
-					commentId
-				}
-			}
-		],
+		// refetchQueries: [
+		// 	{
+		// 		query: GET_REPLIES_FOR_COMMENT,
+		// 		variables: {
+		// 			commentId
+		// 		}
+		// 	}
+		// ],
 		onCompleted: () => {
 			setShowReplyField(!showReplyField);
 		}

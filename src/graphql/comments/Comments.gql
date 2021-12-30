@@ -1,0 +1,55 @@
+mutation PostComment($ideaComment: idea_comments_insert_input!) {
+	addIdeaComment: insert_idea_comments_one(object: $ideaComment) {
+		idea_id
+		id
+		value
+	}
+}
+
+mutation PostReply($ideaReply: idea_comment_replies_insert_input!) {
+	addIdeaReply: insert_idea_comment_replies_one(object: $ideaReply) {
+		comment_id
+		id
+		value
+	}
+}
+
+query CommentsForIdea($ideaId: uuid!) {
+	comments: idea_comments(
+		where: { idea_id: { _eq: $ideaId } }
+		order_by: { updated_at: desc }
+	) {
+		id
+		updated_at
+		value
+		idea_id
+		user {
+			id
+			first_name
+			avatar_url
+			account {
+				email
+			}
+		}
+	}
+}
+
+query RepliesForComment($commentId: uuid!) {
+	replies: idea_comment_replies(
+		where: { comment_id: { _eq: $commentId } }
+		order_by: { updated_at: asc }
+	) {
+		id
+		comment_id
+		value
+		updated_at
+		user {
+			id
+			first_name
+			avatar_url
+			account {
+				email
+			}
+		}
+	}
+}

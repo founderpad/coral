@@ -1,13 +1,9 @@
-import { useMutation, useQuery } from '@apollo/client';
 import { useAuth } from '@nhost/react-auth';
-import ModalDrawerContext from 'context/ModalDrawerContext';
 import { TUsers, useGetUserLazyQuery } from 'generated/api';
-import { USER_GET_EXPERIENCE, USER_UPDATE_EXPERIENCE } from 'graphql/user';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from 'slices/auth';
-import { IAuthFormData, IRegisterFormData, TExperience } from 'types/auth';
+import { IAuthFormData, IRegisterFormData } from 'types/auth';
 import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
 import { useErrorNotification, useSuccessNotification } from './toast';
@@ -172,40 +168,6 @@ export const useGetAuthenticatedUser = () => {
 // 		}
 // 	});
 // };
-
-export const useGetExperience = (id: string) => {
-	const response = useQuery(USER_GET_EXPERIENCE, {
-		variables: {
-			id: id
-		},
-		fetchPolicy: 'cache-first'
-	});
-
-	return { ...response, data: response.data?.profile as TExperience };
-};
-
-export const useUpdateExperience = (userExperience: TExperience) => {
-	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const showSuccessNotification = useSuccessNotification();
-
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, id, user_id, ...rest } = userExperience;
-
-	return useMutation(USER_UPDATE_EXPERIENCE, {
-		variables: {
-			id: id,
-			userExperience: { ...rest }
-		},
-		onCompleted: (_data) => {
-			setModalDrawer({
-				isOpen: false
-			});
-			showSuccessNotification({
-				title: 'Your experience has been updated'
-			});
-		}
-	});
-};
 
 export const useCurrentUser = (): TUsers => {
 	try {

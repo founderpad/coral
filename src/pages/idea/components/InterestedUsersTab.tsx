@@ -1,11 +1,11 @@
 import { StackLayout } from 'components/layouts';
 import { Loading, UserAvatarDetails } from 'components/shared';
-import { useGetIdeaInterestedUsersQuery } from 'generated/api';
+import { useIdeaInterestedUsersQuery } from 'generated/api';
 import React from 'react';
 import { formatDate } from 'utils/validators';
 
 const InterestedUsersTab = ({ ideaId }: { ideaId: string }) => {
-	const { data } = useGetIdeaInterestedUsersQuery({
+	const { data } = useIdeaInterestedUsersQuery({
 		variables: {
 			ideaId
 		}

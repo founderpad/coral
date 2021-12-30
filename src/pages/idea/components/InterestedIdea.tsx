@@ -1,7 +1,7 @@
 import Icon from '@chakra-ui/icon';
 import { PrimaryButton } from 'components/buttons';
 import { Label } from 'components/labels';
-import { useInsertInterestedIdeaMutation } from 'generated/api';
+import { useCreateInterestedIdeaMutation } from 'generated/api';
 import React, { useState } from 'react';
 import { IoStarSharp } from 'react-icons/io5';
 
@@ -13,22 +13,14 @@ const InterestedIdea = ({
 	ideaId: string;
 	ideaUserId: string;
 	hasInterest: boolean;
-}): JSX.Element => {
+}) => {
 	const [interested, setInterested] = useState(hasInterest);
 
-	const [insertInterestedIdeaMutation] = useInsertInterestedIdeaMutation({
+	const [createInterestedIdeaMutation] = useCreateInterestedIdeaMutation({
 		variables: {
 			ideaId,
 			targetUserId: ideaUserId
 		},
-		// refetchQueries: [
-		// 	{
-		// 		query: GET_COMMENTS_FOR_IDEA,
-		// 		variables: {
-		// 			ideaId: router.query.id
-		// 		}
-		// 	}
-		// ],
 		onCompleted: () => {
 			setInterested(true);
 		}
@@ -45,7 +37,7 @@ const InterestedIdea = ({
 		<PrimaryButton
 			name={'interested-idea-button'}
 			variant={'outline'}
-			onClick={() => insertInterestedIdeaMutation()}
+			onClick={() => createInterestedIdeaMutation()}
 			alignItems={'center'}
 			position={'relative'}
 			w={'fit-content'}

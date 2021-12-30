@@ -3,7 +3,7 @@ import { Loading, NoResults } from 'components/shared';
 import {
 	TIdea_Preview,
 	TIdea_Preview_Bool_Exp,
-	useGetIdeasQuery
+	useIdeasQuery
 } from 'generated/api';
 import { useClaim } from 'hooks/auth';
 import { useQueryParam } from 'hooks/util';
@@ -33,7 +33,7 @@ const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 };
 
 const IdeasContainer = (): JSX.Element => {
-	const { data, loading } = useGetIdeasQuery({
+	const { data, loading } = useIdeasQuery({
 		variables: {
 			where: queryBuilder(),
 			limit: 10,
