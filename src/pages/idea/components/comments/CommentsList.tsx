@@ -112,6 +112,8 @@ const Actions = ({
 	comment: any;
 }): JSX.Element => {
 	const { id } = comment;
+
+	console.log('comment: ', comment);
 	return (
 		<StackLayout
 			direction={'row'}
@@ -133,7 +135,12 @@ const Actions = ({
 					color={'gray.400'}
 				/>
 			</BaseButton>
-			{showReply && <PostReplyComment commentId={id} />}
+			{showReply && (
+				<PostReplyComment
+					commentId={id}
+					commentUserId={comment.user.id}
+				/>
+			)}
 			<CommentMenu {...comment} />
 		</StackLayout>
 	);

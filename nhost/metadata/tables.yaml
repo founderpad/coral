@@ -212,6 +212,7 @@
         user_id: x-hasura-User-Id
       columns:
       - comment_id
+      - target_user_id
       - value
       backend_only: false
   - role: user
@@ -223,6 +224,7 @@
         user_id: x-hasura-User-Id
       columns:
       - comment_id
+      - target_user_id
       - value
       backend_only: false
   select_permissions:
@@ -296,30 +298,34 @@
         user_id: x-hasura-User-Id
       columns:
       - idea_id
+      - target_user_id
       - value
       backend_only: false
   select_permissions:
   - role: me
     permission:
       columns:
+      - number_of_replies
       - value
       - created_at
       - updated_at
       - id
       - idea_id
+      - target_user_id
       - user_id
       filter: {}
       allow_aggregations: true
   - role: user
     permission:
       columns:
+      - number_of_replies
+      - value
       - created_at
+      - updated_at
       - id
       - idea_id
-      - number_of_replies
-      - updated_at
+      - target_user_id
       - user_id
-      - value
       filter: {}
       allow_aggregations: true
   update_permissions:

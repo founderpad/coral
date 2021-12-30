@@ -7,9 +7,11 @@ import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 
 const PostReplyComment = ({
-	commentId
+	commentId,
+	commentUserId
 }: {
 	commentId: string;
+	commentUserId: string;
 }): JSX.Element => {
 	const [showReplyField, setShowReplyField] = useState(false);
 	const [value, setValue] = useState('');
@@ -18,6 +20,7 @@ const PostReplyComment = ({
 		variables: {
 			ideaReply: {
 				comment_id: commentId,
+				target_user_id: commentUserId,
 				value
 			}
 		},

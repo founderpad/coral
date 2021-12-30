@@ -17,6 +17,7 @@ const PostComment = (): JSX.Element => {
 		variables: {
 			ideaComment: {
 				idea_id: useIdeaFragment()?.id,
+				target_user_id: useIdeaFragment()?.user_id,
 				value
 			}
 		},
