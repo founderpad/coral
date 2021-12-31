@@ -236,7 +236,7 @@ export const CommentsList = ({
 			>
 				{data?.comments?.length} Comments
 			</BaseHeading>
-			<Box flexShrink={0} p={4}>
+			<Box flexShrink={0} px={2} py={6}>
 				<PostComment />
 			</Box>
 			{data?.comments.length < 1 ? (

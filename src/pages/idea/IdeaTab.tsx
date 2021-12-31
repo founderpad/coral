@@ -142,9 +142,13 @@ const IdeaTab = ({ data }: { data: TIdeaQuery }) => {
 							icon: IoBulbSharp
 						},
 						{
-							title: 'Location',
-							value: user?.country,
-							icon: IoLocationSharp
+							...(user?.country && {
+								title: 'Location',
+								value: user?.location
+									? `${user?.location}, ${user.country}`
+									: user?.country,
+								icon: IoLocationSharp
+							})
 						}
 					]}
 				/>

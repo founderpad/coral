@@ -11,6 +11,7 @@ query User($user_id: uuid!) {
 		id
 		last_name
 		first_name
+		location
 		country
 		avatar_url
 		created_at
@@ -104,6 +105,7 @@ mutation UpdateUserPersonalDetails(
 	) {
 		first_name
 		last_name
+		location
 		country
 		avatar_url
 	}

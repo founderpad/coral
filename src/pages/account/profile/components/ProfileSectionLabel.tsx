@@ -19,9 +19,10 @@ const ProfileSectionLabel = memo(
 			{icon && <Icon as={icon} color={'gray.500'} mr={2} />}
 			{children ?? (
 				<SubLabel
-					textOverflow={'ellipsis'}
-					color={'gray.500'}
+					css={{ whiteSpace: 'normal' }}
+					noOfLines={2}
 					isTruncated
+					color={'gray.500'}
 				>
 					{label}
 				</SubLabel>

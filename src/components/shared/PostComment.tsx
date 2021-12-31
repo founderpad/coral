@@ -115,7 +115,7 @@ const PostComment = (): JSX.Element => {
 					as={ResizeTextarea}
 					onChange={onValueChange}
 					value={value}
-					borderWidth={2}
+					borderBottomWidth={2}
 					borderColor={'white'}
 					maxRows={3}
 					resize={'none'}

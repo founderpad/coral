@@ -919,6 +919,7 @@
       set:
         id: x-hasura-User-Id
       columns:
+      - location
       - country
       backend_only: false
   select_permissions:
@@ -938,6 +939,7 @@
     permission:
       columns:
       - avatar_url
+      - location
       - country
       - created_at
       - display_name
@@ -965,6 +967,7 @@
     permission:
       columns:
       - avatar_url
+      - location
       - country
       - display_name
       - first_name

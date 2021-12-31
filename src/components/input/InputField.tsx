@@ -62,7 +62,11 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				{error ? (
 					<FormErrorText label={errorText} />
 				) : (
-					helperText && <FormHelperText label={helperText} />
+					helperText && (
+						<FormHelperText fontSize={'xs'}>
+							{helperText}
+						</FormHelperText>
+					)
 				)}
 			</FormControl>
 		);

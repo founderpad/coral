@@ -20,6 +20,7 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 	const {
 		first_name,
 		last_name,
+		location,
 		country,
 		created_at,
 		account: { email }
@@ -55,7 +56,13 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 				<ProfileSectionLabel label={email} icon={IoMailSharp} />
 
 				<ProfileSectionLabel
-					label={country ?? 'Location not set'}
+					label={
+						location
+							? `${location}, ${country}`
+							: country
+							? country
+							: 'Location not set'
+					}
 					icon={IoLocationSharp}
 				/>
 				<ProfileSectionLabel
