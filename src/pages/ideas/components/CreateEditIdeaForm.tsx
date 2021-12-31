@@ -14,19 +14,27 @@ import { TextareaField } from 'components/input/TextareaField';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import AppDivider from 'components/shared/AppDivider';
-import { TIdeas, useCreateIdeaMutation } from 'generated/api';
-import React, { useEffect } from 'react';
+import {
+	TCreateIdeaMutation,
+	TIdeas,
+	useCreateIdeaMutation
+} from 'generated/api';
+import { useCurrentUser } from 'hooks/auth';
+import * as ga from 'lib/ga';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 
-type TEditIdea = Omit<TIdeas, 'idea_user' | 'idea_votes'>;
+type TEditIdea = Omit<TIdeas, 'user' | 'votes'>;
 
 const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
+	const user = useCurrentUser();
+	const router = useRouter();
 	const {
 		handleSubmit,
 		control,
 		getValues,
-		reset,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<TEditIdea>({
 		mode: 'all',
@@ -36,26 +44,24 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 		}
 	});
 
-	const [createIdeaMutation, { data: createSucess }] = useCreateIdeaMutation({
+	const [createIdeaMutation] = useCreateIdeaMutation({
 		variables: {
 			idea: getValues() // value for 'idea'
+		},
+		onCompleted: ({ idea }: TCreateIdeaMutation) => {
+			ga.event({
+				action: 'Create idea',
+				params: {
+					user_id: user.id,
+					display_name: user.display_name,
+					user_email: user.account.email,
+					idea_id: idea.id,
+					idea_name: idea.name
+				}
+			});
+			router.push(`/idea/${idea.id}`);
 		}
 	});
-
-	useEffect(() => {
-		if (createSucess) {
-			reset({
-				name: '',
-				mission_statement: '',
-				description: '',
-				field: '',
-				competitors: '',
-				team: '',
-				additional_information: '',
-				status: ''
-			});
-		}
-	}, [createSucess]);
 
 	return (
 		<Form
@@ -197,12 +203,12 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					/>
 				)} */}
 
-				{createSucess && (
+				{/* {createSucess && (
 					<CreateUpdateSuccessAlert
 						isUpdate={false}
 						ideaId={createSucess.idea.id}
 					/>
-				)}
+				)} */}
 
 				<SubmitButton
 					name={'create-idea-button'}

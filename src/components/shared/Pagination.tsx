@@ -5,12 +5,13 @@ import { useRouter } from 'next/router';
 import { IoChevronBackSharp, IoChevronForwardSharp } from 'react-icons/io5';
 
 type Props = {
+	pathname: string;
 	pagesCount: number;
 	onPageChange: (page: string) => void;
 };
 
 export const Pagination = (props: Props): JSX.Element => {
-	const { pagesCount, onPageChange } = props;
+	const { pathname, pagesCount, onPageChange } = props;
 	const router = useRouter();
 	const page = parseInt(useQueryParam('page'));
 	// const buttonSize = useBreakpointValue({ base: 'sm', sm: 'md' });
@@ -41,7 +42,7 @@ export const Pagination = (props: Props): JSX.Element => {
 						onClick={() =>
 							router.push(
 								{
-									pathname: '/ideas',
+									pathname,
 									query: { ...router.query, page: p }
 								},
 								undefined,

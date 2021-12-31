@@ -1,29 +1,35 @@
-import { ButtonGroup } from '@chakra-ui/react';
+import { ButtonGroup, Checkbox, FormControl } from '@chakra-ui/react';
 import { CancelButton, SubmitButton } from 'components/buttons';
+import { FormLabelText } from 'components/form';
 import Form from 'components/form/Form';
-import { InputField } from 'components/input/InputField';
 import { SelectField } from 'components/input/SelectField';
 import { Label } from 'components/labels';
+import AppDivider from 'components/shared/AppDivider';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { ideasStatusList, industriesList } from 'utils/Constants';
+import {
+	AVAILABILITY_IN_HOURS,
+	EXPERIENCE_SKILLS,
+	industriesList,
+	STARTUP_STATUS
+} from 'utils/Constants';
 
-type IdeaSearch = {
+type FounderSearch = {
 	field?: string;
 	name?: string;
 	is_new?: boolean;
 	status?: string;
 };
 
-const IdeasSearchForm = (): JSX.Element => {
+const FounderSearchForm = (): JSX.Element => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
-	const { handleSubmit, control, reset } = useForm<IdeaSearch>();
+	const { handleSubmit, control, reset } = useForm<FounderSearch>();
 	const router = useRouter();
 
-	const onClick = (values: IdeaSearch) => {
+	const onClick = (values: FounderSearch) => {
 		setModalDrawer({
 			isOpen: false
 		});
@@ -35,7 +41,7 @@ const IdeasSearchForm = (): JSX.Element => {
 
 		router.push(
 			{
-				pathname: '/ideas',
+				pathname: '/founders',
 				query: { ...queryParams, page: 1 }
 			},
 			undefined,
@@ -57,7 +63,7 @@ const IdeasSearchForm = (): JSX.Element => {
 
 		router.push(
 			{
-				pathname: '/ideas',
+				pathname: '/founders',
 				query: { page: 1 }
 			},
 			undefined,
@@ -72,7 +78,6 @@ const IdeasSearchForm = (): JSX.Element => {
 			id={'ideaSearchForm'}
 			name={'ideaSearchForm'}
 			onSubmit={handleSubmit(onClick)}
-			stackProps={{ spacing: 4 }}
 		>
 			<Label
 				display={{ base: 'none', md: 'block' }}
@@ -80,46 +85,70 @@ const IdeasSearchForm = (): JSX.Element => {
 				fontWeight={'semibold'}
 				mb={4}
 			>
-				Search ideas
+				Search founders
 			</Label>
-			<InputField
-				id="name"
-				name="name"
-				placeholder="Search name"
-				control={control}
-				label={'Name'}
-				variant={'filled'}
-			/>
+
 			<SelectField
 				id="field"
 				name="field"
-				options={industriesList()}
-				placeholder="field"
+				options={STARTUP_STATUS.map((status) => (
+					<option key={status.key} value={status.value}>
+						{status.value}
+					</option>
+				))}
+				placeholder="start-up status"
 				control={control}
-				label={'Field'}
-				variant={'filled'}
-			/>
-			<SelectField
-				id="status"
-				name="status"
-				options={ideasStatusList()}
-				placeholder="status"
-				control={control}
-				label={'Status'}
-				variant={'filled'}
-			/>
-			<InputField
-				id="location"
-				name="location"
-				placeholder="Search location"
-				control={control}
-				label={'Location'}
+				label={'Current start-up status'}
 				variant={'filled'}
 			/>
 
-			{/* <Label fontSize={'x-small'} textAlign={'end'}>
-				More coming soon
-			</Label> */}
+			<SelectField
+				id="availability"
+				name="availability"
+				options={AVAILABILITY_IN_HOURS.map((availability) => (
+					<option key={availability.key} value={availability.key}>
+						{availability.value}
+					</option>
+				))}
+				placeholder="availability per week"
+				control={control}
+				label={'Availability in hours per week'}
+				variant={'filled'}
+			/>
+
+			<SelectField
+				id="specialist_industry"
+				name="specialist_industry"
+				label="Specialist field"
+				placeholder="specialist field"
+				options={industriesList()}
+				control={control}
+			/>
+			<AppDivider />
+			<FormControl>
+				<FormLabelText label={'Skills'} />
+				{EXPERIENCE_SKILLS.map(
+					(es: string): JSX.Element => (
+						<Checkbox
+							name={es}
+							rounded={'none'}
+							focusBorderColor={'gray.150'}
+							value={es}
+							p={2}
+							// onChange={onSkillsToggle}
+							colorScheme={'fpPrimary'}
+							color={'fpGrey.400'}
+							size={'sm'}
+							fontSize={'xs'}
+							// isChecked={selectedSkills.includes(es)}
+						>
+							<Label color={'gray.500'} fontSize={'smaller'}>
+								{es}
+							</Label>
+						</Checkbox>
+					)
+				)}
+			</FormControl>
 
 			{/* business status  */}
 			{/* ideas with questionnaires */}
@@ -136,4 +165,4 @@ const IdeasSearchForm = (): JSX.Element => {
 	);
 };
 
-export default IdeasSearchForm;
+export default FounderSearchForm;

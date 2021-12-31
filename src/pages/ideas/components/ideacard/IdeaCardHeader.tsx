@@ -7,7 +7,7 @@ import PostedBy from './PostedBy';
 
 type TIdeaCardHeader = Pick<
 	TIdea_Preview,
-	'name' | 'idea_user' | 'isNew' | 'createdAt' | 'user_id' | 'id'
+	'name' | 'user' | 'isNew' | 'createdAt' | 'user_id' | 'id'
 >;
 
 const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {

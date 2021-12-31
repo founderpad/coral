@@ -4,16 +4,18 @@ import { FlexLayout, StackLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
 import { Loading, PointSeparator } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
-import { TIdeas, useGetUserIdeasQuery } from 'generated/api';
+import { TIdeas, useUserIdeasQuery } from 'generated/api';
+import { useCurrentUser } from 'hooks/auth';
 import InterestedTotal from 'pages/idea/components/InterestedTotal';
 import PublishedLabel from 'pages/idea/components/PublishedLabel';
 import React from 'react';
 import { formatDate } from 'utils/validators';
 
 const MyIdeasContainer = () => {
-	const { data, loading } = useGetUserIdeasQuery({
+	const user = useCurrentUser();
+	const { data, loading } = useUserIdeasQuery({
 		variables: {
-			userId: '1673e41d-8319-4a41-bbf1-bbd7e52afbc0'
+			userId: user?.id
 		}
 	});
 
@@ -64,13 +66,13 @@ const MyIdeasContainer = () => {
 								<PublishedLabel
 									isPublished={idea?.is_published}
 								/>
-								{idea?.interested > 0 && (
-									<>
+								{idea?.number_of_interested > 0 && (
+									<React.Fragment>
 										<PointSeparator small />
 										<InterestedTotal
-											total={idea.interested}
+											total={idea.number_of_interested}
 										/>
-									</>
+									</React.Fragment>
 								)}
 							</StackLayout>
 						</FlexLayout>

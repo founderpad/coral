@@ -18,5 +18,19 @@ export const formatDate = (dateStr: string, withTime?: boolean): string => {
 	);
 };
 
-export const formatTimestamp = (timestamp: string): string =>
+export const formatTimestamp = (timestamp: string) =>
 	formatDate(new Date(parseInt(timestamp)).toString(), false);
+
+export const convertCapacityToString = (capacity: number) => {
+	if (!capacity) return;
+
+	const capacityStr = capacity.toString();
+	if (capacityStr.length === 3) {
+		return `${capacityStr.substr(0, 1)} - ${capacityStr.substr(1, 3)}`;
+	}
+	if (capacityStr.length === 4) {
+		return `${capacityStr.substr(0, 2)} - ${capacityStr.substr(2, 4)}`;
+	} else {
+		return `${capacityStr}+`;
+	}
+};

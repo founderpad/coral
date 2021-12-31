@@ -1,6 +1,6 @@
-import { Box } from '@chakra-ui/layout';
 import { GoBackButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
+import { BoxLayout } from 'components/layouts';
 import React from 'react';
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
  */
 export const NoResults = ({ label, back }: Props): JSX.Element => (
 	<React.Fragment>
-		<Box
+		<BoxLayout
 			display={'flex'}
 			flex={1}
 			flexDirection={'column'}
@@ -24,8 +24,10 @@ export const NoResults = ({ label, back }: Props): JSX.Element => (
 			alignItems={'center'}
 			h={'full'}
 		>
-			<SubheadingText label={`No ${label ?? 'results'}.`} size={'sm'} />
+			<SubheadingText size={'sm'}>
+				No {label ?? 'results'}.
+			</SubheadingText>
 			{back && <GoBackButton />}
-		</Box>
+		</BoxLayout>
 	</React.Fragment>
 );

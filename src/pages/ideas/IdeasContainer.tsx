@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import IdeaCard from './components/ideacard/IdeaCard';
 import IdeasActions from './components/IdeasActions';
-import IdeasPagination from './IdeasPagination';
+import OffsetPagination from './OffsetPagination';
 
 const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 	const router = useRouter();
@@ -45,8 +45,6 @@ const IdeasContainer = (): JSX.Element => {
 		}
 	});
 
-	console.log('ideas: ', data);
-
 	if (loading) return <Loading small />;
 	// if (!loading && data?.idea_preview.length < 1) return <NoResults />;
 
@@ -71,16 +69,16 @@ const IdeasContainer = (): JSX.Element => {
 				{data?.idea_preview?.map((idea: TIdea_Preview) => (
 					<React.Fragment key={idea.id}>
 						<IdeaCard {...idea} />
-						{/* {key !== data.idea_preview?.length - 1 && <Divider />} */}
 					</React.Fragment>
 				))}
 			</Stack>
 
 			{data?.idea_preview?.length > 0 && (
-				<IdeasPagination
+				<OffsetPagination
 					pagesCount={
 						(data?.idea_preview_aggregate.aggregate.count || 0) / 10
 					}
+					pathname="/ideas"
 				/>
 			)}
 		</React.Fragment>

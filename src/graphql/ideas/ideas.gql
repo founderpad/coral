@@ -1,6 +1,7 @@
 mutation CreateIdea($idea: ideas_insert_input!) {
 	idea: insert_ideas_one(object: $idea) {
 		id
+		name
 	}
 }
 

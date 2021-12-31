@@ -3,6 +3,8 @@ import { Textarea } from '@chakra-ui/textarea';
 import { CancelButton, PrimaryButton } from 'components/buttons';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { usePostReplyMutation } from 'generated/api';
+import { useCurrentUser } from 'hooks/auth';
+import * as ga from 'lib/ga';
 import useIdeaFragment from 'pages/idea/fragments/IdeaFragment';
 import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
@@ -36,6 +38,18 @@ const PostReplyComment = ({
 		// ],
 		onCompleted: () => {
 			setShowReplyField(!showReplyField);
+			ga.event({
+				action: 'Post reply',
+				params: {
+					reply: value,
+					idea_id: useIdeaFragment()?.id,
+					comment_id: commentId,
+					to_user_id: commentUserId,
+					from_user_id: useCurrentUser().id,
+					from_user_display_name: useCurrentUser().display_name,
+					from_user_email: useCurrentUser().account.email
+				}
+			});
 		}
 	});
 

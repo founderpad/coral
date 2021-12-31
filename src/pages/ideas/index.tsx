@@ -6,7 +6,7 @@ import AuthFilter from 'utils/AuthFilter';
 import IdeasSearchForm from './components/IdeasSearchForm';
 import IdeasContainer from './IdeasContainer';
 
-const Ideas = (): JSX.Element => (
+const Ideas = () => (
 	<React.Fragment>
 		<DocumentTitle title="All ideas" />
 		<PageLayout

@@ -12,6 +12,7 @@ import {
 	IoRocketSharp,
 	IoTimeSharp
 } from 'react-icons/io5';
+import { convertCapacityToString } from 'utils/validators';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
@@ -76,9 +77,9 @@ const WorkExperienceTab = (): JSX.Element => {
 						icon: IoAnalyticsSharp
 					},
 					{
-						title: 'Availability (hours)',
+						title: 'Capacity (hours per week)',
 						value: availability
-							? `${availability} hours per week`
+							? convertCapacityToString(availability)
 							: 'Not set',
 						icon: IoTimeSharp
 					}

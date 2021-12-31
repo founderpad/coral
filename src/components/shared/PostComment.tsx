@@ -3,6 +3,8 @@ import Icon from '@chakra-ui/icon';
 import { Textarea } from '@chakra-ui/textarea';
 import { StackLayout } from 'components/layouts';
 import { usePostCommentMutation } from 'generated/api';
+import { useCurrentUser } from 'hooks/auth';
+import * as ga from 'lib/ga';
 import useIdeaFragment from 'pages/idea/fragments/IdeaFragment';
 import React, { useCallback, useState } from 'react';
 import { IoSendSharp } from 'react-icons/io5';
@@ -29,8 +31,6 @@ const PostComment = (): JSX.Element => {
 							...previous,
 							toReference(mutationResult.data.addIdeaComment)
 						];
-
-						console.log('result: ', result);
 					}
 				}
 			});
@@ -44,9 +44,17 @@ const PostComment = (): JSX.Element => {
 		// 	}
 		// ],
 		onCompleted: () => {
-			// setModalDrawer({
-			// 	isOpen: false
-			// });
+			ga.event({
+				action: 'Post comment',
+				params: {
+					comment: value,
+					idea_id: useIdeaFragment()?.id,
+					to_user_id: useIdeaFragment()?.user_id,
+					from_user_id: useCurrentUser().id,
+					from_user_display_name: useCurrentUser().display_name,
+					from_user_email: useCurrentUser().account.email
+				}
+			});
 
 			setValue('');
 		}

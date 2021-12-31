@@ -290,6 +290,14 @@ export const STARTUP_STATUS = [
 	{ key: 'none', value: 'Not involved in a startup' }
 ];
 
+export const AVAILABILITY_IN_HOURS = [
+	{ key: '0110', value: '1-10 hours', min: 1, max: 10 },
+	{ key: '1120', value: '11-20 hours', min: 11, max: 20 },
+	{ key: '2130', value: '21-30 hours', min: 21, max: 30 },
+	{ key: '3140', value: '31-40 hours', min: 31, max: 40 },
+	{ key: '41', value: '41+ hours', min: 41 }
+];
+
 export const REPORT_REASONS = [
 	'Abusive or harmful content',
 	'Sexualised content',

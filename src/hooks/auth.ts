@@ -1,5 +1,6 @@
 import { useAuth } from '@nhost/react-auth';
 import { TUsers, useUserLazyQuery } from 'generated/api';
+import * as ga from 'lib/ga';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from 'slices/auth';
@@ -33,6 +34,16 @@ export const useRegister = () => {
 				}
 			});
 			router.push('/register/complete');
+
+			ga.event({
+				action: 'Register',
+				params: {
+					email,
+					display_name:
+						firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
+					user_registration_date: new Date()
+				}
+			});
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to create an account',
@@ -118,9 +129,20 @@ export const useGetAuthenticatedUser = () => {
 			user_id: auth.getClaim('x-hasura-user-id') as string
 		},
 		onCompleted: (data) => {
-			const user = data.user;
-			dispatch(setUser(user as TUsers));
+			const user = data.user as TUsers;
+			dispatch(setUser(user));
 			router.replace('/ideas?page=1');
+
+			ga.event({
+				action: 'Login',
+				params: {
+					user_id: auth.getClaim('x-hasura-user-id') as string,
+					display_name: user.display_name,
+					user_email: user.account.email,
+					user_created_date: user.created_at,
+					user_login_date: new Date()
+				}
+			});
 		}
 	});
 };

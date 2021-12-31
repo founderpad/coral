@@ -59,25 +59,26 @@ const NavItems: Array<NavItem> = [
 			}
 		]
 	},
-	// {
-	// 	label: 'Founders',
-	// 	key: 'founders',
-	// 	href: '/founders',
-	// 	children: [
-	// 		{
-	// 			label: 'Search founders',
-	// 			key: 'search-founders',
-	// 			subLabel: 'Search for other founders',
-	// 			href: '/founders'
-	// 		},
-	// 		{
-	// 			label: 'Your co-founders',
-	// 			key: 'your-cofounders',
-	// 			subLabel: 'The founders you have connected with',
-	// 			href: '/founders/connected-founders'
-	// 		}
-	// 	]
-	// },
+	{
+		label: 'Founders',
+		key: 'founders',
+		href: '/founders?page=1',
+		rightIcon: IoChevronDownSharp,
+		children: [
+			{
+				label: 'Search founders',
+				key: 'search-founders',
+				subLabel: 'Search for other founders',
+				href: '/founders?page=1'
+			}
+			// {
+			// 	label: 'Your co-founders',
+			// 	key: 'your-cofounders',
+			// 	subLabel: 'The founders you have connected with',
+			// 	href: '/founders/connected-founders'
+			// }
+		]
+	},
 	// {
 	// 	label: (
 	// 		<Flex display="inline-flex" alignItems="center">

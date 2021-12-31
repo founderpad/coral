@@ -2,6 +2,8 @@ import Icon from '@chakra-ui/icon';
 import { PrimaryButton } from 'components/buttons';
 import { Label } from 'components/labels';
 import { useCreateInterestedIdeaMutation } from 'generated/api';
+import { useCurrentUser } from 'hooks/auth';
+import * as ga from 'lib/ga';
 import React, { useState } from 'react';
 import { IoStarSharp } from 'react-icons/io5';
 
@@ -14,6 +16,7 @@ const InterestedIdea = ({
 	ideaUserId: string;
 	hasInterest: boolean;
 }) => {
+	const user = useCurrentUser();
 	const [interested, setInterested] = useState(hasInterest);
 
 	const [createInterestedIdeaMutation] = useCreateInterestedIdeaMutation({
@@ -23,6 +26,15 @@ const InterestedIdea = ({
 		},
 		onCompleted: () => {
 			setInterested(true);
+			ga.event({
+				action: 'User is interested in idea',
+				params: {
+					from_user_id: user.id,
+					from_user_email: user.account.email,
+					idea_id: ideaId,
+					to_idea_user_id: ideaUserId
+				}
+			});
 		}
 	});
 

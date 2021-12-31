@@ -4,7 +4,8 @@ import {
 	useDeleteIdeaUpvoteMutation,
 	useInsertIdeaUpvoteMutation
 } from 'generated/api';
-import { useClaim } from 'hooks/auth';
+import { useClaim, useCurrentUser } from 'hooks/auth';
+import * as ga from 'lib/ga';
 import React, { useCallback, useState } from 'react';
 
 const IdeaUpvote = (idea: TIdea_Preview): JSX.Element => {
@@ -13,6 +14,7 @@ const IdeaUpvote = (idea: TIdea_Preview): JSX.Element => {
 		votesTotal: idea.votes_aggregate?.aggregate.count ?? 0
 	});
 
+	const user = useCurrentUser();
 	const { hasUserUpvoted, votesTotal } = upvote;
 
 	const [insertIdeaUpvote] = useInsertIdeaUpvoteMutation({
@@ -23,6 +25,16 @@ const IdeaUpvote = (idea: TIdea_Preview): JSX.Element => {
 		},
 		onCompleted: () => {
 			setUpvote({ hasUserUpvoted: true, votesTotal: votesTotal + 1 });
+			ga.event({
+				action: 'User idea upvote',
+				params: {
+					from_user_id: user.id,
+					from_user_email: user.account.email,
+					idea_id: idea.id,
+					idea_name: idea.name,
+					to_idea_user_id: idea.id
+				}
+			});
 		}
 	});
 

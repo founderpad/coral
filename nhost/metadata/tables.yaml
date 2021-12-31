@@ -813,6 +813,7 @@
       - user_id
       - website
       filter: {}
+      allow_aggregations: true
   update_permissions:
   - role: me
     permission:

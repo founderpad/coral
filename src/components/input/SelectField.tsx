@@ -60,7 +60,11 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 				{error ? (
 					<FormErrorText label={errorText} />
 				) : (
-					helperText && <FormHelperText label={helperText} />
+					helperText && (
+						<FormHelperText fontSize={'smaller'}>
+							{helperText}
+						</FormHelperText>
+					)
 				)}
 			</FormControl>
 		);

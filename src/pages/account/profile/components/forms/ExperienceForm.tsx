@@ -18,6 +18,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setProfileComplete } from 'slices/auth';
 import {
+	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
 	industriesList,
 	STARTUP_STATUS
@@ -126,7 +127,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 					max={30}
 					isRequired
 				/>
-				<NumberField
+				{/* <NumberField
 					id="availability"
 					name="availability"
 					label="Availablility for new projects? (hours per week)"
@@ -136,6 +137,22 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 					min={0}
 					max={60}
 					isRequired
+				/> */}
+
+				<SelectField
+					id="availability"
+					name="availability"
+					options={AVAILABILITY_IN_HOURS.map((availability) => (
+						<option key={availability.key} value={availability.key}>
+							{availability.value}
+						</option>
+					))}
+					placeholder="capacity per week"
+					control={control}
+					label={'Capacity (hours per week)'}
+					helperText={
+						'How many hours you can contribute towards a new idea'
+					}
 				/>
 			</Stack>
 

@@ -25,6 +25,38 @@ query User($user_id: uuid!) {
 	}
 }
 
+query Users(
+	$where: user_profile_bool_exp
+	$limit: Int
+	$offset: Int
+	$orderBy: [user_profile_order_by!]
+) {
+	user_profile_aggregate(where: $where) {
+		aggregate {
+			count
+		}
+	}
+	user_profile(
+		where: $where
+		limit: $limit
+		offset: $offset
+		order_by: $orderBy
+	) {
+		startups
+		user {
+			first_name
+			country
+			location
+			created_at
+			id
+		}
+		specialist_industry
+		availability
+		status
+		skills
+	}
+}
+
 mutation UpdateUserProfile($id: uuid!, $user_profile: user_profile_set_input!) {
 	update_user_profile_by_pk(pk_columns: { id: $id }, _set: $user_profile) {
 		id
