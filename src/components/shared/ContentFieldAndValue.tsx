@@ -10,10 +10,10 @@ interface Props {
 
 const ContentFieldAndValue = (props: Props): JSX.Element => (
 	<StackLayout spacing={0} wordBreak={'break-all'}>
-		<BaseHeading fontSize={'small'} as={'h4'}>
+		<BaseHeading fontSize={'sm'} as={'h4'} color={'gray.900'}>
 			{props.title}
 		</BaseHeading>
-		<Label color={'gray.500'} fontSize={'small'}>
+		<Label color={'gray.600'} fontSize={'sm'}>
 			{props.value}
 		</Label>
 	</StackLayout>

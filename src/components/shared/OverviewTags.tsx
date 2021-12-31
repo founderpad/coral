@@ -20,19 +20,17 @@ const OverviewTags = memo(
 	}: {
 		tags: readonly IOverviewTag[];
 		direction?: StackProps['direction'];
-	}): JSX.Element => {
-		return (
-			<StackLayout
-				direction={direction ?? { base: 'column', lg: 'row' }}
-				spacing={{ base: 0, lg: 12 }}
-				alignItems={{ base: 'flex-start', lg: 'center' }}
-			>
-				{tags?.map((overviewTag, key) => (
-					<KeyInformationBox key={key} {...overviewTag} />
-				))}
-			</StackLayout>
-		);
-	}
+	}): JSX.Element => (
+		<StackLayout
+			direction={direction ?? { base: 'column', lg: 'row' }}
+			spacing={{ base: 0, lg: 12 }}
+			alignItems={{ base: 'flex-start', lg: 'center' }}
+		>
+			{tags?.map((overviewTag, key) => (
+				<KeyInformationBox key={key} {...overviewTag} />
+			))}
+		</StackLayout>
+	)
 );
 
 export default OverviewTags;
