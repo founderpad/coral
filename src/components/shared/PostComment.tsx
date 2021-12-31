@@ -13,13 +13,20 @@ import { CurrentUserAvatar } from './UserAvatar';
 
 const PostComment = (): JSX.Element => {
 	const [value, setValue] = useState('');
+	const idea = useIdeaFragment();
+	const {
+		id: auth_id,
+		display_name,
+		account: { email }
+	} = useCurrentUser();
+	const { id, user_id } = idea;
 	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
 			ideaComment: {
-				idea_id: useIdeaFragment()?.id,
-				target_user_id: useIdeaFragment()?.user_id,
+				idea_id: id,
+				target_user_id: user_id,
 				value
 			}
 		},
@@ -48,11 +55,11 @@ const PostComment = (): JSX.Element => {
 				action: 'Post comment',
 				params: {
 					comment: value,
-					idea_id: useIdeaFragment()?.id,
-					to_user_id: useIdeaFragment()?.user_id,
-					from_user_id: useCurrentUser().id,
-					from_user_display_name: useCurrentUser().display_name,
-					from_user_email: useCurrentUser().account.email
+					idea_id: id,
+					to_user_id: user_id,
+					from_user_id: auth_id,
+					from_user_display_name: display_name,
+					from_user_email: email
 				}
 			});
 

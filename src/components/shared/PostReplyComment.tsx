@@ -2,7 +2,7 @@ import { ButtonGroup } from '@chakra-ui/button';
 import { Textarea } from '@chakra-ui/textarea';
 import { CancelButton, PrimaryButton } from 'components/buttons';
 import { FlexLayout, StackLayout } from 'components/layouts';
-import { usePostReplyMutation } from 'generated/api';
+import { RepliesForCommentDocument, usePostReplyMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
 import useIdeaFragment from 'pages/idea/fragments/IdeaFragment';
@@ -18,36 +18,42 @@ const PostReplyComment = ({
 }): JSX.Element => {
 	const [showReplyField, setShowReplyField] = useState(false);
 	const [value, setValue] = useState('');
+	const {
+		id: auth_id,
+		display_name,
+		account: { email }
+	} = useCurrentUser();
+	const { id } = useIdeaFragment();
 
 	const [postReplyMutation] = usePostReplyMutation({
 		variables: {
 			ideaReply: {
 				comment_id: commentId,
 				target_user_id: commentUserId,
-				idea_id: useIdeaFragment()?.id,
+				idea_id: id,
 				value
 			}
 		},
-		// refetchQueries: [
-		// 	{
-		// 		query: GET_REPLIES_FOR_COMMENT,
-		// 		variables: {
-		// 			commentId
-		// 		}
-		// 	}
-		// ],
+		refetchQueries: [
+			{
+				query: RepliesForCommentDocument,
+				variables: {
+					commentId
+				}
+			}
+		],
 		onCompleted: () => {
 			setShowReplyField(!showReplyField);
 			ga.event({
 				action: 'Post reply',
 				params: {
 					reply: value,
-					idea_id: useIdeaFragment()?.id,
+					idea_id: id,
 					comment_id: commentId,
 					to_user_id: commentUserId,
-					from_user_id: useCurrentUser().id,
-					from_user_display_name: useCurrentUser().display_name,
-					from_user_email: useCurrentUser().account.email
+					from_user_id: auth_id,
+					from_user_display_name: display_name,
+					from_user_email: email
 				}
 			});
 		}

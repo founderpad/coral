@@ -1,18 +1,10 @@
-import {
-	Alert,
-	AlertDescription,
-	AlertIcon,
-	AlertTitle,
-	CloseButton
-} from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { InputField } from 'components/input/InputField';
 import { SelectField } from 'components/input/SelectField';
 import { SwitchField } from 'components/input/SwitchField';
 import { TextareaField } from 'components/input/TextareaField';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { PrimaryLink } from 'components/links';
+import { StackLayout } from 'components/layouts';
 import AppDivider from 'components/shared/AppDivider';
 import {
 	TCreateIdeaMutation,
@@ -196,20 +188,6 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					control={control}
 				/>
 
-				{/* {(updateSuccess || createSucess) && (
-					<CreateUpdateSuccessAlert
-						isUpdate={!!updateSuccess}
-						ideaId={updateSuccess ? idea.id : createSucess.idea.id}
-					/>
-				)} */}
-
-				{/* {createSucess && (
-					<CreateUpdateSuccessAlert
-						isUpdate={false}
-						ideaId={createSucess.idea.id}
-					/>
-				)} */}
-
 				<SubmitButton
 					name={'create-idea-button'}
 					label={(idea ? 'Update your ' : 'Create your ') + 'idea'}
@@ -224,40 +202,5 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 		</Form>
 	);
 };
-
-const CreateUpdateSuccessAlert = ({
-	isUpdate,
-	ideaId
-}: {
-	isUpdate: boolean;
-	ideaId: string;
-}): JSX.Element => (
-	<Alert status="success" variant={'left-accent'}>
-		<AlertIcon />
-		<FlexLayout flexDirection={'column'}>
-			<AlertTitle color={'black'} fontWeight={'medium'} fontSize={'md'}>
-				Your idea has been {isUpdate ? 'updated' : 'created'}
-			</AlertTitle>
-			<AlertDescription
-				display="block"
-				fontSize={'small'}
-				mb={4}
-				color={'gray.500'}
-			>
-				Your {isUpdate ? 'updated' : 'new'} idea has been created and,
-				if published, will be live to other users.
-			</AlertDescription>
-
-			<PrimaryLink
-				title={'View your idea'}
-				href={`/idea/${ideaId}`}
-				fontSize={'smaller'}
-			>
-				Click here to view your idea
-			</PrimaryLink>
-		</FlexLayout>
-		<CloseButton position="absolute" right="8px" top="8px" />
-	</Alert>
-);
 
 export default CreateEditIdeaForm;
