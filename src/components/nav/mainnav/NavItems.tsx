@@ -12,6 +12,7 @@ export interface NavItem {
 	icon?: IconType;
 	rightIcon?: IconType;
 	divider?: boolean;
+	color?: string;
 }
 
 const NavItems: Array<NavItem> = [
@@ -52,6 +53,7 @@ const NavItems: Array<NavItem> = [
 			{
 				label: 'Create idea',
 				key: 'create',
+				color: 'fpPrimary.500',
 				subLabel: 'Post a new idea to the community',
 				href: '/ideas/create',
 				// icon: IoAddSharp

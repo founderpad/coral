@@ -73,7 +73,14 @@ const DesktopNav = (): JSX.Element => {
 	);
 };
 
-const DesktopSubNav = ({ label, subLabel, href, icon, divider }: NavItem) => (
+const DesktopSubNav = ({
+	label,
+	subLabel,
+	href,
+	icon,
+	divider,
+	color
+}: NavItem) => (
 	<React.Fragment>
 		{divider && <AppDivider />}
 		<NavLink
@@ -84,30 +91,29 @@ const DesktopSubNav = ({ label, subLabel, href, icon, divider }: NavItem) => (
 			_hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
 		>
 			<StackLayout direction={'row'} spacing={2}>
-				<BoxLayout alignItems={'center'} p={2}>
-					{icon && <Icon as={icon} mr={2} />}
-					<BoxLayout
-						p={0}
-						flexDirection={'column'}
-						alignItems={'flex-start'}
-						justifyContent={'flex-start'}
+				<BoxLayout
+					p={2}
+					d={'flex'}
+					alignItems={'baseline'}
+					flexDirection={'column'}
+					justifyContent={'start'}
+					textAlign={'start'}
+				>
+					{/* {icon && <Icon as={icon} mr={2} />} */}
+					<BaseLabel
+						transition={'all .3s ease'}
+						color={color ?? 'gray.900'}
+						fontSize={'small'}
 					>
-						<BaseLabel
-							transition={'all .3s ease'}
-							color={'black'}
-							_groupHover={{ color: 'gray.900' }}
-							fontSize={'small'}
-						>
-							{label}
-						</BaseLabel>
-						<BaseLabel
-							color={'gray.400'}
-							fontWeight={'normal'}
-							fontSize={'smaller'}
-						>
-							{subLabel}
-						</BaseLabel>
-					</BoxLayout>
+						{label}
+					</BaseLabel>
+					<BaseLabel
+						color={'gray.400'}
+						fontWeight={'normal'}
+						fontSize={'smaller'}
+					>
+						{subLabel}
+					</BaseLabel>
 				</BoxLayout>
 
 				<FlexLayout
