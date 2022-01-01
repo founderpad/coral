@@ -6,6 +6,29 @@ query UserSocials($id: uuid!) {
 	}
 }
 
+query UserProfileDetails($user_id: uuid!) {
+	user: users_by_pk(id: $user_id) {
+		first_name
+		location
+		country
+		avatar_url
+		created_at
+		# account {
+		# 	email
+		# }
+		user_profile {
+			availability
+			background
+			status
+			startups
+			business_description
+			specialist_industry
+			statement
+			skills
+		}
+	}
+}
+
 query User($user_id: uuid!) {
 	user: users_by_pk(id: $user_id) {
 		id

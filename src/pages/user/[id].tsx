@@ -1,13 +1,179 @@
-import { PageLayout } from 'components/layouts';
-import { DocumentTitle } from 'components/shared';
+import { Grid } from '@chakra-ui/layout';
+import { GridItem } from '@chakra-ui/react';
+import { PrimaryButton } from 'components/buttons';
+import { PageLayout, StackLayout } from 'components/layouts';
+import { DocumentTitle, TitleEditAction, UserAvatar } from 'components/shared';
+import AppDivider from 'components/shared/AppDivider';
+import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
+import OverviewTags from 'components/shared/OverviewTags';
+import { useUserProfileDetailsQuery } from 'generated/api';
+import { useQueryParam } from 'hooks/util';
+import ProfileSectionLabel from 'pages/account/profile/components/ProfileSectionLabel';
 import React from 'react';
+import {
+	IoAnalyticsSharp,
+	IoBulbSharp,
+	IoLocationSharp,
+	IoMailSharp,
+	IoRocketSharp,
+	IoTimeSharp
+} from 'react-icons/io5';
 import AuthFilter from 'utils/AuthFilter';
+import { convertCapacityToString, formatDate } from 'utils/validators';
 
-const User = (): JSX.Element => (
-	<React.Fragment>
-		<DocumentTitle title="View user" />
-		<PageLayout title="View user">User</PageLayout>
-	</React.Fragment>
-);
+const User = (): JSX.Element => {
+	const { data } = useUserProfileDetailsQuery({
+		variables: {
+			user_id: useQueryParam('id')
+		}
+	});
+
+	return (
+		<React.Fragment>
+			<DocumentTitle title="View user" />
+			<PageLayout
+				title={`${data?.user.first_name}'s profile`}
+				action={
+					<PrimaryButton name={'add-contact'} fontSize={'xs'}>
+						Add to network
+					</PrimaryButton>
+				}
+			>
+				<Grid
+					templateRows="repeat(1, 1fr)"
+					templateColumns="repeat(12, 1fr)"
+					template
+					w={'full'}
+					gridGap={6}
+				>
+					<GridItem
+						colSpan={{ md: 3 }}
+						display={{ base: 'none', md: 'block' }}
+					>
+						<StackLayout w={'full'}>
+							<UserAvatar
+								src={data?.user?.avatar_url}
+								boxSize={140}
+								aria-label="Edit profile picture"
+							/>
+							<TitleEditAction
+								title={`${data?.user.first_name} ******`}
+							/>
+							{data?.user?.country && (
+								<ProfileSectionLabel
+									label={
+										data?.user?.location
+											? `${data?.user?.location}, ${data?.user?.country}`
+											: data?.user?.country
+											? data?.user?.country
+											: 'Location not set'
+									}
+									icon={IoLocationSharp}
+								/>
+							)}
+							<ProfileSectionLabel
+								label={'************'}
+								icon={IoMailSharp}
+							/>
+							{data?.user.created_at && (
+								<ProfileSectionLabel
+									label={
+										`Joined ` +
+										formatDate(
+											data?.user.created_at,
+											false,
+											true
+										)
+									}
+									icon={IoTimeSharp}
+								/>
+							)}
+						</StackLayout>
+					</GridItem>
+					<GridItem colSpan={{ base: 12, md: 9 }}>
+						<StackLayout p={4} flex={1} overflowY={'auto'}>
+							<OverviewTags
+								tags={[
+									{
+										title: 'Specialist field',
+										value:
+											data?.user.user_profile
+												.specialist_industry ??
+											'Not set',
+										icon: IoBulbSharp
+									},
+									{
+										title: 'Previous startups',
+										value: data?.user.user_profile.startups
+											? `${data?.user.user_profile.startups} startups`
+											: 'Not set',
+										icon: IoRocketSharp
+									},
+									{
+										title: 'Startup status',
+										value:
+											data?.user.user_profile.status ??
+											'Not set',
+										icon: IoAnalyticsSharp
+									},
+									{
+										title: 'Capacity (hours per week)',
+										value: data?.user.user_profile
+											.availability
+											? convertCapacityToString(
+													data?.user.user_profile
+														.availability
+											  )
+											: 'Not set',
+										icon: IoTimeSharp
+									}
+								]}
+							/>
+							<AppDivider />
+							<StackLayout flex={1}>
+								{data?.user.user_profile.background && (
+									<ContentFieldAndValue
+										title={'Background'}
+										value={
+											data?.user.user_profile.background
+										}
+									/>
+								)}
+								{data?.user.user_profile.statement && (
+									<ContentFieldAndValue
+										title={'Statement'}
+										value={
+											data?.user.user_profile.statement
+										}
+									/>
+								)}
+								{data?.user.user_profile
+									.business_description && (
+									<ContentFieldAndValue
+										title={'Overview of businesses'}
+										value={
+											data?.user.user_profile
+												.business_description
+										}
+									/>
+								)}
+								{data?.user.user_profile.skills && (
+									<ContentFieldAndValue
+										title={'Skills'}
+										value={
+											data?.user.user_profile.skills?.join(
+												', '
+											) ?? 'No skills selected'
+										}
+									/>
+								)}
+							</StackLayout>
+						</StackLayout>
+					</GridItem>
+				</Grid>
+			</PageLayout>
+		</React.Fragment>
+	);
+};
 
 export default AuthFilter(User);
