@@ -1,6 +1,5 @@
 import Icon from '@chakra-ui/icon';
 import { Label } from 'components/labels';
-import { FlexLayout } from 'components/layouts';
 import React from 'react';
 import { IconType } from 'react-icons/lib';
 
@@ -49,19 +48,19 @@ const KeyInformationBox = ({
 	// 	</FlexLayout>
 	// </StackLayout>
 
-	<FlexLayout
-		flexDirection={'column'}
-		alignItems={'center'}
-		bg={'gray.50'}
-		p={4}
-		flex={1}
-	>
+	// <FlexLayout
+	// 	flexDirection={'column'}
+	// 	alignItems={'center'}
+	// 	flex={1}
+	// >
+	<React.Fragment>
 		{icon && (
 			<Icon
 				as={icon}
 				fontSize={'x-large'}
 				color={'fpPrimary.500'}
 				mb={2}
+				mx={'auto'}
 			/>
 		)}
 		<Label fontWeight={'medium'} color={'gray.900'}>
@@ -70,7 +69,8 @@ const KeyInformationBox = ({
 		<Label color={'gray.400'} fontSize={'xs'}>
 			{title}
 		</Label>
-	</FlexLayout>
+	</React.Fragment>
+	// </FlexLayout>
 );
 
 export default KeyInformationBox;

@@ -46,10 +46,7 @@ const User = (): JSX.Element => {
 					w={'full'}
 					gridGap={6}
 				>
-					<GridItem
-						colSpan={{ md: 3 }}
-						display={{ base: 'none', md: 'block' }}
-					>
+					<GridItem colSpan={{ base: 12, sm: 3 }}>
 						<StackLayout w={'full'}>
 							<UserAvatar
 								src={data?.user?.avatar_url}
@@ -59,7 +56,7 @@ const User = (): JSX.Element => {
 							<TitleEditAction
 								title={`${data?.user.first_name} ******`}
 							/>
-							<StackLayout spacing={0}>
+							<StackLayout spacing={2}>
 								{data?.user?.country && (
 									<ProfileSectionLabel
 										label={
@@ -73,7 +70,7 @@ const User = (): JSX.Element => {
 									/>
 								)}
 								<ProfileSectionLabel
-									label={'************'}
+									label={'*****************.com'}
 									icon={IoMailSharp}
 								/>
 								{data?.user.created_at && (
@@ -92,84 +89,80 @@ const User = (): JSX.Element => {
 							</StackLayout>
 						</StackLayout>
 					</GridItem>
-					<GridItem colSpan={{ base: 12, md: 9 }}>
-						<StackLayout p={0} flex={1} overflowY={'auto'}>
-							<OverviewTags
-								tags={[
-									{
-										title: 'Specialist field',
-										value:
-											data?.user.user_profile
-												.specialist_industry ??
-											'Not set',
-										icon: IoBulbSharp
-									},
-									{
-										title: 'Previous startups',
-										value: data?.user.user_profile.startups
-											? `${data?.user.user_profile.startups} startups`
-											: 'Not set',
-										icon: IoRocketSharp
-									},
-									{
-										title: 'Startup status',
-										value:
-											data?.user.user_profile.status ??
-											'Not set',
-										icon: IoAnalyticsSharp
-									},
-									{
-										title: 'Capacity (per week)',
-										value: data?.user.user_profile
-											.availability
-											? `${convertCapacityToString(
-													data?.user.user_profile
-														.availability
-											  )} hours`
-											: 'Not set',
-										icon: IoTimeSharp
+					<GridItem
+						colSpan={{ base: 12, md: 9 }}
+						as={StackLayout}
+						spacing={6}
+					>
+						<AppDivider display={{ sm: 'none' }} />
+						<OverviewTags
+							tags={[
+								{
+									title: 'Specialist field',
+									value:
+										data?.user.user_profile
+											.specialist_industry ?? 'Not set',
+									icon: IoBulbSharp
+								},
+								{
+									title: 'Previous startups',
+									value: data?.user.user_profile.startups
+										? `${data?.user.user_profile.startups} startups`
+										: 'Not set',
+									icon: IoRocketSharp
+								},
+								{
+									title: 'Startup status',
+									value:
+										data?.user.user_profile.status ??
+										'Not set',
+									icon: IoAnalyticsSharp
+								},
+								{
+									title: 'Capacity (per week)',
+									value: data?.user.user_profile.availability
+										? `${convertCapacityToString(
+												data?.user.user_profile
+													.availability
+										  )} hours`
+										: 'Not set',
+									icon: IoTimeSharp
+								}
+							]}
+						/>
+						<AppDivider />
+						<StackLayout flex={1}>
+							{data?.user.user_profile.background && (
+								<ContentFieldAndValue
+									title={'Background'}
+									value={data?.user.user_profile.background}
+								/>
+							)}
+							{data?.user.user_profile.statement && (
+								<ContentFieldAndValue
+									title={'Statement'}
+									value={data?.user.user_profile.statement}
+								/>
+							)}
+							{data?.user.user_profile.business_description && (
+								<ContentFieldAndValue
+									title={'Overview of businesses'}
+									value={
+										data?.user.user_profile
+											.business_description
 									}
-								]}
-							/>
-							<AppDivider />
-							<StackLayout flex={1}>
-								{data?.user.user_profile.background && (
-									<ContentFieldAndValue
-										title={'Background'}
-										value={
-											data?.user.user_profile.background
-										}
-									/>
-								)}
-								{data?.user.user_profile.statement && (
-									<ContentFieldAndValue
-										title={'Statement'}
-										value={
-											data?.user.user_profile.statement
-										}
-									/>
-								)}
-								{data?.user.user_profile
-									.business_description && (
-									<ContentFieldAndValue
-										title={'Overview of businesses'}
-										value={
-											data?.user.user_profile
-												.business_description
-										}
-									/>
-								)}
-								{data?.user.user_profile.skills && (
-									<ContentFieldAndValue
-										title={'Skills'}
-										value={
-											data?.user.user_profile.skills?.join(
-												', '
-											) ?? 'No skills selected'
-										}
-									/>
-								)}
-							</StackLayout>
+								/>
+							)}
+							{data?.user.user_profile.skills && (
+								<ContentFieldAndValue
+									title={'Skills'}
+									value={
+										data?.user.user_profile.skills?.join(
+											', '
+										) ?? 'No skills selected'
+									}
+								/>
+							)}
 						</StackLayout>
 					</GridItem>
 				</Grid>

@@ -9,6 +9,7 @@ type Props = BoxProps & {
 	subtitle?: React.ReactNode;
 	fixedHeader?: boolean;
 	action?: React.ReactNode;
+	back?: boolean;
 };
 
 export const PageLayout = (props: Props): JSX.Element => {
@@ -19,9 +20,10 @@ export const PageLayout = (props: Props): JSX.Element => {
 		action,
 		children,
 		p = 4,
+		back = true,
 		...rest
 	} = props;
-	const headerProps = { fixedHeader, title, subtitle, action };
+	const headerProps = { fixedHeader, title, subtitle, action, back };
 
 	return (
 		<StackLayout {...rest} spacing={8} w={'full'} flex={1}>

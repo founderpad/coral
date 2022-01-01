@@ -1,5 +1,5 @@
-import { StackProps } from '@chakra-ui/layout';
-import { StackLayout } from 'components/layouts';
+import { GridItem, SimpleGrid } from '@chakra-ui/layout';
+import { useMediaQuery } from '@chakra-ui/media-query';
 import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
 import KeyInformationBox from './KeyInformationBox';
@@ -14,25 +14,32 @@ interface IOverviewTag {
  * The @OverviewTags display a stack of components of key information (see idea and user profile)
  */
 const OverviewTags = memo(
-	({
-		tags,
-		direction
-	}: {
-		tags: readonly IOverviewTag[];
-		direction?: StackProps['direction'];
-	}): JSX.Element => (
-		<StackLayout
-			direction={direction ?? { base: 'column', lg: 'row' }}
-			spacing={{ base: 0, lg: 6 }}
-			alignItems={{ base: 'flex-start', lg: 'center' }}
-			d={'flex'}
-			flex={1}
-		>
-			{tags?.map((overviewTag, key) => (
-				<KeyInformationBox key={key} {...overviewTag} />
-			))}
-		</StackLayout>
-	)
+	({ tags }: { tags: readonly IOverviewTag[] }): JSX.Element => {
+		const [isBase] = useMediaQuery('(max-width: 30em)');
+
+		return (
+			<SimpleGrid
+				columns={12}
+				columnGap={4}
+				css={{
+					'> *:first-child': {
+						marginBottom: isBase && '32px'
+					}
+				}}
+			>
+				{tags?.map((overviewTag, key) => (
+					<GridItem
+						colSpan={{ base: 6, sm: 3 }}
+						display={'flex'}
+						alignItems={'center'}
+						flexDirection={'column'}
+					>
+						<KeyInformationBox key={key} {...overviewTag} />
+					</GridItem>
+				))}
+			</SimpleGrid>
+		);
+	}
 );
 
 export default OverviewTags;
