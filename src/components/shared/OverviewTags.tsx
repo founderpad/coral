@@ -23,8 +23,10 @@ const OverviewTags = memo(
 	}): JSX.Element => (
 		<StackLayout
 			direction={direction ?? { base: 'column', lg: 'row' }}
-			spacing={{ base: 0, lg: 12 }}
+			spacing={{ base: 0, lg: 6 }}
 			alignItems={{ base: 'flex-start', lg: 'center' }}
+			d={'flex'}
+			flex={1}
 		>
 			{tags?.map((overviewTag, key) => (
 				<KeyInformationBox key={key} {...overviewTag} />

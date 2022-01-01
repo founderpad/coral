@@ -59,39 +59,41 @@ const User = (): JSX.Element => {
 							<TitleEditAction
 								title={`${data?.user.first_name} ******`}
 							/>
-							{data?.user?.country && (
+							<StackLayout spacing={0}>
+								{data?.user?.country && (
+									<ProfileSectionLabel
+										label={
+											data?.user?.location
+												? `${data?.user?.location}, ${data?.user?.country}`
+												: data?.user?.country
+												? data?.user?.country
+												: 'Location not set'
+										}
+										icon={IoLocationSharp}
+									/>
+								)}
 								<ProfileSectionLabel
-									label={
-										data?.user?.location
-											? `${data?.user?.location}, ${data?.user?.country}`
-											: data?.user?.country
-											? data?.user?.country
-											: 'Location not set'
-									}
-									icon={IoLocationSharp}
+									label={'************'}
+									icon={IoMailSharp}
 								/>
-							)}
-							<ProfileSectionLabel
-								label={'************'}
-								icon={IoMailSharp}
-							/>
-							{data?.user.created_at && (
-								<ProfileSectionLabel
-									label={
-										`Joined ` +
-										formatDate(
-											data?.user.created_at,
-											false,
-											true
-										)
-									}
-									icon={IoTimeSharp}
-								/>
-							)}
+								{data?.user.created_at && (
+									<ProfileSectionLabel
+										label={
+											`Joined ` +
+											formatDate(
+												data?.user.created_at,
+												false,
+												true
+											)
+										}
+										icon={IoTimeSharp}
+									/>
+								)}
+							</StackLayout>
 						</StackLayout>
 					</GridItem>
 					<GridItem colSpan={{ base: 12, md: 9 }}>
-						<StackLayout p={4} flex={1} overflowY={'auto'}>
+						<StackLayout p={0} flex={1} overflowY={'auto'}>
 							<OverviewTags
 								tags={[
 									{
@@ -117,13 +119,13 @@ const User = (): JSX.Element => {
 										icon: IoAnalyticsSharp
 									},
 									{
-										title: 'Capacity (hours per week)',
+										title: 'Capacity (per week)',
 										value: data?.user.user_profile
 											.availability
-											? convertCapacityToString(
+											? `${convertCapacityToString(
 													data?.user.user_profile
 														.availability
-											  )
+											  )} hours`
 											: 'Not set',
 										icon: IoTimeSharp
 									}
