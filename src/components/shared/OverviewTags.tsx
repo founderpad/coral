@@ -1,4 +1,4 @@
-import { GridItem, SimpleGrid } from '@chakra-ui/layout';
+import { GridItem, SimpleGrid, StackProps } from '@chakra-ui/layout';
 import { useMediaQuery } from '@chakra-ui/media-query';
 import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
@@ -8,6 +8,7 @@ interface IOverviewTag {
 	title: string;
 	value: string;
 	icon?: IconType;
+	direction?: StackProps['direction'];
 }
 
 /**
@@ -15,23 +16,23 @@ interface IOverviewTag {
  */
 const OverviewTags = memo(
 	({ tags }: { tags: readonly IOverviewTag[] }): JSX.Element => {
-		const [isBase] = useMediaQuery('(max-width: 30em)');
+		const [isBase] = useMediaQuery('(max-width: 48em)');
 
 		return (
 			<SimpleGrid
-				columns={12}
+				columns={{ base: 12 }}
 				columnGap={4}
 				css={{
 					'> *:first-child': {
 						marginBottom: isBase && '32px'
 					}
 				}}
+				flexDirection={'column'}
 			>
 				{tags?.map((overviewTag, key) => (
 					<GridItem
-						colSpan={{ base: 6, sm: 3 }}
+						colSpan={{ base: 4, md: 3 }}
 						display={'flex'}
-						alignItems={'center'}
 						flexDirection={'column'}
 					>
 						<KeyInformationBox key={key} {...overviewTag} />

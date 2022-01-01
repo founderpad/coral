@@ -1,5 +1,4 @@
-import { Grid } from '@chakra-ui/layout';
-import { GridItem } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/layout';
 import { PrimaryButton } from 'components/buttons';
 import { PageLayout, StackLayout } from 'components/layouts';
 import { DocumentTitle, TitleEditAction, UserAvatar } from 'components/shared';
@@ -46,7 +45,7 @@ const User = (): JSX.Element => {
 					w={'full'}
 					gridGap={6}
 				>
-					<GridItem colSpan={{ base: 12, sm: 3 }}>
+					<GridItem colSpan={{ base: 12, md: 4 }}>
 						<StackLayout w={'full'}>
 							<UserAvatar
 								src={data?.user?.avatar_url}
@@ -90,11 +89,11 @@ const User = (): JSX.Element => {
 						</StackLayout>
 					</GridItem>
 					<GridItem
-						colSpan={{ base: 12, md: 9 }}
+						colSpan={{ base: 12, md: 8 }}
 						as={StackLayout}
 						spacing={6}
 					>
-						<AppDivider display={{ sm: 'none' }} />
+						<AppDivider display={{ md: 'none' }} />
 						<OverviewTags
 							tags={[
 								{
@@ -119,7 +118,7 @@ const User = (): JSX.Element => {
 									icon: IoAnalyticsSharp
 								},
 								{
-									title: 'Capacity (per week)',
+									title: 'Hours per week',
 									value: data?.user.user_profile.availability
 										? `${convertCapacityToString(
 												data?.user.user_profile

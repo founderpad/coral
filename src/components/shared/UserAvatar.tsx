@@ -34,7 +34,8 @@ export const UserAvatarDetails = ({
 	src,
 	createdAt,
 	size = 'md',
-	direction = 'row'
+	direction = 'row',
+	fontSize = 'small'
 }: Props): JSX.Element => {
 	return (
 		<StackLayout
@@ -51,7 +52,7 @@ export const UserAvatarDetails = ({
 			>
 				<Label
 					fontWeight={'medium'}
-					fontSize={'small'}
+					fontSize={fontSize}
 					wordBreak={'break-all'}
 				>
 					{name}
@@ -100,8 +101,8 @@ export const CurrentUserAvatarDetails = memo(
 );
 
 export const CurrentUserAvatar = memo(
-	({ small }: { small?: boolean }): JSX.Element => {
+	({ size = 'sm' }: { size?: AvatarProps['size'] }): JSX.Element => {
 		const { avatar_url } = useCurrentUser();
-		return <UserAvatar src={avatar_url} size={small ? 'sm' : 'inherit'} />;
+		return <UserAvatar src={avatar_url} size={size} />;
 	}
 );

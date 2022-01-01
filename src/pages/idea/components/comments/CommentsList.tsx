@@ -25,9 +25,9 @@ import { formatDate } from 'utils/validators';
 
 const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 	<StackLayout
-		pb={2}
+		p={2}
 		boxShadow={'sm'}
-		// bg={'gray.50'}
+		bg={'gray.50'}
 		spacing={0}
 		style={{
 			borderRadius: '0 10px 10px'
@@ -68,6 +68,7 @@ const MessageLayout = ({
 				id={comment.id}
 				p={2}
 				bg={!!anchoredId && anchoredId === comment.id && 'gray.50'}
+				borderLeftWidth={actions ? 4 : 3}
 			>
 				<UserAvatar size={'sm'} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
@@ -221,7 +222,7 @@ export const CommentsList = ({
 			// maxW={{ base: '100%', md: 340 }}
 			transition={'ease-in-out'}
 			transitionDelay={'1s'}
-			p={0}
+			px={{ base: 1, sm: 0 }}
 			justifyContent={'center'}
 			display={display}
 			id={'idea-comments'}

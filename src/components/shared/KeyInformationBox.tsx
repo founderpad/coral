@@ -1,5 +1,7 @@
 import Icon from '@chakra-ui/icon';
+import { StackProps } from '@chakra-ui/layout';
 import { Label } from 'components/labels';
+import { StackLayout } from 'components/layouts';
 import React from 'react';
 import { IconType } from 'react-icons/lib';
 
@@ -11,11 +13,13 @@ import { IconType } from 'react-icons/lib';
 const KeyInformationBox = ({
 	title,
 	value,
-	icon
+	icon,
+	direction = 'column'
 }: {
 	title: string;
 	value: string | number;
 	icon?: IconType;
+	direction?: StackProps['direction'];
 }): JSX.Element => (
 	// <StackLayout
 	// 	alignItems={'center'}
@@ -54,23 +58,35 @@ const KeyInformationBox = ({
 	// 	flex={1}
 	// >
 	<React.Fragment>
-		{icon && (
-			<Icon
-				as={icon}
-				fontSize={'x-large'}
-				color={'fpPrimary.500'}
-				mb={2}
-				mx={'auto'}
-			/>
-		)}
-		<Label fontWeight={'medium'} color={'gray.900'}>
-			{value}
-		</Label>
-		<Label color={'gray.400'} fontSize={'xs'}>
-			{title}
-		</Label>
+		<StackLayout
+			direction={{ base: 'column', md: 'row' }}
+			spacing={0}
+			alignItems={{ base: 'flex-start', md: 'center' }}
+		>
+			{icon && (
+				<Icon
+					as={icon}
+					fontSize={'x-large'}
+					color={'fpPrimary.500'}
+					mb={2}
+					mr={4}
+					// mx={'auto'}
+				/>
+			)}
+			<StackLayout spacing={0}>
+				<Label
+					fontWeight={'medium'}
+					color={'gray.900'}
+					fontSize={'small'}
+				>
+					{value}
+				</Label>
+				<Label color={'gray.400'} fontSize={'xs'}>
+					{title}
+				</Label>
+			</StackLayout>
+		</StackLayout>
 	</React.Fragment>
-	// </FlexLayout>
 );
 
 export default KeyInformationBox;

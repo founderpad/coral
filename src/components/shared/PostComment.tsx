@@ -119,7 +119,7 @@ const PostComment = (): JSX.Element => {
 				w={'full'}
 				alignItems={'center'}
 			>
-				<CurrentUserAvatar small />
+				<CurrentUserAvatar size={'sm'} />
 
 				<Textarea
 					name={'value'}
