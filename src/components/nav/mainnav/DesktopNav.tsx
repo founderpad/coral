@@ -31,11 +31,13 @@ const DesktopNav = (): JSX.Element => {
 					triggerEl={
 						<Link
 							px={2}
+							d={'flex'}
 							href={navItem.href ?? '#'}
-							fontSize={'small'}
+							fontSize={'xs'}
 							fontWeight={
 								usePathMatch(navItem.href) ? 'medium' : 'normal'
 							}
+							alignItems={'center'}
 							color={
 								usePathMatch(navItem.href)
 									? 'gray.900'

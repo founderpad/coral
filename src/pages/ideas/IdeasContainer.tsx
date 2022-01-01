@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/layout';
+import { StackLayout } from 'components/layouts';
 import { Loading, NoResults } from 'components/shared';
 import {
 	TIdea_Preview,
@@ -36,8 +36,8 @@ const IdeasContainer = (): JSX.Element => {
 	const { data, loading } = useIdeasQuery({
 		variables: {
 			where: queryBuilder(),
-			limit: 10,
-			offset: (parseInt(useQueryParam('id')) - 1) * 10,
+			limit: 15,
+			offset: (parseInt(useQueryParam('page')) - 1) * 15,
 			orderBy: {
 				createdAt: 'desc'
 			},
@@ -59,7 +59,7 @@ const IdeasContainer = (): JSX.Element => {
 			{/* )} */}
 
 			{!loading && data?.idea_preview.length < 1 && <NoResults back />}
-			<Stack
+			<StackLayout
 				display={'flex'}
 				flex={1}
 				bg={'white'}
@@ -71,7 +71,7 @@ const IdeasContainer = (): JSX.Element => {
 						<IdeaCard {...idea} />
 					</React.Fragment>
 				))}
-			</Stack>
+			</StackLayout>
 
 			{data?.idea_preview?.length > 0 && (
 				<OffsetPagination

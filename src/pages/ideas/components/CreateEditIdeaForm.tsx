@@ -62,8 +62,6 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 			noValidate
 			stackProps={{ spacing: 10 }}
 		>
-			{' '}
-			{/* <StackLayout spacing={10}> */}
 			<InputField
 				id="name"
 				name="name"
