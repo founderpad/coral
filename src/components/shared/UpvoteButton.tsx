@@ -17,7 +17,7 @@ export const UpvoteButton = ({
 }) => (
 	<BaseButton
 		name={`upvote-${name}-button`}
-		variant={'unstyled'}
+		variant={'ghost'}
 		d={'flex'}
 		css={{ width: '0.8em !important' }}
 		color={hasUserUpvoted ? 'green.300' : 'gray.400'}

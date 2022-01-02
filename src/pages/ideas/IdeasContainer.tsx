@@ -36,8 +36,8 @@ const IdeasContainer = (): JSX.Element => {
 	const { data, loading } = useIdeasQuery({
 		variables: {
 			where: queryBuilder(),
-			limit: 15,
-			offset: (parseInt(useQueryParam('page')) - 1) * 15,
+			limit: 10,
+			offset: (parseInt(useQueryParam('page')) - 1) * 10,
 			orderBy: {
 				createdAt: 'desc'
 			},

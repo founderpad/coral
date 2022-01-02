@@ -18,14 +18,17 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
 		<DocumentTitle title={title} />
 		<StackLayout
 			minW={{ base: 'full', sm: '400px' }}
-			maxW={{ base: 'full', sm: '300px' }}
+			maxW={{ base: 'full', sm: '450px' }}
 			borderColor={'gray.100'}
 			p={8}
 			boxShadow={{ sm: 'sm' }}
 			borderWidth={{ sm: '1px' }}
-			m={'auto'}
+			// m={'auto'}
+			style={{ margin: 'auto' }}
 			bg={'white'}
+			d={'flex'}
 			flex={{ base: 1, sm: 'none' }}
+			justifyContent={'center'}
 			id={'auth-container'}
 		>
 			<FlexLayout mx={'auto'} alignItems={'center'}>

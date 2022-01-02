@@ -31,12 +31,6 @@ export const BaseMenu = ({
 				<Icon as={IoEllipsisVertical} color={'gray.500'} />
 			</MenuButton>
 			<MenuList rounded={'none'} textAlign={'start'} minW={'auto'} p={0}>
-				{/* {options?.map((option, key) => (
-					<React.Fragment key={key}>
-						<MenuItemButton {...option} />
-						{option.divider && <MenuDivider my={0} />}
-					</React.Fragment>
-				))} */}
 				{children}
 			</MenuList>
 		</Menu>

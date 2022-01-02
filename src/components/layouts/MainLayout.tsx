@@ -8,7 +8,7 @@ export const MainLayout: FC<{ children: JSX.Element }> = ({
 }): JSX.Element => {
 	usePushNotifications();
 	return (
-		<>
+		<React.Fragment>
 			<MainNav />
 			<Box
 				as={'main'}
@@ -27,7 +27,7 @@ export const MainLayout: FC<{ children: JSX.Element }> = ({
 			>
 				{children}
 			</Box>
-		</>
+		</React.Fragment>
 	);
 };
 

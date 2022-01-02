@@ -1,21 +1,16 @@
-import { useColorModeValue } from '@chakra-ui/color-mode';
 import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
-import { BaseLabel } from 'components/labels/BaseLabel';
-import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
+import { StackLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
 import BasePopover from 'components/popover/BasePopover';
-import AppDivider from 'components/shared/AppDivider';
 import useUserProfile from 'hooks/user';
 import { usePathMatch } from 'hooks/util';
 import React, { memo } from 'react';
-import { IoAlertCircleOutline, IoChevronForwardSharp } from 'react-icons/io5';
-import NavLink from '../components/NavLink';
-import NavItems, { NavItem } from './NavItems';
+import { IoAlertCircleOutline } from 'react-icons/io5';
+import NavItems from './NavItems';
+import { SubNav } from './SubNav';
 
-const DesktopNav = (): JSX.Element => {
-	const isComplete = useUserProfile().is_complete;
-
+const DesktopNav = memo(() => {
 	return (
 		<StackLayout
 			direction={'row'}
@@ -62,108 +57,16 @@ const DesktopNav = (): JSX.Element => {
 					{navItem.children && (
 						<StackLayout spacing={2}>
 							{navItem.children.map((child) => (
-								<DesktopSubNav key={child.label} {...child} />
+								<SubNav key={child.label} {...child} />
 							))}
 						</StackLayout>
 					)}
 				</BasePopover>
 			))}
-			{!isComplete && <ProfileNotSet />}
+			{!useUserProfile().is_complete && <ProfileNotSet />}
 		</StackLayout>
 	);
-};
-
-const DesktopSubNav = ({
-	label,
-	subLabel,
-	href,
-	icon,
-	divider,
-	color
-}: NavItem) => (
-	<React.Fragment>
-		{divider && <AppDivider />}
-		<NavLink
-			href={href}
-			role={'group'}
-			display={'block'}
-			rounded={'md'}
-			_hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
-		>
-			<StackLayout
-				direction={'row'}
-				spacing={2}
-				alignItems={'center'}
-				justifyContent={'space-between'}
-				p={2}
-			>
-				<BoxLayout
-					d={'flex'}
-					alignItems={'center'}
-					justifyContent={'start'}
-					textAlign={'start'}
-					p={0}
-				>
-					{icon && (
-						<Icon
-							as={icon}
-							mr={4}
-							fontSize={'lg'}
-							color={'fpPrimary.500'}
-						/>
-					)}
-					<FlexLayout flexDirection={'column'}>
-						<BaseLabel
-							transition={'all .3s ease'}
-							color={color ?? 'gray.900'}
-							fontSize={'small'}
-						>
-							{label}
-						</BaseLabel>
-						<BaseLabel
-							color={'gray.400'}
-							fontWeight={'normal'}
-							fontSize={'smaller'}
-						>
-							{subLabel}
-						</BaseLabel>
-					</FlexLayout>
-				</BoxLayout>
-
-				{/* <FlexLayout
-					transition={'all .3s ease'}
-					transform={'translateX(-10px)'}
-					opacity={0}
-					_groupHover={{
-						opacity: '100%',
-						transform: 'translateX(0)'
-					}}
-					justify={'flex-end'}
-					align={'center'}
-					flex={1}
-				> */}
-				<Icon
-					color={'gray.500'}
-					w={4}
-					h={4}
-					as={IoChevronForwardSharp}
-					transition={'all .3s ease'}
-					transform={'translateX(-10px)'}
-					opacity={0}
-					_groupHover={{
-						opacity: '100%',
-						transform: 'translateX(0)'
-					}}
-					justifySelf={'flex-end'}
-					// justify={'flex-end'}
-					// align={'center'}
-					// flex={1}
-				/>
-				{/* </FlexLayout> */}
-			</StackLayout>
-		</NavLink>
-	</React.Fragment>
-);
+});
 
 const ProfileNotSet = memo(
 	(): JSX.Element => (

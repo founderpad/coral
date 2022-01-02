@@ -4,7 +4,7 @@ import { FlexLayout, StackLayout } from 'components/layouts';
 import { TIdea_Preview } from 'generated/api';
 import IdeaUpvote from 'pages/idea/components/IdeaUpvote';
 import React, { memo } from 'react';
-import { IoChatboxSharp } from 'react-icons/io5';
+import { IoChatbubbleSharp } from 'react-icons/io5';
 import IdeaMenu from '../IdeaMenu';
 
 const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
@@ -22,10 +22,11 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 		>
 			<StackLayout direction={'row'} spacing={2} alignItems={'center'}>
 				<IdeaUpvote {...idea} />
+
 				{idea?.totalComments > 0 && (
 					<FlexLayout alignItems={'center'}>
 						<Icon
-							as={IoChatboxSharp}
+							as={IoChatbubbleSharp}
 							fontSize={'sm'}
 							pt={0}
 							mr={1}

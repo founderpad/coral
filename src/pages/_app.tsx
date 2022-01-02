@@ -46,8 +46,6 @@ const App: FC<AppProps> = ({
 	Component,
 	pageProps
 }: AppProps): ReactElement => {
-	// usePushNotifications();
-
 	useTrackAnalytics();
 
 	return (
