@@ -759,6 +759,59 @@
       name: x-webhook-secret
 - table:
     schema: public
+    name: user_followers
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        follower_id:
+          _eq: X-Hasura-User-Id
+      set:
+        follower_id: x-hasura-User-Id
+      columns:
+      - follower_id
+      - following_id
+      - status
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - status
+      - follower_id
+      - following_id
+      filter: {}
+      allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - follower_id
+      - following_id
+      - status
+      filter:
+        follower_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        follower_id:
+          _eq: X-Hasura-User-Id
+  event_triggers:
+  - name: send-push-follow-user-request
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      num_retries: 0
+      interval_sec: 10
+      timeout_sec: 60
+    webhook: '{{NHOST_CUSTOM_API_URL}}/notifications/send-push-follow-user-request'
+- table:
+    schema: public
     name: user_profile
   object_relationships:
   - name: user

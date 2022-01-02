@@ -1,5 +1,4 @@
 import { Grid, GridItem } from '@chakra-ui/layout';
-import { PrimaryButton } from 'components/buttons';
 import { PageLayout, StackLayout } from 'components/layouts';
 import { DocumentTitle, TitleEditAction, UserAvatar } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
@@ -19,6 +18,7 @@ import {
 } from 'react-icons/io5';
 import AuthFilter from 'utils/AuthFilter';
 import { convertCapacityToString, formatDate } from 'utils/validators';
+import AddFollower from './components/AddFollower';
 
 const User = (): JSX.Element => {
 	const { data } = useUserProfileDetailsQuery({
@@ -32,11 +32,7 @@ const User = (): JSX.Element => {
 			<DocumentTitle title="View user" />
 			<PageLayout
 				title={`${data?.user.first_name}'s profile`}
-				action={
-					<PrimaryButton name={'add-contact'} fontSize={'xs'}>
-						Add to network
-					</PrimaryButton>
-				}
+				action={<AddFollower userId={useQueryParam('id')} />}
 			>
 				<Grid
 					templateRows="repeat(1, 1fr)"

@@ -27,7 +27,7 @@ const UserMenu = (): JSX.Element => {
 				bg={'transparent'}
 				_hover={{ bg: 'gray.100' }}
 				_active={{ bg: 'transparent' }}
-				ml={8}
+				// ml={8}
 				css={{
 					'> *': {
 						display: 'flex',

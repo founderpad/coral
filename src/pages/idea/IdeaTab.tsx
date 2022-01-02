@@ -118,7 +118,7 @@ const IdeaTab = ({ data }: { data: TIdeaQuery }) => {
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
-				{/* {idea.user_id !== auth.id && ( */}
+				{idea.user_id !== auth.id && (
 					<React.Fragment>
 						<AppDivider />
 						<InterestedIdea
@@ -127,7 +127,7 @@ const IdeaTab = ({ data }: { data: TIdeaQuery }) => {
 							hasInterest={!!data?.hasInterest?.id}
 						/>
 					</React.Fragment>
-				// )}
+				)}
 				<AppDivider />
 				<OverviewTags
 					tags={[

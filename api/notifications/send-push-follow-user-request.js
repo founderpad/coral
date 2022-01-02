@@ -1,3 +1,5 @@
+import Error from 'next/error';
+
 const OneSignal = require('onesignal-node');
 
 var sendNotification = function (data) {
@@ -33,20 +35,18 @@ var sendNotification = function (data) {
 };
 
 export default (req, res) => {
-	const fromUserId = req.body.event.data.new.user_id;
-	const targetUserId = req.body.event.data.new.target_user_id;
-	const ideaId = req.body.event.data.new.idea_id;
-	const id = req.body.event.data.new.id;
+	const followerId = req.body.event.data.new.follower_id;
+	const followingId = req.body.event.data.new.following_id;
 
 	const message = {
 		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
 		en: 'text',
 		contents: {
-			en: 'You have received a new comment on your idea. Click here to view it.'
+			en: 'You have received a new follow request. Click here to view it.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}?d=${id}`,
-		include_external_user_ids: [targetUserId]
+		url: `http://localhost:3000/notifications`,
+		include_external_user_ids: [followingId]
 	};
 
-	if (fromUserId !== targetUserId) sendNotification(message);
+	if (followerId !== followingId) sendNotification(message);
 };

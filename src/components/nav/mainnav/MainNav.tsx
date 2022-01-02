@@ -16,6 +16,7 @@ import { FlexLayout } from 'components/layouts';
 import FounderpadLogo from 'components/shared/FounderpadLogo';
 import React, { memo } from 'react';
 import { IoMenuSharp } from 'react-icons/io5';
+import NotificationsPopover from '../components/NotificationsPopover';
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
 import UserMenu from './UserMenu';
@@ -77,7 +78,10 @@ const MainNav = (): JSX.Element => {
 							</FlexLayout>
 						</Flex>
 						<DesktopNav />
-						<UserMenu />
+						<FlexLayout alignItems={'center'} ml={8}>
+							<NotificationsPopover />
+							<UserMenu />
+						</FlexLayout>
 					</Flex>
 				</Container>
 			</Flex>

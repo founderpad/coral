@@ -25,6 +25,7 @@ var sendNotification = function (data) {
 	req.on('error', function (e) {
 		console.log('ERROR:');
 		console.log(e);
+		throw new Error(`Failed to send push notification: ${e}`);
 	});
 
 	req.write(JSON.stringify(data));

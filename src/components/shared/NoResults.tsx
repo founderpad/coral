@@ -1,3 +1,4 @@
+import { HeadingProps } from '@chakra-ui/layout';
 import { GoBackButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
 import { BoxLayout } from 'components/layouts';
@@ -6,6 +7,7 @@ import React from 'react';
 type Props = {
 	label?: string;
 	back?: boolean;
+	fontSize?: HeadingProps['fontSize'];
 };
 
 /**
@@ -14,7 +16,11 @@ type Props = {
  * @param param0
  * @returns
  */
-export const NoResults = ({ label, back }: Props): JSX.Element => (
+export const NoResults = ({
+	label,
+	back,
+	fontSize = 'sm'
+}: Props): JSX.Element => (
 	<React.Fragment>
 		<BoxLayout
 			display={'flex'}
@@ -24,7 +30,7 @@ export const NoResults = ({ label, back }: Props): JSX.Element => (
 			alignItems={'center'}
 			h={'full'}
 		>
-			<SubheadingText size={'sm'}>
+			<SubheadingText fontSize={fontSize}>
 				No {label ?? 'results'}.
 			</SubheadingText>
 			{back && <GoBackButton />}
