@@ -1,5 +1,5 @@
-import { Grid, GridItem } from '@chakra-ui/react';
-import { PageLayout, StackLayout } from 'components/layouts';
+import { PageLayout } from 'components/layouts';
+import SearchContentGridLayout from 'components/layouts/SearchContentGridLayout';
 import { DocumentTitle } from 'components/shared';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
@@ -13,44 +13,12 @@ const Ideas = () => (
 			title="All ideas"
 			subtitle="The latest ideas from the community."
 		>
-			<Grid
-				templateColumns="repeat(7, 1fr)"
-				gap={6}
-				minH={'full'}
-				flex={1}
-			>
-				<GridItem
-					display={{ base: 'none', md: 'block' }}
-					colSpan={{ md: 3, lg: 2 }}
-					position={'relative'}
-				>
-					<DesktopSearch />
-				</GridItem>
-
-				<GridItem
-					colSpan={{ base: 7, md: 4, lg: 5 }}
-					position={'relative'}
-				>
-					<IdeasContainer />
-				</GridItem>
-			</Grid>
+			<SearchContentGridLayout>
+				<IdeasSearchForm />
+				<IdeasContainer />
+			</SearchContentGridLayout>
 		</PageLayout>
 	</React.Fragment>
-);
-
-const DesktopSearch = () => (
-	<StackLayout
-		display={{ base: 'none', md: 'flex' }}
-		pr={6}
-		h={'full'}
-		bg={'white'}
-		spacing={1}
-		borderRightWidth={1}
-		borderRightColor={'gray.100'}
-		rounded={'none'}
-	>
-		<IdeasSearchForm />
-	</StackLayout>
 );
 
 export default AuthFilter(Ideas);
