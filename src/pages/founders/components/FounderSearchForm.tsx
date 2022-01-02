@@ -16,28 +16,27 @@ import {
 	STARTUP_STATUS
 } from 'utils/Constants';
 
-type FounderSearch = {
-	field?: string;
-	name?: string;
-	is_new?: boolean;
+interface ISearchFields {
 	status?: string;
-};
+	availability?: string;
+	specialist_field?: string;
+}
 
 const FounderSearchForm = (): JSX.Element => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
-	const { handleSubmit, control, reset } = useForm<FounderSearch>();
+	const { handleSubmit, control, reset } = useForm<ISearchFields>();
 	const router = useRouter();
 
-	const onClick = (values: FounderSearch) => {
+	const onClick = (values: ISearchFields) => {
 		setModalDrawer({
 			isOpen: false
 		});
 
 		const queryParams = JSON.parse(JSON.stringify(values));
-		!queryParams.name && delete queryParams['name'];
-		!queryParams.field && delete queryParams['field'];
 		!queryParams.status && delete queryParams['status'];
+		!queryParams.availability && delete queryParams['availability'];
+		!queryParams.specialist_field && delete queryParams['specialist_field'];
 
 		router.push(
 			{
@@ -56,9 +55,9 @@ const FounderSearchForm = (): JSX.Element => {
 			isOpen: false
 		});
 		reset({
-			name: '',
-			field: '',
-			status: ''
+			status: '',
+			availability: '',
+			specialist_field: ''
 		});
 
 		router.push(
@@ -89,8 +88,8 @@ const FounderSearchForm = (): JSX.Element => {
 			</Label>
 
 			<SelectField
-				id="field"
-				name="field"
+				id="status"
+				name="status"
 				options={STARTUP_STATUS.map((status) => (
 					<option key={status.key} value={status.value}>
 						{status.value}
