@@ -82,6 +82,11 @@ query Ideas(
 				count(columns: id)
 			}
 		}
+		comments_aggregate {
+			aggregate {
+				count(columns: id)
+			}
+		}
 		votes(where: { user_id: { _eq: $userId } }) {
 			id
 		}

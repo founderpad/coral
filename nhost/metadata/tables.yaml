@@ -393,6 +393,14 @@
         column_mapping:
           user_id: id
   array_relationships:
+  - name: comments
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: idea_comments
+        column_mapping:
+          id: idea_id
   - name: votes
     using:
       manual_configuration:
@@ -507,6 +515,13 @@
         column_mapping:
           user_id: id
   array_relationships:
+  - name: idea_comments
+    using:
+      foreign_key_constraint_on:
+        column: idea_id
+        table:
+          schema: public
+          name: idea_comments
   - name: votes
     using:
       foreign_key_constraint_on:

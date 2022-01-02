@@ -33,7 +33,7 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 							color={'gray.400'}
 						/>
 						<Label color={'gray.400'} fontSize={'xs'}>
-							{idea.totalComments}
+							{idea.comments_aggregate.aggregate.count}
 						</Label>
 					</FlexLayout>
 				)}
