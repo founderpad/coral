@@ -1,6 +1,4 @@
-import Icon from '@chakra-ui/icon';
 import { Box, StackProps } from '@chakra-ui/layout';
-import { BaseButton } from 'components/buttons';
 import BaseHeading from 'components/heading/BaseHeading';
 import { CaptionLabel, Label } from 'components/labels';
 import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
@@ -20,7 +18,6 @@ import {
 } from 'generated/api';
 import { useQueryParam } from 'hooks/util';
 import React, { useEffect } from 'react';
-import { IoArrowUpSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 
 const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
@@ -132,7 +129,7 @@ const Actions = ({
 			alignItems={'center'}
 			justifyContent={'space-between'}
 		>
-			<BaseButton
+			{/* <BaseButton
 				name={'upvote-idea-button'}
 				variant={'unstyled'}
 				d={'flex'}
@@ -145,7 +142,7 @@ const Actions = ({
 					fontWeight={'normal'}
 					color={'gray.400'}
 				/>
-			</BaseButton>
+			</BaseButton> */}
 			{showReply && (
 				<PostReplyComment
 					commentId={id}

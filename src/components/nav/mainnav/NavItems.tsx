@@ -1,6 +1,12 @@
 import { Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
-import { IoChevronDownSharp, IoLockClosedSharp } from 'react-icons/io5';
+import {
+	IoAddSharp,
+	IoChevronDownSharp,
+	IoLockClosedSharp,
+	IoPersonSharp,
+	IoSearchSharp
+} from 'react-icons/io5';
 import { IconType } from 'react-icons/lib';
 
 export interface NavItem {
@@ -33,30 +39,26 @@ const NavItems: Array<NavItem> = [
 		rightIcon: IoChevronDownSharp,
 		children: [
 			{
-				label: 'All ideas',
-				key: 'all-ideas',
-				subLabel: 'View all ideas',
-				href: '/ideas?page=1'
+				label: 'Search ideas',
+				key: 'search-ideas',
+				subLabel: 'Search all ideas',
+				href: '/ideas?page=1',
+				icon: IoSearchSharp
 			},
 			{
 				label: 'My ideas',
 				key: 'my-ideas',
 				subLabel: 'View your ideas',
-				href: '/ideas/my-ideas'
+				href: '/ideas/my-ideas',
+				icon: IoPersonSharp
 			},
-			// {
-			// 	label: 'Your ideas',
-			// 	key: 'your-ideas',
-			// 	subLabel: 'View the ideas you have posted',
-			// 	href: '/ideas/my-ideas'
-			// },
 			{
 				label: 'Create idea',
 				key: 'create',
 				color: 'fpPrimary.500',
 				subLabel: 'Post a new idea to the community',
 				href: '/ideas/create',
-				// icon: IoAddSharp
+				icon: IoAddSharp,
 				divider: true
 			}
 		]
@@ -71,7 +73,8 @@ const NavItems: Array<NavItem> = [
 				label: 'Search founders',
 				key: 'search-founders',
 				subLabel: 'Search for other founders',
-				href: '/founders?page=1'
+				href: '/founders?page=1',
+				icon: IoSearchSharp
 			}
 			// {
 			// 	label: 'Your co-founders',

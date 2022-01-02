@@ -60,7 +60,7 @@ const DesktopNav = (): JSX.Element => {
 					}
 				>
 					{navItem.children && (
-						<StackLayout spacing={4}>
+						<StackLayout spacing={2}>
 							{navItem.children.map((child) => (
 								<DesktopSubNav key={child.label} {...child} />
 							))}
@@ -90,33 +90,47 @@ const DesktopSubNav = ({
 			rounded={'md'}
 			_hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
 		>
-			<StackLayout direction={'row'} spacing={2}>
+			<StackLayout
+				direction={'row'}
+				spacing={2}
+				alignItems={'center'}
+				justifyContent={'space-between'}
+				p={2}
+			>
 				<BoxLayout
-					p={2}
 					d={'flex'}
-					alignItems={'baseline'}
-					flexDirection={'column'}
+					alignItems={'center'}
 					justifyContent={'start'}
 					textAlign={'start'}
+					p={0}
 				>
-					{/* {icon && <Icon as={icon} mr={2} />} */}
-					<BaseLabel
-						transition={'all .3s ease'}
-						color={color ?? 'gray.900'}
-						fontSize={'small'}
-					>
-						{label}
-					</BaseLabel>
-					<BaseLabel
-						color={'gray.400'}
-						fontWeight={'normal'}
-						fontSize={'smaller'}
-					>
-						{subLabel}
-					</BaseLabel>
+					{icon && (
+						<Icon
+							as={icon}
+							mr={4}
+							fontSize={'lg'}
+							color={'fpPrimary.500'}
+						/>
+					)}
+					<FlexLayout flexDirection={'column'}>
+						<BaseLabel
+							transition={'all .3s ease'}
+							color={color ?? 'gray.900'}
+							fontSize={'small'}
+						>
+							{label}
+						</BaseLabel>
+						<BaseLabel
+							color={'gray.400'}
+							fontWeight={'normal'}
+							fontSize={'smaller'}
+						>
+							{subLabel}
+						</BaseLabel>
+					</FlexLayout>
 				</BoxLayout>
 
-				<FlexLayout
+				{/* <FlexLayout
 					transition={'all .3s ease'}
 					transform={'translateX(-10px)'}
 					opacity={0}
@@ -127,14 +141,25 @@ const DesktopSubNav = ({
 					justify={'flex-end'}
 					align={'center'}
 					flex={1}
-				>
-					<Icon
-						color={'gray.500'}
-						w={4}
-						h={4}
-						as={IoChevronForwardSharp}
-					/>
-				</FlexLayout>
+				> */}
+				<Icon
+					color={'gray.500'}
+					w={4}
+					h={4}
+					as={IoChevronForwardSharp}
+					transition={'all .3s ease'}
+					transform={'translateX(-10px)'}
+					opacity={0}
+					_groupHover={{
+						opacity: '100%',
+						transform: 'translateX(0)'
+					}}
+					justifySelf={'flex-end'}
+					// justify={'flex-end'}
+					// align={'center'}
+					// flex={1}
+				/>
+				{/* </FlexLayout> */}
 			</StackLayout>
 		</NavLink>
 	</React.Fragment>
