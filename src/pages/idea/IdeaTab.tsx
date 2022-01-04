@@ -123,16 +123,16 @@ const IdeaTab = () => {
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
-				{idea.user_id !== auth.id && (
-					<React.Fragment>
-						<AppDivider />
-						<InterestedIdea
-							ideaUserId={user_id}
-							ideaId={id}
-							hasInterest={!!hasInterest?.id}
-						/>
-					</React.Fragment>
-				)}
+				{/* {idea.user_id !== auth.id && ( */}
+				<React.Fragment>
+					<AppDivider />
+					<InterestedIdea
+						ideaUserId={user_id}
+						ideaId={id}
+						hasInterest={!!hasInterest?.id}
+					/>
+				</React.Fragment>
+				{/* )} */}
 				<AppDivider />
 				<OverviewTags
 					tags={[

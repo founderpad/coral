@@ -143,7 +143,7 @@ const Actions = ({
 			direction={'row'}
 			spacing={1}
 			alignItems={'center'}
-			justifyContent={'space-between'}
+			// justifyContent={'space-between'}
 		>
 			{/* <BaseButton
 				name={'upvote-idea-button'}

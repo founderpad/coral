@@ -1,10 +1,11 @@
 import Icon from '@chakra-ui/icon';
 import { PrimaryButton } from 'components/buttons';
 import { Label } from 'components/labels';
+import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useCreateInterestedIdeaMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoStarSharp } from 'react-icons/io5';
 
 const InterestedIdea = ({
@@ -18,6 +19,7 @@ const InterestedIdea = ({
 }) => {
 	const user = useCurrentUser();
 	const [interested, setInterested] = useState(hasInterest);
+	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const [createInterestedIdeaMutation] = useCreateInterestedIdeaMutation({
 		variables: {
@@ -25,6 +27,7 @@ const InterestedIdea = ({
 			targetUserId: ideaUserId
 		},
 		onCompleted: () => {
+			setModalDrawer(false);
 			setInterested(true);
 			ga.event({
 				action: 'User is interested in idea',
@@ -38,6 +41,25 @@ const InterestedIdea = ({
 		}
 	});
 
+	const onClick = () => {
+		setModalDrawer({
+			title: 'Interested in idea',
+			isOpen: true,
+			actions: (
+				<PrimaryButton
+					name={'confirm-idea-interest'}
+					onClick={() => createInterestedIdeaMutation()}
+					size={'xs'}
+				>
+					Confirm interest
+				</PrimaryButton>
+			),
+			body: 'Are you sure you want to show interest in this idea? The idea creator will be able to contact you.',
+			noBtnLabel: 'Cancel',
+			hideFooter: true
+		});
+	};
+
 	if (interested)
 		return (
 			<Label color={'green.500'} alignItems={'center'} fontSize={'small'}>
@@ -49,7 +71,7 @@ const InterestedIdea = ({
 		<PrimaryButton
 			name={'interested-idea-button'}
 			variant={'outline'}
-			onClick={() => createInterestedIdeaMutation()}
+			onClick={onClick}
 			alignItems={'center'}
 			position={'relative'}
 			w={'fit-content'}
