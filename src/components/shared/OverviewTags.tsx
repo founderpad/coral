@@ -31,6 +31,7 @@ const OverviewTags = memo(
 			>
 				{tags?.map((overviewTag, key) => (
 					<GridItem
+						key={key}
 						colSpan={{ base: 4, md: 3 }}
 						display={'flex'}
 						flexDirection={'column'}

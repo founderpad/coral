@@ -5,10 +5,10 @@ import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
 import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
 import OverviewTags from 'components/shared/OverviewTags';
-import { TIdeaQuery } from 'generated/api';
+import IdeaContext from 'context/idea/IdeaContext';
 import { useCurrentUser } from 'hooks/auth';
 import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import {
 	IoBulbSharp,
 	IoLocationSharp,
@@ -21,9 +21,12 @@ import InterestedIdea from './components/InterestedIdea';
 import InterestedTotal from './components/InterestedTotal';
 import PublishedLabel from './components/PublishedLabel';
 
-const IdeaTab = ({ data }: { data: TIdeaQuery }) => {
+const IdeaTab = () => {
 	const router = useRouter();
 	const auth = useCurrentUser();
+	const { data } = useContext(IdeaContext);
+	const { idea, hasInterest } = data ?? {};
+
 	const [showComments, setShowComments] = useState(false);
 
 	const onShowCommentsClick = useCallback(() => {
@@ -33,8 +36,6 @@ const IdeaTab = ({ data }: { data: TIdeaQuery }) => {
 			behavior: 'smooth'
 		});
 	}, [showComments]);
-
-	const idea = data?.idea;
 
 	if (!data) return <Loading small />;
 
@@ -56,7 +57,7 @@ const IdeaTab = ({ data }: { data: TIdeaQuery }) => {
 		id,
 		number_of_interested,
 		is_published
-	} = idea;
+	} = idea ?? {};
 	const { avatar_url, first_name } = user;
 
 	return (
@@ -124,7 +125,7 @@ const IdeaTab = ({ data }: { data: TIdeaQuery }) => {
 						<InterestedIdea
 							ideaUserId={user_id}
 							ideaId={id}
-							hasInterest={!!data?.hasInterest?.id}
+							hasInterest={!!hasInterest?.id}
 						/>
 					</React.Fragment>
 				)}

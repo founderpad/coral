@@ -23,7 +23,7 @@ const PostReplyComment = ({
 		display_name,
 		account: { email }
 	} = useCurrentUser();
-	const { id } = useIdeaFragment();
+	const { id } = useIdeaFragment() ?? {};
 
 	const [postReplyMutation] = usePostReplyMutation({
 		variables: {

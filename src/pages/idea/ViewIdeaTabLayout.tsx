@@ -1,36 +1,33 @@
 import TabLayout from 'components/layouts/TabLayout';
-import { useIdeaQuery } from 'generated/api';
+import IdeaContext from 'context/idea/IdeaContext';
 import { useCurrentUser } from 'hooks/auth';
-import { useMobile, useQueryParam } from 'hooks/util';
-import React from 'react';
+import { useMobile } from 'hooks/util';
+import React, { useContext } from 'react';
 import { CommentsList } from './components/comments';
 import InterestedUsersTab from './components/InterestedUsersTab';
 import IdeaTab from './IdeaTab';
 
 const ViewIdeaTabLayout = (): JSX.Element => {
 	const user = useCurrentUser();
-	const { data } = useIdeaQuery({
-		variables: {
-			id: useQueryParam('id'),
-			userId: user?.id
-		}
-	});
-
-	const isIdeaUser = data?.idea?.user_id === user.id;
+	const { data } = useContext(IdeaContext);
 
 	return (
 		<TabLayout
 			tabs={[
 				{ label: 'Idea' },
-				{ ...(isIdeaUser && { label: 'Interest' }) },
+				{
+					...(data?.idea.user_id === user.id && {
+						label: 'Interest'
+					})
+				},
 				{ ...(useMobile() && { label: 'Comments' }) }
 			]}
 			overflow={'hidden'}
 			minH={'full'}
 			flex={1}
 		>
-			<IdeaTab data={data} />
-			{<InterestedUsersTab ideaId={data?.idea?.id} />}
+			<IdeaTab />
+			<InterestedUsersTab ideaId={data?.idea.id} />
 			{useMobile() && <CommentsList />}
 		</TabLayout>
 	);

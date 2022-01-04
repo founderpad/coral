@@ -12,19 +12,21 @@ import {
 import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
 import PostComment from 'components/shared/PostComment';
 import PostReplyComment from 'components/shared/PostReplyComment';
+import BaseTag from 'components/tags/BaseTag';
+import IdeaContext from 'context/idea/IdeaContext';
 import {
 	useCommentsForIdeaQuery,
 	useRepliesForCommentQuery
 } from 'generated/api';
 import { useQueryParam } from 'hooks/util';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { formatDate } from 'utils/validators';
 
 const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 	<StackLayout
 		p={2}
 		boxShadow={'sm'}
-		bg={'gray.50'}
+		bg={'gray.100'}
 		spacing={0}
 		style={{
 			borderRadius: '0 10px 10px'
@@ -48,6 +50,10 @@ const MessageLayout = ({
 	const { user, updated_at, value } = comment;
 	const { first_name } = user;
 	const anchoredId = useQueryParam('d');
+
+	const isAuthor =
+		useContext(IdeaContext).data?.idea.user_id === comment.user.id;
+
 	useEffect(() => {
 		if (!!anchoredId) {
 			document.getElementById(anchoredId)?.scrollIntoView({
@@ -83,6 +89,16 @@ const MessageLayout = ({
 								>
 									{first_name}
 								</Label>
+								{isAuthor && (
+									<BaseTag
+										color={'white'}
+										bg={'fpPrimary.700'}
+										ml={1}
+										fontSize={'x-small'}
+									>
+										Creator
+									</BaseTag>
+								)}
 								<PointSeparator small />
 								<CaptionLabel>
 									{formatDate(updated_at, true)}

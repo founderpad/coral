@@ -10,7 +10,7 @@ export const BaseTag = (props: TBaseTag): JSX.Element => (
 		background={props.bg ?? 'transparent'}
 		borderWidth={1}
 		color={props.color}
-		rounded={'sm'}
+		rounded={'md'}
 		alignItems={'center'}
 		d={'flex'}
 		{...props}
@@ -21,7 +21,7 @@ export const BaseTag = (props: TBaseTag): JSX.Element => (
 			</TagLeftIcon>
 		)}
 
-		<TagLabel fontSize={{ base: 'x-small', sm: 'xs' }}>
+		<TagLabel fontSize={props.fontSize ?? { base: 'x-small', sm: 'xs' }}>
 			{props.children}
 		</TagLabel>
 	</Tag>

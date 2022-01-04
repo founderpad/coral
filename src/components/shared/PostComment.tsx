@@ -19,7 +19,7 @@ const PostComment = (): JSX.Element => {
 		display_name,
 		account: { email }
 	} = useCurrentUser();
-	const { id, user_id } = idea;
+	const { id, user_id } = idea ?? {};
 	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const [postCommentMutation] = usePostCommentMutation({
