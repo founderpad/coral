@@ -81,6 +81,17 @@ const User = (): JSX.Element => {
 										icon={IoTimeSharp}
 									/>
 								)}
+								{data?.user.created_at && (
+									<ProfileSectionLabel
+										label={
+											`Last seen ` +
+											formatDate(
+												data?.user.last_logged_in
+											)
+										}
+										icon={IoTimeSharp}
+									/>
+								)}
 							</StackLayout>
 						</StackLayout>
 					</GridItem>

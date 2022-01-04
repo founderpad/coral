@@ -13,6 +13,7 @@ query UserProfileDetails($user_id: uuid!) {
 		country
 		avatar_url
 		created_at
+		last_logged_in
 		# account {
 		# 	email
 		# }
@@ -169,5 +170,14 @@ mutation UpdateUserPersonalDetails(
 mutation UpdateUserAvatar($id: uuid!, $avatarUrl: users_set_input!) {
 	user: update_users_by_pk(pk_columns: { id: $id }, _set: $avatarUrl) {
 		avatar_url
+	}
+}
+
+mutation UpdateUserLastLoggedIn($id: uuid!, $lastLoggedIn: timestamptz!) {
+	user: update_users_by_pk(
+		pk_columns: { id: $id }
+		_set: { last_logged_in: $lastLoggedIn }
+	) {
+		last_logged_in
 	}
 }

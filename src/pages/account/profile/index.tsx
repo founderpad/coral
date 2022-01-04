@@ -6,7 +6,7 @@ import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 import ProfileLayout from './layout/ProfileLayout';
 
-const Profile = (): JSX.Element => {
+const Profile = () => {
 	const user = useCurrentUser();
 
 	const { data } = useUserExperienceQuery({

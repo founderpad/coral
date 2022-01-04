@@ -1,5 +1,9 @@
 import { useAuth } from '@nhost/react-auth';
-import { TUsers, useUserLazyQuery } from 'generated/api';
+import {
+	TUsers,
+	useUpdateUserLastLoggedInMutation,
+	useUserLazyQuery
+} from 'generated/api';
 import * as ga from 'lib/ga';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -124,11 +128,19 @@ export const useGetAuthenticatedUser = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 
+	const [updateUserLastLoggedIn] = useUpdateUserLastLoggedInMutation({
+		variables: {
+			id: auth.getClaim('x-hasura-user-id') as string,
+			lastLoggedIn: new Date()
+		}
+	});
+
 	return useUserLazyQuery({
 		variables: {
 			user_id: auth.getClaim('x-hasura-user-id') as string
 		},
 		onCompleted: (data) => {
+			updateUserLastLoggedIn();
 			const user = data.user as TUsers;
 			dispatch(setUser(user));
 			router.replace('/ideas?page=1');
@@ -146,6 +158,14 @@ export const useGetAuthenticatedUser = () => {
 		}
 	});
 };
+
+// const useUpdateLastLoggedInTime = (userId: string) => {
+// 	return useUpdateUserLastLoggedInMutation({
+// 		variables: {
+// 			id:
+// 		}
+// 	});
+// }
 
 // export const useUpdateProfile = (user_profile: TProfile) => {
 // 	const dispatch = useDispatch();

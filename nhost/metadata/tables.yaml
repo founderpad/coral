@@ -988,8 +988,9 @@
       set:
         id: x-hasura-User-Id
       columns:
-      - location
       - country
+      - last_logged_in
+      - location
       backend_only: false
   select_permissions:
   - role: me
@@ -1008,13 +1009,14 @@
     permission:
       columns:
       - avatar_url
-      - location
       - country
       - created_at
       - display_name
       - first_name
       - id
+      - last_logged_in
       - last_name
+      - location
       - updated_at
       filter: {}
   update_permissions:
@@ -1036,11 +1038,12 @@
     permission:
       columns:
       - avatar_url
-      - location
       - country
       - display_name
       - first_name
+      - last_logged_in
       - last_name
+      - location
       filter:
         id:
           _eq: X-Hasura-User-Id

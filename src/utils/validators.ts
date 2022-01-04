@@ -23,6 +23,15 @@ export const formatDate = (
 	);
 };
 
+// const capitalizeFirstLetter = (value: string) => {
+// 	if (value.length > 1) {
+// 		let result = value;
+// 		result = result.substr(0,1).toUpperCase() + result.substr(1);
+// 	}
+
+// 	return null;
+// }
+
 export const formatTimestamp = (timestamp: string) =>
 	formatDate(new Date(parseInt(timestamp)).toString(), false);
 
