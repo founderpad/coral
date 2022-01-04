@@ -4,10 +4,11 @@ import { SelectField } from 'components/input/SelectField';
 import { SwitchField } from 'components/input/SwitchField';
 import { TextareaField } from 'components/input/TextareaField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import { TIdeas_Insert_Input, useUpdateIdeaMutation } from 'generated/api';
+import { useUpdateIdeaMutation } from 'generated/api';
 import { useSuccessNotification } from 'hooks/toast';
 import React, { ReactElement, useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { TIdea } from 'types/idea';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 import useIdeaFragment from '../fragments/IdeaFragment';
 
@@ -17,14 +18,14 @@ const EditIdeaForm = (): ReactElement<any> => {
 	const showSuccessNotification = useSuccessNotification();
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, id, user_id, idea_user, idea_votes, ...rest } = idea;
+	const { __typename, id, user_id, user, votes, ...rest } = idea;
 
 	const {
 		handleSubmit,
 		control,
 		getValues,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<TIdeas_Insert_Input>({
+	} = useForm<TIdea>({
 		mode: 'all',
 		defaultValues: {
 			...rest

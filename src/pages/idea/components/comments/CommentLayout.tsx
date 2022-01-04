@@ -23,7 +23,7 @@ const ChatContainer = ({ children }: { children: JSX.Element[] }) => (
 	</StackLayout>
 );
 
-const CommentLayout = ({
+export const CommentLayout = ({
 	children,
 	comment,
 	actions = true
@@ -41,7 +41,7 @@ const CommentLayout = ({
 		useContext(IdeaContext).data?.idea.user_id === comment.user.id;
 
 	useEffect(() => {
-		if (!!anchoredId) {
+		if (anchoredId) {
 			document.getElementById(anchoredId)?.scrollIntoView({
 				behavior: 'smooth'
 			});

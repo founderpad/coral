@@ -3,13 +3,13 @@ import PostReplyComment from 'components/shared/PostReplyComment';
 import React from 'react';
 import CommentMenu from './CommentMenu';
 
-const CommentActions = ({
+export const CommentActions = ({
 	showReply,
 	comment
 }: {
 	showReply: boolean;
 	comment: any;
-}): JSX.Element => {
+}) => {
 	const { id } = comment;
 
 	return (

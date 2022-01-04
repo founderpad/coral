@@ -17,7 +17,7 @@ type TProfilePreview = Pick<
 >;
 
 const founderAttrs = (founderProfileAttrs: TProfilePreview): string[] => {
-	let attrs = [];
+	const attrs = [];
 
 	if (founderProfileAttrs.availability)
 		attrs.push(

@@ -8,6 +8,7 @@ import AppDivider from 'components/shared/AppDivider';
 import {
 	TCreateIdeaMutation,
 	TIdeas,
+	TIdeas_Insert_Input,
 	useCreateIdeaMutation
 } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
@@ -17,7 +18,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 
-type TEditIdea = Omit<TIdeas, 'user' | 'votes'>;
+type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'idea_comments'>;
+
+// type TEditIdea = Omit<TIdeas_Insert_Input, 'votes'>;
 
 const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 	const user = useCurrentUser();

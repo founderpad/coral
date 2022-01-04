@@ -17,7 +17,7 @@ export const usePathMatch = (value: string): boolean =>
 
 export const useMobile = () => useBreakpointValue({ base: true, md: false });
 
-export const useScrollToBottom = (data?: any) => {
+export const useScrollToBottom = (_data?: any) => {
 	const ref = useRef(null);
 
 	const scrollToBottom = (): void => {

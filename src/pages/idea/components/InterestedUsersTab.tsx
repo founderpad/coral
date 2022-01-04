@@ -18,6 +18,7 @@ const InterestedUsersTab = ({ ideaId }: { ideaId: string }) => {
 		<StackLayout p={4}>
 			{data?.interested_users.map((interestedUser) => (
 				<FlexLayout
+					key={interestedUser.user.id}
 					alignItems={'center'}
 					justifyContent={'space-between'}
 				>

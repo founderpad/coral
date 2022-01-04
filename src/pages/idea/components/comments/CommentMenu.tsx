@@ -2,7 +2,7 @@ import { BaseMenu } from 'components/menu';
 import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
 import React from 'react';
 
-const CommentMenu = (comment: any): JSX.Element => {
+export const CommentMenu = (comment: any): JSX.Element => {
 	const { value, user } = comment;
 	const {
 		id,

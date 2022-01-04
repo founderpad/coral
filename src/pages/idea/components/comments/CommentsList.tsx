@@ -24,7 +24,11 @@ export const CommentsList = ({
 }: {
 	display?: StackProps['display'];
 }): JSX.Element => {
-	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
+	const {
+		data,
+		loading
+		// fetchMore
+	} = useCommentsForIdeaQuery({
 		variables: {
 			ideaId: useQueryParam('id')
 			// offset: 0,
@@ -45,6 +49,7 @@ export const CommentsList = ({
 			e.target.scrollHeight
 		) {
 			console.log('LOAD MORE');
+			// fetchMore('fgdgfdg');
 		}
 	};
 

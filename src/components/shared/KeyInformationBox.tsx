@@ -1,5 +1,4 @@
 import Icon from '@chakra-ui/icon';
-import { StackProps } from '@chakra-ui/layout';
 import { Label } from 'components/labels';
 import { StackLayout } from 'components/layouts';
 import React from 'react';
@@ -13,13 +12,13 @@ import { IconType } from 'react-icons/lib';
 const KeyInformationBox = ({
 	title,
 	value,
-	icon,
-	direction = 'column'
-}: {
+	icon
+}: // direction = 'column'
+{
 	title: string;
 	value: string | number;
 	icon?: IconType;
-	direction?: StackProps['direction'];
+	// direction?: StackProps['direction'];
 }): JSX.Element => (
 	// <StackLayout
 	// 	alignItems={'center'}

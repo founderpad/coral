@@ -129,6 +129,7 @@ const FounderSearchForm = (): JSX.Element => {
 				{EXPERIENCE_SKILLS.map(
 					(es: string): JSX.Element => (
 						<Checkbox
+							key={es}
 							name={es}
 							rounded={'none'}
 							focusBorderColor={'gray.150'}

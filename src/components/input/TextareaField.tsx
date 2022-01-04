@@ -38,7 +38,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 				<Controller
 					render={({
 						field: { onChange, value },
-						fieldState: { error }
+						fieldState: { error: _error }
 					}) => (
 						<Textarea
 							placeholder={placeholder}

@@ -3,7 +3,7 @@ import IdeaContext from 'context/idea/IdeaContext';
 import { useCurrentUser } from 'hooks/auth';
 import { useMobile } from 'hooks/util';
 import React, { useContext } from 'react';
-import { CommentsList } from './components/comments';
+import CommentsList from './components/comments/CommentsList';
 import InterestedUsersTab from './components/InterestedUsersTab';
 import IdeaTab from './IdeaTab';
 
