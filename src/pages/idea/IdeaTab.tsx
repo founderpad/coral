@@ -106,10 +106,10 @@ const IdeaTab = () => {
 									<InterestedTotal
 										total={number_of_interested}
 									/>
-									<PointSeparator small />
-									<IdeaUpvote {...idea} />
 								</React.Fragment>
 							)}
+							<PointSeparator small />
+							<IdeaUpvote {...idea} />
 						</StackLayout>
 
 						<PrimaryButton
