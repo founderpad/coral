@@ -1,5 +1,10 @@
 import { PrimaryButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
+import {
+	IoBulbSharp,
+	IoLocationSharp,
+	IoTrendingUpSharp
+} from 'components/icons';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
@@ -9,11 +14,6 @@ import IdeaContext from 'context/idea/IdeaContext';
 import { useCurrentUser } from 'hooks/auth';
 import { useRouter } from 'next/router';
 import React, { useCallback, useContext, useState } from 'react';
-import {
-	IoBulbSharp,
-	IoLocationSharp,
-	IoTrendingUpSharp
-} from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 import { CommentsList } from './components/comments/CommentsList';
 import IdeaActions from './components/IdeaMenu';

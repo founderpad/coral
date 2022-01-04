@@ -1,12 +1,12 @@
 import Icon from '@chakra-ui/icon';
 import { PrimaryButton } from 'components/buttons';
+import { IoStarSharp } from 'components/icons';
 import { Label } from 'components/labels';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useCreateInterestedIdeaMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
 import React, { useContext, useState } from 'react';
-import { IoStarSharp } from 'react-icons/io5';
 
 const InterestedIdea = ({
 	ideaId,

@@ -1,9 +1,9 @@
 import { Icon, useColorModeValue } from '@chakra-ui/react';
+import { IoChevronForwardSharp } from 'components/icons';
 import { BaseLabel } from 'components/labels/BaseLabel';
 import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
 import AppDivider from 'components/shared/AppDivider';
 import React from 'react';
-import { IoChevronForwardSharp } from 'react-icons/io5';
 import NavLink from '../components/NavLink';
 import { NavItem } from './NavItems';
 

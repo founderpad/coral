@@ -1,4 +1,12 @@
 import { Grid, GridItem } from '@chakra-ui/layout';
+import {
+	IoAnalyticsSharp,
+	IoBulbSharp,
+	IoLocationSharp,
+	IoMailSharp,
+	IoRocketSharp,
+	IoTimeSharp
+} from 'components/icons';
 import { PageLayout, StackLayout } from 'components/layouts';
 import { DocumentTitle, TitleEditAction, UserAvatar } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
@@ -8,14 +16,6 @@ import { useUserProfileDetailsQuery } from 'generated/api';
 import { useQueryParam } from 'hooks/util';
 import ProfileSectionLabel from 'pages/account/profile/components/ProfileSectionLabel';
 import React from 'react';
-import {
-	IoAnalyticsSharp,
-	IoBulbSharp,
-	IoLocationSharp,
-	IoMailSharp,
-	IoRocketSharp,
-	IoTimeSharp
-} from 'react-icons/io5';
 import AuthFilter from 'utils/AuthFilter';
 import { convertCapacityToString, formatDate } from 'utils/validators';
 import AddFollower from './components/AddFollower';

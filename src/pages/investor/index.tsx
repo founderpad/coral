@@ -1,8 +1,8 @@
 import Icon from '@chakra-ui/icon';
 import { Box, Heading } from '@chakra-ui/layout';
+import { IoLockClosedSharp } from 'components/icons';
 import MainInvestorLayout from 'components/layouts/MainInvestorLayout';
 import React from 'react';
-import { IoLockClosedSharp } from 'react-icons/io5';
 import AuthFilter from 'utils/AuthFilter';
 
 const Investor = () => {

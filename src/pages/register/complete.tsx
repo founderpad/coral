@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
+import { IoCheckmarkCircle } from 'components/icons';
 import { Label } from 'components/labels';
 import AuthLayout from 'components/layouts/AuthLayout';
 import { PrimaryLink } from 'components/links';
 import React from 'react';
-import { IoCheckmarkCircle } from 'react-icons/io5';
 
 const Register = (): JSX.Element => {
 	return (

@@ -1,10 +1,10 @@
 import { SubmitButton } from 'components/buttons';
+import { IoPencilSharp, IoTrashBin } from 'components/icons';
 import { BaseMenuItem } from 'components/menu';
 import { BaseMenu } from 'components/menu/BaseMenu';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useDeleteIdeaMutation } from 'generated/api';
 import React, { memo, useCallback, useContext } from 'react';
-import { IoPencilSharp, IoTrashBin } from 'react-icons/io5';
 import EditIdeaForm from './EditIdeaForm';
 
 const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {

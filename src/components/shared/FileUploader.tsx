@@ -2,16 +2,16 @@ import { Box, Flex, HStack, Text } from '@chakra-ui/layout';
 import { BoxProps, Icon } from '@chakra-ui/react';
 import { PrimaryButton } from 'components/buttons';
 import { DeleteButton } from 'components/buttons/DeleteButton';
+import {
+	IoCheckmarkCircleSharp,
+	IoCloudUploadSharp,
+	IoDocumentSharp
+} from 'components/icons';
 import { CaptionLabel } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import {
-	IoCheckmarkCircleSharp,
-	IoCloudUploadSharp,
-	IoDocumentSharp
-} from 'react-icons/io5';
 import { formatTimestamp } from 'utils/validators';
 import { PointSeparator } from './Separators';
 

@@ -12,12 +12,12 @@ import {
 	MenuDivider,
 	Tag
 } from '@chakra-ui/react';
+import { IoMenuSharp } from 'components/icons';
 import { FlexLayout } from 'components/layouts';
 import FounderpadLogo, {
 	FounderpadLogoWithBadge
 } from 'components/shared/FounderpadLogo';
 import React, { memo } from 'react';
-import { IoMenuSharp } from 'react-icons/io5';
 import NotificationsPopover from '../components/NotificationsPopover';
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';

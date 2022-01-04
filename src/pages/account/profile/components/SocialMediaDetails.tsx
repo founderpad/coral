@@ -1,3 +1,10 @@
+import {
+	IoGlobe,
+	IoLogoFacebook,
+	IoLogoInstagram,
+	IoLogoLinkedin,
+	IoLogoTwitter
+} from 'components/icons';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { IconLink } from 'components/links';
 import { TUser_Profile } from 'generated/api';
@@ -5,13 +12,6 @@ import gql from 'graphql-tag';
 import { useCurrentUser } from 'hooks/auth';
 import { cache } from 'pages/_app';
 import React from 'react';
-import {
-	IoGlobe,
-	IoLogoFacebook,
-	IoLogoInstagram,
-	IoLogoLinkedin,
-	IoLogoTwitter
-} from 'react-icons/io5';
 
 const SocialMediaDetails = (): JSX.Element => {
 	const user = useCurrentUser();

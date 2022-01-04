@@ -1,8 +1,8 @@
 import { Icon } from '@chakra-ui/react';
+import { IoThumbsUpSharp } from 'components/icons';
 import { Label } from 'components/labels';
 import { FlexLayout } from 'components/layouts';
 import React from 'react';
-import { IoThumbsUpSharp } from 'react-icons/io5';
 
 export const UpvoteButton = ({
 	onClick,

@@ -1,7 +1,7 @@
 import { IconButton } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
+import { IoFlagSharp } from 'components/icons';
 import React from 'react';
-import { IoFlagSharp } from 'react-icons/io5';
 
 const Report = (): JSX.Element => {
 	return (

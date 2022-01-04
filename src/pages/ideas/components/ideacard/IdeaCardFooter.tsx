@@ -1,10 +1,10 @@
 import Icon from '@chakra-ui/icon';
+import { IoChatbubbleSharp } from 'components/icons';
 import { Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { TIdea_Preview } from 'generated/api';
 import IdeaUpvote from 'pages/idea/components/IdeaUpvote';
 import React, { memo } from 'react';
-import { IoChatbubbleSharp } from 'react-icons/io5';
 import IdeaMenu from '../IdeaMenu';
 
 const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {

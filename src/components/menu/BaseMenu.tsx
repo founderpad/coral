@@ -2,9 +2,9 @@ import { Button } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { BoxProps } from '@chakra-ui/layout';
 import { Menu, MenuButton, MenuList } from '@chakra-ui/react';
+import { IoEllipsisVertical } from 'components/icons';
 import { BoxLayout } from 'components/layouts';
 import React from 'react';
-import { IoEllipsisVertical } from 'react-icons/io5';
 import { BaseMenuItemProps } from './BaseMenuItem';
 
 export const BaseMenu = ({

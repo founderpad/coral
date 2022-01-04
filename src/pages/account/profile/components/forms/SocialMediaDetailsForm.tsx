@@ -1,4 +1,5 @@
 import Form from 'components/form/Form';
+import { IoLogoLinkedin } from 'components/icons';
 import { InputField } from 'components/input/InputField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import {
@@ -9,7 +10,6 @@ import {
 import { useSuccessNotification } from 'hooks/toast';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { IoLogoLinkedin } from 'react-icons/io5';
 
 const SocialMediaDetailsForm = (socials: TUser_Profile): JSX.Element => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars

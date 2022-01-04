@@ -1,5 +1,6 @@
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
+import { IoFlagSharp } from 'components/icons';
 import { SelectField } from 'components/input';
 import { Label } from 'components/labels';
 import { BaseMenuItem } from 'components/menu';
@@ -8,7 +9,6 @@ import { TReport_Insert_Input, useCreateReportMutation } from 'generated/api';
 import { useSuccessNotification } from 'hooks/toast';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { IoFlagSharp } from 'react-icons/io5';
 import { IReportFormData } from 'types/report';
 import { reportReasonsList } from 'utils/Constants';
 

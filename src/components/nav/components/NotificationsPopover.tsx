@@ -1,8 +1,8 @@
 import { Icon, IconButton } from '@chakra-ui/react';
+import { IoNotificationsSharp } from 'components/icons';
 import BasePopover from 'components/popover/BasePopover';
 import { NoResults } from 'components/shared';
 import React from 'react';
-import { IoNotificationsSharp } from 'react-icons/io5';
 
 const NotificationsPopover = () => {
 	return (

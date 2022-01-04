@@ -1,8 +1,8 @@
 import { ButtonGroup } from '@chakra-ui/react';
 import { CancelButton } from 'components/buttons';
+import { IoChevronBackSharp, IoChevronForwardSharp } from 'components/icons';
 import { useQueryParam } from 'hooks/util';
 import { useRouter } from 'next/router';
-import { IoChevronBackSharp, IoChevronForwardSharp } from 'react-icons/io5';
 
 type Props = {
 	pathname: string;

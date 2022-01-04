@@ -6,7 +6,7 @@ import {
 	IoLockClosedSharp,
 	IoPersonSharp,
 	IoSearchSharp
-} from 'react-icons/io5';
+} from 'components/icons';
 import { IconType } from 'react-icons/lib';
 
 export interface NavItem {

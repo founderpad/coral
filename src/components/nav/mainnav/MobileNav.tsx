@@ -3,9 +3,9 @@ import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
 import { Flex, Stack, Text } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/react';
+import { IoChevronDownSharp } from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import React, { memo } from 'react';
-import { IoChevronDownSharp } from 'react-icons/io5';
 import NavItems, { NavItem } from './NavItems';
 import { SubNav } from './SubNav';
 

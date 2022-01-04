@@ -1,11 +1,11 @@
 import { FlexProps } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
+import { IoLocationSharp, IoMailSharp, IoTimeSharp } from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import { TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useCurrentUser } from 'hooks/auth';
 import React, { memo, useContext } from 'react';
-import { IoLocationSharp, IoMailSharp, IoTimeSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';

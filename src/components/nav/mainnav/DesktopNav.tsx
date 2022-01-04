@@ -1,12 +1,12 @@
 import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
+import { IoAlertCircleOutline } from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
 import BasePopover from 'components/popover/BasePopover';
 import useUserProfile from 'hooks/user';
 import { usePathMatch } from 'hooks/util';
 import React, { memo } from 'react';
-import { IoAlertCircleOutline } from 'react-icons/io5';
 import NavItems from './NavItems';
 import { SubNav } from './SubNav';
 

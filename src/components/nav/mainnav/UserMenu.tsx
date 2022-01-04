@@ -8,12 +8,12 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
+import { IoEllipsisVertical } from 'components/icons';
 import { BaseLink } from 'components/links';
 import LogoutModal from 'components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from 'components/shared';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
-import { IoEllipsisVertical } from 'react-icons/io5';
 
 const UserMenu = (): JSX.Element => {
 	const user = useCurrentUser().avatar_url;

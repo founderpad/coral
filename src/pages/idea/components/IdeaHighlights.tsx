@@ -1,14 +1,14 @@
-import { FlexLayout, StackLayout } from 'components/layouts';
-import KeyInformationBox from 'components/shared/KeyInformationBox';
-import { TNestedPick } from 'components/types';
-import { TIdeas } from 'generated/api';
-import React, { memo } from 'react';
 import {
 	IoBulbSharp,
 	IoBusinessSharp,
 	IoDocumentsSharp,
 	IoLocationSharp
-} from 'react-icons/io5';
+} from 'components/icons';
+import { FlexLayout, StackLayout } from 'components/layouts';
+import KeyInformationBox from 'components/shared/KeyInformationBox';
+import { TNestedPick } from 'components/types';
+import { TIdeas } from 'generated/api';
+import React, { memo } from 'react';
 import HighlightTag from './IdeaHighlightTag';
 
 type IdeaHighlightsProps = Pick<TIdeas, 'status' | 'field'> &

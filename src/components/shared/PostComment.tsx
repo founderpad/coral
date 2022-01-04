@@ -1,13 +1,13 @@
 import { IconButton } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { Textarea } from '@chakra-ui/textarea';
+import { IoSendSharp } from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import { usePostCommentMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
 import useIdeaFragment from 'pages/idea/fragments/IdeaFragment';
 import React, { useCallback, useState } from 'react';
-import { IoSendSharp } from 'react-icons/io5';
 import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';
 

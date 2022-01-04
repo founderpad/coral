@@ -1,4 +1,10 @@
 import { SubmitButton } from 'components/buttons';
+import {
+	IoAnalyticsSharp,
+	IoBulbSharp,
+	IoRocketSharp,
+	IoTimeSharp
+} from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import { Loading, TitleEditAction } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
@@ -6,12 +12,6 @@ import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
 import OverviewTags from 'components/shared/OverviewTags';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import React, { useContext } from 'react';
-import {
-	IoAnalyticsSharp,
-	IoBulbSharp,
-	IoRocketSharp,
-	IoTimeSharp
-} from 'react-icons/io5';
 import { convertCapacityToString } from 'utils/validators';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';

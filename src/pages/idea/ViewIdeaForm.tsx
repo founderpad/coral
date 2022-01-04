@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Icon, Stack, Text } from '@chakra-ui/react';
+import { IoCheckmarkCircle, IoCloseCircle } from 'components/icons';
 import React from 'react';
-import { IoCheckmarkCircle, IoCloseCircle } from 'react-icons/io5';
 import { TIdea } from 'types/idea';
 
 export const ViewIdeaForm = ({ idea }: { idea: TIdea }): JSX.Element => {
