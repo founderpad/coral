@@ -1,198 +1,23 @@
 import { Box, StackProps } from '@chakra-ui/layout';
 import BaseHeading from 'components/heading/BaseHeading';
-import { CaptionLabel, Label } from 'components/labels';
-import { BoxLayout, FlexLayout, StackLayout } from 'components/layouts';
-import { BaseMenu } from 'components/menu';
-import {
-	Loading,
-	NoResults,
-	PointSeparator,
-	UserAvatar
-} from 'components/shared';
-import ReportMenu from 'components/shared/actionsmenu/ReportMenu';
+import { BoxLayout, StackLayout } from 'components/layouts';
+import { Loading, NoResults } from 'components/shared';
 import PostComment from 'components/shared/PostComment';
-import PostReplyComment from 'components/shared/PostReplyComment';
-import BaseTag from 'components/tags/BaseTag';
-import IdeaContext from 'context/idea/IdeaContext';
 import {
 	useCommentsForIdeaQuery,
 	useRepliesForCommentQuery
 } from 'generated/api';
 import { useQueryParam } from 'hooks/util';
-import React, { useContext, useEffect } from 'react';
-import { formatDate } from 'utils/validators';
-
-const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
-	<StackLayout
-		p={2}
-		boxShadow={'sm'}
-		bg={'gray.100'}
-		spacing={0}
-		style={{
-			borderRadius: '0 10px 10px'
-		}}
-		wordBreak={'break-all'}
-	>
-		{children}
-	</StackLayout>
-);
-
-const MessageLayout = ({
-	children,
-	comment,
-	actions = true
-}: {
-	children?: JSX.Element;
-	comment: any;
-	actions?: boolean;
-	divider?: boolean;
-}): JSX.Element => {
-	const { user, updated_at, value } = comment;
-	const { first_name } = user;
-	const anchoredId = useQueryParam('d');
-
-	const isAuthor =
-		useContext(IdeaContext).data?.idea.user_id === comment.user.id;
-
-	useEffect(() => {
-		if (!!anchoredId) {
-			document.getElementById(anchoredId)?.scrollIntoView({
-				behavior: 'smooth'
-			});
-		}
-	});
-
-	return (
-		<React.Fragment>
-			<StackLayout
-				direction={'row'}
-				spacing={2}
-				w={'full'}
-				id={comment.id}
-				p={2}
-				bg={!!anchoredId && anchoredId === comment.id && 'gray.50'}
-				borderLeftWidth={actions ? 4 : 3}
-			>
-				<UserAvatar size={'sm'} />
-				<StackLayout spacing={0} w={{ base: 'full' }}>
-					<ChatContainer>
-						<FlexLayout
-							alignItems={'center'}
-							justifyContent={'space-between'}
-						>
-							<FlexLayout alignItems={'center'} mb={1}>
-								<Label
-									fontWeight={'medium'}
-									fontSize={'xs'}
-									maxW={'80%'}
-									isTruncated
-								>
-									{first_name}
-								</Label>
-								{isAuthor && (
-									<BaseTag
-										color={'white'}
-										bg={'fpPrimary.700'}
-										ml={1}
-										fontSize={'x-small'}
-									>
-										Creator
-									</BaseTag>
-								)}
-								<PointSeparator small />
-								<CaptionLabel>
-									{formatDate(updated_at, true)}
-								</CaptionLabel>
-							</FlexLayout>
-						</FlexLayout>
-						<Label
-							color={'gray.500'}
-							fontSize={'xs'}
-							fontWeight={'normal'}
-						>
-							{value}
-						</Label>
-					</ChatContainer>
-					<Actions showReply={!!actions} comment={comment} />
-					{children}
-				</StackLayout>
-			</StackLayout>
-		</React.Fragment>
-	);
-};
+import React, { useEffect } from 'react';
+import CommentLayout from './CommentLayout';
 
 const Comment = (comment: any): JSX.Element => (
-	<MessageLayout comment={comment} divider={true}>
+	<CommentLayout comment={comment} divider={true}>
 		{/* {comment?.idea_replies?.length > 0 && ( */}
 		<RepliesList commentId={comment.id} />
 		{/* )} */}
-	</MessageLayout>
+	</CommentLayout>
 );
-
-const Actions = ({
-	showReply,
-	comment
-}: {
-	showReply: boolean;
-	comment: any;
-}): JSX.Element => {
-	const { id } = comment;
-
-	return (
-		<StackLayout
-			direction={'row'}
-			spacing={1}
-			alignItems={'center'}
-			// justifyContent={'space-between'}
-		>
-			{/* <BaseButton
-				name={'upvote-idea-button'}
-				variant={'unstyled'}
-				d={'flex'}
-			>
-				<Icon
-					as={IoArrowUpSharp}
-					fontSize={'sm'}
-					mr={1}
-					size={'sm'}
-					fontWeight={'normal'}
-					color={'gray.400'}
-				/>
-			</BaseButton> */}
-			{showReply && (
-				<PostReplyComment
-					commentId={id}
-					commentUserId={comment.user.id}
-				/>
-			)}
-			<CommentMenu {...comment} />
-		</StackLayout>
-	);
-};
-
-const CommentMenu = (comment: any): JSX.Element => {
-	const { value, user } = comment;
-	const {
-		id,
-		display_name,
-		account: { email }
-	} = user;
-	return (
-		<BaseMenu>
-			<ReportMenu
-				title={'comment'}
-				content={`"${value}"`}
-				report={{
-					type: 'COMMENT',
-					reported_user_id: id,
-					recipient_name: display_name,
-					recipient_email: email,
-					content: value
-				}}
-			/>
-		</BaseMenu>
-	);
-};
 
 export const CommentsList = ({
 	display = 'flex'
@@ -232,7 +57,6 @@ export const CommentsList = ({
 			d={'flex'}
 			flexDirection={'column'}
 			flexWrap={'nowrap'}
-			// maxW={{ base: '100%', md: 340 }}
 			transition={'ease-in-out'}
 			transitionDelay={'1s'}
 			px={{ base: 1, sm: 0 }}
@@ -281,7 +105,7 @@ const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
 			<StackLayout spacing={0} pt={4} rounded={'none'} pl={2}>
 				{data?.replies?.map((reply, _index) => {
 					return (
-						<MessageLayout
+						<CommentLayout
 							key={_index}
 							actions={false}
 							comment={reply}

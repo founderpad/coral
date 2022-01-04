@@ -1,11 +1,7 @@
 import { Label } from 'components/labels';
 import React from 'react';
 
-const PublishedLabel = ({
-	isPublished
-}: {
-	isPublished: boolean;
-}): JSX.Element => {
+const PublishedLabel = ({ isPublished }: { isPublished: boolean }) => {
 	if (isPublished) {
 		return (
 			<Label color={'green.500'} fontSize={{ base: 'xs', sm: 'smaller' }}>
