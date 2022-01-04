@@ -2,6 +2,7 @@
 // import { useAuth } from '@nhost/react-auth';
 import { useAuth } from '@nhost/react-auth';
 import MainLayout from 'components/layouts/MainLayout';
+import { Loading } from 'components/shared';
 // import { useCurrentUser } from 'hooks/auth';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
@@ -14,7 +15,7 @@ export default function AuthFilter(Component: any) {
 		const router = useRouter();
 
 		if (signedIn === null) {
-			return <div>Checking auth...</div>;
+			return <Loading />;
 		}
 
 		if (!signedIn) router.push('/login');
