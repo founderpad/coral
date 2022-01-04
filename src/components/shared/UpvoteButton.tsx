@@ -1,6 +1,6 @@
-import Icon from '@chakra-ui/icon';
-import { BaseButton } from 'components/buttons';
+import { Icon } from '@chakra-ui/react';
 import { Label } from 'components/labels';
+import { FlexLayout } from 'components/layouts';
 import React from 'react';
 import { IoThumbsUpSharp } from 'react-icons/io5';
 
@@ -15,25 +15,24 @@ export const UpvoteButton = ({
 	name: string;
 	votesTotal?: number;
 }) => (
-	<BaseButton
-		name={`upvote-${name}-button`}
-		variant={'ghost'}
-		d={'flex'}
-		css={{ width: '0.8em !important' }}
-		color={hasUserUpvoted ? 'green.300' : 'gray.400'}
-		onClick={onClick}
-	>
+	<FlexLayout alignItems={'center'}>
 		<Icon
+			name={`upvote-${name}-button`}
 			as={IoThumbsUpSharp}
-			fontSize={'sm'}
 			mr={1}
 			_hover={{ color: 'green.300' }}
-		/>
-		<Label
-			fontSize={'xs'}
+			fontSize={'sm'}
 			color={hasUserUpvoted ? 'green.300' : 'gray.400'}
-		>
-			{votesTotal > 0 && votesTotal}
-		</Label>
-	</BaseButton>
+			cursor={'pointer'}
+			onClick={onClick}
+		/>
+		{votesTotal > 0 && (
+			<Label
+				fontSize={'xs'}
+				color={hasUserUpvoted ? 'green.300' : 'gray.400'}
+			>
+				{votesTotal}
+			</Label>
+		)}
+	</FlexLayout>
 );

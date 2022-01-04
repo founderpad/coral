@@ -136,6 +136,9 @@ query Idea($id: uuid!, $userId: uuid!) {
 				count(columns: id)
 			}
 		}
+		votes(where: { user_id: { _eq: $userId } }) {
+			id
+		}
 	}
 	hasInterest: interested_ideas_by_pk(idea_id: $id, user_id: $userId) {
 		id

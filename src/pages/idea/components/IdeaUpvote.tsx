@@ -7,10 +7,11 @@ import {
 import { useClaim, useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
 import React, { useCallback, useState } from 'react';
+import { TIdea } from 'types/idea';
 
-const IdeaUpvote = (idea: TIdea_Preview): JSX.Element => {
+const IdeaUpvote = (idea: TIdea_Preview | TIdea): JSX.Element => {
 	const [upvote, setUpvote] = useState({
-		hasUserUpvoted: idea.votes?.length > 0,
+		hasUserUpvoted: idea.votes.length > 0,
 		votesTotal: idea.votes_aggregate?.aggregate.count ?? 0
 	});
 

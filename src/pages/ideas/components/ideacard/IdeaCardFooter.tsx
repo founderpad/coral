@@ -20,7 +20,7 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 			borderTopWidth={1}
 			borderTopColor={'gray.100'}
 		>
-			<StackLayout direction={'row'} spacing={2} alignItems={'center'}>
+			<StackLayout direction={'row'} spacing={3} alignItems={'center'}>
 				<IdeaUpvote {...idea} />
 
 				{idea?.totalComments > 0 && (

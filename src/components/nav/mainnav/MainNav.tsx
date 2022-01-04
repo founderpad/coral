@@ -13,7 +13,9 @@ import {
 	Tag
 } from '@chakra-ui/react';
 import { FlexLayout } from 'components/layouts';
-import FounderpadLogo from 'components/shared/FounderpadLogo';
+import FounderpadLogo, {
+	FounderpadLogoWithBadge
+} from 'components/shared/FounderpadLogo';
 import React, { memo } from 'react';
 import { IoMenuSharp } from 'react-icons/io5';
 import NotificationsPopover from '../components/NotificationsPopover';
@@ -60,22 +62,7 @@ const MainNav = (): JSX.Element => {
 								fontSize={'2xl'}
 								onClick={onToggle}
 							/>
-							<FlexLayout mx={'auto'} alignItems={'center'}>
-								<FounderpadLogo w={'100px'} />
-								<Tag
-									bg={'fpPrimary.700'}
-									color={'white'}
-									textTransform={'capitalize'}
-									fontWeight={'medium'}
-									textAlign={'center'}
-									verticalAlign={'center'}
-									fontSize={'x-small'}
-									rounded={'sm'}
-									ml={2}
-								>
-									Beta
-								</Tag>
-							</FlexLayout>
+							<FounderpadLogoWithBadge w={100} />
 						</Flex>
 						<DesktopNav />
 						<FlexLayout alignItems={'center'} ml={8}>

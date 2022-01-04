@@ -17,6 +17,7 @@ import {
 import { formatDate } from 'utils/validators';
 import { CommentsList } from './components/comments/CommentsList';
 import IdeaActions from './components/IdeaMenu';
+import IdeaUpvote from './components/IdeaUpvote';
 import InterestedIdea from './components/InterestedIdea';
 import InterestedTotal from './components/InterestedTotal';
 import PublishedLabel from './components/PublishedLabel';
@@ -94,7 +95,7 @@ const IdeaTab = () => {
 					>
 						<StackLayout
 							direction={'row'}
-							spacing={{ base: 0, md: 1 }}
+							spacing={1}
 							pt={2}
 							alignItems={'center'}
 						>
@@ -105,9 +106,12 @@ const IdeaTab = () => {
 									<InterestedTotal
 										total={number_of_interested}
 									/>
+									<PointSeparator small />
+									<IdeaUpvote {...idea} />
 								</React.Fragment>
 							)}
 						</StackLayout>
+
 						<PrimaryButton
 							name={'show-comments'}
 							variant={'ghost'}

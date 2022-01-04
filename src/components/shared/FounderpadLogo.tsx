@@ -25,7 +25,7 @@ const FounderpadLogoWithBadge = ({ w }: { w: number }): JSX.Element => (
 			textAlign={'center'}
 			verticalAlign={'center'}
 			fontSize={'x-small'}
-			rounded={'sm'}
+			rounded={'md'}
 			ml={2}
 		>
 			Beta
