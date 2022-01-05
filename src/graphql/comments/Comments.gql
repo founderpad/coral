@@ -14,10 +14,12 @@ mutation PostReply($ideaReply: idea_comment_replies_insert_input!) {
 	}
 }
 
-query CommentsForIdea($ideaId: uuid!) {
+query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 	comments: idea_comments(
 		where: { idea_id: { _eq: $ideaId } }
 		order_by: { updated_at: desc }
+		offset: $offset
+		limit: 8
 	) {
 		id
 		updated_at
@@ -30,6 +32,13 @@ query CommentsForIdea($ideaId: uuid!) {
 			account {
 				email
 			}
+		}
+	}
+	totalComments: idea_comments_aggregate(
+		where: { idea_id: { _eq: $ideaId } }
+	) {
+		aggregate {
+			count(columns: id)
 		}
 	}
 }

@@ -50,12 +50,10 @@ export const CommentsList = ({
 }: {
 	display?: StackProps['display'];
 }): JSX.Element => {
-	const id = useQueryParam('id');
 	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
-			ideaId: id,
-			offset: 0,
-			limit: 3
+			ideaId: useQueryParam('id'),
+			offset: 0
 		},
 		// notifyOnNetworkStatusChange: true,
 		fetchPolicy: 'network-only',
@@ -74,7 +72,7 @@ export const CommentsList = ({
 		if (bottom) {
 			fetchMore({
 				variables: {
-					offset: data.comments.length
+					offset: data?.comments.length
 				}
 			});
 		}
@@ -104,7 +102,7 @@ export const CommentsList = ({
 				px={{ base: 4, md: 0 }}
 				borderTopWidth={{ base: 0, md: 1 }}
 			>
-				{data?.comments?.length} Comments
+				{data?.totalComments.aggregate.count} Comments
 			</BaseHeading>
 			<Box flexShrink={0} px={2} py={6}>
 				<PostComment />
