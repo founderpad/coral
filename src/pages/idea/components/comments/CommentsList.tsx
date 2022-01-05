@@ -1,4 +1,4 @@
-import { Box, StackProps } from '@chakra-ui/layout';
+import { Box, StackProps } from '@chakra-ui/react';
 import BaseHeading from 'components/heading/BaseHeading';
 import { BoxLayout, StackLayout } from 'components/layouts';
 import { Loading, NoResults } from 'components/shared';
@@ -10,6 +10,32 @@ import {
 import { useQueryParam } from 'hooks/util';
 import React, { useEffect } from 'react';
 import CommentLayout from './CommentLayout';
+
+// const CommentsQuery = gql`
+// 	query CommentsQuery($first: Int!, $after: String!, $ideaId: uuid!) {
+// 		idea_comments_connection(
+// 			first: $first
+// 			after: $after
+// 			order_by: { updated_at: desc }
+// 			where: { idea_id: { _eq: $ideaId } }
+// 		)
+
+// 		pageInfo {
+// 			endCursor
+// 			hasNextPage
+// 		}
+// 		edges {
+// 			node {
+// 				updated_at
+// 				value
+// 				user {
+// 					first_name
+// 					avatar_url
+// 				}
+// 			}
+// 		}
+// 	}
+// `;
 
 const Comment = (comment: any): JSX.Element => (
 	<CommentLayout comment={comment} divider={true}>
@@ -24,21 +50,19 @@ export const CommentsList = ({
 }: {
 	display?: StackProps['display'];
 }): JSX.Element => {
+	const id = useQueryParam('id');
 	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
-			ideaId: useQueryParam('id')
-			// offset: 0,
-			// limit: 10
+			ideaId: id,
+			offset: 0,
+			limit: 3
 		},
+		// notifyOnNetworkStatusChange: true,
 		fetchPolicy: 'network-only',
 		nextFetchPolicy: 'cache-first'
 	});
 
 	useEffect(() => {
-		// function onScrollToBottom() {
-		// 	console.log('scrolling........');
-		// }
-
 		window.addEventListener('scroll', onScrollToBottom);
 		return () => window.removeEventListener('scroll', onScrollToBottom);
 	});
@@ -48,9 +72,11 @@ export const CommentsList = ({
 			Math.ceil(window.innerHeight + window.scrollY) >=
 			document.documentElement.scrollHeight;
 		if (bottom) {
-			console.log('scrolllllll');
-			// fetchMore('fgdgfdg');
-			fetchMore({});
+			fetchMore({
+				variables: {
+					offset: data.comments.length
+				}
+			});
 		}
 	};
 

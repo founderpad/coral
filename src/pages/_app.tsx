@@ -1,8 +1,5 @@
 import { InMemoryCache } from '@apollo/client';
-import {
-	offsetLimitPagination,
-	relayStylePagination
-} from '@apollo/client/utilities';
+import { offsetLimitPagination } from '@apollo/client/utilities';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
@@ -80,13 +77,30 @@ const cache = new InMemoryCache({
 	typePolicies: {
 		Query: {
 			fields: {
+				// resourceCollection: {
+				// 	keyArgs: false,
+				// 	merge(existing, incoming) {
+				// 		if (!incoming) return existing;
+				// 		if (!existing) return incoming; // existing will be empty the first time
+
+				// 		const { comments, ...rest } = incoming;
+
+				// 		let result = rest;
+				// 		result.comments = [...existing.comments, ...comments]; // Merge existing items with the items from incoming
+
+				// 		return result;
+				// 	}
+				// },
+				resourceCollection: offsetLimitPagination(),
 				feed: {
-					...offsetLimitPagination()
-					// read(existing, { args }) {
-					// 	// Implement here
-					// }
+					...offsetLimitPagination(),
+					read(existing, { args }): any {
+						console.log('exiating: ', existing);
+					}
 				},
-				CommentsForIdea: relayStylePagination()
+				// CommentsForIdea: relayStylePagination()
+				// CommentsForIdea: offsetLimitPagination()
+				idea_comments: offsetLimitPagination()
 			}
 		}
 	}
