@@ -13,12 +13,12 @@ export const StickySubheader = memo(
 		useEffect(() => {
 			function onScroll() {
 				const currentPos = window.pageYOffset;
-				if (currentPos >= 125) setIsFixed(true);
+				if (currentPos >= 110) setIsFixed(true);
 				else setIsFixed(false);
 			}
 
 			window.addEventListener('scroll', onScroll);
-		}, [window.scrollY >= 125]);
+		}, [window.scrollY >= 110]);
 
 		return (
 			<Box
@@ -26,7 +26,7 @@ export const StickySubheader = memo(
 				w={'full'}
 				py={fixed && 2}
 				px={fixed && 4}
-				top={fixed && '40px'}
+				top={fixed && 10}
 				left={0}
 				bg={'white'}
 				borderBottomWidth={fixed && 1}

@@ -34,9 +34,10 @@ const MainNav = (): JSX.Element => {
 				borderBottom={'1px solid'}
 				borderBottomColor={'gray.100'}
 				zIndex={1100}
-				position={'sticky'}
+				position={'fixed'}
 				top={0}
-				h={'40px'}
+				h={10}
+				w={'full'}
 			>
 				<Container
 					bg={useColorModeValue('white', 'gray.800')}

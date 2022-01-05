@@ -1,5 +1,8 @@
 import { InMemoryCache } from '@apollo/client';
-import { offsetLimitPagination } from '@apollo/client/utilities';
+import {
+	offsetLimitPagination,
+	relayStylePagination
+} from '@apollo/client/utilities';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
@@ -82,7 +85,8 @@ const cache = new InMemoryCache({
 					// read(existing, { args }) {
 					// 	// Implement here
 					// }
-				}
+				},
+				CommentsForIdea: relayStylePagination()
 			}
 		}
 	}

@@ -24,32 +24,33 @@ export const CommentsList = ({
 }: {
 	display?: StackProps['display'];
 }): JSX.Element => {
-	const {
-		data,
-		loading
-		// fetchMore
-	} = useCommentsForIdeaQuery({
+	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
 			ideaId: useQueryParam('id')
 			// offset: 0,
-			// limit: 30
+			// limit: 10
 		},
 		fetchPolicy: 'network-only',
 		nextFetchPolicy: 'cache-first'
 	});
 
 	useEffect(() => {
+		// function onScrollToBottom() {
+		// 	console.log('scrolling........');
+		// }
+
 		window.addEventListener('scroll', onScrollToBottom);
 		return () => window.removeEventListener('scroll', onScrollToBottom);
 	});
 
-	const onScrollToBottom = (e) => {
-		if (
-			e.target.scrollTop + e.target.clientHeight ===
-			e.target.scrollHeight
-		) {
-			console.log('LOAD MORE');
+	const onScrollToBottom = () => {
+		const bottom =
+			Math.ceil(window.innerHeight + window.scrollY) >=
+			document.documentElement.scrollHeight;
+		if (bottom) {
+			console.log('scrolllllll');
 			// fetchMore('fgdgfdg');
+			fetchMore({});
 		}
 	};
 

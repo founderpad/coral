@@ -1,3 +1,4 @@
+overwrite: true
 schema:
     - ${NEXT_PUBLIC_GRAPHQL_BACKEND}:
           headers:

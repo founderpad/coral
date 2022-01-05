@@ -76,12 +76,6 @@ const NavItems: Array<NavItem> = [
 				href: '/founders?page=1',
 				icon: IoSearchSharp
 			}
-			// {
-			// 	label: 'Your co-founders',
-			// 	key: 'your-cofounders',
-			// 	subLabel: 'The founders you have connected with',
-			// 	href: '/founders/connected-founders'
-			// }
 		]
 	},
 	// {
