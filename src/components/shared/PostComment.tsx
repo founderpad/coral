@@ -3,48 +3,50 @@ import Icon from '@chakra-ui/icon';
 import { Textarea } from '@chakra-ui/textarea';
 import { IoSendSharp } from 'components/icons';
 import { StackLayout } from 'components/layouts';
+import IdeaContext from 'context/idea/IdeaContext';
 import { usePostCommentMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
-import useIdeaFragment from 'pages/idea/fragments/IdeaFragment';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';
 
 const PostComment = (): JSX.Element => {
 	const [value, setValue] = useState('');
-	const idea = useIdeaFragment();
+	// const idea = useIdeaFragment();
 	const {
 		id: auth_id,
 		display_name,
 		account: { email }
 	} = useCurrentUser();
-	const { id, user_id } = idea ?? {};
+	// const { id, user_id } = idea ?? {};
+
+	const { data } = useContext(IdeaContext);
 	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
 			ideaComment: {
-				idea_id: id,
-				target_user_id: user_id,
+				idea_id: data.idea.id,
+				target_user_id: data.idea.user_id,
 				value
 			}
 		},
-		// update(cache, mutationResult) {
-		// 	cache.modify({
-		// 		fields: {
-		// 			idea_comments: (previous, { toReference }) => {
-		// 				const result = [
-		// 					...previous,
-		// 					toReference(mutationResult.data.addIdeaComment)
-		// 				];
-		// 			}
-		// 		}
-		// 	});
-		// },
+		update(cache, mutationResult) {
+			cache.modify({
+				fields: {
+					idea_comments: (previous, { toReference }) => {
+						const result = [
+							...previous,
+							toReference(mutationResult.data.addIdeaComment)
+						];
+					}
+				}
+			});
+		},
 		// refetchQueries: [
 		// 	{
-		// 		query: GET_COMMENTS_FOR_IDEA,
+		// 		query: CommentsForIdeaDocument,
 		// 		variables: {
 		// 			ideaId: useIdeaFragment().id
 		// 		}
@@ -55,8 +57,8 @@ const PostComment = (): JSX.Element => {
 				action: 'Post comment',
 				params: {
 					comment: value,
-					idea_id: id,
-					to_user_id: user_id,
+					idea_id: data.idea.id,
+					to_user_id: data.idea.user_id,
 					from_user_id: auth_id,
 					from_user_display_name: display_name,
 					from_user_email: email

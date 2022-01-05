@@ -1,4 +1,5 @@
 import { Box, StackProps } from '@chakra-ui/react';
+import { PrimaryButton } from 'components/buttons';
 import BaseHeading from 'components/heading/BaseHeading';
 import { BoxLayout, StackLayout } from 'components/layouts';
 import { Loading, NoResults } from 'components/shared';
@@ -8,42 +9,34 @@ import {
 	useRepliesForCommentQuery
 } from 'generated/api';
 import { useQueryParam } from 'hooks/util';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CommentLayout from './CommentLayout';
 
-// const CommentsQuery = gql`
-// 	query CommentsQuery($first: Int!, $after: String!, $ideaId: uuid!) {
-// 		idea_comments_connection(
-// 			first: $first
-// 			after: $after
-// 			order_by: { updated_at: desc }
-// 			where: { idea_id: { _eq: $ideaId } }
-// 		)
+const Comment = (comment: any) => {
+	const [showReplies, setShowReplies] = useState(false);
 
-// 		pageInfo {
-// 			endCursor
-// 			hasNextPage
-// 		}
-// 		edges {
-// 			node {
-// 				updated_at
-// 				value
-// 				user {
-// 					first_name
-// 					avatar_url
-// 				}
-// 			}
-// 		}
-// 	}
-// `;
+	const onShowRepliesClick = useCallback(() => {
+		setShowReplies(!showReplies);
+	}, [showReplies]);
 
-const Comment = (comment: any): JSX.Element => (
-	<CommentLayout comment={comment} divider={true}>
-		{/* {comment?.idea_replies?.length > 0 && ( */}
-		<RepliesList commentId={comment.id} />
-		{/* )} */}
-	</CommentLayout>
-);
+	return (
+		<CommentLayout comment={comment} divider={true}>
+			{comment?.totalReplies > 0 && (
+				<React.Fragment>
+					<PrimaryButton
+						name={'show-replies'}
+						variant={'link'}
+						fontSize={'xs'}
+						onClick={onShowRepliesClick}
+					>
+						{showReplies ? 'Hide replies' : 'Show replies'}
+					</PrimaryButton>
+					{showReplies && <RepliesList commentId={comment.id} />}
+				</React.Fragment>
+			)}
+		</CommentLayout>
+	);
+};
 
 export const CommentsList = ({
 	display = 'flex'

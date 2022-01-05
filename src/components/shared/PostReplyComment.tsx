@@ -32,7 +32,8 @@ const PostReplyComment = ({
 				target_user_id: commentUserId,
 				idea_id: id,
 				value
-			}
+			},
+			commentId
 		},
 		refetchQueries: [
 			{

@@ -291,6 +291,10 @@
 - table:
     schema: public
     name: idea_comments
+  configuration:
+    custom_root_fields: {}
+    custom_column_names:
+      total_replies: totalReplies
   object_relationships:
   - name: user
     using:
@@ -312,7 +316,7 @@
   - role: me
     permission:
       columns:
-      - number_of_replies
+      - total_replies
       - value
       - created_at
       - updated_at
@@ -325,7 +329,7 @@
   - role: user
     permission:
       columns:
-      - number_of_replies
+      - total_replies
       - value
       - created_at
       - updated_at
@@ -340,7 +344,7 @@
   - role: user
     permission:
       columns:
-      - number_of_replies
+      - total_replies
       - value
       filter:
         user_id:
