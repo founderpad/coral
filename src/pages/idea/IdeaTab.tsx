@@ -57,7 +57,9 @@ const IdeaTab = () => {
 		field,
 		id,
 		number_of_interested,
-		is_published
+		is_published,
+		votes,
+		votes_aggregate
 	} = idea ?? {};
 	const { avatar_url, first_name } = user;
 

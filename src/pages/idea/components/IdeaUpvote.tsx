@@ -1,6 +1,5 @@
 import { UpvoteButton } from 'components/shared/UpvoteButton';
 import {
-	TIdeas,
 	TIdea_Preview,
 	useDeleteIdeaUpvoteMutation,
 	useInsertIdeaUpvoteMutation
@@ -8,11 +7,17 @@ import {
 import { useClaim, useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
 import React, { useCallback, useState } from 'react';
+import { TIdea } from 'types/idea';
 
-const IdeaUpvote = (idea: TIdea_Preview | TIdeas): JSX.Element => {
+const IdeaUpvote = (
+	idea: Pick<
+		TIdea | TIdea_Preview,
+		'votes' | 'votes_aggregate' | 'id' | 'name'
+	>
+) => {
 	const [upvote, setUpvote] = useState({
 		hasUserUpvoted: idea.votes.length > 0,
-		votesTotal: idea.votes_aggregate?.aggregate.count ?? 0
+		votesTotal: idea.votes_aggregate?.aggregate.count
 	});
 
 	const user = useCurrentUser();
@@ -46,6 +51,16 @@ const IdeaUpvote = (idea: TIdea_Preview | TIdeas): JSX.Element => {
 		},
 		onCompleted: () => {
 			setUpvote({ hasUserUpvoted: false, votesTotal: votesTotal - 1 });
+			ga.event({
+				action: 'User idea remove upvote',
+				params: {
+					from_user_id: user.id,
+					from_user_email: user.account.email,
+					idea_id: idea.id,
+					idea_name: idea.name,
+					to_idea_user_id: idea.id
+				}
+			});
 		}
 	});
 

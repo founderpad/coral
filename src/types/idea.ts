@@ -15,10 +15,15 @@
 // 	idea_user: TIdeaCreatedUser;
 // };
 
-import { TIdeaQuery } from 'generated/api';
+import { TIdeaQuery, TIdeas, TIdea_Preview } from 'generated/api';
 
 export type TIdea = TIdeaQuery['idea'];
 export type TIdeaHasInterest = TIdeaQuery['hasInterest'];
+
+export type TUpvoteIdea = Pick<
+	TIdea_Preview | TIdeas,
+	'user' | 'votes_aggregate' | 'votes' | 'id' | 'name'
+>;
 
 // export type TIdeaPreview = Pick<TIdea, 'description' | > & {
 // 	description_preview: string;

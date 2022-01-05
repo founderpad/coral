@@ -961,14 +961,6 @@
           name: user_profile
         column_mapping:
           id: user_id
-  array_relationships:
-  - name: user_activities
-    using:
-      foreign_key_constraint_on:
-        column: user_id
-        table:
-          schema: public
-          name: activity
   insert_permissions:
   - role: me
     permission:

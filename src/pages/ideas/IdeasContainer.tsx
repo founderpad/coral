@@ -46,7 +46,7 @@ const IdeasContainer = (): JSX.Element => {
 	});
 
 	if (loading) return <Loading small />;
-	// if (!loading && data?.idea_preview.length < 1) return <NoResults />;
+	if (!loading && data?.idea_preview.length < 1) return <NoResults />;
 
 	return (
 		<React.Fragment>
