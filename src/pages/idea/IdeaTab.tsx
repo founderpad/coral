@@ -106,7 +106,7 @@ const IdeaTab = (): JSX.Element => {
 					}
 				]}
 				highlights={[
-					{ title: 'Stage', value: status, icon: IoBulbSharp },
+					{ title: 'Idea Stage', value: status, icon: IoBulbSharp },
 					{ title: 'Field', value: field, icon: IoBusinessSharp },
 					{
 						title: 'Location',
