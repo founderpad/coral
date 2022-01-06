@@ -92,12 +92,12 @@ const cache = new InMemoryCache({
 				// 	}
 				// },
 				resourceCollection: offsetLimitPagination(),
-				feed: {
-					...offsetLimitPagination(),
-					read(existing, { args }): any {
-						console.log('exiating: ', existing);
-					}
-				},
+				// feed: {
+				// 	...offsetLimitPagination(),
+				// 	read(existing, { args }): any {
+				// 		console.log('exiating: ', existing);
+				// 	}
+				// },
 				// CommentsForIdea: relayStylePagination()
 				// CommentsForIdea: offsetLimitPagination()
 				idea_comments: offsetLimitPagination()

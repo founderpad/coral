@@ -32,18 +32,18 @@ const PostComment = (): JSX.Element => {
 				value
 			}
 		},
-		update(cache, mutationResult) {
-			cache.modify({
-				fields: {
-					idea_comments: (previous, { toReference }) => {
-						const result = [
-							...previous,
-							toReference(mutationResult.data.addIdeaComment)
-						];
-					}
-				}
-			});
-		},
+		// update(cache, mutationResult) {
+		// 	cache.modify({
+		// 		fields: {
+		// 			idea_comments: (previous, { toReference }) => {
+		// 				const result = [
+		// 					...previous,
+		// 					toReference(mutationResult.data.addIdeaComment)
+		// 				];
+		// 			}
+		// 		}
+		// 	});
+		// },
 		// refetchQueries: [
 		// 	{
 		// 		query: CommentsForIdeaDocument,
