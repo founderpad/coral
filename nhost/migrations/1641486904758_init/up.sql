@@ -113,7 +113,8 @@ CREATE TABLE public.activity (
 CREATE TABLE public.user_followers (
     follower_id uuid,
     following_id uuid,
-    status text
+    status text,
+    PRIMARY KEY (follower_id, following_id)
 );
 COMMENT ON TABLE public.activity IS 'The activity table of all users';
 CREATE TABLE public.idea_comment_replies (
