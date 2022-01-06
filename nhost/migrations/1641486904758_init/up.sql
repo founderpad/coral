@@ -80,6 +80,25 @@ CREATE TABLE auth.refresh_tokens (
 CREATE TABLE auth.roles (
     role text NOT NULL
 );
+CREATE
+OR REPLACE VIEW public.idea_preview AS
+SELECT
+  ideas.id,
+  ideas.user_id,
+  ideas.name,
+  ideas.status,
+  ideas.created_at,
+  ideas.number_of_interested,
+  ideas.number_of_upvotes,
+  ideas.number_of_comments,
+  "substring"(ideas.description, 1, 175) AS preview,
+  ideas.field,
+  CASE
+    WHEN (ideas.created_at > (now() - '7 days' :: interval)) THEN true
+    ELSE false
+  END AS is_new
+FROM
+  ideas;
 CREATE TABLE public.activity (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     user_id uuid NOT NULL,
@@ -90,6 +109,11 @@ CREATE TABLE public.activity (
     idea_id uuid,
     url text,
     type text
+);
+CREATE TABLE public.user_followers (
+    follower_id uuid,
+    following_id uuid,
+    status text
 );
 COMMENT ON TABLE public.activity IS 'The activity table of all users';
 CREATE TABLE public.idea_comment_replies (
