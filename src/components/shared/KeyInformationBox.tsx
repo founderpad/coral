@@ -69,7 +69,6 @@ const KeyInformationBox = ({
 					color={'fpPrimary.500'}
 					mb={2}
 					mr={4}
-					// mx={'auto'}
 				/>
 			)}
 			<StackLayout spacing={0}>

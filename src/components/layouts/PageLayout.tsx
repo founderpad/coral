@@ -20,7 +20,7 @@ export const PageLayout = (props: Props): JSX.Element => {
 		action,
 		children,
 		p = 4,
-		back = true,
+		back = false,
 		...rest
 	} = props;
 	const headerProps = { fixedHeader, title, subtitle, action, back };

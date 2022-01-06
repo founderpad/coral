@@ -69,7 +69,7 @@ const IdeaTab = () => {
 			overflowY={'hidden'}
 			spacing={0}
 		>
-			<StackLayout p={4} flex={1} overflowY={'auto'}>
+			<StackLayout p={4} flex={1} d={'flex'} overflowY={'auto'}>
 				<FlexLayout
 					alignItems={'center'}
 					justifyContent={'space-between'}

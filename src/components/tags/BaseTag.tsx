@@ -5,24 +5,37 @@ import { IconType } from 'react-icons/lib';
 
 type TBaseTag = TagProps & { icon?: IconType };
 
-export const BaseTag = (props: TBaseTag): JSX.Element => (
+export const BaseTag = ({
+	bg = 'transparent',
+	color,
+	icon,
+	fontSize,
+	children,
+	flexDirection,
+	...rest
+}: TBaseTag): JSX.Element => (
 	<Tag
-		background={props.bg ?? 'transparent'}
+		background={bg}
 		borderWidth={1}
-		color={props.color}
+		color={color}
 		rounded={'md'}
 		alignItems={'center'}
 		d={'flex'}
-		{...props}
+		{...rest}
 	>
-		{props.icon && (
+		{icon && (
 			<TagLeftIcon>
-				<Icon as={props.icon} size={'md'} />
+				<Icon as={icon} size={'md'} />
 			</TagLeftIcon>
 		)}
 
-		<TagLabel fontSize={props.fontSize ?? { base: 'x-small', sm: 'xs' }}>
-			{props.children}
+		<TagLabel
+			d={'flex'}
+			flexDirection={flexDirection}
+			fontSize={fontSize ?? { base: 'x-small', sm: 'xs' }}
+			alignItems={'center'}
+		>
+			{children}
 		</TagLabel>
 	</Tag>
 );

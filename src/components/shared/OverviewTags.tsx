@@ -1,8 +1,10 @@
-import { GridItem, SimpleGrid, StackProps } from '@chakra-ui/layout';
-import { useMediaQuery } from '@chakra-ui/media-query';
+import { StackProps } from '@chakra-ui/layout';
+import { Icon } from '@chakra-ui/react';
+import { Label } from 'components/labels';
+import { FlexLayout } from 'components/layouts';
+import BaseTag from 'components/tags/BaseTag';
 import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
-import KeyInformationBox from './KeyInformationBox';
 
 interface IOverviewTag {
 	title: string;
@@ -16,30 +18,43 @@ interface IOverviewTag {
  */
 const OverviewTags = memo(
 	({ tags }: { tags: readonly IOverviewTag[] }): JSX.Element => {
-		const [isBase] = useMediaQuery('(max-width: 48em)');
+		// const [isBase] = useMediaQuery('(max-width: 48em)');
 
 		return (
-			<SimpleGrid
-				columns={{ base: 12 }}
-				columnGap={4}
+			<FlexLayout
 				css={{
-					'> *:first-child': {
-						marginBottom: isBase && '32px'
+					'> *': {
+						marginRight: 8,
+						marginBottom: 8
 					}
 				}}
-				flexDirection={'column'}
 			>
-				{tags?.map((overviewTag, key) => (
-					<GridItem
-						key={key}
-						colSpan={{ base: 4, md: 3 }}
-						display={'flex'}
+				{tags?.map((overviewTag) => (
+					<BaseTag
+						key={overviewTag.title}
+						p={2}
+						d={'flex'}
+						alignItems={'center'}
 						flexDirection={'column'}
+						bg={'fpPrimary.50'}
+						borderWidth={0}
+						alignSelf={'stretch'}
 					>
-						<KeyInformationBox key={key} {...overviewTag} />
-					</GridItem>
+						<Label
+							fontSize={'xs'}
+							color={'fpPrimary.700'}
+							alignItems={'center'}
+							mb={1}
+						>
+							<Icon as={overviewTag.icon} mr={1} />
+							{overviewTag.value}
+						</Label>
+						<Label color={'gray.400'} fontSize={'xs'}>
+							{overviewTag.title}
+						</Label>
+					</BaseTag>
 				))}
-			</SimpleGrid>
+			</FlexLayout>
 		);
 	}
 );

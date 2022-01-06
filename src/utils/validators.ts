@@ -13,9 +13,9 @@ export const formatDate = (
 	const date = new Date(dateStr);
 
 	if (isToday(date))
-		return 'Today' + (withTime ? ` at ${format(date, 'HH:mm')}` : '');
+		return 'today' + (withTime ? ` at ${format(date, 'HH:mm')}` : '');
 	if (isYesterday(date))
-		return 'Yesterday' + (withTime ? ` at ${format(date, 'HH:mm')}` : '');
+		return 'yesterday' + (withTime ? ` at ${format(date, 'HH:mm')}` : '');
 	return (
 		format(date, 'dd MMM') +
 		(withTime ? ` at ${format(date, 'HH:mm')}` : '') +

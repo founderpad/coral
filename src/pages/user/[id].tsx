@@ -125,7 +125,7 @@ const User = (): JSX.Element => {
 									icon: IoAnalyticsSharp
 								},
 								{
-									title: 'Hours per week',
+									title: 'Capacity (Hours per week)',
 									value: data?.user.user_profile.availability
 										? `${convertCapacityToString(
 												data?.user.user_profile
