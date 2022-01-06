@@ -1,13 +1,13 @@
 import { ButtonGroup } from '@chakra-ui/react';
 import { CancelButton, SubmitButton } from 'components/buttons';
 import Form from 'components/form/Form';
-import { useBaseForm } from 'components/form/hooks';
 import { InputField } from 'components/input/InputField';
 import { SelectField } from 'components/input/SelectField';
 import { Label } from 'components/labels';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 
 type IdeaSearch = {
@@ -20,7 +20,7 @@ type IdeaSearch = {
 const IdeasSearchForm = (): JSX.Element => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
-	const { handleSubmit, control, reset } = useBaseForm<IdeaSearch>();
+	const { handleSubmit, control, reset } = useForm<IdeaSearch>();
 	const router = useRouter();
 
 	const onClick = (values: IdeaSearch) => {

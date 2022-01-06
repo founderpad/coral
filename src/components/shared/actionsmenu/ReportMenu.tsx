@@ -1,12 +1,12 @@
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
-import { useBaseForm } from 'components/form/hooks';
 import { SelectField } from 'components/input';
 import { BaseMenuItem } from 'components/menu';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { TReport_Insert_Input, useCreateReportMutation } from 'generated/api';
 import { useSuccessNotification } from 'hooks/toast';
 import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { IoFlagSharp } from 'react-icons/io5';
 import { reportReasonsList } from 'utils/Constants';
 
@@ -60,7 +60,7 @@ const ReportForm = ({
 		control,
 		getValues,
 		formState: { errors, isSubmitting, isValid }
-	} = useBaseForm<{ reason: string }>();
+	} = useForm<{ reason: string }>();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 

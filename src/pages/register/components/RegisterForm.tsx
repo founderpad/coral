@@ -1,6 +1,5 @@
 import { Divider } from '@chakra-ui/layout';
 import { SubmitButton } from 'components/buttons';
-import { useBaseForm } from 'components/form/hooks';
 import {
 	EmailField,
 	InputField,
@@ -10,6 +9,7 @@ import { SelectField } from 'components/input/SelectField';
 import { StackLayout } from 'components/layouts';
 import { useRegister } from 'hooks/auth';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { IRegisterFormData } from 'types/auth';
 import { UserType } from 'utils/Constants';
 import LegalFooter from './LegalFooter';
@@ -30,7 +30,7 @@ const RegisterForm = (): JSX.Element => {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting, isValid }
-	} = useBaseForm<IRegisterFormData>();
+	} = useForm<IRegisterFormData>();
 	const onRegister = useRegister();
 
 	return (

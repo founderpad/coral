@@ -1,12 +1,12 @@
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
-import { useBaseForm } from 'components/form/hooks';
 import { EmailField, PasswordField } from 'components/input';
 import { Label } from 'components/labels';
 import { StackLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import { useLogin } from 'hooks/auth';
 import React, { memo } from 'react';
+import { useForm } from 'react-hook-form';
 import { IAuthFormData } from 'types/auth';
 
 const LoginForm = (): JSX.Element => {
@@ -14,7 +14,7 @@ const LoginForm = (): JSX.Element => {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting, isValid }
-	} = useBaseForm<IAuthFormData>();
+	} = useForm<IAuthFormData>();
 	const onLogin = useLogin();
 
 	return (
