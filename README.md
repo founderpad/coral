@@ -17,6 +17,7 @@ It is deployed to [Vercel](https://vercel.com/) via our CI/CD pipeline which use
     -   Prettier - Code formatter (make sure this is set to be your default formatter)
     -   Bracket Pair Colorizer - A customizable extension for colorizing matching brackets
     -   Auto Import - Automatically finds, parses and provides code actions and code completion for all available imports. Works with Typescript and TSX
+    -   GraphQL (Syntax highlighting, validation etc)
     -   Git History
     -   GitLens
     -   JavaScript (ES6) code snippets
@@ -68,3 +69,12 @@ Future changes will include an endpoint to faciliate Stripe customer sign ups so
 We use [Ngrok](https://ngrok.com/) to test our build locally befoore any commits. This ensures we test over HTTPS and mimic a production-like environment but on our local instance.
 
 Ensure the application is running (`yarn dev`) and in a separate iTerm2 tab (or VSCode terminal) run `yarn ngrok`. This will provide a forwarding address (e.g., https://8400-86-3-111-125.ngrok.io) which you can paste into your browser address bar.
+
+## Debugging locally
+When our local environment is running, we can debug and test the output of the serverless functions by access the Docker logs with the following command:
+`docker logs nhost_api --follow`
+
+This will provide us with a live tail of the logs so we can see what's happening.
+
+## Adding NPM libraries
+If you're going to add a new library, make sure you add it in to the correct `package.json` file. If it's client side for the React project then install it in the root `package.json`, but if it's for the custom serverless API, then install it to `/api/package.json`
