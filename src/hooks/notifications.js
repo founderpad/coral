@@ -12,9 +12,9 @@ export const usePushNotifications = () => {
 			OneSignal.push(function () {
 				OneSignal.setExternalUserId(user.id);
 				OneSignal.init({
-					appId: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
+					appId: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
 					safari_web_id:
-						'web.onesignal.auto.58b504fd-a471-4836-bd65-020899577e4e',
+						process.env.NEXT_PUBLIC_ONESIGNAL_SAFARI_WEB_ID,
 					notifyButton: {
 						enable: true,
 						size: 'small',
