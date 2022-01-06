@@ -7,7 +7,7 @@ import CommentsList from './components/comments/CommentsList';
 import InterestedUsersTab from './components/InterestedUsersTab';
 import IdeaTab from './IdeaTab';
 
-const ViewIdeaTabLayout = (): JSX.Element => {
+const ViewIdeaTabLayout = () => {
 	const user = useCurrentUser();
 	const { data } = useContext(IdeaContext);
 
