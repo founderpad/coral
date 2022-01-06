@@ -52,3 +52,5 @@ api/node_modules
 .nhost
 api/node_modules
 .env.development
+.nhost
+api/node_modules

@@ -92,6 +92,30 @@ CREATE TABLE public.activity (
     type text
 );
 COMMENT ON TABLE public.activity IS 'The activity table of all users';
+CREATE TABLE public.idea_comment_replies (
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    comment_id uuid NOT NULL,
+    user_id uuid NOT NULL,
+    value text NOT NULL,
+    created_at timestamp with time zone DEFAULT now(),
+    updated_at timestamp with time zone DEFAULT now()
+);
+CREATE TABLE public.idea_comments (
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    idea_id uuid NOT NULL,
+    user_id uuid NOT NULL,
+    value text NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL,
+    updated_at timestamp with time zone DEFAULT now() NOT NULL,
+    number_of_replies integer DEFAULT 0
+);
+CREATE TABLE public.idea_votes (
+    idea_id uuid NOT NULL,
+    user_id uuid NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL,
+    updated_at timestamp with time zone DEFAULT now() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL
+);
 CREATE TABLE public.ideas (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name text NOT NULL,
@@ -107,42 +131,30 @@ CREATE TABLE public.ideas (
     business_plan text,
     is_published boolean DEFAULT false,
     description_preview character varying(100) GENERATED ALWAYS AS ("substring"(description, 1, 100)) STORED,
-    status text
+    status text,
+    number_of_interested integer DEFAULT 0,
+    number_of_upvotes integer DEFAULT 0,
+    number_of_comments integer DEFAULT 0
 );
 COMMENT ON TABLE public.ideas IS 'Ideas table';
-CREATE VIEW public.idea_preview AS
- SELECT ideas.id,
-    ideas.user_id,
-    ideas.name,
-    ideas.status,
-    ideas.created_at,
-    "substring"(ideas.description, 1, 175) AS preview,
-    ideas.field,
-        CASE
-            WHEN (ideas.created_at > (now() - '7 days'::interval)) THEN true
-            ELSE false
-        END AS is_new
-   FROM public.ideas;
-CREATE TABLE public.idea_votes (
+CREATE TABLE public.interested_ideas (
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     idea_id uuid NOT NULL,
     user_id uuid NOT NULL,
-    vote_type integer NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
-    updated_at timestamp with time zone DEFAULT now() NOT NULL,
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    CONSTRAINT vote_type_check CHECK (((vote_type = 1) OR (vote_type = '-1'::integer)))
+    updated_at timestamp with time zone DEFAULT now() NOT NULL
 );
 CREATE TABLE public.report (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    "fromUserId" uuid,
-    "reportedUserId" uuid,
-    "reportedId" uuid,
+    from_user_id uuid,
+    reported_user_id uuid,
+    reported_id uuid,
     type text,
     reason text,
     created_at timestamp with time zone DEFAULT now(),
     updated_at timestamp with time zone DEFAULT now(),
-    "recipientEmail" public.citext,
-    "recipientName" text,
+    recipient_email public.citext,
+    recipient_name text,
     content text
 );
 CREATE TABLE public.user_profile (
@@ -174,7 +186,6 @@ CREATE TABLE public.users (
     updated_at timestamp with time zone DEFAULT now() NOT NULL,
     display_name text,
     avatar_url text,
-    user_type text,
     first_name text,
     last_name text,
     country text
@@ -205,12 +216,18 @@ ALTER TABLE ONLY auth.account_roles
     ADD CONSTRAINT user_roles_account_id_role_key UNIQUE (account_id, role);
 ALTER TABLE ONLY public.activity
     ADD CONSTRAINT activity_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.idea_comments
+    ADD CONSTRAINT idea_comments_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.idea_comment_replies
+    ADD CONSTRAINT idea_replies_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.idea_votes
     ADD CONSTRAINT idea_votes_idea_id_user_id_key UNIQUE (idea_id, user_id);
 ALTER TABLE ONLY public.idea_votes
     ADD CONSTRAINT idea_votes_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.ideas
     ADD CONSTRAINT ideas_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.interested_ideas
+    ADD CONSTRAINT interested_ideas_pkey PRIMARY KEY (idea_id, user_id);
 ALTER TABLE ONLY public.report
     ADD CONSTRAINT report_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.user_profile
@@ -225,8 +242,14 @@ CREATE TRIGGER insert_create_idea_activity BEFORE INSERT ON public.ideas FOR EAC
 CREATE TRIGGER insert_user_profile AFTER INSERT ON public.users FOR EACH ROW EXECUTE FUNCTION public.insert_user_profile_func();
 CREATE TRIGGER set_public_activity_updated_at BEFORE UPDATE ON public.activity FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
 COMMENT ON TRIGGER set_public_activity_updated_at ON public.activity IS 'trigger to set value of column "updated_at" to current timestamp on row update';
+CREATE TRIGGER set_public_idea_comments_updated_at BEFORE UPDATE ON public.idea_comments FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
+COMMENT ON TRIGGER set_public_idea_comments_updated_at ON public.idea_comments IS 'trigger to set value of column "updated_at" to current timestamp on row update';
+CREATE TRIGGER set_public_idea_replies_updated_at BEFORE UPDATE ON public.idea_comment_replies FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
+COMMENT ON TRIGGER set_public_idea_replies_updated_at ON public.idea_comment_replies IS 'trigger to set value of column "updated_at" to current timestamp on row update';
 CREATE TRIGGER set_public_idea_votes_updated_at BEFORE UPDATE ON public.idea_votes FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
 COMMENT ON TRIGGER set_public_idea_votes_updated_at ON public.idea_votes IS 'trigger to set value of column "updated_at" to current timestamp on row update';
+CREATE TRIGGER set_public_interested_ideas_updated_at BEFORE UPDATE ON public.interested_ideas FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
+COMMENT ON TRIGGER set_public_interested_ideas_updated_at ON public.interested_ideas IS 'trigger to set value of column "updated_at" to current timestamp on row update';
 CREATE TRIGGER set_public_report_updated_at BEFORE UPDATE ON public.report FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
 COMMENT ON TRIGGER set_public_report_updated_at ON public.report IS 'trigger to set value of column "updated_at" to current timestamp on row update';
 CREATE TRIGGER set_public_user_profile_updated_at BEFORE UPDATE ON public.user_profile FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
@@ -247,10 +270,22 @@ ALTER TABLE ONLY auth.refresh_tokens
     ADD CONSTRAINT refresh_tokens_account_id_fkey FOREIGN KEY (account_id) REFERENCES auth.accounts(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE ONLY public.activity
     ADD CONSTRAINT activity_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE ONLY public.idea_comments
+    ADD CONSTRAINT idea_comments_idea_id_fkey FOREIGN KEY (idea_id) REFERENCES public.ideas(id) ON UPDATE RESTRICT ON DELETE CASCADE;
+ALTER TABLE ONLY public.idea_comments
+    ADD CONSTRAINT idea_comments_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE ONLY public.idea_comment_replies
+    ADD CONSTRAINT idea_replies_comment_id_fkey FOREIGN KEY (comment_id) REFERENCES public.idea_comments(id) ON UPDATE RESTRICT ON DELETE CASCADE;
+ALTER TABLE ONLY public.idea_comment_replies
+    ADD CONSTRAINT idea_replies_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE ONLY public.idea_votes
     ADD CONSTRAINT idea_votes_idea_id_fkey FOREIGN KEY (idea_id) REFERENCES public.ideas(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE ONLY public.idea_votes
     ADD CONSTRAINT idea_votes_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY public.ideas
+    ADD CONSTRAINT ideas_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY public.interested_ideas
+    ADD CONSTRAINT interested_ideas_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE ONLY public.user_profile
     ADD CONSTRAINT user_profile_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
