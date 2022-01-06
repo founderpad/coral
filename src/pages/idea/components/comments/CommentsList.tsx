@@ -1,4 +1,4 @@
-import { Box, StackProps } from '@chakra-ui/react';
+import { Box, Collapse, StackProps, useDisclosure } from '@chakra-ui/react';
 import { PrimaryButton } from 'components/buttons';
 import BaseHeading from 'components/heading/BaseHeading';
 import { BoxLayout, StackLayout } from 'components/layouts';
@@ -9,15 +9,16 @@ import {
 	useRepliesForCommentQuery
 } from 'generated/api';
 import { useQueryParam } from 'hooks/util';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import CommentLayout from './CommentLayout';
 
 const Comment = (comment: any) => {
-	const [showReplies, setShowReplies] = useState(false);
+	// const [showReplies, setShowReplies] = useState(false);
+	const { isOpen, onToggle } = useDisclosure();
 
-	const onShowRepliesClick = useCallback(() => {
-		setShowReplies(!showReplies);
-	}, [showReplies]);
+	// const onShowRepliesClick = useCallback(() => {
+	// 	setShowReplies(!showReplies);
+	// }, [showReplies]);
 
 	return (
 		<CommentLayout comment={comment} divider={true}>
@@ -27,11 +28,14 @@ const Comment = (comment: any) => {
 						name={'show-replies'}
 						variant={'link'}
 						fontSize={'xs'}
-						onClick={onShowRepliesClick}
+						onClick={onToggle}
 					>
-						{showReplies ? 'Hide replies' : 'Show replies'}
+						{isOpen ? 'Hide replies' : 'Show replies'}
 					</PrimaryButton>
-					{showReplies && <RepliesList commentId={comment.id} />}
+
+					<Collapse in={isOpen}>
+						<RepliesList commentId={comment.id} />
+					</Collapse>
 				</React.Fragment>
 			)}
 		</CommentLayout>
