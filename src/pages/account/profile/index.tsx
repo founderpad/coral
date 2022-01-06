@@ -1,15 +1,15 @@
 import { PageLayout } from 'components/layouts';
 import { DocumentTitle, LastUpdatedAt } from 'components/shared';
-import { useGetUserExperienceQuery } from 'generated/api';
+import { useUserExperienceQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 import ProfileLayout from './layout/ProfileLayout';
 
-const Profile = (): JSX.Element => {
+const Profile = () => {
 	const user = useCurrentUser();
 
-	const { data } = useGetUserExperienceQuery({
+	const { data } = useUserExperienceQuery({
 		variables: {
 			id: user?.user_profile.id
 		}

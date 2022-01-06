@@ -15,21 +15,28 @@
 import { TIndustry } from 'types/idea';
 
 export const ALL_INDUSTRIES: TIndustry[] = [
-	{ name: 'Agriculture', color: 'brown' },
-	{ name: 'Education', color: 'blue' },
-	{ name: 'Engineering', color: 'orange' },
-	{ name: 'Food & Drink', color: 'yellow' },
-	{ name: 'Media', color: 'purple' },
-	{ name: 'Medical', color: 'green' },
-	{ name: 'Online Services', color: 'blue' },
-	{ name: 'Other', color: 'grey' },
-	{ name: 'Professional Services', color: 'grey' },
-	{ name: 'Retail', color: 'red' },
-	{ name: 'Sports', color: 'green' },
-	{ name: 'Technology', color: 'fpPrimary' },
-	{ name: 'Tourism', color: 'orange' },
-	{ name: 'Transport', color: 'black' },
-	{ name: 'Utilities', color: 'purple' }
+	{ name: 'Aerospace', color: 'brown' },
+	{ name: 'Agriculture', color: 'blue' },
+	{ name: 'Clothing', color: 'orange' },
+	{ name: 'Construction', color: 'yellow' },
+	{ name: 'Crypto', color: 'purple' },
+	{ name: 'Education', color: 'green' },
+	{ name: 'Engineering', color: 'blue' },
+	{ name: 'Entertainment', color: 'grey' },
+	{ name: 'Food & Drink', color: 'grey' },
+	{ name: 'Gaming', color: 'red' },
+	{ name: 'Hospitality', color: 'green' },
+	{ name: 'Manufacturing', color: 'fpPrimary' },
+	{ name: 'Media', color: 'orange' },
+	{ name: 'Medical', color: 'black' },
+	{ name: 'Online', color: 'purple' },
+	{ name: 'Professional Services', color: 'purple' },
+	{ name: 'Retail', color: 'purple' },
+	{ name: 'Technology', color: 'purple' },
+	{ name: 'Tourism', color: 'purple' },
+	{ name: 'Transport', color: 'purple' },
+	{ name: 'Utilities', color: 'purple' },
+	{ name: 'Other', color: 'purple' }
 ];
 
 export const ALL_COUNTRIES = [
@@ -278,9 +285,17 @@ export const EXPERIENCE_SKILLS = [
 
 export const STARTUP_STATUS = [
 	{ key: 'exited', value: 'Exited the business' },
-	{ key: 'parttime', value: 'Still involved part time' },
-	{ key: 'fulltime', value: 'Still involved full time' },
+	{ key: 'parttime', value: 'Still involved part time in a startup' },
+	{ key: 'fulltime', value: 'Still involved full time in a startup' },
 	{ key: 'none', value: 'Not involved in a startup' }
+];
+
+export const AVAILABILITY_IN_HOURS = [
+	{ key: '0110', value: '1-10 hours', min: 1, max: 10 },
+	{ key: '1120', value: '11-20 hours', min: 11, max: 20 },
+	{ key: '2130', value: '21-30 hours', min: 21, max: 30 },
+	{ key: '3140', value: '31-40 hours', min: 31, max: 40 },
+	{ key: '41', value: '41+ hours', min: 41 }
 ];
 
 export const REPORT_REASONS = [

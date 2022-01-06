@@ -3,7 +3,6 @@ import { Input } from '@chakra-ui/input';
 import {
 	FormHelperText,
 	forwardRef,
-	Icon,
 	InputGroup,
 	InputLeftAddon
 } from '@chakra-ui/react';
@@ -25,7 +24,8 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			rules,
 			label,
 			name,
-			size
+			size,
+			fontSize
 		} = props;
 
 		return (
@@ -35,8 +35,6 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				isRequired={isRequired}
 				w={{ base: 'full' }}
 			>
-				{/* {label && <InputFieldLabel label={label} />} */}
-
 				{label && <FormLabelText label={label} />}
 				<Controller
 					render={({
@@ -53,6 +51,8 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							error={!!error}
 							name={name}
 							aria-label={name}
+							fontSize={fontSize ?? 'small'}
+							color={'gray.500'}
 						/>
 					)}
 					name={name}
@@ -62,7 +62,11 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				{error ? (
 					<FormErrorText label={errorText} />
 				) : (
-					helperText && <FormHelperText label={helperText} />
+					helperText && (
+						<FormHelperText fontSize={'xs'}>
+							{helperText}
+						</FormHelperText>
+					)
 				)}
 			</FormControl>
 		);
@@ -87,25 +91,23 @@ export const InputFieldWithLabelAndIcon = forwardRef<
 	IInputFieldProps<any>,
 	'input'
 >((props, _ref): JSX.Element => {
-	const { leftIcon, rightIcon } = props;
+	const { leftEl, rightEl } = props;
 	return (
 		// <InputFieldLabel {...props}>
 		<InputGroup>
-			{leftIcon && (
+			{leftEl && (
 				<InputLeftAddon
 					fontSize={'large'}
 					borderRadius={0}
 					bg={'white'}
 				>
-					{typeof leftIcon === 'string' ? (
-						leftIcon
-					) : (
-						<Icon as={leftIcon} />
-					)}
+					{leftEl}
 				</InputLeftAddon>
 			)}
 			<InputField {...props} />
-			{rightIcon && <InputLeftAddon>{rightIcon}</InputLeftAddon>}
+			{rightEl && (
+				<InputLeftAddon bg={'transparent'}>{rightEl}</InputLeftAddon>
+			)}
 		</InputGroup>
 		// </InputFieldLabel>
 	);
@@ -134,6 +136,7 @@ export const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
 			type="password"
 			errorText="Please enter a valid password between 6 and 20 characters."
 			rules={{ maxLength: 20, minLength: 6 }}
+			fontSize={'sm'}
 			ref={ref}
 		/>
 	)

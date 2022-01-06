@@ -1,42 +1,45 @@
-import { IconButton } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
-import { StackLayout } from 'components/layouts';
+import { IoChatbubbleSharp } from 'components/icons';
+import { Label } from 'components/labels';
+import { FlexLayout, StackLayout } from 'components/layouts';
+import { TIdea_Preview } from 'generated/api';
+import IdeaUpvote from 'pages/idea/components/IdeaUpvote';
 import React, { memo } from 'react';
-import { IoFlagSharp } from 'react-icons/io5';
+import IdeaMenu from '../IdeaMenu';
 
-const IdeaCardFooter = (): JSX.Element => {
-	const onAction = (e) => {
-		e.stopPropagation();
-		// OR
-		e.preventDefault();
-	};
-
+const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 	return (
-		// <Flex alignItems={'center'} borderTop={0}>
 		<StackLayout
 			direction={'row'}
-			spacing={2}
-			justifyContent={'flex-end'}
+			spacing={0}
+			rounded={'none'}
+			mb={2}
 			w={'full'}
+			justifyContent={'space-between'}
+			alignItems={'center'}
+			borderTopWidth={1}
+			borderTopColor={'gray.100'}
 		>
-			<IconButton
-				aria-label={'report-button'}
-				variant={'unstyled'}
-				color={'black'}
-				onClick={onAction}
-			>
-				<Icon as={IoFlagSharp} />
-			</IconButton>
-			{/* {idea_user?.country && (
-				<BaseTag color={'fpPrimary.500'} bg={'white'}>
-					{idea_user?.country}
-				</BaseTag>
-			)}
-			<BaseTag color={'fpPrimary.500'} bg={'white'}>
-				{field}
-			</BaseTag> */}
+			<StackLayout direction={'row'} spacing={3} alignItems={'center'}>
+				<IdeaUpvote {...idea} />
+
+				{idea?.totalComments > 0 && (
+					<FlexLayout alignItems={'center'}>
+						<Icon
+							as={IoChatbubbleSharp}
+							fontSize={'sm'}
+							pt={0}
+							mr={1}
+							color={'gray.400'}
+						/>
+						<Label color={'gray.400'} fontSize={'xs'}>
+							{idea.comments_aggregate.aggregate.count}
+						</Label>
+					</FlexLayout>
+				)}
+			</StackLayout>
+			<IdeaMenu {...idea} />
 		</StackLayout>
-		// </Flex>
 	);
 };
 

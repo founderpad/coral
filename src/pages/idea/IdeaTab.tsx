@@ -1,42 +1,52 @@
-import Icon from '@chakra-ui/icon';
-import { Divider } from '@chakra-ui/layout';
+import { PrimaryButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import ContentHighlightsLayout from 'components/layouts/ContentHighlightsLayout';
-import { Loading } from 'components/shared';
-import { UserAvatarDetails } from 'components/shared/UserAvatar';
-import { useGetIdeaQuery } from 'generated/api';
-import { useCurrentUser } from 'hooks/auth';
-import { useQueryParam } from 'hooks/util';
-import { useRouter } from 'next/router';
-import React from 'react';
 import {
 	IoBulbSharp,
-	IoBusinessSharp,
-	IoCheckmarkCircleSharp,
-	IoLocationSharp
-} from 'react-icons/io5';
+	IoLocationSharp,
+	IoTrendingUpSharp
+} from 'components/icons';
+import { FlexLayout, StackLayout } from 'components/layouts';
+import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
+import AppDivider from 'components/shared/AppDivider';
+import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
+import OverviewTags from 'components/shared/OverviewTags';
+import IdeaContext from 'context/idea/IdeaContext';
+import { useCurrentUser } from 'hooks/auth';
+import { useRouter } from 'next/router';
+import React, { useCallback, useContext, useState } from 'react';
 import { formatDate } from 'utils/validators';
+import { CommentsList } from './components/comments/CommentsList';
 import IdeaActions from './components/IdeaMenu';
+import IdeaUpvote from './components/IdeaUpvote';
+import InterestedIdea from './components/InterestedIdea';
+import InterestedTotal from './components/InterestedTotal';
+import PublishedLabel from './components/PublishedLabel';
 
-const IdeaTab = (): JSX.Element => {
+const IdeaTab = () => {
 	const router = useRouter();
-	const user = useCurrentUser();
+	const auth = useCurrentUser();
+	const { data } = useContext(IdeaContext);
+	const { idea, hasInterest } = data ?? {};
 
-	const { data } = useGetIdeaQuery({
-		variables: {
-			id: useQueryParam('id')
-		}
-	});
+	const [showComments, setShowComments] = useState(false);
 
-	const idea = data?.idea;
+	const onShowCommentsClick = useCallback(() => {
+		setShowComments(!showComments);
+
+		document.getElementById('idea-comments').scrollIntoView({
+			behavior: 'smooth'
+		});
+	}, [showComments]);
 
 	if (!data) return <Loading small />;
-	if (!idea) router.replace('/404');
+
+	// Only enable the id creator to view their own idea if it's unpublished
+	if (!idea || (!idea.is_published && idea.user_id !== auth.id))
+		router.replace('/404');
 
 	const {
 		name,
-		idea_user,
+		user,
 		user_id,
 		created_at,
 		description,
@@ -44,77 +54,135 @@ const IdeaTab = (): JSX.Element => {
 		competitors,
 		additional_information,
 		status,
-		field
-	} = idea;
-	const { avatar_url, first_name } = idea_user;
+		field,
+		id,
+		number_of_interested,
+		is_published
+	} = idea ?? {};
+	const { avatar_url, first_name } = user;
 
 	return (
-		<StackLayout spacing={6}>
-			<FlexLayout
-				alignItems={'center'}
-				justifyContent={{ base: 'space-between', sm: 'flex-end' }}
-			>
-				<UserAvatarDetails
-					rounded={'full'}
-					name={`Published by ${
-						user.id === user_id ? 'you' : first_name
-					}`}
-					src={avatar_url}
-					createdAt={formatDate(created_at, true)}
-				/>
+		<StackLayout
+			direction={'row'}
+			flex={1}
+			rounded={'none'}
+			overflowY={'hidden'}
+			spacing={0}
+		>
+			<StackLayout p={4} flex={1} d={'flex'} overflowY={'auto'}>
+				<FlexLayout
+					alignItems={'center'}
+					justifyContent={'space-between'}
+					mb={4}
+				>
+					<UserAvatarDetails
+						rounded={'full'}
+						name={`Published by ${
+							auth.id === user_id ? 'you' : first_name
+						}`}
+						src={avatar_url}
+						createdAt={formatDate(created_at, true)}
+					/>
 
-				{user?.id === user_id && (
+					{user?.id === user_id && <IdeaActions ideaId={id} />}
+				</FlexLayout>
+
+				<FlexLayout wordBreak={'break-all'} flexDirection={'column'}>
+					<SubheadingText>{name}</SubheadingText>
+					<FlexLayout
+						justifyContent={'space-between'}
+						alignItems={'center'}
+					>
+						<StackLayout
+							direction={'row'}
+							spacing={1}
+							pt={2}
+							alignItems={'center'}
+						>
+							<PublishedLabel isPublished={is_published} />
+							{number_of_interested > 0 && (
+								<React.Fragment>
+									<PointSeparator small />
+									<InterestedTotal
+										total={number_of_interested}
+									/>
+								</React.Fragment>
+							)}
+							<PointSeparator small />
+							<IdeaUpvote {...idea} />
+						</StackLayout>
+
+						<PrimaryButton
+							name={'show-comments'}
+							variant={'ghost'}
+							onClick={onShowCommentsClick}
+							display={{ base: 'none', md: 'block' }}
+							alignContent={'center'}
+						>
+							View comments
+						</PrimaryButton>
+					</FlexLayout>
+				</FlexLayout>
+				{idea.user_id !== auth.id && (
 					<React.Fragment>
-						<Divider
-							orientation={'vertical'}
-							mx={3}
-							display={{ base: 'none', sm: 'block' }}
+						<AppDivider />
+						<InterestedIdea
+							ideaUserId={user_id}
+							ideaId={id}
+							hasInterest={!!hasInterest?.id}
 						/>
-						<IdeaActions ideaId={idea?.id} />
 					</React.Fragment>
 				)}
-			</FlexLayout>
+				<AppDivider />
+				<OverviewTags
+					tags={[
+						{
+							title: 'Stage',
+							value: status,
+							icon: IoTrendingUpSharp
+						},
+						{
+							title: 'Field',
+							value: field,
+							icon: IoBulbSharp
+						},
+						{
+							...(user?.country && {
+								title: 'Location',
+								value: user?.location
+									? `${user?.location}, ${user.country}`
+									: user?.country,
+								icon: IoLocationSharp
+							})
+						}
+					]}
+				/>
 
-			<FlexLayout>
-				<SubheadingText label={name} />
-				{idea.is_published && (
-					<Icon
-						as={IoCheckmarkCircleSharp}
-						ml={2}
-						color={'green.500'}
-						fontSize={'xl'}
+				<AppDivider />
+
+				<StackLayout flex={1}>
+					<ContentFieldAndValue
+						title={'Description'}
+						value={description}
 					/>
-				)}
-			</FlexLayout>
-			<Divider display={{ base: 'none', md: 'block' }} />
-
-			<ContentHighlightsLayout
-				content={[
-					{ title: 'Description', value: description },
-					{ ...(team && { title: 'Team', value: team }) },
-					{
-						...(competitors && {
-							title: 'Competitors',
-							value: competitors
-						})
-					},
-					{
-						...(additional_information && {
-							title: 'Additional information',
-							value: additional_information
-						})
-					}
-				]}
-				highlights={[
-					{ title: 'Idea Stage', value: status, icon: IoBulbSharp },
-					{ title: 'Field', value: field, icon: IoBusinessSharp },
-					{
-						title: 'Location',
-						value: idea_user.country,
-						icon: IoLocationSharp
-					}
-				]}
-			/>
+					{team && (
+						<ContentFieldAndValue title={'Team'} value={team} />
+					)}
+					{competitors && (
+						<ContentFieldAndValue
+							title={'Competitors'}
+							value={competitors}
+						/>
+					)}
+					{additional_information && (
+						<ContentFieldAndValue
+							title={'Additional information'}
+							value={additional_information}
+						/>
+					)}
+				</StackLayout>
+				<CommentsList display={{ base: 'none', md: 'flex' }} />
+			</StackLayout>
 		</StackLayout>
 	);
 };

@@ -1,5 +1,5 @@
 import { Icon, IconButton, MenuButton } from '@chakra-ui/react';
-import { IoTrashSharp } from 'react-icons/io5';
+import { IoTrashSharp } from 'components/icons';
 import { BaseButton } from '.';
 import { BaseButtonProps } from './types/buttons';
 
@@ -12,6 +12,8 @@ const DeleteButton = (props: BaseButtonProps): JSX.Element => {
 			colorScheme={'red'}
 			variant={variant ?? 'solid'}
 			borderWidth={0}
+			fontSize={'small'}
+			mr={'auto'}
 		>
 			{children}
 		</BaseButton>

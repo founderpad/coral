@@ -1,15 +1,38 @@
 import MainNav from 'components/nav/mainnav/MainNav';
+import { usePushNotifications } from 'hooks/notifications';
 import React, { FC } from 'react';
-import MainContainer from '../containers/MainContainer';
+import { BoxLayout } from './BoxLayout';
 
-export const MainLayout: FC<{ children: JSX.Element }> = ({
-	children
-}): JSX.Element => (
-	<React.Fragment>
-		<MainNav />
-		<MainContainer>{children}</MainContainer>
-	</React.Fragment>
-);
+export const MainLayout: FC<{ children: JSX.Element }> = ({ children }) => {
+	usePushNotifications();
+	return (
+		<React.Fragment>
+			<MainNav />
+			<BoxLayout
+				p={0}
+				as={'main'}
+				mx={{ base: 0, md: 'auto' }}
+				w={{ base: 'full', xl: '95ch' }}
+				bg={'white'}
+				display={'flex'}
+				flexDirection={'column'}
+				flex={1}
+				borderWidth={{ base: 0, lg: 1 }}
+				borderColor={'gray.100'}
+				// mt={{ base: 0, lg: 4 }}
+				// mb={{ base: 0, lg: 4 }}
+				mt={{ base: 10, lg: 14 }}
+				mb={{ base: 0, lg: 4 }}
+				// p={{ base: 0, sm: 4 }}
+				// overflowY={'auto'}
+				position={'relative'}
+				id={'main-container'}
+			>
+				{children}
+			</BoxLayout>
+		</React.Fragment>
+	);
+};
 
 // const FooterLink = ({
 // 	href,

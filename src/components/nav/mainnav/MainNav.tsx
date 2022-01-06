@@ -1,6 +1,5 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
-import { Image } from '@chakra-ui/image';
 import { Container, Flex } from '@chakra-ui/layout';
 import {
 	Drawer,
@@ -10,10 +9,16 @@ import {
 	DrawerHeader,
 	DrawerOverlay,
 	Icon,
-	MenuDivider
+	MenuDivider,
+	Tag
 } from '@chakra-ui/react';
+import { IoMenuSharp } from 'components/icons';
+import { FlexLayout } from 'components/layouts';
+import FounderpadLogo, {
+	FounderpadLogoWithBadge
+} from 'components/shared/FounderpadLogo';
 import React, { memo } from 'react';
-import { IoMenuSharp } from 'react-icons/io5';
+import NotificationsPopover from '../components/NotificationsPopover';
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
 import UserMenu from './UserMenu';
@@ -29,9 +34,11 @@ const MainNav = (): JSX.Element => {
 				borderBottom={'1px solid'}
 				borderBottomColor={'gray.100'}
 				zIndex={1100}
-				position={'sticky'}
+				// position={'sticky'}
+				position={'fixed'}
 				top={0}
-				h={'40px'}
+				h={10}
+				w={'full'}
 			>
 				<Container
 					bg={useColorModeValue('white', 'gray.800')}
@@ -42,7 +49,7 @@ const MainNav = (): JSX.Element => {
 					align={'center'}
 					justifySelf={'center'}
 					position={'sticky'}
-					maxW={{ lg: '120ch' }}
+					maxW={{ lg: '95ch' }}
 				>
 					<Flex
 						alignItems={'center'}
@@ -57,14 +64,13 @@ const MainNav = (): JSX.Element => {
 								fontSize={'2xl'}
 								onClick={onToggle}
 							/>
-							<Image
-								src="/founderpad-text.svg"
-								alt="logo"
-								h={'20px'}
-							/>
+							<FounderpadLogoWithBadge w={100} />
 						</Flex>
 						<DesktopNav />
-						<UserMenu />
+						<FlexLayout alignItems={'center'} ml={8}>
+							<NotificationsPopover />
+							<UserMenu />
+						</FlexLayout>
 					</Flex>
 				</Container>
 			</Flex>
@@ -78,7 +84,22 @@ const MainNav = (): JSX.Element => {
 				<DrawerOverlay />
 				<DrawerContent>
 					<DrawerHeader>
-						<Image src="/logo.svg" alt="logo" h={'20px'} />
+						<FlexLayout mx={'auto'} alignItems={'center'}>
+							<FounderpadLogo w={'100px'} />
+							<Tag
+								bg={'fpPrimary.700'}
+								color={'white'}
+								textTransform={'capitalize'}
+								fontWeight={'medium'}
+								textAlign={'center'}
+								verticalAlign={'center'}
+								fontSize={'x-small'}
+								rounded={'sm'}
+								ml={2}
+							>
+								Beta
+							</Tag>
+						</FlexLayout>
 						<DrawerCloseButton />
 					</DrawerHeader>
 					<MenuDivider />

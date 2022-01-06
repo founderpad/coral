@@ -3,6 +3,7 @@ import { FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
 import { FormErrorText, FormLabelText } from 'components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import ResizeTextarea from 'react-textarea-autosize';
 import { IInputFieldProps } from 'types/fields';
 
 export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
@@ -18,7 +19,12 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 			name,
 			control,
 			rules,
-			size
+			size,
+			width,
+			maxH = '150px',
+			borderWidth = 1,
+			maxRows = 2,
+			resize = 'vertical'
 		} = props;
 
 		return (
@@ -32,18 +38,26 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 				<Controller
 					render={({
 						field: { onChange, value },
-						fieldState: { error }
+						fieldState: { error: _error }
 					}) => (
 						<Textarea
 							placeholder={placeholder}
 							ref={ref}
 							value={value}
 							onChange={onChange}
-							error={!!error}
+							// error={!!error}
+							minH="unset"
 							size={size}
-							minH={'100px'}
-							borderWidth={1}
+							maxH={maxH}
+							borderWidth={borderWidth}
 							borderColor={'gray.200'}
+							fontSize={'small'}
+							color={'gray.500'}
+							resize={resize}
+							as={ResizeTextarea}
+							maxRows={maxRows}
+							w={width}
+							bg={'white'}
 							_focus={{
 								borderColor: 'gray.400',
 								boxShadow: 'none'
@@ -51,13 +65,14 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							_hover={{
 								borderColor: 'gray.300'
 							}}
-							rounded={'md'}
+							rounded={'sm'}
 						/>
 					)}
 					name={name}
 					control={control}
 					rules={{ required: !!errorText && isRequired, ...rules }}
 				/>
+
 				{error && errorText ? (
 					<FormErrorText label={errorText} />
 				) : (

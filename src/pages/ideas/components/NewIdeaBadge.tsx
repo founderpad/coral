@@ -12,11 +12,12 @@ const NewIdeaBadge = (): JSX.Element => {
 				mr={2}
 				color={'white'}
 				fontWeight={'medium'}
-				fontSize={{ base: 'xx-small', sm: 'xs' }}
+				fontSize={{ base: 'xx-small', sm: 'x-small' }}
 				size={badgeSize}
 				title={'A new idea posted in the last 7 days'}
 				minW={'auto'}
 				px={1}
+				rounded={'sm'}
 			>
 				New
 			</Tag>

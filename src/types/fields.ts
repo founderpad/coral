@@ -1,7 +1,6 @@
 import { InputProps } from '@chakra-ui/input';
 import { CheckboxProps } from '@chakra-ui/react';
 import { Control, FieldError, FieldValues } from 'react-hook-form';
-import { IconType } from 'react-icons/lib';
 
 export interface IInputFieldProps<T extends FieldValues> extends InputProps {
 	label?: string;
@@ -15,9 +14,10 @@ export interface IInputFieldProps<T extends FieldValues> extends InputProps {
 	characterCount?: number;
 	min?: number;
 	max?: number;
-	leftIcon?: IconType | string;
-	rightIcon?: IconType | string;
+	leftEl?: JSX.Element;
+	rightEl?: JSX.Element;
 	showLabel?: boolean;
+	maxRows?: number;
 }
 
 export interface ISelectFieldProps extends IInputFieldProps<any> {

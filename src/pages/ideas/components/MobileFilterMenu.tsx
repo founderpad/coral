@@ -1,7 +1,7 @@
 import { PrimaryButton } from 'components/buttons';
+import { IoChevronDownSharp } from 'components/icons';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import React, { useContext } from 'react';
-import { IoChevronDownSharp } from 'react-icons/io5';
 import IdeasSearchForm from './IdeasSearchForm';
 
 const MobileFilterMenu = (): JSX.Element => {

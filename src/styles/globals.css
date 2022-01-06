@@ -17,13 +17,14 @@ a {
 
 html,
 body,
-#__next,
-.container {
+#__next {
 	min-height: 100vh;
+	overflow-y: auto;
+	overflow-x: hidden;
 	width: 100%;
 	display: flex;
 	flex: 1;
+	/* height: 100%; */
 	flex-direction: column;
-	background: #F7FAFC;
-	/* background-color: white; */
+	background: #f7fafc;
 }

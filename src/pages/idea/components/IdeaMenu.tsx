@@ -1,10 +1,10 @@
 import { SubmitButton } from 'components/buttons';
+import { IoPencilSharp, IoTrashBin } from 'components/icons';
 import { BaseMenuItem } from 'components/menu';
 import { BaseMenu } from 'components/menu/BaseMenu';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useDeleteIdeaMutation } from 'generated/api';
 import React, { memo, useCallback, useContext } from 'react';
-import { IoPencilSharp, IoTrashBin } from 'react-icons/io5';
 import EditIdeaForm from './EditIdeaForm';
 
 const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
@@ -40,7 +40,7 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 					name={'open-modal-drawer-edit-idea-button'}
 					form={'editIdeaForm'}
 					label={'Save'}
-					size={'sm'}
+					size={'xs'}
 				/>
 			),
 			hideFooter: true,
@@ -49,25 +49,6 @@ const IdeaActions = memo(({ ideaId }: { ideaId: string }): JSX.Element => {
 	}, []);
 
 	return (
-		// <BaseMenu
-		// 	options={[
-		// 		{
-		// 			title: 'Edit',
-		// 			subTitle: 'Edit this idea',
-		// 			onClick: () => onEditClick(),
-		// 			divider: true,
-		// 			icon: IoPencilSharp
-		// 		},
-		// 		{
-		// 			title: 'Delete',
-		// 			subTitle: 'Delete this idea',
-		// 			onClick: () => onDeleteClick(),
-		// 			icon: IoTrashBin,
-		// 			color: 'red.500'
-		// 		}
-		// 	]}
-		// />
-
 		<BaseMenu>
 			<BaseMenuItem
 				title={'Edit'}

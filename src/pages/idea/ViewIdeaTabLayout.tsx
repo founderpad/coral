@@ -1,19 +1,36 @@
 import TabLayout from 'components/layouts/TabLayout';
-import React from 'react';
-import CommentsTab from './CommentsTab';
+import IdeaContext from 'context/idea/IdeaContext';
+import { useCurrentUser } from 'hooks/auth';
+import { useMobile } from 'hooks/util';
+import React, { useContext } from 'react';
+import CommentsList from './components/comments/CommentsList';
+import InterestedUsersTab from './components/InterestedUsersTab';
 import IdeaTab from './IdeaTab';
 
-const ViewIdeaTabLayout = (): JSX.Element => (
-	<TabLayout
-		tabs={[{ label: 'Idea' }, { label: 'Comments' }]}
-		overflow={'hidden'}
-		minH={'full'}
-		px={2}
-		isLazy
-	>
-		<IdeaTab />
-		<CommentsTab />
-	</TabLayout>
-);
+const ViewIdeaTabLayout = () => {
+	const user = useCurrentUser();
+	const { data } = useContext(IdeaContext);
+
+	return (
+		<TabLayout
+			tabs={[
+				{ label: 'Idea' },
+				{
+					...(data?.idea.user_id === user.id && {
+						label: 'Interest'
+					})
+				},
+				{ ...(useMobile() && { label: 'Comments' }) }
+			]}
+			overflow={'hidden'}
+			minH={'full'}
+			flex={1}
+		>
+			<IdeaTab />
+			<InterestedUsersTab ideaId={data?.idea.id} />
+			{useMobile() && <CommentsList />}
+		</TabLayout>
+	);
+};
 
 export default ViewIdeaTabLayout;

@@ -2,7 +2,6 @@ import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { EmailField, PasswordField } from 'components/input';
 import { Label } from 'components/labels';
-import { StackLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import { useLogin } from 'hooks/auth';
 import React, { memo } from 'react';
@@ -23,45 +22,45 @@ const LoginForm = (): JSX.Element => {
 			name={'loginform'}
 			onSubmit={handleSubmit(onLogin)}
 		>
-			<StackLayout spacing={6} my={6}>
-				<EmailField
-					id="email"
-					name="email"
-					error={errors['email']}
-					errorText="Please enter a valid email"
-					control={control}
-					size={'md'}
-					isRequired
-				/>
-				<PasswordField
-					id="password"
-					name="password"
-					error={errors['password']}
-					rules={{ maxLength: 20, minLength: 6 }}
-					control={control}
-					size={'md'}
-					isRequired
-				/>
+			<EmailField
+				id="email"
+				name="email"
+				error={errors['email']}
+				errorText="Please enter a valid email"
+				control={control}
+				size={'md'}
+				fontSize={'sm'}
+				isRequired
+			/>
+			<PasswordField
+				id="password"
+				name="password"
+				error={errors['password']}
+				rules={{ maxLength: 20, minLength: 6 }}
+				control={control}
+				size={'md'}
+				fontSize={'sm'}
+				isRequired
+			/>
 
-				<SubmitButton
-					id={'submit-login'}
-					name={'submit-login'}
-					label="Log in"
-					isLoading={isSubmitting}
-					disabled={!isValid || isSubmitting}
-					size={'lg'}
-					fontWeight={'semibold'}
-					full
-				/>
-				<NoAccountFooter />
-			</StackLayout>
+			<SubmitButton
+				id={'submit-login'}
+				name={'submit-login'}
+				label="Log in"
+				isLoading={isSubmitting}
+				disabled={!isValid || isSubmitting}
+				size={'md'}
+				fontSize={'sm'}
+				full
+			/>
+			<NoAccountFooter />
 		</Form>
 	);
 };
 
 const NoAccountFooter = memo(
 	(): JSX.Element => (
-		<Label color={'gray.500'} fontSize={'smaller'} alignSelf={'center'}>
+		<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'}>
 			Don&apos;t have an account?
 			<PrimaryLink href="/register" title={'Link to register an account'}>
 				{' '}

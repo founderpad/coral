@@ -1,5 +1,8 @@
 import { Flex, FlexProps } from '@chakra-ui/layout';
 
-export const FlexLayout = (
-	props: FlexProps & { href?: string }
-): JSX.Element => <Flex {...props} rounded={props.rounded ?? 'md'} />;
+export const FlexLayout = ({
+	rounded = 'md',
+	...rest
+}: FlexProps & { href?: string }) => (
+	<Flex {...rest} flexWrap={'wrap'} rounded={rounded} />
+);

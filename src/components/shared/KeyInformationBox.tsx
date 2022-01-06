@@ -1,3 +1,4 @@
+import Icon from '@chakra-ui/icon';
 import { Label } from 'components/labels';
 import { StackLayout } from 'components/layouts';
 import React from 'react';
@@ -12,24 +13,78 @@ const KeyInformationBox = ({
 	title,
 	value,
 	icon
-}: {
+}: // direction = 'column'
+{
 	title: string;
 	value: string | number;
 	icon?: IconType;
+	// direction?: StackProps['direction'];
 }): JSX.Element => (
-	<StackLayout alignItems={'center'} spacing={1} bg={'gray.50'} p={4}>
-		<Label
-			fontSize={'sm'}
-			icon={icon}
-			fontWeight={'medium'}
-			display={{ base: 'none', md: 'flex' }}
+	// <StackLayout
+	// 	alignItems={'center'}
+	// 	spacing={4}
+	// 	rounded={'sm'}
+	// 	direction={'row'}
+	// 	color={'fpPrimary.900'}
+	// 	fontSize={'x-large'}
+	// 	h={'60px'}
+	// 	justifyContent={'center'}
+	// 	p={4}
+	// 	bg={'gray.50'}
+	// 	boxShadow={'sm'}
+	// >
+	// 	<FlexLayout flexDirection={'column'} alignItems={'center'}>
+	// 		{icon && (
+	// 			<Icon
+	// 				as={icon}
+	// 				fontSize={'lg'}
+	// 				color={'fpPrimary.500'}
+	// 				mb={2}
+	// 			/>
+	// 		)}
+	// 		<Label fontWeight={'medium'} color={'gray.900'}>
+	// 			{value}
+	// 		</Label>
+	// 		<Label color={'gray.400'} fontSize={'xs'}>
+	// 			{title}
+	// 		</Label>
+	// 	</FlexLayout>
+	// </StackLayout>
+
+	// <FlexLayout
+	// 	flexDirection={'column'}
+	// 	alignItems={'center'}
+	// 	flex={1}
+	// >
+	<React.Fragment>
+		<StackLayout
+			direction={{ base: 'column', md: 'row' }}
+			spacing={0}
+			alignItems={{ base: 'flex-start', md: 'center' }}
 		>
-			{value}
-		</Label>
-		<Label color={'gray.500'} fontSize={'sm'}>
-			{title}
-		</Label>
-	</StackLayout>
+			{icon && (
+				<Icon
+					as={icon}
+					fontSize={'x-large'}
+					color={'fpPrimary.500'}
+					mb={2}
+					mr={4}
+				/>
+			)}
+			<StackLayout spacing={0}>
+				<Label
+					fontWeight={'medium'}
+					color={'gray.900'}
+					fontSize={'small'}
+				>
+					{value}
+				</Label>
+				<Label color={'gray.400'} fontSize={'xs'}>
+					{title}
+				</Label>
+			</StackLayout>
+		</StackLayout>
+	</React.Fragment>
 );
 
 export default KeyInformationBox;

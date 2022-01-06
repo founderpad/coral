@@ -2,15 +2,16 @@ import { Box, Flex, HStack, Text } from '@chakra-ui/layout';
 import { BoxProps, Icon } from '@chakra-ui/react';
 import { PrimaryButton } from 'components/buttons';
 import { DeleteButton } from 'components/buttons/DeleteButton';
-import { FlexLayout } from 'components/layouts';
-import { PrimaryLink } from 'components/links';
-import React, { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
 import {
 	IoCheckmarkCircleSharp,
 	IoCloudUploadSharp,
 	IoDocumentSharp
-} from 'react-icons/io5';
+} from 'components/icons';
+import { CaptionLabel } from 'components/labels';
+import { FlexLayout, StackLayout } from 'components/layouts';
+import { PrimaryLink } from 'components/links';
+import React, { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { formatTimestamp } from 'utils/validators';
 import { PointSeparator } from './Separators';
 
@@ -156,7 +157,7 @@ export const FileUploader = (props: Props): JSX.Element => {
 						</Flex>
 					</FlexLayout>
 
-					<Text
+					<CaptionLabel
 						fontSize={'smaller'}
 						color={error ? 'red.500' : 'gray.400'}
 						mt={2}
@@ -168,7 +169,7 @@ export const FileUploader = (props: Props): JSX.Element => {
 								Supported formats: .pdf, .doc, .docx, .txt
 							</>
 						)}
-					</Text>
+					</CaptionLabel>
 				</>
 			)}
 		</Box>
@@ -189,7 +190,12 @@ const AddedFile = ({
 	onDelete: (src: string) => void;
 }) => (
 	<Flex justifyContent={'space-between'} alignItems={'center'}>
-		<HStack alignItems={'center'}>
+		<StackLayout
+			alignItems={'center'}
+			direction={'row'}
+			flex={1}
+			spacing={2}
+		>
 			<Icon
 				as={IoDocumentSharp}
 				color={'gray.400'}
@@ -197,17 +203,18 @@ const AddedFile = ({
 			/>
 			<Flex flexDirection={'column'}>
 				<PrimaryLink
+					fontSize={'smaller'}
 					title={'View file'}
 					href={process.env.NEXT_PUBLIC_STORAGE_URL + src}
 					isExternal
 				>
 					View
 				</PrimaryLink>
-				<Text color={'gray.400'} fontSize={'xs'}>
+				<CaptionLabel>
 					Added {formatTimestamp(src?.split('?v=')[1])}
-				</Text>
+				</CaptionLabel>
 			</Flex>
-		</HStack>
+		</StackLayout>
 		<DeleteButton
 			name={'delete-file-button'}
 			variant={'ghost'}

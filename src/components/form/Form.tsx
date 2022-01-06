@@ -18,11 +18,12 @@ const Form = (props: TFormProps): ReactElement<any> => {
 
 	return (
 		<form
-			{...rest}
 			autoComplete={'off'}
 			name={name}
 			aria-label={name}
 			noValidate
+			// style={{ flex: 1 }}
+			{...rest}
 		>
 			<StackLayout
 				{...stackProps}

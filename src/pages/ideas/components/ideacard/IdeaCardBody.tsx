@@ -1,12 +1,13 @@
 import { Label } from 'components/labels';
-import { StackLayout } from 'components/layouts';
-import BaseTag from 'components/tags/BaseTag';
+import { FlexLayout, StackLayout } from 'components/layouts';
+import { PointSeparator } from 'components/shared';
 import { TIdea_Preview } from 'generated/api';
+import InterestedTotal from 'pages/idea/components/InterestedTotal';
 import React from 'react';
 
 type TIdeaCardBody = Pick<
 	TIdea_Preview,
-	'preview' | 'field' | 'idea_user' | 'status'
+	'preview' | 'field' | 'user' | 'status' | 'totalInterest'
 >;
 
 const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
@@ -15,40 +16,51 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 	return (
 		<React.Fragment>
 			<Label
-				my={4}
+				my={6}
 				d={'flex'}
 				color={'gray.500'}
 				overflow={'hidden'}
 				whiteSpace={'normal'}
-				fontSize={'smaller'}
+				fontSize={'xs'}
 				css={{ whiteSpace: 'normal' }}
 				noOfLines={2}
 				isTruncated
 			>
-				{preview}
+				{preview.length <= 25 ? preview : `${preview}...`}
 			</Label>
 			<IdeaCardBodyBadges {...idea} />
 		</React.Fragment>
 	);
 };
 
-export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
-	const { field, status } = idea;
+export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
+	const { field, status, totalInterest } = idea;
 
 	return (
-		<StackLayout
+		<FlexLayout
 			direction={'row'}
-			spacing={2}
 			flex={1}
 			alignItems={'center'}
+			justifyContent={'space-between'}
+			w={'full'}
 		>
-			<BaseTag color={'fpPrimary.500'} bg={'white'}>
-				{status}
-			</BaseTag>
-			<BaseTag color={'fpPrimary.500'} bg={'white'}>
-				{field}
-			</BaseTag>
-		</StackLayout>
+			<StackLayout spacing={0} direction={'row'} alignItems={'center'}>
+				{/* <BaseTag color={'fpPrimary.500'} bg={'white'}>
+					{status}
+				</BaseTag>
+				<BaseTag color={'fpPrimary.500'} bg={'white'}>
+					{field}
+				</BaseTag> */}
+				<Label color={'fpPrimary.400'} fontSize={'xs'}>
+					{status}
+				</Label>
+				<PointSeparator small />
+				<Label color={'fpPrimary.500'} fontSize={'xs'}>
+					{field}
+				</Label>
+			</StackLayout>
+			<InterestedTotal total={totalInterest} />
+		</FlexLayout>
 	);
 };
 

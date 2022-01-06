@@ -5,10 +5,12 @@ import MobileFilterMenu from './MobileFilterMenu';
 
 const IdeasActions = ({
 	total,
-	pageSize
+	pageSize,
+	hasResults = false
 }: {
 	total: number;
 	pageSize: number;
+	hasResults?: boolean;
 }): JSX.Element => (
 	<React.Fragment>
 		<Flex
@@ -20,18 +22,26 @@ const IdeasActions = ({
 			<StickySubheader title="All ideas">
 				<Flex justifyContent={'space-between'} alignItems={'flex-end'}>
 					<MobileFilterMenu />
-					<SearchResultsLabel
-						pageSize={pageSize}
-						limit={10}
-						total={total}
-					/>
+					{hasResults && (
+						<SearchResultsLabel
+							pageSize={pageSize}
+							limit={10}
+							total={total}
+						/>
+					)}
 				</Flex>
 			</StickySubheader>
 		</Flex>
 
-		<Flex display={{ base: 'none', lg: 'flex' }}>
-			<SearchResultsLabel pageSize={pageSize} limit={10} total={total} />
-		</Flex>
+		{hasResults && (
+			<Flex display={{ base: 'none', lg: 'flex' }}>
+				<SearchResultsLabel
+					pageSize={pageSize}
+					limit={10}
+					total={total}
+				/>
+			</Flex>
+		)}
 	</React.Fragment>
 );
 

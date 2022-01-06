@@ -69,7 +69,7 @@ export const Modal = (props: IModalProps): JSX.Element => {
 				{title && (
 					<ModalHeader
 						fontWeight={'medium'}
-						fontSize={'xl'}
+						fontSize={'lg'}
 						p={4}
 						display={'flex'}
 						alignItems={'center'}
@@ -77,10 +77,11 @@ export const Modal = (props: IModalProps): JSX.Element => {
 					>
 						{title}
 						{actions && (
-							<ButtonGroup ml={'auto'} spacing={4}>
+							<ButtonGroup ml={'auto'} spacing={4} size={'xs'}>
 								<CancelButton
 									label={'Cancel'}
 									onClick={onClose}
+									size={'xs'}
 								/>
 								{actions}
 							</ButtonGroup>
@@ -89,7 +90,8 @@ export const Modal = (props: IModalProps): JSX.Element => {
 				)}
 				<ModalBody
 					fontWeight={'normal'}
-					fontSize={'md'}
+					fontSize={'sm'}
+					color={'gray.500'}
 					flex={1}
 					p={removePadding ? 0 : 4}
 					maxH={'100%'}

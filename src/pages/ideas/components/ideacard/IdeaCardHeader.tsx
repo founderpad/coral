@@ -7,30 +7,33 @@ import PostedBy from './PostedBy';
 
 type TIdeaCardHeader = Pick<
 	TIdea_Preview,
-	'name' | 'idea_user' | 'is_new' | 'created_at' | 'user_id' | 'id'
+	'name' | 'user' | 'isNew' | 'createdAt' | 'user_id' | 'id'
 >;
 
 const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
-	const { name, is_new } = idea;
+	const { name, isNew } = idea;
 
 	return (
 		<React.Fragment>
-			<FlexLayout alignItems={'baseline'}>
-				{is_new && <NewIdeaBadge />}
-				<Label
-					d={'flex'}
-					w={'full'}
-					overflow={'hidden'}
-					fontWeight={'medium'}
-					fontSize={{ base: 'smaller', sm: 'sm' }}
-					css={{ whiteSpace: 'normal' }}
-					noOfLines={1}
-					isTruncated
-				>
-					{name}
-				</Label>
+			<FlexLayout alignItems={'stretch'}>
+				{isNew && <NewIdeaBadge />}
+				<FlexLayout direction={'column'}>
+					<Label
+						d={'flex'}
+						w={'full'}
+						overflow={'hidden'}
+						fontWeight={'medium'}
+						fontSize={{ base: 'smaller', sm: 'sm' }}
+						css={{ whiteSpace: 'normal' }}
+						wordBreak={'break-word'}
+						noOfLines={1}
+						isTruncated
+					>
+						{name}
+					</Label>
+					<PostedBy {...idea} />
+				</FlexLayout>
 			</FlexLayout>
-			<PostedBy {...idea} />
 		</React.Fragment>
 	);
 };

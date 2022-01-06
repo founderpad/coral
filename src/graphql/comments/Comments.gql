@@ -1,0 +1,98 @@
+mutation PostComment($ideaComment: idea_comments_insert_input!) {
+	addIdeaComment: insert_idea_comments_one(object: $ideaComment) {
+		idea_id
+		id
+		value
+	}
+}
+
+mutation PostReply(
+	$ideaReply: idea_comment_replies_insert_input!
+	$commentId: uuid!
+) {
+	addIdeaReply: insert_idea_comment_replies_one(object: $ideaReply) {
+		comment_id
+		id
+		value
+	}
+	update_idea_comments_by_pk(
+		pk_columns: { id: $commentId }
+		_inc: { totalReplies: 1 }
+	) {
+		id
+	}
+}
+
+query CommentsForIdea($ideaId: uuid!, $offset: Int) {
+	comments: idea_comments(
+		where: { idea_id: { _eq: $ideaId } }
+		order_by: { updated_at: desc }
+		offset: $offset
+		limit: 8
+	) {
+		id
+		updated_at
+		value
+		idea_id
+		totalReplies
+		user {
+			id
+			first_name
+			avatar_url
+			account {
+				email
+			}
+		}
+	}
+	totalComments: idea_comments_aggregate(
+		where: { idea_id: { _eq: $ideaId } }
+	) {
+		aggregate {
+			count(columns: id)
+		}
+	}
+}
+
+# query CommentsForIdea($first: Int!, $after: String!, $ideaId: uuid!) {
+# 	idea_comments_connection(
+# 		first: $first
+# 		after: $after
+# 		order_by: { updated_at: desc }
+# 		where: { idea_id: { _eq: $ideaId } }
+# 	) {
+# 		pageInfo {
+# 			endCursor
+# 			hasNextPage
+# 		}
+# 		edges {
+# 			node {
+# 				updated_at
+# 				value
+# 				user {
+# 					first_name
+# 					avatar_url
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+query RepliesForComment($commentId: uuid!) {
+	replies: idea_comment_replies(
+		where: { comment_id: { _eq: $commentId } }
+		order_by: { updated_at: asc }
+	) {
+		id
+		comment_id
+		value
+		updated_at
+		user {
+			id
+			first_name
+			avatar_url
+			account {
+				email
+			}
+		}
+	}
+}

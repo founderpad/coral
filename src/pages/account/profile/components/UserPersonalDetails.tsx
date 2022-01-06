@@ -1,11 +1,11 @@
 import { FlexProps } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
+import { IoLocationSharp, IoMailSharp, IoTimeSharp } from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import { TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useCurrentUser } from 'hooks/auth';
 import React, { memo, useContext } from 'react';
-import { IoLocationSharp, IoMailSharp, IoTimeSharp } from 'react-icons/io5';
 import { formatDate } from 'utils/validators';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';
@@ -17,6 +17,14 @@ type Props = Pick<FlexProps, 'display' | 'mb'>;
 const UserPersonalInformation = memo((props: Props): JSX.Element => {
 	const user = useCurrentUser();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const {
+		first_name,
+		last_name,
+		location,
+		country,
+		created_at,
+		account: { email }
+	} = user;
 
 	const onClick = () => {
 		setModalDrawer({
@@ -27,36 +35,38 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 					name={'open-modal-drawer-personal-details-button'}
 					form="editPersonalDetailsForm"
 					label={'Save'}
+					size={'xs'}
 				/>
 			),
 			body: <PersonalDetailsForm />,
 			noBtnLabel: 'Cancel',
-			yesBtnLabel: 'Log out',
-			yesBtnColor: 'red',
 			hideFooter: true
 		});
 	};
 
 	return (
-		<StackLayout>
+		<StackLayout p={{ base: 4, sm: 0 }}>
 			<UserImageUploader />
 			<StackLayout {...props} spacing={2} w={'full'}>
 				<TitleEditAction
-					title={user?.first_name + ' ' + user?.last_name}
+					title={`${first_name} ${last_name}`}
 					onClick={onClick}
 				/>
 
-				<ProfileSectionLabel
-					label={user?.account.email}
-					icon={IoMailSharp}
-				/>
+				<ProfileSectionLabel label={email} icon={IoMailSharp} />
 
 				<ProfileSectionLabel
-					label={user?.country ?? 'Location not set'}
+					label={
+						location
+							? `${location}, ${country}`
+							: country
+							? country
+							: 'Location not set'
+					}
 					icon={IoLocationSharp}
 				/>
 				<ProfileSectionLabel
-					label={`Joined ` + formatDate(user?.created_at, true)}
+					label={`Joined ` + formatDate(created_at, true)}
 					icon={IoTimeSharp}
 				/>
 				<SocialMediaDetails />

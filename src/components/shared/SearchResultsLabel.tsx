@@ -1,4 +1,4 @@
-import { Label } from 'components/labels';
+import { CaptionLabel } from 'components/labels';
 import { useRouter } from 'next/router';
 import React, { memo } from 'react';
 import { PointSeparator } from './Separators';
@@ -16,16 +16,10 @@ export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 	const offset = (parseInt(page as string) - 1) * limit;
 
 	return (
-		<Label
-			fontSize={'xs'}
-			d={'flex'}
-			textAlign={'end'}
-			color={'gray.500'}
-			ml={'auto'}
-		>
+		<CaptionLabel d={'flex'} ml={'auto'}>
 			{offset + 1} - {offset + pageSize} of {total}
 			<PointSeparator small />
 			Page {page} of {Math.ceil((total || 0) / limit)}
-		</Label>
+		</CaptionLabel>
 	);
 });

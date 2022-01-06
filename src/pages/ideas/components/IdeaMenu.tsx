@@ -8,16 +8,16 @@ import React from 'react';
 // 	REPORT
 // }
 
-type TIdeaProps = Pick<TIdea_Preview, 'id' | 'idea_user' | 'name'>;
+type TIdeaProps = Pick<TIdea_Preview, 'id' | 'user' | 'name'>;
 
 export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 	const report: TReport_Insert_Input = {
-		type: 'IDEA',
-		reportedId: idea?.id,
-		reportedUserId: idea?.idea_user.id,
-		recipientName: idea?.idea_user.first_name,
-		recipientEmail: idea?.idea_user.account.email,
-		content: idea?.name
+		reported_id: idea?.id,
+		reported_user_id: idea?.user.id,
+		recipient_name: idea?.user.first_name,
+		recipient_email: idea?.user.account.email,
+		content: idea?.name,
+		type: 'IDEA'
 	};
 
 	return (
@@ -28,7 +28,11 @@ export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 				icon={IoShareSocialSharp}
 				divider={true}
 			/> */}
-			<ReportMenu title={'idea'} report={report} />
+			<ReportMenu
+				title={'idea'}
+				report={report}
+				content={`"${idea.name}"`}
+			/>
 		</BaseMenu>
 	);
 };

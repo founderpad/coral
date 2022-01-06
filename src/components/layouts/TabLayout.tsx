@@ -3,11 +3,13 @@ import {
 	Tab,
 	TabList,
 	TabPanel,
+	TabPanelProps,
 	TabPanels,
 	Tabs,
 	TabsProps
 } from '@chakra-ui/react';
 import React, { useCallback, useState } from 'react';
+import { IconType } from 'react-icons/lib';
 
 type Props = Omit<TabsProps, 'children'> & {
 	tabs: TabProps[];
@@ -16,15 +18,12 @@ type Props = Omit<TabsProps, 'children'> & {
 
 type TabProps = {
 	label: string;
-	icon?: any; //React.ComponentProps<'svg'>;
+	icon?: IconType;
 };
 
 const TabLayout = (props: Props): JSX.Element => {
 	const { tabs, children, ...rest } = props;
 	const [tabIndex, setTabIndex] = useState(0);
-
-	// const onChange = (index: number) =>
-	// 	useCallback(() => setTabIndex(index), [index]);
 
 	const onChange = useCallback((index) => setTabIndex(index), [tabIndex]);
 
@@ -35,28 +34,34 @@ const TabLayout = (props: Props): JSX.Element => {
 			overflow={'hidden'}
 			colorScheme={'black'}
 			px={0}
+			d={'flex'}
+			flexDirection={'column'}
 		>
-			<TabList>
-				{tabs?.map((tab) => (
-					<Tab key={tab?.label}>
-						{tab?.icon && (
-							<Icon
-								as={tab.icon}
-								mr={2}
-								fontSize={'xl'}
-								display={{ base: 'none', sm: 'block' }}
-							/>
-						)}
-						{tab?.label}
-					</Tab>
-				))}
+			<TabList px={4}>
+				{tabs
+					?.filter((tab) => Object.keys(tab).length !== 0)
+					.map((tab) => (
+						<Tab {...tab} key={tab?.label} fontSize={'small'}>
+							{tab?.icon && (
+								<Icon
+									as={tab.icon}
+									mr={2}
+									fontSize={'xl'}
+									display={{ base: 'none', sm: 'block' }}
+								/>
+							)}
+							{tab?.label}
+						</Tab>
+					))}
 			</TabList>
-			<TabPanels d={'flex'} flex={1} h={'full'}>
-				{children?.map((tp, key) => {
+			<TabPanels d={'flex'} flex={1} overflowY={'hidden'}>
+				{children?.map((tp: TabPanelProps, key) => {
 					return (
 						<TabPanel
+							{...tp}
 							key={key}
-							py={4}
+							overflowY={'hidden'}
+							p={0}
 							display={'flex'}
 							flex={1}
 							css={{

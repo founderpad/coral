@@ -1,9 +1,6 @@
-import {
-	FormControl,
-	FormHelperText,
-	FormLabel
-} from '@chakra-ui/form-control';
+import { FormControl, FormHelperText } from '@chakra-ui/form-control';
 import { forwardRef, Switch } from '@chakra-ui/react';
+import { FormLabelText } from 'components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -12,15 +9,7 @@ export const SwitchField = forwardRef((props, ref) => {
 
 	return (
 		<FormControl ref={ref}>
-			<FormLabel
-				as={'label'}
-				fontSize={'sm'}
-				color={'black'}
-				htmlFor={id}
-				id={`label-${id}`}
-			>
-				{label}
-			</FormLabel>
+			<FormLabelText label={label} />
 			<Controller
 				render={({ field: { onChange, value } }) => (
 					<Switch
@@ -31,7 +20,7 @@ export const SwitchField = forwardRef((props, ref) => {
 						onChange={onChange}
 						defaultChecked={defaultChecked}
 						colorScheme={'fpPrimary'}
-						size={'lg'}
+						size={'md'}
 						role={'switch'}
 					/>
 				)}
@@ -39,7 +28,7 @@ export const SwitchField = forwardRef((props, ref) => {
 				control={control}
 			/>
 			{helperText && (
-				<FormHelperText id={`helper-text-${id}`}>
+				<FormHelperText id={`helper-text-${id}`} fontSize={'x-small'}>
 					{helperText}
 				</FormHelperText>
 			)}

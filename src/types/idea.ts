@@ -1,19 +1,29 @@
-export type TIdea = {
-	id?: string;
-	name: string;
-	description: string;
-	field: string;
-	competitors: string;
-	team: string;
-	mission_statement: string;
-	additional_information: string;
-	business_plan: string;
-	is_published: boolean;
-	updated_at?: string;
-	created_at?: string;
-	user_id: string;
-	idea_user: TIdeaCreatedUser;
-};
+// export type TIdea = {
+// 	id?: string;
+// 	name: string;
+// 	description: string;
+// 	field: string;
+// 	competitors: string;
+// 	team: string;
+// 	mission_statement: string;
+// 	additional_information: string;
+// 	business_plan: string;
+// 	is_published: boolean;
+// 	updated_at?: string;
+// 	created_at?: string;
+// 	user_id: string;
+// 	idea_user: TIdeaCreatedUser;
+// };
+
+import { TIdeaQuery, TIdeas, TIdea_Preview } from 'generated/api';
+
+export type TIdea = TIdeaQuery['idea'];
+export type TIdeaHasInterest = TIdeaQuery['hasInterest'];
+
+export type TUpvoteIdea = Pick<
+	TIdea_Preview | TIdeas,
+	'user' | 'votes_aggregate' | 'votes' | 'id' | 'name'
+>;
 
 // export type TIdeaPreview = Pick<TIdea, 'description' | > & {
 // 	description_preview: string;
@@ -21,7 +31,7 @@ export type TIdea = {
 
 export type TIdeaPreview = Pick<
 	TIdea,
-	'id' | 'user_id' | 'name' | 'created_at' | 'field' | 'idea_user'
+	'id' | 'user_id' | 'name' | 'created_at' | 'field' | 'user'
 > & {
 	preview: string;
 	is_new: boolean;

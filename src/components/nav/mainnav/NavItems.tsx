@@ -1,6 +1,12 @@
 import { Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
-import { IoLockClosedSharp } from 'react-icons/io5';
+import {
+	IoAddSharp,
+	IoChevronDownSharp,
+	IoLockClosedSharp,
+	IoPersonSharp,
+	IoSearchSharp
+} from 'components/icons';
 import { IconType } from 'react-icons/lib';
 
 export interface NavItem {
@@ -10,7 +16,9 @@ export interface NavItem {
 	children?: NavItem[];
 	href?: string;
 	icon?: IconType;
+	rightIcon?: IconType;
 	divider?: boolean;
+	color?: string;
 }
 
 const NavItems: Array<NavItem> = [
@@ -28,48 +36,48 @@ const NavItems: Array<NavItem> = [
 		label: 'Ideas',
 		key: 'ideas',
 		href: '/ideas?page=1',
+		rightIcon: IoChevronDownSharp,
 		children: [
 			{
-				label: 'All ideas',
-				key: 'all-ideas',
-				subLabel: 'View all ideas',
-				href: '/ideas?page=1'
+				label: 'Search ideas',
+				key: 'search-ideas',
+				subLabel: 'Search all ideas',
+				href: '/ideas?page=1',
+				icon: IoSearchSharp
 			},
-			// {
-			// 	label: 'Your ideas',
-			// 	key: 'your-ideas',
-			// 	subLabel: 'View the ideas you have posted',
-			// 	href: '/ideas/my-ideas'
-			// },
+			{
+				label: 'My ideas',
+				key: 'my-ideas',
+				subLabel: 'View your ideas',
+				href: '/ideas/my-ideas',
+				icon: IoPersonSharp
+			},
 			{
 				label: 'Create idea',
 				key: 'create',
+				color: 'fpPrimary.500',
 				subLabel: 'Post a new idea to the community',
-				href: '/ideas/create'
-				// icon: IoAddSharp
-				// divider: true
+				href: '/ideas/create',
+				icon: IoAddSharp,
+				divider: true
 			}
 		]
 	},
-	// {
-	// 	label: 'Founders',
-	// 	key: 'founders',
-	// 	href: '/founders',
-	// 	children: [
-	// 		{
-	// 			label: 'Search founders',
-	// 			key: 'search-founders',
-	// 			subLabel: 'Search for other founders',
-	// 			href: '/founders'
-	// 		},
-	// 		{
-	// 			label: 'Your co-founders',
-	// 			key: 'your-cofounders',
-	// 			subLabel: 'The founders you have connected with',
-	// 			href: '/founders/connected-founders'
-	// 		}
-	// 	]
-	// },
+	{
+		label: 'Founders',
+		key: 'founders',
+		href: '/founders?page=1',
+		rightIcon: IoChevronDownSharp,
+		children: [
+			{
+				label: 'Search founders',
+				key: 'search-founders',
+				subLabel: 'Search for other founders',
+				href: '/founders?page=1',
+				icon: IoSearchSharp
+			}
+		]
+	},
 	// {
 	// 	label: (
 	// 		<Flex display="inline-flex" alignItems="center">

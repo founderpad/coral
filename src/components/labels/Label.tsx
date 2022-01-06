@@ -4,15 +4,12 @@ import { TLabelProps } from './types';
 
 export const Label = ({
 	fontSize = 'sm',
-	color = 'black',
 	...rest
-}: TLabelProps): JSX.Element => (
-	<BaseLabel {...rest} fontSize={fontSize} color={color} />
-);
+}: TLabelProps): JSX.Element => <BaseLabel {...rest} fontSize={fontSize} />;
 
 export const CaptionLabel = ({
 	color = 'gray.400',
 	...rest
 }: TLabelProps): JSX.Element => (
-	<BaseLabel {...rest} fontSize={'xs'} color={color} />
+	<BaseLabel {...rest} fontSize={'x-small'} color={color} />
 );

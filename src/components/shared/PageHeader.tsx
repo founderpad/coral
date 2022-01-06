@@ -1,3 +1,4 @@
+import { GoBackButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
 import { Label } from 'components/labels';
 import { FlexLayout, StackLayout } from 'components/layouts';
@@ -8,12 +9,14 @@ export const PageHeader = memo(
 		title,
 		subtitle,
 		fixedHeader,
-		action
+		action,
+		back
 	}: {
 		title: string;
 		subtitle?: React.ReactNode;
 		fixedHeader?: boolean;
 		action?: React.ReactNode;
+		back?: boolean;
 	}) => {
 		return (
 			<React.Fragment>
@@ -26,11 +29,12 @@ export const PageHeader = memo(
 					w={'full'}
 					spacing={0}
 				>
+					{back && <GoBackButton />}
 					<FlexLayout
 						justifyContent={'space-between'}
 						alignItems={'center'}
 					>
-						<SubheadingText label={title} />
+						<SubheadingText>{title}</SubheadingText>
 						{action}
 					</FlexLayout>
 					{subtitle && (

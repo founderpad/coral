@@ -56,7 +56,7 @@ export const Drawer = ({
 						)}
 						<DrawerHeader
 							fontWeight={'medium'}
-							fontSize={'lg'}
+							fontSize={'md'}
 							p={4}
 							display={'flex'}
 							alignItems={'center'}
@@ -68,6 +68,7 @@ export const Drawer = ({
 									<CancelButton
 										label={'Cancel'}
 										onClick={onClose}
+										size={'xs'}
 									/>
 									{actions}
 								</ButtonGroup>

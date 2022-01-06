@@ -4,10 +4,11 @@ import { SelectField } from 'components/input/SelectField';
 import { SwitchField } from 'components/input/SwitchField';
 import { TextareaField } from 'components/input/TextareaField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
-import { TIdeas_Insert_Input, useUpdateIdeaMutation } from 'generated/api';
+import { useUpdateIdeaMutation } from 'generated/api';
 import { useSuccessNotification } from 'hooks/toast';
 import React, { ReactElement, useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { TIdea } from 'types/idea';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 import useIdeaFragment from '../fragments/IdeaFragment';
 
@@ -17,14 +18,14 @@ const EditIdeaForm = (): ReactElement<any> => {
 	const showSuccessNotification = useSuccessNotification();
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, id, user_id, idea_user, idea_votes, ...rest } = idea;
+	const { __typename, id, user_id, user, votes, ...rest } = idea;
 
 	const {
 		handleSubmit,
 		control,
 		getValues,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<TIdeas_Insert_Input>({
+	} = useForm<TIdea>({
 		mode: 'all',
 		defaultValues: {
 			...rest
@@ -54,6 +55,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 			label={'Update idea'}
+			stackProps={{ spacing: 8 }}
 		>
 			<InputField
 				id="name"
@@ -65,18 +67,6 @@ const EditIdeaForm = (): ReactElement<any> => {
 				control={control}
 				isRequired
 			/>
-
-			{/* <TextareaField
-				id="missionstatement"
-				label="Mission statement"
-				name="mission_statement"
-				placeholder="Write a mission statement about your idea (max. 500 characters)"
-				error={errors['mission_statement']}
-				errorText="Please enter your mission statement (max. 500 characters)"
-				control={control}
-				rules={{ maxLength: 500 }}
-				isRequired
-			/> */}
 
 			<TextareaField
 				id="description"
@@ -97,7 +87,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				error={errors['status']}
 				errorText="Please select the status for your idea."
 				placeholder="status"
-				size={'md'}
+				size={'sm'}
 				options={ideasStatusList()}
 				control={control}
 				isRequired
@@ -110,7 +100,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				error={errors['field']}
 				errorText="Please select the field for your idea."
 				placeholder="field"
-				size={'md'}
+				size={'sm'}
 				options={industriesList()}
 				control={control}
 				isRequired

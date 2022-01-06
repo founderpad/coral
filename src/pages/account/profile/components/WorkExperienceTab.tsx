@@ -1,16 +1,36 @@
-import { Stack } from '@chakra-ui/layout';
 import { SubmitButton } from 'components/buttons';
-import ContentHighlightsLayout from 'components/layouts/ContentHighlightsLayout';
+import {
+	IoAnalyticsSharp,
+	IoBulbSharp,
+	IoRocketSharp,
+	IoTimeSharp
+} from 'components/icons';
+import { StackLayout } from 'components/layouts';
 import { Loading, TitleEditAction } from 'components/shared';
+import AppDivider from 'components/shared/AppDivider';
+import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
+import OverviewTags from 'components/shared/OverviewTags';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import React, { useContext } from 'react';
-import useProfileFragment from '../fragments/UserProfileFragment';
+import { convertCapacityToString } from 'utils/validators';
+import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
 
 const WorkExperienceTab = (): JSX.Element => {
 	const userProfile = useProfileFragment();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
+
+	const {
+		specialist_industry,
+		startups,
+		statement,
+		status,
+		availability,
+		business_description,
+		background,
+		skills
+	} = userProfile ?? {};
 
 	const onClick = () => {
 		setModalDrawer({
@@ -21,7 +41,7 @@ const WorkExperienceTab = (): JSX.Element => {
 					name={'open-modal-drawer-experience-button'}
 					form="editExperienceForm"
 					label={'Save'}
-					size={'sm'}
+					size={'xs'}
 				/>
 			),
 			body: <ExperienceForm {...userProfile} />,
@@ -36,55 +56,62 @@ const WorkExperienceTab = (): JSX.Element => {
 	if (!userProfile) return <Loading small />;
 
 	return (
-		<Stack>
+		<StackLayout p={4}>
 			<TitleEditAction title="Your experience" onClick={onClick} />
-			<ContentHighlightsLayout
-				content={[
-					{
-						title: 'Background',
-						value: userProfile?.background ?? 'Not set'
-					},
-					{
-						title: 'Personal statement',
-						value: userProfile?.statement ?? 'Not set'
-					},
-					{
-						title: 'Overview of businesses',
-						value: userProfile?.business_description ?? 'Not set'
-					},
-					{
-						title: 'Skills',
-						value:
-							userProfile?.skills?.join(', ') ??
-							'No skills selected'
-					}
-				]}
-				highlights={[
+			<AppDivider />
+			<OverviewTags
+				tags={[
 					{
 						title: 'Specialist field',
-						value: userProfile?.specialist_industry ?? 'Not set'
+						value: specialist_industry ?? 'Not set',
+						icon: IoBulbSharp
 					},
 					{
 						title: 'Previous startups',
-						value: userProfile?.startups
-							? `${userProfile?.startups} startups`
-							: 'Not set'
+						value: startups ? `${startups} startups` : 'Not set',
+						icon: IoRocketSharp
 					},
 					{
-						title: 'Start-up  status',
-						value: userProfile?.status ?? 'Not set'
+						title: 'Startup status',
+						value: status ?? 'Not set',
+						icon: IoAnalyticsSharp
 					},
 					{
-						title: 'Availability',
-						value: userProfile?.availability
-							? `${userProfile?.availability} hours per week`
-							: 'Not set'
+						title: 'Capacity (hours per week)',
+						value: availability
+							? convertCapacityToString(availability)
+							: 'Not set',
+						icon: IoTimeSharp
 					}
 				]}
 			/>
+
+			<AppDivider />
+
+			<StackLayout spacing={8}>
+				<ContentFieldAndValue
+					title={'Background'}
+					value={background ?? 'Not set'}
+				/>
+				<ContentFieldAndValue
+					title={'Personal statement'}
+					value={statement ?? 'Not set'}
+				/>
+				<ContentFieldAndValue
+					title={'Overview of businesses'}
+					value={business_description ?? 'Not set'}
+				/>
+				<ContentFieldAndValue
+					title={'Skills'}
+					value={skills?.join(', ') ?? 'No skills selected'}
+				/>
+			</StackLayout>
+
+			<AppDivider />
+
 			<TitleEditAction title="Your resume" />
 			<ResumeUploader />
-		</Stack>
+		</StackLayout>
 	);
 };
 

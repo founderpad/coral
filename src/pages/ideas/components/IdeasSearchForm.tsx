@@ -117,6 +117,10 @@ const IdeasSearchForm = (): JSX.Element => {
 				variant={'filled'}
 			/>
 
+			{/* <Label fontSize={'x-small'} textAlign={'end'}>
+				More coming soon
+			</Label> */}
+
 			{/* business status  */}
 			{/* ideas with questionnaires */}
 			<ButtonGroup pt={4} spacing={4}>

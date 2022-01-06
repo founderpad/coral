@@ -1,24 +1,26 @@
-import { Box, Divider, DividerProps, ResponsiveValue } from '@chakra-ui/react';
+import {
+	Box,
+	BoxProps,
+	Divider,
+	DividerProps,
+	ResponsiveValue
+} from '@chakra-ui/react';
 import React from 'react';
-
-// const PointSeparator = (): any => (
-// 	<Box as={'span'} px={2} color={'fpGrey.700'}>
-// 		&middot;
-// 	</Box>
-// );
 
 export const PointSeparator = ({
 	color,
 	display,
-	small
+	small,
+	px
 }: {
 	color?: string;
 	display?: ResponsiveValue<string>;
 	small?: boolean;
+	px?: BoxProps['px'];
 }): JSX.Element => (
 	<Box
 		as={'span'}
-		mx={'3px'}
+		px={px ?? 1}
 		display={display ?? 'block'}
 		color={color ?? 'gray.400'}
 	>

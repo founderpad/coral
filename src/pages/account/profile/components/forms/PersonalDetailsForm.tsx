@@ -27,15 +27,21 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 		handleSubmit,
 		control,
 		getValues,
+		watch,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<Pick<TUsers_Set_Input, 'first_name' | 'last_name' | 'country'>>(
-		{
-			mode: 'all',
-			defaultValues: {
-				...user
-			}
+	} = useForm<
+		Pick<
+			TUsers_Set_Input,
+			'first_name' | 'last_name' | 'country' | 'location'
+		>
+	>({
+		mode: 'all',
+		defaultValues: {
+			...user
 		}
-	);
+	});
+
+	const watchCountry = watch('country', user.country);
 
 	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
 		variables: {
@@ -43,7 +49,8 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 			userPersonalDetails: {
 				first_name: getValues('first_name'),
 				last_name: getValues('last_name'),
-				country: getValues('country')
+				country: getValues('country'),
+				location: getValues('location')
 			}
 		},
 		onCompleted: (data) => {
@@ -97,13 +104,16 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 				control={control}
 				full
 			/>
-			{/* <ModalDrawerFooterActions noBtnLabel="Cancel">
-                <SubmitButton
-                    label={'Update'}
-                    isLoading={isSubmitting}
-                    disabled={!isValid || isSubmitting}
-                />
-            </ModalDrawerFooterActions> */}
+
+			{watchCountry && (
+				<InputField
+					id="location"
+					label="Location"
+					placeholder="Location"
+					name="location"
+					control={control}
+				/>
+			)}
 		</Form>
 	);
 };

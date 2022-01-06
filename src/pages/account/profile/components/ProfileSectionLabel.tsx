@@ -1,5 +1,5 @@
 import { Icon } from '@chakra-ui/react';
-import { Label } from 'components/labels';
+import { SubLabel } from 'components/labels';
 import { FlexLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import React, { memo } from 'react';
@@ -16,11 +16,16 @@ const ProfileSectionLabel = memo(
 		children?: React.ReactNode;
 	}) => (
 		<FlexLayout alignItems={'center'} wordBreak={'break-all'}>
-			{icon && <Icon as={icon} color={'gray.400'} mr={2} />}
+			{icon && <Icon as={icon} color={'gray.500'} mr={2} />}
 			{children ?? (
-				<Label color={'gray.500'} textOverflow={'ellipsis'} isTruncated>
+				<SubLabel
+					css={{ whiteSpace: 'normal' }}
+					noOfLines={2}
+					isTruncated
+					color={'gray.500'}
+				>
 					{label}
-				</Label>
+				</SubLabel>
 			)}
 		</FlexLayout>
 	)

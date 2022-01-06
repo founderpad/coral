@@ -1,20 +1,24 @@
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
+import { IoFlagSharp } from 'components/icons';
 import { SelectField } from 'components/input';
+import { Label } from 'components/labels';
 import { BaseMenuItem } from 'components/menu';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { TReport_Insert_Input, useCreateReportMutation } from 'generated/api';
 import { useSuccessNotification } from 'hooks/toast';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { IoFlagSharp } from 'react-icons/io5';
+import { IReportFormData } from 'types/report';
 import { reportReasonsList } from 'utils/Constants';
 
 const ReportMenu = ({
 	title,
+	content,
 	report
 }: {
 	title: string;
+	content: any;
 	report: TReport_Insert_Input;
 }): JSX.Element => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
@@ -23,13 +27,15 @@ const ReportMenu = ({
 		setModalDrawer({
 			title: `Report ${title}`,
 			isOpen: true,
-			body: <ReportForm title={title} report={report} />,
+			body: (
+				<ReportForm title={title} report={report} content={content} />
+			),
 			actions: (
 				<SubmitButton
 					name={'open-modal-drawer-button'}
 					form="reportForm"
 					label={'Report'}
-					size={'sm'}
+					size={'xs'}
 				/>
 			),
 			handler: () => console.log(''),
@@ -41,7 +47,7 @@ const ReportMenu = ({
 	return (
 		<BaseMenuItem
 			title={'Report'}
-			subTitle={'Report this idea'}
+			// subTitle={`Report this ${title.toLowerCase()}`}
 			icon={IoFlagSharp}
 			onClick={onClick}
 		/>
@@ -50,9 +56,11 @@ const ReportMenu = ({
 
 const ReportForm = ({
 	title,
+	content = undefined,
 	report
 }: {
 	title: string;
+	content?: any;
 	report: TReport_Insert_Input;
 }) => {
 	const {
@@ -60,7 +68,7 @@ const ReportForm = ({
 		control,
 		getValues,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<{ reason: string }>();
+	} = useForm<IReportFormData>();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 
@@ -86,6 +94,7 @@ const ReportForm = ({
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 		>
+			{content && <Label>{content}</Label>}
 			<SelectField
 				id="reason"
 				name="reason"

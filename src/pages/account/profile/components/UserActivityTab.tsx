@@ -1,16 +1,17 @@
 import { Stack } from '@chakra-ui/layout';
 import { Divider, Flex, Spinner } from '@chakra-ui/react';
-import { Label } from 'components/labels';
+import { CaptionLabel, SubLabel } from 'components/labels';
 import { PrimaryLink } from 'components/links';
 import { NoResults } from 'components/shared';
-import { TActivity, useGetUserActivitiesQuery } from 'generated/api';
+import { TActivity, useUserActivityQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
+import { formatDate } from 'utils/validators';
 
 const UserActivityTab = (): JSX.Element => {
 	const user = useCurrentUser();
 
-	const { data, loading } = useGetUserActivitiesQuery({
+	const { data, loading } = useUserActivityQuery({
 		variables: {
 			user_id: user.id
 		}
@@ -22,7 +23,7 @@ const UserActivityTab = (): JSX.Element => {
 	if (activities?.length < 1) return <NoResults label={'activity'} />;
 
 	return (
-		<Stack>
+		<Stack p={4}>
 			{activities?.map((activity) => (
 				<React.Fragment key={activity.idea_id}>
 					<ActivityItem {...activity} />
@@ -37,20 +38,18 @@ const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => (
 	<Flex p={0} flexDirection={'column'}>
 		<Flex justifyContent={'space-between'} alignItems={'flex-start'}>
 			<Flex flexDirection={'column'}>
-				<Label fontSize={'sm'} fontWeight={'md'}>
+				<SubLabel fontSize={'xs'} fontWeight={'md'} color={'gray.900'}>
 					{activity.description}
-				</Label>
+				</SubLabel>
 				<PrimaryLink
 					href={`/${activity?.url}`}
-					fontSize={'sm'}
+					fontSize={'xs'}
 					title={'Link to view the idea'}
 				>
 					View this {activity.type}
 				</PrimaryLink>
 			</Flex>
-			{/* <Text fontSize={'xs'} color={'fpGrey.300'}>
-				{formatDate(activity.created_at)}
-			</Text> */}
+			<CaptionLabel>{formatDate(activity.created_at, true)}</CaptionLabel>
 		</Flex>
 	</Flex>
 );

@@ -7,7 +7,7 @@ export const BaseButton = (props: BaseButtonProps): JSX.Element => {
 	const { children, size = 'sm', name, ...rest } = props;
 
 	return (
-		<Button {...rest} size={size} aria-label={name}>
+		<Button {...rest} size={size} aria-label={name} rounded={'sm'}>
 			{children}
 		</Button>
 	);

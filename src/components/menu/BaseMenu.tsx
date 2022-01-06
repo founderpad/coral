@@ -2,9 +2,9 @@ import { Button } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { BoxProps } from '@chakra-ui/layout';
 import { Menu, MenuButton, MenuList } from '@chakra-ui/react';
+import { IoEllipsisVertical } from 'components/icons';
 import { BoxLayout } from 'components/layouts';
 import React from 'react';
-import { IoEllipsisVertical } from 'react-icons/io5';
 import { BaseMenuItemProps } from './BaseMenuItem';
 
 export const BaseMenu = ({
@@ -16,8 +16,7 @@ export const BaseMenu = ({
 		| React.ReactElement<BaseMenuItemProps>[];
 	boxProps?: BoxProps;
 }): JSX.Element => (
-	<BoxLayout {...boxProps} p={0}>
-		{/* <Divider orientation={'vertical'} /> */}
+	<BoxLayout {...boxProps} p={0} ml={'auto'}>
 		<Menu>
 			<MenuButton
 				p={1}
@@ -32,12 +31,6 @@ export const BaseMenu = ({
 				<Icon as={IoEllipsisVertical} color={'gray.500'} />
 			</MenuButton>
 			<MenuList rounded={'none'} textAlign={'start'} minW={'auto'} p={0}>
-				{/* {options?.map((option, key) => (
-					<React.Fragment key={key}>
-						<MenuItemButton {...option} />
-						{option.divider && <MenuDivider my={0} />}
-					</React.Fragment>
-				))} */}
 				{children}
 			</MenuList>
 		</Menu>

@@ -70,8 +70,7 @@ const ResumeUploader = (): JSX.Element => {
 
 	return (
 		<FileUploader
-			boxSize={125}
-			pt={4}
+			boxSize={100}
 			label={'Drag/drop here'}
 			defaultSrc={userProfile?.resume}
 			onUpload={uploadResume}

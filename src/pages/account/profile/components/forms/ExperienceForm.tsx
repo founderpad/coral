@@ -1,8 +1,10 @@
-import { FormControl, FormLabel } from '@chakra-ui/form-control';
+import { FormControl } from '@chakra-ui/form-control';
 import { Stack } from '@chakra-ui/layout';
 import { Checkbox } from '@chakra-ui/react';
+import { FormLabelText } from 'components/form';
 import Form from 'components/form/Form';
 import { NumberField, SelectField, TextareaField } from 'components/input';
+import { Label } from 'components/labels';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import {
 	TUser_Profile,
@@ -16,6 +18,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setProfileComplete } from 'slices/auth';
 import {
+	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
 	industriesList,
 	STARTUP_STATUS
@@ -78,6 +81,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 			onSubmit={handleSubmit(updateUserProfileMutation)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}
+			stackProps={{ spacing: 10 }}
 		>
 			<TextareaField
 				id="background"
@@ -87,6 +91,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 				errorText="You must provide a background (max. 400 characters)"
 				name="background"
 				control={control}
+				minH={'100px'}
 				rules={{ maxLength: 400 }}
 				isRequired
 			/>
@@ -122,7 +127,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 					max={30}
 					isRequired
 				/>
-				<NumberField
+				{/* <NumberField
 					id="availability"
 					name="availability"
 					label="Availablility for new projects? (hours per week)"
@@ -132,6 +137,22 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 					min={0}
 					max={60}
 					isRequired
+				/> */}
+
+				<SelectField
+					id="availability"
+					name="availability"
+					options={AVAILABILITY_IN_HOURS.map((availability) => (
+						<option key={availability.key} value={availability.key}>
+							{availability.value}
+						</option>
+					))}
+					placeholder="capacity per week"
+					control={control}
+					label={'Capacity (hours per week)'}
+					helperText={
+						'How many hours you can contribute towards a new idea'
+					}
 				/>
 			</Stack>
 
@@ -160,9 +181,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 			/>
 
 			<FormControl>
-				<FormLabel as={'label'} fontSize={'sm'} color={'gray.600'}>
-					Your skills
-				</FormLabel>
+				<FormLabelText label={'Your skills'} />
 				{EXPERIENCE_SKILLS.map(
 					(es: string): JSX.Element => (
 						<Controller
@@ -177,12 +196,18 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 									p={2}
 									onChange={onSkillsToggle}
 									colorScheme={'fpPrimary'}
-									color={'fpGrey.700'}
+									color={'fpGrey.400'}
 									ref={ref}
-									size={'md'}
+									size={'sm'}
+									fontSize={'xs'}
 									isChecked={selectedSkills.includes(es)}
 								>
-									{es}
+									<Label
+										color={'gray.500'}
+										fontSize={'smaller'}
+									>
+										{es}
+									</Label>
 								</Checkbox>
 							)}
 							control={control}

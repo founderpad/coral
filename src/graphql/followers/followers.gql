@@ -1,0 +1,6 @@
+mutation FollowUser($following_id: uuid!) {
+	insert_user_followers_one(object: { following_id: $following_id }) {
+		following_id
+		follower_id
+	}
+}

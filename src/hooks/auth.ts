@@ -1,18 +1,19 @@
-import { QueryResult, useMutation, useQuery } from '@apollo/client';
-import ModalDrawerContext from 'context/ModalDrawerContext';
-import { TUsers, useGetUserLazyQuery } from 'generated/api';
-import { USER_GET_EXPERIENCE, USER_UPDATE_EXPERIENCE } from 'graphql/user';
+import { useAuth } from '@nhost/react-auth';
+import {
+	TUsers,
+	useUpdateUserLastLoggedInMutation,
+	useUserLazyQuery
+} from 'generated/api';
+import * as ga from 'lib/ga';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from 'slices/auth';
-import { IAuthFormData, IRegisterFormData, TExperience } from 'types/auth';
-import { UserType } from 'utils/Constants';
+import { IAuthFormData, IRegisterFormData } from 'types/auth';
 import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
 import { useErrorNotification, useSuccessNotification } from './toast';
 
-export const useRegister = (): any => {
+export const useRegister = () => {
 	const showErrorNotification = useErrorNotification();
 	const router = useRouter();
 
@@ -20,24 +21,33 @@ export const useRegister = (): any => {
 		email,
 		password,
 		firstName,
-		lastName,
-		type
+		lastName
 	}: IRegisterFormData): Promise<void> => {
 		try {
 			await auth.register({
 				email,
 				password,
 				options: {
-					userData: <{ display_name: string; user_type: UserType }>{
+					userData: <{ display_name: string }>{
 						display_name:
 							firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
-						user_type: type,
+						// user_type: type,
 						first_name: firstName?.trim(),
 						last_name: lastName?.trim()
 					}
 				}
 			});
 			router.push('/register/complete');
+
+			ga.event({
+				action: 'Register',
+				params: {
+					email,
+					display_name:
+						firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
+					user_registration_date: new Date()
+				}
+			});
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to create an account',
@@ -47,7 +57,7 @@ export const useRegister = (): any => {
 	};
 };
 
-export const useLogin = (): any => {
+export const useLogin = () => {
 	const showErrorNotification = useErrorNotification();
 	const [getAuthUser] = useGetAuthenticatedUser();
 
@@ -64,16 +74,17 @@ export const useLogin = (): any => {
 	};
 };
 
-export const useLogout = (): any => {
+export const useLogout = () => {
 	const showErrorNotification = useErrorNotification();
 	// const dispatch = useDispatch();
-	const router = useRouter();
+	// const client = usePushClient();
 
 	return async (): Promise<void> => {
 		try {
-			await router.replace('/loggedout');
 			await auth.logout();
-			// dispatch(clearUser());
+			// client.push(function () {
+			// 	client.removeExternalUserId();
+			// });
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to logout',
@@ -83,7 +94,7 @@ export const useLogout = (): any => {
 	};
 };
 
-export const useForgottenPassword = (): any => {
+export const useForgottenPassword = () => {
 	const showSuccessNotification = useSuccessNotification();
 	const showErrorNotification = useErrorNotification();
 
@@ -113,21 +124,48 @@ export const useForgottenPassword = (): any => {
 // 	getUser();
 // };
 
-export const useGetAuthenticatedUser = (): any => {
+export const useGetAuthenticatedUser = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 
-	return useGetUserLazyQuery({
+	const [updateUserLastLoggedIn] = useUpdateUserLastLoggedInMutation({
+		variables: {
+			id: auth.getClaim('x-hasura-user-id') as string,
+			lastLoggedIn: new Date()
+		}
+	});
+
+	return useUserLazyQuery({
 		variables: {
 			user_id: auth.getClaim('x-hasura-user-id') as string
 		},
 		onCompleted: (data) => {
-			const user = data.user;
-			dispatch(setUser(user as TUsers));
+			updateUserLastLoggedIn();
+			const user = data.user as TUsers;
+			dispatch(setUser(user));
 			router.replace('/ideas?page=1');
+
+			ga.event({
+				action: 'Login',
+				params: {
+					user_id: auth.getClaim('x-hasura-user-id') as string,
+					display_name: user.display_name,
+					user_email: user.account.email,
+					user_created_date: user.created_at,
+					user_login_date: new Date()
+				}
+			});
 		}
 	});
 };
+
+// const useUpdateLastLoggedInTime = (userId: string) => {
+// 	return useUpdateUserLastLoggedInMutation({
+// 		variables: {
+// 			id:
+// 		}
+// 	});
+// }
 
 // export const useUpdateProfile = (user_profile: TProfile) => {
 // 	const dispatch = useDispatch();
@@ -173,47 +211,22 @@ export const useGetAuthenticatedUser = (): any => {
 // 	});
 // };
 
-export const useGetExperience = (id: string): QueryResult<TExperience, any> => {
-	const response = useQuery(USER_GET_EXPERIENCE, {
-		variables: {
-			id: id
-		},
-		fetchPolicy: 'cache-first'
-	});
-
-	return { ...response, data: response.data?.profile as TExperience };
-};
-
-export const useUpdateExperience = (userExperience: TExperience): any => {
-	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const showSuccessNotification = useSuccessNotification();
-
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, id, user_id, ...rest } = userExperience;
-
-	return useMutation(USER_UPDATE_EXPERIENCE, {
-		variables: {
-			id: id,
-			userExperience: { ...rest }
-		},
-		onCompleted: (_data) => {
-			setModalDrawer({
-				isOpen: false
-			});
-			showSuccessNotification({
-				title: 'Your experience has been updated'
-			});
-		}
-	});
-};
-
 export const useCurrentUser = (): TUsers => {
-	return useSelector((state: RootState) => state.authSlice.user);
+	try {
+		return useSelector((state: RootState) => state.authSlice.user);
+	} catch (e) {
+		return undefined;
+	}
 };
 
-export const useClaim = (): string => {
-	return auth.getClaim('x-hasura-user-id') as string;
+export const useCheckLoggedIn = () => {
+	const { signedIn } = useAuth();
+	const router = useRouter();
+
+	if (signedIn) router.back();
 };
+
+export const useClaim = () => auth.getClaim('x-hasura-user-id') as string;
 
 // export const useUpdateUserAvatar = () => {
 // 	// return (filePath: string): any =>
