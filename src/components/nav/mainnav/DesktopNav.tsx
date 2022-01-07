@@ -63,7 +63,7 @@ const DesktopNav = memo(() => {
 					)}
 				</BasePopover>
 			))}
-			{!useUserProfile().is_complete && <ProfileNotSet />}
+			{!useUserProfile()?.isComplete && <ProfileNotSet />}
 		</StackLayout>
 	);
 });

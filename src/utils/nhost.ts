@@ -15,4 +15,6 @@ const nhostClient = new NhostClient({
 	backendUrl: process.env.NEXT_PUBLIC_BACKEND
 });
 
-export { nhostClient };
+const auth = nhostClient.auth;
+
+export { nhostClient, auth };

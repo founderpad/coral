@@ -13,7 +13,7 @@ const LoginForm = (): JSX.Element => {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<IAuthFormData>();
+	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
 
 	return (

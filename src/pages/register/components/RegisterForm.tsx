@@ -11,29 +11,18 @@ import { useForm } from 'react-hook-form';
 import { IRegisterFormData } from 'types/auth';
 import LegalFooter from './LegalFooter';
 
-// const userTypeOptions = () => (
-// 	<>
-// 		<option value={UserType.IDEAS}>Feedback on new idea</option>
-// 		<option value={UserType.STARTUP}>Join a startup</option>
-// 		<option value={UserType.BRAINSTORM}>Brainstorm other ideas</option>
-// 		{/* <option disabled /> */}
-// 		<option value={UserType.FOUNDER}>Become a founder</option>
-// 		{/* <option value={UserType.INVESTOR}>I am looking to invest</option> */}
-// 	</>
-// );
-
 const RegisterForm = (): JSX.Element => {
 	const {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<IRegisterFormData>();
+	} = useForm<IRegisterFormData>({ mode: 'all' });
 	const onRegister = useRegister();
 
 	return (
 		<Form
-			id={'register-form'}
-			name={'register-form'}
+			id={'registerUserForm'}
+			name={'registerUserForm'}
 			onSubmit={handleSubmit(onRegister)}
 		>
 			<InputField
@@ -49,8 +38,6 @@ const RegisterForm = (): JSX.Element => {
 			/>
 			<InputField
 				name="lastName"
-				// error={errors.lastName}
-				// errorText="Your last name must not be more than 20 characters."
 				placeholder="Last name"
 				control={control}
 				rules={{ minLength: 0, maxLength: 20 }}

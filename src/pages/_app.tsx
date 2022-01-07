@@ -3,7 +3,6 @@ import { offsetLimitPagination } from '@apollo/client/utilities';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
-import '@fontsource/sansita-swashed/600.css';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
 import BaseModal from 'components/modal/BaseModal';
@@ -20,7 +19,7 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import theme from 'theme';
-import { auth } from 'utils/nhost';
+import { nhostClient } from 'utils/nhost';
 import store from 'utils/store';
 import '../styles/globals.css';
 
@@ -45,12 +44,10 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
 			</Head>
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
-					<NhostAuthProvider auth={auth}>
+					<NhostAuthProvider nhost={nhostClient}>
 						<NhostApolloProvider
-							auth={auth}
-							gqlEndpoint={
-								process.env.NEXT_PUBLIC_GRAPHQL_BACKEND
-							}
+							nhost={nhostClient}
+							graphqlUrl={process.env.NEXT_PUBLIC_GRAPHQL_BACKEND}
 							cache={cache}
 						>
 							<ChakraProvider theme={theme} resetCSS>

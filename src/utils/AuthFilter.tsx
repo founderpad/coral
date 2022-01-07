@@ -1,17 +1,19 @@
-import { useAuth } from '@nhost/react-auth';
+/* eslint-disable prefer-rest-params */
+import { useNhostAuth } from '@nhost/react-auth';
 import MainLayout from 'components/layouts/MainLayout';
 import { Loading } from 'components/shared';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import React from 'react';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function AuthFilter(Component: any) {
-	return () => {
-		const { signedIn } = useAuth();
+	return (): JSX.Element => {
+		const { isAuthenticated } = useNhostAuth();
 		const router = useRouter();
 
-		if (signedIn === null) return <Loading />;
-		if (!signedIn) router.push('/login');
+		if (isAuthenticated === null) return <Loading />;
+		if (!isAuthenticated) router.push('/login');
 
 		return (
 			<React.Fragment>

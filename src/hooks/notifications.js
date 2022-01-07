@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useEffect } from 'react';
 import { useCurrentUser } from './auth';
 
@@ -10,7 +11,7 @@ export const usePushNotifications = () => {
 		window.OneSignal = window.OneSignal || [];
 		if (OneSignal) {
 			OneSignal.push(function () {
-				OneSignal.setExternalUserId(user.id);
+				OneSignal.setExternalUserId(user?.id);
 				OneSignal.init({
 					appId: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
 					safari_web_id:

@@ -1,14 +1,14 @@
 export type IAuthFormData = {
 	email: string;
 	password: string;
-}
+};
 
 export interface IRegisterFormData extends IAuthFormData {
 	firstName: string;
 	lastName: string;
-	type: string;
-	country: string;
-};
+	// type: string;
+	// country: string;
+}
 
 export type ProfileFormData = {
 	categories: string[];
@@ -22,7 +22,7 @@ export type ProfileFormData = {
 	userType: string;
 	startups: number;
 	status: string;
-	business_description: string;
+	businessDescription: string;
 	experience: string;
 };
 

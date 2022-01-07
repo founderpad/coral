@@ -16,7 +16,7 @@ import { useCurrentUser } from 'hooks/auth';
 import React from 'react';
 
 const UserMenu = (): JSX.Element => {
-	const user = useCurrentUser().avatar_url;
+	const user = useCurrentUser()?.avatarUrl;
 	return (
 		<Menu>
 			<MenuButton

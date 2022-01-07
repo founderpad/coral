@@ -1,9 +1,5 @@
-import { useAuth } from '@nhost/react-auth';
-import {
-	TUsers,
-	useUpdateUserLastLoggedInMutation,
-	useUserLazyQuery
-} from 'generated/api';
+import { useNhostAuth } from '@nhost/react-auth';
+import { TUsers, useUserLazyQuery } from 'generated/api';
 import * as ga from 'lib/ga';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,9 +7,9 @@ import { setUser } from 'slices/auth';
 import { IAuthFormData, IRegisterFormData } from 'types/auth';
 import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
-import { useErrorNotification, useSuccessNotification } from './toast';
+import { useErrorNotification } from './toast';
 
-export const useRegister = () => {
+export const useRegister = (): any => {
 	const showErrorNotification = useErrorNotification();
 	const router = useRouter();
 
@@ -24,20 +20,37 @@ export const useRegister = () => {
 		lastName
 	}: IRegisterFormData): Promise<void> => {
 		try {
-			await auth.register({
+			// await auth.register({
+			// 	email,
+			// 	password,
+			// 	options: {
+			// 		userData: <{ display_name: string }>{
+			// 			display_name:
+			// 				firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
+			// 			// user_type: type,
+			// 			first_name: firstName?.trim(),
+			// 			last_name: lastName?.trim()
+			// 		}
+			// 	}
+			// });
+			const signupResponse = await auth.signUp({
 				email,
 				password,
 				options: {
-					userData: <{ display_name: string }>{
-						display_name:
-							firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
-						// user_type: type,
-						first_name: firstName?.trim(),
-						last_name: lastName?.trim()
-					}
+					displayName:
+						firstName?.trim() + ' ' + (lastName?.trim() ?? '')
 				}
+				// options: {
+				// 	// userData: <{ display_name: string }>{
+				// 	// 	display_name:
+				// 	// 		firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
+				// 	// 	// user_type: type,
+				// 	// 	first_name: firstName?.trim(),
+				// 	// 	last_name: lastName?.trim()
+				// 	// }
 			});
-			router.push('/register/complete');
+
+			if (!signupResponse.error) router.push('/register/complete');
 
 			ga.event({
 				action: 'Register',
@@ -63,7 +76,8 @@ export const useLogin = () => {
 
 	return async ({ email, password }: IAuthFormData): Promise<void> => {
 		try {
-			await auth.login({ email, password });
+			// await auth.login({ email, password });
+			await auth.signIn({ email, password });
 			getAuthUser();
 		} catch (error) {
 			showErrorNotification({
@@ -74,14 +88,14 @@ export const useLogin = () => {
 	};
 };
 
-export const useLogout = () => {
+export const useLogout = (): any => {
 	const showErrorNotification = useErrorNotification();
 	// const dispatch = useDispatch();
 	// const client = usePushClient();
 
 	return async (): Promise<void> => {
 		try {
-			await auth.logout();
+			await auth.signOut();
 			// client.push(function () {
 			// 	client.removeExternalUserId();
 			// });
@@ -94,25 +108,24 @@ export const useLogout = () => {
 	};
 };
 
-export const useForgottenPassword = () => {
-	const showSuccessNotification = useSuccessNotification();
-	const showErrorNotification = useErrorNotification();
+// export const useForgottenPassword = () => {
+// 	const showSuccessNotification = useSuccessNotification();
+// 	const showErrorNotification = useErrorNotification();
 
-	return async ({ email }: Pick<IAuthFormData, 'email'>): Promise<void> => {
-		try {
-			await auth.requestPasswordChange(email);
-			showSuccessNotification({
-				title: 'Password reset email sent',
-				description: "We've sent you an email to reset you password."
-			});
-		} catch (error) {
-			showErrorNotification({
-				title: 'Failed to send password reset email',
-				description: 'Please try again later.'
-			});
-		}
-	};
-};
+// 	return async ({ email }: Pick<IAuthFormData, 'email'>): Promise<void> => {
+// 		try {
+// 			showSuccessNotification({
+// 				title: 'Password reset email sent',
+// 				description: "We've sent you an email to reset you password."
+// 			});
+// 		} catch (error) {
+// 			showErrorNotification({
+// 				title: 'Failed to send password reset email',
+// 				description: 'Please try again later.'
+// 			});
+// 		}
+// 	};
+// };
 
 // export const useGetUser = (userId: string): any => {
 // 	const [getUser, { loading, data }] = useLazyQuery(GET_USER, {
@@ -127,20 +140,21 @@ export const useForgottenPassword = () => {
 export const useGetAuthenticatedUser = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
+	// const { id }
 
-	const [updateUserLastLoggedIn] = useUpdateUserLastLoggedInMutation({
-		variables: {
-			id: auth.getClaim('x-hasura-user-id') as string,
-			lastLoggedIn: new Date()
-		}
-	});
+	// const [updateUserLastLoggedIn] = useUpdateUserLastLoggedInMutation({
+	// 	variables: {
+	// 		id: auth.getUser().id,
+	// 		lastLoggedIn: new Date()
+	// 	}
+	// });
 
 	return useUserLazyQuery({
 		variables: {
-			user_id: auth.getClaim('x-hasura-user-id') as string
+			userId: auth.getUser()?.id
 		},
 		onCompleted: (data) => {
-			updateUserLastLoggedIn();
+			// updateUserLastLoggedIn();
 			const user = data.user as TUsers;
 			dispatch(setUser(user));
 			router.replace('/ideas?page=1');
@@ -148,10 +162,10 @@ export const useGetAuthenticatedUser = () => {
 			ga.event({
 				action: 'Login',
 				params: {
-					user_id: auth.getClaim('x-hasura-user-id') as string,
-					display_name: user.display_name,
-					user_email: user.account.email,
-					user_created_date: user.created_at,
+					user_id: auth.getUser().id,
+					display_name: user.displayName,
+					user_email: user.email,
+					user_created_date: user.createdAt,
 					user_login_date: new Date()
 				}
 			});
@@ -219,14 +233,14 @@ export const useCurrentUser = (): TUsers => {
 	}
 };
 
-export const useCheckLoggedIn = () => {
-	const { signedIn } = useAuth();
+export const useCheckLoggedIn = (): void => {
+	const { isAuthenticated } = useNhostAuth();
 	const router = useRouter();
 
-	if (signedIn) router.back();
+	if (isAuthenticated) router.back();
 };
 
-export const useClaim = () => auth.getClaim('x-hasura-user-id') as string;
+export const useClaim = (): string => auth.getUser()?.id;
 
 // export const useUpdateUserAvatar = () => {
 // 	// return (filePath: string): any =>

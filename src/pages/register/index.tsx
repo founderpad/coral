@@ -1,14 +1,12 @@
-import { useAuth } from '@nhost/react-auth';
 import AuthLayout from 'components/layouts/AuthLayout';
-import { useRouter } from 'next/router';
 import React from 'react';
 import RegisterForm from './components/RegisterForm';
 
 const Register = (): JSX.Element => {
-	const { signedIn } = useAuth();
-	const router = useRouter();
+	// const { signedIn } = useAuth();
+	// const router = useRouter();
 
-	if (signedIn) router.push('/ideas?page=1');
+	// if (signedIn) router.push('/ideas?page=1');
 	return (
 		<AuthLayout
 			header="Register an account to get started"
