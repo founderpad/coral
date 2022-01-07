@@ -1,0 +1,4 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- ALTER TABLE ONLY public.idea_comment_replies
+--     ADD CONSTRAINT idea_replies_comment_id_fkey FOREIGN KEY (comment_id) REFERENCES public.idea_comments(id) ON UPDATE RESTRICT ON DELETE CASCADE;

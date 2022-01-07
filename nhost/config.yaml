@@ -1,29 +1,137 @@
-version: 2
 metadata_directory: metadata
-hasura_graphql_version: v2.0.10
-hasura_graphql_port: 8080
-hasura_graphql_admin_secret: 123456
-hasura_backend_plus_version: v2.4.0
-hasura_backend_plus_port: 9001
-postgres_version: 12-v0.0.3
-postgres_port: 5432
-postgres_user: postgres
-postgres_password: postgres
-postgres_image: postgres
-minio_port: 9000
-api_port: 4000
-env_file: ../.env.development
-provider_success_redirect: 'http://localhost:3000'
-provider_failure_redirect: 'http://localhost:3000/login-fail'
-google_enable: false
-google_client_id: ''
-google_client_secret: ''
-github_enable: false
-github_client_id: ''
-github_client_secret: ''
-facebook_enable: false
-facebook_client_id: ''
-facebook_client_secret: ''
-linkedin_enable: false
-linkedin_client_id: ''
-linkedin_client_secret: ''
+services:
+  hasura:
+    environment:
+      hasura_graphql_enable_remote_schema_permissions: false
+  minio:
+    environment:
+      minio_root_password: minioaccesskey123123
+      minio_root_user: minioaccesskey123123
+  postgres:
+    environment:
+      postgres_password: postgres
+      postgres_user: postgres
+auth:
+  access_control:
+    email:
+      allowed_email_domains: ""
+      allowed_emails: ""
+      blocked_email_domains: ""
+      blocked_emails: ""
+    url:
+      allowed_redirect_urls: ""
+  anonymous_users_enabled: false
+  client_url: http://localhost:3000
+  disable_new_users: false
+  email:
+    enabled: false
+    passwordless:
+      enabled: false
+    signin_email_verified_required: true
+    template_fetch_url: ""
+  gravatar:
+    default: ""
+    enabled: true
+    rating: ""
+  locale:
+    allowed: en
+    default: en
+  password:
+    hibp_enabled: false
+    min_length: 3
+  provider:
+    apple:
+      client_id: ""
+      enabled: false
+      key_id: ""
+      private_key: ""
+      scope: name,email
+      team_id: ""
+    bitbucket:
+      client_id: ""
+      client_secret: ""
+      enabled: false
+    facebook:
+      client_id: ""
+      client_secret: ""
+      enabled: false
+      scope: email,photos,displayName
+    github:
+      client_id: ""
+      client_secret: ""
+      enabled: false
+      scope: user:email
+      token_url: ""
+      user_profile_url: ""
+    gitlab:
+      base_url: ""
+      client_id: ""
+      client_secret: ""
+      enabled: false
+      scope: read_user
+    google:
+      client_id: ""
+      client_secret: ""
+      enabled: false
+      scope: email,profile
+    linkedin:
+      client_id: ""
+      client_secret: ""
+      enabled: false
+      scope: r_emailaddress,r_liteprofile
+    spotify:
+      client_id: ""
+      client_secret: ""
+      enabled: false
+      scope: user-read-email,user-read-private
+    strava:
+      client_id: ""
+      client_secret: ""
+      enabled: false
+    twilio:
+      account_sid: ""
+      auth_token: ""
+      enabled: false
+      messaging_service_id: ""
+    twitter:
+      consumer_key: ""
+      consumer_secret: ""
+      enabled: false
+    windows_live:
+      client_id: ""
+      client_secret: ""
+      enabled: false
+      scope: wl.basic,wl.emails,wl.contacts_emails
+  sms:
+    enabled: false
+    passwordless:
+      enabled: false
+    provider:
+      twilio:
+        account_sid: ""
+        auth_token: ""
+        from: ""
+        messaging_service_id: ""
+  smtp:
+    host: nhost_mailhog
+    method: ""
+    pass: password
+    port: 1982
+    secure: false
+    sender: hasura-auth@example.com
+    user: user
+  token:
+    access:
+      expires_in: 900
+    refresh:
+      expires_in: 43200
+  user:
+    allowed_roles: user,me
+    default_allowed_roles: user,me
+    default_role: user
+    mfa:
+      enabled: false
+      issuer: nhost
+storage:
+  force_download_for_content_types: text/html,application/javascript
+version: 3

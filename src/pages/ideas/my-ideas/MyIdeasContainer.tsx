@@ -66,11 +66,11 @@ const MyIdeasContainer = () => {
 								<PublishedLabel
 									isPublished={idea?.is_published}
 								/>
-								{idea?.number_of_interested > 0 && (
+								{idea?.total_interested > 0 && (
 									<React.Fragment>
 										<PointSeparator small />
 										<InterestedTotal
-											total={idea.number_of_interested}
+											total={idea.total_interested}
 										/>
 									</React.Fragment>
 								)}

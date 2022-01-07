@@ -1,0 +1,8 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- CREATE TABLE public.user_followers (
+--     follower_id uuid,
+--     following_id uuid,
+--     status text,
+--     PRIMARY KEY (follower_id, following_id)
+-- );

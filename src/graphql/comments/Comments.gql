@@ -1,6 +1,6 @@
 mutation PostComment($ideaComment: idea_comments_insert_input!) {
 	addIdeaComment: insert_idea_comments_one(object: $ideaComment) {
-		idea_id
+		ideaId
 		id
 		value
 	}
@@ -11,7 +11,7 @@ mutation PostReply(
 	$commentId: uuid!
 ) {
 	addIdeaReply: insert_idea_comment_replies_one(object: $ideaReply) {
-		comment_id
+		commentId
 		id
 		value
 	}
@@ -25,27 +25,28 @@ mutation PostReply(
 
 query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 	comments: idea_comments(
-		where: { idea_id: { _eq: $ideaId } }
-		order_by: { updated_at: desc }
+		where: { ideaId: { _eq: $ideaId } }
+		order_by: { updatedAt: desc }
 		offset: $offset
 		limit: 8
 	) {
 		id
-		updated_at
+		updatedAt
 		value
-		idea_id
+		ideaId
 		totalReplies
 		user {
 			id
-			first_name
-			avatar_url
-			account {
-				email
-			}
+			firstName
+			avatarUrl
+			email
+			# account {
+			# 	email
+			# }
 		}
 	}
 	totalComments: idea_comments_aggregate(
-		where: { idea_id: { _eq: $ideaId } }
+		where: { ideaId: { _eq: $ideaId } }
 	) {
 		aggregate {
 			count(columns: id)
@@ -79,20 +80,21 @@ query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 
 query RepliesForComment($commentId: uuid!) {
 	replies: idea_comment_replies(
-		where: { comment_id: { _eq: $commentId } }
-		order_by: { updated_at: asc }
+		where: { commentId: { _eq: $commentId } }
+		order_by: { updatedAt: asc }
 	) {
 		id
-		comment_id
+		commentId
 		value
-		updated_at
+		updatedAt
 		user {
 			id
-			first_name
-			avatar_url
-			account {
-				email
-			}
+			firstName
+			avatarUrl
+			email
+			# account {
+			# 	email
+			# }
 		}
 	}
 }

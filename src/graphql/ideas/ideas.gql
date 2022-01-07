@@ -11,12 +11,12 @@ mutation UpdateIdea($idea: ideas_set_input!, $id: uuid!) {
 		name
 		description
 		field
-		mission_statement
+		missionStatement
 		competitors
 		team
-		additional_information
-		is_published
-		user_id
+		additionalInformation
+		isPublished
+		userId
 		status
 	}
 }
@@ -27,15 +27,15 @@ mutation DeleteIdea($id: uuid!) {
 	}
 }
 
-mutation CreateInterestedIdea($ideaId: uuid!, $targetUserId: uuid!) {
+mutation CreateInterestedIdea($ideaId: uuid!, $targetedUserId: uuid!) {
 	insert_interested_ideas_one(
-		object: { idea_id: $ideaId, target_user_id: $targetUserId }
+		object: { ideaId: $ideaId, targetedUserId: $targetedUserId }
 	) {
-		idea_id
+		ideaId
 	}
 	update_ideas_by_pk(
 		pk_columns: { id: $ideaId }
-		_inc: { number_of_interested: 1 }
+		_inc: { totalInterested: 1 }
 	) {
 		id
 	}
@@ -64,18 +64,19 @@ query Ideas(
 		preview
 		field
 		status
-		createdAt
-		isNew
-		totalInterest
-		totalComments
+		created_at
+		is_new
+		total_interested
+		total_comments
 		user {
-			first_name
+			firstName
 			country
 			id
-			avatar_url
-			account {
-				email
-			}
+			avatarUrl
+			email
+			# account {
+			# 	email
+			# }
 		}
 		votes_aggregate {
 			aggregate {
@@ -87,7 +88,7 @@ query Ideas(
 				count(columns: id)
 			}
 		}
-		votes(where: { user_id: { _eq: $userId } }) {
+		votes(where: { userId: { _eq: $userId } }) {
 			id
 		}
 	}
@@ -95,16 +96,16 @@ query Ideas(
 
 query UserIdeas($userId: uuid!) {
 	user_ideas: ideas(
-		where: { user_id: { _eq: $userId } }
-		order_by: { created_at: desc }
+		where: { userId: { _eq: $userId } }
+		order_by: { createdAt: desc }
 	) {
 		id
 		name
-		created_at
-		is_published
-		number_of_interested
-		number_of_upvotes
-		number_of_comments
+		createdAt
+		isPublished
+		totalInterested
+		totalUpvotes
+		totalComments
 	}
 }
 
@@ -116,17 +117,17 @@ query Idea($id: uuid!, $userId: uuid!) {
 		field
 		competitors
 		team
-		additional_information
-		is_published
-		user_id
+		additionalInformation
+		isPublished
+		userId
 		status
-		created_at
-		number_of_interested
-		number_of_comments
-		number_of_upvotes
+		createdAt
+		totalInterested
+		totalComments
+		totalUpvotes
 		user {
-			avatar_url
-			first_name
+			avatarUrl
+			firstName
 			country
 			location
 			id
@@ -136,29 +137,30 @@ query Idea($id: uuid!, $userId: uuid!) {
 				count(columns: id)
 			}
 		}
-		votes(where: { user_id: { _eq: $userId } }) {
+		votes(where: { userId: { _eq: $userId } }) {
 			id
 		}
 	}
-	hasInterest: interested_ideas_by_pk(idea_id: $id, user_id: $userId) {
+	hasInterest: interested_ideas_by_pk(ideaId: $id, userId: $userId) {
 		id
 	}
 }
 
 query IdeaInterestedUsers($ideaId: uuid!) {
 	interested_users: interested_ideas(
-		where: { idea_id: { _eq: $ideaId } }
-		order_by: { created_at: desc }
+		where: { ideaId: { _eq: $ideaId } }
+		order_by: { createdAt: desc }
 	) {
 		id
-		created_at
+		createdAt
 		user {
 			id
-			display_name
-			avatar_url
-			account {
-				email
-			}
+			displayName
+			avatarUrl
+			email
+			# account {
+			# 	email
+			# }
 		}
 	}
 }
@@ -166,13 +168,13 @@ query IdeaInterestedUsers($ideaId: uuid!) {
 mutation InsertIdeaUpvote($idea_vote: idea_votes_insert_input!) {
 	insert_idea_votes_one(object: $idea_vote) {
 		id
-		idea_id
+		ideaId
 	}
 }
 
-mutation DeleteIdeaUpvote($idea_id: uuid!, $user_id: uuid!) {
+mutation DeleteIdeaUpvote($ideaId: uuid!, $userId: uuid!) {
 	delete_idea_votes(
-		where: { user_id: { _eq: $user_id }, idea_id: { _eq: $idea_id } }
+		where: { userId: { _eq: $userId }, ideaId: { _eq: $ideaId } }
 	) {
 		affected_rows
 	}

@@ -1,10 +1,10 @@
-query UserActivity($user_id: uuid!) {
-	activity(where: { user_id: { _eq: $user_id } }) {
-		idea_id
+query UserActivity($userId: uuid!) {
+	activity(where: { userId: { _eq: $userId } }) {
+		ideaId
 		event
 		description
 		url
 		type
-		created_at
+		createdAt
 	}
 }

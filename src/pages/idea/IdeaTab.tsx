@@ -56,7 +56,7 @@ const IdeaTab = () => {
 		status,
 		field,
 		id,
-		number_of_interested,
+		total_interested,
 		is_published
 	} = idea ?? {};
 	const { avatar_url, first_name } = user;
@@ -100,12 +100,10 @@ const IdeaTab = () => {
 							alignItems={'center'}
 						>
 							<PublishedLabel isPublished={is_published} />
-							{number_of_interested > 0 && (
+							{total_interested > 0 && (
 								<React.Fragment>
 									<PointSeparator small />
-									<InterestedTotal
-										total={number_of_interested}
-									/>
+									<InterestedTotal total={total_interested} />
 								</React.Fragment>
 							)}
 							<PointSeparator small />

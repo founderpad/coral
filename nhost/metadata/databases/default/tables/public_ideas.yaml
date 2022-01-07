@@ -1,0 +1,110 @@
+table:
+  name: ideas
+  schema: public
+configuration:
+  custom_column_names:
+    additional_information: additionalInformation
+    business_plan: businessPlan
+    created_at: createdAt
+    description_preview: descriptionPreview
+    is_published: isPublished
+    mission_statement: missionStatement
+    total_comments: totalComments
+    total_interested: totalInterested
+    total_upvotes: totalUpvotes
+    updated_at: updatedAt
+    user_id: userId
+  custom_root_fields: {}
+object_relationships:
+- name: user
+  using:
+    foreign_key_constraint_on: user_id
+array_relationships:
+- name: comments
+  using:
+    foreign_key_constraint_on:
+      column: idea_id
+      table:
+        name: idea_comments
+        schema: public
+- name: votes
+  using:
+    foreign_key_constraint_on:
+      column: idea_id
+      table:
+        name: idea_votes
+        schema: public
+insert_permissions:
+- permission:
+    backend_only: false
+    check:
+      user_id:
+        _eq: X-Hasura-User-Id
+    columns:
+    - additional_information
+    - business_plan
+    - competitors
+    - description
+    - description_preview
+    - field
+    - is_published
+    - mission_statement
+    - name
+    - status
+    - team
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - is_published
+    - description_preview
+    - total_comments
+    - total_interested
+    - total_upvotes
+    - additional_information
+    - business_plan
+    - competitors
+    - description
+    - field
+    - mission_statement
+    - name
+    - status
+    - team
+    - created_at
+    - updated_at
+    - id
+    - user_id
+    filter: {}
+  role: user
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - additional_information
+    - business_plan
+    - competitors
+    - description
+    - field
+    - is_published
+    - mission_statement
+    - name
+    - status
+    - team
+    - total_comments
+    - total_interested
+    - total_upvotes
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+delete_permissions:
+- permission:
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+  role: user
