@@ -1,7 +1,7 @@
 /* eslint-disable prefer-rest-params */
-import { useNhostAuth } from '@nhost/react-auth';
 import MainLayout from 'components/layouts/MainLayout';
 import { Loading } from 'components/shared';
+import { useAuth } from 'hooks/auth';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import React from 'react';
@@ -9,7 +9,7 @@ import React from 'react';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function AuthFilter(Component: any) {
 	return (): JSX.Element => {
-		const { isAuthenticated } = useNhostAuth();
+		const { isAuthenticated } = useAuth();
 		const router = useRouter();
 
 		if (isAuthenticated === null) return <Loading />;
