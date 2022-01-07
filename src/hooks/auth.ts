@@ -33,7 +33,7 @@ export const useRegister = (): any => {
 			// 		}
 			// 	}
 			// });
-			const signupResponse = await auth.signUp({
+			const response = await auth.signUp({
 				email,
 				password,
 				options: {
@@ -50,7 +50,14 @@ export const useRegister = (): any => {
 				// 	// }
 			});
 
-			if (!signupResponse.error) router.push('/register/complete');
+			if (response.error) {
+				showErrorNotification({
+					title: 'Failed to register account',
+					description: 'Please try again later.'
+				});
+			} else {
+				router.push('/register/complete');
+			}
 
 			ga.event({
 				action: 'Register',
@@ -70,20 +77,23 @@ export const useRegister = (): any => {
 	};
 };
 
-export const useLogin = () => {
+export const useLogin = (): any => {
 	const showErrorNotification = useErrorNotification();
 	const [getAuthUser] = useGetAuthenticatedUser();
 
 	return async ({ email, password }: IAuthFormData): Promise<void> => {
 		try {
-			// await auth.login({ email, password });
-			await auth.signIn({ email, password });
-			getAuthUser();
+			const response = await auth.signIn({ email, password });
+			if (response.error) {
+				showErrorNotification({
+					title: 'Failed to login',
+					description: response.error.message
+				});
+			} else {
+				getAuthUser();
+			}
 		} catch (error) {
-			showErrorNotification({
-				title: 'Failed to login',
-				description: 'Incorrect email and/or password.'
-			});
+			throw 'An error has occurred';
 		}
 	};
 };
