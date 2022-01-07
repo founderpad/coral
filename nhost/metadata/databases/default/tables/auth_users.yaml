@@ -12,7 +12,6 @@ configuration:
     email: email
     email_verified: emailVerified
     first_name: firstName
-    id: id
     is_anonymous: isAnonymous
     last_logged_in: lastLoggedIn
     last_name: lastName

@@ -79,6 +79,7 @@ export const CurrentUserAvatarDetails = memo(
 		direction?: StackProps['direction'];
 	}): JSX.Element => {
 		const user = useCurrentUser();
+		console.log('user: ', user);
 		// const { firstName, lastName, avatarUrl, email } = user;
 
 		if (user)

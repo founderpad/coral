@@ -14,7 +14,7 @@ import Head from 'next/head';
 import DrawerProvider from 'provider/DrawerProvider';
 import ModalDrawerProvider from 'provider/ModalDrawerProvider';
 import ModalProvider from 'provider/ModalProvider';
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -34,7 +34,7 @@ const persistor = persistStore(store);
  * @returns
  * @author jlee
  */
-const App = ({ Component, pageProps }: AppProps): ReactElement => {
+const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	useTrackAnalytics();
 
 	return (

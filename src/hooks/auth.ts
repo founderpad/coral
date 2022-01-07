@@ -56,7 +56,7 @@ export const useRegister = (): any => {
 					description: 'Please try again later.'
 				});
 			} else {
-				router.push('/register/complete');
+				router.push('/login');
 			}
 
 			ga.event({
