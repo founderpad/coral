@@ -247,7 +247,7 @@ export const useCheckLoggedIn = (): void => {
 	const { isAuthenticated } = useNhostAuth();
 	const router = useRouter();
 
-	if (isAuthenticated) router.back();
+	if (isAuthenticated) router.push('/ideas?page=1');
 };
 
 export const useClaim = (): string => auth.getUser()?.id;

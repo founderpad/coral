@@ -1,15 +1,11 @@
-import { useNhostAuth } from '@nhost/react-auth';
 import AuthLayout from 'components/layouts/AuthLayout';
+import { useCheckLoggedIn } from 'hooks/auth';
 import { NextPage } from 'next';
-import { useRouter } from 'next/router';
 import React from 'react';
 import LoginForm from './components/LoginForm';
 
 const Login: NextPage = () => {
-	const { isAuthenticated } = useNhostAuth();
-	const router = useRouter();
-
-	if (isAuthenticated) router.push('/ideas?page=1');
+	useCheckLoggedIn();
 
 	return (
 		<AuthLayout header="Log in to founderpad" title="Log in">
