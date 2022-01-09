@@ -17,20 +17,20 @@ import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
 
-const WorkExperienceTab = (): JSX.Element => {
+const WorkExperienceTab = () => {
 	const userProfile = useProfileFragment();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const {
-		specialist_industry,
+		specialistIndustry,
 		startups,
 		statement,
 		status,
 		availability,
-		business_description,
+		businessDescription,
 		background,
 		skills
-	} = userProfile ?? {};
+	} = userProfile || {};
 
 	const onClick = () => {
 		setModalDrawer({
@@ -63,7 +63,7 @@ const WorkExperienceTab = (): JSX.Element => {
 				tags={[
 					{
 						title: 'Specialist field',
-						value: specialist_industry ?? 'Not set',
+						value: specialistIndustry ?? 'Not set',
 						icon: IoBulbSharp
 					},
 					{
@@ -99,7 +99,7 @@ const WorkExperienceTab = (): JSX.Element => {
 				/>
 				<ContentFieldAndValue
 					title={'Overview of businesses'}
-					value={business_description ?? 'Not set'}
+					value={businessDescription ?? 'Not set'}
 				/>
 				<ContentFieldAndValue
 					title={'Skills'}

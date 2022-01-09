@@ -18,12 +18,13 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 	const user = useCurrentUser();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const {
-		first_name,
-		last_name,
+		firstName,
+		lastName,
 		location,
 		country,
-		created_at,
-		account: { email }
+		createdAt,
+		displayName,
+		email
 	} = user;
 
 	const onClick = () => {
@@ -49,7 +50,8 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 			<UserImageUploader />
 			<StackLayout {...props} spacing={2} w={'full'}>
 				<TitleEditAction
-					title={`${first_name} ${last_name}`}
+					// title={`${first_name} ${last_name}`}
+					title={displayName}
 					onClick={onClick}
 				/>
 
@@ -66,7 +68,7 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 					icon={IoLocationSharp}
 				/>
 				<ProfileSectionLabel
-					label={`Joined ` + formatDate(created_at, true)}
+					label={`Joined ` + formatDate(createdAt, true)}
 					icon={IoTimeSharp}
 				/>
 				<SocialMediaDetails />

@@ -5,15 +5,14 @@ import { useCurrentUser } from 'hooks/auth';
 import { useSuccessNotification } from 'hooks/toast';
 import { cache } from 'pages/_app';
 import { useEffect, useState } from 'react';
-import { auth, storage } from 'utils/nhost';
 
 const ResumeUploader = (): JSX.Element => {
 	const showSuccessNotification = useSuccessNotification();
 	const [filePath, setFilePath] = useState(undefined);
-	const { user_profile } = useCurrentUser();
+	const { profile } = useCurrentUser();
 
 	const userProfile = cache.readFragment({
-		id: `user_profile:${user_profile.id}`, // The value of the profile's cache id
+		id: `user_profile:${profile.id}`, // The value of the profile's cache id
 		fragment: gql`
 			fragment ResumeFragment on user_profile {
 				id
@@ -28,7 +27,7 @@ const ResumeUploader = (): JSX.Element => {
 
 	const [updateResumeMutation] = useUpdateResumeMutation({
 		variables: {
-			id: user_profile.id,
+			id: profile.id,
 			resume: {
 				resume: filePath
 			}
@@ -45,27 +44,27 @@ const ResumeUploader = (): JSX.Element => {
 	const uploadResume = async (resume: File) => {
 		const extension = resume?.name.split('.').pop();
 		const timestamp = new Date().getTime();
-		const filePath =
-			`/public/resumes/${
-				auth.getClaim('x-hasura-user-id') as string
-			}.${extension}?v=` + timestamp;
+		// const filePath =
+		// 	`/public/resumes/${
+		// 		auth.getClaim('x-hasura-user-id') as string
+		// 	}.${extension}?v=` + timestamp;
 
-		try {
-			await storage.put(filePath, resume, null, (_d: any) => {
-				setFilePath(filePath);
-			});
-		} catch (e) {
-			console.error(e);
-		}
+		// try {
+		// 	await storage.put(filePath, resume, null, (_d: any) => {
+		// 		setFilePath(filePath);
+		// 	});
+		// } catch (e) {
+		// 	console.error(e);
+		// }
 	};
 
 	const deleteResume = async (path: string) => {
-		try {
-			await storage.delete(path);
-			setFilePath(null);
-		} catch (e) {
-			console.error(e);
-		}
+		// try {
+		// 	await storage.delete(path);
+		// 	setFilePath(null);
+		// } catch (e) {
+		// 	console.error(e);
+		// }
 	};
 
 	return (

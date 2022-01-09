@@ -2,8 +2,7 @@
 import { useEffect } from 'react';
 import { useCurrentUser } from './auth';
 
-// app id: b40b7cc7-13dc-4662-8b48-efa668f9b72a
-
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const usePushNotifications = () => {
 	const user = useCurrentUser();
 
@@ -28,22 +27,14 @@ export const usePushNotifications = () => {
 				});
 			});
 		}
-
-		// return () => {
-		// 	window.OneSignal = undefined;
-		// };
 	}, []);
 
 	useEffect(() => {
 		if (!user) {
-			window.OneSignal = window.OneSignal || [];
 			OneSignal.push(function () {
 				OneSignal.removeExternalUserId();
 			});
+			window.OneSignal = undefined;
 		}
 	}, [user]);
-};
-
-export const usePushClient = () => {
-	return OneSignal;
 };

@@ -2,20 +2,21 @@ import { PageLayout } from 'components/layouts';
 import { DocumentTitle, LastUpdatedAt } from 'components/shared';
 import { useUserExperienceQuery } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
+import { NextPage } from 'next';
 import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 import ProfileLayout from './layout/ProfileLayout';
 
-const Profile = () => {
+const Profile: NextPage = () => {
 	const user = useCurrentUser();
 
 	const { data } = useUserExperienceQuery({
 		variables: {
-			id: user?.user_profile.id
+			id: user?.profile.id
 		}
 	});
 
-	const updatedAt = data?.profile.updated_at;
+	const updatedAt = data?.profile.updatedAt;
 
 	return (
 		<React.Fragment>

@@ -18,7 +18,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 
-type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'idea_comments'>;
+type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'comments'>;
 
 // type TEditIdea = Omit<TIdeas_Insert_Input, 'votes'>;
 
@@ -34,7 +34,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 		mode: 'all',
 		defaultValues: {
 			...idea,
-			is_published: true
+			isPublished: true
 		}
 	});
 
@@ -47,8 +47,8 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 				action: 'Create idea',
 				params: {
 					user_id: user.id,
-					display_name: user.display_name,
-					user_email: user.account.email,
+					display_name: user.displayName,
+					user_email: user.email,
 					idea_id: idea.id,
 					idea_name: idea.name
 				}
@@ -144,12 +144,12 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 				rules={{ maxLength: 200 }}
 			/>
 			<TextareaField
-				id="additional_information"
+				id="additionalInformation"
 				label="Additional information"
-				name="additional_information"
+				name="additionalInformation"
 				placeholder="Any additional information"
 				control={control}
-				error={errors['additional_information']}
+				error={errors['additionalInformation']}
 				errorText="Additional information must not be more than 200 characters"
 				rules={{ maxLength: 200 }}
 			/>

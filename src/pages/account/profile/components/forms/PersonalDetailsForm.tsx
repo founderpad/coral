@@ -16,6 +16,13 @@ import { updatePersonalDetails } from 'slices/auth';
 import { countriesList } from 'utils/Constants';
 import { auth } from 'utils/nhost';
 
+// type InputProperties = keyof TUsers_Set_Input
+
+type PersonalDetailsinput = Pick<
+	TUsers_Set_Input,
+	'firstName' | 'lastName' | 'country' | 'location'
+>;
+
 const PersonalDetailsForm = (): ReactElement<any> => {
 	const user = useCurrentUser();
 
@@ -29,12 +36,7 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 		getValues,
 		watch,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<
-		Pick<
-			TUsers_Set_Input,
-			'first_name' | 'last_name' | 'country' | 'location'
-		>
-	>({
+	} = useForm<PersonalDetailsinput>({
 		mode: 'all',
 		defaultValues: {
 			...user
@@ -45,10 +47,10 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 
 	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
 		variables: {
-			id: auth.getClaim('x-hasura-user-id') as string,
+			id: auth.getAccessToken(),
 			userPersonalDetails: {
-				first_name: getValues('first_name'),
-				last_name: getValues('last_name'),
+				firstName: getValues('firstName'),
+				lastName: getValues('lastName'),
 				country: getValues('country'),
 				location: getValues('location')
 			}
@@ -75,7 +77,7 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 			isValid={isValid}
 		>
 			<InputField
-				id="first_name"
+				id="firstName"
 				label="First name"
 				placeholder="First name"
 				error={errors['first_name']}
@@ -85,7 +87,7 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 				isRequired
 			/>
 			<InputField
-				id="last_name"
+				id="lastName"
 				label="Last name"
 				placeholder="Last name"
 				error={errors['last_name']}

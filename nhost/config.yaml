@@ -116,9 +116,9 @@ auth:
         host: nhost_mailhog
         method: ''
         pass: password
-        port: 1982
+        port: 1725
         secure: false
-        sender: hasura-auth@example.com
+        sender: verify-account@localhost.com
         user: user
     token:
         access:

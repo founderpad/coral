@@ -14,9 +14,6 @@ query UserProfileDetails($userId: uuid!) {
 		avatarUrl
 		createdAt
 		lastLoggedIn
-		# account {
-		# 	email
-		# }
 		profile {
 			availability
 			background
@@ -33,16 +30,15 @@ query UserProfileDetails($userId: uuid!) {
 query User($userId: uuid!) {
 	user(id: $userId) {
 		id
-		lastName
-		firstName
+		# lastName
+		# firstName
+		displayName
 		location
 		country
 		avatarUrl
 		createdAt
 		email
-		# account {
-		# 	email
-		# }
+		lastSeen
 		profile {
 			id
 			isComplete

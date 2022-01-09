@@ -15,9 +15,9 @@ const useIdeaFragment = (): TIdeas => {
 				field
 				competitors
 				team
-				additional_information
-				is_published
-				user_id
+				additionalInformation
+				isPublished
+				userId
 				status
 			}
 		`,

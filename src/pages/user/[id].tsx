@@ -20,10 +20,10 @@ import AuthFilter from 'utils/AuthFilter';
 import { convertCapacityToString, formatDate } from 'utils/validators';
 import AddFollower from './components/AddFollower';
 
-const User = (): JSX.Element => {
+const User = () => {
 	const { data } = useUserProfileDetailsQuery({
 		variables: {
-			user_id: useQueryParam('id')
+			userId: useQueryParam('id')
 		}
 	});
 
@@ -31,7 +31,7 @@ const User = (): JSX.Element => {
 		<React.Fragment>
 			<DocumentTitle title="View user" />
 			<PageLayout
-				title={`${data?.user.first_name}'s profile`}
+				title={`${data?.user.firstName}'s profile`}
 				action={<AddFollower userId={useQueryParam('id')} />}
 			>
 				<Grid
@@ -44,12 +44,12 @@ const User = (): JSX.Element => {
 					<GridItem colSpan={{ base: 12, md: 4 }}>
 						<StackLayout w={'full'}>
 							<UserAvatar
-								src={data?.user?.avatar_url}
+								src={data?.user?.avatarUrl}
 								boxSize={140}
 								aria-label="Edit profile picture"
 							/>
 							<TitleEditAction
-								title={`${data?.user.first_name} ******`}
+								title={`${data?.user.firstName}`}
 							/>
 							<StackLayout spacing={2}>
 								{data?.user?.country && (
@@ -68,12 +68,12 @@ const User = (): JSX.Element => {
 									label={'*****************.com'}
 									icon={IoMailSharp}
 								/>
-								{data?.user.created_at && (
+								{data?.user.createdAt && (
 									<ProfileSectionLabel
 										label={
 											`Joined ` +
 											formatDate(
-												data?.user.created_at,
+												data?.user.createdAt,
 												false,
 												true
 											)
@@ -81,13 +81,11 @@ const User = (): JSX.Element => {
 										icon={IoTimeSharp}
 									/>
 								)}
-								{data?.user.created_at && (
+								{data?.user.createdAt && (
 									<ProfileSectionLabel
 										label={
 											`Last seen ` +
-											formatDate(
-												data?.user.last_logged_in
-											)
+											formatDate(data?.user.lastLoggedIn)
 										}
 										icon={IoTimeSharp}
 									/>
@@ -106,30 +104,28 @@ const User = (): JSX.Element => {
 								{
 									title: 'Specialist field',
 									value:
-										data?.user.user_profile
-											.specialist_industry ?? 'Not set',
+										data?.user.profile.specialistIndustry ??
+										'Not set',
 									icon: IoBulbSharp
 								},
 								{
 									title: 'Previous startups',
-									value: data?.user.user_profile.startups
-										? `${data?.user.user_profile.startups} startups`
+									value: data?.user.profile.startups
+										? `${data?.user.profile.startups} startups`
 										: 'Not set',
 									icon: IoRocketSharp
 								},
 								{
 									title: 'Startup status',
 									value:
-										data?.user.user_profile.status ??
-										'Not set',
+										data?.user.profile.status ?? 'Not set',
 									icon: IoAnalyticsSharp
 								},
 								{
 									title: 'Capacity (Hours per week)',
-									value: data?.user.user_profile.availability
+									value: data?.user.profile.availability
 										? `${convertCapacityToString(
-												data?.user.user_profile
-													.availability
+												data?.user.profile.availability
 										  )} hours`
 										: 'Not set',
 									icon: IoTimeSharp
@@ -138,34 +134,32 @@ const User = (): JSX.Element => {
 						/>
 						<AppDivider />
 						<StackLayout flex={1}>
-							{data?.user.user_profile.background && (
+							{data?.user.profile.background && (
 								<ContentFieldAndValue
 									title={'Background'}
-									value={data?.user.user_profile.background}
+									value={data?.user.profile.background}
 								/>
 							)}
-							{data?.user.user_profile.statement && (
+							{data?.user.profile.statement && (
 								<ContentFieldAndValue
 									title={'Statement'}
-									value={data?.user.user_profile.statement}
+									value={data?.user.profile.statement}
 								/>
 							)}
-							{data?.user.user_profile.business_description && (
+							{data?.user.profile.businessDescription && (
 								<ContentFieldAndValue
 									title={'Overview of businesses'}
 									value={
-										data?.user.user_profile
-											.business_description
+										data?.user.profile.businessDescription
 									}
 								/>
 							)}
-							{data?.user.user_profile.skills && (
+							{data?.user.profile.skills && (
 								<ContentFieldAndValue
 									title={'Skills'}
 									value={
-										data?.user.user_profile.skills?.join(
-											', '
-										) ?? 'No skills selected'
+										data?.user.profile.skills?.join(', ') ??
+										'No skills selected'
 									}
 								/>
 							)}

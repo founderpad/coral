@@ -1,17 +1,15 @@
 import { useToast } from '@chakra-ui/react';
 
+interface INotificationProps {
+	title: string;
+	description?: string;
+	status: 'info' | 'warning' | 'success' | 'error';
+}
+
 export const useNotification = (): any => {
 	const toast = useToast();
 
-	return ({
-		title,
-		description,
-		status
-	}: {
-		title: string;
-		description?: string;
-		status: 'info' | 'warning' | 'success' | 'error';
-	}) => {
+	return ({ title, description, status }: INotificationProps) => {
 		toast({
 			title,
 			description,

@@ -7,11 +7,10 @@ import { useSuccessNotification } from 'hooks/toast';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUserImage } from 'slices/auth';
-import { auth, storage } from 'utils/nhost';
 
 const UserImageUploader = (): JSX.Element => {
 	const dispatch = useDispatch();
-	const { id, avatar_url } = useCurrentUser();
+	const { id, avatarUrl } = useCurrentUser();
 	const [filePath, setFilePath] = useState(undefined);
 	const showSuccessNotification = useSuccessNotification();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
@@ -22,9 +21,9 @@ const UserImageUploader = (): JSX.Element => {
 
 	const [updateAvatar] = useUpdateUserPersonalDetailsMutation({
 		variables: {
-			id: auth.getClaim('x-hasura-user-id') as string,
+			id,
 			userPersonalDetails: {
-				avatar_url:
+				avatarUrl:
 					'https://backend-19728797.nhost.app/storage/o' + filePath
 			}
 		},
@@ -34,11 +33,7 @@ const UserImageUploader = (): JSX.Element => {
 					'https://backend-19728797.nhost.app/storage/o' + filePath
 				)
 			);
-			// console.log('completed data: ', _data);
-			// console.log(
-			// 	'image url: ',
-			// 	'https://backend-19728797.nhost.app/storage/o' + filePath
-			// );
+
 			showSuccessNotification({
 				title: 'Your avatar has been updated'
 			});
@@ -52,9 +47,9 @@ const UserImageUploader = (): JSX.Element => {
 
 		const filePath = `/public/avatars/${id}.${extension}?v=` + timestamp;
 
-		await storage.put(filePath, image, null, (_d: any) => {
-			setFilePath(filePath);
-		});
+		// await storage.put(filePath, image, null, (_d: any) => {
+		// 	setFilePath(filePath);
+		// });
 	};
 
 	return (
@@ -62,10 +57,10 @@ const UserImageUploader = (): JSX.Element => {
 			title="Edit profile photo"
 			boxSize={140}
 			onUpload={uploadUserImage}
-			defaultSrc={avatar_url}
+			defaultSrc={avatarUrl}
 		>
 			<UserAvatar
-				src={avatar_url}
+				src={avatarUrl}
 				boxSize={140}
 				aria-label="Edit profile picture"
 			/>

@@ -26,10 +26,10 @@ import {
 
 const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 	const dispatch = useDispatch();
-	const isProfileComplete = useCurrentUser().user_profile.is_complete;
+	const isProfileComplete = useCurrentUser().profile.isComplete;
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, user_id, ...rest } = userProfile;
+	const { __typename, userId, ...rest } = userProfile;
 	const [selectedSkills, setSelectedSkills] = useState<string[]>(
 		userProfile.skills ?? []
 	);
@@ -47,7 +47,7 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 	const [updateUserProfileMutation] = useUpdateUserProfileMutation({
 		variables: {
 			id: userProfile.id,
-			user_profile: { ...getValues(), is_complete: true }
+			user_profile: { ...getValues(), isComplete: true }
 		},
 		onCompleted: (_data) => {
 			setModalDrawer({

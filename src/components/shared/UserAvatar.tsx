@@ -22,7 +22,7 @@ export const UserAvatar = (props: Props): JSX.Element => {
 			name={'user-avatar'}
 			size={size ?? avatarSize}
 			rounded={'full'}
-			bg={'fpPrimary.500'}
+			bg={'gray.300'}
 			color={'white'}
 		/>
 	);
@@ -79,13 +79,15 @@ export const CurrentUserAvatarDetails = memo(
 		direction?: StackProps['direction'];
 	}): JSX.Element => {
 		const user = useCurrentUser();
-		console.log('user: ', user);
 		// const { firstName, lastName, avatarUrl, email } = user;
+
+		console.log('user: ', user);
 
 		if (user)
 			return (
 				<UserAvatarDetails
-					name={`${user?.firstName} ${user?.lastName}`}
+					// name={`${user?.firstName} ${user?.lastName}`}
+					name={user?.displayName}
 					email={user?.email}
 					src={user?.avatarUrl}
 					size={size}

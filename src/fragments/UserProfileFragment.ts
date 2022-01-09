@@ -5,7 +5,7 @@ import { cache } from 'pages/_app';
 
 const useProfileFragment = (): TUser_Profile => {
 	const result = cache.readFragment({
-		id: `user_profile:${useCurrentUser().user_profile.id}`, // The value of the profile's cache id
+		id: `user_profile:${useCurrentUser().profile.id}`, // The value of the profile's cache id
 		fragment: gql`
 			fragment ExperienceFragment on user_profile {
 				id
@@ -16,9 +16,9 @@ const useProfileFragment = (): TUser_Profile => {
 				startups
 				skills
 				resume
-				specialist_industry
-				business_description
-				is_complete
+				specialistIndustry
+				businessDescription
+				isComplete
 			}
 		`
 	}) as TUser_Profile;

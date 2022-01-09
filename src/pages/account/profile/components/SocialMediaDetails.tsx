@@ -18,7 +18,7 @@ const SocialMediaDetails = (): JSX.Element => {
 	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const socials = cache.readFragment({
-		id: `user_profile:${user.user_profile.id}`, // The value of the profile's cache id
+		id: `user_profile:${user.profile.id}`, // The value of the profile's cache id
 		fragment: gql`
 			fragment SocialMediaFragment on user_profile {
 				id

@@ -18,7 +18,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 	const showSuccessNotification = useSuccessNotification();
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, id, user_id, user, votes, ...rest } = idea;
+	const { __typename, id, userId, user, votes, ...rest } = idea;
 
 	const {
 		handleSubmit,
@@ -123,9 +123,9 @@ const EditIdeaForm = (): ReactElement<any> => {
 			/>
 
 			<TextareaField
-				id="additional_information"
+				id="additionalInformation"
 				label="Additional information"
-				name="additional_information"
+				name="additionalInformation"
 				placeholder="Any additional information"
 				h={'200px'}
 				control={control}
@@ -136,7 +136,7 @@ const EditIdeaForm = (): ReactElement<any> => {
 				name="is_published"
 				label="Publish your idea"
 				helperText="Unpublished ideas will not be searchable by other users."
-				defaultChecked={idea.is_published}
+				defaultChecked={idea.isPublished}
 				control={control}
 			/>
 		</Form>

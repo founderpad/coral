@@ -1,6 +1,6 @@
+import { Button } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
-import { IoAlertCircleOutline } from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import { BaseLink } from 'components/links';
 import BasePopover from 'components/popover/BasePopover';
@@ -68,21 +68,20 @@ const DesktopNav = memo(() => {
 	);
 });
 
-const ProfileNotSet = memo(
-	(): JSX.Element => (
-		<BaseLink
-			title={'Update your profile'}
-			href={'/account/profile'}
-			position={'fixed'}
-			right={4}
-			color={'red.500'}
-			_hover={{ color: 'red.700' }}
-			fontSize={'sm'}
-		>
-			<Icon as={IoAlertCircleOutline} mr={1} fontSize={'lg'} />
-			Profile not set
-		</BaseLink>
-	)
-);
+const ProfileNotSet = memo(() => (
+	<Button
+		name={'profile-not-set'}
+		as={BaseLink}
+		href={'/account/profile'}
+		position={'fixed'}
+		fontSize={'sm'}
+		right={4}
+		color={'red.500'}
+		variant={'outline'}
+		height={8}
+	>
+		Profile not set
+	</Button>
+));
 
 export default DesktopNav;

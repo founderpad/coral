@@ -5,11 +5,11 @@ import React from 'react';
 
 type Props = Pick<
 	TIdeas,
-	'description' | 'team' | 'competitors' | 'additional_information'
+	'description' | 'team' | 'competitors' | 'additionalInformation'
 >;
 
 export const IdeaMainContent = (props: Props): JSX.Element => {
-	const { description, team, competitors, additional_information } = props;
+	const { description, team, competitors, additionalInformation } = props;
 	return (
 		<StackLayout spacing={8}>
 			<ContentFieldAndValue title={'Description'} value={description} />
@@ -17,7 +17,7 @@ export const IdeaMainContent = (props: Props): JSX.Element => {
 			<ContentFieldAndValue title={'Competitors'} value={competitors} />
 			<ContentFieldAndValue
 				title={'Additional information'}
-				value={additional_information}
+				value={additionalInformation}
 			/>
 		</StackLayout>
 	);

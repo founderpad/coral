@@ -14,11 +14,7 @@ import { CurrentUserAvatar } from './UserAvatar';
 const PostComment = (): JSX.Element => {
 	const [value, setValue] = useState('');
 	// const idea = useIdeaFragment();
-	const {
-		id: auth_id,
-		display_name,
-		account: { email }
-	} = useCurrentUser();
+	const { id: auth_id, displayName, email } = useCurrentUser();
 	// const { id, user_id } = idea ?? {};
 
 	const { data } = useContext(IdeaContext);
@@ -27,8 +23,8 @@ const PostComment = (): JSX.Element => {
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
 			ideaComment: {
-				idea_id: data.idea.id,
-				target_user_id: data.idea.user_id,
+				ideaId: data.idea.id,
+				targetUserId: data.idea.userId,
 				value
 			}
 		},
@@ -58,9 +54,9 @@ const PostComment = (): JSX.Element => {
 				params: {
 					comment: value,
 					idea_id: data.idea.id,
-					to_user_id: data.idea.user_id,
+					to_user_id: data.idea.userId,
 					from_user_id: auth_id,
-					from_user_display_name: display_name,
+					from_user_display_name: displayName,
 					from_user_email: email
 				}
 			});

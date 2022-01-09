@@ -41,25 +41,25 @@ const IdeaTab = () => {
 	if (!data) return <Loading small />;
 
 	// Only enable the id creator to view their own idea if it's unpublished
-	if (!idea || (!idea.is_published && idea.user_id !== auth.id))
+	if (!idea || (!idea.isPublished && idea.userId !== auth.id))
 		router.replace('/404');
 
 	const {
 		name,
 		user,
-		user_id,
-		created_at,
+		userId,
+		createdAt,
 		description,
 		team,
 		competitors,
-		additional_information,
+		additionalInformation,
 		status,
 		field,
 		id,
-		total_interested,
-		is_published
+		totalInterested,
+		isPublished
 	} = idea ?? {};
-	const { avatar_url, first_name } = user;
+	const { avatarUrl, firstName } = user;
 
 	return (
 		<StackLayout
@@ -78,13 +78,13 @@ const IdeaTab = () => {
 					<UserAvatarDetails
 						rounded={'full'}
 						name={`Published by ${
-							auth.id === user_id ? 'you' : first_name
+							auth.id === userId ? 'you' : firstName
 						}`}
-						src={avatar_url}
-						createdAt={formatDate(created_at, true)}
+						src={avatarUrl}
+						createdAt={formatDate(createdAt, true)}
 					/>
 
-					{user?.id === user_id && <IdeaActions ideaId={id} />}
+					{user?.id === userId && <IdeaActions ideaId={id} />}
 				</FlexLayout>
 
 				<FlexLayout wordBreak={'break-all'} flexDirection={'column'}>
@@ -99,11 +99,11 @@ const IdeaTab = () => {
 							pt={2}
 							alignItems={'center'}
 						>
-							<PublishedLabel isPublished={is_published} />
-							{total_interested > 0 && (
+							<PublishedLabel isPublished={isPublished} />
+							{totalInterested > 0 && (
 								<React.Fragment>
 									<PointSeparator small />
-									<InterestedTotal total={total_interested} />
+									<InterestedTotal total={totalInterested} />
 								</React.Fragment>
 							)}
 							<PointSeparator small />
@@ -121,11 +121,11 @@ const IdeaTab = () => {
 						</PrimaryButton>
 					</FlexLayout>
 				</FlexLayout>
-				{idea.user_id !== auth.id && (
+				{idea.userId !== auth.id && (
 					<React.Fragment>
 						<AppDivider />
 						<InterestedIdea
-							ideaUserId={user_id}
+							ideaUserId={userId}
 							ideaId={id}
 							hasInterest={!!hasInterest?.id}
 						/>
@@ -172,10 +172,10 @@ const IdeaTab = () => {
 							value={competitors}
 						/>
 					)}
-					{additional_information && (
+					{additionalInformation && (
 						<ContentFieldAndValue
 							title={'Additional information'}
-							value={additional_information}
+							value={additionalInformation}
 						/>
 					)}
 				</StackLayout>

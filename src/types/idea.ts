@@ -31,7 +31,7 @@ export type TUpvoteIdea = Pick<
 
 export type TIdeaPreview = Pick<
 	TIdea,
-	'id' | 'user_id' | 'name' | 'created_at' | 'field' | 'user'
+	'id' | 'userId' | 'name' | 'createdAt' | 'field' | 'user'
 > & {
 	preview: string;
 	is_new: boolean;

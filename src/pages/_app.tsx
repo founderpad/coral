@@ -19,7 +19,7 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import theme from 'theme';
-import { nhostClient } from 'utils/nhost';
+import { nhost } from 'utils/nhost';
 import store from 'utils/store';
 import '../styles/globals.css';
 
@@ -37,6 +37,9 @@ const persistor = persistStore(store);
 const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	useTrackAnalytics();
 
+	// console.log('graphql url: ', process.env.NEXT_PUBLIC_GRAPHQL_BACKEND);
+	// graphqlUrl={process.env.NEXT_PUBLIC_GRAPHQL_BACKEND}
+
 	return (
 		<React.Fragment>
 			<Head>
@@ -44,12 +47,8 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 			</Head>
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
-					<NhostAuthProvider nhost={nhostClient}>
-						<NhostApolloProvider
-							nhost={nhostClient}
-							graphqlUrl={process.env.NEXT_PUBLIC_GRAPHQL_BACKEND}
-							cache={cache}
-						>
+					<NhostAuthProvider nhost={nhost}>
+						<NhostApolloProvider nhost={nhost} cache={cache}>
 							<ChakraProvider theme={theme} resetCSS>
 								<ModalProvider>
 									<DrawerProvider>

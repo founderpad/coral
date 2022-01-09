@@ -76,20 +76,36 @@ array_relationships:
         schema: auth
 select_permissions:
 - permission:
+    allow_aggregations: true
     columns:
+    - disabled
+    - email_verified
+    - is_anonymous
+    - phone_number_verified
+    - locale
+    - active_mfa_type
     - avatar_url
     - country
-    - created_at
+    - default_role
     - display_name
-    - email
     - first_name
-    - id
-    - last_logged_in
     - last_name
-    - locale
     - location
+    - otp_hash
+    - otp_method_last_used
+    - password_hash
     - phone_number
+    - ticket
+    - totp_secret
+    - created_at
+    - last_logged_in
+    - last_seen
+    - otp_hash_expires_at
+    - ticket_expires_at
     - updated_at
+    - email
+    - new_email
+    - id
     filter: {}
   role: user
 update_permissions:

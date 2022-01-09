@@ -13,7 +13,7 @@ const UserActivityTab = (): JSX.Element => {
 
 	const { data, loading } = useUserActivityQuery({
 		variables: {
-			user_id: user.id
+			userId: user.id
 		}
 	});
 
@@ -25,7 +25,7 @@ const UserActivityTab = (): JSX.Element => {
 	return (
 		<Stack p={4}>
 			{activities?.map((activity) => (
-				<React.Fragment key={activity.idea_id}>
+				<React.Fragment key={activity.ideaId}>
 					<ActivityItem {...activity} />
 					<Divider />
 				</React.Fragment>
@@ -34,7 +34,7 @@ const UserActivityTab = (): JSX.Element => {
 	);
 };
 
-const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => (
+const ActivityItem = (activity: Omit<TActivity, 'id' | 'userId' | 'user'>) => (
 	<Flex p={0} flexDirection={'column'}>
 		<Flex justifyContent={'space-between'} alignItems={'flex-start'}>
 			<Flex flexDirection={'column'}>
@@ -49,7 +49,7 @@ const ActivityItem = (activity: Omit<TActivity, 'id' | 'user_id' | 'user'>) => (
 					View this {activity.type}
 				</PrimaryLink>
 			</Flex>
-			<CaptionLabel>{formatDate(activity.created_at, true)}</CaptionLabel>
+			<CaptionLabel>{formatDate(activity.createdAt, true)}</CaptionLabel>
 		</Flex>
 	</Flex>
 );

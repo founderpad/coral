@@ -11,7 +11,6 @@ import { useErrorNotification } from './toast';
 
 export const useRegister = (): any => {
 	const showErrorNotification = useErrorNotification();
-	const router = useRouter();
 
 	return async ({
 		email,
@@ -20,19 +19,6 @@ export const useRegister = (): any => {
 		lastName
 	}: IRegisterFormData): Promise<void> => {
 		try {
-			// await auth.register({
-			// 	email,
-			// 	password,
-			// 	options: {
-			// 		userData: <{ display_name: string }>{
-			// 			display_name:
-			// 				firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
-			// 			// user_type: type,
-			// 			first_name: firstName?.trim(),
-			// 			last_name: lastName?.trim()
-			// 		}
-			// 	}
-			// });
 			const response = await auth.signUp({
 				email,
 				password,
@@ -55,12 +41,10 @@ export const useRegister = (): any => {
 					title: 'Failed to register account',
 					description: 'Please try again later.'
 				});
-			} else {
-				router.push('/login');
 			}
 
 			ga.event({
-				action: 'Register',
+				action: `Register - ${response.error ? 'error' : 'success'}`,
 				params: {
 					email,
 					display_name:
@@ -79,18 +63,39 @@ export const useRegister = (): any => {
 
 export const useLogin = (): any => {
 	const showErrorNotification = useErrorNotification();
-	const [getAuthUser] = useGetAuthenticatedUser();
+	const dispatch = useDispatch();
+	const router = useRouter();
+
+	const [fetchUser] = useUserLazyQuery({
+		variables: {
+			userId: auth.getUser()?.id
+		},
+		onError: () => {
+			showErrorNotification({
+				title: 'Failed to get user',
+				description: 'Please try again later'
+			});
+			throw 'Failed to get user';
+		},
+		onCompleted: (data) => {
+			const user = data.user as TUsers;
+			dispatch(setUser(user));
+			router.replace('/ideas?page=1');
+		}
+	});
 
 	return async ({ email, password }: IAuthFormData): Promise<void> => {
 		try {
 			const response = await auth.signIn({ email, password });
+
 			if (response.error) {
 				showErrorNotification({
 					title: 'Failed to login',
 					description: response.error.message
 				});
+				throw 'Failed to login';
 			} else {
-				getAuthUser();
+				fetchUser();
 			}
 		} catch (error) {
 			throw 'An error has occurred';
@@ -147,40 +152,62 @@ export const useLogout = (): any => {
 // 	getUser();
 // };
 
-export const useGetAuthenticatedUser = () => {
-	const router = useRouter();
+export const useFetchUser = () => {
+	// const router = useRouter();
 	const dispatch = useDispatch();
-	// const { id }
 
-	// const [updateUserLastLoggedIn] = useUpdateUserLastLoggedInMutation({
+	return ({ userId }: { userId: string }) => {
+		return () => {
+			useUserLazyQuery({
+				variables: {
+					userId
+				},
+				onCompleted: (data) => {
+					const user = data.user as TUsers;
+					dispatch(setUser(user));
+				}
+			});
+		};
+	};
+
+	// const [getUser] = useUserLazyQuery({
 	// 	variables: {
-	// 		id: auth.getUser().id,
-	// 		lastLoggedIn: new Date()
+	// 		userId
+	// 	},
+	// 	onCompleted: (data) => {
+	// 		const user = data.user as TUsers;
+	// 		dispatch(setUser(user));
+	// 		console.log('user: ', user);
 	// 	}
 	// });
 
-	return useUserLazyQuery({
-		variables: {
-			userId: auth.getUser()?.id
-		},
-		onCompleted: (data) => {
-			// updateUserLastLoggedIn();
-			const user = data.user as TUsers;
-			dispatch(setUser(user));
-			router.replace('/ideas?page=1');
+	// useEffect(() => {
+	// 	if (userId) {
+	// 		console.log('brrrrr');
+	// 	}
+	// }, [userId]);
 
-			ga.event({
-				action: 'Login',
-				params: {
-					user_id: auth.getUser().id,
-					display_name: user.displayName,
-					user_email: user.email,
-					user_created_date: user.createdAt,
-					user_login_date: new Date()
-				}
-			});
-		}
-	});
+	// return useUserLazyQuery({
+	// 	variables: {
+	// 		userId: id
+	// 	},
+	// 	onCompleted: (data) => {
+	// 		const user = data.user as TUsers;
+	// 		console.log('user: ', user);
+	// 		dispatch(setUser(user));
+	// 		router.replace('/ideas?page=1');
+	// 		ga.event({
+	// 			action: 'Login',
+	// 			params: {
+	// 				user_id: auth.getUser().id,
+	// 				display_name: user.displayName,
+	// 				user_email: user.email,
+	// 				user_created_date: user.createdAt,
+	// 				user_login_date: user.lastSeen
+	// 			}
+	// 		});
+	// 	}
+	// });
 };
 
 // const useUpdateLastLoggedInTime = (userId: string) => {
@@ -244,10 +271,9 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useCheckLoggedIn = (): void => {
-	const { isAuthenticated } = useAuth();
-	const router = useRouter();
-
-	if (isAuthenticated) router.push('/ideas?page=1');
+	// const { isAuthenticated } = useAuth();
+	// const router = useRouter();
+	// if (isAuthenticated) router.push('/ideas?page=1');
 };
 
 export const useClaim = (): string => auth.getUser()?.id;
