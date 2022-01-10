@@ -2,11 +2,11 @@ import { ButtonGroup } from '@chakra-ui/button';
 import { Textarea } from '@chakra-ui/textarea';
 import { CancelButton, PrimaryButton } from 'components/buttons';
 import { FlexLayout, StackLayout } from 'components/layouts';
+import IdeaContext from 'context/idea/IdeaContext';
 import { RepliesForCommentDocument, usePostReplyMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
-import useIdeaFragment from 'pages/idea/fragments/IdeaFragment';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 
 const PostReplyComment = ({
@@ -15,22 +15,18 @@ const PostReplyComment = ({
 }: {
 	commentId: string;
 	commentUserId: string;
-}): JSX.Element => {
+}) => {
 	const [showReplyField, setShowReplyField] = useState(false);
 	const [value, setValue] = useState('');
-	const {
-		id: auth_id,
-		display_name,
-		account: { email }
-	} = useCurrentUser();
-	const { id } = useIdeaFragment() ?? {};
+	const { id: authId, displayName, email } = useCurrentUser();
+	const { data } = useContext(IdeaContext);
 
 	const [postReplyMutation] = usePostReplyMutation({
 		variables: {
 			ideaReply: {
-				comment_id: commentId,
-				target_user_id: commentUserId,
-				idea_id: id,
+				commentId: commentId,
+				targetUserId: commentUserId,
+				ideaId: data?.idea?.id,
 				value
 			},
 			commentId
@@ -49,11 +45,11 @@ const PostReplyComment = ({
 				action: 'Post reply',
 				params: {
 					reply: value,
-					idea_id: id,
+					idea_id: data?.idea?.id,
 					comment_id: commentId,
 					to_user_id: commentUserId,
-					from_user_id: auth_id,
-					from_user_display_name: display_name,
+					from_user_id: authId,
+					from_user_display_name: displayName,
 					from_user_email: email
 				}
 			});

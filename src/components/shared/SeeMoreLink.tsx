@@ -7,7 +7,7 @@ export const SeeMoreLink = ({
 }: {
 	href: string;
 	label?: string;
-}): JSX.Element => (
+}) => (
 	<PrimaryLink href={href} title={`See more ${label ?? ' more'}`}>
 		see {label ?? ' more'} &gt;
 	</PrimaryLink>

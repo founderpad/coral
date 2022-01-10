@@ -1,4 +1,8 @@
-import { IoBulbSharp, IoPinSharp, IoTrendingUpSharp } from 'components/icons';
+import {
+	IoBulbSharp,
+	IoLocationSharp,
+	IoTrendingUpSharp
+} from 'components/icons';
 import { FlexLayout } from 'components/layouts';
 import { OverviewTag } from 'components/shared';
 import IdeaContext from 'context/idea/IdeaContext';
@@ -34,7 +38,7 @@ export const IdeaOverview = memo(() => {
 				<OverviewTag
 					title={'Location'}
 					value={location ? `${location}, ${country}` : country}
-					icon={IoPinSharp}
+					icon={IoLocationSharp}
 				/>
 			)}
 		</FlexLayout>

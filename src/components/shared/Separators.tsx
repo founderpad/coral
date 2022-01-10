@@ -17,7 +17,7 @@ export const PointSeparator = ({
 	display?: ResponsiveValue<string>;
 	small?: boolean;
 	px?: BoxProps['px'];
-}): JSX.Element => (
+}) => (
 	<Box
 		as={'span'}
 		px={px ?? 1}

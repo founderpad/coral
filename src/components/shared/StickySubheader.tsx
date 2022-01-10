@@ -2,12 +2,7 @@ import { Box } from '@chakra-ui/react';
 import React, { memo, useEffect, useState } from 'react';
 
 export const StickySubheader = memo(
-	({
-		children
-	}: {
-		children: React.ReactNode;
-		title?: string;
-	}): JSX.Element => {
+	({ children }: { children: React.ReactNode; title?: string }) => {
 		const [fixed, setIsFixed] = useState(false);
 
 		useEffect(() => {

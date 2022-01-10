@@ -8,7 +8,7 @@ const SaveCancelButtons = ({
 }: {
 	onCancel?: () => void;
 	form?: string;
-}): JSX.Element => {
+}) => {
 	return (
 		<ButtonGroup ml={'auto'} spacing={4}>
 			<CancelButton label={'Cancel'} onClick={onCancel} />

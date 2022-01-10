@@ -4,13 +4,7 @@ import { FlexLayout } from 'components/layouts';
 import React, { memo } from 'react';
 
 export const TitleEditAction = memo(
-	({
-		title,
-		onClick
-	}: {
-		title: string;
-		onClick?: () => void;
-	}): JSX.Element => (
+	({ title, onClick }: { title: string; onClick?: () => void }) => (
 		<FlexLayout
 			justifyContent={'space-between'}
 			alignItems={'center'}

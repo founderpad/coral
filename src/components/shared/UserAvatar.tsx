@@ -12,7 +12,7 @@ type Props = AvatarProps & {
 	direction?: StackProps['direction'];
 };
 
-export const UserAvatar = (props: Props): JSX.Element => {
+export const UserAvatar = (props: Props) => {
 	const avatarSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
 	const { size, ...rest } = props;
@@ -36,7 +36,7 @@ export const UserAvatarDetails = ({
 	size = 'md',
 	direction = 'row',
 	fontSize = 'small'
-}: Props): JSX.Element => {
+}: Props) => {
 	return (
 		<StackLayout
 			align={'center'}
@@ -77,7 +77,7 @@ export const CurrentUserAvatarDetails = memo(
 	}: {
 		size?: Props['size'];
 		direction?: StackProps['direction'];
-	}): JSX.Element => {
+	}) => {
 		const user = useCurrentUser();
 		// const { firstName, lastName, avatarUrl, email } = user;
 

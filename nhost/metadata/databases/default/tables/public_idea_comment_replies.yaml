@@ -6,7 +6,7 @@ configuration:
     comment_id: commentId
     created_at: createdAt
     idea_id: ideaId
-    targeted_user_id: targetedUserId
+    target_user_id: targetUserId
     updated_at: updatedAt
     user_id: userId
   custom_root_fields: {}
@@ -24,12 +24,10 @@ insert_permissions:
       user_id:
         _eq: X-Hasura-User-Id
     columns:
-    - value
-    - created_at
-    - updated_at
     - comment_id
-    - id
-    - user_id
+    - idea_id
+    - target_user_id
+    - value
     set:
       user_id: x-hasura-User-Id
   role: user
@@ -43,7 +41,7 @@ select_permissions:
     - comment_id
     - id
     - idea_id
-    - targeted_user_id
+    - target_user_id
     - user_id
     filter: {}
   role: user
