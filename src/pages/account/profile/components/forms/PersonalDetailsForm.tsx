@@ -14,7 +14,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { updatePersonalDetails } from 'slices/auth';
 import { countriesList } from 'utils/Constants';
-import { auth } from 'utils/nhost';
 
 // type InputProperties = keyof TUsers_Set_Input
 
@@ -24,7 +23,7 @@ type PersonalDetailsinput = Pick<
 >;
 
 const PersonalDetailsForm = (): ReactElement<any> => {
-	const user = useCurrentUser();
+	const auth = useCurrentUser();
 
 	const dispatch = useDispatch();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
@@ -39,15 +38,15 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 	} = useForm<PersonalDetailsinput>({
 		mode: 'all',
 		defaultValues: {
-			...user
+			...auth
 		}
 	});
 
-	const watchCountry = watch('country', user.country);
+	const watchCountry = watch('country', auth.country);
 
 	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
 		variables: {
-			id: auth.getAccessToken(),
+			id: auth.id,
 			userPersonalDetails: {
 				firstName: getValues('firstName'),
 				lastName: getValues('lastName'),
@@ -76,13 +75,13 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 		>
-			<InputField
+			{/* <InputField
 				id="firstName"
 				label="First name"
 				placeholder="First name"
 				error={errors['first_name']}
 				errorText="You must input a first name"
-				name="first_name"
+				name="firstName"
 				control={control}
 				isRequired
 			/>
@@ -92,9 +91,19 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 				placeholder="Last name"
 				error={errors['last_name']}
 				errorText="Your last name"
-				name="last_name"
+				name="lastName"
 				control={control}
 				helperText={'This will not be shown to other users.'}
+			/> */}
+			<InputField
+				id="displayName"
+				label="Your name"
+				placeholder="You name"
+				error={errors['displayName']}
+				errorText="You must input a name"
+				name="displayName"
+				control={control}
+				isRequired
 			/>
 
 			<SelectField

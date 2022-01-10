@@ -1,17 +1,26 @@
 import { FlexLayout, StackLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
-import { Loading, UserAvatarDetails } from 'components/shared';
-import { useIdeaInterestedUsersQuery } from 'generated/api';
-import React from 'react';
+import { Loading, NoResults, UserAvatarDetails } from 'components/shared';
+import IdeaContext from 'context/idea/IdeaContext';
+import { useIdeaInterestedUsersLazyQuery } from 'generated/api';
+import React, { useContext, useEffect } from 'react';
 import { formatDate } from 'utils/validators';
 
-const InterestedUsersTab = ({ ideaId }: { ideaId: string }) => {
-	const { data } = useIdeaInterestedUsersQuery({
+const InterestedUsersTab = () => {
+	const idea = useContext(IdeaContext)?.data?.idea;
+
+	const [getInterestedUsers, { data }] = useIdeaInterestedUsersLazyQuery({
 		variables: {
-			ideaId
+			ideaId: idea.id
 		}
 	});
 
+	useEffect(() => {
+		if (idea.totalInterested > 0) getInterestedUsers();
+	}, []);
+
+	if (idea.totalInterested < 1)
+		return <NoResults label={'interested users'} />;
 	if (!data) return <Loading small />;
 
 	return (
@@ -23,9 +32,9 @@ const InterestedUsersTab = ({ ideaId }: { ideaId: string }) => {
 					justifyContent={'space-between'}
 				>
 					<UserAvatarDetails
-						src={interestedUser.user.avatar_url}
-						name={interestedUser.user.display_name}
-						createdAt={formatDate(interestedUser.created_at, true)}
+						src={interestedUser.user.avatarUrl}
+						name={interestedUser.user.displayName}
+						createdAt={formatDate(interestedUser.createdAt, true)}
 					/>
 					<PrimaryLink
 						title={'View profile'}

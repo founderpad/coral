@@ -11,15 +11,15 @@ const ViewIdeaTabLayout = () => {
 	const user = useCurrentUser();
 	const { data } = useContext(IdeaContext);
 
+	const showInterestTab = data?.idea?.userId === user.id;
+	// const showInterestedUsers =
+	// 	showInterestTab && data?.idea?.totalInterested > 0;
+
 	return (
 		<TabLayout
 			tabs={[
 				{ label: 'Idea' },
-				{
-					...(data?.idea.user_id === user.id && {
-						label: 'Interest'
-					})
-				},
+				{ ...(showInterestTab && { label: 'Interest' }) },
 				{ ...(useMobile() && { label: 'Comments' }) }
 			]}
 			overflow={'hidden'}
@@ -27,7 +27,7 @@ const ViewIdeaTabLayout = () => {
 			flex={1}
 		>
 			<IdeaTab />
-			<InterestedUsersTab ideaId={data?.idea.id} />
+			{showInterestTab && <InterestedUsersTab />}
 			{useMobile() && <CommentsList />}
 		</TabLayout>
 	);
