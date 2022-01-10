@@ -37,7 +37,8 @@ query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 		totalReplies
 		user {
 			id
-			firstName
+			# firstName
+			displayName
 			avatarUrl
 			email
 			# account {

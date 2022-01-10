@@ -4,7 +4,7 @@ import { Textarea } from '@chakra-ui/textarea';
 import { IoSendSharp } from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import IdeaContext from 'context/idea/IdeaContext';
-import { usePostCommentMutation } from 'generated/api';
+import { CommentsForIdeaDocument, usePostCommentMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
 import React, { useCallback, useContext, useState } from 'react';
@@ -13,12 +13,9 @@ import { CurrentUserAvatar } from './UserAvatar';
 
 const PostComment = (): JSX.Element => {
 	const [value, setValue] = useState('');
-	// const idea = useIdeaFragment();
-	const { id: auth_id, displayName, email } = useCurrentUser();
-	// const { id, user_id } = idea ?? {};
+	const { id: authId, displayName, email } = useCurrentUser();
 
 	const { data } = useContext(IdeaContext);
-	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
@@ -40,14 +37,14 @@ const PostComment = (): JSX.Element => {
 		// 		}
 		// 	});
 		// },
-		// refetchQueries: [
-		// 	{
-		// 		query: CommentsForIdeaDocument,
-		// 		variables: {
-		// 			ideaId: useIdeaFragment().id
-		// 		}
-		// 	}
-		// ],
+		refetchQueries: [
+			{
+				query: CommentsForIdeaDocument,
+				variables: {
+					ideaId: data?.idea.id
+				}
+			}
+		],
 		onCompleted: () => {
 			ga.event({
 				action: 'Post comment',
@@ -55,7 +52,7 @@ const PostComment = (): JSX.Element => {
 					comment: value,
 					idea_id: data.idea.id,
 					to_user_id: data.idea.userId,
-					from_user_id: auth_id,
+					from_user_id: authId,
 					from_user_display_name: displayName,
 					from_user_email: email
 				}
@@ -71,43 +68,6 @@ const PostComment = (): JSX.Element => {
 		},
 		[value]
 	);
-
-	// const onClick = () => {
-	// 	reset({
-	// 		value: ''
-	// 	});
-	// 	setModalDrawer({
-	// 		title: 'Post your comment',
-	// 		isOpen: true,
-	// 		body: (
-	// 			<Form
-	// 				id={'postCommentForm'}
-	// 				name={'postCommentForm'}
-	// 				onSubmit={handleSubmit(postCommentMutation)}
-	// 				isSubmitting={isSubmitting}
-	// 				isValid={isValid}
-	// 			>
-	// 				<TextareaField
-	// 					id={'value'}
-	// 					name={'value'}
-	// 					placeholder={'What do you think of this idea?'}
-	// 					error={errors['value']}
-	// 					errorText={'Your comment can not be empty.'}
-	// 					control={control}
-	// 				/>
-	// 			</Form>
-	// 		),
-	// 		actions: (
-	// 			<SubmitButton
-	// 				name={'open-modal-drawer-post-comment-button'}
-	// 				form={'postCommentForm'}
-	// 				label={'Post'}
-	// 				size={'xs'}
-	// 			/>
-	// 		),
-	// 		hideFooter: true
-	// 	});
-	// };
 
 	return (
 		<StackLayout spacing={2} d={'flex'} justifyContent={'flex-end'}>

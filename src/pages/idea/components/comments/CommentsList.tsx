@@ -46,7 +46,7 @@ export const CommentsList = ({
 	display = 'flex'
 }: {
 	display?: StackProps['display'];
-}): JSX.Element => {
+}) => {
 	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
 			ideaId: useQueryParam('id'),
@@ -120,7 +120,7 @@ export const CommentsList = ({
 	);
 };
 
-const RepliesList = ({ commentId }: { commentId: string }): JSX.Element => {
+const RepliesList = ({ commentId }: { commentId: string }) => {
 	const { data } = useRepliesForCommentQuery({
 		variables: {
 			commentId

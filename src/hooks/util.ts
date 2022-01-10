@@ -1,7 +1,8 @@
 import { useBreakpointValue } from '@chakra-ui/react';
+import NotificationContext from 'context/NotificationContext';
 import * as ga from 'lib/ga';
 import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 enum Params {
 	edit
@@ -21,8 +22,6 @@ export const useScrollToBottom = (_data?: any) => {
 	const ref = useRef(null);
 
 	const scrollToBottom = (): void => {
-		console.log('container current: ', ref.current);
-
 		if (ref.current)
 			ref.current?.scrollIntoView({
 				behavior: 'smooth',
@@ -58,4 +57,10 @@ export const useTrackAnalytics = () => {
 			router.events.off('routeChangeComplete', handleRouteChange);
 		};
 	}, [router.events]);
+};
+
+export const useNotification = () => {
+	const { notification, addNotification, removeNotification } =
+		useContext(NotificationContext);
+	return { notification, addNotification, removeNotification };
 };

@@ -32,13 +32,13 @@ export const CommentLayout = ({
 	comment: any;
 	actions?: boolean;
 	divider?: boolean;
-}): JSX.Element => {
-	const { user, updated_at, value } = comment;
-	const { first_name } = user;
+}) => {
+	const { user, updatedAt, value } = comment;
+	const { displayName } = user;
 	const anchoredId = useQueryParam('d');
 
 	const isAuthor =
-		useContext(IdeaContext).data?.idea.user_id === comment.user.id;
+		useContext(IdeaContext).data?.idea.userId === comment.user.id;
 
 	useEffect(() => {
 		if (anchoredId) {
@@ -73,7 +73,7 @@ export const CommentLayout = ({
 									maxW={'80%'}
 									isTruncated
 								>
-									{first_name}
+									{displayName}
 								</Label>
 								{isAuthor && (
 									<BaseTag
@@ -87,7 +87,7 @@ export const CommentLayout = ({
 								)}
 								<PointSeparator small />
 								<CaptionLabel>
-									{formatDate(updated_at, true)}
+									{formatDate(updatedAt, true)}
 								</CaptionLabel>
 							</FlexLayout>
 						</FlexLayout>

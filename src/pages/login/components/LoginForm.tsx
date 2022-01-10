@@ -1,20 +1,23 @@
+import { Alert, AlertDescription } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { EmailField, PasswordField } from 'components/input';
 import { Label } from 'components/labels';
 import { PrimaryLink } from 'components/links';
 import { useLogin } from 'hooks/auth';
+import { useNotification } from 'hooks/util';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { IAuthFormData } from 'types/auth';
 
-const LoginForm = (): JSX.Element => {
+const LoginForm = () => {
 	const {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
+	const { notification } = useNotification();
 
 	return (
 		<Form
@@ -42,6 +45,15 @@ const LoginForm = (): JSX.Element => {
 				fontSize={'sm'}
 				isRequired
 			/>
+
+			{!!notification && (
+				<Alert status="error">
+					{/* <AlertTitle>{title}</AlertTitle> */}
+					<AlertDescription fontSize={'xs'}>
+						{notification}
+					</AlertDescription>
+				</Alert>
+			)}
 
 			<SubmitButton
 				id={'submit-login'}

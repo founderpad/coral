@@ -14,6 +14,7 @@ import Head from 'next/head';
 import DrawerProvider from 'provider/DrawerProvider';
 import ModalDrawerProvider from 'provider/ModalDrawerProvider';
 import ModalProvider from 'provider/ModalProvider';
+import NotificationProvider from 'provider/NotificationProvider';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
@@ -50,15 +51,17 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 					<NhostAuthProvider nhost={nhost}>
 						<NhostApolloProvider nhost={nhost} cache={cache}>
 							<ChakraProvider theme={theme} resetCSS>
-								<ModalProvider>
-									<DrawerProvider>
-										<ModalDrawerProvider>
-											<BaseModal />
-											<BaseModalDrawer />
-											<Component {...pageProps} />
-										</ModalDrawerProvider>
-									</DrawerProvider>
-								</ModalProvider>
+								<NotificationProvider>
+									<ModalProvider>
+										<DrawerProvider>
+											<ModalDrawerProvider>
+												<BaseModal />
+												<BaseModalDrawer />
+												<Component {...pageProps} />
+											</ModalDrawerProvider>
+										</DrawerProvider>
+									</ModalProvider>
+								</NotificationProvider>
 							</ChakraProvider>
 						</NhostApolloProvider>
 					</NhostAuthProvider>

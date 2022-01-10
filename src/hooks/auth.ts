@@ -7,6 +7,7 @@ import { IAuthFormData, IRegisterFormData } from 'types/auth';
 import { auth } from 'utils/nhost';
 import { RootState } from 'utils/reducer';
 import { useErrorNotification } from './toast';
+import { useNotification } from './util';
 
 export const useRegister = (): any => {
 	const showErrorNotification = useErrorNotification();
@@ -62,6 +63,7 @@ export const useRegister = (): any => {
 
 export const useLogin = (): any => {
 	const showErrorNotification = useErrorNotification();
+	const { addNotification, removeNotification } = useNotification();
 	const dispatch = useDispatch();
 	const router = useRouter();
 
@@ -85,14 +87,17 @@ export const useLogin = (): any => {
 
 	return async ({ email, password }: IAuthFormData): Promise<void> => {
 		try {
+			removeNotification();
 			const response = await auth.signIn({ email, password });
 
 			if (response.error) {
-				showErrorNotification({
-					title: 'Failed to login',
-					description: response.error.message
-				});
-				throw 'Failed to login';
+				// showErrorNotification({
+				// 	title: 'Failed to login',
+				// 	description: response.error.message
+				// });
+				// throw 'Failed to login';
+				// console.log('ddgfgfhygf');
+				addNotification(`Failed to login. ${response.error.message}`);
 			} else {
 				fetchUser();
 			}

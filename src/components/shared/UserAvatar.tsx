@@ -81,8 +81,6 @@ export const CurrentUserAvatarDetails = memo(
 		const user = useCurrentUser();
 		// const { firstName, lastName, avatarUrl, email } = user;
 
-		console.log('user: ', user);
-
 		if (user)
 			return (
 				<UserAvatarDetails
@@ -99,7 +97,7 @@ export const CurrentUserAvatarDetails = memo(
 );
 
 export const CurrentUserAvatar = memo(
-	({ size = 'sm' }: { size?: AvatarProps['size'] }): JSX.Element => {
+	({ size = 'sm' }: { size?: AvatarProps['size'] }) => {
 		const { avatarUrl } = useCurrentUser();
 		return <UserAvatar src={avatarUrl} size={size} />;
 	}
