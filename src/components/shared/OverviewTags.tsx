@@ -17,7 +17,7 @@ interface IOverviewTag {
  * The @OverviewTags display a stack of components of key information (see idea and user profile)
  */
 const OverviewTags = memo(
-	({ tags }: { tags: readonly IOverviewTag[] }): JSX.Element => {
+	({ tags }: { tags: Readonly<Array<IOverviewTag>> }): JSX.Element => {
 		// const [isBase] = useMediaQuery('(max-width: 48em)');
 
 		return (

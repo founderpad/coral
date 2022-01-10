@@ -1,4 +1,3 @@
-import { useNhostAuth } from '@nhost/react-auth';
 import { TUsers, useUserLazyQuery } from 'generated/api';
 import * as ga from 'lib/ga';
 import { useRouter } from 'next/router';
@@ -277,7 +276,7 @@ export const useCheckLoggedIn = (): void => {
 };
 
 export const useClaim = (): string => auth.getUser()?.id;
-export const useAuth = (): any => useNhostAuth();
+export const useAuth = (): any => auth;
 
 // export const useUpdateUserAvatar = () => {
 // 	// return (filePath: string): any =>

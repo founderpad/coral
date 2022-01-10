@@ -26,7 +26,7 @@ const IdeaUpvote = (
 	const [insertIdeaUpvote] = useInsertIdeaUpvoteMutation({
 		variables: {
 			idea_vote: {
-				idea_id: idea.id
+				ideaId: idea.id
 			}
 		},
 		onCompleted: () => {
@@ -35,7 +35,7 @@ const IdeaUpvote = (
 				action: 'User idea upvote',
 				params: {
 					from_user_id: user.id,
-					from_user_email: user.account.email,
+					from_user_email: user.email,
 					idea_id: idea.id,
 					idea_name: idea.name,
 					to_idea_user_id: idea.id
@@ -46,8 +46,8 @@ const IdeaUpvote = (
 
 	const [deleteIdeaUpvote] = useDeleteIdeaUpvoteMutation({
 		variables: {
-			idea_id: idea.id,
-			user_id: useClaim()
+			ideaId: idea.id,
+			userId: useClaim()
 		},
 		onCompleted: () => {
 			setUpvote({ hasUserUpvoted: false, votesTotal: votesTotal - 1 });
@@ -55,7 +55,7 @@ const IdeaUpvote = (
 				action: 'User idea remove upvote',
 				params: {
 					from_user_id: user.id,
-					from_user_email: user.account.email,
+					from_user_email: user.email,
 					idea_id: idea.id,
 					idea_name: idea.name,
 					to_idea_user_id: idea.id

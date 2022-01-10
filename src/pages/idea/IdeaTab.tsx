@@ -1,65 +1,32 @@
-import { PrimaryButton } from 'components/buttons';
-import { SubheadingText } from 'components/heading';
-import {
-	IoBulbSharp,
-	IoLocationSharp,
-	IoTrendingUpSharp
-} from 'components/icons';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { Loading, PointSeparator, UserAvatarDetails } from 'components/shared';
+import { StackLayout } from 'components/layouts';
+import { Loading } from 'components/shared';
 import AppDivider from 'components/shared/AppDivider';
-import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
-import OverviewTags from 'components/shared/OverviewTags';
 import IdeaContext from 'context/idea/IdeaContext';
 import { useCurrentUser } from 'hooks/auth';
 import { useRouter } from 'next/router';
-import React, { useCallback, useContext, useState } from 'react';
-import { formatDate } from 'utils/validators';
+import React, { useContext } from 'react';
+import {
+	IdeaDetails,
+	IdeaOverview,
+	IdeaTitleHeader,
+	IdeaUserActions,
+	InterestedIdea
+} from './components';
 import { CommentsList } from './components/comments/CommentsList';
-import IdeaActions from './components/IdeaMenu';
-import IdeaUpvote from './components/IdeaUpvote';
-import InterestedIdea from './components/InterestedIdea';
-import InterestedTotal from './components/InterestedTotal';
-import PublishedLabel from './components/PublishedLabel';
 
 const IdeaTab = () => {
 	const router = useRouter();
 	const auth = useCurrentUser();
 	const { data } = useContext(IdeaContext);
-	const { idea, hasInterest } = data ?? {};
-
-	const [showComments, setShowComments] = useState(false);
-
-	const onShowCommentsClick = useCallback(() => {
-		setShowComments(!showComments);
-
-		document.getElementById('idea-comments').scrollIntoView({
-			behavior: 'smooth'
-		});
-	}, [showComments]);
 
 	if (!data) return <Loading small />;
 
 	// Only enable the id creator to view their own idea if it's unpublished
-	if (!idea || (!idea.isPublished && idea.userId !== auth.id))
+	if (
+		!data?.idea ||
+		(!data?.idea.isPublished && data?.idea.userId !== auth.id)
+	)
 		router.replace('/404');
-
-	const {
-		name,
-		user,
-		userId,
-		createdAt,
-		description,
-		team,
-		competitors,
-		additionalInformation,
-		status,
-		field,
-		id,
-		totalInterested,
-		isPublished
-	} = idea ?? {};
-	const { avatarUrl, firstName } = user;
 
 	return (
 		<StackLayout
@@ -70,115 +37,13 @@ const IdeaTab = () => {
 			spacing={0}
 		>
 			<StackLayout p={4} flex={1} d={'flex'} overflowY={'auto'}>
-				<FlexLayout
-					alignItems={'center'}
-					justifyContent={'space-between'}
-					mb={4}
-				>
-					<UserAvatarDetails
-						rounded={'full'}
-						name={`Published by ${
-							auth.id === userId ? 'you' : firstName
-						}`}
-						src={avatarUrl}
-						createdAt={formatDate(createdAt, true)}
-					/>
-
-					{user?.id === userId && <IdeaActions ideaId={id} />}
-				</FlexLayout>
-
-				<FlexLayout wordBreak={'break-all'} flexDirection={'column'}>
-					<SubheadingText>{name}</SubheadingText>
-					<FlexLayout
-						justifyContent={'space-between'}
-						alignItems={'center'}
-					>
-						<StackLayout
-							direction={'row'}
-							spacing={1}
-							pt={2}
-							alignItems={'center'}
-						>
-							<PublishedLabel isPublished={isPublished} />
-							{totalInterested > 0 && (
-								<React.Fragment>
-									<PointSeparator small />
-									<InterestedTotal total={totalInterested} />
-								</React.Fragment>
-							)}
-							<PointSeparator small />
-							<IdeaUpvote {...idea} />
-						</StackLayout>
-
-						<PrimaryButton
-							name={'show-comments'}
-							variant={'ghost'}
-							onClick={onShowCommentsClick}
-							display={{ base: 'none', md: 'block' }}
-							alignContent={'center'}
-						>
-							View comments
-						</PrimaryButton>
-					</FlexLayout>
-				</FlexLayout>
-				{idea.userId !== auth.id && (
-					<React.Fragment>
-						<AppDivider />
-						<InterestedIdea
-							ideaUserId={userId}
-							ideaId={id}
-							hasInterest={!!hasInterest?.id}
-						/>
-					</React.Fragment>
-				)}
+				<IdeaUserActions />
+				<IdeaTitleHeader />
+				<InterestedIdea />
 				<AppDivider />
-				<OverviewTags
-					tags={[
-						{
-							title: 'Stage',
-							value: status,
-							icon: IoTrendingUpSharp
-						},
-						{
-							title: 'Field',
-							value: field,
-							icon: IoBulbSharp
-						},
-						{
-							...(user?.country && {
-								title: 'Location',
-								value: user?.location
-									? `${user?.location}, ${user.country}`
-									: user?.country,
-								icon: IoLocationSharp
-							})
-						}
-					]}
-				/>
-
+				<IdeaOverview />
 				<AppDivider />
-
-				<StackLayout flex={1}>
-					<ContentFieldAndValue
-						title={'Description'}
-						value={description}
-					/>
-					{team && (
-						<ContentFieldAndValue title={'Team'} value={team} />
-					)}
-					{competitors && (
-						<ContentFieldAndValue
-							title={'Competitors'}
-							value={competitors}
-						/>
-					)}
-					{additionalInformation && (
-						<ContentFieldAndValue
-							title={'Additional information'}
-							value={additionalInformation}
-						/>
-					)}
-				</StackLayout>
+				<IdeaDetails />
 				<CommentsList display={{ base: 'none', md: 'flex' }} />
 			</StackLayout>
 		</StackLayout>
