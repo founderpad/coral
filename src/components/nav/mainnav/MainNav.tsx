@@ -103,6 +103,7 @@ const MobileMenu = () => {
 			mr={4}
 			fontSize={'2xl'}
 			onClick={onToggle}
+			color={'gray.900'}
 		/>
 	);
 };
