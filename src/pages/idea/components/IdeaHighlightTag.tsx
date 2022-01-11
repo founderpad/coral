@@ -1,7 +1,7 @@
 import { Tag, TagLabel } from '@chakra-ui/tag';
 import React, { memo } from 'react';
 
-const HighlightTag = memo(
+export const HighlightTag = memo(
 	({ value }: { value: string | number }): JSX.Element => (
 		<Tag
 			background={'gray.50'}

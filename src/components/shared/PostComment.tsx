@@ -20,8 +20,8 @@ const PostComment = (): JSX.Element => {
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
 			ideaComment: {
-				ideaId: data.idea.id,
-				targetUserId: data.idea.userId,
+				ideaId: data?.idea.id,
+				targetUserId: data?.idea.userId,
 				value
 			}
 		},
@@ -50,8 +50,8 @@ const PostComment = (): JSX.Element => {
 				action: 'Post comment',
 				params: {
 					comment: value,
-					idea_id: data.idea.id,
-					to_user_id: data.idea.userId,
+					idea_id: data?.idea.id,
+					to_user_id: data?.idea.userId,
 					from_user_id: authId,
 					from_user_display_name: displayName,
 					from_user_email: email

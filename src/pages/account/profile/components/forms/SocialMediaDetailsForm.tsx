@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 
 const SocialMediaDetailsForm = (socials: TUser_Profile): JSX.Element => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, user_id, ...rest } = socials;
+	const { __typename, userId, ...rest } = socials;
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();

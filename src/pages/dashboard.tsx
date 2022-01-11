@@ -5,7 +5,7 @@ import React from 'react';
 import AuthFilter from 'utils/AuthFilter';
 
 const Dashboard = () => {
-	const firstName = useCurrentUser().first_name;
+	const firstName = useCurrentUser()?.firstName;
 
 	return (
 		<React.Fragment>

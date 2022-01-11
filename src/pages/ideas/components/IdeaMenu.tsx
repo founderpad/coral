@@ -12,10 +12,10 @@ type TIdeaProps = Pick<TIdea_Preview, 'id' | 'user' | 'name'>;
 
 export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
 	const report: TReport_Insert_Input = {
-		reported_id: idea?.id,
-		reported_user_id: idea?.user.id,
-		recipient_name: idea?.user.first_name,
-		recipient_email: idea?.user.account.email,
+		reportedId: idea?.id,
+		reportedUserId: idea?.user.id,
+		recipientName: idea?.user.firstName,
+		recipientEmail: idea?.user.email,
 		content: idea?.name,
 		type: 'IDEA'
 	};

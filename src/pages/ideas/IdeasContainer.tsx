@@ -39,7 +39,7 @@ const IdeasContainer = (): JSX.Element => {
 			limit: 10,
 			offset: (parseInt(useQueryParam('page')) - 1) * 10,
 			orderBy: {
-				createdAt: 'desc'
+				created_at: 'desc'
 			},
 			userId: useClaim()
 		}

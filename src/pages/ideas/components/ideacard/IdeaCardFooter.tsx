@@ -23,7 +23,7 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 			<StackLayout direction={'row'} spacing={3} alignItems={'center'}>
 				<IdeaUpvote {...idea} />
 
-				{idea?.totalComments > 0 && (
+				{idea?.total_comments > 0 && (
 					<FlexLayout alignItems={'center'}>
 						<Icon
 							as={IoChatbubbleSharp}

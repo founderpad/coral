@@ -17,15 +17,7 @@ type Props = Pick<FlexProps, 'display' | 'mb'>;
 const UserPersonalInformation = memo((props: Props): JSX.Element => {
 	const user = useCurrentUser();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const {
-		firstName,
-		lastName,
-		location,
-		country,
-		createdAt,
-		displayName,
-		email
-	} = user;
+	const { location, country, createdAt, displayName, email } = user;
 
 	const onClick = () => {
 		setModalDrawer({

@@ -12,7 +12,7 @@ import { useQueryParam } from 'hooks/util';
 import React, { useEffect } from 'react';
 import CommentLayout from './CommentLayout';
 
-const Comment = (comment: any) => {
+export const Comment = (comment: any) => {
 	// const [showReplies, setShowReplies] = useState(false);
 	const { isOpen, onToggle } = useDisclosure();
 

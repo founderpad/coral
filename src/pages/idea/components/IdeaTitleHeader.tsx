@@ -8,7 +8,7 @@ import IdeaUpvote from './IdeaUpvote';
 import InterestedTotal from './InterestedTotal';
 import PublishedLabel from './PublishedLabel';
 
-const IdeaTitleHeader = memo(() => {
+export const IdeaTitleHeader = memo(() => {
 	const [showComments, setShowComments] = useState(false);
 	const {
 		data: { idea }

@@ -11,7 +11,9 @@ import { updateUserImage } from 'slices/auth';
 const UserImageUploader = (): JSX.Element => {
 	const dispatch = useDispatch();
 	const { id, avatarUrl } = useCurrentUser();
-	const [filePath, setFilePath] = useState(undefined);
+	// const [filePath, setFilePath] = useState(undefined);
+	const [filePath] = useState(undefined);
+
 	const showSuccessNotification = useSuccessNotification();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
@@ -41,12 +43,10 @@ const UserImageUploader = (): JSX.Element => {
 		}
 	});
 
-	const uploadUserImage = async (image: File) => {
-		const extension = image?.name.split('.').pop();
-		const timestamp = new Date().getTime();
-
-		const filePath = `/public/avatars/${id}.${extension}?v=` + timestamp;
-
+	const uploadUserImage = async (_image: File) => {
+		// const extension = image?.name.split('.').pop();
+		// const timestamp = new Date().getTime();
+		// const filePath = `/public/avatars/${id}.${extension}?v=` + timestamp;
 		// await storage.put(filePath, image, null, (_d: any) => {
 		// 	setFilePath(filePath);
 		// });

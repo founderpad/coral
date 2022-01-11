@@ -1,14 +1,12 @@
 import { FileUploader } from 'components/shared';
-import { TUser_Profile, useUpdateResumeMutation } from 'generated/api';
+import { TUser_Profile } from 'generated/api';
 import gql from 'graphql-tag';
 import { useCurrentUser } from 'hooks/auth';
-import { useSuccessNotification } from 'hooks/toast';
 import { cache } from 'pages/_app';
-import { useEffect, useState } from 'react';
 
 const ResumeUploader = (): JSX.Element => {
-	const showSuccessNotification = useSuccessNotification();
-	const [filePath, setFilePath] = useState(undefined);
+	// const showSuccessNotification = useSuccessNotification();
+	// const [filePath, setFilePath] = useState(undefined);
 	const { profile } = useCurrentUser();
 
 	const userProfile = cache.readFragment({
@@ -21,34 +19,33 @@ const ResumeUploader = (): JSX.Element => {
 		`
 	}) as TUser_Profile;
 
-	useEffect(() => {
-		if (filePath !== undefined) updateResumeMutation();
-	}, [filePath]);
+	// useEffect(() => {
+	// 	if (filePath !== undefined) updateResumeMutation();
+	// }, [filePath]);
 
-	const [updateResumeMutation] = useUpdateResumeMutation({
-		variables: {
-			id: profile.id,
-			resume: {
-				resume: filePath
-			}
-		},
-		onCompleted: (_data) => {
-			showSuccessNotification({
-				title: `Your resume has been ${
-					filePath ? 'updated' : 'deleted'
-				}`
-			});
-		}
-	});
+	// const [updateResumeMutation] = useUpdateResumeMutation({
+	// 	variables: {
+	// 		id: profile.id,
+	// 		resume: {
+	// 			resume: filePath
+	// 		}
+	// 	},
+	// 	onCompleted: (_data) => {
+	// 		showSuccessNotification({
+	// 			title: `Your resume has been ${
+	// 				filePath ? 'updated' : 'deleted'
+	// 			}`
+	// 		});
+	// 	}
+	// });
 
-	const uploadResume = async (resume: File) => {
-		const extension = resume?.name.split('.').pop();
-		const timestamp = new Date().getTime();
+	const uploadResume = async (_resume: File) => {
+		// const extension = resume?.name.split('.').pop();
+		// const timestamp = new Date().getTime();
 		// const filePath =
 		// 	`/public/resumes/${
 		// 		auth.getClaim('x-hasura-user-id') as string
 		// 	}.${extension}?v=` + timestamp;
-
 		// try {
 		// 	await storage.put(filePath, resume, null, (_d: any) => {
 		// 		setFilePath(filePath);
@@ -58,7 +55,7 @@ const ResumeUploader = (): JSX.Element => {
 		// }
 	};
 
-	const deleteResume = async (path: string) => {
+	const deleteResume = async (_path: string) => {
 		// try {
 		// 	await storage.delete(path);
 		// 	setFilePath(null);

@@ -7,7 +7,7 @@ const AddFollower = ({ userId }: { userId: string }) => {
 	const [followed, setFollowed] = useState(false);
 	const [followUser] = useFollowUserMutation({
 		variables: {
-			following_id: userId
+			followingId: userId
 		},
 		onCompleted: () => {
 			setFollowed(true);

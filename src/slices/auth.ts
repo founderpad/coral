@@ -20,9 +20,9 @@ const authSlice = createSlice({
 		setProfileComplete(state) {
 			state.user = {
 				...state.user,
-				user_profile: {
-					...state.user.user_profile,
-					is_complete: true
+				profile: {
+					...state.user.profile,
+					isComplete: true
 				}
 			};
 		},
@@ -35,12 +35,17 @@ const authSlice = createSlice({
 		updateUserImage(state, action: PayloadAction<string>) {
 			state.user = {
 				...state.user,
-				avatar_url: action.payload
+				avatarUrl: action.payload
 			};
 		}
 	}
 });
 
-export const { setUser, clearUser, setProfileComplete, updatePersonalDetails, updateUserImage } =
-	authSlice.actions;
+export const {
+	setUser,
+	clearUser,
+	setProfileComplete,
+	updatePersonalDetails,
+	updateUserImage
+} = authSlice.actions;
 export default authSlice.reducer;

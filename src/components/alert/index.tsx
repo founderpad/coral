@@ -4,7 +4,7 @@ import { useNotification } from 'hooks/util';
 const AlertFeedback = () => {
 	const { notification } = useNotification();
 
-	if (!!notification)
+	if (notification)
 		return (
 			<Alert
 				status={notification.status}

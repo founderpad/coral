@@ -1,26 +1,14 @@
-import { Button } from '@chakra-ui/button';
-import {
-	FormControl,
-	FormErrorMessage,
-	FormLabel
-} from '@chakra-ui/form-control';
 import { Image } from '@chakra-ui/image';
-import { Input } from '@chakra-ui/input';
-import { Flex, Heading, Link, Stack, Text, VStack } from '@chakra-ui/layout';
-import { useForgottenPassword } from 'hooks/auth';
-import NextLink from 'next/link';
+import { Flex, Heading, Stack, Text } from '@chakra-ui/layout';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { IRegisterFormData } from 'types/auth';
-import { EMAIL_REGEX } from 'utils/validators';
 
 const ForgotPasswordForm = (): JSX.Element => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors, isSubmitting }
-	} = useForm<IRegisterFormData>();
-	const onResetPassword = useForgottenPassword();
+	// const {
+	// 	register,
+	// 	handleSubmit,
+	// 	formState: { errors, isSubmitting }
+	// } = useForm<IRegisterFormData>();
+	// const onResetPassword = useForgottenPassword();
 
 	return (
 		<Stack
@@ -43,7 +31,7 @@ const ForgotPasswordForm = (): JSX.Element => {
 					<Text textAlign="center" color={'gray.400'}>
 						Forgot your password? We&apos;ve got you covered!
 					</Text>
-					<form onSubmit={handleSubmit(onResetPassword)} noValidate>
+					{/* <form onSubmit={handleSubmit(onResetPassword)} noValidate>
 						<VStack spacing={6} my={6}>
 							<FormControl id="email" isInvalid={!!errors.email}>
 								<FormLabel>Email address</FormLabel>
@@ -87,7 +75,7 @@ const ForgotPasswordForm = (): JSX.Element => {
 								</NextLink>
 							</VStack>
 						</VStack>
-					</form>
+					</form> */}
 				</Stack>
 			</Flex>
 		</Stack>

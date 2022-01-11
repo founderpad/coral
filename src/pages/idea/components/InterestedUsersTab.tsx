@@ -6,7 +6,7 @@ import { useIdeaInterestedUsersLazyQuery } from 'generated/api';
 import React, { useContext, useEffect } from 'react';
 import { formatDate } from 'utils/validators';
 
-const InterestedUsersTab = () => {
+export const InterestedUsersTab = () => {
 	const idea = useContext(IdeaContext)?.data?.idea;
 
 	const [getInterestedUsers, { data }] = useIdeaInterestedUsersLazyQuery({

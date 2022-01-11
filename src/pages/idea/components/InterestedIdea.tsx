@@ -9,7 +9,7 @@ import { useCurrentUser } from 'hooks/auth';
 import * as ga from 'lib/ga';
 import React, { useContext, useState } from 'react';
 
-const InterestedIdea = () => {
+export const InterestedIdea = () => {
 	const auth = useCurrentUser();
 	const {
 		data,

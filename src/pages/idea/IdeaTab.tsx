@@ -5,14 +5,12 @@ import IdeaContext from 'context/idea/IdeaContext';
 import { useCurrentUser } from 'hooks/auth';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import {
-	IdeaDetails,
-	IdeaOverview,
-	IdeaTitleHeader,
-	IdeaUserActions,
-	InterestedIdea
-} from './components';
 import { CommentsList } from './components/comments/CommentsList';
+import IdeaDetails from './components/IdeaDetails';
+import IdeaOverview from './components/IdeaOverview';
+import IdeaTitleHeader from './components/IdeaTitleHeader';
+import IdeaUserActions from './components/IdeaUserActions';
+import InterestedIdea from './components/InterestedIdea';
 
 const IdeaTab = () => {
 	const router = useRouter();

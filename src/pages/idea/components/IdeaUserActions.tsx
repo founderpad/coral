@@ -6,7 +6,7 @@ import React, { memo, useContext } from 'react';
 import { formatDate } from 'utils/validators';
 import IdeaActions from './IdeaMenu';
 
-const IdeaUserActions = memo(() => {
+export const IdeaUserActions = memo(() => {
 	const {
 		data: { idea }
 	} = useContext(IdeaContext);

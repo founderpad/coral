@@ -9,7 +9,7 @@ import * as ga from 'lib/ga';
 import React, { useCallback, useState } from 'react';
 import { TIdea } from 'types/idea';
 
-const IdeaUpvote = (
+export const IdeaUpvote = (
 	idea: Pick<
 		TIdea | TIdea_Preview,
 		'votes' | 'votes_aggregate' | 'id' | 'name'

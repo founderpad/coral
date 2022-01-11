@@ -6,9 +6,9 @@ import { TIdea_Preview } from 'generated/api';
 import React from 'react';
 import { formatDate } from 'utils/validators';
 
-type TProps = Pick<TIdea_Preview, 'user' | 'createdAt'>;
+type TProps = Pick<TIdea_Preview, 'user' | 'created_at'>;
 
-export const PostedBy = ({ user, createdAt }: TProps): JSX.Element => (
+export const PostedBy = ({ user, created_at }: TProps): JSX.Element => (
 	<FlexLayout
 		position={'relative'}
 		alignItems={'center'}
@@ -22,7 +22,7 @@ export const PostedBy = ({ user, createdAt }: TProps): JSX.Element => (
 			color={'gray.400'}
 			fontSize={'x-small'}
 		>
-			{user?.first_name}
+			{user?.firstName}
 		</BaseLink>
 		<CaptionLabel d={'flex'}>
 			{user.country && (
@@ -31,7 +31,7 @@ export const PostedBy = ({ user, createdAt }: TProps): JSX.Element => (
 				</>
 			)}
 			<PointSeparator small />
-			{formatDate(createdAt)}
+			{formatDate(created_at)}
 		</CaptionLabel>
 	</FlexLayout>
 );

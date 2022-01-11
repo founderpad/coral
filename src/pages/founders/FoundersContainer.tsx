@@ -30,7 +30,7 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	}
 
 	if (router.query.field) {
-		where.specialist_industry = {
+		where.specialistIndustry = {
 			_eq: useQueryParam('specialist_industry')
 		};
 	}
@@ -65,7 +65,7 @@ const FoundersContainer = (): JSX.Element => {
 			limit: 10,
 			offset: (parseInt(useQueryParam('id')) - 1) * 10,
 			orderBy: {
-				created_at: 'desc'
+				createdAt: 'desc'
 			}
 		}
 	});

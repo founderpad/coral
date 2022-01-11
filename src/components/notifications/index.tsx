@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle } from '@chakra-ui/react';
+import { Alert, AlertDescription } from '@chakra-ui/react';
 import { useNotification } from 'hooks/util';
 import React from 'react';
 
@@ -7,8 +7,8 @@ const Notification = () => {
 
 	if (notification)
 		return (
-			<Alert status={notification.type}>
-				<AlertTitle>{notification.title}</AlertTitle>
+			<Alert status={notification.status}>
+				{/* <AlertTitle>{notification.title}</AlertTitle> */}
 				<AlertDescription fontSize={'xs'}>
 					{notification.message}
 				</AlertDescription>

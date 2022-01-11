@@ -12,7 +12,7 @@ import { TIdea } from 'types/idea';
 import { ideasStatusList, industriesList } from 'utils/Constants';
 import useIdeaFragment from '../fragments/IdeaFragment';
 
-const EditIdeaForm = (): ReactElement<any> => {
+export const EditIdeaForm = (): ReactElement<any> => {
 	const idea = useIdeaFragment();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();

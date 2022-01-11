@@ -33,7 +33,7 @@ export const SubNav = memo(
 						p={0}
 					>
 						{icon && (
-							<BoxLayout p={2} mr={4} bg={'fpPrimary.50'}>
+							<BoxLayout p={2} mr={4} bg={'gray.100'}>
 								<Icon
 									as={icon}
 									fontSize={'md'}

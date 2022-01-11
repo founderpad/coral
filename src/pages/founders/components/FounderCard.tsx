@@ -13,7 +13,7 @@ type TProfilePreview = Pick<
 	| 'skills'
 	| 'status'
 	| 'startups'
-	| 'specialist_industry'
+	| 'specialistIndustry'
 >;
 
 const founderAttrs = (founderProfileAttrs: TProfilePreview): string[] => {
@@ -26,10 +26,8 @@ const founderAttrs = (founderProfileAttrs: TProfilePreview): string[] => {
 			)} hours per week`
 		);
 
-	if (founderProfileAttrs.specialist_industry)
-		attrs.push(
-			`Specialises in ${founderProfileAttrs.specialist_industry} `
-		);
+	if (founderProfileAttrs.specialistIndustry)
+		attrs.push(`Specialises in ${founderProfileAttrs.specialistIndustry} `);
 
 	if (founderProfileAttrs.status)
 		attrs.push(`${founderProfileAttrs.status} in a startup`);
@@ -91,9 +89,9 @@ const FounderCard = (founderProfile: TProfilePreview) => {
 			fontSize={'xs'}
 		>
 			<UserAvatarDetails
-				name={founderProfile.user.first_name}
+				name={founderProfile.user.firstName}
 				createdAt={`Joined ${formatDate(
-					founderProfile.user.created_at
+					founderProfile.user.createdAt
 				)}`}
 				size={'md'}
 			/>

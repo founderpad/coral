@@ -4,7 +4,7 @@ import IdeaContext from 'context/idea/IdeaContext';
 import { TIdeas } from 'generated/api';
 import React, { useContext } from 'react';
 
-const IdeaDetails = () => {
+export const IdeaDetails = () => {
 	const {
 		data: { idea = {} as TIdeas }
 	} = useContext(IdeaContext);
