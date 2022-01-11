@@ -1,31 +1,18 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
-import { useDisclosure } from '@chakra-ui/hooks';
 import { Container, Flex } from '@chakra-ui/layout';
-import {
-	Drawer,
-	DrawerBody,
-	DrawerCloseButton,
-	DrawerContent,
-	DrawerHeader,
-	DrawerOverlay,
-	Icon,
-	MenuDivider,
-	Tag
-} from '@chakra-ui/react';
-import { IoMenuSharp } from 'components/icons';
+import { Icon } from '@chakra-ui/react';
+import { IoCloseOutline, IoMenuSharp } from 'components/icons';
 import { FlexLayout } from 'components/layouts';
-import FounderpadLogo, {
-	FounderpadLogoWithBadge
-} from 'components/shared/FounderpadLogo';
+import { FounderpadLogoWithBadge } from 'components/shared/FounderpadLogo';
+import { useMobileNav } from 'hooks/util';
 import React, { memo } from 'react';
 import NotificationsPopover from '../components/NotificationsPopover';
 import DesktopNav from './DesktopNav';
-import MobileNav from './MobileNav';
 import UserMenu from './UserMenu';
 
-const MainNav = (): JSX.Element => {
-	const { isOpen, onToggle } = useDisclosure();
-	const firstField = React.useRef();
+const MainNav = memo(() => {
+	// const { isOpen, onToggle } = useDisclosure();
+	// const firstField = React.useRef();
 
 	return (
 		<React.Fragment>
@@ -33,11 +20,11 @@ const MainNav = (): JSX.Element => {
 				bg={useColorModeValue('white', 'gray.800')}
 				borderBottom={'1px solid'}
 				borderBottomColor={'gray.100'}
-				zIndex={1100}
+				zIndex={1000}
 				// position={'sticky'}
 				position={'fixed'}
 				top={0}
-				h={10}
+				h={'40px'}
 				w={'full'}
 			>
 				<Container
@@ -57,13 +44,7 @@ const MainNav = (): JSX.Element => {
 						flex={1}
 					>
 						<Flex alignItems={'center'}>
-							<Icon
-								display={{ base: 'inline-flex', md: 'none' }}
-								as={IoMenuSharp}
-								mr={4}
-								fontSize={'2xl'}
-								onClick={onToggle}
-							/>
+							<MobileMenu />
 							<FounderpadLogoWithBadge w={100} />
 						</Flex>
 						<DesktopNav />
@@ -75,14 +56,14 @@ const MainNav = (): JSX.Element => {
 				</Container>
 			</Flex>
 
-			<Drawer
+			{/* <Drawer
 				isOpen={isOpen}
 				placement="left"
 				initialFocusRef={firstField}
 				onClose={onToggle}
 			>
 				<DrawerOverlay />
-				<DrawerContent>
+				<DrawerContent position={'absolute'} top={'48px'}>
 					<DrawerHeader>
 						<FlexLayout mx={'auto'} alignItems={'center'}>
 							<FounderpadLogo w={'100px'} />
@@ -107,8 +88,22 @@ const MainNav = (): JSX.Element => {
 						<MobileNav />
 					</DrawerBody>
 				</DrawerContent>
-			</Drawer>
+			</Drawer> */}
 		</React.Fragment>
+	);
+});
+
+const MobileMenu = () => {
+	const { isOpen, onToggle } = useMobileNav();
+
+	return (
+		<Icon
+			display={{ base: 'inline-flex', md: 'none' }}
+			as={isOpen ? IoCloseOutline : IoMenuSharp}
+			mr={4}
+			fontSize={'2xl'}
+			onClick={onToggle}
+		/>
 	);
 };
 

@@ -15,7 +15,7 @@ const DesktopNav = memo(() => {
 		<StackLayout
 			direction={'row'}
 			alignItems={'center'}
-			spacing={2}
+			spacing={4}
 			ml={'auto'}
 			display={{ base: 'none', md: 'flex' }}
 			position={'relative'}

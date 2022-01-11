@@ -55,7 +55,7 @@ const MyIdeasContainer = () => {
 								{idea.name}
 							</Label>
 							<CaptionLabel>
-								{formatDate(idea.created_at, true)}
+								{formatDate(idea.createdAt, true)}
 							</CaptionLabel>
 							<StackLayout
 								direction={'row'}
@@ -64,13 +64,13 @@ const MyIdeasContainer = () => {
 								alignItems={'center'}
 							>
 								<PublishedLabel
-									isPublished={idea?.is_published}
+									isPublished={idea?.isPublished}
 								/>
-								{idea?.total_interested > 0 && (
+								{idea?.totalInterested > 0 && (
 									<React.Fragment>
 										<PointSeparator small />
 										<InterestedTotal
-											total={idea.total_interested}
+											total={idea.totalInterested}
 										/>
 									</React.Fragment>
 								)}

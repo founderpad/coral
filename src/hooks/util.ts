@@ -1,4 +1,5 @@
 import { useBreakpointValue } from '@chakra-ui/react';
+import MobileNavigationContext from 'context/MobileNavigationContext';
 import NotificationContext from 'context/NotificationContext';
 import * as ga from 'lib/ga';
 import { useRouter } from 'next/router';
@@ -63,4 +64,10 @@ export const useNotification = () => {
 	const { notification, addNotification, removeNotification } =
 		useContext(NotificationContext);
 	return { notification, addNotification, removeNotification };
+};
+
+export const useMobileNav = () => {
+	const { isOpen, onToggle } = useContext(MobileNavigationContext);
+
+	return { isOpen, onToggle };
 };

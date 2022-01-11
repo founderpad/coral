@@ -2,7 +2,6 @@ import { Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
 import {
 	IoAddSharp,
-	IoChevronDownSharp,
 	IoLockClosedSharp,
 	IoPersonSharp,
 	IoSearchSharp
@@ -36,19 +35,18 @@ const NavItems: Array<NavItem> = [
 		label: 'Ideas',
 		key: 'ideas',
 		href: '/ideas?page=1',
-		rightIcon: IoChevronDownSharp,
 		children: [
 			{
 				label: 'Search ideas',
 				key: 'search-ideas',
-				subLabel: 'Search all ideas',
+				subLabel: 'Search all ideas available for feedback',
 				href: '/ideas?page=1',
 				icon: IoSearchSharp
 			},
 			{
 				label: 'My ideas',
 				key: 'my-ideas',
-				subLabel: 'View your ideas',
+				subLabel: 'See the ideas you have created',
 				href: '/ideas/my-ideas',
 				icon: IoPersonSharp
 			},
@@ -56,7 +54,7 @@ const NavItems: Array<NavItem> = [
 				label: 'Create idea',
 				key: 'create',
 				color: 'fpPrimary.500',
-				subLabel: 'Post a new idea to the community',
+				subLabel: 'Post your new idea to the community',
 				href: '/ideas/create',
 				icon: IoAddSharp,
 				divider: true
@@ -67,7 +65,7 @@ const NavItems: Array<NavItem> = [
 		label: 'Founders',
 		key: 'founders',
 		href: '/founders?page=1',
-		rightIcon: IoChevronDownSharp,
+		// rightIcon: IoChevronDownSharp,
 		children: [
 			{
 				label: 'Search founders',

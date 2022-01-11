@@ -1,11 +1,12 @@
+import { AlertProps } from '@chakra-ui/react';
 import NotificationContext from 'context/NotificationContext';
 import React, { useCallback, useState } from 'react';
 
 const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
 	const [notification, setNotification] =
-		useState<{ message: string; status: string }>(null);
+		useState<{ message: string; status: AlertProps['status'] }>(null);
 
-	const addNotification = (message: string, status: string) => {
+	const addNotification = (message: string, status: AlertProps['status']) => {
 		setNotification({ message, status });
 	};
 
@@ -14,7 +15,7 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
 	const value = {
 		notification,
 		addNotification: useCallback(
-			(message: string, status: string) =>
+			(message: string, status: AlertProps['status']) =>
 				addNotification(message, status),
 			[]
 		),

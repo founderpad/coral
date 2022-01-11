@@ -5,25 +5,65 @@ import { Flex, Stack, Text } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/react';
 import { IoChevronDownSharp } from 'components/icons';
 import { StackLayout } from 'components/layouts';
+import { useMobileNav } from 'hooks/util';
 import React, { memo } from 'react';
 import NavItems, { NavItem } from './NavItems';
 import { SubNav } from './SubNav';
 
-const MobileNav = (): JSX.Element => {
+const MobileNav = () => {
+	const { isOpen } = useMobileNav();
+
 	return (
 		<StackLayout
-			bg={useColorModeValue('white', 'gray.800')}
-			display={{ md: 'none' }}
-			spacing={1}
+			style={{
+				backgroundColor: 'rgba(255,255,255,0.95)'
+			}}
+			display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
+			position={'absolute'}
+			top={10}
+			zIndex={999}
+			p={4}
+			flex={1}
+			w={'full'}
+			overflow={'hidden'}
+			spacing={2}
+			h={'calc(100% - 40px)'}
+			// w={'calc(100% - 16px)'}
 		>
 			{NavItems.map((navItem) => (
 				<MobileNavItem key={navItem.label} {...navItem} />
 			))}
 		</StackLayout>
+		// <StackLayout
+		// 	bg={'whiteAlpha.900'}
+		// 	filter={'blur(2px)'}
+		// 	borderWidth={1}
+		// 	boxShadow={'xl'}
+		// 	rounded={'3xl'}
+		// 	display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
+		// 	spacing={1}
+		// 	position={'absolute'}
+		// 	top={14}
+		// 	zIndex={999}
+		// 	p={4}
+		// 	flex={1}
+		// 	left={4}
+		// 	right={4}
+		// 	bottom={4}
+		// 	overflow={'hidden'}
+		// 	h={'calc(100% - 72px)'}
+		// 	w={'calc(100% - 32px)'}
+		// >
+		// 	<StackLayout spacing={2}>
+		// 		{NavItems.map((navItem) => (
+		// 			<MobileNavItem key={navItem.label} {...navItem} />
+		// 		))}
+		// 	</StackLayout>
+		// </StackLayout>
 	);
 };
 
-const MobileNavItem = ({ label, children }: NavItem): JSX.Element => {
+const MobileNavItem = ({ label, children }: NavItem) => {
 	const { isOpen, onToggle } = useDisclosure();
 
 	return (

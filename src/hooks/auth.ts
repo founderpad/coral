@@ -62,7 +62,6 @@ export const useRegister = (): any => {
 };
 
 export const useLogin = (): any => {
-	const showErrorNotification = useErrorNotification();
 	const { addNotification, removeNotification } = useNotification();
 	const dispatch = useDispatch();
 	const router = useRouter();
@@ -72,10 +71,10 @@ export const useLogin = (): any => {
 			userId: auth.getUser()?.id
 		},
 		onError: () => {
-			showErrorNotification({
-				title: 'Failed to get user',
-				description: 'Please try again later'
-			});
+			addNotification(
+				'Failed to get user. Please try again later.',
+				'error'
+			);
 			throw 'Failed to get user';
 		},
 		onCompleted: (data) => {
@@ -91,7 +90,7 @@ export const useLogin = (): any => {
 			const response = await auth.signIn({ email, password });
 
 			if (response.error) {
-				addNotification(response.error.message, 'success');
+				addNotification(response.error.message, 'error');
 				throw 'Failed to login';
 			} else {
 				fetchUser();

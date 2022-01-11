@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle } from '@chakra-ui/react';
+import { Alert, AlertDescription } from '@chakra-ui/react';
 import { useNotification } from 'hooks/util';
 
 const AlertFeedback = () => {
@@ -11,18 +11,16 @@ const AlertFeedback = () => {
 				flexDirection={'column'}
 				alignItems={'flex-start'}
 			>
-				{notification.title && (
+				{/* {notification.title && (
 					<AlertTitle fontSize={'xs'}>
 						{notification.title}
 					</AlertTitle>
-				)}
+				)} */}
 				<AlertDescription fontSize={'xs'}>
 					{notification.message}
 				</AlertDescription>
 			</Alert>
 		);
-
-	return null;
 
 	return null;
 };

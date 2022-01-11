@@ -1,12 +1,15 @@
 import MainNav from 'components/nav/mainnav/MainNav';
+import MobileNav from 'components/nav/mainnav/MobileNav';
 import { usePushNotifications } from 'hooks/notifications';
+import MobileNavigationProvider from 'provider/MobileNavigationProvider';
 import React, { FC } from 'react';
 import { BoxLayout } from './BoxLayout';
 
 export const MainLayout: FC<{ children: JSX.Element }> = ({ children }) => {
 	usePushNotifications();
+
 	return (
-		<React.Fragment>
+		<MobileNavigationProvider>
 			<MainNav />
 			<BoxLayout
 				p={0}
@@ -30,7 +33,9 @@ export const MainLayout: FC<{ children: JSX.Element }> = ({ children }) => {
 			>
 				{children}
 			</BoxLayout>
-		</React.Fragment>
+
+			<MobileNav />
+		</MobileNavigationProvider>
 	);
 };
 

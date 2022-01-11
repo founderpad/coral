@@ -16,7 +16,7 @@ export const BasePopover = (props: Props): JSX.Element => {
 		<Popover
 			trigger={trigger ?? 'hover'}
 			placement={'bottom'}
-			// strategy={'fixed'}
+			strategy={'fixed'}
 		>
 			<PopoverTrigger>{triggerEl}</PopoverTrigger>
 
@@ -24,9 +24,11 @@ export const BasePopover = (props: Props): JSX.Element => {
 				// <Portal>
 				<PopoverContent
 					border={0}
+					borderWidth={1}
 					boxShadow={'xl'}
 					bg={useColorModeValue('white', 'gray.500')}
-					p={4}
+					p={6}
+					minWidth={'400px'}
 				>
 					{children}
 				</PopoverContent>
