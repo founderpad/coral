@@ -91,13 +91,8 @@ export const useLogin = (): any => {
 			const response = await auth.signIn({ email, password });
 
 			if (response.error) {
-				// showErrorNotification({
-				// 	title: 'Failed to login',
-				// 	description: response.error.message
-				// });
-				// throw 'Failed to login';
-				// console.log('ddgfgfhygf');
-				addNotification(`Failed to login. ${response.error.message}`);
+				addNotification(response.error.message, 'success');
+				throw 'Failed to login';
 			} else {
 				fetchUser();
 			}

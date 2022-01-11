@@ -1,11 +1,10 @@
-import { Alert, AlertDescription } from '@chakra-ui/react';
+import AlertFeedback from 'components/alert';
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import { EmailField, PasswordField } from 'components/input';
 import { Label } from 'components/labels';
 import { PrimaryLink } from 'components/links';
 import { useLogin } from 'hooks/auth';
-import { useNotification } from 'hooks/util';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { IAuthFormData } from 'types/auth';
@@ -17,7 +16,6 @@ const LoginForm = () => {
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
-	const { notification } = useNotification();
 
 	return (
 		<Form
@@ -46,14 +44,7 @@ const LoginForm = () => {
 				isRequired
 			/>
 
-			{!!notification && (
-				<Alert status="error">
-					{/* <AlertTitle>{title}</AlertTitle> */}
-					<AlertDescription fontSize={'xs'}>
-						{notification}
-					</AlertDescription>
-				</Alert>
-			)}
+			<AlertFeedback />
 
 			<SubmitButton
 				id={'submit-login'}
@@ -70,16 +61,14 @@ const LoginForm = () => {
 	);
 };
 
-const NoAccountFooter = memo(
-	(): JSX.Element => (
-		<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'}>
-			Don&apos;t have an account?
-			<PrimaryLink href="/register" title={'Link to register an account'}>
-				{' '}
-				Create one here
-			</PrimaryLink>
-		</Label>
-	)
-);
+const NoAccountFooter = memo(() => (
+	<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'}>
+		Don&apos;t have an account?
+		<PrimaryLink href="/register" title={'Link to register an account'}>
+			{' '}
+			Create one here
+		</PrimaryLink>
+	</Label>
+));
 
 export default LoginForm;
