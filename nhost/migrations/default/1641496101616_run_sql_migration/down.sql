@@ -1,4 +1,0 @@
--- Could not auto-generate a down migration.
--- Please write an appropriate down migration for the SQL below:
--- ALTER TABLE ONLY public.idea_votes
---     ADD CONSTRAINT idea_votes_pkey PRIMARY KEY (id);

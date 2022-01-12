@@ -30,8 +30,6 @@ query UserProfileDetails($userId: uuid!) {
 query User($userId: uuid!) {
 	user(id: $userId) {
 		id
-		# lastName
-		# firstName
 		displayName
 		location
 		country

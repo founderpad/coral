@@ -1,4 +1,0 @@
--- Could not auto-generate a down migration.
--- Please write an appropriate down migration for the SQL below:
--- alter table "public"."interested_ideas" add column "targeted_user_id" uuid
---  not null;

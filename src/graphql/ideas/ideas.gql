@@ -74,9 +74,6 @@ query Ideas(
 			id
 			avatarUrl
 			email
-			# account {
-			# 	email
-			# }
 		}
 		votes_aggregate {
 			aggregate {
@@ -158,9 +155,6 @@ query IdeaInterestedUsers($ideaId: uuid!) {
 			displayName
 			avatarUrl
 			email
-			# account {
-			# 	email
-			# }
 		}
 	}
 }

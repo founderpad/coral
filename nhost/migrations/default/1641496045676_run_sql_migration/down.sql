@@ -1,6 +1,0 @@
--- Could not auto-generate a down migration.
--- Please write an appropriate down migration for the SQL below:
--- ALTER TABLE ONLY public.activity
---     ADD CONSTRAINT activity_pkey PRIMARY KEY (id);
--- ALTER TABLE ONLY public.idea_comments
---     ADD CONSTRAINT idea_comments_pkey PRIMARY KEY (id);

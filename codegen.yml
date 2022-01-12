@@ -21,6 +21,7 @@ generates:
             withHooks: true
             withHOC: false
             withComponent: false
+            withRefetchFn: true
             apolloReactHooksImportFrom: '@apollo/client'
             preResolveTypes: true
             reactApolloVersion: 3

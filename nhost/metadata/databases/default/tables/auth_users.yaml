@@ -11,10 +11,8 @@ configuration:
     display_name: displayName
     email: email
     email_verified: emailVerified
-    first_name: firstName
+    id: id
     is_anonymous: isAnonymous
-    last_logged_in: lastLoggedIn
-    last_name: lastName
     last_seen: lastSeen
     locale: locale
     new_email: newEmail
@@ -43,15 +41,6 @@ object_relationships:
 - name: defaultRoleByRole
   using:
     foreign_key_constraint_on: default_role
-- name: profile
-  using:
-    manual_configuration:
-      column_mapping:
-        id: user_id
-      insertion_order: null
-      remote_table:
-        name: user_profile
-        schema: public
 array_relationships:
 - name: refreshTokens
   using:
@@ -74,65 +63,3 @@ array_relationships:
       table:
         name: user_providers
         schema: auth
-select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - disabled
-    - email_verified
-    - is_anonymous
-    - phone_number_verified
-    - locale
-    - active_mfa_type
-    - avatar_url
-    - country
-    - default_role
-    - display_name
-    - first_name
-    - last_name
-    - location
-    - otp_hash
-    - otp_method_last_used
-    - password_hash
-    - phone_number
-    - ticket
-    - totp_secret
-    - created_at
-    - last_logged_in
-    - last_seen
-    - otp_hash_expires_at
-    - ticket_expires_at
-    - updated_at
-    - email
-    - new_email
-    - id
-    filter: {}
-  role: user
-update_permissions:
-- permission:
-    check: null
-    columns:
-    - avatar_url
-    - country
-    - display_name
-    - first_name
-    - last_logged_in
-    - last_name
-    - location
-    filter:
-      id:
-        _eq: X-Hasura-User-Id
-    set:
-      id: x-hasura-User-Id
-  role: user
-event_triggers:
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: send-welcome-email
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/email/user/send-welcome-email"

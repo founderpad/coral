@@ -37,13 +37,9 @@ query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 		totalReplies
 		user {
 			id
-			# firstName
 			displayName
 			avatarUrl
 			email
-			# account {
-			# 	email
-			# }
 		}
 	}
 	totalComments: idea_comments_aggregate(
@@ -93,9 +89,6 @@ query RepliesForComment($commentId: uuid!) {
 			firstName
 			avatarUrl
 			email
-			# account {
-			# 	email
-			# }
 		}
 	}
 }

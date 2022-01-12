@@ -59,4 +59,7 @@ node_modules
 functions/node_modules.nhost
 web/node_modules
 node_modules
+functions/node_modules.nhost
+web/node_modules
+node_modules
 functions/node_modules
