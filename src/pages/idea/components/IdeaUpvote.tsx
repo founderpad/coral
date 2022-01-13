@@ -5,7 +5,7 @@ import {
 	useInsertIdeaUpvoteMutation
 } from 'generated/api';
 import { useClaim, useCurrentUser } from 'hooks/auth';
-import * as ga from 'lib/ga';
+import { event } from 'lib/ga';
 import React, { useCallback, useState } from 'react';
 import { TIdea } from 'types/idea';
 
@@ -31,7 +31,7 @@ export const IdeaUpvote = (
 		},
 		onCompleted: () => {
 			setUpvote({ hasUserUpvoted: true, votesTotal: votesTotal + 1 });
-			ga.event({
+			event({
 				action: 'User idea upvote',
 				params: {
 					from_user_id: user.id,
@@ -51,7 +51,7 @@ export const IdeaUpvote = (
 		},
 		onCompleted: () => {
 			setUpvote({ hasUserUpvoted: false, votesTotal: votesTotal - 1 });
-			ga.event({
+			event({
 				action: 'User idea remove upvote',
 				params: {
 					from_user_id: user.id,

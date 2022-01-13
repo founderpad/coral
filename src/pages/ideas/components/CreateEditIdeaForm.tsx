@@ -12,7 +12,7 @@ import {
 	useCreateIdeaMutation
 } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
-import * as ga from 'lib/ga';
+import { event } from 'lib/ga';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -43,7 +43,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 			idea: getValues() // value for 'idea'
 		},
 		onCompleted: ({ idea }: TCreateIdeaMutation) => {
-			ga.event({
+			event({
 				action: 'Create idea',
 				params: {
 					user_id: user.id,

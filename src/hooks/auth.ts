@@ -1,5 +1,5 @@
 import { TUsers, useUserLazyQuery } from 'generated/api';
-import * as ga from 'lib/ga';
+import { event } from 'lib/ga';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from 'slices/auth';
@@ -44,7 +44,7 @@ export const useRegister = (): any => {
 				throw 'Failed to register account';
 			}
 
-			ga.event({
+			event({
 				action: `Register - ${response.error ? 'error' : 'success'}`,
 				params: {
 					email,

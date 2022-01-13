@@ -6,7 +6,7 @@ import IdeaContext from 'context/idea/IdeaContext';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import { useCreateInterestedIdeaMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
-import * as ga from 'lib/ga';
+import { event } from 'lib/ga';
 import React, { useContext, useState } from 'react';
 
 export const InterestedIdea = () => {
@@ -28,7 +28,7 @@ export const InterestedIdea = () => {
 		onCompleted: () => {
 			setModalDrawer(false);
 			setInterested(true);
-			ga.event({
+			event({
 				action: 'User is interested in idea',
 				params: {
 					from_user_id: auth.id,

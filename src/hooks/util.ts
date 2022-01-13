@@ -1,7 +1,7 @@
 import { useBreakpointValue } from '@chakra-ui/react';
 import MobileNavigationContext from 'context/MobileNavigationContext';
 import NotificationContext from 'context/NotificationContext';
-import * as ga from 'lib/ga';
+import { pageview } from 'lib/ga';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef } from 'react';
 
@@ -45,7 +45,7 @@ export const useTrackAnalytics = () => {
 
 	useEffect(() => {
 		const handleRouteChange = (url: string) => {
-			ga.pageview(url);
+			pageview(url);
 		};
 
 		// When the component is mounted, subscribe to router changes

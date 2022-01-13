@@ -31,9 +31,7 @@ describe('Register form', () => {
 	it('should render RegisterForm fields', () => {
 		const { getByRole } = setup();
 		// expect(getByRole('combobox')).toBeInTheDocument();
-		expect(
-			getByRole('textbox', { name: 'displayName' })
-		).toBeInTheDocument();
+		expect(getByRole('textbox', { name: 'firstName' })).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'lastName' })).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'email' })).toBeInTheDocument();
 	});
@@ -59,7 +57,7 @@ describe('Register form', () => {
 		const { getByRole, getByPlaceholderText } = setup();
 
 		// const typeInput = getByRole('combobox', { name: /type/i });
-		const displayNameInput = getByRole('textbox', { name: /displayName/i });
+		const displayNameInput = getByRole('textbox', { name: /firstName/i });
 		const lastNameInput = getByRole('textbox', { name: /lastName/i });
 		const emailInput = getByRole('textbox', { name: /email/i });
 		const passwordInput = getByPlaceholderText(/Password/i);

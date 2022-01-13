@@ -6,7 +6,7 @@ import { StackLayout } from 'components/layouts';
 import IdeaContext from 'context/idea/IdeaContext';
 import { CommentsForIdeaDocument, usePostCommentMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
-import * as ga from 'lib/ga';
+import { event } from 'lib/ga';
 import React, { useCallback, useContext, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';
@@ -46,7 +46,7 @@ const PostComment = (): JSX.Element => {
 			}
 		],
 		onCompleted: () => {
-			ga.event({
+			event({
 				action: 'Post comment',
 				params: {
 					comment: value,

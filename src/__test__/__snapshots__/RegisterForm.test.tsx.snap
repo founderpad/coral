@@ -3,10 +3,10 @@
 exports[`Register form matches snapshot 1`] = `
 <DocumentFragment>
   <form
-    aria-label="register-form"
+    aria-label="registerUserForm"
     autocomplete="off"
-    id="register-form"
-    name="register-form"
+    id="registerUserForm"
+    name="registerUserForm"
     novalidate=""
   >
     <div
@@ -17,13 +17,13 @@ exports[`Register form matches snapshot 1`] = `
         role="group"
       >
         <input
-          aria-label="displayName"
+          aria-label="firstName"
           aria-required="true"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
           errortext="You must input a first name"
-          id="displayName"
-          name="displayName"
+          id="firstName"
+          name="firstName"
           placeholder="First name"
           required=""
           rules="[object Object]"
@@ -81,6 +81,14 @@ exports[`Register form matches snapshot 1`] = `
           rules="[object Object]"
           type="password"
           value=""
+        />
+      </div>
+      <div
+        class="chakra-alert css-tk4txy"
+        role="alert"
+      >
+        <div
+          class="chakra-alert__desc css-pu198l"
         />
       </div>
       <button

@@ -5,7 +5,7 @@ import { FlexLayout, StackLayout } from 'components/layouts';
 import IdeaContext from 'context/idea/IdeaContext';
 import { RepliesForCommentDocument, usePostReplyMutation } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
-import * as ga from 'lib/ga';
+import { event } from 'lib/ga';
 import React, { useCallback, useContext, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 
@@ -41,7 +41,7 @@ const PostReplyComment = ({
 		],
 		onCompleted: () => {
 			setShowReplyField(!showReplyField);
-			ga.event({
+			event({
 				action: 'Post reply',
 				params: {
 					reply: value,
