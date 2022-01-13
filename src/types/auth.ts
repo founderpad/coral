@@ -36,7 +36,7 @@ export type TUser = {
 	first_name: string;
 	last_name: string;
 	// location: TLocation;
-	country?: string;
+	// country?: string;
 };
 
 export type TProfile = {
@@ -67,10 +67,12 @@ export type TLocation = {
 	country?: string;
 };
 
-export type TPersonalDetails = Pick<
-	TUser,
-	'first_name' | 'last_name' | 'country'
->;
+// export type TPersonalDetails = Pick<
+// 	TUser,
+// 	'first_name' | 'last_name' | 'country'
+// >;
+
+export type TPersonalDetails = Pick<TUser, 'first_name' | 'last_name'>;
 
 export type TExperience = Pick<
 	TProfile,

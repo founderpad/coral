@@ -2,7 +2,6 @@ import { Grid, GridItem } from '@chakra-ui/layout';
 import {
 	IoAnalyticsSharp,
 	IoBulbSharp,
-	IoLocationSharp,
 	IoMailSharp,
 	IoRocketSharp,
 	IoTimeSharp
@@ -52,7 +51,7 @@ const User = () => {
 								title={`${data?.user.displayName}`}
 							/>
 							<StackLayout spacing={2}>
-								{data?.user?.country && (
+								{/* {data?.user?.country && (
 									<ProfileSectionLabel
 										label={
 											data?.user?.location
@@ -63,7 +62,7 @@ const User = () => {
 										}
 										icon={IoLocationSharp}
 									/>
-								)}
+								)} */}
 								<ProfileSectionLabel
 									label={'*****************.com'}
 									icon={IoMailSharp}

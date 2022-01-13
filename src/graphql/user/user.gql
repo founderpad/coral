@@ -9,8 +9,8 @@ query UserSocials($id: uuid!) {
 query UserProfileDetails($userId: uuid!) {
 	user(id: $userId) {
 		displayName
-		location
-		country
+		# location
+		# country
 		avatarUrl
 		createdAt
 		lastSeen
@@ -31,8 +31,8 @@ query User($userId: uuid!) {
 	user(id: $userId) {
 		id
 		displayName
-		location
-		country
+		# location
+		# country
 		avatarUrl
 		createdAt
 		email
@@ -64,8 +64,8 @@ query Users(
 		startups
 		user {
 			displayName
-			country
-			location
+			# country
+			# location
 			createdAt
 			id
 		}
@@ -153,8 +153,8 @@ mutation UpdateUserPersonalDetails(
 	user: updateUser(pk_columns: { id: $id }, _set: $userPersonalDetails) {
 		displayName
 		# lastName
-		location
-		country
+		# location
+		# country
 		avatarUrl
 	}
 }

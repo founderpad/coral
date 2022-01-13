@@ -69,7 +69,7 @@ query Ideas(
 		total_comments
 		user {
 			displayName
-			country
+			# country
 			id
 			avatarUrl
 			email
@@ -124,8 +124,8 @@ query Idea($id: uuid!, $userId: uuid!) {
 		user {
 			avatarUrl
 			displayName
-			country
-			location
+			# country
+			# location
 			id
 		}
 		votes_aggregate {

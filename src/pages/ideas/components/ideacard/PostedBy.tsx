@@ -25,11 +25,11 @@ export const PostedBy = ({ user, created_at }: TProps): JSX.Element => (
 			{user?.displayName}
 		</BaseLink>
 		<CaptionLabel d={'flex'}>
-			{user.country && (
+			{/* {user.country && (
 				<>
 					<PointSeparator small /> {user.country}
 				</>
-			)}
+			)} */}
 			<PointSeparator small />
 			{formatDate(created_at)}
 		</CaptionLabel>

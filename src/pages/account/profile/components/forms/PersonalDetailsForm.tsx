@@ -1,6 +1,5 @@
 import Form from 'components/form/Form';
 import { InputField } from 'components/input/InputField';
-import { SelectField } from 'components/input/SelectField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import {
 	TUsers,
@@ -13,14 +12,15 @@ import { ReactElement, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { updatePersonalDetails } from 'slices/auth';
-import { countriesList } from 'utils/Constants';
 
 // type InputProperties = keyof TUsers_Set_Input
 
-type PersonalDetailsinput = Pick<
-	TUsers_Set_Input,
-	'displayName' | 'country' | 'location'
->;
+// type PersonalDetailsinput = Pick<
+// 	TUsers_Set_Input,
+// 	'displayName' | 'country' | 'location'
+// >;
+
+type PersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'>;
 
 const PersonalDetailsForm = (): ReactElement<any> => {
 	const auth = useCurrentUser();
@@ -33,7 +33,7 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 		handleSubmit,
 		control,
 		getValues,
-		watch,
+		// watch,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<PersonalDetailsinput>({
 		mode: 'all',
@@ -42,16 +42,16 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 		}
 	});
 
-	const watchCountry = watch('country', auth.country);
+	// const watchCountry = watch('country', auth.country);
 
 	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
 		variables: {
 			id: auth.id,
 			userPersonalDetails: {
-				displayName: getValues('displayName'),
+				displayName: getValues('displayName')
 				// lastName: getValues('lastName'),
-				country: getValues('country'),
-				location: getValues('location')
+				// country: getValues('country'),
+				// location: getValues('location')
 			}
 		},
 		onCompleted: (data) => {
@@ -106,7 +106,7 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 				isRequired
 			/>
 
-			<SelectField
+			{/* <SelectField
 				id="country"
 				name="country"
 				label="Country"
@@ -114,9 +114,9 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 				options={countriesList()}
 				control={control}
 				full
-			/>
+			/> */}
 
-			{watchCountry && (
+			{/* {watchCountry && (
 				<InputField
 					id="location"
 					label="Location"
@@ -124,7 +124,7 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 					name="location"
 					control={control}
 				/>
-			)}
+			)} */}
 		</Form>
 	);
 };

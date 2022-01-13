@@ -108,14 +108,14 @@ const IdeasSearchForm = (): JSX.Element => {
 				label={'Status'}
 				variant={'filled'}
 			/>
-			<InputField
+			{/* <InputField
 				id="location"
 				name="location"
 				placeholder="Search location"
 				control={control}
 				label={'Location'}
 				variant={'filled'}
-			/>
+			/> */}
 
 			{/* <Label fontSize={'x-small'} textAlign={'end'}>
 				More coming soon
