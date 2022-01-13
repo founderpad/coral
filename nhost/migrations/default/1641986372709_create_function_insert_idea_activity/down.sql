@@ -1,0 +1,1 @@
+DROP FUNCTION "public"."create_idea_activity_func";

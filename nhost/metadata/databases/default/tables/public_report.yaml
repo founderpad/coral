@@ -1,0 +1,47 @@
+table:
+  name: report
+  schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    from_user_id: fromUserId
+    recipient_email: recipientEmail
+    recipient_name: recipientName
+    reported_id: reportedId
+    reported_user_id: reportedUserId
+    updated_at: updatedAt
+  custom_root_fields: {}
+insert_permissions:
+- permission:
+    backend_only: false
+    check:
+      from_user_id:
+        _eq: X-Hasura-User-Id
+    columns:
+    - content
+    - reason
+    - recipient_email
+    - recipient_name
+    - reported_id
+    - reported_user_id
+    - type
+    set:
+      from_user_id: x-hasura-User-Id
+  role: user
+select_permissions:
+- permission:
+    columns:
+    - id
+    filter: {}
+  role: user
+event_triggers:
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  name: send-reported-email
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: "{{NHOST_BACKEND_URL}}/email/report/send-reported-email"

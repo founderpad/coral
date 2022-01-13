@@ -10,7 +10,8 @@ import { useErrorNotification } from './toast';
 import { useNotification } from './util';
 
 export const useRegister = (): any => {
-	const showErrorNotification = useErrorNotification();
+	// const showErrorNotification = useErrorNotification();
+	const { addNotification, removeNotification } = useNotification();
 
 	return async ({
 		email,
@@ -19,12 +20,14 @@ export const useRegister = (): any => {
 		lastName
 	}: IRegisterFormData): Promise<void> => {
 		try {
+			removeNotification();
 			const response = await auth.signUp({
 				email,
 				password,
 				options: {
-					displayName:
-						firstName?.trim() + ' ' + (lastName?.trim() ?? '')
+					displayName: `${firstName?.trim()} ${
+						lastName?.trim() ?? ''
+					}`
 				}
 				// options: {
 				// 	// userData: <{ display_name: string }>{
@@ -36,27 +39,38 @@ export const useRegister = (): any => {
 				// 	// }
 			});
 
+			// if (response.error) {
+			// 	showErrorNotification({
+			// 		title: 'Failed to register account',
+			// 		description: 'Please try again later.'
+			// 	});
+			// }
+
 			if (response.error) {
-				showErrorNotification({
-					title: 'Failed to register account',
-					description: 'Please try again later.'
-				});
+				addNotification(response.error.message, 'error');
+				throw 'Failed to register account';
 			}
 
 			ga.event({
 				action: `Register - ${response.error ? 'error' : 'success'}`,
 				params: {
 					email,
-					display_name:
-						firstName?.trim() + ' ' + (lastName?.trim() ?? ''),
+					display_name: `${firstName?.trim()} ${
+						lastName?.trim() ?? ''
+					}`,
 					user_registration_date: new Date()
 				}
 			});
 		} catch (error) {
-			showErrorNotification({
-				title: 'Failed to create an account',
-				description: 'Please try again later.'
-			});
+			// showErrorNotification({
+			// 	title: 'Failed to create an account',
+			// 	description: 'Please try again later.'
+			// });
+
+			addNotification(
+				'Failed to create an account. Please try again later.',
+				'error'
+			);
 		}
 	};
 };
@@ -275,7 +289,7 @@ export const useCheckLoggedIn = (): void => {
 };
 
 export const useClaim = (): string => auth.getUser()?.id;
-export const useAuth = (): any => auth;
+export const useAuth = () => auth;
 
 // export const useUpdateUserAvatar = () => {
 // 	// return (filePath: string): any =>

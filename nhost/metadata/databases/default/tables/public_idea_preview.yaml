@@ -1,0 +1,64 @@
+table:
+  name: idea_preview
+  schema: public
+object_relationships:
+- name: user
+  using:
+    manual_configuration:
+      column_mapping:
+        user_id: id
+      insertion_order: null
+      remote_table:
+        name: users
+        schema: auth
+array_relationships:
+- name: comments
+  using:
+    manual_configuration:
+      column_mapping:
+        id: idea_id
+      insertion_order: null
+      remote_table:
+        name: idea_comments
+        schema: public
+- name: votes
+  using:
+    manual_configuration:
+      column_mapping:
+        id: idea_id
+      insertion_order: null
+      remote_table:
+        name: idea_votes
+        schema: public
+insert_permissions:
+- permission:
+    backend_only: false
+    check:
+      user_id:
+        _eq: X-Hasura-User-Id
+    columns:
+    - field
+    - is_new
+    - name
+    - preview
+    - status
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - is_new
+    - total_comments
+    - total_interested
+    - total_votes
+    - field
+    - name
+    - preview
+    - status
+    - created_at
+    - id
+    - user_id
+    filter: {}
+  role: user

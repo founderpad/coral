@@ -1,3 +1,4 @@
+import AlertFeedback from 'components/alert';
 import { SubmitButton } from 'components/buttons';
 import { Form } from 'components/form';
 import {
@@ -64,6 +65,7 @@ const RegisterForm = (): JSX.Element => {
 				fontSize={'sm'}
 				isRequired
 			/>
+			<AlertFeedback />
 			<SubmitButton
 				id={'submit-register-account'}
 				name={'submit-register-account'}

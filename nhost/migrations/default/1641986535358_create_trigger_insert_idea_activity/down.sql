@@ -1,0 +1,1 @@
+DROP TRIGGER "public"."insert_create_idea_activity";

@@ -1,0 +1,1 @@
+CREATE TABLE "public"."user_followers" ("follower_id" uuid NOT NULL, "following_id" uuid NOT NULL, "status" text NOT NULL, PRIMARY KEY ("follower_id","following_id") );COMMENT ON TABLE "public"."user_followers" IS E'The table to store all user followers';
