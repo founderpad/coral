@@ -19,7 +19,7 @@ import { countriesList } from 'utils/Constants';
 
 type PersonalDetailsinput = Pick<
 	TUsers_Set_Input,
-	'firstName' | 'lastName' | 'country' | 'location'
+	'displayName' | 'country' | 'location'
 >;
 
 const PersonalDetailsForm = (): ReactElement<any> => {
@@ -48,8 +48,8 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 		variables: {
 			id: auth.id,
 			userPersonalDetails: {
-				firstName: getValues('firstName'),
-				lastName: getValues('lastName'),
+				displayName: getValues('displayName'),
+				// lastName: getValues('lastName'),
 				country: getValues('country'),
 				location: getValues('location')
 			}
@@ -76,12 +76,12 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 			isValid={isValid}
 		>
 			{/* <InputField
-				id="firstName"
+				id="displayName"
 				label="First name"
 				placeholder="First name"
 				error={errors['first_name']}
 				errorText="You must input a first name"
-				name="firstName"
+				name="displayName"
 				control={control}
 				isRequired
 			/>

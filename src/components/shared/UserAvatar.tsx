@@ -79,12 +79,12 @@ export const CurrentUserAvatarDetails = memo(
 		direction?: StackProps['direction'];
 	}) => {
 		const user = useCurrentUser();
-		// const { firstName, lastName, avatarUrl, email } = user;
+		// const { displayName, lastName, avatarUrl, email } = user;
 
 		if (user)
 			return (
 				<UserAvatarDetails
-					// name={`${user?.firstName} ${user?.lastName}`}
+					// name={`${user?.displayName} ${user?.lastName}`}
 					name={user?.displayName}
 					email={user?.email}
 					src={user?.avatarUrl}

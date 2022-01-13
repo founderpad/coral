@@ -14,7 +14,7 @@ export const IdeaUserActions = memo(() => {
 		userId,
 		createdAt,
 		id,
-		user: { avatarUrl, firstName }
+		user: { avatarUrl, displayName }
 	} = idea;
 	const user = useCurrentUser();
 
@@ -26,7 +26,9 @@ export const IdeaUserActions = memo(() => {
 		>
 			<UserAvatarDetails
 				rounded={'full'}
-				name={`Published by ${user.id === userId ? 'you' : firstName}`}
+				name={`Published by ${
+					user.id === userId ? 'you' : displayName
+				}`}
 				src={avatarUrl}
 				createdAt={formatDate(createdAt, true)}
 			/>

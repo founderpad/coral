@@ -72,9 +72,11 @@ const ReportForm = ({
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 
+	console.log('report: ', { ...report, reason: getValues('reason') });
+
 	const [createReportMutation] = useCreateReportMutation({
 		variables: {
-			report: { ...report, reason: getValues('reason') } // reason for report
+			report: { ...report } // reason for report
 		},
 		onCompleted: (_data) => {
 			setModalDrawer({

@@ -89,7 +89,7 @@ const FounderCard = (founderProfile: TProfilePreview) => {
 			fontSize={'xs'}
 		>
 			<UserAvatarDetails
-				name={founderProfile.user.firstName}
+				name={founderProfile.user.displayName}
 				createdAt={`Joined ${formatDate(
 					founderProfile.user.createdAt
 				)}`}

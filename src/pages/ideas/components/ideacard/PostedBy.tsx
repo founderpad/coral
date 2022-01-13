@@ -22,7 +22,7 @@ export const PostedBy = ({ user, created_at }: TProps): JSX.Element => (
 			color={'gray.400'}
 			fontSize={'x-small'}
 		>
-			{user?.firstName}
+			{user?.displayName}
 		</BaseLink>
 		<CaptionLabel d={'flex'}>
 			{user.country && (

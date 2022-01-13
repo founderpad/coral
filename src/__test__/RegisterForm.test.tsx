@@ -31,25 +31,27 @@ describe('Register form', () => {
 	it('should render RegisterForm fields', () => {
 		const { getByRole } = setup();
 		// expect(getByRole('combobox')).toBeInTheDocument();
-		expect(getByRole('textbox', { name: 'firstName' })).toBeInTheDocument();
+		expect(
+			getByRole('textbox', { name: 'displayName' })
+		).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'lastName' })).toBeInTheDocument();
 		expect(getByRole('textbox', { name: 'email' })).toBeInTheDocument();
 	});
 
 	it('should accept RegisterForm fields with input', () => {
 		const { getByPlaceholderText } = setup();
-		const firstNameInput = getByPlaceholderText(/First name/i);
+		const displayNameInput = getByPlaceholderText(/First name/i);
 		const lastNameInput = getByPlaceholderText(/Last name/i);
 
-		expect(firstNameInput.value).toBe('');
+		expect(displayNameInput.value).toBe('');
 		expect(lastNameInput.value).toBe('');
 
 		act(() => {
-			fireEvent.change(firstNameInput, { target: { value: 'Jamie' } });
+			fireEvent.change(displayNameInput, { target: { value: 'Jamie' } });
 			fireEvent.change(lastNameInput, { target: { value: 'Last name' } });
 		});
 
-		expect(firstNameInput.value).toBe('Jamie');
+		expect(displayNameInput.value).toBe('Jamie');
 		expect(lastNameInput.value).toBe('Last name');
 	});
 
@@ -57,21 +59,21 @@ describe('Register form', () => {
 		const { getByRole, getByPlaceholderText } = setup();
 
 		// const typeInput = getByRole('combobox', { name: /type/i });
-		const firstNameInput = getByRole('textbox', { name: /firstName/i });
+		const displayNameInput = getByRole('textbox', { name: /displayName/i });
 		const lastNameInput = getByRole('textbox', { name: /lastName/i });
 		const emailInput = getByRole('textbox', { name: /email/i });
 		const passwordInput = getByPlaceholderText(/Password/i);
 		const submitButton = getByRole('button', { name: /submit/i });
 
 		// expect(typeInput.value).toBe('');
-		expect(firstNameInput.value).toBe('');
+		expect(displayNameInput.value).toBe('');
 		expect(lastNameInput.value).toBe('');
 		expect(emailInput.value).toBe('');
 		expect(passwordInput.value).toBe('');
 
 		act(() => {
 			// fireEvent.change(typeInput, { target: { value: 'IDEAS' } });
-			fireEvent.change(firstNameInput, { target: { value: 'Jamie' } });
+			fireEvent.change(displayNameInput, { target: { value: 'Jamie' } });
 			fireEvent.change(lastNameInput, { target: { value: 'Lee' } });
 			fireEvent.change(emailInput, {
 				target: { value: 'jamie@gmail.com' }
@@ -80,7 +82,7 @@ describe('Register form', () => {
 		});
 
 		// expect(typeInput.value).toBe('IDEAS');
-		expect(firstNameInput.value).toBe('Jamie');
+		expect(displayNameInput.value).toBe('Jamie');
 		expect(lastNameInput.value).toBe('Lee');
 		expect(emailInput.value).toBe('jamie@gmail.com');
 		expect(passwordInput.value).toBe('123456');

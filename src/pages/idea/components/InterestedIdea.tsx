@@ -23,7 +23,7 @@ export const InterestedIdea = () => {
 	const [createInterestedIdeaMutation] = useCreateInterestedIdeaMutation({
 		variables: {
 			ideaId: id,
-			targetedUserId: userId
+			targetUserId: userId
 		},
 		onCompleted: () => {
 			setModalDrawer(false);

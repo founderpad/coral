@@ -86,7 +86,7 @@ query RepliesForComment($commentId: uuid!) {
 		updatedAt
 		user {
 			id
-			firstName
+			displayName
 			avatarUrl
 			email
 		}

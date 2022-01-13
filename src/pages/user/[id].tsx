@@ -31,7 +31,7 @@ const User = () => {
 		<React.Fragment>
 			<DocumentTitle title="View user" />
 			<PageLayout
-				title={`${data?.user.firstName}'s profile`}
+				title={`${data?.user.displayName}'s profile`}
 				action={<AddFollower userId={useQueryParam('id')} />}
 			>
 				<Grid
@@ -49,7 +49,7 @@ const User = () => {
 								aria-label="Edit profile picture"
 							/>
 							<TitleEditAction
-								title={`${data?.user.firstName}`}
+								title={`${data?.user.displayName}`}
 							/>
 							<StackLayout spacing={2}>
 								{data?.user?.country && (
@@ -85,7 +85,7 @@ const User = () => {
 									<ProfileSectionLabel
 										label={
 											`Last seen ` +
-											formatDate(data?.user.lastLoggedIn)
+											formatDate(data?.user.lastSeen)
 										}
 										icon={IoTimeSharp}
 									/>

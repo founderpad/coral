@@ -11,7 +11,6 @@ mutation UpdateIdea($idea: ideas_set_input!, $id: uuid!) {
 		name
 		description
 		field
-		missionStatement
 		competitors
 		team
 		additionalInformation
@@ -27,9 +26,9 @@ mutation DeleteIdea($id: uuid!) {
 	}
 }
 
-mutation CreateInterestedIdea($ideaId: uuid!, $targetedUserId: uuid!) {
+mutation CreateInterestedIdea($ideaId: uuid!, $targetUserId: uuid!) {
 	insert_interested_ideas_one(
-		object: { ideaId: $ideaId, targetedUserId: $targetedUserId }
+		object: { ideaId: $ideaId, targetUserId: $targetUserId }
 	) {
 		ideaId
 	}
@@ -69,7 +68,7 @@ query Ideas(
 		total_interested
 		total_comments
 		user {
-			firstName
+			displayName
 			country
 			id
 			avatarUrl
@@ -101,7 +100,7 @@ query UserIdeas($userId: uuid!) {
 		createdAt
 		isPublished
 		totalInterested
-		totalUpvotes
+		totalVotes
 		totalComments
 	}
 }
@@ -121,10 +120,10 @@ query Idea($id: uuid!, $userId: uuid!) {
 		createdAt
 		totalInterested
 		totalComments
-		totalUpvotes
+		totalVotes
 		user {
 			avatarUrl
-			firstName
+			displayName
 			country
 			location
 			id

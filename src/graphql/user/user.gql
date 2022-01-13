@@ -8,12 +8,12 @@ query UserSocials($id: uuid!) {
 
 query UserProfileDetails($userId: uuid!) {
 	user(id: $userId) {
-		firstName
+		displayName
 		location
 		country
 		avatarUrl
 		createdAt
-		lastLoggedIn
+		lastSeen
 		profile {
 			availability
 			background
@@ -63,7 +63,7 @@ query Users(
 	) {
 		startups
 		user {
-			firstName
+			displayName
 			country
 			location
 			createdAt
@@ -151,8 +151,8 @@ mutation UpdateUserPersonalDetails(
 	$userPersonalDetails: users_set_input!
 ) {
 	user: updateUser(pk_columns: { id: $id }, _set: $userPersonalDetails) {
-		firstName
-		lastName
+		displayName
+		# lastName
 		location
 		country
 		avatarUrl
@@ -162,14 +162,5 @@ mutation UpdateUserPersonalDetails(
 mutation UpdateUserAvatar($id: uuid!, $avatarUrl: users_set_input!) {
 	user: updateUser(pk_columns: { id: $id }, _set: $avatarUrl) {
 		avatarUrl
-	}
-}
-
-mutation UpdateUserLastLoggedIn($id: uuid!, $lastLoggedIn: timestamptz!) {
-	user: updateUser(
-		pk_columns: { id: $id }
-		_set: { lastLoggedIn: $lastLoggedIn }
-	) {
-		lastLoggedIn
 	}
 }
