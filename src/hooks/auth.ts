@@ -131,11 +131,11 @@ export const useCurrentUser = (): TUsers => {
 	}
 };
 
-// export const useCheckLoggedIn = (): void => {
-// 	// const { isAuthenticated } = useAuth();
-// 	// const router = useRouter();
-// 	// if (isAuthenticated) router.push('/ideas?page=1');
-// };
+export const useCheckLoggedIn = (): void => {
+	// const { isAuthenticated } = useAuth();
+	// const router = useRouter();
+	// if (isAuthenticated) router.push('/ideas?page=1');
+};
 
 export const useClaim = (): string => auth.getUser()?.id;
 export const useAuth = () => auth;

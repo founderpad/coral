@@ -1,9 +1,9 @@
-overwrite: true
 schema:
     - ${NEXT_PUBLIC_GRAPHQL_BACKEND}:
           headers:
               x-hasura-role: ${BACKEND_ROLE}
               x-hasura-admin-secret: ${NHOST_ADMIN_SECRET}
+overwrite: true
 documents:
     - ./src/**/*.gql
     - ./src/**/*.graphql

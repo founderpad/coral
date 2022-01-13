@@ -9,7 +9,6 @@ import { TReport_Insert_Input, useCreateReportMutation } from 'generated/api';
 import { useSuccessNotification } from 'hooks/toast';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { IReportFormData } from 'types/report';
 import { reportReasonsList } from 'utils/Constants';
 
 const ReportMenu = ({
@@ -68,17 +67,15 @@ const ReportForm = ({
 		control,
 		getValues,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<IReportFormData>();
+	} = useForm<{ reason: string }>();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 
-	console.log('report: ', { ...report, reason: getValues('reason') });
-
-	const [createReportMutation] = useCreateReportMutation({
+	const [addReport] = useCreateReportMutation({
 		variables: {
-			report: { ...report } // reason for report
+			report: { ...report, reason: getValues('reason') } // reason for report
 		},
-		onCompleted: (_data) => {
+		onCompleted: () => {
 			setModalDrawer({
 				isOpen: false
 			});
@@ -92,7 +89,7 @@ const ReportForm = ({
 		<Form
 			id={'reportForm'}
 			name={'reportForm'}
-			onSubmit={handleSubmit(createReportMutation)}
+			onSubmit={handleSubmit(addReport)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 		>
