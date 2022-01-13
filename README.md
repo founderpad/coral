@@ -78,3 +78,40 @@ This will provide us with a live tail of the logs so we can see what's happening
 
 ## Adding NPM libraries
 If you're going to add a new library, make sure you add it in to the correct `package.json` file. If it's client side for the React project then install it in the root `package.json`, but if it's for the custom serverless API, then install it to `/api/package.json`
+
+## Applying migrations and metadata
+When we want to add new columns/tables/triggers/views etc (migration) we should do this locally through the Hasura console. **DO NOT**  do this via raw SQL or through the CLI, as otherwise Hasura won't generate the correct migrations for us and we can't track it easily.
+
+This applies to metadata (permissions, column mappings, relationships, events, actions etc) as well. The necessary metadata information will be added to the relevant table/view files in ```nhost/metadata/default/tables```. As an example, say we want to add a new column called "team" to be inserted into the ideas table, we should go through the Hasura console and add this via permissions > insert for the `ideas` table. This will, in turn, create or update the corresponding metadata file for this table (in this case ```public_ideas.yaml```). Under the ```insert_permissions``` you'll see the column you just configured in Hasura. E.g.,
+
+```
+insert_permissions:
+- permission:
+    backend_only: false
+    check:
+      user_id:
+        _eq: X-Hasura-User-Id
+    columns:
+    - additional_information
+    - business_plan
+    - competitors
+    - description
+    - field
+    - is_published
+    - name
+    - status
+    - team // The new field to insert when creating a new idea
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+```
+
+Any changes to permissions, relationships, actions, or events will update or create the corresponding metadata YAML file.
+
+When we make changes to our database locally via Hasura (http://localhost:1337), Hasura will create the necessary migration files for us (up.sql with the migration script, and down.sql to rollback if there are issues). These migrations are stored inside ```/nhost/migrations/default``` and will be prefixed with a timestamp, denoting in which order they were added. This is crucial so that the migrations are applied in the correct order.
+
+### NOTE: Hasura doesn't create down.sql for migrations created using raw SQL, but we will need to use this approach some times. You must manually create the ```down.sql``` yourself
+Some times we may need to create triggers, functions or views. This is fine, and the appropriate migration will be created for us, but the ```down.sql``` will be empty. It will display a comment indicating that the ```down.sql``` couldn't be auto-generated (unsurprising given how complex and unpredictable the raw SQL could be). Ensure you create the necessary ```down.sql``` when this happens. Test to make sure it works. 
+
+
+When you're happy it works, commit it into GitHub where the GitHub Action CI/CD will build the project and, upon completion, will deploy to the development environment for testing.
