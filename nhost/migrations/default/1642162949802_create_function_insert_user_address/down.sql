@@ -1,0 +1,1 @@
+DROP FUNCTION public.insert_user_address;

@@ -13,7 +13,7 @@ import {
 } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { useSuccessNotification } from 'hooks/toast';
-import { ReactElement, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setProfileComplete } from 'slices/auth';
@@ -24,12 +24,12 @@ import {
 	STARTUP_STATUS
 } from 'utils/Constants';
 
-const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
+const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
 	const isProfileComplete = useCurrentUser().profile.isComplete;
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, userId, ...rest } = userProfile;
+	const { __typename, userId, id, ...rest } = userProfile;
 	const [selectedSkills, setSelectedSkills] = useState<string[]>(
 		userProfile.skills ?? []
 	);
@@ -107,8 +107,8 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 			/>
 
 			<SelectField
-				id="specialist_industry"
-				name="specialist_industry"
+				id="specialistIndustry"
+				name="specialistIindustry"
 				label="What is your specialist field?"
 				placeholder="specialist field"
 				options={industriesList()}
@@ -173,8 +173,8 @@ const ExperienceForm = (userProfile: TUser_Profile): ReactElement<any> => {
 			/>
 
 			<TextareaField
-				id="business_description"
-				name="business_description"
+				id="businessDescription"
+				name="businessDescription"
 				label="What were your previous businesses?"
 				placeholder=""
 				control={control}

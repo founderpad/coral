@@ -3,7 +3,7 @@ import React from 'react';
 import UserPersonalDetails from '../components/UserPersonalDetails';
 import UserProfileTabLayout from './UserProfileTabLayout';
 
-const ProfileLayout = (): JSX.Element => (
+const ProfileLayout = () => (
 	<Grid
 		templateRows="repeat(1, 1fr)"
 		templateColumns="repeat(12, 1fr)"

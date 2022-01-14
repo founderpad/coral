@@ -1,0 +1,1 @@
+DROP TRIGGER insert_user_address ON auth.users;

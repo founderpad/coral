@@ -1,28 +1,28 @@
 import Form from 'components/form/Form';
+import { SelectField } from 'components/input';
 import { InputField } from 'components/input/InputField';
 import ModalDrawerContext from 'context/ModalDrawerContext';
 import {
 	TUsers,
 	TUsers_Set_Input,
+	TUser_Address,
+	TUser_Address_Set_Input,
 	useUpdateUserPersonalDetailsMutation
 } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { useSuccessNotification } from 'hooks/toast';
-import { ReactElement, useContext } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { updatePersonalDetails } from 'slices/auth';
+import { countriesList } from 'utils/Constants';
 
 // type InputProperties = keyof TUsers_Set_Input
 
-// type PersonalDetailsinput = Pick<
-// 	TUsers_Set_Input,
-// 	'displayName' | 'country' | 'location'
-// >;
+type PersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
+	Pick<TUser_Address_Set_Input, 'country' | 'location'>;
 
-type PersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'>;
-
-const PersonalDetailsForm = (): ReactElement<any> => {
+const PersonalDetailsForm = () => {
 	const auth = useCurrentUser();
 
 	const dispatch = useDispatch();
@@ -33,30 +33,38 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 		handleSubmit,
 		control,
 		getValues,
-		// watch,
+		watch,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<PersonalDetailsinput>({
 		mode: 'all',
 		defaultValues: {
-			...auth
+			...auth,
+			...auth.address
 		}
 	});
 
-	// const watchCountry = watch('country', auth.country);
+	const watchCountry = watch('country', auth.address?.country);
 
 	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
 		variables: {
 			id: auth.id,
 			userPersonalDetails: {
 				displayName: getValues('displayName')
-				// lastName: getValues('lastName'),
-				// country: getValues('country'),
-				// location: getValues('location')
+			},
+			userAddress: {
+				country: getValues('country'),
+				location: getValues('location')
 			}
 		},
 		onCompleted: (data) => {
-			const user = data.user;
-			dispatch(updatePersonalDetails(user as TUsers));
+			const { updateUser, updateUserAddress } = data;
+			dispatch(
+				updatePersonalDetails({
+					user: updateUser as TUsers,
+					userAddress: updateUserAddress as TUser_Address
+				})
+			);
+
 			setModalDrawer({
 				isOpen: false
 			});
@@ -75,17 +83,27 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 		>
-			{/* <InputField
+			<InputField
 				id="displayName"
-				label="First name"
-				placeholder="First name"
-				error={errors['first_name']}
-				errorText="You must input a first name"
+				label="Display name"
+				placeholder="Display name"
+				error={errors['displayName']}
+				errorText="You must input a display name"
 				name="displayName"
 				control={control}
 				isRequired
 			/>
-			<InputField
+			{/* <InputField
+				id="firstName"
+				label="First name"
+				placeholder="First name"
+				error={errors['first_name']}
+				errorText="You must input a first name"
+				name="firstName"
+				control={control}
+				isRequired
+			/> */}
+			{/* <InputField
 				id="lastName"
 				label="Last name"
 				placeholder="Last name"
@@ -95,18 +113,8 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 				control={control}
 				helperText={'This will not be shown to other users.'}
 			/> */}
-			<InputField
-				id="displayName"
-				label="Your name"
-				placeholder="You name"
-				error={errors['displayName']}
-				errorText="You must input a name"
-				name="displayName"
-				control={control}
-				isRequired
-			/>
 
-			{/* <SelectField
+			<SelectField
 				id="country"
 				name="country"
 				label="Country"
@@ -114,9 +122,9 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 				options={countriesList()}
 				control={control}
 				full
-			/> */}
+			/>
 
-			{/* {watchCountry && (
+			{watchCountry && (
 				<InputField
 					id="location"
 					label="Location"
@@ -124,7 +132,7 @@ const PersonalDetailsForm = (): ReactElement<any> => {
 					name="location"
 					control={control}
 				/>
-			)} */}
+			)}
 		</Form>
 	);
 };

@@ -1,1 +1,1 @@
-DROP FUNCTION "public"."insert_user_profile_func";
+DROP FUNCTION public.insert_user_profile_func;

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TUsers } from 'generated/api';
+import { TUsers, TUser_Address } from 'generated/api';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
@@ -26,10 +26,18 @@ const authSlice = createSlice({
 				}
 			};
 		},
-		updatePersonalDetails(state, action: PayloadAction<TUsers>) {
+		updatePersonalDetails(
+			state,
+			action: PayloadAction<{ user: TUsers; userAddress: TUser_Address }>
+		) {
+			const { user, userAddress } = action.payload;
 			state.user = {
 				...state.user,
-				...action.payload
+				...user,
+				address: {
+					...state.user.address,
+					...userAddress
+				}
 			};
 		},
 		updateUserImage(state, action: PayloadAction<string>) {

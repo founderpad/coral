@@ -37,9 +37,19 @@ const persistor = persistStore(store);
  */
 const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	useTrackAnalytics();
+	// const router = useRouter();
+	// const { notification, removeNotification } = useNotification();
 
-	// console.log('graphql url: ', process.env.NEXT_PUBLIC_GRAPHQL_BACKEND);
-	// graphqlUrl={process.env.NEXT_PUBLIC_GRAPHQL_BACKEND}
+	// useEffect(() => {
+	// 	const routeChangeComplete = () => {
+	// 		removeNotifications();
+	// 	};
+
+	// 	router.events.on('routeChangeComplete', routeChangeComplete);
+	// 	return () => {
+	// 		router.events.off('routeChangeComplete', routeChangeComplete);
+	// 	};
+	// }, []);
 
 	return (
 		<React.Fragment>

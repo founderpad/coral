@@ -9,6 +9,21 @@ enum Params {
 	edit
 }
 
+// export const usePageChange = () => {
+// 	const router = useRouter();
+// 	const { removeNotification, notification } = useNotification();
+
+// 	useEffect(() => {
+// 		if (notification) {
+// 			console.log('fgfggh');
+
+// 			removeNotification();
+// 		}
+// 	}, [useRouter().pathname]);
+
+// 	router.events.on('routeChangeStart', handleRouteChange)
+// };
+
 export const useEditMode = (): any => useRouter().query[Params.edit];
 
 export const useQueryParam = (param: string) =>

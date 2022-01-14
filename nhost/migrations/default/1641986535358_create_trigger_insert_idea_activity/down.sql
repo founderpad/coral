@@ -1,1 +1,1 @@
-DROP TRIGGER "public"."insert_create_idea_activity";
+DROP TRIGGER insert_create_idea_activity ON public.ideas;

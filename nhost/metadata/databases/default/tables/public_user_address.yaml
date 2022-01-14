@@ -1,0 +1,31 @@
+table:
+  name: user_address
+  schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    updated_at: updatedAt
+    user_id: userId
+  custom_root_fields: {}
+select_permissions:
+- permission:
+    columns:
+    - country
+    - location
+    - created_at
+    - updated_at
+    - user_id
+    filter: {}
+  role: user
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - country
+    - location
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+    set:
+      user_id: x-hasura-User-Id
+  role: user

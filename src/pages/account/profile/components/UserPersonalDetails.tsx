@@ -1,6 +1,6 @@
 import { FlexProps } from '@chakra-ui/react';
 import { SubmitButton } from 'components/buttons';
-import { IoMailSharp, IoTimeSharp } from 'components/icons';
+import { IoLocationSharp, IoMailSharp, IoTimeSharp } from 'components/icons';
 import { StackLayout } from 'components/layouts';
 import { TitleEditAction } from 'components/shared';
 import ModalDrawerContext from 'context/ModalDrawerContext';
@@ -14,11 +14,17 @@ import UserImageUploader from './UserImageUploader';
 
 type Props = Pick<FlexProps, 'display' | 'mb'>;
 
-const UserPersonalInformation = memo((props: Props): JSX.Element => {
+const UserPersonalInformation = memo((props: Props) => {
 	const user = useCurrentUser();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	// const { location, country, createdAt, displayName, email } = user;
-	const { createdAt, displayName, email } = user;
+	const { createdAt, displayName, email, address } = user;
+	const { location, country } = address;
+
+	const userLocation = location
+		? `${location}, ${country}`
+		: country
+		? country
+		: 'Location not set';
 
 	const onClick = () => {
 		setModalDrawer({
@@ -50,16 +56,10 @@ const UserPersonalInformation = memo((props: Props): JSX.Element => {
 
 				<ProfileSectionLabel label={email} icon={IoMailSharp} />
 
-				{/* <ProfileSectionLabel
-					label={
-						location
-							? `${location}, ${country}`
-							: country
-							? country
-							: 'Location not set'
-					}
+				<ProfileSectionLabel
+					label={userLocation}
 					icon={IoLocationSharp}
-				/> */}
+				/>
 				<ProfileSectionLabel
 					label={`Joined ` + formatDate(createdAt, true)}
 					icon={IoTimeSharp}

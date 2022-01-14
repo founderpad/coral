@@ -31,12 +31,14 @@ query User($userId: uuid!) {
 	user(id: $userId) {
 		id
 		displayName
-		# location
-		# country
 		avatarUrl
 		createdAt
 		email
 		lastSeen
+		address {
+			location
+			country
+		}
 		profile {
 			id
 			isComplete
@@ -146,16 +148,34 @@ mutation UpdateResume($id: uuid!, $resume: user_profile_set_input!) {
 	}
 }
 
+# mutation UpdateUserPersonalDetails(
+# 	$id: uuid!
+# 	$userPersonalDetails: users_set_input!
+# ) {
+# 	user: updateUser(pk_columns: { id: $id }, _set: $userPersonalDetails) {
+# 		displayName
+# 		# lastName
+# 		# location
+# 		# country
+# 		avatarUrl
+# 	}
+# }
+
 mutation UpdateUserPersonalDetails(
 	$id: uuid!
 	$userPersonalDetails: users_set_input!
+	$userAddress: user_address_set_input!
 ) {
-	user: updateUser(pk_columns: { id: $id }, _set: $userPersonalDetails) {
+	updateUser(pk_columns: { id: $id }, _set: $userPersonalDetails) {
 		displayName
-		# lastName
-		# location
-		# country
-		avatarUrl
+	}
+
+	updateUserAddress: update_user_address_by_pk(
+		pk_columns: { userId: $id }
+		_set: $userAddress
+	) {
+		country
+		location
 	}
 }
 

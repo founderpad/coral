@@ -1,3 +1,4 @@
+import { useNhostAuth } from '@nhost/react-auth';
 import { TUsers, useUserLazyQuery } from 'generated/api';
 import { event } from 'lib/ga';
 import { useRouter } from 'next/router';
@@ -43,6 +44,11 @@ export const useRegister = (): any => {
 				addNotification(response.error.message, 'error');
 				throw 'Failed to register account';
 			}
+
+			addNotification(
+				`You have successfully registered an account. `,
+				'success'
+			);
 
 			event({
 				action: `Register - ${response.error ? 'error' : 'success'}`,
@@ -138,4 +144,4 @@ export const useCheckLoggedIn = (): void => {
 };
 
 export const useClaim = (): string => auth.getUser()?.id;
-export const useAuth = () => auth;
+export const useAuth = () => useNhostAuth();
