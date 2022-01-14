@@ -13,7 +13,7 @@ import {
 } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
 import { event } from 'lib/ga';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ideasStatusList, industriesList } from 'utils/Constants';
@@ -22,9 +22,16 @@ type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'comments'>;
 
 // type TEditIdea = Omit<TIdeas_Insert_Input, 'votes'>;
 
-const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
+// interface IDocument {
+// 	file: File;
+// 	bucketId: 'businessPlans' | 'pitchDecks' | 'avatars' | 'resumes';
+// 	// fileType: 'businessPlan' | 'pitchDeck';
+// 	fileName: 'Business Plan' | 'Pitch Deck';
+// }
+
+const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 	const user = useCurrentUser();
-	const router = useRouter();
+	// const { addNotification } = useNotification();
 	const {
 		handleSubmit,
 		control,
@@ -37,6 +44,21 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 			isPublished: true
 		}
 	});
+
+	// const [documents, setDocuments] = useState<Array<IDocument>>(null);
+
+	// const uploadFile = useFileUpload();
+
+	// const onUpload = useCallback(async (document: IDocument) => {
+	// 	const { file, bucketId, fileName } = document;
+	// 	await uploadFile({
+	// 		file,
+	// 		bucketId,
+	// 		fileName
+	// 	});
+
+	// 	addNotification(`${fileName} added`, 'success');
+	// }, []);
 
 	const [createIdeaMutation] = useCreateIdeaMutation({
 		variables: {
@@ -53,7 +75,8 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 					idea_name: idea.name
 				}
 			});
-			router.push(`/idea/${idea.id}`);
+
+			Router.push(`/idea/${idea.id}`);
 		}
 	});
 
@@ -153,33 +176,38 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 				errorText="Additional information must not be more than 200 characters"
 				rules={{ maxLength: 200 }}
 			/>
-			{/* <FormControl>
-					<Heading as={'h5'} size={'sm'} color={'fpGrey.900'}>
-						Supporting material
-					</Heading>
-					<Text fontSize={'sm'} color={'fpGrey.500'}>
-						Any supporting material you wish to share such as pitch
-						decks, business plans and accelerators.
-					</Text>
-					<FormHelperText>
-						<em>Max. file size: 5mb</em>
-						<br />
-						<em>Supported types are .doc, .docx, .pdf, .txt</em>
-					</FormHelperText>
-				</FormControl>
 
-				<Stack
-					w={'full'}
-					flex={1}
-					justifyContent={'flex-start'}
-					spacing={4}
-					direction={{ base: 'column', sm: 'row' }}
-					pb={4}
-				>
-					<FileUploader label="Business Plan" />
-					<FileUploader label="Pitch Deck" />
-					<FileUploader label="Other" />
-				</Stack> */}
+			{/* <AppDivider />
+			<StackLayout spacing={0}>
+				<FileUploader
+					boxSize={100}
+					label={'Business plan'}
+					defaultSrc={''}
+					onUpload={(file) =>
+						onUpload({
+							file,
+							bucketId: 'businessPlans',
+							fileName: 'Business Plan'
+						})
+					}
+					onDelete={() => {}}
+				/>
+				<FileUploader
+					boxSize={100}
+					label={'Pitch deck'}
+					defaultSrc={''}
+					onUpload={(file) =>
+						onUpload({
+							file,
+							bucketId: 'pitchDecks',
+							fileName: 'Pitch Deck'
+						})
+					}
+					onDelete={() => {}}
+				/>
+				<AlertFeedback />
+			</StackLayout> */}
+
 			<SwitchField
 				id="is_published"
 				name="is_published"
@@ -198,9 +226,28 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }): JSX.Element => {
 				w={{ base: 'full', sm: 'xs' }}
 				size={'md'}
 			/>
-			{/* </StackLayout> */}
 		</Form>
 	);
 };
+
+// const BusinessPlanUpload = (idea: TIdeas) => {
+// 	const [businessPlan, setBusinessPlan] = useState(idea?.businessPlan);
+// 	const uploadFile = useFileUpload();
+
+// 	// const
+
+// 	const onUpload = useCallback(async (file: File) => {
+// 		const filePath = await uploadFile({ file, bucketId: 'businessPlans' });
+
+// 	return (
+// 		<FileUploader
+// 			boxSize={100}
+// 			label={'Business plan'}
+// 			defaultSrc={businessPlan}
+// 			onUpload={() => {}}
+// 			onDelete={() => {}}
+// 		/>
+// 	);
+// };
 
 export default CreateEditIdeaForm;

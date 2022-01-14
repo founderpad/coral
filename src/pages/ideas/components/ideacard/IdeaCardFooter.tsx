@@ -8,6 +8,7 @@ import React, { memo } from 'react';
 import IdeaMenu from '../IdeaMenu';
 
 const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
+	console.log('idea: ', idea);
 	return (
 		<StackLayout
 			direction={'row'}

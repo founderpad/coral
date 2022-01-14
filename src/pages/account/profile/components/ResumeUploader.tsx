@@ -5,13 +5,11 @@ import { useCurrentUser } from 'hooks/auth';
 import { useFileDelete, useFileUpload, useNotification } from 'hooks/util';
 import { cache } from 'pages/_app';
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUserImage } from 'slices/auth';
 
 const ResumeUploader = () => {
 	// const showSuccessNotification = useSuccessNotification();
 	// const [filePath, setFilePath] = useState(undefined);
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const { profile, avatarUrl } = useCurrentUser();
 	const { addNotification } = useNotification();
 
@@ -69,28 +67,32 @@ const ResumeUploader = () => {
 		const fileId = filePath.toString().split('files/')[1];
 		await deleteResume({ fileId });
 
-		updateResume({
-			variables: {
-				id: profile.id,
-				resume: {
-					resume: ''
-				}
-			},
-			onCompleted: (_data) => {
-				addNotification('Resume deleted successfully.', 'success');
-				dispatch(updateUserImage(''));
-			},
-			onError: (_data) => {
-				addNotification(
-					'Failed to delete resume. Please try again later.',
-					'error'
-				);
-			}
-		});
+		// updateResume({
+		// 	variables: {
+		// 		id: profile.id,
+		// 		resume: {
+		// 			resume: ''
+		// 		}
+		// 	},
+		// 	onCompleted: (_data) => {
+		// 		addNotification('Resume deleted successfully.', 'success');
+		// 		dispatch(updateUserImage(''));
+		// 	},
+		// 	onError: (_data) => {
+		// 		addNotification(
+		// 			'Failed to delete resume. Please try again later.',
+		// 			'error'
+		// 		);
+		// 	}
+		// });
 	}, []);
 
 	const onUpload = useCallback(async (file: File) => {
-		const filePath = await uploadResume({ file, bucketId: 'resumes' });
+		const filePath = await uploadResume({
+			file,
+			bucketId: 'resumes',
+			fileName: 'Resume'
+		});
 
 		await updateResume({
 			variables: {

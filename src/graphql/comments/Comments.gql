@@ -1,8 +1,17 @@
-mutation PostComment($ideaComment: idea_comments_insert_input!) {
+mutation PostComment(
+	$ideaComment: idea_comments_insert_input!
+	$ideaId: uuid!
+) {
 	addIdeaComment: insert_idea_comments_one(object: $ideaComment) {
 		ideaId
 		id
 		value
+	}
+	updateIdeaTotalComments: update_ideas_by_pk(
+		pk_columns: { id: $ideaId }
+		_inc: { totalComments: 1 }
+	) {
+		id
 	}
 }
 

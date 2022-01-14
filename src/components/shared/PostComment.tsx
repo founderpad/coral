@@ -23,7 +23,8 @@ const PostComment = (): JSX.Element => {
 				ideaId: data?.idea.id,
 				targetUserId: data?.idea.userId,
 				value
-			}
+			},
+			ideaId: data?.idea.id
 		},
 		// update(cache, mutationResult) {
 		// 	cache.modify({

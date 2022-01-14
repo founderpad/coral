@@ -1,7 +1,8 @@
-import { Box, Flex, HStack, Text } from '@chakra-ui/layout';
-import { BoxProps, Icon } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/layout';
+import { BoxProps, ButtonGroup, Icon } from '@chakra-ui/react';
 import { PrimaryButton } from 'components/buttons';
 import { DeleteButton } from 'components/buttons/DeleteButton';
+import { FormLabelText } from 'components/form';
 import {
 	IoCheckmarkCircleSharp,
 	IoCloudUploadSharp,
@@ -66,43 +67,61 @@ export const FileUploader = (props: Props) => {
 		setError(undefined);
 	};
 
-	const files = myFiles.map((file: File) => {
+	const files = myFiles.map((file: File, index: number) => {
 		return (
-			<Flex
-				key={file.name}
-				justifyContent={'space-between'}
-				w={'full'}
-				alignItems={'center'}
-				flex={1}
-			>
-				<Flex alignItems={'center'}>
-					<Icon
-						as={IoCheckmarkCircleSharp}
-						mr={2}
-						color={'green.500'}
-						fontSize={'large'}
-					/>
-					<Text color={'fpGrey.500'}>{file.name}</Text>
-					<PointSeparator />
-					<Text color={'fpGrey.500'}>{file.size}b</Text>
-				</Flex>
-				<HStack spacing={4}>
-					<PrimaryButton
-						name={'upload-button'}
-						onClick={() => onUpload(file)}
+			<StackLayout w={'full'} spacing={0} key={index}>
+				<FormLabelText label={label} />
+				<FlexLayout
+					justifyContent={'space-between'}
+					alignItems={'center'}
+					w={'full'}
+				>
+					<StackLayout
+						direction={'row'}
+						spacing={0}
+						alignItems={'center'}
 					>
-						Upload
-					</PrimaryButton>
+						<Icon
+							as={IoCheckmarkCircleSharp}
+							mr={2}
+							color={'green.500'}
+							fontSize={'large'}
+						/>
+						<Text color={'fpGrey.900'} fontSize={'smaller'}>
+							{file.name}
+						</Text>
+						<PointSeparator small />
+						<Text color={'fpGrey.500'} fontSize={'xs'}>
+							{file.size}b
+						</Text>
+					</StackLayout>
+					<ButtonGroup
+						display={'flex'}
+						spacing={4}
+						mt={{ base: 2, sm: 0 }}
+					>
+						<PrimaryButton
+							name={'upload-button'}
+							onClick={() => onUpload(file)}
+							variant={'outline'}
+							fontSize={'xs'}
+							size={'xs'}
+						>
+							Upload
+						</PrimaryButton>
 
-					<DeleteButton
-						name={'remove-file'}
-						onClick={onRemoveFile(file)}
-						variant={'outline'}
-					>
-						Remove
-					</DeleteButton>
-				</HStack>
-			</Flex>
+						<DeleteButton
+							name={'remove-file'}
+							onClick={onRemoveFile(file)}
+							variant={'outline'}
+							fontSize={'xs'}
+							size={'xs'}
+						>
+							Remove
+						</DeleteButton>
+					</ButtonGroup>
+				</FlexLayout>
+			</StackLayout>
 		);
 	});
 
@@ -112,9 +131,13 @@ export const FileUploader = (props: Props) => {
 	}, []);
 
 	return (
-		<Box py={4}>
+		<Box py={4} w={'full'}>
 			{defaultSrc ? (
-				<AddedFile src={defaultSrc} onDelete={onDeleteFile} />
+				<AddedFile
+					src={defaultSrc}
+					onDelete={onDeleteFile}
+					label={label}
+				/>
 			) : (
 				files.length > 0 && <FilesList files={files} />
 			)}
@@ -172,25 +195,27 @@ export const FileUploader = (props: Props) => {
 	);
 };
 
-const FilesList = ({ files }: { files: JSX.Element[] }): JSX.Element => (
-	<Flex as={'aside'} mb={8} alignItems={'center'}>
+const FilesList = ({ files }: { files: JSX.Element[] }) => (
+	<Flex as={'aside'} mb={0} alignItems={'center'}>
 		{files}
 	</Flex>
 );
 
 const AddedFile = ({
 	src,
-	onDelete
+	onDelete,
+	label
 }: {
 	src: string;
 	onDelete: (src: string) => void;
+	label: string;
 }) => (
 	<Flex justifyContent={'space-between'} alignItems={'center'}>
 		<StackLayout
 			alignItems={'center'}
 			direction={'row'}
 			flex={1}
-			spacing={2}
+			spacing={0}
 		>
 			<Icon
 				as={IoDocumentSharp}
@@ -204,7 +229,8 @@ const AddedFile = ({
 					href={src}
 					isExternal
 				>
-					View
+					{/* View */}
+					{label}
 				</PrimaryLink>
 				<CaptionLabel>
 					{/* Added {formatTimestamp(src?.split('?v=')[1])} */}

@@ -91,20 +91,24 @@ export const useMobileNav = () => {
 interface IFileUploadProps {
 	file: File;
 	bucketId: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
+	// name: string;
+	fileName?: string;
+
 	// id: string;
 }
 
 export const useFileUpload = () => {
-	return async ({ file, bucketId }: IFileUploadProps) => {
+	return async ({ file, bucketId, fileName }: IFileUploadProps) => {
 		// const extension = file?.name.split('.').pop();
 
 		// const extension = file?.name.split('.').pop();
 		// const timestamp = new Date().getTime();
 		// const filePath = `/public/avatars/${id}.${extension}?v=` + timestamp;
-		const name = file?.name;
+		// const name = file?.name;
 		const response = await storage.upload({
 			file,
-			name: `${name}-${new Date().getTime()}`,
+			// name: `${fileName}-${new Date().getTime()}`,
+			name: fileName,
 			bucketId
 		});
 		const fileId = response.fileMetadata?.id;
