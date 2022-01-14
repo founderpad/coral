@@ -12,7 +12,7 @@ import {
 	useUpdateUserProfileMutation
 } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
-import { useSuccessNotification } from 'hooks/toast';
+import { useNotification } from 'hooks/util';
 import { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -27,15 +27,15 @@ import {
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
 	const isProfileComplete = useCurrentUser().profile.isComplete;
+	const { addNotification } = useNotification();
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	/* eslint-disable @typescript-eslint/no-unused-vars */
 	const { __typename, userId, id, ...rest } = userProfile;
 	const [selectedSkills, setSelectedSkills] = useState<string[]>(
 		userProfile.skills ?? []
 	);
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const showSuccessNotification = useSuccessNotification();
 	const { handleSubmit, control, getValues, setValue, formState } =
 		useForm<TUser_Profile_Set_Input>({
 			mode: 'all',
@@ -53,9 +53,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			setModalDrawer({
 				isOpen: false
 			});
-			showSuccessNotification({
-				title: 'Your experience has been updated'
-			});
+			addNotification('Experience updated successfully', 'success');
 
 			if (!isProfileComplete) dispatch(setProfileComplete());
 		}

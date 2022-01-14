@@ -179,8 +179,8 @@ mutation UpdateUserPersonalDetails(
 	}
 }
 
-mutation UpdateUserAvatar($id: uuid!, $avatarUrl: users_set_input!) {
-	user: updateUser(pk_columns: { id: $id }, _set: $avatarUrl) {
+mutation UpdateUserAvatar($id: uuid!, $userDetails: users_set_input!) {
+	user: updateUser(pk_columns: { id: $id }, _set: $userDetails) {
 		avatarUrl
 	}
 }

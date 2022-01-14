@@ -4,6 +4,7 @@ import NotificationContext from 'context/NotificationContext';
 import { pageview } from 'lib/ga';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef } from 'react';
+import { storage } from 'utils/nhost';
 
 enum Params {
 	edit
@@ -85,4 +86,34 @@ export const useMobileNav = () => {
 	const { isOpen, onToggle } = useContext(MobileNavigationContext);
 
 	return { isOpen, onToggle };
+};
+
+interface IFileUploadProps {
+	file: File;
+	bucketId: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
+	// id: string;
+}
+
+export const useFileUpload = () => {
+	return async ({ file, bucketId }: IFileUploadProps) => {
+		// const extension = file?.name.split('.').pop();
+
+		// const extension = file?.name.split('.').pop();
+		// const timestamp = new Date().getTime();
+		// const filePath = `/public/avatars/${id}.${extension}?v=` + timestamp;
+		const name = file?.name;
+		const response = await storage.upload({
+			file,
+			name: `${name}-${new Date().getTime()}`,
+			bucketId
+		});
+		const fileId = response.fileMetadata?.id;
+		return storage.getUrl({ fileId });
+	};
+};
+
+export const useFileDelete = () => {
+	return ({ fileId }: { fileId: string }) => {
+		return storage.delete({ fileId });
+	};
 };

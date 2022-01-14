@@ -1,5 +1,5 @@
 import { Icon } from '@chakra-ui/react';
-import { SubLabel } from 'components/labels';
+import { BaseLabel } from 'components/labels/BaseLabel';
 import { FlexLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import React, { memo } from 'react';
@@ -18,14 +18,13 @@ const ProfileSectionLabel = memo(
 		<FlexLayout alignItems={'center'} wordBreak={'break-all'}>
 			{icon && <Icon as={icon} color={'gray.500'} mr={2} />}
 			{children ?? (
-				<SubLabel
+				<BaseLabel
 					css={{ whiteSpace: 'normal' }}
 					noOfLines={2}
 					isTruncated
-					color={'gray.500'}
 				>
 					{label}
-				</SubLabel>
+				</BaseLabel>
 			)}
 		</FlexLayout>
 	)
@@ -39,7 +38,7 @@ const LinkSectionLabel = ({
 	label: string;
 	link: string;
 	icon: IconType;
-}): JSX.Element => (
+}) => (
 	<ProfileSectionLabel label={label} icon={icon}>
 		{link && (
 			<PrimaryLink

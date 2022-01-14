@@ -1,13 +1,19 @@
 import { FileUploader } from 'components/shared';
-import { TUser_Profile } from 'generated/api';
+import { TUser_Profile, useUpdateResumeMutation } from 'generated/api';
 import gql from 'graphql-tag';
 import { useCurrentUser } from 'hooks/auth';
+import { useFileDelete, useFileUpload, useNotification } from 'hooks/util';
 import { cache } from 'pages/_app';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUserImage } from 'slices/auth';
 
-const ResumeUploader = (): JSX.Element => {
+const ResumeUploader = () => {
 	// const showSuccessNotification = useSuccessNotification();
 	// const [filePath, setFilePath] = useState(undefined);
-	const { profile } = useCurrentUser();
+	const dispatch = useDispatch();
+	const { profile, avatarUrl } = useCurrentUser();
+	const { addNotification } = useNotification();
 
 	const userProfile = cache.readFragment({
 		id: `user_profile:${profile.id}`, // The value of the profile's cache id
@@ -22,6 +28,10 @@ const ResumeUploader = (): JSX.Element => {
 	// useEffect(() => {
 	// 	if (filePath !== undefined) updateResumeMutation();
 	// }, [filePath]);
+
+	const uploadResume = useFileUpload();
+	const deleteResume = useFileDelete();
+	const [updateResume] = useUpdateResumeMutation();
 
 	// const [updateResumeMutation] = useUpdateResumeMutation({
 	// 	variables: {
@@ -39,38 +49,72 @@ const ResumeUploader = (): JSX.Element => {
 	// 	}
 	// });
 
-	const uploadResume = async (_resume: File) => {
-		// const extension = resume?.name.split('.').pop();
-		// const timestamp = new Date().getTime();
-		// const filePath =
-		// 	`/public/resumes/${
-		// 		auth.getClaim('x-hasura-user-id') as string
-		// 	}.${extension}?v=` + timestamp;
-		// try {
-		// 	await storage.put(filePath, resume, null, (_d: any) => {
-		// 		setFilePath(filePath);
-		// 	});
-		// } catch (e) {
-		// 	console.error(e);
-		// }
-	};
+	// const uploadResume = async (_resume: File) => {
+	// const extension = resume?.name.split('.').pop();
+	// const timestamp = new Date().getTime();
+	// const filePath =
+	// 	`/public/resumes/${
+	// 		auth.getClaim('x-hasura-user-id') as string
+	// 	}.${extension}?v=` + timestamp;
+	// try {
+	// 	await storage.put(filePath, resume, null, (_d: any) => {
+	// 		setFilePath(filePath);
+	// 	});
+	// } catch (e) {
+	// 	console.error(e);
+	// }
+	// };
 
-	const deleteResume = async (_path: string) => {
-		// try {
-		// 	await storage.delete(path);
-		// 	setFilePath(null);
-		// } catch (e) {
-		// 	console.error(e);
-		// }
-	};
+	const onDelete = useCallback(async (filePath: string) => {
+		const fileId = filePath.toString().split('files/')[1];
+		await deleteResume({ fileId });
+
+		updateResume({
+			variables: {
+				id: profile.id,
+				resume: {
+					resume: ''
+				}
+			},
+			onCompleted: (_data) => {
+				addNotification('Resume deleted successfully.', 'success');
+				dispatch(updateUserImage(''));
+			},
+			onError: (_data) => {
+				addNotification(
+					'Failed to delete resume. Please try again later.',
+					'error'
+				);
+			}
+		});
+	}, []);
+
+	const onUpload = useCallback(async (file: File) => {
+		const filePath = await uploadResume({ file, bucketId: 'resumes' });
+
+		await updateResume({
+			variables: {
+				id: profile.id,
+				resume: {
+					resume: filePath
+				}
+			},
+			onCompleted: (_data) => {
+				addNotification(
+					`Resume successfully ${avatarUrl ? 'updated' : 'added'}`,
+					'success'
+				);
+			}
+		});
+	}, []);
 
 	return (
 		<FileUploader
 			boxSize={100}
 			label={'Drag/drop here'}
 			defaultSrc={userProfile?.resume}
-			onUpload={uploadResume}
-			onDelete={deleteResume}
+			onUpload={onUpload}
+			onDelete={onDelete}
 		/>
 	);
 };

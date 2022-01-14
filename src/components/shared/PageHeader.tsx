@@ -1,3 +1,4 @@
+import AlertFeedback from 'components/alert';
 import { GoBackButton } from 'components/buttons';
 import { SubheadingText } from 'components/heading';
 import { Label } from 'components/labels';
@@ -47,6 +48,7 @@ export const PageHeader = memo(
 							{subtitle}
 						</Label>
 					)}
+					<AlertFeedback />
 				</StackLayout>
 			</React.Fragment>
 		);

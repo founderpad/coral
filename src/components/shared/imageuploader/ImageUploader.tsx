@@ -18,6 +18,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 	const { onUpload, defaultSrc, children, title } = props;
 	const [image, setImage] = useState(defaultSrc);
 	const [file, setFile] = useState<File>(undefined);
+	// const [uploading, setUploading] = useState(false);
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const cropperRef = useRef<HTMLImageElement>(null);
@@ -117,6 +118,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 	};
 
 	const getCropData = async () => {
+		// setUploading(true);
 		const imageElement: any = cropperRef?.current;
 		const cropper: any = imageElement?.cropper;
 		// console.log(cropper.getCroppedCanvas().toDataURL());

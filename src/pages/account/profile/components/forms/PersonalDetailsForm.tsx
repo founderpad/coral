@@ -10,7 +10,7 @@ import {
 	useUpdateUserPersonalDetailsMutation
 } from 'generated/api';
 import { useCurrentUser } from 'hooks/auth';
-import { useSuccessNotification } from 'hooks/toast';
+import { useNotification } from 'hooks/util';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -24,10 +24,10 @@ type PersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
 
 const PersonalDetailsForm = () => {
 	const auth = useCurrentUser();
-
 	const dispatch = useDispatch();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const showSuccessNotification = useSuccessNotification();
+	// const showSuccessNotification = useSuccessNotification();
+	const { addNotification } = useNotification();
 
 	const {
 		handleSubmit,
@@ -65,13 +65,14 @@ const PersonalDetailsForm = () => {
 				})
 			);
 
+			addNotification('Personal details successfully updated', 'success');
 			setModalDrawer({
 				isOpen: false
 			});
 
-			showSuccessNotification({
-				title: 'Your personal details have been updated'
-			});
+			// showSuccessNotification({
+			// 	title: 'Your personal details have been updated'
+			// });
 		}
 	});
 

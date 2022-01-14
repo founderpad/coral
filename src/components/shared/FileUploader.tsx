@@ -12,17 +12,16 @@ import { FlexLayout, StackLayout } from 'components/layouts';
 import { PrimaryLink } from 'components/links';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { formatTimestamp } from 'utils/validators';
 import { PointSeparator } from './Separators';
 
 type Props = BoxProps & {
 	label?: any;
 	defaultSrc?: string;
 	onUpload: (file: File) => void;
-	onDelete: (path: string) => void;
+	onDelete: (fileId: string) => void;
 };
 
-export const FileUploader = (props: Props): JSX.Element => {
+export const FileUploader = (props: Props) => {
 	const { label, defaultSrc, onUpload, onDelete } = props;
 	const [myFiles, setMyFiles] = useState([]);
 	const [error, setError] = useState<string>(undefined);
@@ -115,10 +114,7 @@ export const FileUploader = (props: Props): JSX.Element => {
 	return (
 		<Box py={4}>
 			{defaultSrc ? (
-				<AddedFile
-					src={defaultSrc}
-					onDelete={(src) => onDeleteFile(src)}
-				/>
+				<AddedFile src={defaultSrc} onDelete={onDeleteFile} />
 			) : (
 				files.length > 0 && <FilesList files={files} />
 			)}
@@ -205,13 +201,13 @@ const AddedFile = ({
 				<PrimaryLink
 					fontSize={'smaller'}
 					title={'View file'}
-					href={process.env.NEXT_PUBLIC_STORAGE_URL + src}
+					href={src}
 					isExternal
 				>
 					View
 				</PrimaryLink>
 				<CaptionLabel>
-					Added {formatTimestamp(src?.split('?v=')[1])}
+					{/* Added {formatTimestamp(src?.split('?v=')[1])} */}
 				</CaptionLabel>
 			</Flex>
 		</StackLayout>
