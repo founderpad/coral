@@ -35,7 +35,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-/src/generated/
+# /src/generated/
 .nhost
 api/node_modules
 .nhost

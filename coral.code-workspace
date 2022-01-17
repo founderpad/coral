@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"yaml.schemas": {
+			"https://unpkg.com/graphql-config@4.0.1/config-schema.json": "graphql.config.yml"
+		}
+	}
+}

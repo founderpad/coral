@@ -6,8 +6,8 @@ const NotificationContext = createContext({
 		message: undefined,
 		status: undefined
 	},
-	addNotification: (_message: string, _status?: AlertProps['status']) => {},
-	removeNotification: () => {}
+	addNotification: (_message: string, _status?: AlertProps['status']) => null,
+	removeNotification: () => null
 });
 
 export default NotificationContext;

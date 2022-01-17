@@ -1,0 +1,64 @@
+name: Build and deploy Coral app to dev.founderpad.com
+
+# Controls when the workflow will run
+on:
+    # Triggers the workflow on push or pull request events but only for the master branch
+    push:
+        branches:
+            - dev
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+    # This workflow contains a single job called "build"
+    build:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 15
+
+            - name: Install yarn
+              run: npm install -g yarn
+
+            - name: Install project dependencies (including hasura-cli)
+              run: |
+                  yarn install --frozen-lockfile --ignore-engines
+                  echo "Dependencies installed"
+
+            - name: Apply Hasura Migration to dev
+              working-directory: ./nhost
+              run: |
+                  hasura migrate apply --endpoint ${{ secrets.HASURA_BACKEND_DEVELOPMENT }} --admin-secret ${{ secrets.HASURA_ADMIN_SECRET_DEVELOPMENT }} --skip-update-check
+                  echo "Migration applied completed successfully"
+
+            - name: Apply Hasura Metadata (permissions, object/array relationships, events etc) to dev Postgres
+              working-directory: ./nhost
+              run: |
+                  hasura metadata apply --endpoint ${{ secrets.HASURA_BACKEND_DEVELOPMENT }} --admin-secret ${{ secrets.HASURA_ADMIN_SECRET_DEVELOPMENT }} --skip-update-check
+                  echo "Metadata applied successfully"
+
+            - name: Run tests
+              run: yarn test
+
+            - name: Run build
+              run: yarn build
+
+            - name: Run tests against Vercel
+              env:
+                  VERCEL_URL: ${{ steps.pilot.outputs.preview-url }}
+              run: yarn test
+
+            - name: Deploy to development
+              run: npx vercel --token ${VERCEL_TOKEN}
+              env:
+                  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+                  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+                  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
