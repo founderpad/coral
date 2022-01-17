@@ -28,10 +28,15 @@ jobs:
             - name: Install yarn
               run: npm install -g yarn
 
-            - name: Install project dependencies (including hasura-cli)
+            - name: Install project dependencies
               run: |
                   yarn install --frozen-lockfile --ignore-engines
                   echo "Dependencies installed"
+
+            - name: Install Hasura CLI
+              run: |
+                  curl -L https://github.com/hasura/graphql-engine/raw/master/cli/get.sh | bash
+                  echo "Hasura CLI installed successfully"
 
             - name: Apply Hasura Migration to dev
               working-directory: ./nhost
