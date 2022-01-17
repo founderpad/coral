@@ -84,11 +84,11 @@ exports[`Register form matches snapshot 1`] = `
         />
       </div>
       <div
-        class="chakra-alert css-tk4txy"
+        class="chakra-alert css-1g7hz67"
         role="alert"
       >
         <div
-          class="chakra-alert__desc css-pu198l"
+          class="chakra-alert__desc css-1fwxjz3"
         />
       </div>
       <button
