@@ -1,6 +1,6 @@
 import { NhostClient } from '@nhost/nhost-js';
 const nhost = new NhostClient({
-	backendUrl: process.env.NEXT_PUBLIC_BACKEND ?? ''
+	backendUrl: 'http://localhost:1337'
 });
 
 const auth = nhost.auth;
