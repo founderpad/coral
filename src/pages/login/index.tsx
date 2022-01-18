@@ -1,4 +1,4 @@
-import AuthLayout from 'components/layouts/AuthLayout';
+import AuthLayout from '@components/layouts/AuthLayout';
 import { NextPage } from 'next';
 import React from 'react';
 import LoginForm from './components/LoginForm';

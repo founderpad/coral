@@ -1,16 +1,16 @@
-import { Label } from 'components/labels';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { PointSeparator } from 'components/shared';
-import { TIdea_Preview } from 'generated/api';
-import InterestedTotal from 'pages/idea/components/InterestedTotal';
+import { Label } from '@components/labels';
+import { FlexLayout, StackLayout } from '@components/layouts';
+import { PointSeparator } from '@components/shared';
+import { TIdeaPreviewFieldsFragment } from '@generated/api';
+import InterestedTotal from '@pages/idea/components/InterestedTotal';
 import React from 'react';
 
 type TIdeaCardBody = Pick<
-	TIdea_Preview,
+	TIdeaPreviewFieldsFragment,
 	'preview' | 'field' | 'user' | 'status' | 'total_interested'
 >;
 
-const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
+const IdeaCardBody = (idea: TIdeaCardBody) => {
 	const { preview } = idea;
 
 	return (
@@ -26,14 +26,16 @@ const IdeaCardBody = (idea: TIdeaCardBody): JSX.Element => {
 				noOfLines={2}
 				isTruncated
 			>
-				{preview.length <= 25 ? preview : `${preview}...`}
+				{preview?.length && preview?.length <= 25
+					? preview
+					: `${preview}...`}
 			</Label>
 			<IdeaCardBodyBadges {...idea} />
 		</React.Fragment>
 	);
 };
 
-export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
+export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 	const { field, status, total_interested } = idea;
 
 	return (
@@ -45,12 +47,6 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
 			w={'full'}
 		>
 			<StackLayout spacing={0} direction={'row'} alignItems={'center'}>
-				{/* <BaseTag color={'fpPrimary.500'} bg={'white'}>
-					{status}
-				</BaseTag>
-				<BaseTag color={'fpPrimary.500'} bg={'white'}>
-					{field}
-				</BaseTag> */}
 				<Label color={'fpPrimary.400'} fontSize={'xs'}>
 					{status}
 				</Label>
@@ -59,7 +55,9 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody): JSX.Element => {
 					{field}
 				</Label>
 			</StackLayout>
-			<InterestedTotal total={total_interested} />
+			{total_interested ? (
+				<InterestedTotal total={total_interested} />
+			) : null}
 		</FlexLayout>
 	);
 };

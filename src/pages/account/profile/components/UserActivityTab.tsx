@@ -1,26 +1,27 @@
 import { Stack } from '@chakra-ui/layout';
 import { Divider, Flex, Spinner } from '@chakra-ui/react';
-import { CaptionLabel, SubLabel } from 'components/labels';
-import { PrimaryLink } from 'components/links';
-import { NoResults } from 'components/shared';
-import { TActivity, useUserActivityQuery } from 'generated/api';
-import { useCurrentUser } from 'hooks/auth';
+import { CaptionLabel, SubLabel } from '@components/labels';
+import { PrimaryLink } from '@components/links';
+import { NoResults } from '@components/shared';
+import { TActivity, useUserActivityQuery } from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { formatDate } from '@utils/validators';
 import React from 'react';
-import { formatDate } from 'utils/validators';
 
-const UserActivityTab = (): JSX.Element => {
+const UserActivityTab = () => {
 	const user = useCurrentUser();
 
 	const { data, loading } = useUserActivityQuery({
 		variables: {
-			userId: user.id
+			userId: user?.id
 		}
 	});
 
-	const activities = data?.activity;
+	const activities = data?.activity ?? [];
+	const hasResults = activities?.length > 0;
 
 	if (loading) return <Spinner display={'flex'} m={'auto'} />;
-	if (activities?.length < 1) return <NoResults label={'activity'} />;
+	if (!hasResults) return <NoResults label={'activity'} />;
 
 	return (
 		<Stack p={4}>

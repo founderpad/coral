@@ -5,18 +5,18 @@ import {
 	IoMailSharp,
 	IoRocketSharp,
 	IoTimeSharp
-} from 'components/icons';
-import { PageLayout, StackLayout } from 'components/layouts';
-import { DocumentTitle, TitleEditAction, UserAvatar } from 'components/shared';
-import AppDivider from 'components/shared/AppDivider';
-import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
-import OverviewTags from 'components/shared/OverviewTags';
-import { useUserProfileDetailsQuery } from 'generated/api';
-import { useQueryParam } from 'hooks/util';
-import ProfileSectionLabel from 'pages/account/profile/components/ProfileSectionLabel';
+} from '@components/icons';
+import { PageLayout, StackLayout } from '@components/layouts';
+import { DocumentTitle, TitleEditAction, UserAvatar } from '@components/shared';
+import AppDivider from '@components/shared/AppDivider';
+import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
+import OverviewTags from '@components/shared/OverviewTags';
+import { useUserProfileDetailsQuery } from '@generated/api';
+import { useQueryParam } from '@hooks/util';
+import ProfileSectionLabel from '@pages/account/profile/components/ProfileSectionLabel';
+import AuthFilter from '@utils/AuthFilter';
+import { convertCapacityToString, formatDate } from '@utils/validators';
 import React from 'react';
-import AuthFilter from 'utils/AuthFilter';
-import { convertCapacityToString, formatDate } from 'utils/validators';
 import AddFollower from './components/AddFollower';
 
 const User = () => {
@@ -30,7 +30,7 @@ const User = () => {
 		<React.Fragment>
 			<DocumentTitle title="View user" />
 			<PageLayout
-				title={`${data?.user.displayName}'s profile`}
+				title={`${data?.user?.displayName}'s profile`}
 				action={<AddFollower userId={useQueryParam('id')} />}
 			>
 				<Grid
@@ -43,12 +43,12 @@ const User = () => {
 					<GridItem colSpan={{ base: 12, md: 4 }}>
 						<StackLayout w={'full'}>
 							<UserAvatar
-								src={data?.user?.avatarUrl}
+								src={data?.user?.avatarUrl || undefined}
 								boxSize={140}
 								aria-label="Edit profile picture"
 							/>
 							<TitleEditAction
-								title={`${data?.user.displayName}`}
+								title={`${data?.user?.displayName}`}
 							/>
 							<StackLayout spacing={2}>
 								{/* {data?.user?.country && (
@@ -67,7 +67,7 @@ const User = () => {
 									label={'*****************.com'}
 									icon={IoMailSharp}
 								/>
-								{data?.user.createdAt && (
+								{data?.user?.createdAt && (
 									<ProfileSectionLabel
 										label={
 											`Joined ` +
@@ -80,7 +80,7 @@ const User = () => {
 										icon={IoTimeSharp}
 									/>
 								)}
-								{data?.user.createdAt && (
+								{data?.user?.createdAt && (
 									<ProfileSectionLabel
 										label={
 											`Last seen ` +
@@ -103,13 +103,13 @@ const User = () => {
 								{
 									title: 'Specialist field',
 									value:
-										data?.user.profile.specialistIndustry ??
-										'Not set',
+										data?.user?.profile
+											?.specialistIndustry ?? 'Not set',
 									icon: IoBulbSharp
 								},
 								{
 									title: 'Previous startups',
-									value: data?.user.profile.startups
+									value: data?.user?.profile?.startups
 										? `${data?.user.profile.startups} startups`
 										: 'Not set',
 									icon: IoRocketSharp
@@ -117,12 +117,13 @@ const User = () => {
 								{
 									title: 'Startup status',
 									value:
-										data?.user.profile.status ?? 'Not set',
+										data?.user?.profile?.status ??
+										'Not set',
 									icon: IoAnalyticsSharp
 								},
 								{
 									title: 'Capacity (Hours per week)',
-									value: data?.user.profile.availability
+									value: data?.user?.profile?.availability
 										? `${convertCapacityToString(
 												data?.user.profile.availability
 										  )} hours`
@@ -133,19 +134,19 @@ const User = () => {
 						/>
 						<AppDivider />
 						<StackLayout flex={1}>
-							{data?.user.profile.background && (
+							{data?.user?.profile?.background && (
 								<ContentFieldAndValue
 									title={'Background'}
 									value={data?.user.profile.background}
 								/>
 							)}
-							{data?.user.profile.statement && (
+							{data?.user?.profile?.statement && (
 								<ContentFieldAndValue
 									title={'Statement'}
 									value={data?.user.profile.statement}
 								/>
 							)}
-							{data?.user.profile.businessDescription && (
+							{data?.user?.profile?.businessDescription && (
 								<ContentFieldAndValue
 									title={'Overview of businesses'}
 									value={
@@ -153,12 +154,13 @@ const User = () => {
 									}
 								/>
 							)}
-							{data?.user.profile.skills && (
+							{data?.user?.profile?.skills && (
 								<ContentFieldAndValue
 									title={'Skills'}
 									value={
-										data?.user.profile.skills?.join(', ') ??
-										'No skills selected'
+										data?.user?.profile?.skills?.join(
+											', '
+										) ?? 'No skills selected'
 									}
 								/>
 							)}

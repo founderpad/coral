@@ -1,8 +1,8 @@
 import { Box, BoxProps } from '@chakra-ui/react';
-import { EditButton } from 'components/buttons';
-import { PrimaryButton } from 'components/buttons/PrimaryButton';
-import { FlexLayout } from 'components/layouts';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import { EditButton } from '@components/buttons';
+import { PrimaryButton } from '@components/buttons/PrimaryButton';
+import { FlexLayout } from '@components/layouts';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import 'cropperjs/dist/cropper.css';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import Cropper from 'react-cropper';
@@ -14,10 +14,10 @@ type Props = BoxProps & {
 	title: string;
 };
 
-export const ImageUploader = (props: Props): JSX.Element => {
+export const ImageUploader = (props: Props) => {
 	const { onUpload, defaultSrc, children, title } = props;
 	const [image, setImage] = useState(defaultSrc);
-	const [file, setFile] = useState<File>(undefined);
+	const [file, setFile] = useState<File | undefined>(undefined);
 	// const [uploading, setUploading] = useState(false);
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
@@ -31,7 +31,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 
 	const onChange = async (e: any) => {
 		e.preventDefault();
-		let files: File[];
+		let files: File[] = [];
 
 		try {
 			if (e.dataTransfer) {
@@ -49,7 +49,8 @@ export const ImageUploader = (props: Props): JSX.Element => {
 				console.log(err);
 			};
 
-			if (files[0].type.includes('image')) reader.readAsDataURL(files[0]);
+			if (files[0]?.type.includes('image'))
+				reader.readAsDataURL(files[0]);
 		} catch (e) {
 			console.error(e);
 		}
@@ -127,7 +128,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 			cropper.getCroppedCanvas().toDataURL()
 		);
 		const blob: Blob = await res.blob();
-		onUpload(new File([blob], file.name, { type: 'image/jpg' }));
+		if (file) onUpload(new File([blob], file.name, { type: 'image/jpg' }));
 	};
 
 	const onInputClick = (
@@ -167,7 +168,7 @@ export const ImageUploader = (props: Props): JSX.Element => {
 					size={'sm'}
 					boxShadow={'md'}
 					cursor={'pointer'}
-					aria-label={props['aria-label']}
+					aria-label={props['aria-label'] || 'Edit image button'}
 					title={props.title}
 					position={'absolute'}
 					bottom={0}

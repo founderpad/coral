@@ -1,18 +1,18 @@
-import { SubmitButton } from 'components/buttons';
+import { SubmitButton } from '@components/buttons';
 import {
 	IoAnalyticsSharp,
 	IoBulbSharp,
 	IoRocketSharp,
 	IoTimeSharp
-} from 'components/icons';
-import { StackLayout } from 'components/layouts';
-import { Loading, TitleEditAction } from 'components/shared';
-import AppDivider from 'components/shared/AppDivider';
-import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
-import OverviewTags from 'components/shared/OverviewTags';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+} from '@components/icons';
+import { StackLayout } from '@components/layouts';
+import { Loading, TitleEditAction } from '@components/shared';
+import AppDivider from '@components/shared/AppDivider';
+import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
+import OverviewTags from '@components/shared/OverviewTags';
+import ModalDrawerContext from '@context/ModalDrawerContext';
+import { convertCapacityToString } from '@utils/validators';
 import React, { useContext } from 'react';
-import { convertCapacityToString } from 'utils/validators';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
@@ -26,11 +26,11 @@ const WorkExperienceTab = () => {
 		startups,
 		statement,
 		status,
-		availability,
+		availability = 0,
 		businessDescription,
 		background,
 		skills
-	} = userProfile || {};
+	} = userProfile ?? {};
 
 	const onClick = () => {
 		setModalDrawer({
@@ -81,6 +81,7 @@ const WorkExperienceTab = () => {
 						value: availability
 							? convertCapacityToString(availability)
 							: 'Not set',
+						// value: convertCapacityToString(0),
 						icon: IoTimeSharp
 					}
 				]}

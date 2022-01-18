@@ -1,6 +1,6 @@
 import { ButtonGroup } from '@chakra-ui/react';
-import { CancelButton } from 'components/buttons';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import { CancelButton } from '@components/buttons';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import React, { memo, useContext } from 'react';
 
 export const ModalDrawerFooterActions = memo(

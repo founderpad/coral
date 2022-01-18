@@ -1,6 +1,6 @@
-import BaseHeading from 'components/heading/BaseHeading';
-import { Label } from 'components/labels';
-import { StackLayout } from 'components/layouts';
+import BaseHeading from '@components/heading/BaseHeading';
+import { Label } from '@components/labels';
+import { StackLayout } from '@components/layouts';
 import React from 'react';
 
 interface Props {

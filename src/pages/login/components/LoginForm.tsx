@@ -1,13 +1,13 @@
-import AlertFeedback from 'components/alert';
-import { SubmitButton } from 'components/buttons';
-import { Form } from 'components/form';
-import { EmailField, PasswordField } from 'components/input';
-import { Label } from 'components/labels';
-import { PrimaryLink } from 'components/links';
-import { useLogin } from 'hooks/auth';
+import AlertFeedback from '@components/alert';
+import { SubmitButton } from '@components/buttons';
+import { Form } from '@components/form';
+import { EmailField, PasswordField } from '@components/input';
+import { Label } from '@components/labels';
+import { PrimaryLink } from '@components/links';
+import { useLogin } from '@hooks/auth';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
-import { IAuthFormData } from 'types/auth';
+import { IAuthFormData } from 'src/types/auth';
 
 const LoginForm = () => {
 	const {
@@ -54,7 +54,7 @@ const LoginForm = () => {
 				disabled={!isValid || isSubmitting}
 				size={'md'}
 				fontSize={'sm'}
-				full
+				w={'full'}
 			/>
 			<NoAccountFooter />
 		</Form>

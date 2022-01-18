@@ -1,4 +1,4 @@
-import DrawerContext from 'context/DrawerContext';
+import DrawerContext from '@context/DrawerContext';
 import React, { useState } from 'react';
 
 const DrawerProvider = ({
@@ -9,12 +9,12 @@ const DrawerProvider = ({
 }): any => {
 	const [drawer, setDrawer] = useState({
 		isOpen: false,
-		title: '',
+		title: null,
 		body: null,
-		handler: null,
+		handler: () => null,
 		noBtnLabel: '',
 		yesBtnLabel: '',
-		yesBtnColor: '',
+		yesBtnColor: undefined,
 		hideFooter: false
 	});
 

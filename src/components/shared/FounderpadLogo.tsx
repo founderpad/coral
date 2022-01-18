@@ -1,6 +1,6 @@
 import { BoxProps } from '@chakra-ui/layout';
 import { Tag } from '@chakra-ui/tag';
-import { BoxLayout, FlexLayout } from 'components/layouts';
+import { BoxLayout, FlexLayout } from '@components/layouts';
 import Image from 'next/image';
 
 const FounderpadLogo = (props: BoxProps): JSX.Element => (

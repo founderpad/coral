@@ -1,13 +1,13 @@
-import Form from 'components/form/Form';
-import { IoLogoLinkedin } from 'components/icons';
-import { InputField } from 'components/input/InputField';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import Form from '@components/form/Form';
+import { IoLogoLinkedin } from '@components/icons';
+import { InputField } from '@components/input/InputField';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
-} from 'generated/api';
-import { useSuccessNotification } from 'hooks/toast';
+} from '@generated/api';
+import { useSuccessNotification } from '@hooks/toast';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 

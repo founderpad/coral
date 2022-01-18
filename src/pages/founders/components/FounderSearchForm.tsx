@@ -1,20 +1,20 @@
 import { ButtonGroup, Checkbox, FormControl } from '@chakra-ui/react';
-import { CancelButton, SubmitButton } from 'components/buttons';
-import { FormLabelText } from 'components/form';
-import Form from 'components/form/Form';
-import { SelectField } from 'components/input/SelectField';
-import { Label } from 'components/labels';
-import AppDivider from 'components/shared/AppDivider';
-import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { CancelButton, SubmitButton } from '@components/buttons';
+import { FormLabelText } from '@components/form';
+import Form from '@components/form/Form';
+import { SelectField } from '@components/input/SelectField';
+import { Label } from '@components/labels';
+import AppDivider from '@components/shared/AppDivider';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
 	industriesList,
 	STARTUP_STATUS
-} from 'utils/Constants';
+} from '@utils/Constants';
+import { useRouter } from 'next/router';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 
 interface ISearchFields {
 	status?: string;

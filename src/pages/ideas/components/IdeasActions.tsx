@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/layout';
-import { SearchResultsLabel, StickySubheader } from 'components/shared';
+import { SearchResultsLabel, StickySubheader } from '@components/shared';
 import React from 'react';
 import MobileFilterMenu from './MobileFilterMenu';
 

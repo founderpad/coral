@@ -1,32 +1,32 @@
 import { FormControl } from '@chakra-ui/form-control';
 import { Stack } from '@chakra-ui/layout';
 import { Checkbox } from '@chakra-ui/react';
-import { FormLabelText } from 'components/form';
-import Form from 'components/form/Form';
-import { NumberField, SelectField, TextareaField } from 'components/input';
-import { Label } from 'components/labels';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import { FormLabelText } from '@components/form';
+import Form from '@components/form/Form';
+import { NumberField, SelectField, TextareaField } from '@components/input';
+import { Label } from '@components/labels';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
-} from 'generated/api';
-import { useCurrentUser } from 'hooks/auth';
-import { useNotification } from 'hooks/util';
-import { useContext, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { setProfileComplete } from 'slices/auth';
+} from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { useNotification } from '@hooks/util';
+import { setProfileComplete } from '@slices/auth';
 import {
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
 	industriesList,
 	STARTUP_STATUS
-} from 'utils/Constants';
+} from '@utils/Constants';
+import { useContext, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
-	const isProfileComplete = useCurrentUser().profile.isComplete;
+	const isProfileComplete = useCurrentUser()?.profile?.isComplete;
 	const { addNotification } = useNotification();
 
 	/* eslint-disable @typescript-eslint/no-unused-vars */
@@ -106,7 +106,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 			<SelectField
 				id="specialistIndustry"
-				name="specialistIindustry"
+				name="specialistIndustry"
 				label="What is your specialist field?"
 				placeholder="specialist field"
 				options={industriesList()}

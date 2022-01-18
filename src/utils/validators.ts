@@ -9,13 +9,14 @@ export const formatDate = (
 	dateStr: string,
 	withTime?: boolean,
 	withYear?: boolean
-): string => {
+): string | undefined => {
+	if (!dateStr) return;
 	const date = new Date(dateStr);
 
 	if (isToday(date))
-		return 'today' + (withTime ? ` at ${format(date, 'HH:mm')}` : '');
+		return 'Today' + (withTime ? ` ${format(date, 'HH:mm')}` : '');
 	if (isYesterday(date))
-		return 'yesterday' + (withTime ? ` at ${format(date, 'HH:mm')}` : '');
+		return 'Yesterday' + (withTime ? ` ${format(date, 'HH:mm')}` : '');
 	return (
 		format(date, 'dd MMM') +
 		(withTime ? ` at ${format(date, 'HH:mm')}` : '') +
@@ -36,7 +37,7 @@ export const formatTimestamp = (timestamp: string) =>
 	formatDate(new Date(parseInt(timestamp)).toString(), false);
 
 export const convertCapacityToString = (capacity: number) => {
-	if (!capacity) return;
+	// if (!capacity) return;
 
 	const capacityStr = capacity.toString();
 	if (capacityStr.length === 3) {

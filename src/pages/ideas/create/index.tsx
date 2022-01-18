@@ -1,7 +1,7 @@
-import { PageLayout } from 'components/layouts';
-import { DocumentTitle } from 'components/shared';
+import { PageLayout } from '@components/layouts';
+import { DocumentTitle } from '@components/shared';
+import AuthFilter from '@utils/AuthFilter';
 import React from 'react';
-import AuthFilter from 'utils/AuthFilter';
 import CreateEditIdeaForm from '../components/CreateEditIdeaForm';
 
 const CreateIdea = (): JSX.Element => (

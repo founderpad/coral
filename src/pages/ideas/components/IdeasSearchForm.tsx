@@ -1,14 +1,14 @@
 import { ButtonGroup } from '@chakra-ui/react';
-import { CancelButton, SubmitButton } from 'components/buttons';
-import Form from 'components/form/Form';
-import { InputField } from 'components/input/InputField';
-import { SelectField } from 'components/input/SelectField';
-import { Label } from 'components/labels';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import { CancelButton, SubmitButton } from '@components/buttons';
+import Form from '@components/form/Form';
+import { InputField } from '@components/input/InputField';
+import { SelectField } from '@components/input/SelectField';
+import { Label } from '@components/labels';
+import ModalDrawerContext from '@context/ModalDrawerContext';
+import { ideasStatusList, industriesList } from '@utils/Constants';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { ideasStatusList, industriesList } from 'utils/Constants';
 
 type IdeaSearch = {
 	field?: string;

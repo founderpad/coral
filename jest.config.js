@@ -1,20 +1,67 @@
+// module.exports = {
+// 	roots: ['<rootDir>'],
+// 	testEnvironment: 'jsdom',
+// 	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+// 	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
+// 	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+// 	transform: {
+// 		'^.+\\.(ts|tsx)$': 'babel-jest'
+// 	},
+// 	watchPlugins: [
+// 		'jest-watch-typeahead/filename',
+// 		'jest-watch-typeahead/testname'
+// 	],
+// 	moduleNameMapper: {
+// 		'\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+// 		'\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js'
+// 	},
+// 	modulePaths: ['src', 'test'],
+// 	setupFilesAfterEnv: ['<rootDir>/src/__test__/setupTests.ts']
+// };
+
+// const nextJest = require('next/jest');
+// // import nextJest from 'next/jest';
+
+// const createJestConfig = nextJest({
+// 	// Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+// 	dir: './'
+// });
+
+// // Add any custom config to be passed to Jest
+// const customJestConfig = {
+// 	setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+// 	moduleNameMapper: {
+// 		// Handle module aliases (this will be automatically configured for you soon)
+// 		// '^@/components/(.*)$': '<rootDir>/components/$1',
+
+// 		// '^@/src/pages/(.*)$': '<rootDir>/src/pages/$1'
+// 		'^@src/(.*)': '<rootDir>/src/$1',
+// 		'^@components/(.*)': '<rootDir>/src/components/$1',
+// 		'^@pages/(.*)$': '<rootDir>/src/pages/$1'
+// 	},
+// 	testEnvironment: 'jest-environment-jsdom'
+// };
+
+// // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+// module.exports = createJestConfig(customJestConfig);
+
 module.exports = {
-	roots: ['<rootDir>'],
+	setupFilesAfterEnv: ['./jest.setup.js'],
 	testEnvironment: 'jsdom',
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
 	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
 	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
-	transform: {
-		'^.+\\.(ts|tsx)$': 'babel-jest'
-	},
-	watchPlugins: [
-		'jest-watch-typeahead/filename',
-		'jest-watch-typeahead/testname'
-	],
 	moduleNameMapper: {
-		'\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-		'\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js'
-	},
-	modulePaths: ['src', 'test'],
-	setupFilesAfterEnv: ['<rootDir>/src/__test__/setupTests.ts']
+		'^@components(.*)$': '<rootDir>/src/components$1',
+		'^@pages(.*)$': '<rootDir>/src/pages$1',
+		'^@hooks(.*)$': '<rootDir>/src/hooks$1',
+		'^@utils(.*)$': '<rootDir>/src/utils$1',
+		'^@context(.*)$': '<rootDir>/src/context$1',
+		'^@lib(.*)$': '<rootDir>/src/lib$1',
+		'^@slices(.*)$': '<rootDir>/src/slices$1'
+	}
 };
+
+// Load environment variables so that we can access them in our tests
+const { loadEnvConfig } = require('@next/env');
+loadEnvConfig(process.env.PWD);

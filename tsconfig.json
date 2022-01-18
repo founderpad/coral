@@ -10,7 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
@@ -21,29 +21,50 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "jsx": "preserve",
-    "incremental": true
-  },
-  "paths": {
-    "@components/*": [
-      "./src/components/*"
-    ],
-    "@pages/*": [
-      "./src/pages/*"
-    ],
-    "@hooks/*": [
-      "./src/hooks/*"
-    ],
-    "@styles/*": [
-      "./src/styles/*"
-    ],
-    "@utils/*": [
-      "./src/utils/*"
-    ],
-    "@lib/*": [
-      "./src/lib/*"
-    ]
+    "incremental": true,
+    "paths": {
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@context/*": [
+        "src/context/*"
+      ],
+      "@provider/*": [
+        "src/provider/*"
+      ],
+      "@graphql/*": [
+        "src/graphql/*"
+      ],
+      "@theme/*": [
+        "src/theme/*"
+      ],
+      "@types/*": [
+        "src/types/*"
+      ],
+      "@slices/*": [
+        "src/slices/*"
+      ],
+      "@generated/*": [
+        "src/generated/*"
+      ],
+    },
   },
   "exclude": [
     "node_modules",
@@ -55,6 +76,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
+    "**/*.jsx",
     "src/utils/AuthFilter.tsx"
 , "lib/index.jsx"  ]
 }

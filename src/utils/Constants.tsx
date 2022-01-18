@@ -12,7 +12,7 @@
 // 	{ id: 11, name: 'Construction', url: 'https://' }
 // ];
 
-import { TIndustry } from 'types/idea';
+import { TIndustry } from 'src/types/idea';
 
 export const ALL_INDUSTRIES: TIndustry[] = [
 	{ name: 'Aerospace', color: 'brown' },

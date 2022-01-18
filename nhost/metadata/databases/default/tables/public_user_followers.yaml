@@ -6,6 +6,10 @@ configuration:
     follower_id: followerId
     following_id: followingId
   custom_root_fields: {}
+object_relationships:
+- name: user
+  using:
+    foreign_key_constraint_on: follower_id
 insert_permissions:
 - permission:
     backend_only: false

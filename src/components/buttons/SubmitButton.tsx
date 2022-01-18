@@ -1,4 +1,4 @@
-import { BaseButton } from 'components/buttons';
+import { BaseButton } from '@components/buttons';
 import React from 'react';
 import { BaseButtonProps } from './types/buttons';
 

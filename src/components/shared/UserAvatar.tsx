@@ -1,8 +1,8 @@
 import { Avatar } from '@chakra-ui/avatar';
 import { AvatarProps, StackProps, useBreakpointValue } from '@chakra-ui/react';
-import { CaptionLabel, Label } from 'components/labels';
-import { StackLayout } from 'components/layouts';
-import { useCurrentUser } from 'hooks/auth';
+import { CaptionLabel, Label } from '@components/labels';
+import { StackLayout } from '@components/layouts';
+import { useCurrentUser } from '@hooks/auth';
 import React, { memo } from 'react';
 
 type Props = AvatarProps & {
@@ -31,7 +31,7 @@ export const UserAvatar = (props: Props) => {
 export const UserAvatarDetails = ({
 	email,
 	name,
-	src,
+	src = 'undefined',
 	createdAt,
 	size = 'md',
 	direction = 'row',
@@ -87,7 +87,7 @@ export const CurrentUserAvatarDetails = memo(
 					// name={`${user?.displayName} ${user?.lastName}`}
 					name={user?.displayName}
 					email={user?.email}
-					src={user?.avatarUrl}
+					src={user?.avatarUrl || undefined}
 					size={size}
 					direction={direction}
 				/>
@@ -98,7 +98,12 @@ export const CurrentUserAvatarDetails = memo(
 
 export const CurrentUserAvatar = memo(
 	({ size = 'sm' }: { size?: AvatarProps['size'] }) => {
-		const { avatarUrl } = useCurrentUser();
-		return <UserAvatar src={avatarUrl} size={size} />;
+		// const { avatarUrl } = useCurrentUser();
+		return (
+			<UserAvatar
+				src={useCurrentUser()?.avatarUrl || undefined}
+				size={size}
+			/>
+		);
 	}
 );

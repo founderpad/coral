@@ -1,4 +1,4 @@
-import DrawerContext from 'context/DrawerContext';
+import DrawerContext from '@context/DrawerContext';
 import React, { useContext } from 'react';
 import Drawer from '.';
 

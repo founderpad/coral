@@ -1,4 +1,4 @@
-import MobileNavigationContext from 'context/MobileNavigationContext';
+import MobileNavigationContext from '@context/MobileNavigationContext';
 import React, { useCallback, useState } from 'react';
 
 const MobileNavigationProvider = ({

@@ -1,6 +1,6 @@
 import { Heading } from '@chakra-ui/layout';
-import { EditButton } from 'components/buttons';
-import { FlexLayout } from 'components/layouts';
+import { EditButton } from '@components/buttons';
+import { FlexLayout } from '@components/layouts';
 import React, { memo } from 'react';
 
 export const TitleEditAction = memo(

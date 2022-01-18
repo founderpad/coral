@@ -1,5 +1,6 @@
 import {
 	ButtonGroup,
+	ButtonProps,
 	Drawer as ChakraDrawer,
 	DrawerBody,
 	DrawerCloseButton,
@@ -9,8 +10,8 @@ import {
 	DrawerOverlay,
 	ModalProps
 } from '@chakra-ui/react';
-import { BaseButton, CancelButton } from 'components/buttons';
-import { ModalDrawerFooterActions } from 'components/shared';
+import { BaseButton, CancelButton } from '@components/buttons';
+import { ModalDrawerFooterActions } from '@components/shared';
 import React from 'react';
 
 type IModalProps = Omit<ModalProps, 'children'> & {
@@ -21,7 +22,7 @@ type IModalProps = Omit<ModalProps, 'children'> & {
 	noBtnLabel?: string | 'Cancel';
 	yesBtnLabel?: string | 'Yes';
 	closeLabel?: string | 'Cancel';
-	yesBtnColor?: 'fpPrimary' | 'red';
+	yesBtnColor?: 'fpPrimary' | 'red' | ButtonProps['colorScheme'];
 	hideFooter?: boolean;
 	actions?: React.ReactNode;
 	removePadding?: boolean;
@@ -93,7 +94,7 @@ export const Drawer = ({
 							<BaseButton
 								name={'drawer-actions-confirm-button'}
 								variant={'ghost'}
-								colorScheme={yesBtnColor ?? 'fpPrimary'}
+								colorScheme={yesBtnColor}
 								onClick={onConfirm}
 								rounded={'md'}
 							>

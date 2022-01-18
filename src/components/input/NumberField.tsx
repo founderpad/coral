@@ -9,9 +9,9 @@ import {
 	NumberInputField,
 	NumberInputStepper
 } from '@chakra-ui/react';
-import { FormLabelText } from 'components/form';
+import { FormLabelText } from '@components/form';
 import { Controller } from 'react-hook-form';
-import { IInputFieldProps } from 'types/fields';
+import { IInputFieldProps } from 'src/types/fields';
 
 export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, _ref): JSX.Element => {
@@ -35,7 +35,7 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 				isRequired={isRequired}
 				w={{ base: 'full' }}
 			>
-				<FormLabelText label={label} />
+				{label && <FormLabelText label={label} />}
 				<Controller
 					render={({
 						field: { onChange, value },

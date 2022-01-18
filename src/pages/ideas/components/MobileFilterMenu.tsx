@@ -1,6 +1,6 @@
-import { PrimaryButton } from 'components/buttons';
-import { IoChevronDownSharp } from 'components/icons';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import { PrimaryButton } from '@components/buttons';
+import { IoChevronDownSharp } from '@components/icons';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import React, { useContext } from 'react';
 import IdeasSearchForm from './IdeasSearchForm';
 

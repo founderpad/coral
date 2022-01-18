@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/layout';
-import { PrimaryLink } from 'components/links';
+import { PrimaryLink } from '@components/links';
 import React, { memo } from 'react';
 
 const NoAccountFooter = memo(

@@ -1,17 +1,17 @@
+import ModalContext from '@context/ModalContext';
 import React, { useState } from 'react';
-import ModalContext from 'context/ModalContext';
 
 const ModalProvider = ({
 	children,
 	...props
 }: {
 	children: React.ReactNode;
-}): any => {
+}) => {
 	const [modal, setModal] = useState({
-		isOpen: undefined,
+		isOpen: false,
 		title: undefined,
 		body: undefined,
-		handler: undefined,
+		handler: () => null,
 		noBtnLabel: undefined,
 		yesBtnLabel: undefined,
 		yesBtnColor: undefined,

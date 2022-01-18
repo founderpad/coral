@@ -1,7 +1,7 @@
-import { StackLayout } from 'components/layouts';
-import ContentFieldAndValue from 'components/shared/ContentFieldAndValue';
-import IdeaContext from 'context/idea/IdeaContext';
-import { TIdeas } from 'generated/api';
+import { StackLayout } from '@components/layouts';
+import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
+import IdeaContext from '@context/idea/IdeaContext';
+import { TIdeas } from '@generated/api';
 import React, { useContext } from 'react';
 
 export const IdeaDetails = () => {
@@ -9,7 +9,12 @@ export const IdeaDetails = () => {
 		data: { idea = {} as TIdeas }
 	} = useContext(IdeaContext);
 
-	const { description, team, competitors, additionalInformation } = idea;
+	const {
+		description = '',
+		team = '',
+		competitors = '',
+		additionalInformation = ''
+	} = idea ?? {};
 
 	return (
 		<StackLayout flex={1}>

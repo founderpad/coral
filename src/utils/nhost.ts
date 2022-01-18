@@ -1,8 +1,6 @@
 import { NhostClient } from '@nhost/nhost-js';
-import 'dotenv/config';
-
 const nhost = new NhostClient({
-	backendUrl: process.env.NEXT_PUBLIC_BACKEND
+	backendUrl: process.env.NEXT_PUBLIC_BACKEND ?? ''
 });
 
 const auth = nhost.auth;

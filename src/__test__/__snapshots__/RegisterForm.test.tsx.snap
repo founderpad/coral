@@ -54,7 +54,6 @@ exports[`Register form matches snapshot 1`] = `
           aria-required="true"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
-          errortext="Please enter a valid email"
           id="email-email"
           name="email"
           placeholder="Email"
@@ -93,7 +92,7 @@ exports[`Register form matches snapshot 1`] = `
       </div>
       <button
         aria-label="submit-register-account"
-        class="chakra-button css-fo5uud"
+        class="chakra-button css-xg4mhf"
         disabled=""
         id="submit-register-account"
         type="submit"

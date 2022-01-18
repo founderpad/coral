@@ -229,7 +229,7 @@ export type TBuckets = {
   cacheControl?: Maybe<Scalars['String']>;
   createdAt: Scalars['timestamptz'];
   downloadExpiration: Scalars['Int'];
-  /** fetch data from the table: "storage.files" */
+  /** An array relationship */
   files: Array<TFiles>;
   id: Scalars['String'];
   maxUploadFileSize: Scalars['Int'];
@@ -1615,12 +1615,34 @@ export type TIdeas_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "ideas" */
+export type TIdeas_Aggregate_Order_By = {
+  avg?: InputMaybe<TIdeas_Avg_Order_By>;
+  count?: InputMaybe<TOrder_By>;
+  max?: InputMaybe<TIdeas_Max_Order_By>;
+  min?: InputMaybe<TIdeas_Min_Order_By>;
+  stddev?: InputMaybe<TIdeas_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<TIdeas_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<TIdeas_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<TIdeas_Sum_Order_By>;
+  var_pop?: InputMaybe<TIdeas_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<TIdeas_Var_Samp_Order_By>;
+  variance?: InputMaybe<TIdeas_Variance_Order_By>;
+};
+
 /** aggregate avg on columns */
 export type TIdeas_Avg_Fields = {
   __typename?: 'ideas_avg_fields';
   totalComments?: Maybe<Scalars['Float']>;
   totalInterested?: Maybe<Scalars['Float']>;
   totalVotes?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "ideas" */
+export type TIdeas_Avg_Order_By = {
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
 };
 
 /** Boolean expression to filter rows from the table "ideas". All fields are combined with a logical 'AND'. */
@@ -1696,6 +1718,25 @@ export type TIdeas_Max_Fields = {
   userId?: Maybe<Scalars['uuid']>;
 };
 
+/** order by max() on columns of table "ideas" */
+export type TIdeas_Max_Order_By = {
+  additionalInformation?: InputMaybe<TOrder_By>;
+  businessPlan?: InputMaybe<TOrder_By>;
+  competitors?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
+  description?: InputMaybe<TOrder_By>;
+  field?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  name?: InputMaybe<TOrder_By>;
+  status?: InputMaybe<TOrder_By>;
+  team?: InputMaybe<TOrder_By>;
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
+};
+
 /** aggregate min on columns */
 export type TIdeas_Min_Fields = {
   __typename?: 'ideas_min_fields';
@@ -1714,6 +1755,25 @@ export type TIdeas_Min_Fields = {
   totalVotes?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
   userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "ideas" */
+export type TIdeas_Min_Order_By = {
+  additionalInformation?: InputMaybe<TOrder_By>;
+  businessPlan?: InputMaybe<TOrder_By>;
+  competitors?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
+  description?: InputMaybe<TOrder_By>;
+  field?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  name?: InputMaybe<TOrder_By>;
+  status?: InputMaybe<TOrder_By>;
+  team?: InputMaybe<TOrder_By>;
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
 };
 
 /** response of any mutation on the table "ideas" */
@@ -1826,12 +1886,26 @@ export type TIdeas_Stddev_Fields = {
   totalVotes?: Maybe<Scalars['Float']>;
 };
 
+/** order by stddev() on columns of table "ideas" */
+export type TIdeas_Stddev_Order_By = {
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
+};
+
 /** aggregate stddev_pop on columns */
 export type TIdeas_Stddev_Pop_Fields = {
   __typename?: 'ideas_stddev_pop_fields';
   totalComments?: Maybe<Scalars['Float']>;
   totalInterested?: Maybe<Scalars['Float']>;
   totalVotes?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "ideas" */
+export type TIdeas_Stddev_Pop_Order_By = {
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1842,12 +1916,26 @@ export type TIdeas_Stddev_Samp_Fields = {
   totalVotes?: Maybe<Scalars['Float']>;
 };
 
+/** order by stddev_samp() on columns of table "ideas" */
+export type TIdeas_Stddev_Samp_Order_By = {
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
+};
+
 /** aggregate sum on columns */
 export type TIdeas_Sum_Fields = {
   __typename?: 'ideas_sum_fields';
   totalComments?: Maybe<Scalars['Int']>;
   totalInterested?: Maybe<Scalars['Int']>;
   totalVotes?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "ideas" */
+export type TIdeas_Sum_Order_By = {
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
 };
 
 /** update columns of table "ideas" */
@@ -1885,6 +1973,13 @@ export type TIdeas_Var_Pop_Fields = {
   totalVotes?: Maybe<Scalars['Float']>;
 };
 
+/** order by var_pop() on columns of table "ideas" */
+export type TIdeas_Var_Pop_Order_By = {
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
+};
+
 /** aggregate var_samp on columns */
 export type TIdeas_Var_Samp_Fields = {
   __typename?: 'ideas_var_samp_fields';
@@ -1893,12 +1988,26 @@ export type TIdeas_Var_Samp_Fields = {
   totalVotes?: Maybe<Scalars['Float']>;
 };
 
+/** order by var_samp() on columns of table "ideas" */
+export type TIdeas_Var_Samp_Order_By = {
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
+};
+
 /** aggregate variance on columns */
 export type TIdeas_Variance_Fields = {
   __typename?: 'ideas_variance_fields';
   totalComments?: Maybe<Scalars['Float']>;
   totalInterested?: Maybe<Scalars['Float']>;
   totalVotes?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "ideas" */
+export type TIdeas_Variance_Order_By = {
+  totalComments?: InputMaybe<TOrder_By>;
+  totalInterested?: InputMaybe<TOrder_By>;
+  totalVotes?: InputMaybe<TOrder_By>;
 };
 
 /**
@@ -2450,7 +2559,7 @@ export type TQuery_Root = {
   buckets: Array<TBuckets>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<TFiles>;
-  /** fetch data from the table: "storage.files" */
+  /** An array relationship */
   files: Array<TFiles>;
   /** fetch data from the table: "idea_comment_replies" */
   idea_comment_replies: Array<TIdea_Comment_Replies>;
@@ -2474,9 +2583,9 @@ export type TQuery_Root = {
   idea_votes_aggregate: TIdea_Votes_Aggregate;
   /** fetch data from the table: "idea_votes" using primary key columns */
   idea_votes_by_pk?: Maybe<TIdea_Votes>;
-  /** fetch data from the table: "ideas" */
+  /** An array relationship */
   ideas: Array<TIdeas>;
-  /** fetch aggregated fields from the table: "ideas" */
+  /** An aggregate relationship */
   ideas_aggregate: TIdeas_Aggregate;
   /** fetch data from the table: "ideas" using primary key columns */
   ideas_by_pk?: Maybe<TIdeas>;
@@ -2862,7 +2971,7 @@ export type TSubscription_Root = {
   buckets: Array<TBuckets>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<TFiles>;
-  /** fetch data from the table: "storage.files" */
+  /** An array relationship */
   files: Array<TFiles>;
   /** fetch data from the table: "idea_comment_replies" */
   idea_comment_replies: Array<TIdea_Comment_Replies>;
@@ -2886,9 +2995,9 @@ export type TSubscription_Root = {
   idea_votes_aggregate: TIdea_Votes_Aggregate;
   /** fetch data from the table: "idea_votes" using primary key columns */
   idea_votes_by_pk?: Maybe<TIdea_Votes>;
-  /** fetch data from the table: "ideas" */
+  /** An array relationship */
   ideas: Array<TIdeas>;
-  /** fetch aggregated fields from the table: "ideas" */
+  /** An aggregate relationship */
   ideas_aggregate: TIdeas_Aggregate;
   /** fetch data from the table: "ideas" using primary key columns */
   ideas_by_pk?: Maybe<TIdeas>;
@@ -3236,6 +3345,8 @@ export type TUser_Address = {
   createdAt: Scalars['timestamptz'];
   location?: Maybe<Scalars['String']>;
   updatedAt: Scalars['timestamptz'];
+  /** An object relationship */
+  user: TUsers;
   userId: Scalars['uuid'];
 };
 
@@ -3248,6 +3359,7 @@ export type TUser_Address_Bool_Exp = {
   createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   location?: InputMaybe<TString_Comparison_Exp>;
   updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  user?: InputMaybe<TUsers_Bool_Exp>;
   userId?: InputMaybe<TUuid_Comparison_Exp>;
 };
 
@@ -3266,6 +3378,7 @@ export type TUser_Address_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
   location?: InputMaybe<TOrder_By>;
   updatedAt?: InputMaybe<TOrder_By>;
+  user?: InputMaybe<TUsers_Order_By>;
   userId?: InputMaybe<TOrder_By>;
 };
 
@@ -3305,6 +3418,8 @@ export type TUser_Followers = {
   followerId: Scalars['uuid'];
   followingId: Scalars['uuid'];
   status: Scalars['String'];
+  /** An object relationship */
+  user: TUsers;
 };
 
 /** aggregated selection of "user_followers" */
@@ -3337,6 +3452,7 @@ export type TUser_Followers_Bool_Exp = {
   followerId?: InputMaybe<TUuid_Comparison_Exp>;
   followingId?: InputMaybe<TUuid_Comparison_Exp>;
   status?: InputMaybe<TString_Comparison_Exp>;
+  user?: InputMaybe<TUsers_Bool_Exp>;
 };
 
 /** input type for inserting data into table "user_followers" */
@@ -3375,6 +3491,7 @@ export type TUser_Followers_Order_By = {
   followerId?: InputMaybe<TOrder_By>;
   followingId?: InputMaybe<TOrder_By>;
   status?: InputMaybe<TOrder_By>;
+  user?: InputMaybe<TUsers_Order_By>;
 };
 
 /** select columns of table "user_followers" */
@@ -3758,7 +3875,13 @@ export type TUsers = {
   displayName: Scalars['String'];
   email?: Maybe<Scalars['citext']>;
   emailVerified: Scalars['Boolean'];
+  /** An array relationship */
+  files: Array<TFiles>;
   id: Scalars['uuid'];
+  /** An array relationship */
+  ideas: Array<TIdeas>;
+  /** An aggregate relationship */
+  ideas_aggregate: TIdeas_Aggregate;
   isAnonymous: Scalars['Boolean'];
   lastSeen?: Maybe<Scalars['timestamptz']>;
   locale: Scalars['String'];
@@ -3775,6 +3898,54 @@ export type TUsers = {
   ticketExpiresAt: Scalars['timestamptz'];
   totpSecret?: Maybe<Scalars['String']>;
   updatedAt: Scalars['timestamptz'];
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersFilesArgs = {
+  distinct_on?: InputMaybe<Array<TFiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TFiles_Order_By>>;
+  where?: InputMaybe<TFiles_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersIdeasArgs = {
+  distinct_on?: InputMaybe<Array<TIdeas_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TIdeas_Order_By>>;
+  where?: InputMaybe<TIdeas_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersIdeas_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TIdeas_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TIdeas_Order_By>>;
+  where?: InputMaybe<TIdeas_Bool_Exp>;
 };
 
 /** aggregated selection of "auth.users" */
@@ -3813,7 +3984,9 @@ export type TUsers_Bool_Exp = {
   displayName?: InputMaybe<TString_Comparison_Exp>;
   email?: InputMaybe<TCitext_Comparison_Exp>;
   emailVerified?: InputMaybe<TBoolean_Comparison_Exp>;
+  files?: InputMaybe<TFiles_Bool_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
+  ideas?: InputMaybe<TIdeas_Bool_Exp>;
   isAnonymous?: InputMaybe<TBoolean_Comparison_Exp>;
   lastSeen?: InputMaybe<TTimestamptz_Comparison_Exp>;
   locale?: InputMaybe<TString_Comparison_Exp>;
@@ -3899,7 +4072,9 @@ export type TUsers_Order_By = {
   displayName?: InputMaybe<TOrder_By>;
   email?: InputMaybe<TOrder_By>;
   emailVerified?: InputMaybe<TOrder_By>;
+  files_aggregate?: InputMaybe<TFiles_Aggregate_Order_By>;
   id?: InputMaybe<TOrder_By>;
+  ideas_aggregate?: InputMaybe<TIdeas_Aggregate_Order_By>;
   isAnonymous?: InputMaybe<TOrder_By>;
   lastSeen?: InputMaybe<TOrder_By>;
   locale?: InputMaybe<TOrder_By>;
@@ -4037,6 +4212,12 @@ export type TFollowUserMutationVariables = Exact<{
 
 export type TFollowUserMutation = { insert_user_followers_one?: { __typename?: 'user_followers', followingId: any, followerId: any } | null | undefined };
 
+export type TUserFieldFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined };
+
+export type TUsersFieldWithEmailFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined };
+
+export type TUserAddressFragment = { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined };
+
 export type TCreateIdeaMutationVariables = Exact<{
   idea: TIdeas_Insert_Input;
 }>;
@@ -4076,7 +4257,9 @@ export type TIdeasQueryVariables = Exact<{
 }>;
 
 
-export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
+export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user_id?: any | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
+
+export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user_id?: any | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
 
 export type TUserIdeasQueryVariables = Exact<{
   userId: Scalars['uuid'];
@@ -4091,14 +4274,14 @@ export type TIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', avatarUrl?: string | null | undefined, displayName: string, id: any } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any } | null | undefined };
+export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any } | null | undefined };
 
 export type TIdeaInterestedUsersQueryVariables = Exact<{
   ideaId: Scalars['uuid'];
 }>;
 
 
-export type TIdeaInterestedUsersQuery = { interested_users: Array<{ __typename?: 'interested_ideas', id: any, createdAt: any, user?: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, email?: any | null | undefined } | null | undefined }> };
+export type TIdeaInterestedUsersQuery = { interested_users: Array<{ __typename?: 'interested_ideas', id: any, createdAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
 
 export type TInsertIdeaUpvoteMutationVariables = Exact<{
   idea_vote: TIdea_Votes_Insert_Input;
@@ -4151,7 +4334,7 @@ export type TUsersQueryVariables = Exact<{
 }>;
 
 
-export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', startups: number, specialistIndustry?: string | null | undefined, availability?: number | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, user?: { __typename?: 'users', displayName: string, createdAt: any, id: any } | null | undefined }> };
+export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, startups: number, specialistIndustry?: string | null | undefined, availability?: number | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, user?: { __typename?: 'users', displayName: string, createdAt: any, id: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
 
 export type TUpdateUserProfileMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4201,7 +4384,63 @@ export type TUpdateUserAvatarMutationVariables = Exact<{
 
 export type TUpdateUserAvatarMutation = { user?: { __typename?: 'users', avatarUrl?: string | null | undefined } | null | undefined };
 
-
+export const UserAddressFragmentDoc = gql`
+    fragment UserAddress on user_address {
+  location
+  country
+}
+    `;
+export const UserFieldFragmentDoc = gql`
+    fragment UserField on users {
+  displayName
+  id
+  avatarUrl
+  address {
+    ...UserAddress
+  }
+}
+    ${UserAddressFragmentDoc}`;
+export const UsersFieldWithEmailFragmentDoc = gql`
+    fragment UsersFieldWithEmail on users {
+  displayName
+  id
+  avatarUrl
+  email
+  address {
+    ...UserAddress
+  }
+}
+    ${UserAddressFragmentDoc}`;
+export const IdeaPreviewFieldsFragmentDoc = gql`
+    fragment IdeaPreviewFields on idea_preview {
+  id
+  name
+  preview
+  field
+  status
+  created_at
+  is_new
+  total_interested
+  total_comments
+  user_id
+  user {
+    ...UsersFieldWithEmail
+  }
+  votes_aggregate {
+    aggregate {
+      count(columns: id)
+    }
+  }
+  comments_aggregate {
+    aggregate {
+      count(columns: id)
+    }
+  }
+  votes(where: {userId: {_eq: $userId}}) {
+    id
+  }
+}
+    ${UsersFieldWithEmailFragmentDoc}`;
 export const UserActivityDocument = gql`
     query UserActivity($userId: uuid!) {
   activity(where: {userId: {_eq: $userId}}) {
@@ -4629,37 +4868,10 @@ export const IdeasDocument = gql`
     }
   }
   idea_preview(where: $where, limit: $limit, offset: $offset, order_by: $orderBy) {
-    id
-    name
-    preview
-    field
-    status
-    created_at
-    is_new
-    total_interested
-    total_comments
-    user {
-      displayName
-      id
-      avatarUrl
-      email
-    }
-    votes_aggregate {
-      aggregate {
-        count(columns: id)
-      }
-    }
-    comments_aggregate {
-      aggregate {
-        count(columns: id)
-      }
-    }
-    votes(where: {userId: {_eq: $userId}}) {
-      id
-    }
+    ...IdeaPreviewFields
   }
 }
-    `;
+    ${IdeaPreviewFieldsFragmentDoc}`;
 
 /**
  * __useIdeasQuery__
@@ -4757,9 +4969,7 @@ export const IdeaDocument = gql`
     totalComments
     totalVotes
     user {
-      avatarUrl
-      displayName
-      id
+      ...UserField
     }
     votes_aggregate {
       aggregate {
@@ -4774,7 +4984,7 @@ export const IdeaDocument = gql`
     id
   }
 }
-    `;
+    ${UserFieldFragmentDoc}`;
 
 /**
  * __useIdeaQuery__
@@ -4816,14 +5026,11 @@ export const IdeaInterestedUsersDocument = gql`
     id
     createdAt
     user {
-      id
-      displayName
-      avatarUrl
-      email
+      ...UsersFieldWithEmail
     }
   }
 }
-    `;
+    ${UsersFieldWithEmailFragmentDoc}`;
 
 /**
  * __useIdeaInterestedUsersQuery__
@@ -5106,11 +5313,16 @@ export const UsersDocument = gql`
     }
   }
   user_profile(where: $where, limit: $limit, offset: $offset, order_by: $orderBy) {
+    id
     startups
     user {
       displayName
       createdAt
       id
+      address {
+        location
+        country
+      }
     }
     specialistIndustry
     availability
@@ -5612,13 +5824,17 @@ export type TResolversTypes = {
   ideas: ResolverTypeWrapper<TIdeas>;
   ideas_aggregate: ResolverTypeWrapper<TIdeas_Aggregate>;
   ideas_aggregate_fields: ResolverTypeWrapper<TIdeas_Aggregate_Fields>;
+  ideas_aggregate_order_by: TIdeas_Aggregate_Order_By;
   ideas_avg_fields: ResolverTypeWrapper<TIdeas_Avg_Fields>;
+  ideas_avg_order_by: TIdeas_Avg_Order_By;
   ideas_bool_exp: TIdeas_Bool_Exp;
   ideas_constraint: TIdeas_Constraint;
   ideas_inc_input: TIdeas_Inc_Input;
   ideas_insert_input: TIdeas_Insert_Input;
   ideas_max_fields: ResolverTypeWrapper<TIdeas_Max_Fields>;
+  ideas_max_order_by: TIdeas_Max_Order_By;
   ideas_min_fields: ResolverTypeWrapper<TIdeas_Min_Fields>;
+  ideas_min_order_by: TIdeas_Min_Order_By;
   ideas_mutation_response: ResolverTypeWrapper<TIdeas_Mutation_Response>;
   ideas_obj_rel_insert_input: TIdeas_Obj_Rel_Insert_Input;
   ideas_on_conflict: TIdeas_On_Conflict;
@@ -5627,13 +5843,20 @@ export type TResolversTypes = {
   ideas_select_column: TIdeas_Select_Column;
   ideas_set_input: TIdeas_Set_Input;
   ideas_stddev_fields: ResolverTypeWrapper<TIdeas_Stddev_Fields>;
+  ideas_stddev_order_by: TIdeas_Stddev_Order_By;
   ideas_stddev_pop_fields: ResolverTypeWrapper<TIdeas_Stddev_Pop_Fields>;
+  ideas_stddev_pop_order_by: TIdeas_Stddev_Pop_Order_By;
   ideas_stddev_samp_fields: ResolverTypeWrapper<TIdeas_Stddev_Samp_Fields>;
+  ideas_stddev_samp_order_by: TIdeas_Stddev_Samp_Order_By;
   ideas_sum_fields: ResolverTypeWrapper<TIdeas_Sum_Fields>;
+  ideas_sum_order_by: TIdeas_Sum_Order_By;
   ideas_update_column: TIdeas_Update_Column;
   ideas_var_pop_fields: ResolverTypeWrapper<TIdeas_Var_Pop_Fields>;
+  ideas_var_pop_order_by: TIdeas_Var_Pop_Order_By;
   ideas_var_samp_fields: ResolverTypeWrapper<TIdeas_Var_Samp_Fields>;
+  ideas_var_samp_order_by: TIdeas_Var_Samp_Order_By;
   ideas_variance_fields: ResolverTypeWrapper<TIdeas_Variance_Fields>;
+  ideas_variance_order_by: TIdeas_Variance_Order_By;
   interested_ideas: ResolverTypeWrapper<TInterested_Ideas>;
   interested_ideas_aggregate: ResolverTypeWrapper<TInterested_Ideas_Aggregate>;
   interested_ideas_aggregate_fields: ResolverTypeWrapper<TInterested_Ideas_Aggregate_Fields>;
@@ -5837,12 +6060,16 @@ export type TResolversParentTypes = {
   ideas: TIdeas;
   ideas_aggregate: TIdeas_Aggregate;
   ideas_aggregate_fields: TIdeas_Aggregate_Fields;
+  ideas_aggregate_order_by: TIdeas_Aggregate_Order_By;
   ideas_avg_fields: TIdeas_Avg_Fields;
+  ideas_avg_order_by: TIdeas_Avg_Order_By;
   ideas_bool_exp: TIdeas_Bool_Exp;
   ideas_inc_input: TIdeas_Inc_Input;
   ideas_insert_input: TIdeas_Insert_Input;
   ideas_max_fields: TIdeas_Max_Fields;
+  ideas_max_order_by: TIdeas_Max_Order_By;
   ideas_min_fields: TIdeas_Min_Fields;
+  ideas_min_order_by: TIdeas_Min_Order_By;
   ideas_mutation_response: TIdeas_Mutation_Response;
   ideas_obj_rel_insert_input: TIdeas_Obj_Rel_Insert_Input;
   ideas_on_conflict: TIdeas_On_Conflict;
@@ -5850,12 +6077,19 @@ export type TResolversParentTypes = {
   ideas_pk_columns_input: TIdeas_Pk_Columns_Input;
   ideas_set_input: TIdeas_Set_Input;
   ideas_stddev_fields: TIdeas_Stddev_Fields;
+  ideas_stddev_order_by: TIdeas_Stddev_Order_By;
   ideas_stddev_pop_fields: TIdeas_Stddev_Pop_Fields;
+  ideas_stddev_pop_order_by: TIdeas_Stddev_Pop_Order_By;
   ideas_stddev_samp_fields: TIdeas_Stddev_Samp_Fields;
+  ideas_stddev_samp_order_by: TIdeas_Stddev_Samp_Order_By;
   ideas_sum_fields: TIdeas_Sum_Fields;
+  ideas_sum_order_by: TIdeas_Sum_Order_By;
   ideas_var_pop_fields: TIdeas_Var_Pop_Fields;
+  ideas_var_pop_order_by: TIdeas_Var_Pop_Order_By;
   ideas_var_samp_fields: TIdeas_Var_Samp_Fields;
+  ideas_var_samp_order_by: TIdeas_Var_Samp_Order_By;
   ideas_variance_fields: TIdeas_Variance_Fields;
+  ideas_variance_order_by: TIdeas_Variance_Order_By;
   interested_ideas: TInterested_Ideas;
   interested_ideas_aggregate: TInterested_Ideas_Aggregate;
   interested_ideas_aggregate_fields: TInterested_Ideas_Aggregate_Fields;
@@ -6718,6 +6952,7 @@ export type TUser_AddressResolvers<ContextType = any, ParentType extends TResolv
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   location?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  user?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
   userId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -6732,6 +6967,7 @@ export type TUser_FollowersResolvers<ContextType = any, ParentType extends TReso
   followerId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   followingId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   status?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -6920,7 +7156,10 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   displayName?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
   emailVerified?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
+  files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TUsersFilesArgs, never>>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  ideas?: Resolver<Array<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TUsersIdeasArgs, never>>;
+  ideas_aggregate?: Resolver<TResolversTypes['ideas_aggregate'], ParentType, ContextType, RequireFields<TUsersIdeas_AggregateArgs, never>>;
   isAnonymous?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   lastSeen?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   locale?: Resolver<TResolversTypes['String'], ParentType, ContextType>;

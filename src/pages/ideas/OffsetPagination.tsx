@@ -1,4 +1,4 @@
-import { Pagination } from 'components/shared';
+import { Pagination } from '@components/shared';
 import { useRouter } from 'next/router';
 import React from 'react';
 

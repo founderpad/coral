@@ -1,20 +1,20 @@
-import { FileUploader } from 'components/shared';
-import { TUser_Profile, useUpdateResumeMutation } from 'generated/api';
+import { FileUploader } from '@components/shared';
+import { TUser_Profile, useUpdateResumeMutation } from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { useFileDelete, useFileUpload, useNotification } from '@hooks/util';
+import { cache } from '@pages/_app';
 import gql from 'graphql-tag';
-import { useCurrentUser } from 'hooks/auth';
-import { useFileDelete, useFileUpload, useNotification } from 'hooks/util';
-import { cache } from 'pages/_app';
 import { useCallback } from 'react';
 
 const ResumeUploader = () => {
 	// const showSuccessNotification = useSuccessNotification();
 	// const [filePath, setFilePath] = useState(undefined);
 	// const dispatch = useDispatch();
-	const { profile, avatarUrl } = useCurrentUser();
+	const { profile, avatarUrl } = useCurrentUser() ?? {};
 	const { addNotification } = useNotification();
 
 	const userProfile = cache.readFragment({
-		id: `user_profile:${profile.id}`, // The value of the profile's cache id
+		id: `user_profile:${profile?.id}`, // The value of the profile's cache id
 		fragment: gql`
 			fragment ResumeFragment on user_profile {
 				id
@@ -96,7 +96,7 @@ const ResumeUploader = () => {
 
 		await updateResume({
 			variables: {
-				id: profile.id,
+				id: profile?.id,
 				resume: {
 					resume: filePath
 				}
@@ -114,7 +114,7 @@ const ResumeUploader = () => {
 		<FileUploader
 			boxSize={100}
 			label={'Drag/drop here'}
-			defaultSrc={userProfile?.resume}
+			defaultSrc={userProfile?.resume || undefined}
 			onUpload={onUpload}
 			onDelete={onDelete}
 		/>

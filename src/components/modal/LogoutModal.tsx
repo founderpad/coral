@@ -1,6 +1,6 @@
-import { DeleteButton } from 'components/buttons';
-import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useLogout } from 'hooks/auth';
+import { DeleteButton } from '@components/buttons';
+import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useLogout } from '@hooks/auth';
 import React, { useContext } from 'react';
 
 const LogoutModal = (): JSX.Element => {

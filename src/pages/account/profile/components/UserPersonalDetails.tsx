@@ -1,12 +1,12 @@
 import { FlexProps } from '@chakra-ui/react';
-import { SubmitButton } from 'components/buttons';
-import { IoLocationSharp, IoMailSharp, IoTimeSharp } from 'components/icons';
-import { StackLayout } from 'components/layouts';
-import { TitleEditAction } from 'components/shared';
-import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useCurrentUser } from 'hooks/auth';
+import { SubmitButton } from '@components/buttons';
+import { IoLocationSharp, IoMailSharp, IoTimeSharp } from '@components/icons';
+import { StackLayout } from '@components/layouts';
+import { TitleEditAction } from '@components/shared';
+import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useCurrentUser } from '@hooks/auth';
+import { formatDate } from '@utils/validators';
 import React, { memo, useContext } from 'react';
-import { formatDate } from 'utils/validators';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';
 import SocialMediaDetails from './SocialMediaDetails';
@@ -17,8 +17,13 @@ type Props = Pick<FlexProps, 'display' | 'mb'>;
 const UserPersonalInformation = memo((props: Props) => {
 	const user = useCurrentUser();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const { createdAt, displayName, email, address } = user;
-	const { location, country } = address;
+	const {
+		createdAt = '',
+		displayName = '',
+		email = '',
+		address
+	} = user ?? {};
+	const { location = '', country = '' } = address ?? {};
 
 	const userLocation = location
 		? `${location}, ${country}`

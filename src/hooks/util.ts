@@ -1,10 +1,10 @@
 import { useBreakpointValue } from '@chakra-ui/react';
-import MobileNavigationContext from 'context/MobileNavigationContext';
-import NotificationContext from 'context/NotificationContext';
-import { pageview } from 'lib/ga';
+import MobileNavigationContext from '@context/MobileNavigationContext';
+import NotificationContext from '@context/NotificationContext';
+import { pageview } from '@lib/ga';
+import { storage } from '@utils/nhost';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef } from 'react';
-import { storage } from 'utils/nhost';
 
 enum Params {
 	edit
@@ -36,7 +36,7 @@ export const usePathMatch = (value: string): boolean =>
 export const useMobile = () => useBreakpointValue({ base: true, md: false });
 
 export const useScrollToBottom = (_data?: any) => {
-	const ref = useRef(null);
+	const ref = useRef<null | HTMLElement>(null);
 
 	const scrollToBottom = (): void => {
 		if (ref.current)
@@ -112,7 +112,8 @@ export const useFileUpload = () => {
 			bucketId
 		});
 		const fileId = response.fileMetadata?.id;
-		return storage.getUrl({ fileId });
+		if (fileId) return storage.getUrl({ fileId });
+		return null;
 	};
 };
 

@@ -1,11 +1,11 @@
 import { Button } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
-import { StackLayout } from 'components/layouts';
-import { BaseLink } from 'components/links';
-import BasePopover from 'components/popover/BasePopover';
-import useUserProfile from 'hooks/user';
-import { usePathMatch } from 'hooks/util';
+import { StackLayout } from '@components/layouts';
+import { BaseLink } from '@components/links';
+import BasePopover from '@components/popover/BasePopover';
+import useUserProfile from '@hooks/user';
+import { usePathMatch } from '@hooks/util';
 import React, { memo } from 'react';
 import NavItems from './NavItems';
 import { SubNav } from './SubNav';
@@ -30,11 +30,13 @@ const DesktopNav = memo(() => {
 							href={navItem.href ?? '#'}
 							fontSize={'xs'}
 							fontWeight={
-								usePathMatch(navItem.href) ? 'medium' : 'normal'
+								usePathMatch(navItem.href ?? '')
+									? 'medium'
+									: 'normal'
 							}
 							alignItems={'center'}
 							color={
-								usePathMatch(navItem.href)
+								usePathMatch(navItem.href ?? '')
 									? 'gray.900'
 									: 'gray.500'
 							}
@@ -57,7 +59,7 @@ const DesktopNav = memo(() => {
 					{navItem.children && (
 						<StackLayout spacing={2}>
 							{navItem.children.map((child) => (
-								<SubNav key={child.label} {...child} />
+								<SubNav {...child} key={child.key} />
 							))}
 						</StackLayout>
 					)}

@@ -3,9 +3,9 @@ import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
 import { Flex, Stack, Text } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/react';
-import { IoChevronDownSharp } from 'components/icons';
-import { StackLayout } from 'components/layouts';
-import { useMobileNav } from 'hooks/util';
+import { IoChevronDownSharp } from '@components/icons';
+import { StackLayout } from '@components/layouts';
+import { useMobileNav } from '@hooks/util';
 import React, { memo } from 'react';
 import NavItems, { NavItem } from './NavItems';
 import { SubNav } from './SubNav';
@@ -31,7 +31,7 @@ const MobileNav = () => {
 			// w={'calc(100% - 16px)'}
 		>
 			{NavItems.map((navItem) => (
-				<MobileNavItem key={navItem.label} {...navItem} />
+				<MobileNavItem {...navItem} key={navItem.key} />
 			))}
 		</StackLayout>
 		// <StackLayout
@@ -99,7 +99,7 @@ const MobileNavItem = ({ label, children }: NavItem) => {
 			<Collapse in={isOpen} animateOpacity>
 				<Stack pl={2} align={'start'}>
 					{children?.map((child) => (
-						<SubNav key={child.label} {...child} />
+						<SubNav {...child} key={child.key} />
 					))}
 				</Stack>
 			</Collapse>

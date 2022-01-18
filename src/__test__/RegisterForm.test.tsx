@@ -1,9 +1,9 @@
+import RegisterForm from '@pages/register/components/RegisterForm';
 import { fireEvent, waitFor } from '@testing-library/dom';
-import RegisterForm from 'pages/register/components/RegisterForm';
+import store from '@utils/store';
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
-import store from 'utils/store';
-import { render } from '__test__/testUtils';
+import { render } from './testUtils';
 
 const setup = () =>
 	render(
@@ -13,7 +13,7 @@ const setup = () =>
 	);
 
 const mockRegister = jest.fn();
-jest.mock('hooks/auth', () => ({
+jest.mock('@hooks/auth', () => ({
 	useRegister: (): any => mockRegister
 }));
 

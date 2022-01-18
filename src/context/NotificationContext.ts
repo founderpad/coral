@@ -3,11 +3,11 @@ import { createContext } from 'react';
 
 const NotificationContext = createContext({
 	notification: {
-		message: undefined,
-		status: undefined
+		message: '',
+		status: undefined as AlertProps['status']
 	},
-	addNotification: (_message: string, _status?: AlertProps['status']) => null,
-	removeNotification: () => null
+	addNotification: (_message: string, _status?: AlertProps['status']) => {},
+	removeNotification: () => {}
 });
 
 export default NotificationContext;

@@ -1,4 +1,4 @@
-import AuthLayout from 'components/layouts/AuthLayout';
+import AuthLayout from '@components/layouts/AuthLayout';
 import React from 'react';
 import ForgottenPasswordForm from './components/ForgottenPasswordForm';
 

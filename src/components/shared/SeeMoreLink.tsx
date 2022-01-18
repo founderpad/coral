@@ -1,4 +1,4 @@
-import { PrimaryLink } from 'components/links';
+import { PrimaryLink } from '@components/links';
 import React from 'react';
 
 export const SeeMoreLink = ({

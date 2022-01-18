@@ -1,7 +1,7 @@
-import { TIdeas } from 'generated/api';
+import { TIdeas } from '@generated/api';
+import { useQueryParam } from '@hooks/util';
+import { cache } from '@pages/_app';
 import gql from 'graphql-tag';
-import { useQueryParam } from 'hooks/util';
-import { cache } from 'pages/_app';
 
 const useIdeaFragment = (): TIdeas => {
 	const ideaId = useQueryParam('id');

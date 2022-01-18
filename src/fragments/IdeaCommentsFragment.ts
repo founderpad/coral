@@ -1,6 +1,6 @@
-import { TIdea_Comments } from 'generated/api';
+import { TIdea_Comments } from '@generated/api';
 
-const useIdeaCommentsQuery = (_ideaId: string): TIdea_Comments[] => {
+const useIdeaCommentsQuery = (_ideaId: string): TIdea_Comments[] | null => {
 	// const result = cache.readQuery({
 	// 	query: GET_COMMENTS_FOR_IDEA,
 	// 	variables: {
@@ -8,7 +8,7 @@ const useIdeaCommentsQuery = (_ideaId: string): TIdea_Comments[] => {
 	// 	}
 	// }) as any;
 
-	// console.log('result: ', result);
+	// // console.log('result: ', result);
 
 	return null;
 };

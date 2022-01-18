@@ -1,10 +1,10 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Container, Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
-import { IoCloseOutline, IoMenuSharp } from 'components/icons';
-import { FlexLayout } from 'components/layouts';
-import { FounderpadLogoWithBadge } from 'components/shared/FounderpadLogo';
-import { useMobileNav } from 'hooks/util';
+import { IoCloseOutline, IoMenuSharp } from '@components/icons';
+import { FlexLayout } from '@components/layouts';
+import { FounderpadLogoWithBadge } from '@components/shared/FounderpadLogo';
+import { useMobileNav } from '@hooks/util';
 import React, { memo } from 'react';
 import NotificationsPopover from '../components/NotificationsPopover';
 import DesktopNav from './DesktopNav';

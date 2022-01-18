@@ -1,5 +1,5 @@
+import AuthSlice from '@slices/auth';
 import { combineReducers } from 'redux';
-import AuthSlice from 'slices/auth';
 
 /**
  * The @appReducer specifies the top-level app reducer, which we used to combine reducers together.
@@ -10,7 +10,7 @@ const appReducer = combineReducers({
 	authSlice: AuthSlice
 });
 
-const rootReducer = (state, action) => {
+const rootReducer = (state: any, action: any) => {
 	return appReducer(state, action);
 };
 

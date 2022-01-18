@@ -1,0 +1,23 @@
+fragment UserField on users {
+	displayName
+	id
+	avatarUrl
+	address {
+		...UserAddress
+	}
+}
+
+fragment UsersFieldWithEmail on users {
+	displayName
+	id
+	avatarUrl
+	email
+	address {
+		...UserAddress
+	}
+}
+
+fragment UserAddress on user_address {
+	location
+	country
+}

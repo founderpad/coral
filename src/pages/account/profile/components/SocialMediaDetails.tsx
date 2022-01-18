@@ -4,13 +4,13 @@ import {
 	IoLogoInstagram,
 	IoLogoLinkedin,
 	IoLogoTwitter
-} from 'components/icons';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { IconLink } from 'components/links';
-import { TUser_Profile } from 'generated/api';
+} from '@components/icons';
+import { FlexLayout, StackLayout } from '@components/layouts';
+import { IconLink } from '@components/links';
+import { TUser_Profile } from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { cache } from '@pages/_app';
 import gql from 'graphql-tag';
-import { useCurrentUser } from 'hooks/auth';
-import { cache } from 'pages/_app';
 import React from 'react';
 
 const SocialMediaDetails = (): JSX.Element => {
@@ -18,7 +18,7 @@ const SocialMediaDetails = (): JSX.Element => {
 	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const socials = cache.readFragment({
-		id: `user_profile:${user.profile.id}`, // The value of the profile's cache id
+		id: `user_profile:${user?.profile?.id}`, // The value of the profile's cache id
 		fragment: gql`
 			fragment SocialMediaFragment on user_profile {
 				id

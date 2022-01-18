@@ -1,6 +1,6 @@
 import { useBreakpointValue } from '@chakra-ui/react';
-import Drawer from 'components/drawer';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import Drawer from '@components/drawer';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import React, { useContext } from 'react';
 import Modal from '.';
 

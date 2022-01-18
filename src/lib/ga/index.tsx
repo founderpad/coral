@@ -12,6 +12,6 @@ export function pageview(url: string) {
 }
 
 // log specific events happening.
-export function event({ action, params }) {
+export function event({ action, params }: { action: any; params: any }) {
 	window.gtag('event', action, params);
 }

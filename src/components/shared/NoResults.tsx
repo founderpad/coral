@@ -1,9 +1,9 @@
 import Icon from '@chakra-ui/icon';
 import { HeadingProps } from '@chakra-ui/layout';
-import { GoBackButton } from 'components/buttons';
-import { SubheadingText } from 'components/heading';
-import { VscSearchStop } from 'components/icons';
-import { BoxLayout } from 'components/layouts';
+import { GoBackButton } from '@components/buttons';
+import { SubheadingText } from '@components/heading';
+import { VscSearchStop } from '@components/icons';
+import { BoxLayout } from '@components/layouts';
 import React from 'react';
 
 type Props = {

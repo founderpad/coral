@@ -63,13 +63,16 @@ query Users(
 		offset: $offset
 		order_by: $orderBy
 	) {
+		id
 		startups
 		user {
 			displayName
-			# country
-			# location
 			createdAt
 			id
+			address {
+				location
+				country
+			}
 		}
 		specialistIndustry
 		availability

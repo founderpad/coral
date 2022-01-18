@@ -1,8 +1,8 @@
 import { StackProps } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
-import { Label } from 'components/labels';
-import { FlexLayout } from 'components/layouts';
-import BaseTag from 'components/tags/BaseTag';
+import { Label } from '@components/labels';
+import { FlexLayout } from '@components/layouts';
+import BaseTag from '@components/tags/BaseTag';
 import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
 

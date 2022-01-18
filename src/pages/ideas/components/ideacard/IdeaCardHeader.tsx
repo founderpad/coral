@@ -1,12 +1,12 @@
-import { Label } from 'components/labels';
-import { FlexLayout } from 'components/layouts';
-import { TIdea_Preview } from 'generated/api';
+import { Label } from '@components/labels';
+import { FlexLayout } from '@components/layouts';
+import { TIdeaPreviewFieldsFragment } from '@generated/api';
 import React, { memo } from 'react';
 import NewIdeaBadge from '../NewIdeaBadge';
 import PostedBy from './PostedBy';
 
 type TIdeaCardHeader = Pick<
-	TIdea_Preview,
+	TIdeaPreviewFieldsFragment,
 	'name' | 'user' | 'is_new' | 'created_at' | 'user_id' | 'id'
 >;
 

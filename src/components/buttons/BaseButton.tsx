@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/button';
-import { BaseLink } from 'components/links';
+import { BaseLink } from '@components/links';
 import React from 'react';
 import { BaseButtonProps, LinkButtonProps } from './types/buttons';
 

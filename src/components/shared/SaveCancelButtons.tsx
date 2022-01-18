@@ -1,5 +1,5 @@
 import { ButtonGroup } from '@chakra-ui/react';
-import { CancelButton, SubmitButton } from 'components/buttons';
+import { CancelButton, SubmitButton } from '@components/buttons';
 import React from 'react';
 
 const SaveCancelButtons = ({

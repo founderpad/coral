@@ -1,12 +1,12 @@
 import Icon from '@chakra-ui/icon';
-import { PrimaryButton } from 'components/buttons';
-import { IoStarSharp } from 'components/icons';
-import { Label } from 'components/labels';
-import IdeaContext from 'context/idea/IdeaContext';
-import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useCreateInterestedIdeaMutation } from 'generated/api';
-import { useCurrentUser } from 'hooks/auth';
-import { event } from 'lib/ga';
+import { PrimaryButton } from '@components/buttons';
+import { IoStarSharp } from '@components/icons';
+import { Label } from '@components/labels';
+import IdeaContext from '@context/idea/IdeaContext';
+import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useCreateInterestedIdeaMutation } from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { event } from '@lib/ga';
 import React, { useContext, useState } from 'react';
 
 export const InterestedIdea = () => {
@@ -16,7 +16,7 @@ export const InterestedIdea = () => {
 		data: { idea }
 	} = useContext(IdeaContext);
 	const { hasInterest } = data;
-	const { id, userId } = idea;
+	const { id, userId } = idea ?? {};
 	const [interested, setInterested] = useState(!!hasInterest?.id);
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
@@ -31,8 +31,8 @@ export const InterestedIdea = () => {
 			event({
 				action: 'User is interested in idea',
 				params: {
-					from_user_id: auth.id,
-					from_user_email: auth.email,
+					from_user_id: auth?.id,
+					from_user_email: auth?.email,
 					idea_id: id,
 					to_idea_user_id: userId
 				}
@@ -59,7 +59,7 @@ export const InterestedIdea = () => {
 		});
 	};
 
-	if (auth.id === userId) return null;
+	if (auth?.id === userId) return null;
 
 	if (interested)
 		return (

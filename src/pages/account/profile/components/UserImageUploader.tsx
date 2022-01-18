@@ -1,17 +1,17 @@
-import { UserAvatar } from 'components/shared';
-import ImageUploader from 'components/shared/imageuploader/ImageUploader';
-import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useUpdateUserAvatarMutation } from 'generated/api';
-import { useCurrentUser } from 'hooks/auth';
-import { useFileUpload, useNotification } from 'hooks/util';
+import { UserAvatar } from '@components/shared';
+import ImageUploader from '@components/shared/imageuploader/ImageUploader';
+import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useUpdateUserAvatarMutation } from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { useFileUpload, useNotification } from '@hooks/util';
+import { updateUserImage } from '@slices/auth';
 import React, { useCallback, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateUserImage } from 'slices/auth';
 
 const UserImageUploader = () => {
 	const dispatch = useDispatch();
-	const { avatarUrl } = useCurrentUser();
-	const id = useCurrentUser().id;
+	const avatarUrl = useCurrentUser()?.avatarUrl;
+	const id = useCurrentUser()?.id;
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const { addNotification } = useNotification();
 
@@ -29,7 +29,7 @@ const UserImageUploader = () => {
 				}
 			},
 			onCompleted: (_data) => {
-				dispatch(updateUserImage(filePath));
+				if (filePath) dispatch(updateUserImage(filePath));
 				addNotification('Avatar successfully updated', 'success');
 				setModalDrawer({ isOpen: false });
 			}
@@ -41,10 +41,10 @@ const UserImageUploader = () => {
 			title="Edit profile photo"
 			boxSize={140}
 			onUpload={onUpload}
-			defaultSrc={avatarUrl}
+			defaultSrc={avatarUrl || undefined}
 		>
 			<UserAvatar
-				src={avatarUrl}
+				src={avatarUrl || undefined}
 				boxSize={140}
 				aria-label="Edit profile picture"
 			/>

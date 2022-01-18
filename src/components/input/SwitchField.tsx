@@ -1,6 +1,6 @@
 import { FormControl, FormHelperText } from '@chakra-ui/form-control';
 import { forwardRef, Switch } from '@chakra-ui/react';
-import { FormLabelText } from 'components/form';
+import { FormLabelText } from '@components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 

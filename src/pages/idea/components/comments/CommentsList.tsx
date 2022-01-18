@@ -1,14 +1,14 @@
 import { Box, Collapse, StackProps, useDisclosure } from '@chakra-ui/react';
-import { PrimaryButton } from 'components/buttons';
-import BaseHeading from 'components/heading/BaseHeading';
-import { BoxLayout, StackLayout } from 'components/layouts';
-import { Loading, NoResults } from 'components/shared';
-import PostComment from 'components/shared/PostComment';
+import { PrimaryButton } from '@components/buttons';
+import BaseHeading from '@components/heading/BaseHeading';
+import { BoxLayout, StackLayout } from '@components/layouts';
+import { Loading, NoResults } from '@components/shared';
+import PostComment from '@components/shared/PostComment';
 import {
 	useCommentsForIdeaQuery,
 	useRepliesForCommentQuery
-} from 'generated/api';
-import { useQueryParam } from 'hooks/util';
+} from '@generated/api';
+import { useQueryParam } from '@hooks/util';
 import React, { useEffect } from 'react';
 import CommentLayout from './CommentLayout';
 
@@ -22,7 +22,7 @@ export const Comment = (comment: any) => {
 
 	return (
 		<CommentLayout comment={comment} divider={true}>
-			{comment?.totalReplies > 0 && (
+			{comment?.totalReplies > 0 ? (
 				<React.Fragment>
 					<PrimaryButton
 						name={'show-replies'}
@@ -37,6 +37,8 @@ export const Comment = (comment: any) => {
 						<RepliesList commentId={comment.id} />
 					</Collapse>
 				</React.Fragment>
+			) : (
+				<></>
 			)}
 		</CommentLayout>
 	);
@@ -75,6 +77,8 @@ export const CommentsList = ({
 		}
 	};
 
+	const hasComments = data?.comments?.length ?? 0;
+
 	if (loading) return <Loading small />;
 
 	return (
@@ -99,12 +103,12 @@ export const CommentsList = ({
 				px={{ base: 4, md: 0 }}
 				borderTopWidth={{ base: 0, md: 1 }}
 			>
-				{data?.totalComments.aggregate.count} Comments
+				{data?.totalComments?.aggregate?.count} Comments
 			</BaseHeading>
 			<Box flexShrink={0} px={2} py={6}>
 				<PostComment />
 			</Box>
-			{data?.comments.length < 1 ? (
+			{hasComments < 1 ? (
 				<NoResults label={'comments yet'} />
 			) : (
 				<StackLayout flexGrow={1} overflowY={'auto'} minHeight={'2em'}>

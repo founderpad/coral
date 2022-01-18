@@ -1,22 +1,22 @@
-import { SubmitButton } from 'components/buttons';
-import { Form } from 'components/form';
-import { InputField } from 'components/input/InputField';
-import { SelectField } from 'components/input/SelectField';
-import { SwitchField } from 'components/input/SwitchField';
-import { TextareaField } from 'components/input/TextareaField';
-import AppDivider from 'components/shared/AppDivider';
+import { SubmitButton } from '@components/buttons';
+import { Form } from '@components/form';
+import { InputField } from '@components/input/InputField';
+import { SelectField } from '@components/input/SelectField';
+import { SwitchField } from '@components/input/SwitchField';
+import { TextareaField } from '@components/input/TextareaField';
+import AppDivider from '@components/shared/AppDivider';
 import {
 	TCreateIdeaMutation,
 	TIdeas,
 	TIdeas_Insert_Input,
 	useCreateIdeaMutation
-} from 'generated/api';
-import { useCurrentUser } from 'hooks/auth';
-import { event } from 'lib/ga';
+} from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { event } from '@lib/ga';
+import { ideasStatusList, industriesList } from '@utils/Constants';
 import Router from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { ideasStatusList, industriesList } from 'utils/Constants';
 
 type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'comments'>;
 
@@ -68,15 +68,15 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 			event({
 				action: 'Create idea',
 				params: {
-					user_id: user.id,
-					display_name: user.displayName,
-					user_email: user.email,
-					idea_id: idea.id,
-					idea_name: idea.name
+					user_id: user?.id,
+					display_name: user?.displayName,
+					user_email: user?.email,
+					idea_id: idea?.id,
+					idea_name: idea?.name
 				}
 			});
 
-			Router.push(`/idea/${idea.id}`);
+			Router.push(`/idea/${idea?.id}`);
 		}
 	});
 

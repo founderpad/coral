@@ -1,9 +1,9 @@
 import { FormControl, FormHelperText } from '@chakra-ui/form-control';
 import { forwardRef, Select } from '@chakra-ui/react';
-import { FormErrorText, FormLabelText } from 'components/form';
+import { FormErrorText, FormLabelText } from '@components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { ISelectFieldProps } from 'types/fields';
+import { ISelectFieldProps } from 'src/types/fields';
 
 export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 	(props, ref) => {
@@ -12,7 +12,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 			isRequired,
 			label,
 			error,
-			errorText,
+			// errorText,
 			options,
 			control,
 			helperText,
@@ -30,7 +30,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 				maxW={{ base: 'full', md: full ? 'full' : 'sm' }}
 				ref={ref}
 			>
-				<FormLabelText label={label} />
+				{label && <FormLabelText label={label} />}
 				<Controller
 					render={({
 						field: { onChange, value },
@@ -55,10 +55,10 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					)}
 					name={name}
 					control={control}
-					rules={{ required: !!errorText }}
+					rules={{ required: !!props.errorText }}
 				/>
 				{error ? (
-					<FormErrorText label={errorText} />
+					<FormErrorText label={props.errorText} />
 				) : (
 					helperText && (
 						<FormHelperText fontSize={'smaller'}>

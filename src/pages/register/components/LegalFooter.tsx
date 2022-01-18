@@ -1,5 +1,5 @@
-import { Label } from 'components/labels';
-import { PrimaryLink } from 'components/links';
+import { Label } from '@components/labels';
+import { PrimaryLink } from '@components/links';
 import React, { memo } from 'react';
 
 const LegalFooter = memo(

@@ -1,7 +1,7 @@
-import { IoBulbSharp, IoTrendingUpSharp } from 'components/icons';
-import { FlexLayout } from 'components/layouts';
-import { OverviewTag } from 'components/shared';
-import IdeaContext from 'context/idea/IdeaContext';
+import { IoBulbSharp, IoTrendingUpSharp } from '@components/icons';
+import { FlexLayout } from '@components/layouts';
+import { OverviewTag } from '@components/shared';
+import IdeaContext from '@context/idea/IdeaContext';
 import React, { memo, useContext } from 'react';
 
 export const IdeaOverview = memo(() => {
@@ -13,7 +13,7 @@ export const IdeaOverview = memo(() => {
 		status,
 		field
 		// user: { country, location }
-	} = idea;
+	} = idea ?? {};
 
 	return (
 		<FlexLayout
@@ -24,12 +24,16 @@ export const IdeaOverview = memo(() => {
 				}
 			}}
 		>
-			<OverviewTag
-				title={'Stage'}
-				value={status}
-				icon={IoTrendingUpSharp}
-			/>
-			<OverviewTag title={'Field'} value={field} icon={IoBulbSharp} />
+			{status && (
+				<OverviewTag
+					title={'Stage'}
+					value={status}
+					icon={IoTrendingUpSharp}
+				/>
+			)}
+			{field && (
+				<OverviewTag title={'Field'} value={field} icon={IoBulbSharp} />
+			)}
 			{/* {location && (
 				<OverviewTag
 					title={'Location'}

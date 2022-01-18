@@ -10,7 +10,7 @@ export const FixedSubheader = memo(
 		children: React.ReactNode;
 		scrollOffset?: number;
 		topOffset?: number;
-	}): JSX.Element => {
+	}) => {
 		const [fixed, setIsFixed] = useState(false);
 		const DEFAULT_OFFSET = 120;
 
@@ -30,11 +30,11 @@ export const FixedSubheader = memo(
 				w={'full'}
 				py={fixed ? 2 : 0}
 				px={fixed ? 4 : 0}
-				top={fixed && (topOffset || 10)}
+				top={fixed ? topOffset || 10 : 'initial'}
 				left={0}
 				bg={'white'}
 				borderBottomWidth={fixed ? 1 : 0}
-				transition={fixed && 'ease .9'}
+				transition={'ease .9'}
 				zIndex={1}
 			>
 				{children}

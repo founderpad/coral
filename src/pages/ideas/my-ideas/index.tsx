@@ -1,7 +1,7 @@
-import { PageLayout } from 'components/layouts';
-import { DocumentTitle } from 'components/shared';
+import { PageLayout } from '@components/layouts';
+import { DocumentTitle } from '@components/shared';
+import AuthFilter from '@utils/AuthFilter';
 import React from 'react';
-import AuthFilter from 'utils/AuthFilter';
 import MyIdeasContainer from './MyIdeasContainer';
 
 const MyIdeas = (): JSX.Element => {

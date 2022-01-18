@@ -1,22 +1,22 @@
-import { FlexLayout } from 'components/layouts';
-import { UserAvatarDetails } from 'components/shared';
-import IdeaContext from 'context/idea/IdeaContext';
-import { useCurrentUser } from 'hooks/auth';
+import { FlexLayout } from '@components/layouts';
+import { UserAvatarDetails } from '@components/shared';
+import IdeaContext from '@context/idea/IdeaContext';
+import { useCurrentUser } from '@hooks/auth';
+import { formatDate } from '@utils/validators';
 import React, { memo, useContext } from 'react';
-import { formatDate } from 'utils/validators';
 import IdeaActions from './IdeaMenu';
 
 export const IdeaUserActions = memo(() => {
-	const {
-		data: { idea }
-	} = useContext(IdeaContext);
-	const {
-		userId,
-		createdAt,
-		id,
-		user: { avatarUrl, displayName }
-	} = idea;
-	const user = useCurrentUser();
+	const idea = useContext(IdeaContext).data?.idea;
+	const auth = useCurrentUser();
+
+	let publishedName = '';
+	publishedName =
+		auth?.id === idea?.userId
+			? 'you'
+			: idea?.user
+			? idea?.user?.displayName
+			: '';
 
 	return (
 		<FlexLayout
@@ -26,14 +26,12 @@ export const IdeaUserActions = memo(() => {
 		>
 			<UserAvatarDetails
 				rounded={'full'}
-				name={`Published by ${
-					user.id === userId ? 'you' : displayName
-				}`}
-				src={avatarUrl}
-				createdAt={formatDate(createdAt, true)}
+				name={`Published by ${publishedName}`}
+				src={idea?.user?.avatarUrl ?? ''}
+				createdAt={formatDate(idea?.createdAt, true)}
 			/>
 
-			{user?.id === userId && <IdeaActions ideaId={id} />}
+			{auth?.id === idea?.userId && <IdeaActions ideaId={idea?.id} />}
 		</FlexLayout>
 	);
 });

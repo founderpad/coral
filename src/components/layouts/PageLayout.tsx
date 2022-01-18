@@ -1,6 +1,6 @@
 import { BoxProps } from '@chakra-ui/layout';
 import { Box } from '@chakra-ui/react';
-import { PageHeader } from 'components/shared';
+import { PageHeader } from '@components/shared';
 import React from 'react';
 import { StackLayout } from './StackLayout';
 

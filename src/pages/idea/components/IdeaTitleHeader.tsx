@@ -1,12 +1,23 @@
-import { PrimaryButton } from 'components/buttons';
-import { SubheadingText } from 'components/heading';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { PointSeparator } from 'components/shared';
-import IdeaContext from 'context/idea/IdeaContext';
+import { PrimaryButton } from '@components/buttons';
+import { SubheadingText } from '@components/heading';
+import { FlexLayout, StackLayout } from '@components/layouts';
+import { PointSeparator } from '@components/shared';
+import IdeaContext from '@context/idea/IdeaContext';
+import {
+	TIdeas,
+	TIdea_Preview,
+	TIdea_Votes,
+	TIdea_Votes_Aggregate
+} from '@generated/api';
 import React, { memo, useCallback, useContext, useState } from 'react';
 import IdeaUpvote from './IdeaUpvote';
 import InterestedTotal from './InterestedTotal';
 import PublishedLabel from './PublishedLabel';
+
+type TIdeaUpvote = Pick<
+	TIdeas | TIdea_Preview,
+	'votes' | 'votes_aggregate' | 'id' | 'name'
+>;
 
 export const IdeaTitleHeader = memo(() => {
 	const [showComments, setShowComments] = useState(false);
@@ -14,15 +25,30 @@ export const IdeaTitleHeader = memo(() => {
 		data: { idea }
 	} = useContext(IdeaContext);
 
-	const { name, isPublished, totalInterested } = idea;
+	const {
+		isPublished,
+		totalInterested = 0,
+		id,
+		name,
+		votes,
+		votes_aggregate
+	} = idea ?? {};
+
+	const ideaUpvote: TIdeaUpvote = {
+		id,
+		name,
+		votes: votes as TIdea_Votes[],
+		votes_aggregate: votes_aggregate as TIdea_Votes_Aggregate
+	};
 
 	const onShowCommentsClick = useCallback(() => {
 		setShowComments(!showComments);
 
-		document.getElementById('idea-comments').scrollIntoView({
+		document.getElementById('idea-comments')?.scrollIntoView({
 			behavior: 'smooth'
 		});
 	}, [showComments]);
+
 	return (
 		<FlexLayout wordBreak={'break-all'} flexDirection={'column'}>
 			<SubheadingText>{name}</SubheadingText>
@@ -33,7 +59,9 @@ export const IdeaTitleHeader = memo(() => {
 					pt={2}
 					alignItems={'center'}
 				>
-					<PublishedLabel isPublished={isPublished} />
+					{isPublished && (
+						<PublishedLabel isPublished={isPublished} />
+					)}
 					{totalInterested > 0 && (
 						<React.Fragment>
 							<PointSeparator small />
@@ -41,7 +69,7 @@ export const IdeaTitleHeader = memo(() => {
 						</React.Fragment>
 					)}
 					<PointSeparator small />
-					<IdeaUpvote {...idea} />
+					{idea && <IdeaUpvote {...ideaUpvote} />}
 				</StackLayout>
 
 				<PrimaryButton

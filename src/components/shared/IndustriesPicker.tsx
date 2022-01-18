@@ -6,10 +6,10 @@ import {
 } from '@chakra-ui/form-control';
 import { Flex } from '@chakra-ui/layout';
 import { Checkbox, CheckboxGroup, forwardRef } from '@chakra-ui/react';
+import { ALL_INDUSTRIES } from '@utils/Constants';
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { ICheckboxGroupFieldProps } from 'types/fields';
-import { ALL_INDUSTRIES } from 'utils/Constants';
+import { ICheckboxGroupFieldProps } from 'src/types/fields';
 
 export const IndustriesPicker = forwardRef<ICheckboxGroupFieldProps, 'input'>(
 	(props, ref) => {
@@ -72,9 +72,22 @@ export const IndustriesPicker = forwardRef<ICheckboxGroupFieldProps, 'input'>(
 						)}
 					</Flex>
 				</CheckboxGroup>
-				<FormErrorMessage alignItems={'flex-start'}>
-					{error?.[0] && <span>{errorText}</span>}
-				</FormErrorMessage>
+				{/* {error instanceof FieldError[] && (
+					<FormErrorMessage alignItems={'flex-start'}>
+						{error?.[0] && <span>{errorText}</span>}
+					</FormErrorMessage>
+				)} */}
+				{/* {error && (
+					<FormErrorMessage alignItems={'flex-start'}>
+						{error?.[0] && <span>{errorText}</span>}
+					</FormErrorMessage>
+				)} */}
+
+				{error && (
+					<FormErrorMessage alignItems={'flex-start'}>
+						{error && <span>{errorText}</span>}
+					</FormErrorMessage>
+				)}
 			</FormControl>
 		);
 	}

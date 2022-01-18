@@ -1,30 +1,33 @@
 import { IconButton } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { Textarea } from '@chakra-ui/textarea';
-import { IoSendSharp } from 'components/icons';
-import { StackLayout } from 'components/layouts';
-import IdeaContext from 'context/idea/IdeaContext';
-import { CommentsForIdeaDocument, usePostCommentMutation } from 'generated/api';
-import { useCurrentUser } from 'hooks/auth';
-import { event } from 'lib/ga';
+import { IoSendSharp } from '@components/icons';
+import { StackLayout } from '@components/layouts';
+import IdeaContext from '@context/idea/IdeaContext';
+import {
+	CommentsForIdeaDocument,
+	usePostCommentMutation
+} from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { event } from '@lib/ga';
 import React, { useCallback, useContext, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';
 
-const PostComment = (): JSX.Element => {
+const PostComment = () => {
 	const [value, setValue] = useState('');
-	const { id: authId, displayName, email } = useCurrentUser();
+	const user = useCurrentUser();
 
-	const { data } = useContext(IdeaContext);
+	const data = useContext(IdeaContext).data;
 
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
 			ideaComment: {
-				ideaId: data?.idea.id,
-				targetUserId: data?.idea.userId,
+				ideaId: data?.idea?.id,
+				targetUserId: data?.idea?.userId,
 				value
 			},
-			ideaId: data?.idea.id
+			ideaId: data?.idea?.id
 		},
 		// update(cache, mutationResult) {
 		// 	cache.modify({
@@ -42,7 +45,7 @@ const PostComment = (): JSX.Element => {
 			{
 				query: CommentsForIdeaDocument,
 				variables: {
-					ideaId: data?.idea.id
+					ideaId: data?.idea?.id
 				}
 			}
 		],
@@ -51,11 +54,11 @@ const PostComment = (): JSX.Element => {
 				action: 'Post comment',
 				params: {
 					comment: value,
-					idea_id: data?.idea.id,
-					to_user_id: data?.idea.userId,
-					from_user_id: authId,
-					from_user_display_name: displayName,
-					from_user_email: email
+					idea_id: data?.idea?.id,
+					to_user_id: data?.idea?.userId,
+					from_user_id: user.id,
+					from_user_display_name: user.displayName,
+					from_user_email: user.email
 				}
 			});
 

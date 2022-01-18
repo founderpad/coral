@@ -1,8 +1,8 @@
-import AlertFeedback from 'components/alert';
-import { GoBackButton } from 'components/buttons';
-import { SubheadingText } from 'components/heading';
-import { Label } from 'components/labels';
-import { FlexLayout, StackLayout } from 'components/layouts';
+import AlertFeedback from '@components/alert';
+import { GoBackButton } from '@components/buttons';
+import { SubheadingText } from '@components/heading';
+import { Label } from '@components/labels';
+import { FlexLayout, StackLayout } from '@components/layouts';
 import React, { memo } from 'react';
 
 export const PageHeader = memo(

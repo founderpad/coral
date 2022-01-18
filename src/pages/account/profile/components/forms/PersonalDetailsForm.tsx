@@ -1,21 +1,21 @@
-import Form from 'components/form/Form';
-import { SelectField } from 'components/input';
-import { InputField } from 'components/input/InputField';
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import Form from '@components/form/Form';
+import { SelectField } from '@components/input';
+import { InputField } from '@components/input/InputField';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
 	TUsers,
 	TUsers_Set_Input,
 	TUser_Address,
 	TUser_Address_Set_Input,
 	useUpdateUserPersonalDetailsMutation
-} from 'generated/api';
-import { useCurrentUser } from 'hooks/auth';
-import { useNotification } from 'hooks/util';
+} from '@generated/api';
+import { useCurrentUser } from '@hooks/auth';
+import { useNotification } from '@hooks/util';
+import { updatePersonalDetails } from '@slices/auth';
+import { countriesList } from '@utils/Constants';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { updatePersonalDetails } from 'slices/auth';
-import { countriesList } from 'utils/Constants';
 
 // type InputProperties = keyof TUsers_Set_Input
 
@@ -39,15 +39,15 @@ const PersonalDetailsForm = () => {
 		mode: 'all',
 		defaultValues: {
 			...auth,
-			...auth.address
+			...auth?.address
 		}
 	});
 
-	const watchCountry = watch('country', auth.address?.country);
+	const watchCountry = watch('country', auth?.address?.country);
 
 	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
 		variables: {
-			id: auth.id,
+			id: auth?.id,
 			userPersonalDetails: {
 				displayName: getValues('displayName')
 			},

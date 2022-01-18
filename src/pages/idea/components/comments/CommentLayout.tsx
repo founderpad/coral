@@ -1,11 +1,11 @@
-import { CaptionLabel, Label } from 'components/labels';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { PointSeparator, UserAvatar } from 'components/shared';
-import BaseTag from 'components/tags/BaseTag';
-import IdeaContext from 'context/idea/IdeaContext';
-import { useQueryParam } from 'hooks/util';
+import { CaptionLabel, Label } from '@components/labels';
+import { FlexLayout, StackLayout } from '@components/layouts';
+import { PointSeparator, UserAvatar } from '@components/shared';
+import BaseTag from '@components/tags/BaseTag';
+import IdeaContext from '@context/idea/IdeaContext';
+import { useQueryParam } from '@hooks/util';
+import { formatDate } from '@utils/validators';
 import React, { useContext, useEffect } from 'react';
-import { formatDate } from 'utils/validators';
 import CommentActions from './CommentActions';
 
 const ChatContainer = ({ children }: { children: JSX.Element[] }) => (
@@ -38,7 +38,7 @@ export const CommentLayout = ({
 	const anchoredId = useQueryParam('d');
 
 	const isAuthor =
-		useContext(IdeaContext).data?.idea.userId === comment.user.id;
+		useContext(IdeaContext).data?.idea?.userId === comment.user.id;
 
 	useEffect(() => {
 		if (anchoredId) {
@@ -56,7 +56,11 @@ export const CommentLayout = ({
 				w={'full'}
 				id={comment.id}
 				p={2}
-				bg={!!anchoredId && anchoredId === comment.id && 'gray.50'}
+				bg={
+					!!anchoredId && anchoredId === comment.id
+						? 'gray.50'
+						: 'inherit'
+				}
 				borderLeftWidth={actions ? 4 : 3}
 			>
 				<UserAvatar size={'sm'} />

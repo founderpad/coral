@@ -1,14 +1,14 @@
 import Icon from '@chakra-ui/icon';
-import { IoChatbubbleSharp } from 'components/icons';
-import { Label } from 'components/labels';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { TIdea_Preview } from 'generated/api';
-import IdeaUpvote from 'pages/idea/components/IdeaUpvote';
+import { IoChatbubbleSharp } from '@components/icons';
+import { Label } from '@components/labels';
+import { FlexLayout, StackLayout } from '@components/layouts';
+import { TIdeaPreviewFieldsFragment } from '@generated/api';
+import IdeaUpvote from '@pages/idea/components/IdeaUpvote';
 import React, { memo } from 'react';
 import IdeaMenu from '../IdeaMenu';
 
-const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
-	console.log('idea: ', idea);
+const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
+	const totalComments = idea?.total_comments ?? 0;
 	return (
 		<StackLayout
 			direction={'row'}
@@ -24,7 +24,7 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 			<StackLayout direction={'row'} spacing={3} alignItems={'center'}>
 				<IdeaUpvote {...idea} />
 
-				{idea?.total_comments > 0 && (
+				{totalComments > 0 && (
 					<FlexLayout alignItems={'center'}>
 						<Icon
 							as={IoChatbubbleSharp}
@@ -34,7 +34,7 @@ const IdeaCardFooter = (idea: TIdea_Preview): JSX.Element => {
 							color={'gray.400'}
 						/>
 						<Label color={'gray.400'} fontSize={'xs'}>
-							{idea.comments_aggregate.aggregate.count}
+							{idea?.comments_aggregate?.aggregate?.count}
 						</Label>
 					</FlexLayout>
 				)}

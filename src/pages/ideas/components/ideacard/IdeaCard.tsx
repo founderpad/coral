@@ -1,13 +1,13 @@
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { BaseLink } from 'components/links';
-import { TIdea_Preview } from 'generated/api';
+import { FlexLayout, StackLayout } from '@components/layouts';
+import { BaseLink } from '@components/links';
+import { TIdeaPreviewFieldsFragment } from '@generated/api';
 import React from 'react';
 import IdeaCardBody from './IdeaCardBody';
 import IdeaCardFooter from './IdeaCardFooter';
 import IdeaCardHeader from './IdeaCardHeader';
 
-const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
-	<>
+const IdeaCard = (idea: TIdeaPreviewFieldsFragment) => (
+	<React.Fragment>
 		{/* <FlexLayout flex={1}>
 			<FlexLayout
 				flexDirection={'column'}
@@ -51,7 +51,7 @@ const IdeaCard = (idea: TIdea_Preview): JSX.Element => (
 			</FlexLayout>
 			<IdeaCardFooter {...idea} />
 		</StackLayout>
-	</>
+	</React.Fragment>
 );
 
 export default IdeaCard;

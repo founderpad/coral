@@ -1,5 +1,6 @@
 import {
 	ButtonGroup,
+	ButtonProps,
 	Modal as ChakraModal,
 	ModalBody,
 	ModalContent,
@@ -9,8 +10,8 @@ import {
 	ModalProps,
 	useBreakpointValue
 } from '@chakra-ui/react';
-import { BaseButton, CancelButton } from 'components/buttons';
-import { ModalDrawerFooterActions } from 'components/shared';
+import { BaseButton, CancelButton } from '@components/buttons';
+import { ModalDrawerFooterActions } from '@components/shared';
 import React from 'react';
 
 type IModalProps = Omit<ModalProps, 'children'> & {
@@ -21,7 +22,7 @@ type IModalProps = Omit<ModalProps, 'children'> & {
 	noBtnLabel?: string | 'Cancel';
 	yesBtnLabel?: string | 'Yes';
 	closeLabel?: string | 'Cancel';
-	yesBtnColor?: 'fpPrimary' | 'red';
+	yesBtnColor?: 'fpPrimary' | 'red' | ButtonProps['colorScheme'];
 	hideFooter?: boolean;
 	width?: number | string;
 	maxW?: number | string;

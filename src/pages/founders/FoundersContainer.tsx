@@ -1,16 +1,13 @@
-import { StackLayout } from 'components/layouts';
-import { Loading, NoResults } from 'components/shared';
-import AppDivider from 'components/shared/AppDivider';
-import {
-	TUser_Profile,
-	TUser_Profile_Bool_Exp,
-	useUsersQuery
-} from 'generated/api';
-import { useQueryParam } from 'hooks/util';
+import { StackLayout } from '@components/layouts';
+import { Loading, NoResults } from '@components/shared';
+import AppDivider from '@components/shared/AppDivider';
+import { TUser_Profile_Bool_Exp, useUsersQuery } from '@generated/api';
+import { useQueryParam } from '@hooks/util';
+import IdeasActions from '@pages/ideas/components/IdeasActions';
+import OffsetPagination from '@pages/ideas/OffsetPagination';
 import { useRouter } from 'next/router';
-import IdeasActions from 'pages/ideas/components/IdeasActions';
-import OffsetPagination from 'pages/ideas/OffsetPagination';
 import React from 'react';
+import { TFounderUsers } from 'src/types/founders';
 import FounderCard from './components/FounderCard';
 
 const queryBuilder = (): TUser_Profile_Bool_Exp => {
@@ -58,8 +55,15 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	return where;
 };
 
-const FoundersContainer = (): JSX.Element => {
-	const { data, loading } = useUsersQuery({
+const FoundersContainer = () => {
+	const {
+		// data = {
+		// 	user_profile: {} as TUser_Profile,
+		// 	user_profile_aggregate: {} as TUser_Profile_Aggregate
+		// },
+		data,
+		loading
+	} = useUsersQuery({
 		variables: {
 			where: queryBuilder(),
 			limit: 10,
@@ -70,41 +74,53 @@ const FoundersContainer = (): JSX.Element => {
 		}
 	});
 
+	const hasResults = data?.user_profile?.length ?? 0;
+
 	if (loading) return <Loading small />;
 
 	return (
 		<React.Fragment>
-			{data?.user_profile.length > 0 && data?.user_profile_aggregate && (
-				<IdeasActions
-					total={data?.user_profile_aggregate.aggregate.count}
-					pageSize={data?.user_profile.length}
-					hasResults={data?.user_profile.length > 0}
-				/>
-			)}
+			{/* {data?.user_profile?.length < 1 && <NoResults back />} */}
+			{hasResults ? (
+				<>
+					{data?.user_profile_aggregate && (
+						<IdeasActions
+							total={
+								data?.user_profile_aggregate?.aggregate
+									?.count || 0
+							}
+							pageSize={data?.user_profile.length}
+							hasResults={data?.user_profile.length > 0}
+						/>
+					)}
 
-			{!loading && data?.user_profile.length < 1 && <NoResults back />}
-			<StackLayout
-				display={'flex'}
-				flex={1}
-				bg={'white'}
-				spacing={6}
-				mt={{ sm: 3 }}
-			>
-				{data?.user_profile?.map((up: TUser_Profile) => (
-					<React.Fragment key={up.id}>
-						<FounderCard {...up} />
-						<AppDivider />
-					</React.Fragment>
-				))}
-			</StackLayout>
+					<StackLayout
+						display={'flex'}
+						flex={1}
+						bg={'white'}
+						spacing={6}
+						mt={{ sm: 3 }}
+					>
+						{data?.user_profile?.map((up: TFounderUsers) => {
+							<React.Fragment key={up.id}>
+								<FounderCard {...up} />
+								<AppDivider />
+							</React.Fragment>;
+						})}
+					</StackLayout>
 
-			{data?.user_profile?.length > 0 && (
-				<OffsetPagination
-					pagesCount={
-						(data?.user_profile_aggregate.aggregate.count || 0) / 10
-					}
-					pathname="/founders"
-				/>
+					{hasResults && (
+						<OffsetPagination
+							pagesCount={
+								(data?.user_profile_aggregate.aggregate
+									?.count || 0) / 10
+							}
+							pathname="/founders"
+						/>
+					)}
+				</>
+			) : (
+				<NoResults back />
 			)}
 		</React.Fragment>
 	);

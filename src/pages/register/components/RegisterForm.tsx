@@ -1,18 +1,18 @@
-import AlertFeedback from 'components/alert';
-import { SubmitButton } from 'components/buttons';
-import { Form } from 'components/form';
+import AlertFeedback from '@components/alert';
+import { SubmitButton } from '@components/buttons';
+import { Form } from '@components/form';
 import {
 	EmailField,
 	InputField,
 	PasswordField
-} from 'components/input/InputField';
-import { useRegister } from 'hooks/auth';
+} from '@components/input/InputField';
+import { useRegister } from '@hooks/auth';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { IRegisterFormData } from 'types/auth';
+import { IRegisterFormData } from 'src/types/auth';
 import LegalFooter from './LegalFooter';
 
-const RegisterForm = (): JSX.Element => {
+const RegisterForm = () => {
 	const {
 		handleSubmit,
 		control,
@@ -49,7 +49,9 @@ const RegisterForm = (): JSX.Element => {
 				id="email"
 				name="email"
 				error={errors['email']}
-				errorText="Please enter a valid email"
+				helperText={
+					errors['email'] ? 'Please enter a valid email' : undefined
+				}
 				control={control}
 				size={'md'}
 				fontSize={'sm'}
@@ -74,7 +76,7 @@ const RegisterForm = (): JSX.Element => {
 				disabled={!isValid || isSubmitting}
 				size={'md'}
 				fontSize={'sm'}
-				full
+				w={'full'}
 			/>
 			<LegalFooter />
 		</Form>

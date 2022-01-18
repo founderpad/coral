@@ -1,9 +1,9 @@
+import { TUsers, TUser_Address } from '@generated/api';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TUsers, TUser_Address } from 'generated/api';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
-	user: null as TUsers
+	user: undefined as TUsers | undefined
 };
 
 const authSlice = createSlice({
@@ -14,37 +14,41 @@ const authSlice = createSlice({
 			state.user = action.payload;
 		},
 		clearUser(state) {
-			state.user = null;
+			state.user = undefined;
 			storage.removeItem('persist:root');
 		},
 		setProfileComplete(state) {
-			state.user = {
-				...state.user,
-				profile: {
-					...state.user.profile,
-					isComplete: true
-				}
-			};
+			// Ugly. Remove Redux asap
+			if (state.user?.profile)
+				state.user = {
+					...state.user,
+					profile: {
+						...state.user.profile,
+						isComplete: true
+					}
+				};
 		},
 		updatePersonalDetails(
 			state,
 			action: PayloadAction<{ user: TUsers; userAddress: TUser_Address }>
 		) {
 			const { user, userAddress } = action.payload;
-			state.user = {
-				...state.user,
-				...user,
-				address: {
-					...state.user.address,
-					...userAddress
-				}
-			};
+			if (state.user?.address)
+				state.user = {
+					...state.user,
+					...user,
+					address: {
+						...state.user.address,
+						...userAddress
+					}
+				};
 		},
 		updateUserImage(state, action: PayloadAction<string>) {
-			state.user = {
-				...state.user,
-				avatarUrl: action.payload
-			};
+			if (state.user)
+				state.user = {
+					...state.user,
+					avatarUrl: action.payload
+				};
 		}
 	}
 });

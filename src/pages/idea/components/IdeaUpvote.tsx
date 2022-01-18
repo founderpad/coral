@@ -1,27 +1,27 @@
-import { UpvoteButton } from 'components/shared/UpvoteButton';
+import { UpvoteButton } from '@components/shared/UpvoteButton';
 import {
-	TIdea_Preview,
+	TIdeaPreviewFieldsFragment,
+	TIdeas,
 	useDeleteIdeaUpvoteMutation,
 	useInsertIdeaUpvoteMutation
-} from 'generated/api';
-import { useClaim, useCurrentUser } from 'hooks/auth';
-import { event } from 'lib/ga';
+} from '@generated/api';
+import { useClaim, useCurrentUser } from '@hooks/auth';
+import { event } from '@lib/ga';
 import React, { useCallback, useState } from 'react';
-import { TIdea } from 'types/idea';
 
-export const IdeaUpvote = (
-	idea: Pick<
-		TIdea | TIdea_Preview,
-		'votes' | 'votes_aggregate' | 'id' | 'name'
-	>
-) => {
+type TIdeaUpvote = Pick<
+	TIdeas | TIdeaPreviewFieldsFragment,
+	'votes' | 'votes_aggregate' | 'id' | 'name'
+>;
+
+export const IdeaUpvote = (idea: TIdeaUpvote) => {
 	const [upvote, setUpvote] = useState({
-		hasUserUpvoted: idea.votes.length > 0,
-		votesTotal: idea.votes_aggregate?.aggregate.count
+		hasUserUpvoted: idea?.votes?.length > 0,
+		votesTotal: idea?.votes_aggregate?.aggregate?.count
 	});
 
 	const user = useCurrentUser();
-	const { hasUserUpvoted, votesTotal } = upvote;
+	const { hasUserUpvoted, votesTotal = 0 } = upvote;
 
 	const [insertIdeaUpvote] = useInsertIdeaUpvoteMutation({
 		variables: {
@@ -34,8 +34,8 @@ export const IdeaUpvote = (
 			event({
 				action: 'User idea upvote',
 				params: {
-					from_user_id: user.id,
-					from_user_email: user.email,
+					from_user_id: user?.id,
+					from_user_email: user?.email,
 					idea_id: idea.id,
 					idea_name: idea.name,
 					to_idea_user_id: idea.id
@@ -54,8 +54,8 @@ export const IdeaUpvote = (
 			event({
 				action: 'User idea remove upvote',
 				params: {
-					from_user_id: user.id,
-					from_user_email: user.email,
+					from_user_id: user?.id,
+					from_user_email: user?.email,
 					idea_id: idea.id,
 					idea_name: idea.name,
 					to_idea_user_id: idea.id

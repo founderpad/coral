@@ -1,3 +1,5 @@
+#import { UsersFieldWithEmail } from '../fragments/user.gql'
+
 mutation CreateIdea($idea: ideas_insert_input!) {
 	idea: insert_ideas_one(object: $idea) {
 		id
@@ -58,35 +60,36 @@ query Ideas(
 		offset: $offset
 		order_by: $orderBy
 	) {
+		...IdeaPreviewFields
+	}
+}
+
+fragment IdeaPreviewFields on idea_preview {
+	id
+	name
+	preview
+	field
+	status
+	created_at
+	is_new
+	total_interested
+	total_comments
+	user_id
+	user {
+		...UsersFieldWithEmail
+	}
+	votes_aggregate {
+		aggregate {
+			count(columns: id)
+		}
+	}
+	comments_aggregate {
+		aggregate {
+			count(columns: id)
+		}
+	}
+	votes(where: { userId: { _eq: $userId } }) {
 		id
-		name
-		preview
-		field
-		status
-		created_at
-		is_new
-		total_interested
-		total_comments
-		user {
-			displayName
-			# country
-			id
-			avatarUrl
-			email
-		}
-		votes_aggregate {
-			aggregate {
-				count(columns: id)
-			}
-		}
-		comments_aggregate {
-			aggregate {
-				count(columns: id)
-			}
-		}
-		votes(where: { userId: { _eq: $userId } }) {
-			id
-		}
 	}
 }
 
@@ -122,11 +125,7 @@ query Idea($id: uuid!, $userId: uuid!) {
 		totalComments
 		totalVotes
 		user {
-			avatarUrl
-			displayName
-			# country
-			# location
-			id
+			...UserField
 		}
 		votes_aggregate {
 			aggregate {
@@ -150,10 +149,7 @@ query IdeaInterestedUsers($ideaId: uuid!) {
 		id
 		createdAt
 		user {
-			id
-			displayName
-			avatarUrl
-			email
+			...UsersFieldWithEmail
 		}
 	}
 }

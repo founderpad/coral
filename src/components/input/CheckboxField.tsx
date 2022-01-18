@@ -7,7 +7,7 @@ import {
 import { Checkbox, forwardRef, Select } from '@chakra-ui/react';
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { ISelectFieldProps, TCheckboxfieldProps } from 'types/fields';
+import { ISelectFieldProps, TCheckboxfieldProps } from 'src/types/fields';
 
 const CheckboxGroupField = forwardRef<ISelectFieldProps, 'select'>(
 	(props, ref) => {

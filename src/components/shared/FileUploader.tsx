@@ -1,16 +1,16 @@
 import { Box, Flex, Text } from '@chakra-ui/layout';
 import { BoxProps, ButtonGroup, Icon } from '@chakra-ui/react';
-import { PrimaryButton } from 'components/buttons';
-import { DeleteButton } from 'components/buttons/DeleteButton';
-import { FormLabelText } from 'components/form';
+import { PrimaryButton } from '@components/buttons';
+import { DeleteButton } from '@components/buttons/DeleteButton';
+import { FormLabelText } from '@components/form';
 import {
 	IoCheckmarkCircleSharp,
 	IoCloudUploadSharp,
 	IoDocumentSharp
-} from 'components/icons';
-import { CaptionLabel } from 'components/labels';
-import { FlexLayout, StackLayout } from 'components/layouts';
-import { PrimaryLink } from 'components/links';
+} from '@components/icons';
+import { CaptionLabel } from '@components/labels';
+import { FlexLayout, StackLayout } from '@components/layouts';
+import { PrimaryLink } from '@components/links';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { PointSeparator } from './Separators';
@@ -24,8 +24,8 @@ type Props = BoxProps & {
 
 export const FileUploader = (props: Props) => {
 	const { label, defaultSrc, onUpload, onDelete } = props;
-	const [myFiles, setMyFiles] = useState([]);
-	const [error, setError] = useState<string>(undefined);
+	const [myFiles, setMyFiles] = useState<any>([]);
+	const [error, setError] = useState<string | null>(null);
 
 	// const onDrop = useCallback(
 	// 	(acceptedFiles) => {
@@ -64,7 +64,7 @@ export const FileUploader = (props: Props) => {
 		const newFiles = [...myFiles];
 		newFiles.splice(newFiles.indexOf(file), 1);
 		setMyFiles(newFiles);
-		setError(undefined);
+		setError('');
 	};
 
 	const files = myFiles.map((file: File, index: number) => {

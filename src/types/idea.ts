@@ -15,7 +15,7 @@
 // 	idea_user: TIdeaCreatedUser;
 // };
 
-import { TIdeaQuery, TIdeas, TIdea_Preview } from 'generated/api';
+import { TIdeaQuery, TIdeas, TIdea_Preview, TUsers } from '@generated/api';
 
 export type TIdea = TIdeaQuery['idea'];
 export type TIdeaHasInterest = TIdeaQuery['hasInterest'];
@@ -25,17 +25,34 @@ export type TUpvoteIdea = Pick<
 	'user' | 'votes_aggregate' | 'votes' | 'id' | 'name'
 >;
 
+// export type TSearchIdea = Omit<TIdea_Preview, 'comments'> &
+// 	Pick<TIdea_Comments_Aggregate, 'nodes' | 'aggregate'> & {
+// 		user?: Pick<TUsers, 'displayName' | 'id' | 'createdAt'> | null;
+// 	};
+
+// export type TSearchIdea = Omit<TIdea_Preview, 'comments'> &
+// 	Pick<TIdea_Comments_Aggregate, 'nodes' | 'aggregate'> & {
+// 		user?:
+// 			| Pick<TUsers, 'displayName' | 'id' | 'createdAt'>
+// 			| null
+// 			| undefined;
+// 	};
+
+export type TSearchIdea = Partial<Omit<TIdea_Preview, 'comments'>> & {
+	user?: Pick<TUsers, 'displayName' | 'id' | 'createdAt'> | null | undefined;
+};
+
 // export type TIdeaPreview = Pick<TIdea, 'description' | > & {
 // 	description_preview: string;
 // };
 
-export type TIdeaPreview = Pick<
-	TIdea,
-	'id' | 'userId' | 'name' | 'createdAt' | 'field' | 'user'
-> & {
-	preview: string;
-	is_new: boolean;
-};
+// export type TIdeaPreview = Pick<
+// 	TIdea,
+// 	'id' | 'userId' | 'name' | 'createdAt' | 'field' | 'user'
+// > & {
+// 	preview: string;
+// 	is_new: boolean;
+// };
 
 // export type TCategory = {
 // 	id: number;

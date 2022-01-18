@@ -1,12 +1,12 @@
+import { TUsers, useUserLazyQuery } from '@generated/api';
+import { event } from '@lib/ga';
 import { useNhostAuth } from '@nhost/react-auth';
-import { TUsers, useUserLazyQuery } from 'generated/api';
-import { event } from 'lib/ga';
+import { setUser } from '@slices/auth';
+import { auth } from '@utils/nhost';
+import { RootState } from '@utils/reducer';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from 'slices/auth';
-import { IAuthFormData, IRegisterFormData } from 'types/auth';
-import { auth } from 'utils/nhost';
-import { RootState } from 'utils/reducer';
+import { IAuthFormData, IRegisterFormData } from 'src/types/auth';
 import { useErrorNotification } from './toast';
 import { useNotification } from './util';
 
@@ -130,11 +130,10 @@ export const useLogout = (): any => {
 };
 
 export const useCurrentUser = (): TUsers => {
-	try {
-		return useSelector((state: RootState) => state.authSlice.user);
-	} catch (e) {
-		return undefined;
-	}
+	return (
+		useSelector((state: RootState) => state.authSlice.user) ??
+		({} as TUsers)
+	);
 };
 
 export const useCheckLoggedIn = (): void => {
@@ -143,5 +142,5 @@ export const useCheckLoggedIn = (): void => {
 	// if (isAuthenticated) router.push('/ideas?page=1');
 };
 
-export const useClaim = (): string => auth.getUser()?.id;
+export const useClaim = (): string | undefined => auth.getUser()?.id;
 export const useAuth = () => useNhostAuth();

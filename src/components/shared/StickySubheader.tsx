@@ -19,13 +19,13 @@ export const StickySubheader = memo(
 			<Box
 				position={fixed ? 'fixed' : 'static'}
 				w={'full'}
-				py={fixed && 2}
-				px={fixed && 4}
-				top={fixed && 10}
+				py={fixed ? 2 : undefined}
+				px={fixed ? 4 : undefined}
+				top={fixed ? 10 : undefined}
 				left={0}
 				bg={'white'}
-				borderBottomWidth={fixed && 1}
-				transition={fixed && 'ease .9'}
+				borderBottomWidth={fixed ? 1 : 0}
+				transition={fixed ? 'ease .9' : undefined}
 				mb={{ sm: 2 }}
 				zIndex={1}
 			>

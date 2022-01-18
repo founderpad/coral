@@ -8,15 +8,15 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import { IoEllipsisVertical } from 'components/icons';
-import { BaseLink } from 'components/links';
-import LogoutModal from 'components/modal/LogoutModal';
-import { CurrentUserAvatarDetails, UserAvatar } from 'components/shared';
-import { useCurrentUser } from 'hooks/auth';
+import { IoEllipsisVertical } from '@components/icons';
+import { BaseLink } from '@components/links';
+import LogoutModal from '@components/modal/LogoutModal';
+import { CurrentUserAvatarDetails, UserAvatar } from '@components/shared';
+import { useCurrentUser } from '@hooks/auth';
 import React from 'react';
 
-const UserMenu = (): JSX.Element => {
-	const user = useCurrentUser()?.avatarUrl;
+const UserMenu = () => {
+	const avatarUrl = useCurrentUser()?.avatarUrl;
 	return (
 		<Menu>
 			<MenuButton
@@ -35,7 +35,7 @@ const UserMenu = (): JSX.Element => {
 					}
 				}}
 			>
-				<UserAvatar size={'xs'} src={user} />
+				<UserAvatar size={'xs'} src={avatarUrl || undefined} />
 				<Icon as={IoEllipsisVertical} ml={1} color={'gray.500'} />
 			</MenuButton>
 			<MenuList rounded={'none'} textAlign={'start'} p={4} maxW={200}>

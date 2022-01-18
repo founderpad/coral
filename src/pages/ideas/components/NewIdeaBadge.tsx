@@ -1,7 +1,7 @@
 import { Tag, useBreakpointValue } from '@chakra-ui/react';
 import React from 'react';
 
-const NewIdeaBadge = (): JSX.Element => {
+const NewIdeaBadge = () => {
 	const badgeSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
 	return (
@@ -21,14 +21,6 @@ const NewIdeaBadge = (): JSX.Element => {
 			>
 				New
 			</Tag>
-			{/* <Box
-				height={2}
-				width={2}
-				bgColor={'green.300'}
-				rounded={'md'}
-				display={{ base: 'block', sm: 'none' }}
-				mr={2}
-			></Box> */}
 		</React.Fragment>
 	);
 };

@@ -1,9 +1,7 @@
-import { fireEvent, waitFor } from '@testing-library/dom';
-import LoginForm from 'pages/login/components/LoginForm';
-import { act } from 'react-dom/test-utils';
+import LoginForm from '@pages/login/components/LoginForm';
+import store from '@utils/store';
 import { Provider } from 'react-redux';
-import store from 'utils/store';
-import { render } from '__test__/testUtils';
+import { act, fireEvent, render, waitFor } from './testUtils';
 
 const setup = () =>
 	render(
@@ -13,7 +11,7 @@ const setup = () =>
 	);
 
 const mockLogin = jest.fn();
-jest.mock('hooks/auth', () => ({
+jest.mock('@hooks/auth', () => ({
 	useLogin: (): any => mockLogin
 }));
 
@@ -38,24 +36,19 @@ describe('Login form', () => {
 
 	test('should make login request on submit', async () => {
 		const { getByPlaceholderText, getByRole } = setup();
-
 		const emailInput = getByPlaceholderText(/Email/i);
 		const passwordInput = getByPlaceholderText(/Password/i);
 		const submitButton = getByRole('button', { name: /submit/i });
-
 		expect(emailInput.value).toBe('');
 		expect(passwordInput.value).toBe('');
-
 		act(() => {
 			fireEvent.change(emailInput, {
 				target: { value: 'jamie@gmail.com' }
 			});
 			fireEvent.change(passwordInput, { target: { value: '123456' } });
 		});
-
 		expect(emailInput.value).toBe('jamie@gmail.com');
 		expect(passwordInput.value).toBe('123456');
-
 		fireEvent.submit(submitButton);
 		await waitFor(() => expect(mockLogin).toHaveBeenCalledTimes(1));
 	});

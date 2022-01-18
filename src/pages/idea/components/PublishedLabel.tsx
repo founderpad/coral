@@ -1,4 +1,4 @@
-import { Label } from 'components/labels';
+import { Label } from '@components/labels';
 import React from 'react';
 
 export const PublishedLabel = ({ isPublished }: { isPublished: boolean }) => {

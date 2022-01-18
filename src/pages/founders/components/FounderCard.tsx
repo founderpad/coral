@@ -1,22 +1,12 @@
 import { GridItem, SimpleGrid } from '@chakra-ui/react';
-import { StackLayout } from 'components/layouts';
-import { BaseLink } from 'components/links';
-import { UserAvatarDetails } from 'components/shared';
-import { TUser_Profile } from 'generated/api';
+import { StackLayout } from '@components/layouts';
+import { BaseLink } from '@components/links';
+import { UserAvatarDetails } from '@components/shared';
+import { convertCapacityToString, formatDate } from '@utils/validators';
 import React from 'react';
-import { convertCapacityToString, formatDate } from 'utils/validators';
+import { TFounderUsers } from 'src/types/founders';
 
-type TProfilePreview = Pick<
-	TUser_Profile,
-	| 'user'
-	| 'availability'
-	| 'skills'
-	| 'status'
-	| 'startups'
-	| 'specialistIndustry'
->;
-
-const founderAttrs = (founderProfileAttrs: TProfilePreview): string[] => {
+const founderAttrs = (founderProfileAttrs: TFounderUsers): string[] => {
 	const attrs = [];
 
 	if (founderProfileAttrs.availability)
@@ -46,7 +36,7 @@ const founderAttrs = (founderProfileAttrs: TProfilePreview): string[] => {
 	return attrs as string[];
 };
 
-const FounderProfileAttributes = (founderProfileAttrs: TProfilePreview) => {
+const FounderProfileAttributes = (founderProfileAttrs: TFounderUsers) => {
 	if (!founderAttrs(founderProfileAttrs).length) return null;
 	return (
 		<SimpleGrid columns={{ base: 2, md: 12 }} gap={{ base: 2, sm: 4 }}>
@@ -69,36 +59,32 @@ const FounderProfileAttributes = (founderProfileAttrs: TProfilePreview) => {
 	);
 };
 
-const FounderCard = (founderProfile: TProfilePreview) => {
-	return (
-		<StackLayout
-			flex={1}
-			d={'flex'}
-			spacing={4}
-			flexDirection={'column'}
-			as={BaseLink}
-			href={`/user/${founderProfile.user.id}`}
-			alignItems={'flex-start'}
-			_hover={{
-				borderColor: 'gray.50',
-				transition: 'ease-in .3s',
-				bg: 'gray.50'
-			}}
-			p={2}
-			rounded={'sm'}
-			fontSize={'xs'}
-		>
-			<UserAvatarDetails
-				name={founderProfile.user.displayName}
-				createdAt={`Joined ${formatDate(
-					founderProfile.user.createdAt
-				)}`}
-				size={'md'}
-			/>
+const FounderCard = (founderProfile: TFounderUsers) => (
+	<StackLayout
+		flex={1}
+		d={'flex'}
+		spacing={4}
+		flexDirection={'column'}
+		as={BaseLink}
+		href={`/user/${founderProfile?.user?.id}`}
+		alignItems={'flex-start'}
+		_hover={{
+			borderColor: 'gray.50',
+			transition: 'ease-in .3s',
+			bg: 'gray.50'
+		}}
+		p={2}
+		rounded={'sm'}
+		fontSize={'xs'}
+	>
+		<UserAvatarDetails
+			name={founderProfile?.user?.displayName}
+			createdAt={`Joined ${formatDate(founderProfile?.user?.createdAt)}`}
+			size={'md'}
+		/>
 
-			<FounderProfileAttributes {...founderProfile} />
-		</StackLayout>
-	);
-};
+		<FounderProfileAttributes {...founderProfile} />
+	</StackLayout>
+);
 
 export default FounderCard;

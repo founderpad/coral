@@ -1,8 +1,8 @@
-import { PageLayout } from 'components/layouts';
-import SearchContentGridLayout from 'components/layouts/SearchContentGridLayout';
-import { DocumentTitle } from 'components/shared';
+import { PageLayout } from '@components/layouts';
+import SearchContentGridLayout from '@components/layouts/SearchContentGridLayout';
+import { DocumentTitle } from '@components/shared';
+import AuthFilter from '@utils/AuthFilter';
 import React from 'react';
-import AuthFilter from 'utils/AuthFilter';
 import IdeasSearchForm from './components/IdeasSearchForm';
 import IdeasContainer from './IdeasContainer';
 

@@ -1,18 +1,17 @@
-import Form from 'components/form/Form';
-import { InputField } from 'components/input/InputField';
-import { SelectField } from 'components/input/SelectField';
-import { SwitchField } from 'components/input/SwitchField';
-import { TextareaField } from 'components/input/TextareaField';
-import ModalDrawerContext from 'context/ModalDrawerContext';
-import { useUpdateIdeaMutation } from 'generated/api';
-import { useSuccessNotification } from 'hooks/toast';
-import React, { ReactElement, useContext } from 'react';
+import Form from '@components/form/Form';
+import { InputField } from '@components/input/InputField';
+import { SelectField } from '@components/input/SelectField';
+import { SwitchField } from '@components/input/SwitchField';
+import { TextareaField } from '@components/input/TextareaField';
+import ModalDrawerContext from '@context/ModalDrawerContext';
+import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@generated/api';
+import { useSuccessNotification } from '@hooks/toast';
+import { ideasStatusList, industriesList } from '@utils/Constants';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { TIdea } from 'types/idea';
-import { ideasStatusList, industriesList } from 'utils/Constants';
 import useIdeaFragment from '../fragments/IdeaFragment';
 
-export const EditIdeaForm = (): ReactElement<any> => {
+export const EditIdeaForm = () => {
 	const idea = useIdeaFragment();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
@@ -25,7 +24,7 @@ export const EditIdeaForm = (): ReactElement<any> => {
 		control,
 		getValues,
 		formState: { errors, isSubmitting, isValid }
-	} = useForm<TIdea>({
+	} = useForm<TIdeas_Set_Input>({
 		mode: 'all',
 		defaultValues: {
 			...rest

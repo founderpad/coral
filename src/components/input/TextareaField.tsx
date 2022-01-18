@@ -1,10 +1,10 @@
 import { FormControl } from '@chakra-ui/form-control';
 import { FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
-import { FormErrorText, FormLabelText } from 'components/form';
+import { FormErrorText, FormLabelText } from '@components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import ResizeTextarea from 'react-textarea-autosize';
-import { IInputFieldProps } from 'types/fields';
+import { IInputFieldProps } from 'src/types/fields';
 
 export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref) => {
@@ -34,7 +34,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 				isRequired={isRequired}
 				ref={ref}
 			>
-				<FormLabelText label={label} />
+				{label && <FormLabelText label={label} />}
 				<Controller
 					render={({
 						field: { onChange, value },

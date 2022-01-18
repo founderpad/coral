@@ -1,14 +1,14 @@
 import { Icon } from '@chakra-ui/react';
-import { IoThumbsUpSharp } from 'components/icons';
-import { Label } from 'components/labels';
-import { FlexLayout } from 'components/layouts';
+import { IoThumbsUpSharp } from '@components/icons';
+import { Label } from '@components/labels';
+import { FlexLayout } from '@components/layouts';
 import React from 'react';
 
 export const UpvoteButton = ({
 	onClick,
 	hasUserUpvoted,
 	name,
-	votesTotal
+	votesTotal = 0
 }: {
 	onClick: () => void;
 	hasUserUpvoted: boolean;

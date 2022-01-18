@@ -1,6 +1,6 @@
 import { Icon } from '@chakra-ui/react';
-import { Label } from 'components/labels';
-import BaseTag from 'components/tags/BaseTag';
+import { Label } from '@components/labels';
+import BaseTag from '@components/tags/BaseTag';
 import React from 'react';
 import { IconType } from 'react-icons/lib';
 

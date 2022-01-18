@@ -1,7 +1,7 @@
 import { Icon } from '@chakra-ui/react';
-import { BaseLabel } from 'components/labels/BaseLabel';
-import { FlexLayout } from 'components/layouts';
-import { PrimaryLink } from 'components/links';
+import { BaseLabel } from '@components/labels/BaseLabel';
+import { FlexLayout } from '@components/layouts';
+import { PrimaryLink } from '@components/links';
 import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
 

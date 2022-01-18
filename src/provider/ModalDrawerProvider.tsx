@@ -1,4 +1,4 @@
-import ModalDrawerContext from 'context/ModalDrawerContext';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import React, { useState } from 'react';
 
 const ModalDrawerProvider = ({
@@ -10,13 +10,16 @@ const ModalDrawerProvider = ({
 	const [modalDrawer, setModalDrawer] = useState({
 		isOpen: false,
 		title: '',
-		body: null,
-		handler: null,
+		body: '',
+		handler: () => null,
 		noBtnLabel: '',
 		yesBtnLabel: '',
 		yesBtnColor: '',
 		hideFooter: false,
-		removePadding: false
+		removePadding: false,
+		width: undefined,
+		size: undefined,
+		actions: null
 	});
 
 	return (

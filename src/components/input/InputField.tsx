@@ -6,11 +6,11 @@ import {
 	InputGroup,
 	InputLeftAddon
 } from '@chakra-ui/react';
-import { FormErrorText, FormLabelText } from 'components/form';
+import { FormErrorText, FormLabelText } from '@components/form';
+import { EMAIL_REGEX } from '@utils/validators';
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { IInputFieldProps } from 'types/fields';
-import { EMAIL_REGEX } from 'utils/validators';
+import { IInputFieldProps } from 'src/types/fields';
 
 export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref): JSX.Element => {
@@ -122,7 +122,7 @@ export const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
 			type="email"
 			rules={{ pattern: EMAIL_REGEX }}
 			ref={ref}
-			label={props.showLabel && 'Email'}
+			label={props.showLabel ? 'Email' : undefined}
 		/>
 	)
 );
