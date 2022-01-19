@@ -1,3 +1,5 @@
+# Coral
+
 Coral is [founderpad's](https://www.founderpad.com/) client facing application, which is used by founders alike to create and seek feedback from the community on their ideas. It is the founder platform.
 
 It's built using React ([Next.js](https://nextjs.org/)) on the client side, which interfaces with a GraphQL API ([Hasura](https://hasura.io/)) and Postgres database on the backend. Currently we are using [Nhost](https://nhost.io/) (an open source alternative to Firebase) as a wrapper to bundle these necessary tools together into a serverless architecture. As the project and team expands, we will migrate everything to AWS and utilise containerization to handle all of the dev ops needs ourselves for maximum flexibility.
@@ -21,12 +23,13 @@ It is deployed to [Vercel](https://vercel.com/) via our CI/CD pipeline which use
     -   Git History
     -   GitLens
     -   JavaScript (ES6) code snippets
--   [Yarn](https://yarnpkg.com/)
--   [Node](https://nodejs.org/en/)
--   [iTerm2](https://iterm2.com/)
--   [Docker](https://www.docker.com/)
--   [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
--   [Ngrok](https://ngrok.com/)(Mine is installed via Homebrew)
+-   [Yarn](https://yarnpkg.com/) - Package manager
+-   [Node](https://nodejs.org/en/) - Goes without saying
+-   [iTerm2](https://iterm2.com/) - The Terminal on steroids
+-   [Docker](https://www.docker.com/) - I use Docker Desktop on the M1 Mac
+-   [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) - For AWS duties
+-   [Ngrok](https://ngrok.com/) - Mine is installed via Homebrew
+-   [Nhost CLI](https://docs.nhost.io/platform/nhost/local-development) - For running our local instance (docker-compose)
 
 First, before you can clone the project, you must set up your SSH key in your GitHub settings. This is more secure than using HTTPS, and it alleviates the need to enter your credentials frequently.
 
@@ -42,8 +45,16 @@ Save it to the prompted `id_rsa` file and then past the contents of it into your
 
 Now everything should be set up, you can start running the app.
 
-1. Run `yarn` to retrieve all of the necessary Node libraries we need to run the application
-2. Once all of the libraries have been fetched, you can run `yarn dev` to run the application locally. This will open a browser tab at [http://localhost:3000](http://localhost:3000)
+1. Create a `.env.local` file from the `.env.template` file and populate the fields like so:
+
+| KEY | VALUE |
+| -- | -- |
+| NEXT_PUBLIC_GRAPHQL_BACKEND | http://localhost:1337/v1/graphql |
+| NEXT_PUBLIC_BACKEND | http://localhost:1337 |
+| NHOST_ADMIN_SECRET | nhost-admin-secret |
+
+2. Run `yarn` to retrieve all of the necessary Node libraries we need to run the application
+3. Once all of the libraries have been fetched, you can run `yarn dev` to run the application locally. This will open a browser tab at [http://localhost:3000](http://localhost:3000)
 
 ### Running tests
 
