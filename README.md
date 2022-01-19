@@ -73,13 +73,13 @@ We use Jest and React Testing Library to build our test suite. In the future, we
 
 ## API (Node)
 
-Typically we would provide a standalone API deployed to AWS (Fargate, EC2 etc), but Nhost provides us with the ablity to create a custom API to facilitate any custom business logic that we may need. An example of this is sending emails to users to inform them when their idea or comment has been reported and we take it from there. This works by way of webhooks.
+Typically we would provide a standalone API deployed to the cloud (AWS Fargate, EC2, Cloudflare etc), but Nhost provides us with the ablity to create a custom API to facilitate any custom business logic that we may need. An example of this is sending emails to users to inform them when their idea or comment has been reported and we take it from there. This works by way of webhooks.
 
-This API is accessed inside the project at its root `/api` (not to be confused with NextJS' API routes at `/src/pages/api`).
+This API is accessed inside the project at its root `/functions` (not to be confused with NextJS' API routes).
 
-This API isn't too dissimilar from Next's API routes, but it is specific to Nhost and is deployed via Google Cloud Run (but v2 of Nhost will be migrating this to AWS Lambda). In the future, if/when we decide to deploy our own standalone API (preferable given that we may need custom resolver logic for GraphQL etc).
+It is specific to Nhost and is deployed to AWS Lambda. In the future, if/when we decide to deploy our own standalone API (preferable given that we may need custom resolver logic for GraphQL fields).
 
-It is a rather vanilla Node API, and we use it mainly in an event-driven way that responds to Hasura events. E.g., when a record is inserted into the report table we act on this by firing the `/api/email/send-reported-email.js`.
+It is a rather vanilla Node API, and we use it mainly in an event-driven way that responds to Hasura events. E.g., when a record is inserted into the report table we act on this by firing the `/functions/email/send-reported-email.js`.
 
 Future changes will include an endpoint to faciliate Stripe customer sign ups so that the application will able to accept Stripe payments.
 
@@ -92,13 +92,13 @@ Ensure the application is running (`yarn dev`) and in a separate iTerm2 tab (or 
 ## Debugging locally
 
 When our local environment is running, we can debug and test the output of the serverless functions by access the Docker logs with the following command:
-`docker logs nhost_api --follow`
+`docker logs nhost_api --follow` (by all means use tail if that's your preference)
 
 This will provide us with a live tail of the logs so we can see what's happening.
 
 ## Adding NPM libraries
 
-If you're going to add a new library, make sure you add it in to the correct `package.json` file. If it's client side for the React project then install it in the root `package.json`, but if it's for the custom serverless API, then install it to `/api/package.json`
+If you're going to add a new library, make sure you add it in to the correct `package.json` file. If it's client side for the React project then install it in the root `package.json`, but if it's for the custom API, then install it to `/functions/package.json`
 
 ## Applying migrations and metadata
 
