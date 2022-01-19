@@ -70,8 +70,8 @@ jobs:
         needs: build
         runs-on: ubuntu-latest
         steps:
-            - name: Slack Notification
             - uses: actions/checkout@v2
+            - name: Slack Notification
               run: |
                   POST -H ${{ secrets.SLACK_NOTIFICATION_DEV_DEPLOYMENT }} \
                   Content-type: application/json
