@@ -73,7 +73,7 @@ jobs:
             - uses: actions/checkout@v2
             - name: Slack Notification
               run: |
-                  POST https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+                  POST ${{ secrets.SLACK_NOTIFICATION_DEV_DEPLOYMENT }}
                   Content-type: application/json
                   {
                       "text": "Danny Torrence left a 1 star review for your property.",
@@ -110,18 +110,3 @@ jobs:
                         }
                       ]
                   }
-
-                    # POST -H ${{ secrets.SLACK_NOTIFICATION_DEV_DEPLOYMENT }} \
-                    # Content-type: application/json \
-                    # {
-                    #     "text": "Deployment to dev successful 🚀 ",
-                    #     "blocks": [
-                    #       {
-                    #         "type": "section",
-                    #         "text": {
-                    #           "type": "mrkdwn",
-                    #           "text": "The deployment to dev has been successful. Go here to test it: ${{ steps.pilot.outputs.preview-url }}"
-                    #         }
-                    #       }
-                    #     ]
-                    # }
