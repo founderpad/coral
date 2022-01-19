@@ -19,8 +19,8 @@ const LoginForm = () => {
 
 	return (
 		<Form
-			id={'login-form'}
-			name={'loginform'}
+			id={'loginForm'}
+			name={'loginForm'}
 			onSubmit={handleSubmit(onLogin)}
 		>
 			<EmailField

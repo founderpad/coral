@@ -70,6 +70,7 @@
 		"@graphql-codegen/typescript-operations": "^2.2.2",
 		"@graphql-codegen/typescript-react-apollo": "^3.2.4",
 		"@graphql-codegen/typescript-resolvers": "^2.4.0",
+		"@testing-library/dom": "^8.11.2",
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^12.1.1",
 		"@testing-library/user-event": "^13.5.0",

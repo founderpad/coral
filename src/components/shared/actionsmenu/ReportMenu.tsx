@@ -100,7 +100,7 @@ const ReportForm = ({
 				label={`Why do you want to report this ${title}?`}
 				options={reportReasonsList()}
 				error={errors['reason']}
-				errorText="You must provide a reason"
+				// errorText="You must provide a reason"
 				control={control}
 				isRequired
 			/>

@@ -1,8 +1,9 @@
 // import { ThemeProvider } from "my-ui-lib"
 // import { TranslationProvider } from "my-i18n-lib"
 // import defaultStrings from "i18n/en-x-default"
-import { render } from '@testing-library/react';
-import { JSXElementConstructor, ReactElement } from 'react';
+import { render, RenderOptions } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { ReactElement } from 'react';
 
 const Providers = ({ children }: { children: any }) => {
 	return children;
@@ -16,11 +17,11 @@ const Providers = ({ children }: { children: any }) => {
 };
 
 const customRender = (
-	ui: ReactElement<any, string | JSXElementConstructor<any>>,
-	options = {}
-): any => render(ui, { wrapper: Providers, ...options });
+	ui: ReactElement,
+	options?: Omit<RenderOptions, 'wrapper'>
+) => render(ui, { wrapper: Providers, ...options });
 
 // re-export everything
 export * from '@testing-library/react';
 // override render method
-export { customRender as render };
+export { customRender as render, userEvent };

@@ -1,16 +1,40 @@
 import RegisterForm from '@pages/register/components/RegisterForm';
-import { fireEvent, waitFor } from '@testing-library/dom';
 import store from '@utils/store';
-import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
-import { render } from './testUtils';
+import { act, fireEvent, render, userEvent, waitFor } from './testUtils';
 
-const setup = () =>
-	render(
+const setup = () => {
+	const registerSetup = render(
 		<Provider store={store}>
 			<RegisterForm />
 		</Provider>
 	);
+
+	const registerForm = registerSetup.getByRole('form', {
+		name: /registerForm/i
+	});
+	const firstNameField = registerSetup.getByRole('textbox', {
+		name: /firstName/i
+	});
+	const lastNameField = registerSetup.getByRole('textbox', {
+		name: /lastName/i
+	});
+	const emailField = registerSetup.getByRole('textbox', { name: /email/i });
+	const passwordField = registerSetup.getByPlaceholderText(/Password/i);
+
+	const submitButton = registerSetup.getByRole('button', { name: /submit/i });
+
+	return {
+		registerSetup,
+		registerForm,
+		firstNameField,
+		lastNameField,
+		emailField,
+		passwordField,
+		submitButton,
+		...registerSetup
+	};
+};
 
 const mockRegister = jest.fn();
 jest.mock('@hooks/auth', () => ({
@@ -18,74 +42,69 @@ jest.mock('@hooks/auth', () => ({
 }));
 
 describe('Register form', () => {
-	it('matches snapshot', () => {
+	it('matches snapshot', async () => {
 		const { asFragment } = setup();
+		await waitFor(() => asFragment());
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('renders register form', () => {
-		const { getByText } = setup();
-		expect(getByText(/Create account/i)).toBeInTheDocument();
+	it('should render RegisterForm', async () => {
+		const { registerForm } = setup();
+		expect(registerForm).toBeInTheDocument();
 	});
 
-	it('should render RegisterForm fields', () => {
-		const { getByRole } = setup();
-		// expect(getByRole('combobox')).toBeInTheDocument();
-		expect(getByRole('textbox', { name: 'firstName' })).toBeInTheDocument();
-		expect(getByRole('textbox', { name: 'lastName' })).toBeInTheDocument();
-		expect(getByRole('textbox', { name: 'email' })).toBeInTheDocument();
+	it('should render RegisterForm fields and submit should be disabled', async () => {
+		const { submitButton } = setup();
+		expect(submitButton).toBeDisabled();
 	});
 
-	it('should accept RegisterForm fields with input', () => {
-		const { getByPlaceholderText } = setup();
-		const displayNameInput = getByPlaceholderText(/First name/i);
-		const lastNameInput = getByPlaceholderText(/Last name/i);
+	it('should make register request on submit', async () => {
+		const {
+			firstNameField,
+			lastNameField,
+			emailField,
+			passwordField,
+			submitButton
+		} = setup();
 
-		expect(displayNameInput.value).toBe('');
-		expect(lastNameInput.value).toBe('');
+		expect(firstNameField).toBeInTheDocument();
+		expect(lastNameField).toBeInTheDocument();
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
 
-		act(() => {
-			fireEvent.change(displayNameInput, { target: { value: 'Jamie' } });
-			fireEvent.change(lastNameInput, { target: { value: 'Last name' } });
+		userEvent.type(firstNameField, 'Jamie');
+		await waitFor(() => expect(firstNameField).toHaveValue('Jamie'));
+
+		userEvent.type(lastNameField, 'Lee');
+		await waitFor(() => expect(lastNameField).toHaveValue('Lee'));
+
+		userEvent.type(emailField, 'jamie@gmail.com');
+		await waitFor(() => expect(emailField).toHaveValue('jamie@gmail.com'));
+
+		userEvent.type(passwordField, 'admin123456');
+		await waitFor(() => expect(passwordField).toHaveValue('admin123456'));
+
+		await act(async () => {
+			fireEvent.click(submitButton);
 		});
 
-		expect(displayNameInput.value).toBe('Jamie');
-		expect(lastNameInput.value).toBe('Last name');
+		expect(mockRegister).toHaveBeenCalledTimes(1);
 	});
 
-	test('should make register request on submit', async () => {
-		const { getByRole, getByPlaceholderText } = setup();
+	it('should error empty fields on blur', async () => {
+		const { registerSetup, emailField, passwordField } = setup();
 
-		// const typeInput = getByRole('combobox', { name: /type/i });
-		const displayNameInput = getByRole('textbox', { name: /firstName/i });
-		const lastNameInput = getByRole('textbox', { name: /lastName/i });
-		const emailInput = getByRole('textbox', { name: /email/i });
-		const passwordInput = getByPlaceholderText(/Password/i);
-		const submitButton = getByRole('button', { name: /submit/i });
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
 
-		// expect(typeInput.value).toBe('');
-		expect(displayNameInput.value).toBe('');
-		expect(lastNameInput.value).toBe('');
-		expect(emailInput.value).toBe('');
-		expect(passwordInput.value).toBe('');
+		fireEvent.focus(passwordField);
+		userEvent.type(passwordField, 'pwd');
+		await waitFor(() => expect(passwordField).toHaveValue('pwd'));
 
-		act(() => {
-			// fireEvent.change(typeInput, { target: { value: 'IDEAS' } });
-			fireEvent.change(displayNameInput, { target: { value: 'Jamie' } });
-			fireEvent.change(lastNameInput, { target: { value: 'Lee' } });
-			fireEvent.change(emailInput, {
-				target: { value: 'jamie@gmail.com' }
-			});
-			fireEvent.change(passwordInput, { target: { value: '123456' } });
-		});
+		fireEvent.blur(passwordField);
 
-		// expect(typeInput.value).toBe('IDEAS');
-		expect(displayNameInput.value).toBe('Jamie');
-		expect(lastNameInput.value).toBe('Lee');
-		expect(emailInput.value).toBe('jamie@gmail.com');
-		expect(passwordInput.value).toBe('123456');
-
-		fireEvent.submit(submitButton);
-		await waitFor(() => expect(mockRegister).toHaveBeenCalledTimes(1));
+		registerSetup.getByText(
+			'Please enter a valid password between 6 and 20 characters'
+		);
 	});
 });

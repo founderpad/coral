@@ -1,14 +1,30 @@
 import LoginForm from '@pages/login/components/LoginForm';
+import userEvent from '@testing-library/user-event';
 import store from '@utils/store';
 import { Provider } from 'react-redux';
-import { act, fireEvent, render, waitFor } from './testUtils';
+import { act, cleanup, fireEvent, render, waitFor } from './testUtils';
 
-const setup = () =>
-	render(
+const setup = () => {
+	const loginSetup = render(
 		<Provider store={store}>
 			<LoginForm />
 		</Provider>
 	);
+
+	const loginForm = loginSetup.getByRole('form', { name: /loginform/i });
+	const emailField = loginSetup.getByRole('textbox', { name: /email/i });
+	const passwordField = loginSetup.getByPlaceholderText(/Password/i);
+	const submitButton = loginSetup.getByRole('button', { name: /submit/i });
+
+	return {
+		loginSetup,
+		loginForm,
+		emailField,
+		passwordField,
+		submitButton,
+		...loginSetup
+	};
+};
 
 const mockLogin = jest.fn();
 jest.mock('@hooks/auth', () => ({
@@ -16,40 +32,57 @@ jest.mock('@hooks/auth', () => ({
 }));
 
 describe('Login form', () => {
-	it('matches snapshot', () => {
+	afterEach(cleanup);
+	it('matches snapshot', async () => {
 		const { asFragment } = setup();
+
+		await waitFor(() => asFragment());
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render LoginForm', () => {
-		const { getByRole } = setup();
-		expect(getByRole('form', { name: /loginform/i })).toBeInTheDocument();
+	it('should render LoginForm', async () => {
+		const { loginForm } = setup();
+		expect(loginForm).toBeInTheDocument();
 	});
 
-	it('should render LoginForm fields', () => {
-		const { getByRole, getByPlaceholderText } = setup();
-		expect(getByRole('textbox', { name: /email/i })).toBeInTheDocument();
-		expect(getByPlaceholderText(/Password/i)).toBeInTheDocument();
-		expect(getByRole('button', { name: /submit/i })).toBeInTheDocument();
-		expect(getByRole('button', { name: /submit/i })).toBeDisabled();
+	it('should render LoginForm fields', async () => {
+		const { submitButton } = setup();
+		expect(submitButton).toBeDisabled();
 	});
 
-	test('should make login request on submit', async () => {
-		const { getByPlaceholderText, getByRole } = setup();
-		const emailInput = getByPlaceholderText(/Email/i);
-		const passwordInput = getByPlaceholderText(/Password/i);
-		const submitButton = getByRole('button', { name: /submit/i });
-		expect(emailInput.value).toBe('');
-		expect(passwordInput.value).toBe('');
-		act(() => {
-			fireEvent.change(emailInput, {
-				target: { value: 'jamie@gmail.com' }
-			});
-			fireEvent.change(passwordInput, { target: { value: '123456' } });
+	it('should make login request on submit', async () => {
+		const { emailField, passwordField, submitButton } = setup();
+
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
+
+		userEvent.type(emailField, 'jamie@gmail.com');
+		await waitFor(() => expect(emailField).toHaveValue('jamie@gmail.com'));
+
+		userEvent.type(passwordField, 'admin123456');
+		await waitFor(() => expect(passwordField).toHaveValue('admin123456'));
+
+		await act(async () => {
+			fireEvent.click(submitButton);
 		});
-		expect(emailInput.value).toBe('jamie@gmail.com');
-		expect(passwordInput.value).toBe('123456');
-		fireEvent.submit(submitButton);
-		await waitFor(() => expect(mockLogin).toHaveBeenCalledTimes(1));
+
+		expect(mockLogin).toHaveBeenCalledTimes(1);
+	});
+
+	it('should error empty fields on blur', async () => {
+		const { loginSetup, emailField, passwordField } = setup();
+
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
+
+		fireEvent.focus(emailField);
+		userEvent.type(emailField, 'invalid-email-address');
+		await waitFor(() =>
+			expect(emailField).toHaveValue('invalid-email-address')
+		);
+
+		fireEvent.focus(passwordField);
+
+		loginSetup.getByText('Please enter a valid email');
 	});
 });

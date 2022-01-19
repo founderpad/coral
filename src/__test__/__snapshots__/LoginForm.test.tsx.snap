@@ -3,10 +3,10 @@
 exports[`Login form matches snapshot 1`] = `
 <DocumentFragment>
   <form
-    aria-label="loginform"
+    aria-label="loginForm"
     autocomplete="off"
-    id="login-form"
-    name="loginform"
+    id="loginForm"
+    name="loginForm"
     novalidate=""
   >
     <div
@@ -21,7 +21,6 @@ exports[`Login form matches snapshot 1`] = `
           aria-required="true"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
-          errortext="Please enter a valid email"
           id="email-email"
           name="email"
           placeholder="Email"
@@ -40,7 +39,6 @@ exports[`Login form matches snapshot 1`] = `
           aria-required="true"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
-          errortext="Please enter a valid password between 6 and 20 characters."
           id="password-password"
           name="password"
           placeholder="Password"

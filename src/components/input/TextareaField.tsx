@@ -1,6 +1,6 @@
 import { FormControl } from '@chakra-ui/form-control';
-import { FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
-import { FormErrorText, FormLabelText } from '@components/form';
+import { forwardRef, Textarea } from '@chakra-ui/react';
+import { FormLabelText } from '@components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import ResizeTextarea from 'react-textarea-autosize';
@@ -13,12 +13,12 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 			isRequired,
 			label,
 			error,
-			errorText,
+			// errorText,
 			placeholder,
-			helperText,
+			// helperText,
 			name,
 			control,
-			rules,
+			// rules,
 			size,
 			width,
 			maxH = '150px',
@@ -70,14 +70,14 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 					)}
 					name={name}
 					control={control}
-					rules={{ required: !!errorText && isRequired, ...rules }}
+					// rules={{ required: !!errorText && isRequired, ...rules }}
 				/>
 
-				{error && errorText ? (
+				{/* {error && errorText ? (
 					<FormErrorText label={errorText} />
 				) : (
 					helperText && <FormHelperText label={helperText} />
-				)}
+				)} */}
 			</FormControl>
 		);
 	}

@@ -22,8 +22,8 @@ const RegisterForm = () => {
 
 	return (
 		<Form
-			id={'registerUserForm'}
-			name={'registerUserForm'}
+			id={'registerForm'}
+			name={'registerForm'}
 			onSubmit={handleSubmit(onRegister)}
 		>
 			<InputField

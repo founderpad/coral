@@ -69,8 +69,8 @@ jobs:
 
             - name: Send Slack Notification
               run: |
-                  POST ${{ secrets.SLACK_NOTIFICATION_DEV_DEPLOYMENT }}
-                  Content-type: application/json
+                  POST ${{ secrets.SLACK_NOTIFICATION_DEV_DEPLOYMENT }} \
+                  Content-type: application/json \
                   {
-                      "text": "Hello, world. - ${{ steps.pilot.outputs.preview-url }}"
+                      "text": "Deployment to dev successful - ${{ steps.pilot.outputs.preview-url }}"
                   }

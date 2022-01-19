@@ -14,19 +14,17 @@ import { IInputFieldProps } from 'src/types/fields';
 
 export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref): JSX.Element => {
+		const { errorText, helperText, error, ...rest } = props;
 		const {
-			errorText,
 			placeholder,
 			control,
-			error,
-			helperText,
 			isRequired,
 			rules,
 			label,
 			name,
 			size,
 			fontSize
-		} = props;
+		} = rest;
 
 		return (
 			<FormControl
@@ -37,18 +35,19 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			>
 				{label && <FormLabelText label={label} />}
 				<Controller
+					defaultValue={''}
 					render={({
 						field: { onChange, value },
 						fieldState: { error }
 					}) => (
 						<Input
-							{...props}
+							{...rest}
 							placeholder={placeholder}
 							size={size ?? 'sm'}
 							ref={ref}
 							value={value}
 							onChange={onChange}
-							error={!!error}
+							error={error?.message}
 							name={name}
 							aria-label={name}
 							fontSize={fontSize ?? 'small'}
@@ -134,7 +133,7 @@ export const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
 			id={`${props.name}-password`}
 			placeholder="Password"
 			type="password"
-			errorText="Please enter a valid password between 6 and 20 characters."
+			errorText="Please enter a valid password between 6 and 20 characters"
 			rules={{ maxLength: 20, minLength: 6 }}
 			fontSize={'sm'}
 			ref={ref}

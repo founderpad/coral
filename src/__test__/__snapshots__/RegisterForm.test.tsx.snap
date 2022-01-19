@@ -3,10 +3,10 @@
 exports[`Register form matches snapshot 1`] = `
 <DocumentFragment>
   <form
-    aria-label="registerUserForm"
+    aria-label="registerForm"
     autocomplete="off"
-    id="registerUserForm"
-    name="registerUserForm"
+    id="registerForm"
+    name="registerForm"
     novalidate=""
   >
     <div
@@ -21,7 +21,6 @@ exports[`Register form matches snapshot 1`] = `
           aria-required="true"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
-          errortext="You must input a first name"
           id="firstName"
           name="firstName"
           placeholder="First name"
@@ -72,7 +71,6 @@ exports[`Register form matches snapshot 1`] = `
           aria-required="true"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
-          errortext="Please enter a valid password between 6 and 20 characters."
           id="password-password"
           name="password"
           placeholder="Password"
