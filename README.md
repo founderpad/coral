@@ -6,7 +6,7 @@ It's built using React ([Next.js](https://nextjs.org/)) on the client side, whic
 
 The advantage of using Nhost for the MVP is it's built using open source tools, so we will be able to deploy separately in the future if/when necessary. Under the hood, Nhost (v2) deploys the application to AWS. There is no vendor lock-in which is particularly enticing as deploying these services ourselves will be straightforward in the future.
 
-The curren infrastructure:
+The current infrastructure:
 
 -   Frontend NextJS app - Vercel
 -   Hasura GraphQL API - EKS K8s
