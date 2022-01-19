@@ -19,7 +19,6 @@ jobs:
         # Steps represent a sequence of tasks that will be executed as part of the job
         steps:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-            - name: Configure Node
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
               with:
@@ -71,8 +70,8 @@ jobs:
         needs: build
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
             - name: Slack Notification
+            - uses: actions/checkout@v2
               run: |
                   POST -H ${{ secrets.SLACK_NOTIFICATION_DEV_DEPLOYMENT }} \
                   Content-type: application/json
