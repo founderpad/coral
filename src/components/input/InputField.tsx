@@ -119,6 +119,7 @@ export const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
 			id={`${props.name}-email`}
 			placeholder="Email"
 			type="email"
+			errorText="Please enter a valid email"
 			rules={{ pattern: EMAIL_REGEX }}
 			ref={ref}
 			label={props.showLabel ? 'Email' : undefined}

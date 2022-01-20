@@ -69,20 +69,35 @@ describe('Login form', () => {
 		expect(mockLogin).toHaveBeenCalledTimes(1);
 	});
 
-	it('should error empty fields on blur', async () => {
+	it('should error on empty email on blur', async () => {
 		const { loginSetup, emailField, passwordField } = setup();
 
 		expect(emailField).toBeInTheDocument();
 		expect(passwordField).toBeInTheDocument();
 
 		fireEvent.focus(emailField);
-		userEvent.type(emailField, 'invalid-email-address');
-		await waitFor(() =>
-			expect(emailField).toHaveValue('invalid-email-address')
-		);
+		userEvent.type(emailField, 'j@gmail');
+		await waitFor(() => expect(emailField).toHaveValue('j@gmail'));
 
-		fireEvent.focus(passwordField);
+		fireEvent.blur(emailField);
 
 		loginSetup.getByText('Please enter a valid email');
+	});
+
+	it('should error on empty password on blur', async () => {
+		const { loginSetup, emailField, passwordField } = setup();
+
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
+
+		fireEvent.focus(passwordField);
+		userEvent.type(passwordField, 'pwd');
+		await waitFor(() => expect(passwordField).toHaveValue('pwd'));
+
+		fireEvent.blur(passwordField);
+
+		loginSetup.getByText(
+			'Please enter a valid password between 6 and 20 characters'
+		);
 	});
 });

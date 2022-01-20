@@ -91,9 +91,63 @@ describe('Register form', () => {
 		expect(mockRegister).toHaveBeenCalledTimes(1);
 	});
 
-	it('should error empty fields on blur', async () => {
-		const { registerSetup, emailField, passwordField } = setup();
+	it('should error on empty name on blur', async () => {
+		const {
+			registerSetup,
+			firstNameField,
+			lastNameField,
+			emailField,
+			passwordField
+		} = setup();
 
+		expect(firstNameField).toBeInTheDocument();
+		expect(lastNameField).toBeInTheDocument();
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
+
+		fireEvent.focus(firstNameField);
+		userEvent.type(firstNameField, 'j');
+		await waitFor(() => expect(firstNameField).toHaveValue('j'));
+
+		fireEvent.blur(firstNameField);
+
+		registerSetup.getByText('You must input a first name');
+	});
+
+	it('should error on empty email on blur', async () => {
+		const {
+			registerSetup,
+			firstNameField,
+			lastNameField,
+			emailField,
+			passwordField
+		} = setup();
+
+		expect(firstNameField).toBeInTheDocument();
+		expect(lastNameField).toBeInTheDocument();
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
+
+		fireEvent.focus(emailField);
+		userEvent.type(emailField, 'j@gmail');
+		await waitFor(() => expect(emailField).toHaveValue('j@gmail'));
+
+		fireEvent.blur(emailField);
+
+		registerSetup.getByText('Please enter a valid email');
+	});
+
+	it('should error on empty password on blur', async () => {
+		const {
+			registerSetup,
+			firstNameField,
+			lastNameField,
+			emailField,
+			passwordField
+		} = setup();
+
+		expect(firstNameField).toBeInTheDocument();
+		expect(lastNameField).toBeInTheDocument();
 		expect(emailField).toBeInTheDocument();
 		expect(passwordField).toBeInTheDocument();
 

@@ -49,9 +49,6 @@ const RegisterForm = () => {
 				id="email"
 				name="email"
 				error={errors['email']}
-				helperText={
-					errors['email'] ? 'Please enter a valid email' : undefined
-				}
 				control={control}
 				size={'md'}
 				fontSize={'sm'}
