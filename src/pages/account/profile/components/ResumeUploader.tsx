@@ -1,17 +1,16 @@
 import { FileUploader } from '@components/shared';
 import { TUser_Profile, useUpdateResumeMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
-import { useFileDelete, useFileUpload, useNotification } from '@hooks/util';
+import { useNotification } from '@hooks/util';
 import { cache } from '@pages/_app';
+import { formatUploadedUrls } from '@utils/validators';
 import gql from 'graphql-tag';
-import { useCallback } from 'react';
+import { IUploadedFileProps } from '../../../../types/upload';
 
 const ResumeUploader = () => {
-	// const showSuccessNotification = useSuccessNotification();
-	// const [filePath, setFilePath] = useState(undefined);
-	// const dispatch = useDispatch();
-	const { profile, avatarUrl } = useCurrentUser() ?? {};
+	const { profile } = useCurrentUser() ?? {};
 	const { addNotification } = useNotification();
+	const [updateResume] = useUpdateResumeMutation();
 
 	const userProfile = cache.readFragment({
 		id: `user_profile:${profile?.id}`, // The value of the profile's cache id
@@ -23,100 +22,34 @@ const ResumeUploader = () => {
 		`
 	}) as TUser_Profile;
 
-	// useEffect(() => {
-	// 	if (filePath !== undefined) updateResumeMutation();
-	// }, [filePath]);
-
-	const uploadResume = useFileUpload();
-	const deleteResume = useFileDelete();
-	const [updateResume] = useUpdateResumeMutation();
-
-	// const [updateResumeMutation] = useUpdateResumeMutation({
-	// 	variables: {
-	// 		id: profile.id,
-	// 		resume: {
-	// 			resume: filePath
-	// 		}
-	// 	},
-	// 	onCompleted: (_data) => {
-	// 		showSuccessNotification({
-	// 			title: `Your resume has been ${
-	// 				filePath ? 'updated' : 'deleted'
-	// 			}`
-	// 		});
-	// 	}
-	// });
-
-	// const uploadResume = async (_resume: File) => {
-	// const extension = resume?.name.split('.').pop();
-	// const timestamp = new Date().getTime();
-	// const filePath =
-	// 	`/public/resumes/${
-	// 		auth.getClaim('x-hasura-user-id') as string
-	// 	}.${extension}?v=` + timestamp;
-	// try {
-	// 	await storage.put(filePath, resume, null, (_d: any) => {
-	// 		setFilePath(filePath);
-	// 	});
-	// } catch (e) {
-	// 	console.error(e);
-	// }
-	// };
-
-	const onDelete = useCallback(async (filePath: string) => {
-		const fileId = filePath.toString().split('files/')[1];
-		await deleteResume({ fileId });
-
-		// updateResume({
-		// 	variables: {
-		// 		id: profile.id,
-		// 		resume: {
-		// 			resume: ''
-		// 		}
-		// 	},
-		// 	onCompleted: (_data) => {
-		// 		addNotification('Resume deleted successfully.', 'success');
-		// 		dispatch(updateUserImage(''));
-		// 	},
-		// 	onError: (_data) => {
-		// 		addNotification(
-		// 			'Failed to delete resume. Please try again later.',
-		// 			'error'
-		// 		);
-		// 	}
-		// });
-	}, []);
-
-	const onUpload = useCallback(async (file: File) => {
-		const filePath = await uploadResume({
-			file,
-			bucketId: 'resumes',
-			fileName: 'Resume'
-		});
-
-		await updateResume({
+	const onComplete = (uploadedFiles: IUploadedFileProps[]) => {
+		console.log('uploaded files: ', uploadedFiles);
+		updateResume({
 			variables: {
 				id: profile?.id,
 				resume: {
-					resume: filePath
+					resume: uploadedFiles[0]
+						? `${uploadedFiles[0].fileUrl}?v=${uploadedFiles[0].uploadedAt}`
+						: null
 				}
 			},
 			onCompleted: (_data) => {
-				addNotification(
-					`Resume successfully ${avatarUrl ? 'updated' : 'added'}`,
-					'success'
-				);
+				addNotification('Resume successfully', 'success');
 			}
 		});
-	}, []);
+	};
+
+	const defaultFiles = formatUploadedUrls(
+		userProfile?.resume ? [userProfile?.resume] : []
+	);
 
 	return (
 		<FileUploader
-			boxSize={100}
-			label={'Drag/drop here'}
-			defaultSrc={userProfile?.resume || undefined}
-			onUpload={onUpload}
-			onDelete={onDelete}
+			label={'Resume'}
+			defaultFiles={defaultFiles}
+			bucketId={'resumes'}
+			showUpload={true}
+			onComplete={onComplete}
 		/>
 	);
 };

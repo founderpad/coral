@@ -1,4 +1,5 @@
 import { useBreakpointValue } from '@chakra-ui/react';
+import FileUploadContext from '@context/FileUploadContext';
 import MobileNavigationContext from '@context/MobileNavigationContext';
 import NotificationContext from '@context/NotificationContext';
 import { pageview } from '@lib/ga';
@@ -91,10 +92,7 @@ export const useMobileNav = () => {
 interface IFileUploadProps {
 	file: File;
 	bucketId: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
-	// name: string;
 	fileName?: string;
-
-	// id: string;
 }
 
 export const useFileUpload = () => {
@@ -120,5 +118,29 @@ export const useFileUpload = () => {
 export const useFileDelete = () => {
 	return ({ fileId }: { fileId: string }) => {
 		return storage.delete({ fileId });
+	};
+};
+
+export const useFileUploader = () => {
+	const {
+		addAttachedFile,
+		addAttachedFiles,
+		uploadedFiles,
+		attachedFiles,
+		onUpload,
+		removeAttachedFile,
+		onDelete,
+		isDeleted
+	} = useContext(FileUploadContext);
+
+	return {
+		addAttachedFile,
+		addAttachedFiles,
+		uploadedFiles,
+		attachedFiles,
+		onUpload,
+		removeAttachedFile,
+		onDelete,
+		isDeleted
 	};
 };

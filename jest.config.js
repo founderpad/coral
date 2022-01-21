@@ -58,7 +58,8 @@ module.exports = {
 		'^@utils(.*)$': '<rootDir>/src/utils$1',
 		'^@context(.*)$': '<rootDir>/src/context$1',
 		'^@lib(.*)$': '<rootDir>/src/lib$1',
-		'^@slices(.*)$': '<rootDir>/src/slices$1'
+		'^@slices(.*)$': '<rootDir>/src/slices$1',
+		'^@provider(.*)$': '<rootDir>/src/provider$1'
 	}
 };
 

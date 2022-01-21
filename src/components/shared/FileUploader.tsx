@@ -1,41 +1,58 @@
-import { Box, Flex, Text } from '@chakra-ui/layout';
-import { BoxProps, ButtonGroup, Icon } from '@chakra-ui/react';
-import { PrimaryButton } from '@components/buttons';
-import { DeleteButton } from '@components/buttons/DeleteButton';
-import { FormLabelText } from '@components/form';
+import { BoxProps, ButtonGroup, Flex, Icon, Text } from '@chakra-ui/react';
+import { DeleteButton, PrimaryButton } from '@components/buttons';
+import { CaptionLabel } from '@components/labels';
+import { FlexLayout, StackLayout } from '@components/layouts';
+import { PrimaryLink } from '@components/links';
+import { useFileUploader } from '@hooks/util';
+import FileUploadProvider from '@provider/FileUploadProvider';
+import { formatTimestamp } from '@utils/validators';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import {
 	IoCheckmarkCircleSharp,
 	IoCloudUploadSharp,
 	IoDocumentSharp
-} from '@components/icons';
-import { CaptionLabel } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { PrimaryLink } from '@components/links';
-import React, { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { PointSeparator } from './Separators';
+} from 'react-icons/io5';
+import { PointSeparator } from '.';
+import { IFileUploadProps, IUploadedFileProps } from '../../types/upload';
 
 type Props = BoxProps & {
 	label?: any;
 	defaultSrc?: string;
-	onUpload: (file: File) => void;
-	onDelete: (fileId: string) => void;
+	bucketId: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
+	showUpload?: boolean;
+	defaultFiles?: Array<IUploadedFileProps>;
+	onComplete?: (files: Array<IUploadedFileProps>) => void;
 };
 
 export const FileUploader = (props: Props) => {
-	const { label, defaultSrc, onUpload, onDelete } = props;
-	const [myFiles, setMyFiles] = useState<any>([]);
-	const [error, setError] = useState<string | null>(null);
+	const { bucketId, showUpload, defaultFiles = [], onComplete } = props;
 
-	// const onDrop = useCallback(
-	// 	(acceptedFiles) => {
-	// 		setMyFiles([...myFiles, ...acceptedFiles]);
-	// 	},
-	// 	[myFiles]
-	// );
+	return (
+		<FileUploadProvider>
+			<CustomInput bucketId={bucketId} defaultFiles={defaultFiles} />
+			<AttachedFiles showUpload={showUpload} />
+			<UploadedFiles
+				defaultFiles={defaultFiles}
+				onComplete={onComplete}
+			/>
+		</FileUploadProvider>
+	);
+};
+
+const CustomInput = ({
+	bucketId,
+	defaultFiles
+}: {
+	bucketId: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
+	defaultFiles: Array<IUploadedFileProps>;
+}) => {
+	const [error, setError] = useState('');
+	const { attachedFiles, addAttachedFiles, uploadedFiles } =
+		useFileUploader();
 
 	const onDrop = useCallback(
-		(acceptedFiles, fileRejections) => {
+		(acceptedFiles: Array<File>, fileRejections) => {
 			fileRejections.forEach((file: any) => {
 				file.errors.forEach((err: any) => {
 					if (err.code === 'file-too-large') {
@@ -49,9 +66,15 @@ export const FileUploader = (props: Props) => {
 					}
 				});
 			});
-			setMyFiles([...myFiles, ...acceptedFiles]);
+
+			const filesToUpload: Array<IFileUploadProps> = [];
+			for (const file of acceptedFiles) {
+				filesToUpload.push({ file, bucketId });
+			}
+
+			addAttachedFiles(filesToUpload);
 		},
-		[myFiles]
+		[attachedFiles]
 	);
 
 	const { getRootProps, getInputProps } = useDropzone({
@@ -60,189 +83,190 @@ export const FileUploader = (props: Props) => {
 		onDrop
 	});
 
-	const onRemoveFile = (file: File) => () => {
-		const newFiles = [...myFiles];
-		newFiles.splice(newFiles.indexOf(file), 1);
-		setMyFiles(newFiles);
-		setError('');
-	};
-
-	const files = myFiles.map((file: File, index: number) => {
-		return (
-			<StackLayout w={'full'} spacing={0} key={index}>
-				<FormLabelText label={label} />
-				<FlexLayout
-					justifyContent={'space-between'}
-					alignItems={'center'}
-					w={'full'}
-				>
-					<StackLayout
-						direction={'row'}
-						spacing={0}
-						alignItems={'center'}
-					>
-						<Icon
-							as={IoCheckmarkCircleSharp}
-							mr={2}
-							color={'green.500'}
-							fontSize={'large'}
-						/>
-						<Text color={'fpGrey.900'} fontSize={'smaller'}>
-							{file.name}
-						</Text>
-						<PointSeparator small />
-						<Text color={'fpGrey.500'} fontSize={'xs'}>
-							{file.size}b
-						</Text>
-					</StackLayout>
-					<ButtonGroup
-						display={'flex'}
-						spacing={4}
-						mt={{ base: 2, sm: 0 }}
-					>
-						<PrimaryButton
-							name={'upload-button'}
-							onClick={() => onUpload(file)}
-							variant={'outline'}
-							fontSize={'xs'}
-							size={'xs'}
-						>
-							Upload
-						</PrimaryButton>
-
-						<DeleteButton
-							name={'remove-file'}
-							onClick={onRemoveFile(file)}
-							variant={'outline'}
-							fontSize={'xs'}
-							size={'xs'}
-						>
-							Remove
-						</DeleteButton>
-					</ButtonGroup>
-				</FlexLayout>
-			</StackLayout>
-		);
-	});
-
-	const onDeleteFile = useCallback((path: string) => {
-		setMyFiles([]);
-		onDelete(path);
-	}, []);
+	if (attachedFiles.length) return null;
+	if (uploadedFiles.length | defaultFiles.length) return null;
 
 	return (
-		<Box py={4} w={'full'}>
-			{defaultSrc ? (
-				<AddedFile
-					src={defaultSrc}
-					onDelete={onDeleteFile}
-					label={label}
-				/>
-			) : (
-				files.length > 0 && <FilesList files={files} />
-			)}
-			{!defaultSrc && !files.length && (
-				<>
-					<FlexLayout
-						d={'flex'}
-						justifyContent={'center'}
-						alignItems={'center'}
-						boxSize={'125px'}
-						p={2}
-						bgColor={'gray.100'}
-						border={'2px dashed'}
-						borderColor={'gray.300'}
-						_hover={{ borderColor: 'gray.400' }}
-						as="section"
-						cursor={'pointer'}
-						{...getRootProps()}
-					>
-						<input {...getInputProps()} />
-						<Flex
-							as="p"
-							color={'gray.400'}
-							alignItems={'center'}
-							flexDirection={'column'}
-						>
-							<Icon
-								as={IoCloudUploadSharp}
-								fontSize={'x-large'}
-								mb={2}
-								color={'gray.400'}
-							/>
-							<Text color={'gray.500'} fontSize={'sm'}>
-								{label}
-							</Text>
-						</Flex>
-					</FlexLayout>
+		<React.Fragment>
+			<FlexLayout
+				d={'flex'}
+				justifyContent={'center'}
+				alignItems={'center'}
+				boxSize={'125px'}
+				p={2}
+				bgColor={'gray.100'}
+				border={'2px dashed'}
+				borderColor={'gray.300'}
+				_hover={{ borderColor: 'gray.400' }}
+				as="section"
+				cursor={'pointer'}
+				{...getRootProps()}
+			>
+				<input {...getInputProps()} />
+				<Flex
+					as="p"
+					color={'gray.400'}
+					alignItems={'center'}
+					flexDirection={'column'}
+				>
+					<Icon
+						as={IoCloudUploadSharp}
+						fontSize={'x-large'}
+						mb={2}
+						color={'gray.400'}
+					/>
+					<Text color={'gray.500'} fontSize={'sm'}>
+						Upload
+					</Text>
+				</Flex>
+			</FlexLayout>
 
-					<CaptionLabel
-						fontSize={'smaller'}
-						color={error ? 'red.500' : 'gray.400'}
-						mt={2}
-					>
-						{error ?? (
-							<>
-								Max file size: 5mb
-								<br />
-								Supported formats: .pdf, .doc, .docx, .txt
-							</>
-						)}
-					</CaptionLabel>
-				</>
-			)}
-		</Box>
+			<CaptionLabel
+				fontSize={'smaller'}
+				color={error ? 'red.500' : 'gray.400'}
+				mt={2}
+			>
+				<React.Fragment>
+					Max file size: 5mb
+					<br />
+					Supported formats: .pdf, .doc, .docx, .txt
+				</React.Fragment>
+			</CaptionLabel>
+		</React.Fragment>
 	);
 };
 
-const FilesList = ({ files }: { files: JSX.Element[] }) => (
-	<Flex as={'aside'} mb={0} alignItems={'center'}>
-		{files}
-	</Flex>
+const AttachedFiles = ({ showUpload }: { showUpload?: boolean }) => {
+	const { attachedFiles, onUpload, removeAttachedFile, uploadedFiles } =
+		useFileUploader();
+
+	// if (!attachedFiles.length && uploadedFiles.length) return null;
+
+	if (!attachedFiles.length) return null;
+	if (uploadedFiles.length) return null;
+
+	return (
+		<React.Fragment>
+			{attachedFiles.map((uf) => (
+				<StackLayout w={'full'} spacing={0} key={uf.file.name}>
+					<FlexLayout
+						justifyContent={'space-between'}
+						alignItems={'center'}
+						w={'full'}
+					>
+						<AttachedFile name={uf.file.name} size={uf.file.size} />
+						<ButtonGroup
+							display={'flex'}
+							spacing={4}
+							mt={{ base: 2, sm: 0 }}
+						>
+							{showUpload && (
+								<PrimaryButton
+									name={'Upload'}
+									variant={'outline'}
+									fontSize={'xs'}
+									size={'xs'}
+									onClick={onUpload}
+								>
+									Upload
+								</PrimaryButton>
+							)}
+							<DeleteButton
+								name={'remove-file'}
+								onClick={() => removeAttachedFile(uf)}
+								variant={'outline'}
+								fontSize={'xs'}
+								size={'xs'}
+							>
+								Remove
+							</DeleteButton>
+						</ButtonGroup>
+					</FlexLayout>
+				</StackLayout>
+			))}
+		</React.Fragment>
+	);
+};
+
+const AttachedFile = ({ name, size }: { name: string; size: number }) => (
+	<StackLayout direction={'row'} spacing={0} alignItems={'center'}>
+		<Icon
+			as={IoCheckmarkCircleSharp}
+			mr={2}
+			color={'green.500'}
+			fontSize={'large'}
+		/>
+		<Text color={'fpGrey.900'} fontSize={'smaller'}>
+			{name}
+		</Text>
+		<PointSeparator small />
+		<Text color={'fpGrey.500'} fontSize={'xs'}>
+			{size}b
+		</Text>
+	</StackLayout>
 );
 
-const AddedFile = ({
-	src,
-	onDelete,
-	label
+const UploadedFiles = ({
+	defaultFiles,
+	onComplete
 }: {
-	src: string;
-	onDelete: (src: string) => void;
-	label: string;
-}) => (
-	<Flex justifyContent={'space-between'} alignItems={'center'}>
-		<StackLayout
-			alignItems={'center'}
-			direction={'row'}
-			flex={1}
-			spacing={0}
-		>
-			<Icon
-				as={IoDocumentSharp}
-				color={'gray.400'}
-				fontSize={'xx-large'}
-			/>
-			<Flex flexDirection={'column'}>
-				<PrimaryLink
-					fontSize={'smaller'}
-					title={'View file'}
-					href={src}
-					isExternal
+	defaultFiles: Array<IUploadedFileProps>;
+	onComplete?: (files: Array<IUploadedFileProps>) => void;
+}) => {
+	const { uploadedFiles, onDelete, isDeleted } = useFileUploader();
+
+	useEffect(() => {
+		if (uploadedFiles.length) onComplete?.(uploadedFiles);
+		if (isDeleted) onComplete?.([]);
+	}, [uploadedFiles, isDeleted]);
+
+	const files = defaultFiles.length ? defaultFiles : uploadedFiles;
+
+	if (!files.length) return null;
+
+	return (
+		<React.Fragment>
+			{files.map((f) => (
+				<FlexLayout
+					key={f.fileId}
+					justifyContent={'space-between'}
+					alignItems={'center'}
 				>
-					{/* View */}
-					{label}
-				</PrimaryLink>
-				<CaptionLabel>
-					{/* Added {formatTimestamp(src?.split('?v=')[1])} */}
-				</CaptionLabel>
-			</Flex>
-		</StackLayout>
-		<DeleteButton
-			name={'delete-file-button'}
-			variant={'ghost'}
-			onClick={() => onDelete(src)}
-		>
-			Delete
-		</DeleteButton>
-	</Flex>
-);
+					<StackLayout
+						alignItems={'center'}
+						direction={'row'}
+						flex={1}
+						spacing={0}
+					>
+						<Icon
+							as={IoDocumentSharp}
+							color={'gray.400'}
+							fontSize={'xx-large'}
+							mr={3}
+						/>
+						<Flex flexDirection={'column'}>
+							<PrimaryLink
+								fontSize={'smaller'}
+								title={'View file'}
+								href={f.fileUrl}
+								isExternal
+							>
+								View
+							</PrimaryLink>
+							<CaptionLabel>
+								Added {formatTimestamp(f.uploadedAt)}
+							</CaptionLabel>
+						</Flex>
+					</StackLayout>
+					<DeleteButton
+						name={'delete-file-button'}
+						variant={'ghost'}
+						onClick={() => onDelete(f.fileId)}
+					>
+						Delete
+					</DeleteButton>
+				</FlexLayout>
+			))}
+		</React.Fragment>
+	);
+};
