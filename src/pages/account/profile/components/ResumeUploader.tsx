@@ -23,7 +23,6 @@ const ResumeUploader = () => {
 	}) as TUser_Profile;
 
 	const onComplete = (uploadedFiles: IUploadedFileProps[]) => {
-		console.log('uploaded files: ', uploadedFiles);
 		updateResume({
 			variables: {
 				id: profile?.id,
