@@ -1,6 +1,6 @@
 export interface IFileProps {
-	bucketId?: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks' | string;
 	fileName?: string;
+	bucketId?: IStorageBucket;
 }
 
 export interface IFileUploadProps extends IFileProps {
@@ -8,7 +8,11 @@ export interface IFileUploadProps extends IFileProps {
 }
 
 export interface IUploadedFileProps extends IFileProps {
-	fileId: string;
-	fileUrl: string;
-	uploadedAt: string;
+	fileId: Readonly<string>;
+	fileUrl: Readonly<string>;
+	uploadedAt: Readonly<string>;
 }
+
+export type IStorageBucket = Readonly<
+	'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks'
+>;

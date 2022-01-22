@@ -1,7 +1,11 @@
 import FileUploadContext from '@context/FileUploadContext';
 import { storage } from '@utils/nhost';
 import React, { useCallback, useState } from 'react';
-import { IFileUploadProps, IUploadedFileProps } from '../types/upload';
+import {
+	IFileUploadProps,
+	IStorageBucket,
+	IUploadedFileProps
+} from '../types/upload';
 
 const FileUploadProvider = ({ children }: { children: React.ReactNode }) => {
 	const [attachedFiles, setAttachedFiles] = useState<Array<IFileUploadProps>>(
@@ -47,7 +51,7 @@ const FileUploadProvider = ({ children }: { children: React.ReactNode }) => {
 
 				storageFiles.push({
 					fileId: id,
-					bucketId,
+					bucketId: bucketId as IStorageBucket,
 					fileName: name,
 					fileUrl,
 					uploadedAt: new Date().getTime().toString()
@@ -59,25 +63,13 @@ const FileUploadProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const onDelete = async (fileId: string) => {
-		// const fileId = filePath.toString().split('files/')[1];
-		// setAttachedFiles((attachedFiles) =>
-		// 	attachedFiles.filter((af) => af.file. !== fileId)
-		// );
 		await storage.delete({ fileId });
-		// setAttachedFiles((attachedFiles) =>
-		// 	attachedFiles.filter((af) => af.file. !== fileId)
-		// );
 
 		setUploadedFiles((uploadedFiles) =>
 			uploadedFiles.filter((uf) => uf.fileId !== fileId)
 		);
 
 		setIsDeleted(true);
-
-		// setAttachedFiles((attachedFiles) =>
-		// 	attachedFiles.filter((af) => af.file. !== fileId)
-		// );
-		// setAttachedFiles([]);
 	};
 
 	const value = {

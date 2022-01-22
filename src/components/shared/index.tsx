@@ -1,6 +1,6 @@
 export { CreatedAt, LastUpdatedAt } from './CreatedUpdatedAt';
 export { DocumentTitle } from './DocumentTitle';
-export { FileUploader } from './FileUploader';
+export { FileUploader } from './fileuploader/FileUploader';
 export { FixedSubheader } from './FixedSubheader';
 export { IndustriesPicker } from './IndustriesPicker';
 export { Loading } from './Loading';
