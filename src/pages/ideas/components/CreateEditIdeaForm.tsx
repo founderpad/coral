@@ -4,7 +4,7 @@ import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
 import { SwitchField } from '@components/input/SwitchField';
 import { TextareaField } from '@components/input/TextareaField';
-import AppDivider from '@components/shared/AppDivider';
+import { AppDivider } from '@components/shared';
 import {
 	TCreateIdeaMutation,
 	TIdeas,
@@ -20,18 +20,8 @@ import { useForm } from 'react-hook-form';
 
 type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'comments'>;
 
-// type TEditIdea = Omit<TIdeas_Insert_Input, 'votes'>;
-
-// interface IDocument {
-// 	file: File;
-// 	bucketId: 'businessPlans' | 'pitchDecks' | 'avatars' | 'resumes';
-// 	// fileType: 'businessPlan' | 'pitchDeck';
-// 	fileName: 'Business Plan' | 'Pitch Deck';
-// }
-
 const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 	const user = useCurrentUser();
-	// const { addNotification } = useNotification();
 	const {
 		handleSubmit,
 		control,
@@ -45,24 +35,9 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 		}
 	});
 
-	// const [documents, setDocuments] = useState<Array<IDocument>>(null);
-
-	// const uploadFile = useFileUpload();
-
-	// const onUpload = useCallback(async (document: IDocument) => {
-	// 	const { file, bucketId, fileName } = document;
-	// 	await uploadFile({
-	// 		file,
-	// 		bucketId,
-	// 		fileName
-	// 	});
-
-	// 	addNotification(`${fileName} added`, 'success');
-	// }, []);
-
 	const [createIdeaMutation] = useCreateIdeaMutation({
 		variables: {
-			idea: getValues() // value for 'idea'
+			idea: getValues()
 		},
 		onCompleted: ({ idea }: TCreateIdeaMutation) => {
 			event({
@@ -103,6 +78,7 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 				rules={{ required: true, maxLength: 100 }}
 				size={'lg'}
 				fontSize={'lg'}
+				variant={'flushed'}
 				isRequired
 			/>
 			<AppDivider />
@@ -177,37 +153,6 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 				rules={{ maxLength: 200 }}
 			/>
 
-			{/* <AppDivider />
-			<StackLayout spacing={0}>
-				<FileUploader
-					boxSize={100}
-					label={'Business plan'}
-					defaultSrc={''}
-					onUpload={(file) =>
-						onUpload({
-							file,
-							bucketId: 'businessPlans',
-							fileName: 'Business Plan'
-						})
-					}
-					onDelete={() => {}}
-				/>
-				<FileUploader
-					boxSize={100}
-					label={'Pitch deck'}
-					defaultSrc={''}
-					onUpload={(file) =>
-						onUpload({
-							file,
-							bucketId: 'pitchDecks',
-							fileName: 'Pitch Deck'
-						})
-					}
-					onDelete={() => {}}
-				/>
-				<AlertFeedback />
-			</StackLayout> */}
-
 			<SwitchField
 				id="is_published"
 				name="is_published"
@@ -229,25 +174,5 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 		</Form>
 	);
 };
-
-// const BusinessPlanUpload = (idea: TIdeas) => {
-// 	const [businessPlan, setBusinessPlan] = useState(idea?.businessPlan);
-// 	const uploadFile = useFileUpload();
-
-// 	// const
-
-// 	const onUpload = useCallback(async (file: File) => {
-// 		const filePath = await uploadFile({ file, bucketId: 'businessPlans' });
-
-// 	return (
-// 		<FileUploader
-// 			boxSize={100}
-// 			label={'Business plan'}
-// 			defaultSrc={businessPlan}
-// 			onUpload={() => {}}
-// 			onDelete={() => {}}
-// 		/>
-// 	);
-// };
 
 export default CreateEditIdeaForm;

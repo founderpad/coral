@@ -1,3 +1,4 @@
+export { AppDivider } from './AppDivider';
 export { CreatedAt, LastUpdatedAt } from './CreatedUpdatedAt';
 export { DocumentTitle } from './DocumentTitle';
 export { FileUploader } from './fileuploader/FileUploader';
