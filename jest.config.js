@@ -13,6 +13,9 @@ module.exports = {
 		'^@lib(.*)$': '<rootDir>/src/lib$1',
 		'^@slices(.*)$': '<rootDir>/src/slices$1',
 		'^@provider(.*)$': '<rootDir>/src/provider$1'
+	},
+	transform: {
+		'^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
 	}
 };
 
