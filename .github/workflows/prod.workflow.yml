@@ -28,19 +28,37 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 15
-            - run: npm install -g yarn
-            - run: yarn install --frozen-lockfile --ignore-engines
-            - run: yarn generate
-            - run: yarn build
 
-            #             - name: Deploy to pilot
-            #               id: pilot
-            #               uses: amondnet/vercel-action@v20
-            #               with:
-            #                   vercel-token: ${{ secrets.VERCEL_TOKEN }}
-            #                   vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-            #                   vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-            #                   scope: ${{ secrets.VERCEL_ORG_ID }}
+            - name: Install yarn
+              run: npm install -g yarn
+
+            - name: Install project dependencies
+              run: |
+                  yarn install --frozen-lockfile --ignore-engines
+                  echo "Dependencies installed"
+
+            - name: Install Hasura CLI
+              run: |
+                  curl -L https://github.com/hasura/graphql-engine/raw/master/cli/get.sh | bash
+                  echo "Hasura CLI installed successfully"
+
+            - name: Apply Hasura Migration to production
+              working-directory: ./nhost
+              run: |
+                  hasura migrate apply --endpoint ${{ secrets.HASURA_BACKEND_PRODUCTION }} --admin-secret ${{ secrets.HASURA_ADMIN_SECRET_PRODUCTION }} --skip-update-check
+                  echo "Migration applied successfully"
+
+            - name: Apply Hasura Metadata (permissions, object/array relationships, events etc) to production Postgres
+              working-directory: ./nhost
+              run: |
+                  hasura metadata apply --endpoint ${{ secrets.HASURA_BACKEND_PRODUCTION }} --admin-secret ${{ secrets.HASURA_ADMIN_SECRET_PRODUCTION }} --skip-update-check
+                  echo "Metadata applied successfully"
+
+            - name: Run tests
+              run: yarn test
+
+            - name: Run build
+              run: yarn build
 
             - name: Run tests against Vercel
               env:
