@@ -1,4 +1,4 @@
-name: Deploy Coral app
+name: Deploy Coral app to production
 
 # Controls when the workflow will run
 on:
