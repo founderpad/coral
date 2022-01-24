@@ -54,6 +54,8 @@ jobs:
 
             - name: Run build and tests
               run: yarn build
+              env:
+                  NEXT_PUBLIC_BACKEND: ${{ secrets.HASURA_BACKEND_DEVELOPMENT }}
 
             - name: Run tests against Vercel preview URL
               env:
