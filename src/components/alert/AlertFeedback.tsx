@@ -8,6 +8,8 @@ export const AlertFeedback = () => {
 
 	const isSuccess = notification.status === 'success';
 
+	console.log('alert feedback');
+
 	return (
 		<Alert
 			status={notification.status}
