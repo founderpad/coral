@@ -49,14 +49,16 @@ export const CommentsList = ({
 }: {
 	display?: StackProps['display'];
 }) => {
+	console.log('ddd: ', useQueryParam('id'));
 	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
 			ideaId: useQueryParam('id'),
 			offset: 0
 		},
 		// notifyOnNetworkStatusChange: true,
-		fetchPolicy: 'network-only',
-		nextFetchPolicy: 'cache-first'
+		// fetchPolicy: 'network-only'
+		// nextFetchPolicy: 'cache-first'
+		fetchPolicy: 'no-cache'
 	});
 
 	useEffect(() => {
