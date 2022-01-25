@@ -19,7 +19,11 @@ const IdeaTab = () => {
 	if (!data) return <Loading small />;
 
 	// Only enable the id creator to view their own idea if it's unpublished
-	if (data?.idea?.userId !== auth?.id && !data?.idea?.isPublished)
+
+	if (
+		!data?.idea ||
+		(!data?.idea.isPublished && data?.idea.userId !== auth.id)
+	)
 		Router.replace('/404');
 
 	return (
