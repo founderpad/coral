@@ -131,8 +131,8 @@ export const EditIdeaForm = () => {
 			/>
 
 			<SwitchField
-				id="is_published"
-				name="is_published"
+				id="isPublished"
+				name="isPublished"
 				label="Publish your idea"
 				helperText="Unpublished ideas will not be searchable by other users."
 				defaultChecked={idea.isPublished}

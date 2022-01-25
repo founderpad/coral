@@ -154,8 +154,8 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 			/>
 
 			<SwitchField
-				id="is_published"
-				name="is_published"
+				id="isPublished"
+				name="isPublished"
 				label="Publish your idea"
 				helperText="You can change this after it's been created"
 				defaultChecked={true}
