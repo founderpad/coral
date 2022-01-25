@@ -3,7 +3,7 @@
 var sendNotification = function (data) {
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: 'Basic YjI5OGM1ODctNGIyNi00NjIzLWFiYzctYzFkN2Q2ODJiMWYy'
+		Authorization: `Basic ${process.env.ONESIGNAL_REST_API_KEY}`
 	};
 
 	var options = {
@@ -39,15 +39,17 @@ export default (req, _res) => {
 	const ideaId = req.body.event.data.new.idea_id;
 	const id = req.body.event.data.new.id;
 
+	if (fromUserId === targetUserId) return null;
+
 	const message = {
-		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
+		app_id: process.env.ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
 			en: 'You have received a new comment on your idea. Click here to view it.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}?d=${id}`,
+		url: `${process.env.SITE_URL}/${ideaId}?d=${id}`,
 		include_external_user_ids: [targetUserId]
 	};
 
-	if (fromUserId !== targetUserId) sendNotification(message);
+	sendNotification(message);
 };

@@ -1,10 +1,13 @@
 const AWS = require('aws-sdk');
 
 const CONFIG = {
-	apiVersion: '2010-12-01',
-	accessKeyId: process.env.NEXT_AWS_ACCESS_KEY_ID,
-	secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY,
-	region: process.env.NEXT_AWS_DEFAULT_REGION
+	apiVersion: process.env.AWS_API_VERSION,
+	// accessKeyId: process.env.NEXT_AWS_ACCESS_KEY_ID,
+	// secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY,
+	// region: process.env.NEXT_AWS_DEFAULT_REGION
+	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+	region: process.env.AWS_DEFAULT_REGION
 };
 
 const AWS_SES = new AWS.SES(CONFIG);
