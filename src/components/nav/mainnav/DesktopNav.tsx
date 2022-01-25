@@ -20,9 +20,9 @@ const DesktopNav = memo(() => {
 			display={{ base: 'none', md: 'flex' }}
 			position={'relative'}
 		>
-			{NavItems.map((navItem) => (
+			{NavItems.map((navItem, key) => (
 				<BasePopover
-					key={navItem.key}
+					key={key}
 					triggerEl={
 						<Link
 							px={2}
@@ -56,10 +56,10 @@ const DesktopNav = memo(() => {
 						</Link>
 					}
 				>
-					{navItem.children && (
+					{navItem.items && (
 						<StackLayout spacing={2}>
-							{navItem.children.map((child) => (
-								<SubNav {...child} key={child.key} />
+							{navItem.items.map((item, key) => (
+								<SubNav {...item} key={key} />
 							))}
 						</StackLayout>
 					)}

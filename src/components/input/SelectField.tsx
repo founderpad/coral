@@ -7,15 +7,14 @@ import { ISelectFieldProps } from 'src/types/fields';
 
 export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 	(props, ref) => {
+		const { errorText, helperText, error, ...rest } = props;
+
 		const {
 			id,
 			isRequired,
 			label,
-			error,
-			// errorText,
 			options,
 			control,
-			helperText,
 			name,
 			full,
 			placeholder,
@@ -43,7 +42,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 							value={value}
 							onChange={onChange}
 							size={size ?? 'sm'}
-							error={!!error}
+							error={error?.message}
 							id={`select-${name}-field`}
 							name={`select-${name}-field`}
 							aria-label={`select-${name}-field`}

@@ -10,6 +10,7 @@ const FounderpadLogo = (props: BoxProps): JSX.Element => (
 			alt="logo"
 			layout={'fill'}
 			objectFit={'contain'}
+			priority
 		/>
 	</BoxLayout>
 );

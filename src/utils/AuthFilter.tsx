@@ -6,7 +6,7 @@ import Router from 'next/router';
 import React from 'react';
 
 export default function AuthFilter(Component: any) {
-	return (): JSX.Element => {
+	return () => {
 		const { isAuthenticated, isLoading } = useAuth();
 
 		if (isLoading) return <Loading />;

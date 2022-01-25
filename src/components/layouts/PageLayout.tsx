@@ -36,7 +36,7 @@ export const PageLayout = (props: Props): JSX.Element => {
 				flexDirection={'column'}
 				p={p}
 				css={{
-					'> *:first-child': {
+					'> *:first-of-type': {
 						width: '100%'
 					}
 				}}

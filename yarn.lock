@@ -895,9 +895,9 @@
   dependencies:
     "@chakra-ui/utils" "^1.9.1"
 
-"@chakra-ui/react@^1.6.8":
+"@chakra-ui/react@^1.7.4":
   version "1.7.4"
-  resolved "https://registry.npmjs.org/@chakra-ui/react/-/react-1.7.4.tgz"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react/-/react-1.7.4.tgz#dfeb9e2f34df3645448ee542e02390fdf5b58876"
   integrity sha512-wBxfQRcIz6YGXQh3S2E6sXCVcqrVuUygMeMdkCMMfZQTI2VFLkvn6SDYzLHcm1PtMygZnF1mU30GOcmArpVotA==
   dependencies:
     "@chakra-ui/accordion" "1.4.3"
@@ -1053,12 +1053,20 @@
     "@chakra-ui/form-control" "1.5.3"
     "@chakra-ui/utils" "1.9.1"
 
-"@chakra-ui/theme-tools@1.3.1", "@chakra-ui/theme-tools@^1.2.1", "@chakra-ui/theme-tools@^1.3.1":
+"@chakra-ui/theme-tools@1.3.1", "@chakra-ui/theme-tools@^1.3.1":
   version "1.3.1"
   resolved "https://registry.npmjs.org/@chakra-ui/theme-tools/-/theme-tools-1.3.1.tgz"
   integrity sha512-D8arJ5uFGuYZrrFGpXqgov8FhsJYWRyar5oBZY5TJR9gsVYBlJ8Ai91pwM/NflCFqzerTOgyt7bNSGQMdZ8ghA==
   dependencies:
     "@chakra-ui/utils" "1.9.1"
+    "@ctrl/tinycolor" "^3.4.0"
+
+"@chakra-ui/theme-tools@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-1.3.2.tgz#6f3f3212fa603bb42b061bc2a0c69b8bcc15934d"
+  integrity sha512-7UyUv6k6CXr3WX7BrR7vAZ2Iobxyyy2INZtlUqS2JK+6/YV1FCmBKsNaTSFHvcSYb/eAPYJwgeQdhkzA1HTKpQ==
+  dependencies:
+    "@chakra-ui/utils" "1.10.0"
     "@ctrl/tinycolor" "^3.4.0"
 
 "@chakra-ui/theme@1.12.3":
@@ -1101,6 +1109,16 @@
   integrity sha512-S+BNmpErHlntl//uaqv0sJegzMsQms0OnJapeZaRsvZL4s1SVYrR8kMrXigkdpeh4lAUqGsLpQHPKkzaKGbBOw==
   dependencies:
     "@chakra-ui/utils" "1.9.1"
+
+"@chakra-ui/utils@1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-1.10.0.tgz#c7d35c831ee0972841efe3a5171d22c16141d718"
+  integrity sha512-Zm0RoZRBDXEhDCuj2oPeLyGTEH+SwCgbFPTSuwpKSVXOXCtjvA2zWC7cY6Fk1RDcMCVbL2cPlQTTgKnKPh79Lg==
+  dependencies:
+    "@types/lodash.mergewith" "4.6.6"
+    css-box-model "1.2.1"
+    framesync "5.3.0"
+    lodash.mergewith "4.6.2"
 
 "@chakra-ui/utils@1.9.1", "@chakra-ui/utils@^1.9.1":
   version "1.9.1"
@@ -5462,7 +5480,7 @@ jest-worker@^27.4.6:
 
 jest@^27.4.7:
   version "27.4.7"
-  resolved "https://registry.npmjs.org/jest/-/jest-27.4.7.tgz"
+  resolved "https://registry.yarnpkg.com/jest/-/jest-27.4.7.tgz#87f74b9026a1592f2da05b4d258e57505f28eca4"
   integrity sha512-8heYvsx7nV/m8m24Vk26Y87g73Ba6ueUd0MWed/NXMhSZIm62U/llVbS0PJe1SHunbyXjJ/BqG1z9bFjGUIvTg==
   dependencies:
     "@jest/core" "^27.4.7"
@@ -6060,7 +6078,7 @@ negotiator@0.6.2:
 
 next@^12.0.8:
   version "12.0.8"
-  resolved "https://registry.npmjs.org/next/-/next-12.0.8.tgz"
+  resolved "https://registry.yarnpkg.com/next/-/next-12.0.8.tgz#29138f7cdd045e4bbba466af45bf430e769634b4"
   integrity sha512-g5c1Kuh1F8tSXJn2rVvzYBzqe9EXaR6+rY3/KrQ7y0D9FueRLfHI35wM0DRadDcPSc3+vncspfhYH3jnYE/KjA==
   dependencies:
     "@next/env" "12.0.8"
@@ -6521,7 +6539,7 @@ prettier-linter-helpers@^1.0.0:
 
 prettier@^2.5.1:
   version "2.5.1"
-  resolved "https://registry.npmjs.org/prettier/-/prettier-2.5.1.tgz"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.5.1.tgz#fff75fa9d519c54cf0fce328c1017d94546bc56a"
   integrity sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==
 
 pretty-format@^27.0.0, pretty-format@^27.0.2, pretty-format@^27.4.6:
@@ -6790,7 +6808,7 @@ react-use-measure@^2.1.1:
 
 react@^17.0.2:
   version "17.0.2"
-  resolved "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
   dependencies:
     loose-envify "^1.1.0"
@@ -7773,9 +7791,9 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.5.4:
+typescript@^4.5.5:
   version "4.5.5"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.5.5.tgz"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
   integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==
 
 ua-parser-js@^0.7.30:

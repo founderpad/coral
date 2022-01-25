@@ -29,6 +29,7 @@ const LoginForm = () => {
 				error={errors['email']}
 				errorText="Please enter a valid email"
 				control={control}
+				autoComplete="email"
 				size={'md'}
 				fontSize={'sm'}
 				isRequired

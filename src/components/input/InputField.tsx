@@ -23,7 +23,8 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			label,
 			name,
 			size,
-			fontSize
+			fontSize,
+			autoComplete
 		} = rest;
 
 		return (
@@ -43,6 +44,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 						<Input
 							{...rest}
 							placeholder={placeholder}
+							autoComplete={autoComplete}
 							size={size ?? 'sm'}
 							ref={ref}
 							value={value}
@@ -137,6 +139,7 @@ export const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
 			errorText="Please enter a valid password between 6 and 20 characters"
 			rules={{ maxLength: 20, minLength: 6 }}
 			fontSize={'sm'}
+			autoComplete="current-password"
 			ref={ref}
 		/>
 	)

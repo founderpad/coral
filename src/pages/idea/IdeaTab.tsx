@@ -12,9 +12,16 @@ import InterestedIdea from './components/InterestedIdea';
 
 const IdeaTab = () => {
 	// const auth = useCurrentUser();
-	const { data } = useContext(IdeaContext);
+	const data = useContext(IdeaContext)?.data;
+
+	// useEffect(() => {
+	// 	if (!data) Router.replace('/404');
+	// 	if (!data?.idea) Router.replace('/404');
+	// }, [data]);
 
 	if (!data) return <Loading small />;
+
+	console.log('data: ', data);
 
 	// Only enable the id creator to view their own idea if it's unpublished
 
@@ -23,6 +30,8 @@ const IdeaTab = () => {
 	// 	(!data?.idea.isPublished && data?.idea.userId !== auth.id)
 	// )
 	// 	Router.replace('/404');
+
+	// if (data?.idea) Router.replace('/404');
 
 	return (
 		<StackLayout
