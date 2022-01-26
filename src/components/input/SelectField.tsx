@@ -7,7 +7,7 @@ import { ISelectFieldProps } from 'src/types/fields';
 
 export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 	(props, ref) => {
-		const { errorText, helperText, error, ...rest } = props;
+		const { helperText, error } = props;
 
 		const {
 			id,
