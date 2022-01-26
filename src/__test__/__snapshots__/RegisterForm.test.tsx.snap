@@ -69,6 +69,7 @@ exports[`Register form matches snapshot 1`] = `
         <input
           aria-label="password"
           aria-required="true"
+          autocomplete="current-password"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
           id="password-password"
@@ -101,7 +102,7 @@ exports[`Register form matches snapshot 1`] = `
         class="chakra-text css-wbdulw"
       >
         By continuing, you agree to founderpad's 
-        <a
+        <span
           class="chakra-link css-ntv2za"
           href="/terms-of-conditions"
           rel="noopener noreferrer"
@@ -109,9 +110,9 @@ exports[`Register form matches snapshot 1`] = `
           title="Link to Terms of Service"
         >
           Terms of Service
-        </a>
+        </span>
          and acknowledge that you've read our 
-        <a
+        <span
           class="chakra-link css-ntv2za"
           href="/privacy-policy"
           rel="noopener noreferrer"
@@ -119,20 +120,20 @@ exports[`Register form matches snapshot 1`] = `
           title="Link to Privacy Policy"
         >
           Privacy Policy.
-        </a>
+        </span>
          
       </div>
       <div
         class="chakra-text css-1fihqrz"
       >
         Already have an account? 
-        <a
+        <span
           class="chakra-link css-ntv2za"
           href="/login"
           title="Link to login"
         >
           Login here
-        </a>
+        </span>
       </div>
     </div>
   </form>

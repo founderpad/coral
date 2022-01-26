@@ -19,6 +19,7 @@ exports[`Login form matches snapshot 1`] = `
         <input
           aria-label="email"
           aria-required="true"
+          autocomplete="email"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
           id="email-email"
@@ -37,6 +38,7 @@ exports[`Login form matches snapshot 1`] = `
         <input
           aria-label="password"
           aria-required="true"
+          autocomplete="current-password"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
           id="password-password"
@@ -69,13 +71,13 @@ exports[`Login form matches snapshot 1`] = `
         class="chakra-text css-1fihqrz"
       >
         Don't have an account?
-        <a
+        <span
           class="chakra-link css-ntv2za"
           href="/register"
           title="Link to register an account"
         >
            Create one here
-        </a>
+        </span>
       </p>
     </div>
   </form>
