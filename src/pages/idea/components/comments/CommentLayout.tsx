@@ -28,7 +28,7 @@ export const CommentLayout = ({
 	comment,
 	actions = true
 }: {
-	children?: JSX.Element;
+	children?: React.ReactNode;
 	comment: any;
 	actions?: boolean;
 	divider?: boolean;

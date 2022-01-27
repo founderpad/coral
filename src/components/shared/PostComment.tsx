@@ -10,6 +10,7 @@ import {
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import useIdea from '@pages/idea/query/ideaQuery';
+import { cache } from '@pages/_app';
 import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';
@@ -29,26 +30,26 @@ const PostComment = () => {
 			},
 			ideaId: idea?.id
 		},
-		update(cache, mutationResult) {
-			cache.modify({
-				fields: {
-					idea_comments: (previous, { toReference }) => {
-						return [
-							...previous,
-							toReference(mutationResult.data?.addIdeaComment!)
-						];
-					}
-				}
-			});
-		},
-		// refetchQueries: [
-		// 	{
-		// 		query: CommentsForIdeaDocument,
-		// 		variables: {
-		// 			ideaId: idea?.id
+		// update(cache, mutationResult) {
+		// 	cache.modify({
+		// 		fields: {
+		// 			idea_comments: (previous, { toReference }) => {
+		// 				return [
+		// 					...previous,
+		// 					toReference(mutationResult.data?.addIdeaComment!)
+		// 				];
+		// 			}
 		// 		}
-		// 	}
-		// ],
+		// 	});
+		// },
+		refetchQueries: [
+			{
+				query: CommentsForIdeaDocument,
+				variables: {
+					ideaId: idea?.id
+				}
+			}
+		],
 		onCompleted: () => {
 			event({
 				action: 'Post comment',

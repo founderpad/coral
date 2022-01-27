@@ -4247,7 +4247,7 @@ export type TPostCommentMutationVariables = Exact<{
 }>;
 
 
-export type TPostCommentMutation = { addIdeaComment?: { __typename?: 'idea_comments', ideaId: any, id: any, value: string } | null | undefined, updateIdeaTotalComments?: { __typename?: 'ideas', id: any } | null | undefined };
+export type TPostCommentMutation = { addIdeaComment?: { __typename?: 'idea_comments', id: any, ideaId: any, user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined } | null | undefined } | null | undefined, updateIdeaTotalComments?: { __typename?: 'ideas', id: any } | null | undefined };
 
 export type TPostReplyMutationVariables = Exact<{
   ideaReply: TIdea_Comment_Replies_Insert_Input;
@@ -4257,20 +4257,22 @@ export type TPostReplyMutationVariables = Exact<{
 
 export type TPostReplyMutation = { addIdeaReply?: { __typename?: 'idea_comment_replies', commentId: any, id: any, value: string } | null | undefined, update_idea_comments_by_pk?: { __typename?: 'idea_comments', id: any } | null | undefined };
 
+export type TCommentFieldsFragment = { __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+
 export type TCommentsForIdeaQueryVariables = Exact<{
   ideaId: Scalars['uuid'];
   offset?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, email?: any | null | undefined } | null | undefined }>, totalComments: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined } };
+export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> }>, totalComments: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined } };
 
 export type TRepliesForCommentQueryVariables = Exact<{
   commentId: Scalars['uuid'];
 }>;
 
 
-export type TRepliesForCommentQuery = { replies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, email?: any | null | undefined } | null | undefined }> };
+export type TRepliesForCommentQuery = { replies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
 
 export type TFollowUserMutationVariables = Exact<{
   followingId: Scalars['uuid'];
@@ -4471,6 +4473,27 @@ export const UserFieldsFragmentDoc = gql`
   }
 }
     ${UserAddressFragmentDoc}`;
+export const CommentFieldsFragmentDoc = gql`
+    fragment CommentFields on idea_comments {
+  id
+  updatedAt
+  value
+  ideaId
+  totalReplies
+  user {
+    ...UserFields
+  }
+  firstReplies: replies(limit: 2, order_by: {updatedAt: desc}) {
+    id
+    commentId
+    value
+    updatedAt
+    user {
+      ...UserFields
+    }
+  }
+}
+    ${UserFieldsFragmentDoc}`;
 export const UserFieldsWithEmailFragmentDoc = gql`
     fragment UserFieldsWithEmail on users {
   ...UserFields
@@ -4578,9 +4601,12 @@ export function refetchUserActivityQuery(variables: TUserActivityQueryVariables)
 export const PostCommentDocument = gql`
     mutation PostComment($ideaComment: idea_comments_insert_input!, $ideaId: uuid!) {
   addIdeaComment: insert_idea_comments_one(object: $ideaComment) {
-    ideaId
     id
-    value
+    ideaId
+    user {
+      displayName
+      avatarUrl
+    }
   }
   updateIdeaTotalComments: update_ideas_by_pk(
     pk_columns: {id: $ideaId}
@@ -4667,17 +4693,7 @@ export const CommentsForIdeaDocument = gql`
     offset: $offset
     limit: 8
   ) {
-    id
-    updatedAt
-    value
-    ideaId
-    totalReplies
-    user {
-      id
-      displayName
-      avatarUrl
-      email
-    }
+    ...CommentFields
   }
   totalComments: idea_comments_aggregate(where: {ideaId: {_eq: $ideaId}}) {
     aggregate {
@@ -4685,7 +4701,7 @@ export const CommentsForIdeaDocument = gql`
     }
   }
 }
-    `;
+    ${CommentFieldsFragmentDoc}`;
 
 /**
  * __useCommentsForIdeaQuery__
@@ -4729,14 +4745,11 @@ export const RepliesForCommentDocument = gql`
     value
     updatedAt
     user {
-      id
-      displayName
-      avatarUrl
-      email
+      ...UserFields
     }
   }
 }
-    `;
+    ${UserFieldsFragmentDoc}`;
 
 /**
  * __useRepliesForCommentQuery__

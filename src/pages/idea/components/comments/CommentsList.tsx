@@ -5,6 +5,7 @@ import { BoxLayout, StackLayout } from '@components/layouts';
 import { Loading, NoResults } from '@components/shared';
 import PostComment from '@components/shared/PostComment';
 import {
+	TCommentFieldsFragment,
 	useCommentsForIdeaQuery,
 	useRepliesForCommentQuery
 } from '@generated/api';
@@ -12,7 +13,7 @@ import { useQueryParam } from '@hooks/util';
 import React, { useEffect } from 'react';
 import CommentLayout from './CommentLayout';
 
-export const Comment = (comment: any) => {
+export const Comment = (comment: TCommentFieldsFragment) => {
 	// const [showReplies, setShowReplies] = useState(false);
 	const { isOpen, onToggle } = useDisclosure();
 
@@ -22,23 +23,24 @@ export const Comment = (comment: any) => {
 
 	return (
 		<CommentLayout comment={comment} divider={true}>
-			{comment?.totalReplies > 0 ? (
+			{!isOpen &&
+				comment.firstReplies?.map((reply) => (
+					<CommentLayout actions={false} comment={reply} />
+				))}
+			{comment?.totalReplies > 2 && (
 				<React.Fragment>
+					<Collapse in={isOpen}>
+						<RepliesList commentId={comment.id} />
+					</Collapse>
 					<PrimaryButton
 						name={'show-replies'}
 						variant={'link'}
 						fontSize={'xs'}
 						onClick={onToggle}
 					>
-						{isOpen ? 'Hide replies' : 'Show replies'}
+						{isOpen ? 'Hide replies' : 'Show more replies'}
 					</PrimaryButton>
-
-					<Collapse in={isOpen}>
-						<RepliesList commentId={comment.id} />
-					</Collapse>
 				</React.Fragment>
-			) : (
-				<></>
 			)}
 		</CommentLayout>
 	);
@@ -55,8 +57,8 @@ export const CommentsList = ({
 			offset: 0
 		},
 		// notifyOnNetworkStatusChange: true,
-		fetchPolicy: 'network-only',
-		nextFetchPolicy: 'network-only'
+		// fetchPolicy: 'network-only',
+		nextFetchPolicy: 'cache-and-network'
 	});
 
 	useEffect(() => {
@@ -75,7 +77,7 @@ export const CommentsList = ({
 		if (bottom && hasMoreComments) {
 			fetchMore({
 				variables: {
-					offset: data?.comments?.length
+					offset: data?.comments.length
 				}
 			});
 		}
@@ -130,7 +132,8 @@ const RepliesList = ({ commentId }: { commentId: string }) => {
 	const { data } = useRepliesForCommentQuery({
 		variables: {
 			commentId
-		}
+		},
+		fetchPolicy: 'cache-and-network'
 	});
 
 	if (data?.replies?.length)

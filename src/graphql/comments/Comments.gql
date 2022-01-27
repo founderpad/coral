@@ -1,9 +1,16 @@
+#import { UserFieldsWithEmail } from '../fragments/user.gql'
+
 mutation PostComment(
 	$ideaComment: idea_comments_insert_input!
 	$ideaId: uuid!
 ) {
 	addIdeaComment: insert_idea_comments_one(object: $ideaComment) {
-		affected_rows
+		id
+		ideaId
+		user {
+			displayName
+			avatarUrl
+		}
 	}
 	updateIdeaTotalComments: update_ideas_by_pk(
 		pk_columns: { id: $ideaId }
@@ -30,6 +37,26 @@ mutation PostReply(
 	}
 }
 
+fragment CommentFields on idea_comments {
+	id
+	updatedAt
+	value
+	ideaId
+	totalReplies
+	user {
+		...UserFields
+	}
+	firstReplies: replies(limit: 2, order_by: { updatedAt: desc }) {
+		id
+		commentId
+		value
+		updatedAt
+		user {
+			...UserFields
+		}
+	}
+}
+
 query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 	comments: idea_comments(
 		where: { ideaId: { _eq: $ideaId } }
@@ -37,17 +64,7 @@ query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 		offset: $offset
 		limit: 8
 	) {
-		id
-		updatedAt
-		value
-		ideaId
-		totalReplies
-		user {
-			id
-			displayName
-			avatarUrl
-			email
-		}
+		...CommentFields
 	}
 	totalComments: idea_comments_aggregate(
 		where: { ideaId: { _eq: $ideaId } }
@@ -92,10 +109,7 @@ query RepliesForComment($commentId: uuid!) {
 		value
 		updatedAt
 		user {
-			id
-			displayName
-			avatarUrl
-			email
+			...UserFields
 		}
 	}
 }
