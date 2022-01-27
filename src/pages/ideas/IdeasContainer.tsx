@@ -47,7 +47,8 @@ const IdeasContainer = () => {
 				created_at: 'desc'
 			},
 			userId: useClaim()
-		}
+		},
+		fetchPolicy: 'network-only'
 	});
 
 	const hasResults = data?.idea_preview?.length ?? 0;
