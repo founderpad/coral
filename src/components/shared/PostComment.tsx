@@ -29,26 +29,26 @@ const PostComment = () => {
 			},
 			ideaId: idea?.id
 		},
-		// update(cache, mutationResult) {
-		// 	cache.modify({
-		// 		fields: {
-		// 			idea_comments: (previous, { toReference }) => {
-		// 				const result = [
-		// 					...previous,
-		// 					toReference(mutationResult.data.addIdeaComment)
-		// 				];
-		// 			}
-		// 		}
-		// 	});
-		// },
-		refetchQueries: [
-			{
-				query: CommentsForIdeaDocument,
-				variables: {
-					ideaId: idea?.id
+		update(cache, mutationResult) {
+			cache.modify({
+				fields: {
+					idea_comments: (previous, { toReference }) => {
+						return [
+							...previous,
+							toReference(mutationResult.data?.addIdeaComment!)
+						];
+					}
 				}
-			}
-		],
+			});
+		},
+		// refetchQueries: [
+		// 	{
+		// 		query: CommentsForIdeaDocument,
+		// 		variables: {
+		// 			ideaId: idea?.id
+		// 		}
+		// 	}
+		// ],
 		onCompleted: () => {
 			event({
 				action: 'Post comment',

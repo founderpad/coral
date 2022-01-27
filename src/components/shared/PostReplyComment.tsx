@@ -34,14 +34,14 @@ const PostReplyComment = ({
 			},
 			commentId
 		},
-		refetchQueries: [
-			{
-				query: RepliesForCommentDocument,
-				variables: {
-					commentId
-				}
-			}
-		],
+		// refetchQueries: [
+		// 	{
+		// 		query: RepliesForCommentDocument,
+		// 		variables: {
+		// 			commentId
+		// 		}
+		// 	}
+		// ],
 		onCompleted: () => {
 			setShowReplyField(!showReplyField);
 			event({

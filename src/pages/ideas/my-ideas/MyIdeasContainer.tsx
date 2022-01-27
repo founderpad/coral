@@ -17,7 +17,7 @@ const MyIdeasContainer = () => {
 		variables: {
 			userId: user?.id
 		},
-		fetchPolicy: 'cache-first'
+		fetchPolicy: 'cache-and-network'
 	});
 
 	const hasResults = data?.user_ideas?.length ?? 0;

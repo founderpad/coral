@@ -5,6 +5,7 @@ import BaseModal from '@components/modal/BaseModal';
 import BaseModalDrawer from '@components/modal/BaseModalDrawer';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
+import { TCommentsForIdeaQuery } from '@generated/api';
 import { useTrackAnalytics } from '@hooks/util';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
@@ -91,6 +92,9 @@ const cache = new InMemoryCache({
 		interested_ideas: {
 			keyFields: ['ideaId']
 		},
+		idea_comments: {
+			keyFields: ['id']
+		},
 		Query: {
 			fields: {
 				// resourceCollection: {
@@ -116,7 +120,14 @@ const cache = new InMemoryCache({
 				// },
 				// CommentsForIdea: relayStylePagination()
 				// CommentsForIdea: offsetLimitPagination()
-				idea_comments: offsetLimitPagination()
+				idea_comments: {
+					keyArgs: ['id', 'ideaId'],
+					// merge: true
+					merge(existing, incoming) {
+						return incoming;
+					}
+					// offsetLimitPagination()
+				}
 			}
 		}
 	}

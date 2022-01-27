@@ -3,9 +3,7 @@ mutation PostComment(
 	$ideaId: uuid!
 ) {
 	addIdeaComment: insert_idea_comments_one(object: $ideaComment) {
-		ideaId
-		id
-		value
+		affected_rows
 	}
 	updateIdeaTotalComments: update_ideas_by_pk(
 		pk_columns: { id: $ideaId }

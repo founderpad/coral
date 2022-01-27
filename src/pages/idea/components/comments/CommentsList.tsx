@@ -55,10 +55,7 @@ export const CommentsList = ({
 			offset: 0
 		},
 		// notifyOnNetworkStatusChange: true,
-		// fetchPolicy: 'network-only'
-		// nextFetchPolicy: 'network-only',
-		// fetchPolicy: 'network-only'
-		// fetchPolicy: 'cache-and-network'
+		fetchPolicy: 'network-only',
 		nextFetchPolicy: 'network-only'
 	});
 
@@ -67,20 +64,22 @@ export const CommentsList = ({
 		return () => window.removeEventListener('scroll', onScrollToBottom);
 	});
 
+	const hasComments = data?.comments?.length ?? 0;
+	const hasMoreComments =
+		data?.totalComments?.aggregate?.count! > hasComments;
+
 	const onScrollToBottom = () => {
 		const bottom =
 			Math.ceil(window.innerHeight + window.scrollY) >=
 			document.documentElement.scrollHeight;
-		if (bottom) {
+		if (bottom && hasMoreComments) {
 			fetchMore({
 				variables: {
-					offset: data?.comments.length
+					offset: data?.comments?.length
 				}
 			});
 		}
 	};
-
-	const hasComments = data?.comments?.length ?? 0;
 
 	if (loading) return <Loading small />;
 
