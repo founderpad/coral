@@ -9,7 +9,8 @@ import {
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
-import React, { useCallback, useContext, useState } from 'react';
+import useIdea from '@pages/idea/query/ideaQuery';
+import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 
 const PostReplyComment = ({
@@ -22,14 +23,14 @@ const PostReplyComment = ({
 	const [showReplyField, setShowReplyField] = useState(false);
 	const [value, setValue] = useState('');
 	const user = useCurrentUser();
-	const { data } = useContext(IdeaContext);
+	const { idea } = useIdea() ?? {};
 
 	const [postReplyMutation] = usePostReplyMutation({
 		variables: {
 			ideaReply: {
 				commentId: commentId,
 				targetUserId: commentUserId,
-				ideaId: data?.idea?.id,
+				ideaId: idea?.id,
 				value
 			},
 			commentId
@@ -48,7 +49,7 @@ const PostReplyComment = ({
 				action: 'Post reply',
 				params: {
 					reply: value,
-					idea_id: data?.idea?.id,
+					idea_id: idea?.id,
 					comment_id: commentId,
 					to_user_id: commentUserId,
 					from_user_id: user.id,

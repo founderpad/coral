@@ -9,7 +9,7 @@ import EditIdeaForm from './EditIdeaForm';
 
 export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 	// const [deleteIdea] = useDeleteIdea(ideaId);
-	// const idea = useIdeaFragment();
+	// const idea = useIdea();
 	const [deleteIdeaMutation] = useDeleteIdeaMutation({
 		variables: {
 			id: ideaId

@@ -34,7 +34,7 @@ export const useQueryParam = (param: string) =>
 export const usePathMatch = (value: string): boolean =>
 	value.includes(useRouter().pathname);
 
-export const useMobile = () => useBreakpointValue({ base: true, md: false });
+// export const useMobile = () => useBreakpointValue({ base: true, md: false });
 
 export const useScrollToBottom = (_data?: any) => {
 	const ref = useRef<null | HTMLElement>(null);

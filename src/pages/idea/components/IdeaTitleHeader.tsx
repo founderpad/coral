@@ -2,14 +2,14 @@ import { PrimaryButton } from '@components/buttons';
 import { SubheadingText } from '@components/heading';
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { PointSeparator } from '@components/shared';
-import IdeaContext from '@context/idea/IdeaContext';
 import {
 	TIdeas,
 	TIdea_Preview,
 	TIdea_Votes,
 	TIdea_Votes_Aggregate
 } from '@generated/api';
-import React, { memo, useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import useIdea, { useIdeaFragment } from '../query/ideaQuery';
 import IdeaUpvote from './IdeaUpvote';
 import InterestedTotal from './InterestedTotal';
 import PublishedLabel from './PublishedLabel';
@@ -19,27 +19,8 @@ type TIdeaUpvote = Pick<
 	'votes' | 'votes_aggregate' | 'id' | 'name'
 >;
 
-export const IdeaTitleHeader = memo(() => {
+export const IdeaTitleHeader = () => {
 	const [showComments, setShowComments] = useState(false);
-	const {
-		data: { idea }
-	} = useContext(IdeaContext);
-
-	const {
-		isPublished,
-		totalInterested = 0,
-		id,
-		name,
-		votes,
-		votes_aggregate
-	} = idea ?? {};
-
-	const ideaUpvote: TIdeaUpvote = {
-		id,
-		name,
-		votes: votes as TIdea_Votes[],
-		votes_aggregate: votes_aggregate as TIdea_Votes_Aggregate
-	};
 
 	const onShowCommentsClick = useCallback(() => {
 		setShowComments(!showComments);
@@ -51,26 +32,9 @@ export const IdeaTitleHeader = memo(() => {
 
 	return (
 		<FlexLayout wordBreak={'break-all'} flexDirection={'column'}>
-			<SubheadingText>{name}</SubheadingText>
+			<IdeaName />
 			<FlexLayout justifyContent={'space-between'} alignItems={'center'}>
-				<StackLayout
-					direction={'row'}
-					spacing={1}
-					pt={2}
-					alignItems={'center'}
-				>
-					{isPublished && (
-						<PublishedLabel isPublished={isPublished} />
-					)}
-					{totalInterested > 0 && (
-						<React.Fragment>
-							<PointSeparator small />
-							<InterestedTotal total={totalInterested} />
-						</React.Fragment>
-					)}
-					<PointSeparator small />
-					{idea && <IdeaUpvote {...ideaUpvote} />}
-				</StackLayout>
+				<IdeaActions />
 
 				<PrimaryButton
 					name={'show-comments'}
@@ -84,6 +48,45 @@ export const IdeaTitleHeader = memo(() => {
 			</FlexLayout>
 		</FlexLayout>
 	);
-});
+};
+
+const IdeaName = () => {
+	const { name } = useIdeaFragment();
+	return <SubheadingText>{name}</SubheadingText>;
+};
+
+const IdeaActions = () => {
+	const { idea } = useIdea() ?? {};
+	const {
+		interested_aggregate,
+		isPublished = true,
+		id,
+		name,
+		votes,
+		votes_aggregate
+	} = idea ?? {};
+	const totalInterested = interested_aggregate?.aggregate?.count ?? 0;
+
+	const ideaUpvote: TIdeaUpvote = {
+		id,
+		name,
+		votes: votes as TIdea_Votes[],
+		votes_aggregate: votes_aggregate as TIdea_Votes_Aggregate // need to make these fragments to use types!
+	};
+	return (
+		<StackLayout direction={'row'} spacing={1} pt={2} alignItems={'center'}>
+			<PublishedLabel isPublished={isPublished} />
+
+			{totalInterested > 0 && (
+				<React.Fragment>
+					<PointSeparator small />
+					<InterestedTotal total={totalInterested} />
+				</React.Fragment>
+			)}
+			<PointSeparator small />
+			<IdeaUpvote {...ideaUpvote} />
+		</StackLayout>
+	);
+};
 
 export default IdeaTitleHeader;

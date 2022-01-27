@@ -59,7 +59,11 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
 					<NhostAuthProvider nhost={nhost}>
-						<NhostApolloProvider nhost={nhost} cache={cache}>
+						<NhostApolloProvider
+							nhost={nhost}
+							cache={cache}
+							connectToDevTools={true}
+						>
 							<ChakraProvider theme={theme} resetCSS>
 								<NotificationProvider>
 									<ModalProvider>
@@ -84,6 +88,9 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 const cache = new InMemoryCache({
 	// addTypename: false,
 	typePolicies: {
+		interested_ideas: {
+			keyFields: ['ideaId']
+		},
 		Query: {
 			fields: {
 				// resourceCollection: {

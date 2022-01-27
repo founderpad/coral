@@ -1,21 +1,15 @@
-import Icon from '@chakra-ui/icon';
 import { PrimaryButton } from '@components/buttons';
-import { IoStarSharp } from '@components/icons';
 import { Label } from '@components/labels';
-import IdeaContext from '@context/idea/IdeaContext';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useCreateInterestedIdeaMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import React, { useContext, useState } from 'react';
+import useIdea from '../query/ideaQuery';
 
 export const InterestedIdea = () => {
 	const auth = useCurrentUser();
-	const {
-		data,
-		data: { idea }
-	} = useContext(IdeaContext);
-	const { hasInterest } = data;
+	const { idea, hasInterest } = useIdea();
 	const { id, userId } = idea ?? {};
 	const [interested, setInterested] = useState(!!hasInterest?.id);
 	const { setModalDrawer } = useContext(ModalDrawerContext);
@@ -59,7 +53,7 @@ export const InterestedIdea = () => {
 		});
 	};
 
-	if (auth?.id === userId) return null;
+	// if (auth?.id === userId) return null;
 
 	if (interested)
 		return (
@@ -77,9 +71,11 @@ export const InterestedIdea = () => {
 			position={'relative'}
 			w={'fit-content'}
 			size={'lg'}
-			fontSize={'small'}
+			fontSize={'xs'}
+			py={2}
+			px={4}
 		>
-			<Icon
+			{/* <Icon
 				as={IoStarSharp}
 				position={'absolute'}
 				color={'gold'}
@@ -87,7 +83,7 @@ export const InterestedIdea = () => {
 				top={0}
 				fontSize={'large'}
 				transform={'translateY(-50%)translateX(50%)'}
-			/>
+			/> */}
 			I&apos;m Interested
 		</PrimaryButton>
 	);

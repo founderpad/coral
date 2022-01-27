@@ -9,15 +9,14 @@ import { useSuccessNotification } from '@hooks/toast';
 import { ideasStatusList, industriesList } from '@utils/Constants';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import useIdeaFragment from '../fragments/IdeaFragment';
+import { useIdeaFragment } from '../query/ideaQuery';
 
 export const EditIdeaForm = () => {
 	const idea = useIdeaFragment();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, id, userId, user, votes, ...rest } = idea;
+	const { __typename, id, ...rest } = idea;
 
 	const {
 		handleSubmit,

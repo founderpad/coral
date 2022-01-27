@@ -7,7 +7,6 @@ import { TextareaField } from '@components/input/TextareaField';
 import { AppDivider } from '@components/shared';
 import {
 	TCreateIdeaMutation,
-	TIdeas,
 	TIdeas_Insert_Input,
 	useCreateIdeaMutation
 } from '@generated/api';
@@ -20,7 +19,7 @@ import { useForm } from 'react-hook-form';
 
 type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'comments'>;
 
-const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
+const CreateIdeaForm = () => {
 	const user = useCurrentUser();
 	const {
 		handleSubmit,
@@ -30,7 +29,6 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 	} = useForm<TEditIdea>({
 		mode: 'all',
 		defaultValues: {
-			...idea,
 			isPublished: true
 		}
 	});
@@ -161,9 +159,10 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 				defaultChecked={true}
 				control={control}
 			/>
+
 			<SubmitButton
 				name={'create-idea-button'}
-				label={(idea ? 'Update your ' : 'Create your ') + 'idea'}
+				label={'Create your idea'}
 				alignSelf={'center'}
 				isLoading={isSubmitting}
 				disabled={!isValid || isSubmitting}
@@ -175,4 +174,4 @@ const CreateEditIdeaForm = ({ idea }: { idea?: TIdeas }) => {
 	);
 };
 
-export default CreateEditIdeaForm;
+export default CreateIdeaForm;

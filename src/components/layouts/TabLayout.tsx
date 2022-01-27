@@ -16,10 +16,10 @@ type Props = Omit<TabsProps, 'children'> & {
 	children: JSX.Element[];
 };
 
-type TabProps = {
+interface TabProps {
 	label: string;
 	icon?: IconType;
-};
+}
 
 const TabLayout = (props: Props) => {
 	const { tabs, children, ...rest } = props;

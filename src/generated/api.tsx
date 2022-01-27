@@ -1504,6 +1504,10 @@ export type TIdeas = {
   description: Scalars['String'];
   field: Scalars['String'];
   id: Scalars['uuid'];
+  /** An array relationship */
+  interested: Array<TInterested_Ideas>;
+  /** An aggregate relationship */
+  interested_aggregate: TInterested_Ideas_Aggregate;
   isPublished: Scalars['Boolean'];
   name: Scalars['String'];
   status?: Maybe<Scalars['String']>;
@@ -1551,6 +1555,38 @@ export type TIdeasComments_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<TIdea_Comments_Order_By>>;
   where?: InputMaybe<TIdea_Comments_Bool_Exp>;
+};
+
+
+/**
+ * The ideas created by all users
+ *
+ *
+ * columns and relationships of "ideas"
+ *
+ */
+export type TIdeasInterestedArgs = {
+  distinct_on?: InputMaybe<Array<TInterested_Ideas_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TInterested_Ideas_Order_By>>;
+  where?: InputMaybe<TInterested_Ideas_Bool_Exp>;
+};
+
+
+/**
+ * The ideas created by all users
+ *
+ *
+ * columns and relationships of "ideas"
+ *
+ */
+export type TIdeasInterested_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TInterested_Ideas_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TInterested_Ideas_Order_By>>;
+  where?: InputMaybe<TInterested_Ideas_Bool_Exp>;
 };
 
 
@@ -1658,6 +1694,7 @@ export type TIdeas_Bool_Exp = {
   description?: InputMaybe<TString_Comparison_Exp>;
   field?: InputMaybe<TString_Comparison_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
+  interested?: InputMaybe<TInterested_Ideas_Bool_Exp>;
   isPublished?: InputMaybe<TBoolean_Comparison_Exp>;
   name?: InputMaybe<TString_Comparison_Exp>;
   status?: InputMaybe<TString_Comparison_Exp>;
@@ -1691,6 +1728,7 @@ export type TIdeas_Insert_Input = {
   competitors?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   field?: InputMaybe<Scalars['String']>;
+  interested?: InputMaybe<TInterested_Ideas_Arr_Rel_Insert_Input>;
   isPublished?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<Scalars['String']>;
@@ -1809,6 +1847,7 @@ export type TIdeas_Order_By = {
   description?: InputMaybe<TOrder_By>;
   field?: InputMaybe<TOrder_By>;
   id?: InputMaybe<TOrder_By>;
+  interested_aggregate?: InputMaybe<TInterested_Ideas_Aggregate_Order_By>;
   isPublished?: InputMaybe<TOrder_By>;
   name?: InputMaybe<TOrder_By>;
   status?: InputMaybe<TOrder_By>;
@@ -2049,6 +2088,18 @@ export type TInterested_Ideas_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "interested_ideas" */
+export type TInterested_Ideas_Aggregate_Order_By = {
+  count?: InputMaybe<TOrder_By>;
+  max?: InputMaybe<TInterested_Ideas_Max_Order_By>;
+  min?: InputMaybe<TInterested_Ideas_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "interested_ideas" */
+export type TInterested_Ideas_Arr_Rel_Insert_Input = {
+  data: Array<TInterested_Ideas_Insert_Input>;
+};
+
 /** Boolean expression to filter rows from the table "interested_ideas". All fields are combined with a logical 'AND'. */
 export type TInterested_Ideas_Bool_Exp = {
   _and?: InputMaybe<Array<TInterested_Ideas_Bool_Exp>>;
@@ -2076,6 +2127,14 @@ export type TInterested_Ideas_Max_Fields = {
   userId?: Maybe<Scalars['uuid']>;
 };
 
+/** order by max() on columns of table "interested_ideas" */
+export type TInterested_Ideas_Max_Order_By = {
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  ideaId?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
+};
+
 /** aggregate min on columns */
 export type TInterested_Ideas_Min_Fields = {
   __typename?: 'interested_ideas_min_fields';
@@ -2083,6 +2142,14 @@ export type TInterested_Ideas_Min_Fields = {
   id?: Maybe<Scalars['uuid']>;
   ideaId?: Maybe<Scalars['uuid']>;
   userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "interested_ideas" */
+export type TInterested_Ideas_Min_Order_By = {
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  ideaId?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
 };
 
 /** response of any mutation on the table "interested_ideas" */
@@ -4212,9 +4279,9 @@ export type TFollowUserMutationVariables = Exact<{
 
 export type TFollowUserMutation = { insert_user_followers_one?: { __typename?: 'user_followers', followingId: any, followerId: any } | null | undefined };
 
-export type TUserFieldFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined };
+export type TUserFieldsFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined };
 
-export type TUsersFieldWithEmailFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined };
+export type TUserFieldsWithEmailFragment = { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined };
 
 export type TUserAddressFragment = { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined };
 
@@ -4246,7 +4313,7 @@ export type TCreateInterestedIdeaMutationVariables = Exact<{
 }>;
 
 
-export type TCreateInterestedIdeaMutation = { insert_interested_ideas_one?: { __typename?: 'interested_ideas', ideaId: any } | null | undefined, update_ideas_by_pk?: { __typename?: 'ideas', id: any } | null | undefined };
+export type TCreateInterestedIdeaMutation = { addInterestedIdea?: { __typename?: 'interested_ideas', ideaId: any } | null | undefined };
 
 export type TIdeasQueryVariables = Exact<{
   where?: InputMaybe<TIdea_Preview_Bool_Exp>;
@@ -4257,9 +4324,9 @@ export type TIdeasQueryVariables = Exact<{
 }>;
 
 
-export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user_id?: any | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
+export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user_id?: any | null | undefined, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
 
-export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user_id?: any | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
+export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user_id?: any | null | undefined, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
 
 export type TUserIdeasQueryVariables = Exact<{
   userId: Scalars['uuid'];
@@ -4268,20 +4335,24 @@ export type TUserIdeasQueryVariables = Exact<{
 
 export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'ideas', id: any, name: string, createdAt: any, isPublished: boolean, totalInterested: number, totalVotes: number, totalComments: number }> };
 
+export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
+
 export type TIdeaQueryVariables = Exact<{
   id: Scalars['uuid'];
   userId: Scalars['uuid'];
 }>;
 
 
-export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any } | null | undefined };
+export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined } } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null | undefined };
+
+export type TInterestedIdeaFieldsFragment = { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any };
 
 export type TIdeaInterestedUsersQueryVariables = Exact<{
   ideaId: Scalars['uuid'];
 }>;
 
 
-export type TIdeaInterestedUsersQuery = { interested_users: Array<{ __typename?: 'interested_ideas', id: any, createdAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, email?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TIdeaInterestedUsersQuery = { interested_users: Array<{ __typename?: 'interested_ideas', id: any, createdAt: any, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
 
 export type TInsertIdeaUpvoteMutationVariables = Exact<{
   idea_vote: TIdea_Votes_Insert_Input;
@@ -4324,7 +4395,7 @@ export type TUserQueryVariables = Exact<{
 }>;
 
 
-export type TUserQuery = { user?: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, createdAt: any, email?: any | null | undefined, lastSeen?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined, profile?: { __typename?: 'user_profile', id: any, isComplete: boolean } | null | undefined } | null | undefined };
+export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null | undefined, email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', id: any, isComplete: boolean } | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type TUsersQueryVariables = Exact<{
   where?: InputMaybe<TUser_Profile_Bool_Exp>;
@@ -4390,8 +4461,8 @@ export const UserAddressFragmentDoc = gql`
   country
 }
     `;
-export const UserFieldFragmentDoc = gql`
-    fragment UserField on users {
+export const UserFieldsFragmentDoc = gql`
+    fragment UserFields on users {
   displayName
   id
   avatarUrl
@@ -4400,17 +4471,12 @@ export const UserFieldFragmentDoc = gql`
   }
 }
     ${UserAddressFragmentDoc}`;
-export const UsersFieldWithEmailFragmentDoc = gql`
-    fragment UsersFieldWithEmail on users {
-  displayName
-  id
-  avatarUrl
+export const UserFieldsWithEmailFragmentDoc = gql`
+    fragment UserFieldsWithEmail on users {
+  ...UserFields
   email
-  address {
-    ...UserAddress
-  }
 }
-    ${UserAddressFragmentDoc}`;
+    ${UserFieldsFragmentDoc}`;
 export const IdeaPreviewFieldsFragmentDoc = gql`
     fragment IdeaPreviewFields on idea_preview {
   id
@@ -4424,7 +4490,7 @@ export const IdeaPreviewFieldsFragmentDoc = gql`
   total_comments
   user_id
   user {
-    ...UsersFieldWithEmail
+    ...UserFieldsWithEmail
   }
   votes_aggregate {
     aggregate {
@@ -4440,7 +4506,32 @@ export const IdeaPreviewFieldsFragmentDoc = gql`
     id
   }
 }
-    ${UsersFieldWithEmailFragmentDoc}`;
+    ${UserFieldsWithEmailFragmentDoc}`;
+export const IdeaFieldsFragmentDoc = gql`
+    fragment IdeaFields on ideas {
+  id
+  name
+  description
+  field
+  competitors
+  team
+  additionalInformation
+  isPublished
+  userId
+  status
+  createdAt
+  totalInterested
+  totalComments
+  totalVotes
+}
+    `;
+export const InterestedIdeaFieldsFragmentDoc = gql`
+    fragment InterestedIdeaFields on interested_ideas {
+  id
+  ideaId
+  userId
+}
+    `;
 export const UserActivityDocument = gql`
     query UserActivity($userId: uuid!) {
   activity(where: {userId: {_eq: $userId}}) {
@@ -4823,13 +4914,10 @@ export type DeleteIdeaMutationResult = Apollo.MutationResult<TDeleteIdeaMutation
 export type DeleteIdeaMutationOptions = Apollo.BaseMutationOptions<TDeleteIdeaMutation, TDeleteIdeaMutationVariables>;
 export const CreateInterestedIdeaDocument = gql`
     mutation CreateInterestedIdea($ideaId: uuid!, $targetUserId: uuid!) {
-  insert_interested_ideas_one(
+  addInterestedIdea: insert_interested_ideas_one(
     object: {ideaId: $ideaId, targetUserId: $targetUserId}
   ) {
     ideaId
-  }
-  update_ideas_by_pk(pk_columns: {id: $ideaId}, _inc: {totalInterested: 1}) {
-    id
   }
 }
     `;
@@ -4954,22 +5042,9 @@ export function refetchUserIdeasQuery(variables: TUserIdeasQueryVariables) {
 export const IdeaDocument = gql`
     query Idea($id: uuid!, $userId: uuid!) {
   idea: ideas_by_pk(id: $id) {
-    id
-    name
-    description
-    field
-    competitors
-    team
-    additionalInformation
-    isPublished
-    userId
-    status
-    createdAt
-    totalInterested
-    totalComments
-    totalVotes
+    ...IdeaFields
     user {
-      ...UserField
+      ...UserFieldsWithEmail
     }
     votes_aggregate {
       aggregate {
@@ -4979,12 +5054,19 @@ export const IdeaDocument = gql`
     votes(where: {userId: {_eq: $userId}}) {
       id
     }
+    interested_aggregate {
+      aggregate {
+        count(columns: id)
+      }
+    }
   }
   hasInterest: interested_ideas_by_pk(ideaId: $id, userId: $userId) {
-    id
+    ...InterestedIdeaFields
   }
 }
-    ${UserFieldFragmentDoc}`;
+    ${IdeaFieldsFragmentDoc}
+${UserFieldsWithEmailFragmentDoc}
+${InterestedIdeaFieldsFragmentDoc}`;
 
 /**
  * __useIdeaQuery__
@@ -5026,11 +5108,11 @@ export const IdeaInterestedUsersDocument = gql`
     id
     createdAt
     user {
-      ...UsersFieldWithEmail
+      ...UserFieldsWithEmail
     }
   }
 }
-    ${UsersFieldWithEmailFragmentDoc}`;
+    ${UserFieldsWithEmailFragmentDoc}`;
 
 /**
  * __useIdeaInterestedUsersQuery__
@@ -5257,23 +5339,16 @@ export function refetchUserProfileDetailsQuery(variables: TUserProfileDetailsQue
 export const UserDocument = gql`
     query User($userId: uuid!) {
   user(id: $userId) {
-    id
-    displayName
-    avatarUrl
+    ...UserFieldsWithEmail
     createdAt
-    email
     lastSeen
-    address {
-      location
-      country
-    }
     profile {
       id
       isComplete
     }
   }
 }
-    `;
+    ${UserFieldsWithEmailFragmentDoc}`;
 
 /**
  * __useUserQuery__
@@ -5860,10 +5935,14 @@ export type TResolversTypes = {
   interested_ideas: ResolverTypeWrapper<TInterested_Ideas>;
   interested_ideas_aggregate: ResolverTypeWrapper<TInterested_Ideas_Aggregate>;
   interested_ideas_aggregate_fields: ResolverTypeWrapper<TInterested_Ideas_Aggregate_Fields>;
+  interested_ideas_aggregate_order_by: TInterested_Ideas_Aggregate_Order_By;
+  interested_ideas_arr_rel_insert_input: TInterested_Ideas_Arr_Rel_Insert_Input;
   interested_ideas_bool_exp: TInterested_Ideas_Bool_Exp;
   interested_ideas_insert_input: TInterested_Ideas_Insert_Input;
   interested_ideas_max_fields: ResolverTypeWrapper<TInterested_Ideas_Max_Fields>;
+  interested_ideas_max_order_by: TInterested_Ideas_Max_Order_By;
   interested_ideas_min_fields: ResolverTypeWrapper<TInterested_Ideas_Min_Fields>;
+  interested_ideas_min_order_by: TInterested_Ideas_Min_Order_By;
   interested_ideas_mutation_response: ResolverTypeWrapper<TInterested_Ideas_Mutation_Response>;
   interested_ideas_order_by: TInterested_Ideas_Order_By;
   interested_ideas_select_column: TInterested_Ideas_Select_Column;
@@ -6093,10 +6172,14 @@ export type TResolversParentTypes = {
   interested_ideas: TInterested_Ideas;
   interested_ideas_aggregate: TInterested_Ideas_Aggregate;
   interested_ideas_aggregate_fields: TInterested_Ideas_Aggregate_Fields;
+  interested_ideas_aggregate_order_by: TInterested_Ideas_Aggregate_Order_By;
+  interested_ideas_arr_rel_insert_input: TInterested_Ideas_Arr_Rel_Insert_Input;
   interested_ideas_bool_exp: TInterested_Ideas_Bool_Exp;
   interested_ideas_insert_input: TInterested_Ideas_Insert_Input;
   interested_ideas_max_fields: TInterested_Ideas_Max_Fields;
+  interested_ideas_max_order_by: TInterested_Ideas_Max_Order_By;
   interested_ideas_min_fields: TInterested_Ideas_Min_Fields;
+  interested_ideas_min_order_by: TInterested_Ideas_Min_Order_By;
   interested_ideas_mutation_response: TInterested_Ideas_Mutation_Response;
   interested_ideas_order_by: TInterested_Ideas_Order_By;
   jsonb: Scalars['jsonb'];
@@ -6621,6 +6704,8 @@ export type TIdeasResolvers<ContextType = any, ParentType extends TResolversPare
   description?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   field?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  interested?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TIdeasInterestedArgs, never>>;
+  interested_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, RequireFields<TIdeasInterested_AggregateArgs, never>>;
   isPublished?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   name?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
