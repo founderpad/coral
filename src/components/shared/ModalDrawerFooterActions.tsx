@@ -10,7 +10,7 @@ export const ModalDrawerFooterActions = memo(
 	}: {
 		children: React.ReactNode;
 		noBtnLabel?: string;
-	}): JSX.Element => {
+	}) => {
 		const { setModalDrawer } = useContext(ModalDrawerContext);
 
 		const onClose = () => {

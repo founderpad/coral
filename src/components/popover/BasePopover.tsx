@@ -9,8 +9,9 @@ import React from 'react';
 
 type Props = PopoverProps & { triggerEl: React.ReactNode };
 
-export const BasePopover = (props: Props): JSX.Element => {
+export const BasePopover = (props: Props) => {
 	const { children, trigger, triggerEl } = props;
+	const bg = useColorModeValue('white', 'gray.500');
 
 	return (
 		<Popover
@@ -26,7 +27,7 @@ export const BasePopover = (props: Props): JSX.Element => {
 					border={0}
 					borderWidth={1}
 					boxShadow={'xl'}
-					bg={useColorModeValue('white', 'gray.500')}
+					bg={bg}
 					p={6}
 					minWidth={'400px'}
 				>

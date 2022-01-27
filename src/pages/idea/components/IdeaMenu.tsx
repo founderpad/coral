@@ -28,7 +28,7 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 			yesBtnLabel: 'Delete idea',
 			yesBtnColor: 'red'
 		});
-	}, []);
+	}, [deleteIdeaMutation, setModalDrawer]);
 
 	const onEditClick = useCallback(() => {
 		setModalDrawer({
@@ -46,7 +46,7 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 			hideFooter: true,
 			size: '2xl'
 		});
-	}, []);
+	}, [setModalDrawer]);
 
 	return (
 		<BaseMenu>

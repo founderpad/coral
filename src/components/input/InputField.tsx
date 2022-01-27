@@ -13,7 +13,7 @@ import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'src/types/fields';
 
 export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
-	(props, ref): JSX.Element => {
+	(props, ref) => {
 		const { errorText, helperText, error, ...rest } = props;
 		const {
 			placeholder,
@@ -74,14 +74,14 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 	}
 );
 
-// const InputFieldLabel = ({ label }: { label: string }): JSX.Element => (
+// const InputFieldLabel = ({ label }: { label: string }):  => (
 // 	<FormLabel as="label" fontSize={'sm'} mb={'1px'} color={'black'}>
 // 		{label}
 // 	</FormLabel>
 // );
 
 // const InputFieldWithLabel = forwardRef<IInputFieldProps<any>, 'input'>(
-// 	(props, _ref): JSX.Element => (
+// 	(props, _ref):  => (
 // 		<InputFieldLabel {...props}>
 // 			<InputField {...props} />
 // 		</InputFieldLabel>
@@ -91,7 +91,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 export const InputFieldWithLabelAndIcon = forwardRef<
 	IInputFieldProps<any>,
 	'input'
->((props, _ref): JSX.Element => {
+>((props, ref) => {
 	const { leftEl, rightEl } = props;
 	return (
 		// <InputFieldLabel {...props}>
@@ -105,7 +105,7 @@ export const InputFieldWithLabelAndIcon = forwardRef<
 					{leftEl}
 				</InputLeftAddon>
 			)}
-			<InputField {...props} />
+			<InputField {...props} ref={ref} />
 			{rightEl && (
 				<InputLeftAddon bg={'transparent'}>{rightEl}</InputLeftAddon>
 			)}
@@ -115,7 +115,7 @@ export const InputFieldWithLabelAndIcon = forwardRef<
 });
 
 export const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
-	(props, ref): JSX.Element => (
+	(props, ref) => (
 		<InputField
 			{...props}
 			id={`${props.name}-email`}
@@ -130,7 +130,7 @@ export const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
 );
 
 export const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
-	(props, ref): JSX.Element => (
+	(props, ref) => (
 		<InputField
 			{...props}
 			id={`${props.name}-password`}

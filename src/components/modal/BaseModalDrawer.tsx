@@ -12,11 +12,7 @@ import Modal from '.';
  *
  * @author jlee
  */
-const BaseModalDrawer = ({
-	...rest
-}: {
-	children?: React.ReactNode;
-}): JSX.Element => {
+const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 	const isModal = useBreakpointValue({ base: false, sm: true });
 
 	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);

@@ -5,12 +5,18 @@ import { StackLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import BasePopover from '@components/popover/BasePopover';
 import useUserProfile from '@hooks/user';
-import { usePathMatch } from '@hooks/util';
+import { useRouter } from 'next/router';
 import React, { memo } from 'react';
 import NavItems from './NavItems';
 import { SubNav } from './SubNav';
 
 const DesktopNav = memo(() => {
+	const isProfileComplete = useUserProfile()?.isComplete;
+	const router = useRouter();
+
+	const getCurrentPath = (href: string) =>
+		href.includes(router.pathname) ?? '';
+
 	return (
 		<StackLayout
 			direction={'row'}
@@ -30,13 +36,13 @@ const DesktopNav = memo(() => {
 							href={navItem.href ?? '#'}
 							fontSize={'xs'}
 							fontWeight={
-								usePathMatch(navItem.href ?? '')
+								getCurrentPath(navItem.href ?? '')
 									? 'medium'
 									: 'normal'
 							}
 							alignItems={'center'}
 							color={
-								usePathMatch(navItem.href ?? '')
+								getCurrentPath(navItem.href ?? '')
 									? 'gray.900'
 									: 'gray.500'
 							}
@@ -65,7 +71,7 @@ const DesktopNav = memo(() => {
 					)}
 				</BasePopover>
 			))}
-			{!useUserProfile()?.isComplete && <ProfileNotSet />}
+			{!isProfileComplete && <ProfileNotSet />}
 		</StackLayout>
 	);
 });

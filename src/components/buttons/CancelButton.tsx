@@ -5,7 +5,7 @@ import { BaseButton } from '.';
 export const CancelButton = ({
 	label,
 	...props
-}: ButtonProps & { label: string; form?: string }): JSX.Element => {
+}: ButtonProps & { label: string; form?: string }) => {
 	return (
 		<BaseButton
 			{...props}

@@ -13,7 +13,7 @@ interface Props {
 	subheader?: string;
 }
 
-const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
+const AuthLayout = ({ header, children, title }: Props) => (
 	<React.Fragment>
 		<DocumentTitle title={title} />
 		<StackLayout

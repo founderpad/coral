@@ -28,7 +28,7 @@ export const PointSeparator = ({
 	</Box>
 );
 
-export const LineSeparator = (props?: DividerProps): JSX.Element => (
+export const LineSeparator = (props?: DividerProps) => (
 	// <Box {...props} as={'hr'} />
 	<Divider {...props} orientation={'vertical'} />
 );

@@ -40,7 +40,7 @@ export const Drawer = ({
 	hideFooter,
 	removePadding,
 	actions
-}: IModalProps): JSX.Element => {
+}: IModalProps) => {
 	return (
 		<ChakraDrawer
 			isOpen={isOpen}

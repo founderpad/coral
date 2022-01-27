@@ -13,7 +13,7 @@ export const BaseTag = ({
 	children,
 	flexDirection,
 	...rest
-}: TBaseTag): JSX.Element => (
+}: TBaseTag) => (
 	<Tag
 		background={bg}
 		borderWidth={1}

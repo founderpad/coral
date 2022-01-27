@@ -2,7 +2,6 @@ import { ButtonGroup } from '@chakra-ui/button';
 import { Textarea } from '@chakra-ui/textarea';
 import { CancelButton, PrimaryButton } from '@components/buttons';
 import { FlexLayout, StackLayout } from '@components/layouts';
-import IdeaContext from '@context/idea/IdeaContext';
 import {
 	RepliesForCommentDocument,
 	usePostReplyMutation
@@ -69,7 +68,7 @@ const PostReplyComment = ({
 		(e: React.ChangeEvent<HTMLTextAreaElement>) => {
 			setValue(e.target.value);
 		},
-		[value]
+		[]
 	);
 
 	return (

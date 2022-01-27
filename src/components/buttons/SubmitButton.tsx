@@ -5,7 +5,7 @@ import { BaseButtonProps } from './types/buttons';
 export const SubmitButton = ({
 	label = 'Submit',
 	...props
-}: BaseButtonProps & { form?: string; label?: string }): JSX.Element => {
+}: BaseButtonProps & { form?: string; label?: string }) => {
 	const { colorScheme, full, isLoading } = props;
 
 	return (

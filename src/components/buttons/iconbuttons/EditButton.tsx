@@ -4,7 +4,7 @@ import React from 'react';
 
 type Props = IconButtonProps & { htmlFor?: string };
 
-export const EditButton = (props: Props): JSX.Element => (
+export const EditButton = (props: Props) => (
 	<IconButton
 		{...props}
 		aria-label={'Edit'}

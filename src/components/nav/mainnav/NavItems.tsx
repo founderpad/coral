@@ -7,6 +7,7 @@ import {
 	IoSearchSharp
 } from '@components/icons';
 import { IconType } from 'react-icons/lib';
+import React from 'react';
 
 export interface NavItem {
 	label: string | React.ReactNode;

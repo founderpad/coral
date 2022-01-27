@@ -8,7 +8,7 @@ import React from 'react';
 
 type TProps = Pick<TIdeaPreviewFieldsFragment, 'user' | 'created_at'>;
 
-export const PostedBy = ({ user, created_at }: TProps): JSX.Element => (
+export const PostedBy = ({ user, created_at }: TProps) => (
 	<FlexLayout
 		position={'relative'}
 		alignItems={'center'}

@@ -4,7 +4,7 @@ import ModalDrawerContext from '@context/ModalDrawerContext';
 import React, { useContext } from 'react';
 import IdeasSearchForm from './IdeasSearchForm';
 
-const MobileFilterMenu = (): JSX.Element => {
+const MobileFilterMenu = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const onClick = () => {

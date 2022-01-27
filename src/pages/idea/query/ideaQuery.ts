@@ -5,8 +5,10 @@ import { cache } from '@pages/_app';
 import gql from 'graphql-tag';
 
 export const useIdeaFragment = (id?: string) => {
+	const paramIdeaId = useQueryParam('id');
+	const ideaId = id ?? paramIdeaId;
 	const ideaFragment = cache.readFragment({
-		id: `ideas:${id ?? useQueryParam('id')}`, // The value of the idea's cache id
+		id: `ideas:${ideaId}`, // The value of the idea's cache id
 		fragment: gql`
 			fragment idea on ideas {
 				id
@@ -59,11 +61,15 @@ const useIdea = (id?: string) => {
 
 	// })
 
+	const paramIdeaId = useQueryParam('id');
+	const ideaId = id ?? paramIdeaId;
+	const userId = useCurrentUser().id;
+
 	const data = cache.readQuery({
 		query: IdeaDocument,
 		variables: {
-			id: id ?? useQueryParam('id'),
-			userId: useCurrentUser().id
+			id: ideaId,
+			userId
 		}
 	}) as TIdeaQuery;
 

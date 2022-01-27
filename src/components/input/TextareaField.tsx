@@ -36,10 +36,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 			>
 				{label && <FormLabelText label={label} />}
 				<Controller
-					render={({
-						field: { onChange, value },
-						fieldState: { error: _error }
-					}) => (
+					render={({ field: { onChange, value } }) => (
 						<Textarea
 							placeholder={placeholder}
 							ref={ref}

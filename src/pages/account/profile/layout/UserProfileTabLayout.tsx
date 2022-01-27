@@ -5,27 +5,33 @@ import UserActivityTab from '../components/UserActivityTab';
 import UserPersonalDetails from '../components/UserPersonalDetails';
 import WorkExperienceTab from '../components/WorkExperienceTab';
 
-const UserProfileTabLayout = (): JSX.Element => (
-	<React.Fragment>
-		{useBreakpointValue({ base: true, md: false }) ? (
-			<TabLayout
-				tabs={[
-					{ label: 'About' },
-					{ label: 'Experience' },
-					{ label: 'Activity' }
-				]}
-			>
-				<UserPersonalDetails />
-				<WorkExperienceTab />
-				<UserActivityTab />
-			</TabLayout>
-		) : (
-			<TabLayout tabs={[{ label: 'Experience' }, { label: 'Activity' }]}>
-				<WorkExperienceTab />
-				<UserActivityTab />
-			</TabLayout>
-		)}
-	</React.Fragment>
-);
+const UserProfileTabLayout = () => {
+	const isMobile = useBreakpointValue({ base: true, md: false });
+
+	return (
+		<React.Fragment>
+			{isMobile ? (
+				<TabLayout
+					tabs={[
+						{ label: 'About' },
+						{ label: 'Experience' },
+						{ label: 'Activity' }
+					]}
+				>
+					<UserPersonalDetails />
+					<WorkExperienceTab />
+					<UserActivityTab />
+				</TabLayout>
+			) : (
+				<TabLayout
+					tabs={[{ label: 'Experience' }, { label: 'Activity' }]}
+				>
+					<WorkExperienceTab />
+					<UserActivityTab />
+				</TabLayout>
+			)}
+		</React.Fragment>
+	);
+};
 
 export default UserProfileTabLayout;

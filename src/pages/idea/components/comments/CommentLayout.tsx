@@ -8,7 +8,7 @@ import { formatDate } from '@utils/validators';
 import React, { useContext, useEffect } from 'react';
 import CommentActions from './CommentActions';
 
-const ChatContainer = ({ children }: { children: JSX.Element[] }) => (
+const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 	<StackLayout
 		p={2}
 		boxShadow={'sm'}

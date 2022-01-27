@@ -11,7 +11,7 @@ import { useSuccessNotification } from '@hooks/toast';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
-const SocialMediaDetailsForm = (socials: TUser_Profile): JSX.Element => {
+const SocialMediaDetailsForm = (socials: TUser_Profile) => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { __typename, userId, ...rest } = socials;
 

@@ -3,7 +3,7 @@ import { Box, Flex, Heading, HStack } from '@chakra-ui/layout';
 import CustomLink from '@components/input/Links';
 import React from 'react';
 
-const MentorDesktopNav = (): JSX.Element => {
+const MentorDesktopNav = () => {
 	return (
 		<Box>
 			<Flex

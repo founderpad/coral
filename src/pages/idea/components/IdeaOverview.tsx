@@ -1,7 +1,7 @@
 import { IoBulbSharp, IoTrendingUpSharp } from '@components/icons';
 import { FlexLayout } from '@components/layouts';
 import { OverviewTag } from '@components/shared';
-import React, { memo, useContext } from 'react';
+import React from 'react';
 import useIdea from '../query/ideaQuery';
 
 export const IdeaOverview = () => {

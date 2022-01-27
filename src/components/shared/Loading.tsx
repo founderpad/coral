@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/layout';
 import { Spinner } from '@chakra-ui/spinner';
 import React from 'react';
 
-export const Loading = ({ small }: { small?: boolean }): JSX.Element => (
+export const Loading = ({ small }: { small?: boolean }) => (
 	<Flex flex={1} h={'full'} justifyContent={'center'}>
 		<Spinner
 			display={'flex'}

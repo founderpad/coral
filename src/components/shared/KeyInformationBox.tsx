@@ -19,7 +19,7 @@ const KeyInformationBox = ({
 	value: string | number;
 	icon?: IconType;
 	// direction?: StackProps['direction'];
-}): JSX.Element => (
+}) => (
 	// <StackLayout
 	// 	alignItems={'center'}
 	// 	spacing={4}

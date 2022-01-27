@@ -12,7 +12,7 @@ type Props = BoxProps & {
 	back?: boolean;
 };
 
-export const PageLayout = (props: Props): JSX.Element => {
+export const PageLayout = (props: Props) => {
 	const {
 		fixedHeader,
 		title,

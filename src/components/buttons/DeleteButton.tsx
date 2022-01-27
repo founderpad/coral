@@ -3,7 +3,7 @@ import { IoTrashSharp } from '@components/icons';
 import { BaseButton } from '.';
 import { BaseButtonProps } from './types/buttons';
 
-const DeleteButton = (props: BaseButtonProps): JSX.Element => {
+const DeleteButton = (props: BaseButtonProps) => {
 	const { variant, children } = props;
 
 	return (
@@ -20,7 +20,7 @@ const DeleteButton = (props: BaseButtonProps): JSX.Element => {
 	);
 };
 
-const DeleteMenuButton = (props: BaseButtonProps): JSX.Element => {
+const DeleteMenuButton = (props: BaseButtonProps) => {
 	return (
 		<MenuButton {...props} colorScheme={'red'}>
 			Delete
@@ -28,11 +28,7 @@ const DeleteMenuButton = (props: BaseButtonProps): JSX.Element => {
 	);
 };
 
-const DeleteIconButton = ({
-	onClick
-}: {
-	onClick: () => void;
-}): JSX.Element => (
+const DeleteIconButton = ({ onClick }: { onClick: () => void }) => (
 	<IconButton
 		onClick={onClick}
 		aria-label={'Delete'}

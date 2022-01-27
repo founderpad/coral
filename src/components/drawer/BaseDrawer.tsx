@@ -2,11 +2,7 @@ import DrawerContext from '@context/DrawerContext';
 import React, { useContext } from 'react';
 import Drawer from '.';
 
-const BaseDrawer = ({
-	...rest
-}: {
-	children?: React.ReactNode;
-}): JSX.Element => {
+const BaseDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 	const { drawer, setDrawer } = useContext(DrawerContext);
 	const {
 		isOpen,

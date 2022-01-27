@@ -8,7 +8,7 @@ import {
 	Tabs,
 	TabsProps
 } from '@chakra-ui/react';
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { IconType } from 'react-icons/lib';
 
 type Props = Omit<TabsProps, 'children'> & {
@@ -23,14 +23,10 @@ interface TabProps {
 
 const TabLayout = (props: Props) => {
 	const { tabs, children, ...rest } = props;
-	const [tabIndex, setTabIndex] = useState(0);
-
-	const onChange = useCallback((index) => setTabIndex(index), [tabIndex]);
 
 	return (
 		<Tabs
 			{...rest}
-			onChange={onChange}
 			overflow={'hidden'}
 			colorScheme={'black'}
 			px={0}

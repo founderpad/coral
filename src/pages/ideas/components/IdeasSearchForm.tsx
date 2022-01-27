@@ -17,7 +17,7 @@ type IdeaSearch = {
 	status?: string;
 };
 
-const IdeasSearchForm = (): JSX.Element => {
+const IdeasSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const { handleSubmit, control, reset } = useForm<IdeaSearch>();

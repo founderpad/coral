@@ -19,7 +19,7 @@ const ReportMenu = ({
 	title: string;
 	content: any;
 	report: TReport_Insert_Input;
-}): JSX.Element => {
+}) => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const onClick = () => {

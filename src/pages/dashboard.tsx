@@ -14,8 +14,6 @@ const Dashboard: NextPage = () => {
 			<PageLayout title={`Welcome back, ${displayName}`} />
 		</React.Fragment>
 	);
-
-	return null;
 };
 
 export default AuthFilter(Dashboard);

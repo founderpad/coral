@@ -13,6 +13,7 @@ export const FixedSubheader = memo(
 	}) => {
 		const [fixed, setIsFixed] = useState(false);
 		const DEFAULT_OFFSET = 120;
+		const isFixed = window.scrollY > DEFAULT_OFFSET;
 
 		useEffect(() => {
 			function onScroll() {
@@ -22,7 +23,7 @@ export const FixedSubheader = memo(
 			}
 
 			window.addEventListener('scroll', onScroll);
-		}, [window.scrollY > DEFAULT_OFFSET]);
+		}, [isFixed, scrollOffset]);
 
 		return (
 			<Box

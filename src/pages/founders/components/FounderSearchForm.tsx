@@ -22,7 +22,7 @@ interface ISearchFields {
 	specialist_field?: string;
 }
 
-const FounderSearchForm = (): JSX.Element => {
+const FounderSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const { handleSubmit, control, reset } = useForm<ISearchFields>();
@@ -126,28 +126,26 @@ const FounderSearchForm = (): JSX.Element => {
 			<AppDivider />
 			<FormControl>
 				<FormLabelText label={'Skills'} />
-				{EXPERIENCE_SKILLS.map(
-					(es: string): JSX.Element => (
-						<Checkbox
-							key={es}
-							name={es}
-							rounded={'none'}
-							focusBorderColor={'gray.150'}
-							value={es}
-							p={2}
-							// onChange={onSkillsToggle}
-							colorScheme={'fpPrimary'}
-							color={'fpGrey.400'}
-							size={'sm'}
-							fontSize={'xs'}
-							// isChecked={selectedSkills.includes(es)}
-						>
-							<Label color={'gray.500'} fontSize={'smaller'}>
-								{es}
-							</Label>
-						</Checkbox>
-					)
-				)}
+				{EXPERIENCE_SKILLS.map((es: string) => (
+					<Checkbox
+						key={es}
+						name={es}
+						rounded={'none'}
+						focusBorderColor={'gray.150'}
+						value={es}
+						p={2}
+						// onChange={onSkillsToggle}
+						colorScheme={'fpPrimary'}
+						color={'fpGrey.400'}
+						size={'sm'}
+						fontSize={'xs'}
+						// isChecked={selectedSkills.includes(es)}
+					>
+						<Label color={'gray.500'} fontSize={'smaller'}>
+							{es}
+						</Label>
+					</Checkbox>
+				))}
 			</FormControl>
 
 			{/* business status  */}

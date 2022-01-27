@@ -4,7 +4,13 @@ import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { FlexLayout } from '@components/layouts';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import 'cropperjs/dist/cropper.css';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+	useCallback,
+	useContext,
+	useEffect,
+	useRef,
+	useState
+} from 'react';
 import Cropper from 'react-cropper';
 
 type Props = BoxProps & {
@@ -25,49 +31,20 @@ export const ImageUploader = (props: Props) => {
 
 	const MAX_SIZE = 3145728;
 
-	useEffect(() => {
-		if (file) onOpenCropperModal();
-	}, [file]);
+	const getCropData = useCallback(async () => {
+		// setUploading(true);
+		const imageElement: any = cropperRef?.current;
+		const cropper: any = imageElement?.cropper;
+		// console.log(cropper.getCroppedCanvas().toDataURL());
 
-	const onChange = async (e: any) => {
-		e.preventDefault();
-		let files: File[] = [];
+		const res: Response = await fetch(
+			cropper.getCroppedCanvas().toDataURL()
+		);
+		const blob: Blob = await res.blob();
+		if (file) onUpload(new File([blob], file.name, { type: 'image/jpg' }));
+	}, [file, onUpload]);
 
-		try {
-			if (e.dataTransfer) {
-				files = e.dataTransfer.files;
-			} else if (e.target) {
-				files = e.target.files;
-			}
-
-			const reader = new FileReader();
-			reader.onload = () => {
-				checkValidation(reader.result as any, files[0]);
-			};
-
-			reader.onerror = (err) => {
-				console.log(err);
-			};
-
-			if (files[0]?.type.includes('image'))
-				reader.readAsDataURL(files[0]);
-		} catch (e) {
-			console.error(e);
-		}
-	};
-
-	const checkValidation = async (imageBase64: any, file: File) => {
-		const n = imageBase64.length;
-		const x = n * (3 / 4) - 1;
-		if (x > MAX_SIZE) {
-			return;
-		}
-
-		setImage(imageBase64);
-		setFile(file);
-	};
-
-	const onOpenCropperModal = () => {
+	const onOpenCropperModal = useCallback(() => {
 		setModalDrawer({
 			isOpen: true,
 			title,
@@ -116,19 +93,48 @@ export const ImageUploader = (props: Props) => {
 			hideFooter: true,
 			removePadding: true
 		});
+	}, [setModalDrawer, image, getCropData, title]);
+
+	useEffect(() => {
+		if (file) onOpenCropperModal();
+	}, [file, onOpenCropperModal]);
+
+	const onChange = async (e: any) => {
+		e.preventDefault();
+		let files: File[] = [];
+
+		try {
+			if (e.dataTransfer) {
+				files = e.dataTransfer.files;
+			} else if (e.target) {
+				files = e.target.files;
+			}
+
+			const reader = new FileReader();
+			reader.onload = () => {
+				checkValidation(reader.result as any, files[0]);
+			};
+
+			reader.onerror = (err) => {
+				console.log(err);
+			};
+
+			if (files[0]?.type.includes('image'))
+				reader.readAsDataURL(files[0]);
+		} catch (e) {
+			console.error(e);
+		}
 	};
 
-	const getCropData = async () => {
-		// setUploading(true);
-		const imageElement: any = cropperRef?.current;
-		const cropper: any = imageElement?.cropper;
-		// console.log(cropper.getCroppedCanvas().toDataURL());
+	const checkValidation = async (imageBase64: any, file: File) => {
+		const n = imageBase64.length;
+		const x = n * (3 / 4) - 1;
+		if (x > MAX_SIZE) {
+			return;
+		}
 
-		const res: Response = await fetch(
-			cropper.getCroppedCanvas().toDataURL()
-		);
-		const blob: Blob = await res.blob();
-		if (file) onUpload(new File([blob], file.name, { type: 'image/jpg' }));
+		setImage(imageBase64);
+		setFile(file);
 	};
 
 	const onInputClick = (

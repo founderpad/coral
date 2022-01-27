@@ -3,7 +3,7 @@ import { BaseLink } from '@components/links';
 import React from 'react';
 import { BaseButtonProps, LinkButtonProps } from './types/buttons';
 
-export const BaseButton = (props: BaseButtonProps): JSX.Element => {
+export const BaseButton = (props: BaseButtonProps) => {
 	const { children, size = 'sm', name, ...rest } = props;
 
 	return (
@@ -13,7 +13,7 @@ export const BaseButton = (props: BaseButtonProps): JSX.Element => {
 	);
 };
 
-export const LinkButton = (props: LinkButtonProps): JSX.Element => {
+export const LinkButton = (props: LinkButtonProps) => {
 	const { size, name, href, ...rest } = props;
 
 	return (

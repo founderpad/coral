@@ -11,7 +11,7 @@ const IdeasActions = ({
 	total: number;
 	pageSize: number;
 	hasResults?: boolean;
-}): JSX.Element => (
+}) => (
 	<React.Fragment>
 		<Flex
 			justifyContent={'space-between'}

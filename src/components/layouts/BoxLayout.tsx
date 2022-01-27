@@ -1,7 +1,7 @@
 import { Box, BoxProps } from '@chakra-ui/layout';
 import React, { forwardRef } from 'react';
 
-// export const BoxLayout = (props: BoxProps): JSX.Element => (
+// export const BoxLayout = (props: BoxProps):  => (
 // 	<Box {...props} d={'flex'} p={props.p ?? 4} rounded={'none'} />
 // );
 

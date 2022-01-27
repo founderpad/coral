@@ -4,6 +4,7 @@ import React, { memo, useEffect, useState } from 'react';
 export const StickySubheader = memo(
 	({ children }: { children: React.ReactNode; title?: string }) => {
 		const [fixed, setIsFixed] = useState(false);
+		const isSticky = window.scrollY >= 110;
 
 		useEffect(() => {
 			function onScroll() {
@@ -13,7 +14,7 @@ export const StickySubheader = memo(
 			}
 
 			window.addEventListener('scroll', onScroll);
-		}, [window.scrollY >= 110]);
+		}, [isSticky]);
 
 		return (
 			<Box

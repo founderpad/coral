@@ -1,3 +1,5 @@
+// eslint-disable-line no-unused-vars
+// eslint-disable-line @typescript-eslint/no-unused-vars
 import Form from '@components/form/Form';
 import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
@@ -35,7 +37,7 @@ export const EditIdeaForm = () => {
 			id: idea.id,
 			idea: getValues() // value for 'idea'
 		},
-		onCompleted: (_data) => {
+		onCompleted: () => {
 			setModalDrawer({
 				isOpen: false
 			});

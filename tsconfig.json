@@ -11,7 +11,7 @@
 		"noEmit": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUnusedLocals": true,
-		"noUnusedParameters": false,
+		"noUnusedParameters": true,
 		"esModuleInterop": true,
 		"module": "esnext",
 		"moduleResolution": "node",

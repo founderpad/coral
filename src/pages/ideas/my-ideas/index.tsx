@@ -4,7 +4,7 @@ import AuthFilter from '@utils/AuthFilter';
 import React from 'react';
 import MyIdeasContainer from './MyIdeasContainer';
 
-const MyIdeas = (): JSX.Element => {
+const MyIdeas = () => {
 	// const user = useCurrentUser();
 	// const { data } = useGetUserIdeas(user?.id);
 	return (

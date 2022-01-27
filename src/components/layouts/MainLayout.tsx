@@ -45,7 +45,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 // }: {
 // 	href: string;
 // 	label: string;
-// }): JSX.Element => {
+// }):  => {
 // 	return (
 // 		<Link fontSize={'sm'} href={href} color={'fpGrey.700'} isExternal>
 // 			{label}

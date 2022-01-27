@@ -70,7 +70,7 @@ const PostComment = () => {
 		(e: React.ChangeEvent<HTMLTextAreaElement>) => {
 			setValue(e.target.value);
 		},
-		[value]
+		[]
 	);
 
 	return (

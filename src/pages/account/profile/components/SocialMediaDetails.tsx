@@ -13,7 +13,7 @@ import { cache } from '@pages/_app';
 import gql from 'graphql-tag';
 import React from 'react';
 
-const SocialMediaDetails = (): JSX.Element => {
+const SocialMediaDetails = () => {
 	const user = useCurrentUser();
 	// const { setModalDrawer } = useContext(ModalDrawerContext);
 

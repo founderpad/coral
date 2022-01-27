@@ -13,7 +13,7 @@ import React from 'react';
 
 type TIdeaProps = Pick<TIdeaPreviewFieldsFragment, 'id' | 'user' | 'name'>;
 
-export const IdeaMenu = (idea: TIdeaProps): JSX.Element => {
+export const IdeaMenu = (idea: TIdeaProps) => {
 	const report: TReport_Insert_Input = {
 		reportedId: idea?.id,
 		reportedUserId: idea?.user?.id,
