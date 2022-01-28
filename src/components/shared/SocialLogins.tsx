@@ -18,7 +18,7 @@ const SocialLogins = memo(() => {
 	document.getElementsByClassName('');
 
 	return (
-		<StackLayout d={'flex'} justifyContent={'center'}>
+		<StackLayout d={'flex'} justifyContent={'center'} spacing={0}>
 			<Label textAlign={'center'} fontSize={'xs'} color={'gray.400'}>
 				Or
 			</Label>
