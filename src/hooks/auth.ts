@@ -4,11 +4,16 @@ import { useNhostAuth } from '@nhost/react-auth';
 import { setUser } from '@slices/auth';
 import { auth } from '@utils/nhost';
 import { RootState } from '@utils/reducer';
-import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { IAuthFormData, IRegisterFormData } from 'src/types/auth';
+import {
+	IAuthFormData,
+	IRegisterFormData,
+	TAuthProvider
+} from 'src/types/auth';
 import { useErrorNotification } from './toast';
 import { useNotification } from './util';
+import Router from 'next/router';
+import { useEffect } from 'react';
 
 export const useRegister = (): any => {
 	// const showErrorNotification = useErrorNotification();
@@ -69,28 +74,15 @@ export const useRegister = (): any => {
 	};
 };
 
-export const useLogin = (): any => {
+export const useLogin = (): (({
+	email,
+	password
+}: {
+	email: string;
+	password: string;
+}) => Promise<void>) => {
 	const { addNotification, removeNotification } = useNotification();
-	const dispatch = useDispatch();
-	const router = useRouter();
-
-	const [fetchUser] = useUserLazyQuery({
-		variables: {
-			userId: auth.getUser()?.id
-		},
-		onError: () => {
-			addNotification(
-				'Failed to get user. Please try again later.',
-				'error'
-			);
-			throw 'Failed to get user';
-		},
-		onCompleted: (data) => {
-			const user = data.user as TUsers;
-			dispatch(setUser(user));
-			router.replace('/ideas?page=1');
-		}
-	});
+	const getUser = useGetAuthUser();
 
 	return async ({ email, password }: IAuthFormData): Promise<void> => {
 		try {
@@ -101,12 +93,65 @@ export const useLogin = (): any => {
 				addNotification(response.error.message, 'error');
 				throw 'Failed to login';
 			} else {
-				fetchUser();
+				getUser();
 			}
 		} catch (error) {
 			throw 'An error has occurred';
 		}
 	};
+};
+
+export const useSocialLogin = () => {
+	const { addNotification, removeNotification } = useNotification();
+	const getUser = useGetAuthUser();
+
+	return async (authProvider: TAuthProvider) => {
+		try {
+			removeNotification();
+			const response = await auth.signIn({
+				provider: authProvider,
+				options: {
+					redirectTo: '/login'
+				}
+			});
+
+			console.log('response: ', response);
+
+			if (response.error) {
+				addNotification(response.error.message, 'error');
+				throw 'Failed to login';
+			}
+
+			getUser();
+		} catch (error) {
+			throw `Failed to login with ${authProvider}`;
+		}
+	};
+};
+
+const useGetAuthUser = () => {
+	const { addNotification } = useNotification();
+	const dispatch = useDispatch();
+
+	return () =>
+		useUserLazyQuery({
+			variables: {
+				userId: auth.getUser()?.id
+			},
+			onError: () => {
+				addNotification(
+					'Failed to get user. Please try again later.',
+					'error'
+				);
+				throw 'Failed to get user';
+			},
+			onCompleted: (data) => {
+				const user = data.user as TUsers;
+				dispatch(setUser(user));
+				Router.replace('/ideas?page=1');
+				// http://localhost:1337/v1/auth/signin/provider/google/callback
+			}
+		});
 };
 
 export const useLogout = (): any => {
@@ -137,9 +182,14 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useCheckLoggedIn = (): void => {
-	// const { isAuthenticated } = useAuth();
-	// const router = useRouter();
-	// if (isAuthenticated) router.push('/ideas?page=1');
+	const isLoggedIn = auth.isAuthenticated();
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			Router.push('/ideas?page=1');
+			return;
+		}
+	}, [isLoggedIn]);
 };
 
 export const useClaim = (): string | undefined => auth.getUser()?.id;

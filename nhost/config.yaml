@@ -70,9 +70,9 @@ auth:
             enabled: false
             scope: read_user
         google:
-            client_id: ''
-            client_secret: ''
-            enabled: false
+            client_id: '570489210751-607hr5dueeadl0ektvnd8ruje09k42fe.apps.googleusercontent.com'
+            client_secret: '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'
+            enabled: true
             scope: email,profile
         linkedin:
             client_id: ''

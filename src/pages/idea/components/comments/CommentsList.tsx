@@ -25,7 +25,11 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 		<CommentLayout comment={comment} divider={true}>
 			{!isOpen &&
 				comment.firstReplies?.map((reply) => (
-					<CommentLayout actions={false} comment={reply} />
+					<CommentLayout
+						key={reply.id}
+						actions={false}
+						comment={reply}
+					/>
 				))}
 			{comment?.totalReplies > 2 && (
 				<React.Fragment>

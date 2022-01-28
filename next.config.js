@@ -40,41 +40,46 @@
 // };
 
 module.exports = {
+	async redirects() {
+		return [
+			{
+				source: '/',
+				destination: '/login',
+				permanent: true
+			}
+		];
+	},
 	async rewrites() {
 		return {
 			beforeFiles: [
-				{
-					source: '/',
-					destination: '/index.html'
-				},
-				{
-					source: '/about',
-					destination: '/about-us.html'
-				},
-				{
-					source: '/faqs',
-					destination: '/faqs.html'
-				},
-				{
-					source: '/contact',
-					destination: '/contact-us.html'
-				},
-				{
-					source: '/privacy-policy',
-					destination: '/privacy.html'
-				},
-				{
-					source: '/cookie-policy',
-					destination: '/cookie-policy.html'
-				},
-				{
-					source: '/acceptable-use-policy',
-					destination: '/acceptable-use-policy.html'
-				},
-				{
-					source: '/terms-of-service',
-					destination: '/terms-of-service.html'
-				}
+				// {
+				// 	source: '/about',
+				// 	destination: '/about-us.html'
+				// },
+				// {
+				// 	source: '/faqs',
+				// 	destination: '/faqs.html'
+				// },
+				// {
+				// 	source: '/contact',
+				// 	destination: '/contact-us.html'
+				// },
+				// {
+				// 	source: '/privacy-policy',
+				// 	destination: '/privacy.html'
+				// },
+				// {
+				// 	source: '/cookie-policy',
+				// 	destination: '/cookie-policy.html'
+				// },
+				// {
+				// 	source: '/acceptable-use-policy',
+				// 	destination: '/acceptable-use-policy.html'
+				// },
+				// {
+				// 	source: '/terms-of-service',
+				// 	destination: '/terms-of-service.html'
+				// }
 			]
 		};
 	}

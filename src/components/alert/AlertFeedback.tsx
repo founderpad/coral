@@ -4,7 +4,7 @@ import { useNotification } from '@hooks/util';
 export const AlertFeedback = () => {
 	const { notification } = useNotification();
 
-	if (!notification) return null;
+	if (!notification.message) return null;
 
 	const isSuccess = notification.status === 'success';
 

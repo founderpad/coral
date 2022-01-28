@@ -94,3 +94,5 @@ export type TExperience = Pick<
 // 	last_name?: string;
 // 	country?: string;
 // };
+
+export type TAuthProvider = 'google' | 'facebook' | 'github';

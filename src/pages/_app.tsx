@@ -5,6 +5,7 @@ import BaseModal from '@components/modal/BaseModal';
 import BaseModalDrawer from '@components/modal/BaseModalDrawer';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
+import { useCheckLoggedIn } from '@hooks/auth';
 import { useTrackAnalytics } from '@hooks/util';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
@@ -38,11 +39,11 @@ const persistor = persistStore(store);
 const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	useTrackAnalytics();
 	// const router = useRouter();
-	// const { notification, removeNotification } = useNotification();
+	// const { removeNotification } = useNotification();
 
 	// useEffect(() => {
 	// 	const routeChangeComplete = () => {
-	// 		removeNotifications();
+	// 		removeNotification();
 	// 	};
 
 	// 	router.events.on('routeChangeComplete', routeChangeComplete);
@@ -50,6 +51,8 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	// 		router.events.off('routeChangeComplete', routeChangeComplete);
 	// 	};
 	// }, []);
+
+	useCheckLoggedIn();
 
 	return (
 		<React.Fragment>
