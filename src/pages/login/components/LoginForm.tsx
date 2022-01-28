@@ -1,4 +1,4 @@
-import { Button, Icon } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
@@ -9,7 +9,6 @@ import { PrimaryLink } from '@components/links';
 import { useLogin, useSocialLogin } from '@hooks/auth';
 import React, { memo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { IoLogoGithub, IoLogoGoogle } from 'react-icons/io5';
 import { IAuthFormData, TAuthProvider } from 'src/types/auth';
 
 const LoginForm = () => {
@@ -19,11 +18,6 @@ const LoginForm = () => {
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
-
-	// const { isAuthenticated } = useAuth();
-	// useEffect(() => {
-	// 	console.log('is auth: ', isAuthenticated);
-	// }, [isAuthenticated]);
 
 	return (
 		<>
@@ -84,26 +78,34 @@ const SocialLogins = memo(() => {
 	);
 
 	return (
-		<StackLayout>
+		<StackLayout d={'flex'} justifyContent={'center'}>
 			<Label textAlign={'center'} fontSize={'xs'} color={'gray.400'}>
 				Or
 			</Label>
-			<Button
-				leftIcon={<Icon as={IoLogoGoogle} />}
-				rounded={'none'}
+
+			<Box
+				alignSelf={'center'}
 				onClick={() => onSocialLogin('google')}
+				cursor={'pointer'}
+				css={{
+					'> *:active': {
+						pointerEvents: 'none'
+					}
+				}}
 			>
-				Sign in with Google
-			</Button>
-			<Button leftIcon={<Icon as={IoLogoGithub} />} rounded={'none'}>
-				Sign in with GitHub
-			</Button>
+				<div
+					className="g-signin2"
+					data-onsuccess="onSocialLogin"
+					data-theme="light"
+					data-longtitle="true"
+				></div>
+			</Box>
 		</StackLayout>
 	);
 });
 
 const NoAccountFooter = memo(() => (
-	<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'}>
+	<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'} pt={6}>
 		Don&apos;t have an account?
 		<PrimaryLink href="/register" title={'Link to register an account'}>
 			{' '}

@@ -52,14 +52,14 @@ auth:
             client_secret: ''
             enabled: false
         facebook:
-            client_id: ''
-            client_secret: ''
-            enabled: false
+            client_id: '1343110259464334'
+            client_secret: 'eea023c868cef284076333a16b1bb751'
+            enabled: true
             scope: email,photos,displayName
         github:
-            client_id: ''
-            client_secret: ''
-            enabled: false
+            client_id: 'fd67e92b136cff188b60'
+            client_secret: '0866a2deb3dc53639222a3255c87944310fbbe51'
+            enabled: true
             scope: user:email
             token_url: ''
             user_profile_url: ''

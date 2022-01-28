@@ -106,7 +106,6 @@ export const useSocialLogin = () => {
 
 	const { isAuthenticated } = useAuth();
 	useEffect(() => {
-		// console.log('is auth: ', isAuthenticated);
 		if (isAuthenticated) getUser();
 	}, [isAuthenticated]);
 

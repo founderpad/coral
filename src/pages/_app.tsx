@@ -58,6 +58,15 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 		<React.Fragment>
 			<Head>
 				<link rel="shortcut icon" href="/favicon.svg" />
+				<script
+					src="https://apis.google.com/js/platform.js"
+					async
+					defer
+				></script>
+				<meta
+					name="google-signin-client_id"
+					content="570489210751-607hr5dueeadl0ektvnd8ruje09k42fe.apps.googleusercontent.com"
+				></meta>
 			</Head>
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
