@@ -20,6 +20,11 @@ const LoginForm = () => {
 	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
 
+	// const { isAuthenticated } = useAuth();
+	// useEffect(() => {
+	// 	console.log('is auth: ', isAuthenticated);
+	// }, [isAuthenticated]);
+
 	return (
 		<>
 			<Form

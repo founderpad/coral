@@ -82,7 +82,7 @@ export const useLogin = (): (({
 	password: string;
 }) => Promise<void>) => {
 	const { addNotification, removeNotification } = useNotification();
-	const getUser = useGetAuthUser();
+	const [getUser] = useGetAuthUser();
 
 	return async ({ email, password }: IAuthFormData): Promise<void> => {
 		try {
@@ -102,27 +102,22 @@ export const useLogin = (): (({
 };
 
 export const useSocialLogin = () => {
-	const { addNotification, removeNotification } = useNotification();
-	const getUser = useGetAuthUser();
+	const [getUser] = useGetAuthUser();
+
+	const { isAuthenticated } = useAuth();
+	useEffect(() => {
+		// console.log('is auth: ', isAuthenticated);
+		if (isAuthenticated) getUser();
+	}, [isAuthenticated]);
 
 	return async (authProvider: TAuthProvider) => {
 		try {
-			removeNotification();
-			const response = await auth.signIn({
+			await auth.signIn({
 				provider: authProvider,
 				options: {
 					redirectTo: '/login'
 				}
 			});
-
-			console.log('response: ', response);
-
-			if (response.error) {
-				addNotification(response.error.message, 'error');
-				throw 'Failed to login';
-			}
-
-			getUser();
 		} catch (error) {
 			throw `Failed to login with ${authProvider}`;
 		}
@@ -131,27 +126,28 @@ export const useSocialLogin = () => {
 
 const useGetAuthUser = () => {
 	const { addNotification } = useNotification();
+
 	const dispatch = useDispatch();
 
-	return () =>
-		useUserLazyQuery({
-			variables: {
-				userId: auth.getUser()?.id
-			},
-			onError: () => {
-				addNotification(
-					'Failed to get user. Please try again later.',
-					'error'
-				);
-				throw 'Failed to get user';
-			},
-			onCompleted: (data) => {
-				const user = data.user as TUsers;
-				dispatch(setUser(user));
-				Router.replace('/ideas?page=1');
-				// http://localhost:1337/v1/auth/signin/provider/google/callback
-			}
-		});
+	const getUser = useUserLazyQuery({
+		variables: {
+			userId: auth.getUser()?.id
+		},
+		onError: () => {
+			addNotification(
+				'Failed to get user. Please try again later.',
+				'error'
+			);
+			throw 'Failed to get user';
+		},
+		onCompleted: (data) => {
+			const user = data.user as TUsers;
+			dispatch(setUser(user));
+			Router.replace('/ideas?page=1');
+		}
+	});
+
+	return getUser;
 };
 
 export const useLogout = (): any => {
@@ -182,14 +178,14 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useCheckLoggedIn = (): void => {
-	const isLoggedIn = auth.isAuthenticated();
+	const { isAuthenticated } = useAuth();
 
 	useEffect(() => {
-		if (isLoggedIn) {
+		if (isAuthenticated) {
 			Router.push('/ideas?page=1');
 			return;
 		}
-	}, [isLoggedIn]);
+	}, [isAuthenticated]);
 };
 
 export const useClaim = (): string | undefined => auth.getUser()?.id;
