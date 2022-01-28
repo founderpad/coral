@@ -1,15 +1,14 @@
-import { Box } from '@chakra-ui/react';
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import { EmailField, PasswordField } from '@components/input';
 import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
-import { useLogin, useSocialLogin } from '@hooks/auth';
-import React, { memo, useCallback } from 'react';
+import SocialLogins from '@components/shared/SocialLogins';
+import { useLogin } from '@hooks/auth';
+import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
-import { IAuthFormData, TAuthProvider } from 'src/types/auth';
+import { IAuthFormData } from 'src/types/auth';
 
 const LoginForm = () => {
 	const {
@@ -20,7 +19,7 @@ const LoginForm = () => {
 	const onLogin = useLogin();
 
 	return (
-		<>
+		<React.Fragment>
 			<Form
 				id={'loginForm'}
 				name={'loginForm'}
@@ -63,46 +62,9 @@ const LoginForm = () => {
 			</Form>
 			<SocialLogins />
 			<NoAccountFooter />
-		</>
+		</React.Fragment>
 	);
 };
-
-const SocialLogins = memo(() => {
-	const onLogin = useSocialLogin();
-
-	const onSocialLogin = useCallback(
-		(provider: TAuthProvider) => {
-			onLogin(provider);
-		},
-		[onLogin]
-	);
-
-	return (
-		<StackLayout d={'flex'} justifyContent={'center'}>
-			<Label textAlign={'center'} fontSize={'xs'} color={'gray.400'}>
-				Or
-			</Label>
-
-			<Box
-				alignSelf={'center'}
-				onClick={() => onSocialLogin('google')}
-				cursor={'pointer'}
-				css={{
-					'> *:active': {
-						pointerEvents: 'none'
-					}
-				}}
-			>
-				<div
-					className="g-signin2"
-					data-onsuccess="onSocialLogin"
-					data-theme="light"
-					data-longtitle="true"
-				></div>
-			</Box>
-		</StackLayout>
-	);
-});
 
 const NoAccountFooter = memo(() => (
 	<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'} pt={6}>

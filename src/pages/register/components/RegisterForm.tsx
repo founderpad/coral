@@ -6,6 +6,7 @@ import {
 	InputField,
 	PasswordField
 } from '@components/input/InputField';
+import SocialLogins from '@components/shared/SocialLogins';
 import { useRegister } from '@hooks/auth';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -21,62 +22,65 @@ const RegisterForm = () => {
 	const onRegister = useRegister();
 
 	return (
-		<Form
-			id={'registerForm'}
-			name={'registerForm'}
-			onSubmit={handleSubmit(onRegister)}
-		>
-			<InputField
-				name="firstName"
-				error={errors.firstName}
-				errorText="You must input a first name"
-				placeholder="First name"
-				fontSize={'sm'}
-				control={control}
-				rules={{ maxLength: 20, minLength: 2 }}
-				size={'md'}
-				isRequired
-			/>
-			<InputField
-				name="lastName"
-				placeholder="Last name"
-				control={control}
-				rules={{ minLength: 0, maxLength: 20 }}
-				size={'md'}
-				fontSize={'sm'}
-			/>
-			<EmailField
-				id="email"
-				name="email"
-				error={errors['email']}
-				control={control}
-				size={'md'}
-				fontSize={'sm'}
-				isRequired
-			/>
-			<PasswordField
-				id="password"
-				name="password"
-				error={errors['password']}
-				rules={{ maxLength: 20, minLength: 6 }}
-				control={control}
-				size={'md'}
-				fontSize={'sm'}
-				isRequired
-			/>
-			<AlertFeedback />
-			<SubmitButton
-				id={'submit-register-account'}
-				name={'submit-register-account'}
-				label={'Create account'}
-				isLoading={isSubmitting}
-				disabled={!isValid || isSubmitting}
-				size={'md'}
-				fontSize={'sm'}
-				w={'full'}
-			/>
+		<React.Fragment>
+			<Form
+				id={'registerForm'}
+				name={'registerForm'}
+				onSubmit={handleSubmit(onRegister)}
+			>
+				<InputField
+					name="firstName"
+					error={errors.firstName}
+					errorText="You must input a first name"
+					placeholder="First name"
+					fontSize={'sm'}
+					control={control}
+					rules={{ maxLength: 20, minLength: 2 }}
+					size={'md'}
+					isRequired
+				/>
+				<InputField
+					name="lastName"
+					placeholder="Last name"
+					control={control}
+					rules={{ minLength: 0, maxLength: 20 }}
+					size={'md'}
+					fontSize={'sm'}
+				/>
+				<EmailField
+					id="email"
+					name="email"
+					error={errors['email']}
+					control={control}
+					size={'md'}
+					fontSize={'sm'}
+					isRequired
+				/>
+				<PasswordField
+					id="password"
+					name="password"
+					error={errors['password']}
+					rules={{ maxLength: 20, minLength: 6 }}
+					control={control}
+					size={'md'}
+					fontSize={'sm'}
+					isRequired
+				/>
+				<AlertFeedback />
+				<SubmitButton
+					id={'submit-register-account'}
+					name={'submit-register-account'}
+					label={'Create account'}
+					isLoading={isSubmitting}
+					disabled={!isValid || isSubmitting}
+					size={'md'}
+					fontSize={'sm'}
+					w={'full'}
+				/>
+			</Form>
+			<SocialLogins />
 			<LegalFooter />
-		</Form>
+		</React.Fragment>
 	);
 };
 
