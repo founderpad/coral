@@ -4,6 +4,7 @@ import { PointSeparator, UserAvatar } from '@components/shared';
 import BaseTag from '@components/tags/BaseTag';
 import IdeaContext from '@context/idea/IdeaContext';
 import { useQueryParam } from '@hooks/util';
+import useIdea, { useIdeaFragment } from '@pages/idea/query/ideaQuery';
 import { formatDate } from '@utils/validators';
 import React, { useContext, useEffect } from 'react';
 import CommentActions from './CommentActions';
@@ -37,8 +38,7 @@ export const CommentLayout = ({
 	const { displayName } = user;
 	const anchoredId = useQueryParam('d');
 
-	const isAuthor =
-		useContext(IdeaContext).data?.idea?.userId === comment.user.id;
+	const isAuthor = useIdea().idea?.userId === comment.user.id;
 
 	useEffect(() => {
 		if (anchoredId) {
