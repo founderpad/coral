@@ -70,8 +70,8 @@ auth:
             enabled: false
             scope: read_user
         google:
-            client_id: '570489210751-607hr5dueeadl0ektvnd8ruje09k42fe.apps.googleusercontent.com'
-            client_secret: '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'
+            client_id: '570489210751-cplv3bacb2vvkfml9ie337u9m1f3p2cv.apps.googleusercontent.com'
+            client_secret: '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'
             enabled: true
             scope: email,profile
         linkedin:

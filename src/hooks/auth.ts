@@ -112,10 +112,7 @@ export const useSocialLogin = () => {
 	return async (authProvider: TAuthProvider) => {
 		try {
 			await auth.signIn({
-				provider: authProvider,
-				options: {
-					redirectTo: '/login'
-				}
+				provider: authProvider
 			});
 		} catch (error) {
 			throw `Failed to login with ${authProvider}`;
@@ -177,7 +174,7 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useCheckLoggedIn = (): void => {
-	const { isAuthenticated } = useAuth();
+	const { isAuthenticated } = useAuth() ?? false;
 
 	useEffect(() => {
 		if (isAuthenticated) {
