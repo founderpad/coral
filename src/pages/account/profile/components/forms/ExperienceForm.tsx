@@ -126,17 +126,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 					max={30}
 					isRequired
 				/>
-				{/* <NumberField
-					id="availability"
-					name="availability"
-					label="Availablility for new projects? (hours per week)"
-					error={errors['availability']}
-					errorText="You must specify your availability"
-					control={control}
-					min={0}
-					max={60}
-					isRequired
-				/> */}
 
 				<SelectField
 					id="availability"
@@ -196,7 +185,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 								colorScheme={'fpPrimary'}
 								color={'fpGrey.400'}
 								ref={ref}
-								size={'sm'}
+								size={'md'}
 								fontSize={'xs'}
 								isChecked={selectedSkills.includes(es)}
 							>

@@ -52,7 +52,7 @@ const UserMenu = () => {
 					>
 						Profile
 					</MenuItem>
-					<MenuItem
+					{/* <MenuItem
 						as={BaseLink}
 						href={'/user/settings'}
 						fontSize={'small'}
@@ -60,7 +60,7 @@ const UserMenu = () => {
 						_hover={{ color: 'black' }}
 					>
 						Settings
-					</MenuItem>
+					</MenuItem> */}
 				</MenuGroup>
 				<MenuDivider my={4} />
 				<LogoutModal />

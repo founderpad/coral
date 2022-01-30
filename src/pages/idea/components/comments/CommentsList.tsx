@@ -61,7 +61,7 @@ export const CommentsList = ({
 			offset: 0
 		},
 		// notifyOnNetworkStatusChange: true,
-		// fetchPolicy: 'network-only',
+		fetchPolicy: 'network-only',
 		nextFetchPolicy: 'cache-and-network'
 	});
 

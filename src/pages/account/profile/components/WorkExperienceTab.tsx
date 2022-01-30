@@ -41,7 +41,6 @@ const WorkExperienceTab = () => {
 					name={'open-modal-drawer-experience-button'}
 					form="editExperienceForm"
 					label={'Save'}
-					size={'xs'}
 				/>
 			),
 			body: <ExperienceForm {...userProfile} />,

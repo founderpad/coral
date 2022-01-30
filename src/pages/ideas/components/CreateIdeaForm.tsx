@@ -79,7 +79,7 @@ const CreateIdeaForm = () => {
 				variant={'flushed'}
 				isRequired
 			/>
-			<AppDivider />
+			{/* <AppDivider /> */}
 			<TextareaField
 				id="description"
 				name="description"

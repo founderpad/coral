@@ -43,7 +43,7 @@ const AuthLayout = ({ header, children, title }: Props) => (
 					fontSize={'sm'}
 					rounded={'sm'}
 				>
-					Beta
+					0.1.0
 				</Tag>
 			</FlexLayout>
 			<Heading

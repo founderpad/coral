@@ -45,14 +45,14 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							{...rest}
 							placeholder={placeholder}
 							autoComplete={autoComplete}
-							size={size ?? 'sm'}
+							size={size ?? 'md'}
 							ref={ref}
 							value={value}
 							onChange={onChange}
 							error={error?.message}
 							name={name}
 							aria-label={name}
-							fontSize={fontSize ?? 'small'}
+							fontSize={fontSize ?? 'sm'}
 							color={'gray.500'}
 						/>
 					)}

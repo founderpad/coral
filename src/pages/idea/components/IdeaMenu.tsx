@@ -40,7 +40,6 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 					name={'open-modal-drawer-edit-idea-button'}
 					form={'editIdeaForm'}
 					label={'Save'}
-					size={'xs'}
 				/>
 			),
 			hideFooter: true,

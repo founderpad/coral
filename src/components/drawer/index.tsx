@@ -47,9 +47,12 @@ export const Drawer = ({
 			onClose={onClose}
 			placement={'bottom'}
 			closeOnOverlayClick={false}
+			isFullHeight={false}
+			preserveScrollBarGap={true}
+			useInert={true}
 		>
 			<DrawerOverlay />
-			<DrawerContent borderTopWidth={1}>
+			<DrawerContent borderTopWidth={1} maxH={'100%'}>
 				{title && (
 					<React.Fragment>
 						{!actions && (
@@ -57,7 +60,7 @@ export const Drawer = ({
 						)}
 						<DrawerHeader
 							fontWeight={'medium'}
-							fontSize={'md'}
+							fontSize={'lg'}
 							p={4}
 							display={'flex'}
 							alignItems={'center'}
@@ -69,7 +72,7 @@ export const Drawer = ({
 									<CancelButton
 										label={'Cancel'}
 										onClick={onClose}
-										size={'xs'}
+										size={'sm'}
 									/>
 									{actions}
 								</ButtonGroup>
@@ -80,8 +83,8 @@ export const Drawer = ({
 
 				<DrawerBody
 					fontWeight={'normal'}
-					fontSize={'md'}
-					color={'gray.500'}
+					fontSize={'sm'}
+					color={'gray.600'}
 					flex={1}
 					p={removePadding ? 0 : 4}
 					maxH={'100%'}

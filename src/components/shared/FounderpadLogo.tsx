@@ -29,7 +29,7 @@ const FounderpadLogoWithBadge = ({ w }: { w: number }) => (
 			rounded={'md'}
 			ml={2}
 		>
-			Beta
+			0.1.0
 		</Tag>
 	</FlexLayout>
 );

@@ -42,9 +42,8 @@ export const InterestedIdea = () => {
 				<PrimaryButton
 					name={'confirm-idea-interest'}
 					onClick={() => createInterestedIdeaMutation()}
-					size={'xs'}
 				>
-					Confirm interest
+					Confirm
 				</PrimaryButton>
 			),
 			body: 'Are you sure you want to show interest in this idea? The idea creator will be able to contact you.',
@@ -70,9 +69,8 @@ export const InterestedIdea = () => {
 			alignItems={'center'}
 			position={'relative'}
 			w={'fit-content'}
-			size={'lg'}
+			size={'sm'}
 			fontSize={'xs'}
-			py={2}
 			px={4}
 		>
 			{/* <Icon

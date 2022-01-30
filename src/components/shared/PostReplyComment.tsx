@@ -89,7 +89,7 @@ const PostReplyComment = ({
 			</PrimaryButton>
 			{showReplyField && (
 				<StackLayout
-					mt={1}
+					py={3}
 					spacing={2}
 					justifyContent={'space-between'}
 					alignItems={'flex-end'}

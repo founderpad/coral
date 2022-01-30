@@ -34,7 +34,6 @@ const ReportMenu = ({
 					name={'open-modal-drawer-button'}
 					form="reportForm"
 					label={'Report'}
-					size={'xs'}
 				/>
 			),
 			handler: () => console.log(''),

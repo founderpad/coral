@@ -86,7 +86,7 @@ const PostComment = () => {
 				<Textarea
 					name={'value'}
 					id={'value'}
-					minH={'unset'}
+					// minH={''}
 					placeholder={'Write your comment here'}
 					w={'full'}
 					as={ResizeTextarea}
@@ -94,9 +94,10 @@ const PostComment = () => {
 					value={value}
 					borderBottomWidth={2}
 					borderColor={'white'}
-					maxRows={3}
+					maxRows={2}
 					resize={'none'}
-					maxH={'100px'}
+					minRows={1}
+					minH={'fit-content'}
 					p={2}
 					title={'Write your comment here'}
 					_hover={{

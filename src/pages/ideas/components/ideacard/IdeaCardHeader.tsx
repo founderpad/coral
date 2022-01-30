@@ -23,7 +23,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 						w={'full'}
 						overflow={'hidden'}
 						fontWeight={'medium'}
-						fontSize={{ base: 'smaller', sm: 'sm' }}
+						fontSize={'sm'}
 						css={{ whiteSpace: 'normal' }}
 						wordBreak={'break-word'}
 						noOfLines={1}

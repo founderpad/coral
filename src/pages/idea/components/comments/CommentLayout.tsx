@@ -72,7 +72,7 @@ export const CommentLayout = ({
 							<FlexLayout alignItems={'center'} mb={1}>
 								<Label
 									fontWeight={'medium'}
-									fontSize={'xs'}
+									fontSize={'small'}
 									maxW={'80%'}
 									isTruncated
 								>
@@ -96,8 +96,9 @@ export const CommentLayout = ({
 						</FlexLayout>
 						<Label
 							color={'gray.500'}
-							fontSize={'xs'}
+							fontSize={'small'}
 							fontWeight={'normal'}
+							pt={1}
 						>
 							{value}
 						</Label>

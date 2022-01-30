@@ -30,8 +30,8 @@ const ViewIdeaTabLayout = () => {
 		>
 			<IdeaTab />
 
-			{showInterestTab ? <InterestedUsersTab /> : <></>}
 			{isMobile ? <CommentsList /> : <></>}
+			{showInterestTab ? <InterestedUsersTab /> : <></>}
 		</TabLayout>
 	);
 };
