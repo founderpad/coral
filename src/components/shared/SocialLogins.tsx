@@ -24,6 +24,8 @@ const SocialLogins = memo(() => {
 			</Label>
 
 			<BoxLayout
+				id={'socialLogin'}
+				data-testid={'socialLogin'}
 				alignSelf={'center'}
 				onClick={() => onSocialLogin('google')}
 				cursor={'pointer'}

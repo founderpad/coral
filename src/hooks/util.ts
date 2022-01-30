@@ -1,4 +1,3 @@
-import { useBreakpointValue } from '@chakra-ui/react';
 import FileUploadContext from '@context/FileUploadContext';
 import MobileNavigationContext from '@context/MobileNavigationContext';
 import NotificationContext from '@context/NotificationContext';

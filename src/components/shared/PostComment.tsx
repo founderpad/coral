@@ -10,7 +10,6 @@ import {
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import useIdea from '@pages/idea/query/ideaQuery';
-import { cache } from '@pages/_app';
 import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';

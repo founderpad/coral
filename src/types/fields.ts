@@ -32,8 +32,8 @@ export type IInputFieldProps<T extends FieldValues> = InputProps & {
 	characterCount?: number;
 	min?: number;
 	max?: number;
-	leftEl?: ;
-	rightEl?: ;
+	leftEl?: JSX.Element;
+	rightEl?: JSX.Element;
 	showLabel?: boolean;
 	maxRows?: number;
 };
