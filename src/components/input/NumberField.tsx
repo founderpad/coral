@@ -14,7 +14,7 @@ import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'src/types/fields';
 
 export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
-	(props, _ref): JSX.Element => {
+	(props, ref) => {
 		const {
 			isRequired,
 			label,
@@ -37,10 +37,7 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 			>
 				{label && <FormLabelText label={label} />}
 				<Controller
-					render={({
-						field: { onChange, value },
-						fieldState: { error: _error }
-					}) => (
+					render={({ field: { onChange, value } }) => (
 						<NumberInput
 							defaultValue={0}
 							min={min ?? 0}
@@ -48,6 +45,7 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 							clampValueOnBlur={false}
 							value={value}
 							onChange={(_s, n) => onChange(n)}
+							ref={ref}
 						>
 							<NumberInputField
 								rounded={'sm'}

@@ -9,7 +9,7 @@ export const BaseLabel = ({
 	children,
 	icon,
 	...rest
-}: TLabelProps): JSX.Element => (
+}: TLabelProps) => (
 	<Text {...rest} color={color} fontSize={fontSize}>
 		{icon && <Icon as={icon} mr={2} fontSize={'md'} color={'gray.900'} />}
 		{children}

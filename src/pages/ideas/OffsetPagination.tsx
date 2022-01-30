@@ -8,7 +8,7 @@ const OffsetPagination = ({
 }: {
 	pagesCount: number;
 	pathname: string;
-}): JSX.Element => {
+}) => {
 	const router = useRouter();
 	// const page = router.query.page;
 

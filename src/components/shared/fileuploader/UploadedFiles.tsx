@@ -21,7 +21,7 @@ export const UploadedFiles = memo((props: Props) => {
 	useEffect(() => {
 		if (uploadedFiles.length) onComplete?.(uploadedFiles);
 		if (isDeleted) onComplete?.([]);
-	}, [uploadedFiles, isDeleted]);
+	}, [uploadedFiles, isDeleted, onComplete]);
 
 	const files = defaultFiles.length ? defaultFiles : uploadedFiles;
 

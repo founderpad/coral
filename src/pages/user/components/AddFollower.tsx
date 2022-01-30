@@ -16,7 +16,7 @@ const AddFollower = ({ userId }: { userId: string }) => {
 
 	const onClick = useCallback(() => {
 		followUser();
-	}, [followed]);
+	}, [followUser]);
 
 	if (followed) {
 		return (

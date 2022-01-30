@@ -3,7 +3,7 @@ import React from 'react';
 import BaseHeading from './BaseHeading';
 import { THeadingProps } from './types';
 
-export const SubheadingText = (props: THeadingProps): JSX.Element => {
+export const SubheadingText = (props: THeadingProps) => {
 	const size = useBreakpointValue({ base: 'sm', md: 'md' });
 
 	return (

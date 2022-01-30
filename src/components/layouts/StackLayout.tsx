@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react';
 export const StackLayout = forwardRef<
 	HTMLDivElement,
 	StackProps & { href?: string }
->(({ ...props }: StackProps, ref): JSX.Element => {
+>(({ ...props }: StackProps, ref) => {
 	const { spacing = 6, rounded = 'sm', ...rest } = props;
 	return (
 		<Stack

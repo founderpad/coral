@@ -18,33 +18,43 @@ const UserImageUploader = () => {
 	const uploadAvatar = useFileUpload();
 	const [updateAvatar] = useUpdateUserAvatarMutation();
 
-	const onUpload = useCallback(async (file: File) => {
-		const filePath = await uploadAvatar({ file, bucketId: 'avatars' });
+	const onUpload = useCallback(
+		async (file: File) => {
+			const filePath = await uploadAvatar({ file, bucketId: 'avatars' });
 
-		await updateAvatar({
-			variables: {
-				id,
-				userDetails: {
-					avatarUrl: filePath
+			await updateAvatar({
+				variables: {
+					id,
+					userDetails: {
+						avatarUrl: filePath
+					}
+				},
+				onCompleted: (_data) => {
+					if (filePath) dispatch(updateUserImage(filePath));
+					addNotification('Avatar successfully updated', 'success');
+					setModalDrawer({ isOpen: false });
 				}
-			},
-			onCompleted: (_data) => {
-				if (filePath) dispatch(updateUserImage(filePath));
-				addNotification('Avatar successfully updated', 'success');
-				setModalDrawer({ isOpen: false });
-			}
-		});
-	}, []);
+			});
+		},
+		[
+			addNotification,
+			dispatch,
+			id,
+			setModalDrawer,
+			updateAvatar,
+			uploadAvatar
+		]
+	);
 
 	return (
 		<ImageUploader
 			title="Edit profile photo"
 			boxSize={140}
 			onUpload={onUpload}
-			defaultSrc={avatarUrl || undefined}
+			defaultSrc={avatarUrl ?? undefined}
 		>
 			<UserAvatar
-				src={avatarUrl || undefined}
+				src={avatarUrl ?? undefined}
 				boxSize={140}
 				aria-label="Edit profile picture"
 			/>

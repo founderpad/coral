@@ -2,11 +2,7 @@ import ModalContext from '@context/ModalContext';
 import React, { useContext } from 'react';
 import Modal from '.';
 
-const BaseModal = ({
-	...rest
-}: {
-	children?: React.ReactNode;
-}): JSX.Element => {
+const BaseModal = ({ ...rest }: { children?: React.ReactNode }) => {
 	const { modal, setModal } = useContext(ModalContext);
 	const { handler } = modal;
 

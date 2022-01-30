@@ -16,7 +16,6 @@ export const SubNav = memo(
 				role={'group'}
 				display={'block'}
 				rounded={'md'}
-				// _hover={{ bg: useColorModeValue('gray.50', 'gray.700') }}
 			>
 				<StackLayout
 					direction={'row'}

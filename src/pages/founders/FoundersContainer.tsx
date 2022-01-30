@@ -5,34 +5,38 @@ import { TUser_Profile_Bool_Exp, useUsersQuery } from '@generated/api';
 import { useQueryParam } from '@hooks/util';
 import IdeasActions from '@pages/ideas/components/IdeasActions';
 import OffsetPagination from '@pages/ideas/OffsetPagination';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import React from 'react';
 import { TFounderUsers } from 'src/types/founders';
 import FounderCard from './components/FounderCard';
 
 const queryBuilder = (): TUser_Profile_Bool_Exp => {
-	const router = useRouter();
+	const queryParamName = Router.query['name'] as string;
+	const queryParamStatus = Router.query['status'] as string;
+	const queryParamIndustry = Router.query['specialist_industry'] as string;
+	const queryParamAvailability = Router.query['availability'] as string;
+
 	const where: TUser_Profile_Bool_Exp = {};
 
-	if (router.query.name) {
-		where.status = { _eq: useQueryParam('status') };
+	if (Router.query.name) {
+		where.status = { _eq: queryParamName };
 	}
 
 	// if (router.query.availability) {
 	// 	where.availability = { _gt: useQueryParam('availability') };
 	// }
 
-	if (router.query.status) {
-		where.status = { _eq: useQueryParam('status') };
+	if (Router.query.status) {
+		where.status = { _eq: queryParamStatus };
 	}
 
-	if (router.query.field) {
+	if (Router.query.field) {
 		where.specialistIndustry = {
-			_eq: useQueryParam('specialist_industry')
+			_eq: queryParamIndustry
 		};
 	}
 
-	if (router.query.availability) {
+	if (Router.query.availability) {
 		// const minMaxAvailability = router.query.availability as string;
 
 		// console.log('minmax: ', minMaxAvailability);
@@ -49,7 +53,7 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 		// console.log('split min max: ', where.availability);
 		// where.specialist_industry = { _eq: useQueryParam('field') };
 
-		where.availability = { _eq: parseInt(useQueryParam('availability')) };
+		where.availability = { _eq: parseInt(queryParamAvailability) };
 	}
 
 	return where;

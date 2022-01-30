@@ -19,6 +19,7 @@ exports[`Login form matches snapshot 1`] = `
         <input
           aria-label="email"
           aria-required="true"
+          autocomplete="email"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
           id="email-email"
@@ -37,6 +38,7 @@ exports[`Login form matches snapshot 1`] = `
         <input
           aria-label="password"
           aria-required="true"
+          autocomplete="current-password"
           class="chakra-input css-5ft5pb"
           control="[object Object]"
           id="password-password"
@@ -48,14 +50,6 @@ exports[`Login form matches snapshot 1`] = `
           value=""
         />
       </div>
-      <div
-        class="chakra-alert css-1g7hz67"
-        role="alert"
-      >
-        <div
-          class="chakra-alert__desc css-1fwxjz3"
-        />
-      </div>
       <button
         aria-label="submit-login"
         class="chakra-button css-xg4mhf"
@@ -65,19 +59,40 @@ exports[`Login form matches snapshot 1`] = `
       >
         Log in
       </button>
-      <p
-        class="chakra-text css-1fihqrz"
-      >
-        Don't have an account?
-        <a
-          class="chakra-link css-ntv2za"
-          href="/register"
-          title="Link to register an account"
-        >
-           Create one here
-        </a>
-      </p>
     </div>
   </form>
+  <div
+    class="chakra-stack css-1snl987"
+  >
+    <p
+      class="chakra-text css-1d7axwl"
+    >
+      Or
+    </p>
+    <div
+      class="css-1fbxkis"
+      data-testid="socialLogin"
+      id="socialLogin"
+    >
+      <div
+        class="g-signin2"
+        data-longtitle="true"
+        data-onsuccess="onSocialLogin"
+        data-theme="light"
+      />
+    </div>
+  </div>
+  <p
+    class="chakra-text css-17q9usm"
+  >
+    Don't have an account?
+    <span
+      class="chakra-link css-ntv2za"
+      href="/register"
+      title="Link to register an account"
+    >
+       Create one here
+    </span>
+  </p>
 </DocumentFragment>
 `;

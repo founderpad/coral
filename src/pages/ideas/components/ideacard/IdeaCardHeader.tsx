@@ -10,7 +10,7 @@ type TIdeaCardHeader = Pick<
 	'name' | 'user' | 'is_new' | 'created_at' | 'user_id' | 'id'
 >;
 
-const IdeaCardHeader = (idea: TIdeaCardHeader): JSX.Element => {
+const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 	const { name, is_new } = idea;
 
 	return (

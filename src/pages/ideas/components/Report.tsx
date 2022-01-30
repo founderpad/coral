@@ -3,7 +3,7 @@ import Icon from '@chakra-ui/icon';
 import { IoFlagSharp } from '@components/icons';
 import React from 'react';
 
-const Report = (): JSX.Element => {
+const Report = () => {
 	return (
 		<IconButton aria-label={'report-button'}>
 			<Icon as={IoFlagSharp} />

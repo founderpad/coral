@@ -8,7 +8,7 @@ import {
 	Tabs,
 	TabsProps
 } from '@chakra-ui/react';
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { IconType } from 'react-icons/lib';
 
 type Props = Omit<TabsProps, 'children'> & {
@@ -16,21 +16,17 @@ type Props = Omit<TabsProps, 'children'> & {
 	children: JSX.Element[];
 };
 
-type TabProps = {
+interface TabProps {
 	label: string;
 	icon?: IconType;
-};
+}
 
-const TabLayout = (props: Props): JSX.Element => {
+const TabLayout = (props: Props) => {
 	const { tabs, children, ...rest } = props;
-	const [tabIndex, setTabIndex] = useState(0);
-
-	const onChange = useCallback((index) => setTabIndex(index), [tabIndex]);
 
 	return (
 		<Tabs
 			{...rest}
-			onChange={onChange}
 			overflow={'hidden'}
 			colorScheme={'black'}
 			px={0}
@@ -39,9 +35,9 @@ const TabLayout = (props: Props): JSX.Element => {
 		>
 			<TabList px={4}>
 				{tabs
-					?.filter((tab) => Object.keys(tab).length !== 0)
-					.map((tab) => (
-						<Tab {...tab} key={tab?.label} fontSize={'small'}>
+					.filter((tab) => Object.keys(tab).length !== 0)
+					.map((tab, key) => (
+						<Tab key={key} fontSize={'small'}>
 							{tab?.icon && (
 								<Icon
 									as={tab.icon}
@@ -50,7 +46,7 @@ const TabLayout = (props: Props): JSX.Element => {
 									display={{ base: 'none', sm: 'block' }}
 								/>
 							)}
-							{tab?.label}
+							{tab.label}
 						</Tab>
 					))}
 			</TabList>
@@ -58,7 +54,6 @@ const TabLayout = (props: Props): JSX.Element => {
 				{children?.map((tp: TabPanelProps, key) => {
 					return (
 						<TabPanel
-							{...tp}
 							key={key}
 							overflowY={'hidden'}
 							p={0}

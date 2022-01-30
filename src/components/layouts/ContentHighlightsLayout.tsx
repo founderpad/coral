@@ -17,7 +17,7 @@ interface Props {
 	highlights: IContentProps[];
 }
 
-const ContentHighlightsLayout = (props: Props): JSX.Element => {
+const ContentHighlightsLayout = (props: Props) => {
 	const { content, highlights } = props;
 
 	return (

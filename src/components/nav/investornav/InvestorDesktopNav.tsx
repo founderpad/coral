@@ -3,7 +3,7 @@ import { Box, Flex, Heading, HStack } from '@chakra-ui/layout';
 import CustomLink from '@components/input/Links';
 import React from 'react';
 
-const InvestorDesktopNav = (): JSX.Element => {
+const InvestorDesktopNav = () => {
 	return (
 		<Box>
 			<Flex

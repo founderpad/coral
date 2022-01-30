@@ -1,7 +1,7 @@
 // import { useForgottenPassword } from '@hooks/auth';
 import React from 'react';
 
-const ForgottenPasswordForm = (): JSX.Element => {
+const ForgottenPasswordForm = () => {
 	// const {
 	// 	register,
 	// 	handleSubmit,

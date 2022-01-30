@@ -5,7 +5,7 @@ import { BaseLink } from '.';
 
 const IconLink = (
 	props: LinkProps & { title: string; icon: IconType; iconProps?: IconProps }
-): JSX.Element => {
+) => {
 	const { children, icon, iconProps, ...rest } = props;
 	return (
 		<BaseLink {...rest}>

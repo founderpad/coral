@@ -9,7 +9,7 @@ export const FormLabelWithValue = ({
 }: {
 	label: string;
 	value: string;
-}): JSX.Element => (
+}) => (
 	<FormControl>
 		<FormLabelText label={label} />
 		<Text>{value}</Text>

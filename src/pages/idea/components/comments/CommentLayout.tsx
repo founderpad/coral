@@ -2,13 +2,13 @@ import { CaptionLabel, Label } from '@components/labels';
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { PointSeparator, UserAvatar } from '@components/shared';
 import BaseTag from '@components/tags/BaseTag';
-import IdeaContext from '@context/idea/IdeaContext';
 import { useQueryParam } from '@hooks/util';
+import useIdea from '@pages/idea/query/ideaQuery';
 import { formatDate } from '@utils/validators';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CommentActions from './CommentActions';
 
-const ChatContainer = ({ children }: { children: JSX.Element[] }) => (
+const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 	<StackLayout
 		p={2}
 		boxShadow={'sm'}
@@ -28,7 +28,7 @@ export const CommentLayout = ({
 	comment,
 	actions = true
 }: {
-	children?: JSX.Element;
+	children?: React.ReactNode;
 	comment: any;
 	actions?: boolean;
 	divider?: boolean;
@@ -37,8 +37,7 @@ export const CommentLayout = ({
 	const { displayName } = user;
 	const anchoredId = useQueryParam('d');
 
-	const isAuthor =
-		useContext(IdeaContext).data?.idea?.userId === comment.user.id;
+	const isAuthor = useIdea().idea?.userId === comment.user.id;
 
 	useEffect(() => {
 		if (anchoredId) {

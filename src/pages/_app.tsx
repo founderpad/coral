@@ -5,6 +5,7 @@ import BaseModal from '@components/modal/BaseModal';
 import BaseModalDrawer from '@components/modal/BaseModalDrawer';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
+import { useCheckLoggedIn } from '@hooks/auth';
 import { useTrackAnalytics } from '@hooks/util';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
@@ -38,11 +39,11 @@ const persistor = persistStore(store);
 const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	useTrackAnalytics();
 	// const router = useRouter();
-	// const { notification, removeNotification } = useNotification();
+	// const { removeNotification } = useNotification();
 
 	// useEffect(() => {
 	// 	const routeChangeComplete = () => {
-	// 		removeNotifications();
+	// 		removeNotification();
 	// 	};
 
 	// 	router.events.on('routeChangeComplete', routeChangeComplete);
@@ -51,15 +52,30 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	// 	};
 	// }, []);
 
+	useCheckLoggedIn();
+
 	return (
 		<React.Fragment>
 			<Head>
 				<link rel="shortcut icon" href="/favicon.svg" />
+				<script
+					src="https://apis.google.com/js/platform.js"
+					async
+					defer
+				></script>
+				<meta
+					name="google-signin-client_id"
+					content="570489210751-cplv3bacb2vvkfml9ie337u9m1f3p2cv.apps.googleusercontent.com"
+				></meta>
 			</Head>
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
 					<NhostAuthProvider nhost={nhost}>
-						<NhostApolloProvider nhost={nhost} cache={cache}>
+						<NhostApolloProvider
+							nhost={nhost}
+							cache={cache}
+							connectToDevTools={true}
+						>
 							<ChakraProvider theme={theme} resetCSS>
 								<NotificationProvider>
 									<ModalProvider>
@@ -84,6 +100,12 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 const cache = new InMemoryCache({
 	// addTypename: false,
 	typePolicies: {
+		interested_ideas: {
+			keyFields: ['ideaId']
+		},
+		idea_comments: {
+			keyFields: ['id']
+		},
 		Query: {
 			fields: {
 				// resourceCollection: {
@@ -101,14 +123,16 @@ const cache = new InMemoryCache({
 				// 	}
 				// },
 				resourceCollection: offsetLimitPagination(),
-				// feed: {
-				// 	...offsetLimitPagination(),
-				// 	read(existing, { args }): any {
-				// 		console.log('exiating: ', existing);
-				// 	}
-				// },
 				// CommentsForIdea: relayStylePagination()
 				// CommentsForIdea: offsetLimitPagination()
+				// idea_comments: {
+				// 	keyArgs: ['id', 'ideaId'],
+				// 	// merge: true
+				// 	merge(existing, incoming) {
+				// 		return incoming;
+				// 	}
+				// 	// offsetLimitPagination()
+				// }
 				idea_comments: offsetLimitPagination()
 			}
 		}

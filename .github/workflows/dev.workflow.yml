@@ -1,4 +1,4 @@
-name: Build and deploy Coral app to dev.founderpad.com
+name: Build and deploy Coral app to dev.founderpad.vercel.app
 
 # Controls when the workflow will run
 on:
@@ -49,13 +49,15 @@ jobs:
                   hasura metadata apply --endpoint ${{ secrets.HASURA_BACKEND_DEVELOPMENT }} --admin-secret ${{ secrets.HASURA_ADMIN_SECRET_DEVELOPMENT }} --skip-update-check
                   echo "Metadata applied successfully"
 
-            - name: Run tests
-              run: yarn test
+            - name: Run linter
+              run: yarn lint
 
-            - name: Run build
+            - name: Run build and tests
               run: yarn build
+              env:
+                  NEXT_PUBLIC_BACKEND: ${{ secrets.HASURA_BACKEND_DEVELOPMENT }}
 
-            - name: Run tests against Vercel
+            - name: Run tests against Vercel dev preview URL
               env:
                   VERCEL_URL: ${{ steps.pilot.outputs.preview-url }}
               run: yarn test

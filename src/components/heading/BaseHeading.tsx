@@ -7,7 +7,7 @@ type BaseHeadingProps = HeadingProps & {
 	icon?: IconType;
 };
 
-const BaseHeading = (props: BaseHeadingProps): JSX.Element => {
+const BaseHeading = (props: BaseHeadingProps) => {
 	const { children, color, size, icon } = props;
 
 	return (

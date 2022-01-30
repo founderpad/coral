@@ -2,7 +2,7 @@ import { Image } from '@chakra-ui/image';
 import { Flex, Heading, Stack, Text } from '@chakra-ui/layout';
 import React from 'react';
 
-const ForgotPasswordForm = (): JSX.Element => {
+const ForgotPasswordForm = () => {
 	// const {
 	// 	register,
 	// 	handleSubmit,
@@ -23,6 +23,7 @@ const ForgotPasswordForm = (): JSX.Element => {
 						alignSelf="center"
 						h="40px"
 						w="200px"
+						alt={'Founderpad logo'}
 						src="https://minio-19728797.nhost.app/nhost/founderpad-assets/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=3ec88dd8e741adc8059970ea94833c9d%2F20210606%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210606T104027Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c8ed3c91a3f5b212de40b9d8b2400d5dc4643a196c727bb9dcb5d57c1357d884"
 					/>
 					<Heading textAlign="center" fontSize={'2xl'}>

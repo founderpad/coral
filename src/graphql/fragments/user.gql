@@ -1,4 +1,4 @@
-fragment UserField on users {
+fragment UserFields on users {
 	displayName
 	id
 	avatarUrl
@@ -7,14 +7,9 @@ fragment UserField on users {
 	}
 }
 
-fragment UsersFieldWithEmail on users {
-	displayName
-	id
-	avatarUrl
+fragment UserFieldsWithEmail on users {
+	...UserFields
 	email
-	address {
-		...UserAddress
-	}
 }
 
 fragment UserAddress on user_address {

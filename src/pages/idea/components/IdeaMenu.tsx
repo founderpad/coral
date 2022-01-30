@@ -9,7 +9,7 @@ import EditIdeaForm from './EditIdeaForm';
 
 export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 	// const [deleteIdea] = useDeleteIdea(ideaId);
-	// const idea = useIdeaFragment();
+	// const idea = useIdea();
 	const [deleteIdeaMutation] = useDeleteIdeaMutation({
 		variables: {
 			id: ideaId
@@ -28,7 +28,7 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 			yesBtnLabel: 'Delete idea',
 			yesBtnColor: 'red'
 		});
-	}, []);
+	}, [deleteIdeaMutation, setModalDrawer]);
 
 	const onEditClick = useCallback(() => {
 		setModalDrawer({
@@ -46,7 +46,7 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 			hideFooter: true,
 			size: '2xl'
 		});
-	}, []);
+	}, [setModalDrawer]);
 
 	return (
 		<BaseMenu>

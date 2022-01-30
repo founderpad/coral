@@ -8,7 +8,7 @@ interface Props {
 	value: string | number;
 }
 
-const ContentFieldAndValue = (props: Props): JSX.Element => (
+const ContentFieldAndValue = (props: Props) => (
 	<StackLayout spacing={0} wordBreak={'break-all'}>
 		{props.title && (
 			<BaseHeading fontSize={'sm'} as={'h4'} color={'gray.900'}>

@@ -1,7 +1,8 @@
 import { Heading, Stack } from '@chakra-ui/react';
 import { GoBackButton } from '@components/buttons';
+import { NextPage } from 'next';
 
-const NotFound = (): JSX.Element => {
+const NotFound: NextPage = () => {
 	return (
 		<Stack
 			h={'full'}

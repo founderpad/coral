@@ -1,3 +1,5 @@
+#import { UserFieldsWithEmail } from '../fragments/user.gql'
+
 query UserSocials($id: uuid!) {
 	profile: user_profile_by_pk(id: $id) {
 		linkedin
@@ -29,16 +31,9 @@ query UserProfileDetails($userId: uuid!) {
 
 query User($userId: uuid!) {
 	user(id: $userId) {
-		id
-		displayName
-		avatarUrl
+		...UserFieldsWithEmail
 		createdAt
-		email
 		lastSeen
-		address {
-			location
-			country
-		}
 		profile {
 			id
 			isComplete

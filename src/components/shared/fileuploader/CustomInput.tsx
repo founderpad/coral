@@ -45,7 +45,7 @@ export const CustomInput = (props: Props) => {
 
 			addAttachedFiles(filesToUpload);
 		},
-		[attachedFiles]
+		[addAttachedFiles, bucketId]
 	);
 
 	const { getRootProps, getInputProps } = useDropzone({

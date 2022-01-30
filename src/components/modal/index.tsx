@@ -31,7 +31,7 @@ type IModalProps = Omit<ModalProps, 'children'> & {
 	removePadding?: boolean;
 };
 
-export const Modal = (props: IModalProps): JSX.Element => {
+export const Modal = (props: IModalProps) => {
 	const {
 		title,
 		isOpen,

@@ -2,7 +2,7 @@ import AuthLayout from '@components/layouts/AuthLayout';
 import React from 'react';
 import ForgottenPasswordForm from './components/ForgottenPasswordForm';
 
-const ForgottenPassword = (): JSX.Element => {
+const ForgottenPassword = () => {
 	return (
 		<AuthLayout
 			header="Reset your password"

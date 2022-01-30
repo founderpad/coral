@@ -1,11 +1,19 @@
 {
 	"editor.formatOnSave": true,
+	"eslint.format.enable": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true,
-		"source.organizeImports": true
+		"source.fixAll.eslint": true
 	},
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"yaml.schemas": {
-		"https://unpkg.com/graphql-config@4.0.1/config-schema.json": "graphql.config.yml"
-	}
+	"eslint.options": {
+		"extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
+	},
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"markdown",
+		"mdx"
+	]
 }

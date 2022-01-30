@@ -3,14 +3,14 @@ import Icon from '@chakra-ui/icon';
 import { Textarea } from '@chakra-ui/textarea';
 import { IoSendSharp } from '@components/icons';
 import { StackLayout } from '@components/layouts';
-import IdeaContext from '@context/idea/IdeaContext';
 import {
 	CommentsForIdeaDocument,
 	usePostCommentMutation
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
-import React, { useCallback, useContext, useState } from 'react';
+import useIdea from '@pages/idea/query/ideaQuery';
+import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';
 
@@ -18,24 +18,24 @@ const PostComment = () => {
 	const [value, setValue] = useState('');
 	const user = useCurrentUser();
 
-	const data = useContext(IdeaContext).data;
+	const { idea } = useIdea() ?? {};
 
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
 			ideaComment: {
-				ideaId: data?.idea?.id,
-				targetUserId: data?.idea?.userId,
+				ideaId: idea?.id,
+				targetUserId: idea?.userId,
 				value
 			},
-			ideaId: data?.idea?.id
+			ideaId: idea?.id
 		},
 		// update(cache, mutationResult) {
 		// 	cache.modify({
 		// 		fields: {
 		// 			idea_comments: (previous, { toReference }) => {
-		// 				const result = [
+		// 				return [
 		// 					...previous,
-		// 					toReference(mutationResult.data.addIdeaComment)
+		// 					toReference(mutationResult.data?.addIdeaComment!)
 		// 				];
 		// 			}
 		// 		}
@@ -45,7 +45,7 @@ const PostComment = () => {
 			{
 				query: CommentsForIdeaDocument,
 				variables: {
-					ideaId: data?.idea?.id
+					ideaId: idea?.id
 				}
 			}
 		],
@@ -54,8 +54,8 @@ const PostComment = () => {
 				action: 'Post comment',
 				params: {
 					comment: value,
-					idea_id: data?.idea?.id,
-					to_user_id: data?.idea?.userId,
+					idea_id: idea?.id,
+					to_user_id: idea?.userId,
 					from_user_id: user.id,
 					from_user_display_name: user.displayName,
 					from_user_email: user.email
@@ -70,7 +70,7 @@ const PostComment = () => {
 		(e: React.ChangeEvent<HTMLTextAreaElement>) => {
 			setValue(e.target.value);
 		},
-		[value]
+		[]
 	);
 
 	return (

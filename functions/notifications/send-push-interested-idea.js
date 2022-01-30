@@ -3,7 +3,7 @@
 var sendNotification = function (data) {
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: 'Basic YjI5OGM1ODctNGIyNi00NjIzLWFiYzctYzFkN2Q2ODJiMWYy'
+		Authorization: `Basic ${process.env.ONESIGNAL_REST_API_KEY}`
 	};
 
 	var options = {
@@ -41,12 +41,13 @@ export default (req, _res) => {
 	// const message = createMessage(fromUserId, targetUserId);
 
 	const message = {
-		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
+		// app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
+		app_id: process.env.ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
 			en: 'Somebody is interested in your idea! 🚀 Click here to see who they are.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}`,
+		url: `${process.env.SITE_URL}/${ideaId}`,
 		include_external_user_ids: [targetUserId]
 	};
 
