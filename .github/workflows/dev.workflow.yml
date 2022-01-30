@@ -1,4 +1,4 @@
-name: Build and deploy Coral app to dev.founderpad.com
+name: Build and deploy Coral app to dev.founderpad.vercel.app
 
 # Controls when the workflow will run
 on:
