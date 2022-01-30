@@ -65,7 +65,7 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				></script>
 				<meta
 					name="google-signin-client_id"
-					content="570489210751-607hr5dueeadl0ektvnd8ruje09k42fe.apps.googleusercontent.com"
+					content={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
 				></meta>
 			</Head>
 			<Provider store={store}>
