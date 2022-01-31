@@ -90,7 +90,6 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-react": "^7.28.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
-		"express": "^4.17.2",
 		"hasura-cli": "^2.1.1",
 		"husky": "^7.0.4",
 		"identity-obj-proxy": "^3.0.0",

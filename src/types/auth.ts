@@ -95,4 +95,4 @@ export type TExperience = Pick<
 // 	country?: string;
 // };
 
-export type TAuthProvider = 'google' | 'facebook' | 'github';
+export type TAuthProvider = Lowercase<'google' | 'facebook' | 'github'>;

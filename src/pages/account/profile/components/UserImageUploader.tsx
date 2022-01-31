@@ -18,33 +18,45 @@ const UserImageUploader = () => {
 	const uploadAvatar = useFileUpload();
 	const [updateAvatar] = useUpdateUserAvatarMutation();
 
-	const onUpload = useCallback(
-		async (file: File) => {
-			const filePath = await uploadAvatar({ file, bucketId: 'avatars' });
+	// const onUpload = useCallback(async (file: File) => {
+	// 	const avatarUrl = await uploadAvatar({ file, bucketId: 'avatars' });
 
-			await updateAvatar({
-				variables: {
-					id,
-					userDetails: {
-						avatarUrl: filePath
-					}
-				},
-				onCompleted: (_data) => {
-					if (filePath) dispatch(updateUserImage(filePath));
-					addNotification('Avatar successfully updated', 'success');
-					setModalDrawer({ isOpen: false });
+	// 	await updateAvatar({
+	// 		variables: {
+	// 			id,
+	// 			userDetails: {
+	// 				avatarUrl
+	// 			}
+	// 		},
+	// 		onCompleted: (_data) => {
+	// 			if (avatarUrl) {
+	// 				dispatch(updateUserImage(avatarUrl));
+	// 				addNotification('Avatar successfully updated', 'success');
+	// 			}
+	// 			setModalDrawer({ isOpen: false });
+	// 		}
+	// 	});
+	// });
+
+	const onUpload = async (file: File) => {
+		const avatarUrl = await uploadAvatar({ file, bucketId: 'avatars' });
+
+		await updateAvatar({
+			variables: {
+				id,
+				userDetails: {
+					avatarUrl
 				}
-			});
-		},
-		[
-			addNotification,
-			dispatch,
-			id,
-			setModalDrawer,
-			updateAvatar,
-			uploadAvatar
-		]
-	);
+			},
+			onCompleted: (_data) => {
+				if (avatarUrl) {
+					dispatch(updateUserImage(avatarUrl));
+					addNotification('Avatar successfully updated', 'success');
+				}
+				setModalDrawer({ isOpen: false });
+			}
+		});
+	};
 
 	return (
 		<ImageUploader

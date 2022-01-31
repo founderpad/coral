@@ -37,7 +37,7 @@ export const CommentLayout = ({
 	const { displayName } = user;
 	const anchoredId = useQueryParam('d');
 
-	const isAuthor = useIdea().idea?.userId === comment.user.id;
+	const isAuthor = useIdea()?.idea?.userId === comment?.user.id;
 
 	useEffect(() => {
 		if (anchoredId) {

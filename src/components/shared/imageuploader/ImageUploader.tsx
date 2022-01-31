@@ -97,7 +97,7 @@ export const ImageUploader = (props: Props) => {
 
 	useEffect(() => {
 		if (file) onOpenCropperModal();
-	}, [file, onOpenCropperModal]);
+	}, [file]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const onChange = async (e: any) => {
 		e.preventDefault();

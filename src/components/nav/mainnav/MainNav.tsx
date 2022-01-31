@@ -47,7 +47,7 @@ const MainNav = memo(() => (
 			</Flex>
 			<DesktopNav />
 			<FlexLayout alignItems={'center'} ml={8}>
-				{/* <NotificationsPopover /> */}
+				<NotificationsPopover />
 				<UserMenu />
 			</FlexLayout>
 			{/* </Flex> */}
