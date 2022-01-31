@@ -5,7 +5,7 @@ import { useUpdateUserAvatarMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { useFileUpload, useNotification } from '@hooks/util';
 import { updateUserImage } from '@slices/auth';
-import React, { useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 
 const UserImageUploader = () => {

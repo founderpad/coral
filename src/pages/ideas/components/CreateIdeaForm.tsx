@@ -4,7 +4,6 @@ import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
 import { SwitchField } from '@components/input/SwitchField';
 import { TextareaField } from '@components/input/TextareaField';
-import { AppDivider } from '@components/shared';
 import {
 	TCreateIdeaMutation,
 	TIdeas_Insert_Input,

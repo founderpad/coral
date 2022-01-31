@@ -1,4 +1,4 @@
-import { CaptionLabel, Label } from '@components/labels';
+import { Label } from '@components/labels';
 import { useRouter } from 'next/router';
 import React, { memo } from 'react';
 import { PointSeparator } from './Separators';

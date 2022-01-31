@@ -1,4 +1,4 @@
-import { CaptionLabel, Label } from '@components/labels';
+import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import { PointSeparator } from '@components/shared';
