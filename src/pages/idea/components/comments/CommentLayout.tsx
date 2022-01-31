@@ -62,7 +62,7 @@ export const CommentLayout = ({
 				}
 				borderLeftWidth={actions ? 4 : 3}
 			>
-				<UserAvatar size={'sm'} />
+				<UserAvatar size={'sm'} src={comment.user.avatarUrl} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
 					<ChatContainer>
 						<FlexLayout
