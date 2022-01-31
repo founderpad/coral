@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 // appId, apiKey in this order
 const client = new OneSignal.Client(
 	'c4cb5426-3957-47fb-bce2-f363d031aaa2',
-	'YjI5OGM1ODctNGIyNi00NjIzLWFiYzctYzFkN2Q2ODJiMWYy'
+	'MzJjOWQ4OTctMTUyOC00ZmYzLTk5NjgtMDAwOTk0NTYzZjdi'
 );
 
 var sendNotification = async function (message: any): Promise<boolean> {
@@ -53,7 +53,7 @@ export default async (req: Request, res: Response) => {
 		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
 		en: 'text',
 		contents: {
-			en: 'Somebody is interested in your idea! 🚀 Click here to see who they are.'
+			en: 'Somebody is interested in your idea! 🚀  Click here to see who they are.'
 		},
 		url: `http://localhost:3000/idea/${ideaId}`,
 		include_external_user_ids: [targetUserId]

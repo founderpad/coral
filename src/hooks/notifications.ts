@@ -32,11 +32,11 @@ export const usePushNotifications = () => {
 		window.OneSignal = window.OneSignal || [];
 		if (window.OneSignal) {
 			window.OneSignal.push(function () {
-				window.OneSignal.setExternalUserId(user?.id);
+				// window.OneSignal.setExternalUserId(user?.id);
 				window.OneSignal.init({
 					appId: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
-					safari_web_id:
-						process.env.NEXT_PUBLIC_ONESIGNAL_SAFARI_WEB_ID,
+					// safari_web_id:
+					// 	process.env.NEXT_PUBLIC_ONESIGNAL_SAFARI_WEB_ID,
 					notifyButton: {
 						enable: true,
 						size: 'small',
@@ -47,6 +47,7 @@ export const usePushNotifications = () => {
 					},
 					allowLocalhostAsSecureOrigin: true
 				});
+				window.OneSignal.setExternalUserId(user?.id);
 			});
 		}
 	}, []);
