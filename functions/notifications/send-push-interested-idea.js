@@ -30,12 +30,10 @@ var sendNotification = function (message) {
 	req.end();
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default (req, _res) => {
+export default async (req, res) => {
 	const fromUserId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
-	const id = req.body.event.data.new.id;
 
 	if (fromUserId === targetUserId) return null;
 
@@ -43,11 +41,15 @@ export default (req, _res) => {
 		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
 		en: 'text',
 		contents: {
-			en: 'Somebody replied to your comment. Click here to see it.'
+			en: 'Somebody is interested in your idea! 🚀  Click here to see who they are.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}?d=${id}`,
+		url: `http://localhost:3000/idea/${ideaId}`,
 		include_external_user_ids: [targetUserId]
 	};
 
 	sendNotification(message);
+	// if (response)
+	// 	res.status(200).send(
+	// 		`nterested idea notification sent successfully to ${req.body.event.data.new.target_user_id}`
+	// 	);
 };

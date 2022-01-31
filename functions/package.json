@@ -8,8 +8,7 @@
 	"author": "founderpad",
 	"license": "ISC",
 	"dependencies": {
-		"aws-sdk": "^2.1022.0",
-		"onesignal-node": "^3.3.0"
+		"aws-sdk": "^2.1022.0"
 	},
 	"devDependencies": {
 		"@types/express": "^4.17.13",

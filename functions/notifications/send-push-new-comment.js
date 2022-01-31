@@ -31,7 +31,7 @@ var sendNotification = function (message) {
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default (req, _res) => {
+export default async (req, res) => {
 	const fromUserId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
@@ -40,12 +40,12 @@ export default (req, _res) => {
 	if (fromUserId === targetUserId) return null;
 
 	const message = {
-		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
+		app_id: process.env.ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
-			en: 'Somebody replied to your comment. Click here to see it.'
+			en: 'You have received a new comment on your idea. Click here to view it.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}?d=${id}`,
+		url: `${process.env.SITE_URL}/${ideaId}?d=${id}`,
 		include_external_user_ids: [targetUserId]
 	};
 

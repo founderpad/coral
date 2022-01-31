@@ -8,10 +8,14 @@
 		"noImplicitAny": false,
 		"composite": true,
 		"forceConsistentCasingInFileNames": true,
-		"module": "esnext",
-		"target": "ESNext",
+		"module": "ESNext",
+		"target": "ES6",
 		"moduleResolution": "node"
 	},
 	"exclude": ["node_modules"],
-	"include": ["**/*.ts"]
+	"include": [
+		"**/*.ts",
+		"notifications/send-push-interested-idea.js",
+		"notifications/send-push-new-comment.js"
+	]
 }
