@@ -1,4 +1,4 @@
-import * as OneSignal from 'onesignal-node';
+import OneSignal from 'onesignal-node';
 import { Request, Response } from 'express';
 
 // appId, apiKey in this order
