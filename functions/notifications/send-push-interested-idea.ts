@@ -62,6 +62,6 @@ export default async (req: Request, res: Response) => {
 	const response = await sendNotification(message);
 	if (response)
 		res.status(200).send(
-			`Push notification sent successfully to ${req.body.event.data.new.target_user_id}`
+			`nterested idea notification sent successfully to ${req.body.event.data.new.target_user_id}`
 		);
 };
