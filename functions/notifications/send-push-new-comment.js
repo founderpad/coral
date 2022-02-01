@@ -1,7 +1,7 @@
 var sendNotification = function (message) {
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: `Basic MzJjOWQ4OTctMTUyOC00ZmYzLTk5NjgtMDAwOTk0NTYzZjdi`
+		Authorization: `Basic ${process.env.ONESIGNAL_REST_API_KEY}`
 	};
 
 	var options = {
@@ -45,7 +45,7 @@ export default async (req, res) => {
 		contents: {
 			en: 'You have received a new comment on your idea. Click here to view it.'
 		},
-		url: `${process.env.SITE_URL}/${ideaId}?d=${id}`,
+		url: `${process.env.SITE_URL}/idea/${ideaId}?d=${id}`,
 		include_external_user_ids: [targetUserId]
 	};
 
