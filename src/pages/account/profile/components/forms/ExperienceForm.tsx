@@ -12,7 +12,7 @@ import {
 	useUpdateUserProfileMutation
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
-import { useNotification } from '@hooks/util';
+// import { useNotification } from '@hooks/util';
 import { setProfileComplete } from '@slices/auth';
 import {
 	AVAILABILITY_IN_HOURS,
@@ -24,11 +24,13 @@ import { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import React from 'react';
+import { useSuccessNotification } from '@hooks/toast';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
 	const isProfileComplete = useCurrentUser()?.profile?.isComplete;
-	const { addNotification } = useNotification();
+	// const { addNotification } = useNotification();
+	const showSuccessNotification = useSuccessNotification();
 
 	/* eslint-disable @typescript-eslint/no-unused-vars */
 	const { __typename, userId, id, ...rest } = userProfile;
@@ -54,7 +56,10 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			setModalDrawer({
 				isOpen: false
 			});
-			addNotification('Experience updated successfully', 'success');
+			// addNotification('Experience updated successfully', 'success');
+			showSuccessNotification({
+				title: 'Experience updated successfully'
+			});
 
 			if (!isProfileComplete) dispatch(setProfileComplete());
 		}

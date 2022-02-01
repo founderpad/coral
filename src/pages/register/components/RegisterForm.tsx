@@ -1,4 +1,3 @@
-import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import {
@@ -66,7 +65,7 @@ const RegisterForm = () => {
 					fontSize={'sm'}
 					isRequired
 				/>
-				<AlertFeedback />
+				{/* <AlertFeedback /> */}
 				<SubmitButton
 					id={'submit-register-account'}
 					name={'submit-register-account'}

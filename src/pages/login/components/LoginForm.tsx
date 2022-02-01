@@ -1,4 +1,3 @@
-import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import { EmailField, PasswordField } from '@components/input';
@@ -47,7 +46,7 @@ const LoginForm = () => {
 					isRequired
 				/>
 
-				<AlertFeedback />
+				{/* <AlertFeedback /> */}
 
 				<SubmitButton
 					id={'submit-login'}

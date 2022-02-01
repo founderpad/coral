@@ -10,7 +10,8 @@ import {
 	useUpdateUserPersonalDetailsMutation
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
-import { useNotification } from '@hooks/util';
+import { useSuccessNotification } from '@hooks/toast';
+// import { useNotification } from '@hooks/util';
 import { updatePersonalDetails } from '@slices/auth';
 import { countriesList } from '@utils/Constants';
 import { useContext } from 'react';
@@ -26,8 +27,10 @@ const PersonalDetailsForm = () => {
 	const auth = useCurrentUser();
 	const dispatch = useDispatch();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const showSuccessNotification = useSuccessNotification();
+
 	// const showSuccessNotification = useSuccessNotification();
-	const { addNotification } = useNotification();
+	// const { addNotification } = useNotification();
 
 	const {
 		handleSubmit,
@@ -65,7 +68,10 @@ const PersonalDetailsForm = () => {
 				})
 			);
 
-			addNotification('Personal details successfully updated', 'success');
+			// addNotification('Personal details successfully updated', 'success');
+			showSuccessNotification({
+				title: 'Personal details updated successfully'
+			});
 			setModalDrawer({
 				isOpen: false
 			});
