@@ -6,7 +6,7 @@ import { useQueryParam } from '@hooks/util';
 import AuthFilter from '@utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
-import { IoChatboxEllipsesSharp, IoLockClosedSharp } from 'react-icons/io5';
+import { IoChatboxEllipsesSharp } from 'react-icons/io5';
 
 const ViewIdea: NextPage = () => {
 	const user = useCurrentUser();
