@@ -1,4 +1,3 @@
-import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import {
@@ -6,7 +5,7 @@ import {
 	InputField,
 	PasswordField
 } from '@components/input/InputField';
-import SocialLogins from '@components/shared/SocialLogins';
+// import SocialLogins from '@components/shared/SocialLogins';
 import { useRegister } from '@hooks/auth';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -66,7 +65,7 @@ const RegisterForm = () => {
 					fontSize={'sm'}
 					isRequired
 				/>
-				<AlertFeedback />
+				{/* <AlertFeedback /> */}
 				<SubmitButton
 					id={'submit-register-account'}
 					name={'submit-register-account'}
@@ -78,7 +77,7 @@ const RegisterForm = () => {
 					w={'full'}
 				/>
 			</Form>
-			<SocialLogins />
+			{/* <SocialLogins /> */}
 			<LegalFooter />
 		</React.Fragment>
 	);

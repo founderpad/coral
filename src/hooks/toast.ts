@@ -6,7 +6,11 @@ interface INotificationProps {
 	status: 'info' | 'warning' | 'success' | 'error';
 }
 
-export const useNotification = (): any => {
+export const useNotification = (): (({
+	title,
+	description,
+	status
+}: INotificationProps) => void) => {
 	const toast = useToast();
 
 	return ({ title, description, status }: INotificationProps) => {
@@ -21,13 +25,19 @@ export const useNotification = (): any => {
 	};
 };
 
-export const useSuccessNotification = (): any => {
+export const useSuccessNotification = (): (({
+	title,
+	description
+}: Omit<INotificationProps, 'status'>) => void) => {
 	const notification = useNotification();
 	return ({ title, description }: { title: string; description?: string }) =>
 		notification({ title, description, status: 'success' });
 };
 
-export const useErrorNotification = (): any => {
+export const useErrorNotification = (): (({
+	title,
+	description
+}: Omit<INotificationProps, 'status'>) => void) => {
 	const notification = useNotification();
 	return ({ title, description }: { title: string; description?: string }) =>
 		notification({ title, description, status: 'error' });

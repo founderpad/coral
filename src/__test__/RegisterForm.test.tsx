@@ -23,7 +23,7 @@ const setup = () => {
 	const passwordField = registerSetup.getByPlaceholderText(/Password/i);
 
 	const submitButton = registerSetup.getByRole('button', { name: /submit/i });
-	const socialSignup = registerSetup.getByTestId('socialLogin');
+	// const socialSignup = registerSetup.getByTestId('socialLogin');
 
 	return {
 		registerSetup,
@@ -33,17 +33,17 @@ const setup = () => {
 		emailField,
 		passwordField,
 		submitButton,
-		socialSignup,
+		// socialSignup,
 		...registerSetup
 	};
 };
 
 const mockRegister = jest.fn();
-const mockSocialRegister = jest.fn();
+// const mockSocialRegister = jest.fn();
 
 jest.mock('@hooks/auth', () => ({
-	useRegister: (): any => mockRegister,
-	useSocialLogin: (): any => mockSocialRegister
+	useRegister: (): any => mockRegister
+	// useSocialLogin: (): any => mockSocialRegister
 }));
 
 describe('Register form', () => {
@@ -167,13 +167,13 @@ describe('Register form', () => {
 		);
 	});
 
-	it('should make social sign up request', async () => {
-		const { socialSignup } = setup();
+	// it('should make social sign up request', async () => {
+	// 	const { socialSignup } = setup();
 
-		await act(async () => {
-			fireEvent.click(socialSignup);
-		});
+	// 	await act(async () => {
+	// 		fireEvent.click(socialSignup);
+	// 	});
 
-		expect(mockSocialRegister).toHaveBeenCalledTimes(1);
-	});
+	// 	expect(mockSocialRegister).toHaveBeenCalledTimes(1);
+	// });
 });
