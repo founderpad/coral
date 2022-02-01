@@ -96,7 +96,7 @@ exports[`Register form matches snapshot 1`] = `
     class="chakra-stack css-1snl987"
   >
     <p
-      class="chakra-text css-1d7axwl"
+      class="chakra-text css-1cbvqmf"
     >
       Or
     </p>
@@ -114,7 +114,7 @@ exports[`Register form matches snapshot 1`] = `
     </div>
   </div>
   <div
-    class="chakra-text css-av3fgh"
+    class="chakra-text css-t2uy81"
   >
     By continuing, you agree to founderpad's 
     <span
@@ -139,7 +139,7 @@ exports[`Register form matches snapshot 1`] = `
      
   </div>
   <div
-    class="chakra-text css-1fihqrz"
+    class="chakra-text css-13qwtc7"
   >
     Already have an account? 
     <span

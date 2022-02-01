@@ -65,7 +65,7 @@ exports[`Login form matches snapshot 1`] = `
     class="chakra-stack css-1snl987"
   >
     <p
-      class="chakra-text css-1d7axwl"
+      class="chakra-text css-1cbvqmf"
     >
       Or
     </p>
@@ -83,7 +83,7 @@ exports[`Login form matches snapshot 1`] = `
     </div>
   </div>
   <p
-    class="chakra-text css-17q9usm"
+    class="chakra-text css-3a3b7x"
   >
     Don't have an account?
     <span

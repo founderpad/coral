@@ -1,5 +1,10 @@
 import { Avatar } from '@chakra-ui/avatar';
-import { AvatarProps, StackProps, useBreakpointValue } from '@chakra-ui/react';
+import {
+	AvatarBadge,
+	AvatarProps,
+	StackProps,
+	useBreakpointValue
+} from '@chakra-ui/react';
 import { CaptionLabel, Label } from '@components/labels';
 import { StackLayout } from '@components/layouts';
 import { useCurrentUser } from '@hooks/auth';
@@ -10,12 +15,13 @@ type Props = AvatarProps & {
 	children?: string;
 	createdAt?: string;
 	direction?: StackProps['direction'];
+	badge?: any;
 };
 
 export const UserAvatar = (props: Props) => {
 	const avatarSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
-	const { size, ...rest } = props;
+	const { size, badge, ...rest } = props;
 	return (
 		<Avatar
 			{...rest}
@@ -24,7 +30,9 @@ export const UserAvatar = (props: Props) => {
 			rounded={'full'}
 			bg={'gray.300'}
 			color={'white'}
-		/>
+		>
+			{badge}
+		</Avatar>
 	);
 };
 

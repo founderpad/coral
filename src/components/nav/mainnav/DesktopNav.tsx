@@ -4,14 +4,14 @@ import { Link } from '@chakra-ui/layout';
 import { StackLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import BasePopover from '@components/popover/BasePopover';
-import useUserProfile from '@hooks/user';
+// import useUserProfile from '@hooks/user';
 import { useRouter } from 'next/router';
 import React, { memo } from 'react';
 import NavItems from './NavItems';
 import { SubNav } from './SubNav';
 
 const DesktopNav = memo(() => {
-	const isProfileComplete = useUserProfile()?.isComplete;
+	// const isProfileComplete = useUserProfile()?.isComplete;
 	const router = useRouter();
 
 	const getCurrentPath = (href: string) =>
@@ -71,25 +71,9 @@ const DesktopNav = memo(() => {
 					)}
 				</BasePopover>
 			))}
-			{!isProfileComplete && <ProfileNotSet />}
+			{/* {!isProfileComplete && <ProfileNotSet />} */}
 		</StackLayout>
 	);
 });
-
-const ProfileNotSet = memo(() => (
-	<Button
-		name={'profile-not-set'}
-		as={BaseLink}
-		href={'/account/profile'}
-		position={'fixed'}
-		fontSize={'sm'}
-		right={4}
-		color={'red.500'}
-		variant={'outline'}
-		height={8}
-	>
-		Profile not set
-	</Button>
-));
 
 export default DesktopNav;

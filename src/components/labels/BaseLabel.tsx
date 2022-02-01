@@ -8,10 +8,18 @@ export const BaseLabel = ({
 	fontSize = 'sm',
 	children,
 	icon,
+	iconColor,
 	...rest
 }: TLabelProps) => (
-	<Text {...rest} color={color} fontSize={fontSize}>
-		{icon && <Icon as={icon} mr={2} fontSize={'md'} color={'gray.900'} />}
+	<Text {...rest} color={color} fontSize={fontSize} d={'flex'}>
+		{icon && (
+			<Icon
+				as={icon}
+				mr={2}
+				fontSize={'md'}
+				color={iconColor ?? 'gray.900'}
+			/>
+		)}
 		{children}
 	</Text>
 );
