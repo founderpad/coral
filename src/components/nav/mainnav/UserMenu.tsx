@@ -93,6 +93,7 @@ const ProfileNotSet = memo(() => (
 		icon={IoAlertCircleSharp}
 		iconColor={'red.500'}
 		alignItems={'center'}
+		d={'flex'}
 	>
 		Profile not set
 	</Label>
