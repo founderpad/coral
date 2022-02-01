@@ -1,26 +1,21 @@
 import { StackLayout } from '@components/layouts';
 import { Loading } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
-import IdeaContext from '@context/idea/IdeaContext';
-import { useCurrentUser } from '@hooks/auth';
-import Router from 'next/router';
-import React, { useContext } from 'react';
+import React from 'react';
 import CommentsList from './components/comments/CommentsList';
 import IdeaDetails from './components/IdeaDetails';
 import { IdeaOverview } from './components/IdeaOverview';
 import IdeaTitleHeader from './components/IdeaTitleHeader';
 import { IdeaUserActions } from './components/IdeaUserActions';
 import InterestedIdea from './components/InterestedIdea';
+import useIdea from './query/ideaQuery';
 
 const IdeaTab = () => {
-	const auth = useCurrentUser();
-	const { data } = useContext(IdeaContext);
+	// const auth = useCurrentUser();
+	const data = useIdea();
 
 	if (!data) return <Loading small />;
-
-	// Only enable the id creator to view their own idea if it's unpublished
-	if (data?.idea?.isPublished && data?.idea.userId !== auth?.id)
-		Router.replace('/404');
+	// if (!idea.isPublished && auth.id !== idea.userId) Router.replace('/404');
 
 	return (
 		<StackLayout

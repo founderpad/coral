@@ -2,7 +2,7 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
 import { Flex, Stack, Text } from '@chakra-ui/layout';
-import { Collapse } from '@chakra-ui/react';
+import { Collapse, useBreakpointValue } from '@chakra-ui/react';
 import { IoChevronDownSharp } from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { useMobileNav } from '@hooks/util';
@@ -13,6 +13,9 @@ import { SubNav } from './SubNav';
 const MobileNav = () => {
 	const { isOpen } = useMobileNav();
 
+	const isMobile = useBreakpointValue({ base: true, md: false });
+
+	if (!isMobile) return null;
 	return (
 		<StackLayout
 			style={{
@@ -30,44 +33,19 @@ const MobileNav = () => {
 			h={'calc(100% - 40px)'}
 			// w={'calc(100% - 16px)'}
 		>
-			{NavItems.map((navItem) => (
-				<MobileNavItem {...navItem} key={navItem.key} />
+			{NavItems.map((navItem, i) => (
+				<MobileNavItem {...navItem} key={i} />
 			))}
 		</StackLayout>
-		// <StackLayout
-		// 	bg={'whiteAlpha.900'}
-		// 	filter={'blur(2px)'}
-		// 	borderWidth={1}
-		// 	boxShadow={'xl'}
-		// 	rounded={'3xl'}
-		// 	display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
-		// 	spacing={1}
-		// 	position={'absolute'}
-		// 	top={14}
-		// 	zIndex={999}
-		// 	p={4}
-		// 	flex={1}
-		// 	left={4}
-		// 	right={4}
-		// 	bottom={4}
-		// 	overflow={'hidden'}
-		// 	h={'calc(100% - 72px)'}
-		// 	w={'calc(100% - 32px)'}
-		// >
-		// 	<StackLayout spacing={2}>
-		// 		{NavItems.map((navItem) => (
-		// 			<MobileNavItem key={navItem.label} {...navItem} />
-		// 		))}
-		// 	</StackLayout>
-		// </StackLayout>
 	);
 };
 
-const MobileNavItem = ({ label, children }: NavItem) => {
+const MobileNavItem = (navItem: NavItem) => {
+	const { items, label } = navItem;
 	const { isOpen, onToggle } = useDisclosure();
 
 	return (
-		<StackLayout spacing={4} onClick={children && onToggle}>
+		<StackLayout spacing={4} onClick={navItem && onToggle}>
 			<Flex
 				pb={2}
 				justify={'space-between'}
@@ -85,7 +63,7 @@ const MobileNavItem = ({ label, children }: NavItem) => {
 				>
 					{label}
 				</Text>
-				{children && (
+				{navItem.items?.length && (
 					<Icon
 						as={IoChevronDownSharp}
 						transition={'all .25s ease-in-out'}
@@ -98,8 +76,8 @@ const MobileNavItem = ({ label, children }: NavItem) => {
 
 			<Collapse in={isOpen} animateOpacity>
 				<Stack pl={2} align={'start'}>
-					{children?.map((child) => (
-						<SubNav {...child} key={child.key} />
+					{items?.map((item, i) => (
+						<SubNav {...item} key={i} />
 					))}
 				</Stack>
 			</Collapse>

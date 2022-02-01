@@ -1,9 +1,7 @@
-// const OneSignal = require('onesignal-node');
-
-var sendNotification = function (data) {
+var sendNotification = function (message) {
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: 'Basic YjI5OGM1ODctNGIyNi00NjIzLWFiYzctYzFkN2Q2ODJiMWYy'
+		Authorization: `Basic ${process.env.ONESIGNAL_REST_API_KEY}`
 	};
 
 	var options = {
@@ -28,27 +26,30 @@ var sendNotification = function (data) {
 		// throw new Error(`Failed to send push notification: ${e}`);
 	});
 
-	req.write(JSON.stringify(data));
+	req.write(JSON.stringify(message));
 	req.end();
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default (req, _res) => {
-	// const fromUserId = req.body.event.data.new.user_id;
+export default async (req, res) => {
+	const fromUserId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
 
-	// const message = createMessage(fromUserId, targetUserId);
+	if (fromUserId === targetUserId) return null;
 
 	const message = {
-		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
+		app_id: process.env.ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
-			en: 'Somebody is interested in your idea! 🚀 Click here to see who they are.'
+			en: 'Somebody is interested in your idea! 🚀  Click here to see who they are.'
 		},
-		url: `http://localhost:3000/idea/${ideaId}`,
+		url: `${process.env.SITE_URL}/idea/${ideaId}`,
 		include_external_user_ids: [targetUserId]
 	};
 
 	sendNotification(message);
+	// if (response)
+	// 	res.status(200).send(
+	// 		`nterested idea notification sent successfully to ${req.body.event.data.new.target_user_id}`
+	// 	);
 };

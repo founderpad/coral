@@ -1,4 +1,4 @@
-import { CaptionLabel } from '@components/labels';
+import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import { PointSeparator } from '@components/shared';
@@ -8,7 +8,7 @@ import React from 'react';
 
 type TProps = Pick<TIdeaPreviewFieldsFragment, 'user' | 'created_at'>;
 
-export const PostedBy = ({ user, created_at }: TProps): JSX.Element => (
+export const PostedBy = ({ user, created_at }: TProps) => (
 	<FlexLayout
 		position={'relative'}
 		alignItems={'center'}
@@ -20,19 +20,19 @@ export const PostedBy = ({ user, created_at }: TProps): JSX.Element => (
 			title={'The user who posted this idea'}
 			_hover={{ color: 'gray.700' }}
 			color={'gray.400'}
-			fontSize={'x-small'}
+			fontSize={'xs'}
 		>
 			{user?.displayName}
 		</BaseLink>
-		<CaptionLabel d={'flex'}>
-			{/* {user.country && (
+		<Label d={'flex'} color={'gray.400'} fontSize={'xs'}>
+			{user?.address?.country && (
 				<>
-					<PointSeparator small /> {user.country}
+					<PointSeparator small /> {user?.address?.country}
 				</>
-			)} */}
+			)}
 			<PointSeparator small />
 			{formatDate(created_at)}
-		</CaptionLabel>
+		</Label>
 	</FlexLayout>
 );
 

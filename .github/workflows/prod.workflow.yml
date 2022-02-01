@@ -1,4 +1,4 @@
-name: Deploy Coral app
+name: Deploy Coral app to production
 
 # Controls when the workflow will run
 on:
@@ -54,13 +54,15 @@ jobs:
                   hasura metadata apply --endpoint ${{ secrets.HASURA_BACKEND_PRODUCTION }} --admin-secret ${{ secrets.HASURA_ADMIN_SECRET_PRODUCTION }} --skip-update-check
                   echo "Metadata applied successfully"
 
-            - name: Run tests
-              run: yarn test
+            - name: Run linter
+              run: yarn lint
 
-            - name: Run build
+            - name: Run build and tests
               run: yarn build
+              env:
+                  NEXT_PUBLIC_BACKEND: ${{ secrets.HASURA_BACKEND_PRODUCTION }}
 
-            - name: Run tests against Vercel
+            - name: Run tests against Vercel production preview URL
               env:
                   VERCEL_URL: ${{ steps.pilot.outputs.preview-url }}
               run: yarn test

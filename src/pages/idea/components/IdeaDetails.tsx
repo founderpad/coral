@@ -1,24 +1,22 @@
 import { StackLayout } from '@components/layouts';
 import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
-import IdeaContext from '@context/idea/IdeaContext';
-import { TIdeas } from '@generated/api';
-import React, { useContext } from 'react';
+import React from 'react';
+import useIdea from '../query/ideaQuery';
 
 export const IdeaDetails = () => {
-	const {
-		data: { idea = {} as TIdeas }
-	} = useContext(IdeaContext);
+	const { idea } = useIdea();
 
-	const {
-		description = '',
-		team = '',
-		competitors = '',
-		additionalInformation = ''
-	} = idea ?? {};
+	const { description, team, competitors, additionalInformation } =
+		idea ?? {};
 
 	return (
 		<StackLayout flex={1}>
-			<ContentFieldAndValue title={'Description'} value={description} />
+			{description && (
+				<ContentFieldAndValue
+					title={'Description'}
+					value={description}
+				/>
+			)}
 			{team && <ContentFieldAndValue title={'Team'} value={team} />}
 			{competitors && (
 				<ContentFieldAndValue

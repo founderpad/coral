@@ -1,5 +1,5 @@
 {
-	"name": "api",
+	"name": "functions",
 	"version": "1.0.0",
 	"description": "Custom API for frontend",
 	"scripts": {
@@ -8,11 +8,12 @@
 	"author": "founderpad",
 	"license": "ISC",
 	"dependencies": {
-		"aws-sdk": "^2.1022.0",
-		"dotenv": "^10.0.0",
-		"onesignal-node": "^3.3.0"
+		"aws-sdk": "^2.1022.0"
 	},
 	"devDependencies": {
-		"typescript": "^4.4.4"
+		"@types/express": "^4.17.13",
+		"dotenv": "^15.0.0",
+		"express": "^4.17.2",
+		"typescript": "^4.5.5"
 	}
 }

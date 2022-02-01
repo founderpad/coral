@@ -31,7 +31,7 @@ type IModalProps = Omit<ModalProps, 'children'> & {
 	removePadding?: boolean;
 };
 
-export const Modal = (props: IModalProps): JSX.Element => {
+export const Modal = (props: IModalProps) => {
 	const {
 		title,
 		isOpen,
@@ -78,11 +78,11 @@ export const Modal = (props: IModalProps): JSX.Element => {
 					>
 						{title}
 						{actions && (
-							<ButtonGroup ml={'auto'} spacing={4} size={'xs'}>
+							<ButtonGroup ml={'auto'} spacing={4}>
 								<CancelButton
 									label={'Cancel'}
 									onClick={onClose}
-									size={'xs'}
+									size={'sm'}
 								/>
 								{actions}
 							</ButtonGroup>

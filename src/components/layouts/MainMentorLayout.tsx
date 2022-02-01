@@ -1,10 +1,6 @@
 import React from 'react';
 
-export const MainMentorLayout = ({
-	children
-}: {
-	children: JSX.Element;
-}): JSX.Element => {
+export const MainMentorLayout = ({ children }: { children: JSX.Element }) => {
 	return (
 		<React.Fragment>
 			{/* <MentorDesktopNav /> */}

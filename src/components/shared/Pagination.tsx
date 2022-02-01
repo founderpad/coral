@@ -10,7 +10,7 @@ type Props = {
 	onPageChange: (page: string) => void;
 };
 
-export const Pagination = (props: Props): JSX.Element => {
+export const Pagination = (props: Props) => {
 	const { pathname, pagesCount, onPageChange } = props;
 	const router = useRouter();
 	const page = parseInt(useQueryParam('page'));

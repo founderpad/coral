@@ -1,19 +1,19 @@
-import { IoBulbSharp, IoTrendingUpSharp } from '@components/icons';
+import {
+	IoBulbSharp,
+	IoLocationSharp,
+	IoTrendingUpSharp
+} from '@components/icons';
 import { FlexLayout } from '@components/layouts';
 import { OverviewTag } from '@components/shared';
-import IdeaContext from '@context/idea/IdeaContext';
-import React, { memo, useContext } from 'react';
+import React from 'react';
+import useIdea from '../query/ideaQuery';
 
-export const IdeaOverview = memo(() => {
-	const {
-		data: { idea }
-	} = useContext(IdeaContext);
+export const IdeaOverview = () => {
+	const { idea } = useIdea();
 
-	const {
-		status,
-		field
-		// user: { country, location }
-	} = idea ?? {};
+	const { status, field, user } = idea ?? {};
+	const { address } = user ?? {};
+	const { country, location } = address ?? {};
 
 	return (
 		<FlexLayout
@@ -34,15 +34,15 @@ export const IdeaOverview = memo(() => {
 			{field && (
 				<OverviewTag title={'Field'} value={field} icon={IoBulbSharp} />
 			)}
-			{/* {location && (
+			{country && (
 				<OverviewTag
 					title={'Location'}
 					value={location ? `${location}, ${country}` : country}
 					icon={IoLocationSharp}
 				/>
-			)} */}
+			)}
 		</FlexLayout>
 	);
-});
+};
 
 export default IdeaOverview;

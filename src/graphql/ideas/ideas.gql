@@ -1,4 +1,4 @@
-#import { UsersFieldWithEmail } from '../fragments/user.gql'
+#import { UserFieldsWithEmail } from '../fragments/user.gql'
 
 mutation CreateIdea($idea: ideas_insert_input!) {
 	idea: insert_ideas_one(object: $idea) {
@@ -29,17 +29,17 @@ mutation DeleteIdea($id: uuid!) {
 }
 
 mutation CreateInterestedIdea($ideaId: uuid!, $targetUserId: uuid!) {
-	insert_interested_ideas_one(
+	addInterestedIdea: insert_interested_ideas_one(
 		object: { ideaId: $ideaId, targetUserId: $targetUserId }
 	) {
 		ideaId
 	}
-	update_ideas_by_pk(
-		pk_columns: { id: $ideaId }
-		_inc: { totalInterested: 1 }
-	) {
-		id
-	}
+	# updateIdeaTotalInterested: update_ideas_by_pk(
+	# 	pk_columns: { id: $ideaId }
+	# 	_inc: { totalInterested: 1 }
+	# ) {
+	# 	id
+	# }
 }
 
 query Ideas(
@@ -76,7 +76,7 @@ fragment IdeaPreviewFields on idea_preview {
 	total_comments
 	user_id
 	user {
-		...UsersFieldWithEmail
+		...UserFieldsWithEmail
 	}
 	votes_aggregate {
 		aggregate {
@@ -108,24 +108,28 @@ query UserIdeas($userId: uuid!) {
 	}
 }
 
+fragment IdeaFields on ideas {
+	id
+	name
+	description
+	field
+	competitors
+	team
+	additionalInformation
+	isPublished
+	userId
+	status
+	createdAt
+	totalInterested
+	totalComments
+	totalVotes
+}
+
 query Idea($id: uuid!, $userId: uuid!) {
 	idea: ideas_by_pk(id: $id) {
-		id
-		name
-		description
-		field
-		competitors
-		team
-		additionalInformation
-		isPublished
-		userId
-		status
-		createdAt
-		totalInterested
-		totalComments
-		totalVotes
+		...IdeaFields
 		user {
-			...UserField
+			...UserFieldsWithEmail
 		}
 		votes_aggregate {
 			aggregate {
@@ -135,11 +139,28 @@ query Idea($id: uuid!, $userId: uuid!) {
 		votes(where: { userId: { _eq: $userId } }) {
 			id
 		}
+		interested_aggregate {
+			aggregate {
+				count(columns: id)
+			}
+		}
 	}
 	hasInterest: interested_ideas_by_pk(ideaId: $id, userId: $userId) {
-		id
+		...InterestedIdeaFields
 	}
 }
+
+fragment InterestedIdeaFields on interested_ideas {
+	id
+	ideaId
+	userId
+}
+
+# fragment InterestedIdea on interested_ideas {
+# 	hasInterest: interested_ideas_by_pk(ideaId: $id, userId: $userId) {
+# 		id
+# 	}
+# }
 
 query IdeaInterestedUsers($ideaId: uuid!) {
 	interested_users: interested_ideas(
@@ -149,7 +170,7 @@ query IdeaInterestedUsers($ideaId: uuid!) {
 		id
 		createdAt
 		user {
-			...UsersFieldWithEmail
+			...UserFieldsWithEmail
 		}
 	}
 }

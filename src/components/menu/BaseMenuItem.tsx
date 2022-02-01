@@ -19,7 +19,7 @@ export const BaseMenuItem = ({
 	icon,
 	divider = false,
 	...rest
-}: BaseMenuItemProps): JSX.Element => (
+}: BaseMenuItemProps) => (
 	<React.Fragment>
 		<MenuItem
 			{...rest}

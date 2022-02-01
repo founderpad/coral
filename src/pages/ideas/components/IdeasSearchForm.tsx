@@ -17,11 +17,16 @@ type IdeaSearch = {
 	status?: string;
 };
 
-const IdeasSearchForm = (): JSX.Element => {
+const IdeasSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-
-	const { handleSubmit, control, reset } = useForm<IdeaSearch>();
 	const router = useRouter();
+	const { page, ...rest } = router.query;
+
+	const { handleSubmit, control, reset } = useForm<IdeaSearch>({
+		defaultValues: {
+			...rest
+		}
+	});
 
 	const onClick = (values: IdeaSearch) => {
 		setModalDrawer({

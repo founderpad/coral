@@ -15,7 +15,7 @@ export const BaseMenu = ({
 		| React.ReactElement<BaseMenuItemProps>
 		| React.ReactElement<BaseMenuItemProps>[];
 	boxProps?: BoxProps;
-}): JSX.Element => (
+}) => (
 	<BoxLayout {...boxProps} p={0} ml={'auto'}>
 		<Menu>
 			<MenuButton

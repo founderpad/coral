@@ -21,7 +21,7 @@ const IdeaCardBody = (idea: TIdeaCardBody) => {
 				color={'gray.500'}
 				overflow={'hidden'}
 				whiteSpace={'normal'}
-				fontSize={'xs'}
+				fontSize={'sm'}
 				css={{ whiteSpace: 'normal' }}
 				noOfLines={2}
 				isTruncated
@@ -47,11 +47,11 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 			w={'full'}
 		>
 			<StackLayout spacing={0} direction={'row'} alignItems={'center'}>
-				<Label color={'fpPrimary.400'} fontSize={'xs'}>
+				<Label color={'fpPrimary.400'} fontSize={'small'}>
 					{status}
 				</Label>
 				<PointSeparator small />
-				<Label color={'fpPrimary.500'} fontSize={'xs'}>
+				<Label color={'fpPrimary.500'} fontSize={'small'}>
 					{field}
 				</Label>
 			</StackLayout>

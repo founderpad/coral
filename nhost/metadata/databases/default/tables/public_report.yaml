@@ -44,4 +44,4 @@ event_triggers:
     interval_sec: 10
     num_retries: 0
     timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/email/report/send-reported-email"
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/email/report/send-reported-email"

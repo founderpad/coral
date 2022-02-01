@@ -5,7 +5,7 @@ import { useUpdateUserAvatarMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { useFileUpload, useNotification } from '@hooks/util';
 import { updateUserImage } from '@slices/auth';
-import React, { useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 
 const UserImageUploader = () => {
@@ -18,33 +18,55 @@ const UserImageUploader = () => {
 	const uploadAvatar = useFileUpload();
 	const [updateAvatar] = useUpdateUserAvatarMutation();
 
-	const onUpload = useCallback(async (file: File) => {
-		const filePath = await uploadAvatar({ file, bucketId: 'avatars' });
+	// const onUpload = useCallback(async (file: File) => {
+	// 	const avatarUrl = await uploadAvatar({ file, bucketId: 'avatars' });
+
+	// 	await updateAvatar({
+	// 		variables: {
+	// 			id,
+	// 			userDetails: {
+	// 				avatarUrl
+	// 			}
+	// 		},
+	// 		onCompleted: (_data) => {
+	// 			if (avatarUrl) {
+	// 				dispatch(updateUserImage(avatarUrl));
+	// 				addNotification('Avatar successfully updated', 'success');
+	// 			}
+	// 			setModalDrawer({ isOpen: false });
+	// 		}
+	// 	});
+	// });
+
+	const onUpload = async (file: File) => {
+		const avatarUrl = await uploadAvatar({ file, bucketId: 'avatars' });
 
 		await updateAvatar({
 			variables: {
 				id,
 				userDetails: {
-					avatarUrl: filePath
+					avatarUrl
 				}
 			},
 			onCompleted: (_data) => {
-				if (filePath) dispatch(updateUserImage(filePath));
-				addNotification('Avatar successfully updated', 'success');
+				if (avatarUrl) {
+					dispatch(updateUserImage(avatarUrl));
+					addNotification('Avatar successfully updated', 'success');
+				}
 				setModalDrawer({ isOpen: false });
 			}
 		});
-	}, []);
+	};
 
 	return (
 		<ImageUploader
 			title="Edit profile photo"
 			boxSize={140}
 			onUpload={onUpload}
-			defaultSrc={avatarUrl || undefined}
+			defaultSrc={avatarUrl ?? undefined}
 		>
 			<UserAvatar
-				src={avatarUrl || undefined}
+				src={avatarUrl ?? undefined}
 				boxSize={140}
 				aria-label="Edit profile picture"
 			/>

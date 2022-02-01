@@ -12,7 +12,7 @@ type Props = BoxProps & {
 	back?: boolean;
 };
 
-export const PageLayout = (props: Props): JSX.Element => {
+export const PageLayout = (props: Props) => {
 	const {
 		fixedHeader,
 		title,
@@ -36,7 +36,7 @@ export const PageLayout = (props: Props): JSX.Element => {
 				flexDirection={'column'}
 				p={p}
 				css={{
-					'> *:first-child': {
+					'> *:first-of-type': {
 						width: '100%'
 					}
 				}}

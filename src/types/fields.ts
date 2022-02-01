@@ -14,8 +14,8 @@ import { Control, FieldError, FieldValues } from 'react-hook-form';
 // 	characterCount?: number;
 // 	min?: number;
 // 	max?: number;
-// 	leftEl?: JSX.Element;
-// 	rightEl?: JSX.Element;
+// 	leftEl?: ;
+// 	rightEl?: ;
 // 	showLabel?: boolean;
 // 	maxRows?: number;
 // }

@@ -13,7 +13,7 @@ interface Props {
 	subheader?: string;
 }
 
-const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
+const AuthLayout = ({ header, children, title }: Props) => (
 	<React.Fragment>
 		<DocumentTitle title={title} />
 		<StackLayout
@@ -43,7 +43,7 @@ const AuthLayout = ({ header, children, title }: Props): JSX.Element => (
 					fontSize={'sm'}
 					rounded={'sm'}
 				>
-					Beta
+					0.1.0
 				</Tag>
 			</FlexLayout>
 			<Heading

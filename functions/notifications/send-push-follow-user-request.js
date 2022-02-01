@@ -3,7 +3,7 @@ const OneSignal = require('onesignal-node');
 var sendNotification = function (data) {
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: 'Basic YjI5OGM1ODctNGIyNi00NjIzLWFiYzctYzFkN2Q2ODJiMWYy'
+		Authorization: `Basic ${process.env.ONESIGNAL_REST_API_KEY}`
 	};
 
 	var options = {
@@ -37,12 +37,12 @@ export default (req, res) => {
 	const followingId = req.body.event.data.new.following_id;
 
 	const message = {
-		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
+		app_id: process.env.ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
 			en: 'You have received a new follow request. Click here to view it.'
 		},
-		url: `http://localhost:3000/notifications`,
+		url: `${process.env.SITE_URL}/notifications`,
 		include_external_user_ids: [followingId]
 	};
 

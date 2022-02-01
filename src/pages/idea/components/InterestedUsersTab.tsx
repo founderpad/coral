@@ -19,7 +19,7 @@ export const InterestedUsersTab = () => {
 
 	useEffect(() => {
 		if (totalInterested > 0) getInterestedUsers();
-	}, []);
+	}, [totalInterested, getInterestedUsers]);
 
 	if (totalInterested < 1) return <NoResults label={'interested users'} />;
 	if (!data) return <Loading small />;

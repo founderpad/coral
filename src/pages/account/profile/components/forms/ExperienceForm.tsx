@@ -23,6 +23,7 @@ import {
 import { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import React from 'react';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
@@ -125,17 +126,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 					max={30}
 					isRequired
 				/>
-				{/* <NumberField
-					id="availability"
-					name="availability"
-					label="Availablility for new projects? (hours per week)"
-					error={errors['availability']}
-					errorText="You must specify your availability"
-					control={control}
-					min={0}
-					max={60}
-					isRequired
-				/> */}
 
 				<SelectField
 					id="availability"
@@ -180,38 +170,33 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 			<FormControl>
 				<FormLabelText label={'Your skills'} />
-				{EXPERIENCE_SKILLS.map(
-					(es: string): JSX.Element => (
-						<Controller
-							key={es}
-							name={'skills'}
-							render={({ field: { ref } }) => (
-								<Checkbox
-									name={es}
-									rounded={'none'}
-									focusBorderColor={'gray.150'}
-									value={es}
-									p={2}
-									onChange={onSkillsToggle}
-									colorScheme={'fpPrimary'}
-									color={'fpGrey.400'}
-									ref={ref}
-									size={'sm'}
-									fontSize={'xs'}
-									isChecked={selectedSkills.includes(es)}
-								>
-									<Label
-										color={'gray.500'}
-										fontSize={'smaller'}
-									>
-										{es}
-									</Label>
-								</Checkbox>
-							)}
-							control={control}
-						/>
-					)
-				)}
+				{EXPERIENCE_SKILLS.map((es: string) => (
+					<Controller
+						key={es}
+						name={'skills'}
+						render={({ field: { ref } }) => (
+							<Checkbox
+								name={es}
+								rounded={'none'}
+								focusBorderColor={'gray.150'}
+								value={es}
+								p={2}
+								onChange={onSkillsToggle}
+								colorScheme={'fpPrimary'}
+								color={'fpGrey.400'}
+								ref={ref}
+								size={'md'}
+								fontSize={'xs'}
+								isChecked={selectedSkills.includes(es)}
+							>
+								<Label color={'gray.500'} fontSize={'smaller'}>
+									{es}
+								</Label>
+							</Checkbox>
+						)}
+						control={control}
+					/>
+				))}
 			</FormControl>
 		</Form>
 	);

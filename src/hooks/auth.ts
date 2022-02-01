@@ -4,11 +4,16 @@ import { useNhostAuth } from '@nhost/react-auth';
 import { setUser } from '@slices/auth';
 import { auth } from '@utils/nhost';
 import { RootState } from '@utils/reducer';
-import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { IAuthFormData, IRegisterFormData } from 'src/types/auth';
+import {
+	IAuthFormData,
+	IRegisterFormData,
+	TAuthProvider
+} from 'src/types/auth';
 import { useErrorNotification } from './toast';
 import { useNotification } from './util';
+import Router from 'next/router';
+import { useEffect } from 'react';
 
 export const useRegister = (): any => {
 	// const showErrorNotification = useErrorNotification();
@@ -69,12 +74,58 @@ export const useRegister = (): any => {
 	};
 };
 
-export const useLogin = (): any => {
+export const useLogin = (): (({
+	email,
+	password
+}: {
+	email: string;
+	password: string;
+}) => Promise<void>) => {
 	const { addNotification, removeNotification } = useNotification();
-	const dispatch = useDispatch();
-	const router = useRouter();
+	const [getUser] = useGetAuthUser();
 
-	const [fetchUser] = useUserLazyQuery({
+	return async ({ email, password }: IAuthFormData): Promise<void> => {
+		try {
+			removeNotification();
+			const response = await auth.signIn({ email, password });
+
+			if (response.error) {
+				addNotification(response.error.message, 'error');
+				throw 'Failed to login';
+			} else {
+				getUser();
+			}
+		} catch (error) {
+			throw 'An error has occurred';
+		}
+	};
+};
+
+export const useSocialLogin = () => {
+	const [getUser] = useGetAuthUser();
+
+	const { isAuthenticated } = useAuth();
+	useEffect(() => {
+		if (isAuthenticated) getUser();
+	}, [isAuthenticated]);
+
+	return async (authProvider: TAuthProvider) => {
+		try {
+			await auth.signIn({
+				provider: authProvider
+			});
+		} catch (error) {
+			throw `Failed to login with ${authProvider}`;
+		}
+	};
+};
+
+const useGetAuthUser = () => {
+	const { addNotification } = useNotification();
+
+	const dispatch = useDispatch();
+
+	const getUser = useUserLazyQuery({
 		variables: {
 			userId: auth.getUser()?.id
 		},
@@ -88,25 +139,11 @@ export const useLogin = (): any => {
 		onCompleted: (data) => {
 			const user = data.user as TUsers;
 			dispatch(setUser(user));
-			router.replace('/ideas?page=1');
+			Router.replace('/ideas?page=1');
 		}
 	});
 
-	return async ({ email, password }: IAuthFormData): Promise<void> => {
-		try {
-			removeNotification();
-			const response = await auth.signIn({ email, password });
-
-			if (response.error) {
-				addNotification(response.error.message, 'error');
-				throw 'Failed to login';
-			} else {
-				fetchUser();
-			}
-		} catch (error) {
-			throw 'An error has occurred';
-		}
-	};
+	return getUser;
 };
 
 export const useLogout = (): any => {
@@ -137,9 +174,14 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useCheckLoggedIn = (): void => {
-	// const { isAuthenticated } = useAuth();
-	// const router = useRouter();
-	// if (isAuthenticated) router.push('/ideas?page=1');
+	const { isAuthenticated } = useAuth() ?? false;
+
+	useEffect(() => {
+		if (isAuthenticated) {
+			Router.push('/ideas?page=1');
+			return;
+		}
+	}, [isAuthenticated]);
 };
 
 export const useClaim = (): string | undefined => auth.getUser()?.id;

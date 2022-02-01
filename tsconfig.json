@@ -1,82 +1,49 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "alwaysStrict": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "baseUrl": ".",
-    "jsx": "preserve",
-    "incremental": true,
-    "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@pages/*": [
-        "src/pages/*"
-      ],
-      "@hooks/*": [
-        "src/hooks/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@lib/*": [
-        "src/lib/*"
-      ],
-      "@context/*": [
-        "src/context/*"
-      ],
-      "@provider/*": [
-        "src/provider/*"
-      ],
-      "@graphql/*": [
-        "src/graphql/*"
-      ],
-      "@theme/*": [
-        "src/theme/*"
-      ],
-      "@types/*": [
-        "src/types/*"
-      ],
-      "@slices/*": [
-        "src/slices/*"
-      ],
-      "@generated/*": [
-        "src/generated/*"
-      ],
-    },
-  },
-  "exclude": [
-    "node_modules",
-    ".next",
-    "out"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx",
-    "src/utils/AuthFilter.tsx"
-, "lib/index.jsx"  ]
+	"compilerOptions": {
+		"target": "esnext",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"alwaysStrict": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"baseUrl": ".",
+		"jsx": "preserve",
+		"incremental": true,
+		"paths": {
+			"@components/*": ["src/components/*"],
+			"@pages/*": ["src/pages/*"],
+			"@hooks/*": ["src/hooks/*"],
+			"@styles/*": ["src/styles/*"],
+			"@utils/*": ["src/utils/*"],
+			"@lib/*": ["src/lib/*"],
+			"@context/*": ["src/context/*"],
+			"@provider/*": ["src/provider/*"],
+			"@graphql/*": ["src/graphql/*"],
+			"@theme/*": ["src/theme/*"],
+			"@types/*": ["src/types/*"],
+			"@slices/*": ["src/slices/*"],
+			"@generated/*": ["src/generated/*"]
+		}
+	},
+	"exclude": ["node_modules", ".next", "out"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"**/*.js",
+		"**/*.jsx",
+		"src/utils/AuthFilter.tsx",
+		"lib/index.jsx"
+	]
 }

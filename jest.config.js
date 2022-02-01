@@ -1,3 +1,28 @@
+module.exports = {
+	setupFilesAfterEnv: ['./jest.setup.js'],
+	testEnvironment: 'jsdom',
+	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
+	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+	moduleNameMapper: {
+		'^@components(.*)$': '<rootDir>/src/components$1',
+		'^@pages(.*)$': '<rootDir>/src/pages$1',
+		'^@hooks(.*)$': '<rootDir>/src/hooks$1',
+		'^@utils(.*)$': '<rootDir>/src/utils$1',
+		'^@context(.*)$': '<rootDir>/src/context$1',
+		'^@lib(.*)$': '<rootDir>/src/lib$1',
+		'^@slices(.*)$': '<rootDir>/src/slices$1',
+		'^@provider(.*)$': '<rootDir>/src/provider$1'
+	},
+	transform: {
+		'^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
+	}
+};
+
+// Load environment variables so that we can access them in our tests
+const { loadEnvConfig } = require('@next/env');
+loadEnvConfig(process.env.PWD);
+
 // module.exports = {
 // 	roots: ['<rootDir>'],
 // 	testEnvironment: 'jsdom',
@@ -45,24 +70,31 @@
 // // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 // module.exports = createJestConfig(customJestConfig);
 
-module.exports = {
-	setupFilesAfterEnv: ['./jest.setup.js'],
-	testEnvironment: 'jsdom',
-	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
-	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
-	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
-	moduleNameMapper: {
-		'^@components(.*)$': '<rootDir>/src/components$1',
-		'^@pages(.*)$': '<rootDir>/src/pages$1',
-		'^@hooks(.*)$': '<rootDir>/src/hooks$1',
-		'^@utils(.*)$': '<rootDir>/src/utils$1',
-		'^@context(.*)$': '<rootDir>/src/context$1',
-		'^@lib(.*)$': '<rootDir>/src/lib$1',
-		'^@slices(.*)$': '<rootDir>/src/slices$1',
-		'^@provider(.*)$': '<rootDir>/src/provider$1'
-	}
-};
+// const nextJest = require('next/jest');
+// const createJestConfig = nextJest({
+// 	// Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+// 	dir: './'
+// });
 
-// Load environment variables so that we can access them in our tests
-const { loadEnvConfig } = require('@next/env');
-loadEnvConfig(process.env.PWD);
+// const customJestConfig = {
+// 	setupFilesAfterEnv: ['./jest.setup.js'],
+// 	// testEnvironment: 'jsdom',
+// 	testEnvironment: 'jest-environment-jsdom',
+// 	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+// 	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
+// 	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+// 	moduleNameMapper: {
+// 		'^@components(.*)$': '<rootDir>/src/components$1',
+// 		'^@pages(.*)$': '<rootDir>/src/pages$1',
+// 		'^@hooks(.*)$': '<rootDir>/src/hooks$1',
+// 		'^@utils(.*)$': '<rootDir>/src/utils$1',
+// 		'^@context(.*)$': '<rootDir>/src/context$1',
+// 		'^@lib(.*)$': '<rootDir>/src/lib$1',
+// 		'^@slices(.*)$': '<rootDir>/src/slices$1',
+// 		'^@provider(.*)$': '<rootDir>/src/provider$1',
+// 		'^@types(.*)$': '<rootDir>/src/types$1',
+// 		'^@generated(.*)$': '<rootDir>/src/generated$1'
+// 	}
+// };
+
+// module.exports = createJestConfig(customJestConfig);

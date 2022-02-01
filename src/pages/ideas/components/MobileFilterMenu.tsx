@@ -4,7 +4,7 @@ import ModalDrawerContext from '@context/ModalDrawerContext';
 import React, { useContext } from 'react';
 import IdeasSearchForm from './IdeasSearchForm';
 
-const MobileFilterMenu = (): JSX.Element => {
+const MobileFilterMenu = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const onClick = () => {
@@ -23,7 +23,6 @@ const MobileFilterMenu = (): JSX.Element => {
 		<PrimaryButton
 			name={'open-ideas-search-mobile-button'}
 			display={{ base: 'flex', md: 'none' }}
-			size={'xs'}
 			variant={'outline'}
 			onClick={onClick}
 			rightIcon={<IoChevronDownSharp />}

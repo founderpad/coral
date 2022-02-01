@@ -66,7 +66,7 @@ export const IdeaUpvote = (idea: TIdeaUpvote) => {
 
 	const toggleUpvote = useCallback(() => {
 		hasUserUpvoted ? deleteIdeaUpvote() : insertIdeaUpvote();
-	}, [hasUserUpvoted]);
+	}, [hasUserUpvoted, deleteIdeaUpvote, insertIdeaUpvote]);
 
 	return (
 		<UpvoteButton

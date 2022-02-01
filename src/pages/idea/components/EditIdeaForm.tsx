@@ -1,3 +1,5 @@
+// eslint-disable-line no-unused-vars
+// eslint-disable-line @typescript-eslint/no-unused-vars
 import Form from '@components/form/Form';
 import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
@@ -9,15 +11,14 @@ import { useSuccessNotification } from '@hooks/toast';
 import { ideasStatusList, industriesList } from '@utils/Constants';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import useIdeaFragment from '../fragments/IdeaFragment';
+import { useIdeaFragment } from '../query/ideaQuery';
 
 export const EditIdeaForm = () => {
 	const idea = useIdeaFragment();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { __typename, id, userId, user, votes, ...rest } = idea;
+	const { __typename, id, ...rest } = idea;
 
 	const {
 		handleSubmit,
@@ -36,7 +37,7 @@ export const EditIdeaForm = () => {
 			id: idea.id,
 			idea: getValues() // value for 'idea'
 		},
-		onCompleted: (_data) => {
+		onCompleted: () => {
 			setModalDrawer({
 				isOpen: false
 			});
@@ -131,8 +132,8 @@ export const EditIdeaForm = () => {
 			/>
 
 			<SwitchField
-				id="is_published"
-				name="is_published"
+				id="isPublished"
+				name="isPublished"
 				label="Publish your idea"
 				helperText="Unpublished ideas will not be searchable by other users."
 				defaultChecked={idea.isPublished}

@@ -42,34 +42,29 @@ export const IndustriesPicker = forwardRef<ICheckboxGroupFieldProps, 'input'>(
 						direction={{ base: 'column', sm: 'row' }}
 						my={6}
 					>
-						{ALL_INDUSTRIES.map(
-							(field): JSX.Element => (
-								<Controller
-									key={field.name}
-									name={field.name}
-									render={({
-										field,
-										fieldState: { error }
-									}) => (
-										<Checkbox
-											{...field}
-											rounded={'none'}
-											focusBorderColor={'gray.150'}
-											p={4}
-											value={field.name}
-											onChange={onChange}
-											isChecked={industries?.includes(
-												field.name
-											)}
-											error={!!error}
-										>
-											{field}
-										</Checkbox>
-									)}
-									control={control}
-								/>
-							)
-						)}
+						{ALL_INDUSTRIES.map((field) => (
+							<Controller
+								key={field.name}
+								name={field.name}
+								render={({ field, fieldState: { error } }) => (
+									<Checkbox
+										{...field}
+										rounded={'none'}
+										focusBorderColor={'gray.150'}
+										p={4}
+										value={field.name}
+										onChange={onChange}
+										isChecked={industries?.includes(
+											field.name
+										)}
+										error={!!error}
+									>
+										{field}
+									</Checkbox>
+								)}
+								control={control}
+							/>
+						))}
 					</Flex>
 				</CheckboxGroup>
 				{/* {error instanceof FieldError[] && (

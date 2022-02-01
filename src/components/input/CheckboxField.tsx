@@ -43,7 +43,7 @@ const CheckboxGroupField = forwardRef<ISelectFieldProps, 'select'>(
 );
 
 const CheckboxField = forwardRef<TCheckboxfieldProps<any>, 'input'>(
-	(props, ref): JSX.Element => {
+	(props, ref) => {
 		const { isRequired, label, name, checked, control } = props;
 
 		return (

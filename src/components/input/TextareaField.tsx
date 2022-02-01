@@ -36,18 +36,16 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 			>
 				{label && <FormLabelText label={label} />}
 				<Controller
-					render={({
-						field: { onChange, value },
-						fieldState: { error: _error }
-					}) => (
+					render={({ field: { onChange, value } }) => (
 						<Textarea
 							placeholder={placeholder}
 							ref={ref}
 							value={value}
 							onChange={onChange}
 							// error={!!error}
-							minH="unset"
-							size={size}
+							// minH="50px"
+							// style={{ minHeight: '50px' }}
+							// size={size ?? 'lg'}
 							maxH={maxH}
 							borderWidth={borderWidth}
 							borderColor={'gray.200'}
@@ -56,6 +54,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							resize={resize}
 							as={ResizeTextarea}
 							maxRows={maxRows}
+							size={size ?? 'md'}
 							w={width}
 							bg={'white'}
 							_focus={{

@@ -40,7 +40,6 @@ const UserPersonalInformation = memo((props: Props) => {
 					name={'open-modal-drawer-personal-details-button'}
 					form="editPersonalDetailsForm"
 					label={'Save'}
-					size={'xs'}
 				/>
 			),
 			body: <PersonalDetailsForm />,

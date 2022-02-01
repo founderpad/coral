@@ -1,21 +1,15 @@
-import Icon from '@chakra-ui/icon';
 import { PrimaryButton } from '@components/buttons';
-import { IoStarSharp } from '@components/icons';
 import { Label } from '@components/labels';
-import IdeaContext from '@context/idea/IdeaContext';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useCreateInterestedIdeaMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import React, { useContext, useState } from 'react';
+import useIdea from '../query/ideaQuery';
 
 export const InterestedIdea = () => {
 	const auth = useCurrentUser();
-	const {
-		data,
-		data: { idea }
-	} = useContext(IdeaContext);
-	const { hasInterest } = data;
+	const { idea, hasInterest } = useIdea();
 	const { id, userId } = idea ?? {};
 	const [interested, setInterested] = useState(!!hasInterest?.id);
 	const { setModalDrawer } = useContext(ModalDrawerContext);
@@ -48,9 +42,8 @@ export const InterestedIdea = () => {
 				<PrimaryButton
 					name={'confirm-idea-interest'}
 					onClick={() => createInterestedIdeaMutation()}
-					size={'xs'}
 				>
-					Confirm interest
+					Confirm
 				</PrimaryButton>
 			),
 			body: 'Are you sure you want to show interest in this idea? The idea creator will be able to contact you.',
@@ -59,7 +52,7 @@ export const InterestedIdea = () => {
 		});
 	};
 
-	if (auth?.id === userId) return null;
+	// if (auth?.id === userId) return null;
 
 	if (interested)
 		return (
@@ -76,10 +69,11 @@ export const InterestedIdea = () => {
 			alignItems={'center'}
 			position={'relative'}
 			w={'fit-content'}
-			size={'lg'}
-			fontSize={'small'}
+			size={'sm'}
+			fontSize={'xs'}
+			px={4}
 		>
-			<Icon
+			{/* <Icon
 				as={IoStarSharp}
 				position={'absolute'}
 				color={'gold'}
@@ -87,7 +81,7 @@ export const InterestedIdea = () => {
 				top={0}
 				fontSize={'large'}
 				transform={'translateY(-50%)translateX(50%)'}
-			/>
+			/> */}
 			I&apos;m Interested
 		</PrimaryButton>
 	);
