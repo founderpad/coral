@@ -93,28 +93,7 @@ exports[`Register form matches snapshot 1`] = `
     </div>
   </form>
   <div
-    class="chakra-stack css-1snl987"
-  >
-    <p
-      class="chakra-text css-1cbvqmf"
-    >
-      Or
-    </p>
-    <div
-      class="css-1fbxkis"
-      data-testid="socialLogin"
-      id="socialLogin"
-    >
-      <div
-        class="g-signin2"
-        data-longtitle="true"
-        data-onsuccess="onSocialLogin"
-        data-theme="light"
-      />
-    </div>
-  </div>
-  <div
-    class="chakra-text css-t2uy81"
+    class="chakra-text css-av3fgh"
   >
     By continuing, you agree to founderpad's 
     <span
@@ -139,7 +118,7 @@ exports[`Register form matches snapshot 1`] = `
      
   </div>
   <div
-    class="chakra-text css-13qwtc7"
+    class="chakra-text css-1fihqrz"
   >
     Already have an account? 
     <span

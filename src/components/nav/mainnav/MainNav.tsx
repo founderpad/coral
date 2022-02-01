@@ -6,7 +6,7 @@ import { FlexLayout } from '@components/layouts';
 import { FounderpadLogoWithBadge } from '@components/shared/FounderpadLogo';
 import { useMobileNav } from '@hooks/util';
 import React, { memo } from 'react';
-import NotificationsPopover from '../components/NotificationsPopover';
+// import NotificationsPopover from '../components/NotificationsPopover';
 import DesktopNav from './DesktopNav';
 import UserMenu from './UserMenu';
 

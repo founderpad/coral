@@ -9,11 +9,7 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import {
-	IoAlertCircleSharp,
-	IoChatboxEllipsesSharp,
-	IoEllipsisVertical
-} from '@components/icons';
+import { IoAlertCircleSharp, IoEllipsisVertical } from '@components/icons';
 import { Label } from '@components/labels';
 import { BaseLink } from '@components/links';
 import LogoutModal from '@components/modal/LogoutModal';

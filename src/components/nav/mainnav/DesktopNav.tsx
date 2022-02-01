@@ -1,8 +1,6 @@
-import { Button } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
 import { StackLayout } from '@components/layouts';
-import { BaseLink } from '@components/links';
 import BasePopover from '@components/popover/BasePopover';
 // import useUserProfile from '@hooks/user';
 import { useRouter } from 'next/router';

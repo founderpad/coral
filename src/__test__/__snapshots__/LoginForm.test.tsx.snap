@@ -61,29 +61,8 @@ exports[`Login form matches snapshot 1`] = `
       </button>
     </div>
   </form>
-  <div
-    class="chakra-stack css-1snl987"
-  >
-    <p
-      class="chakra-text css-1cbvqmf"
-    >
-      Or
-    </p>
-    <div
-      class="css-1fbxkis"
-      data-testid="socialLogin"
-      id="socialLogin"
-    >
-      <div
-        class="g-signin2"
-        data-longtitle="true"
-        data-onsuccess="onSocialLogin"
-        data-theme="light"
-      />
-    </div>
-  </div>
   <p
-    class="chakra-text css-3a3b7x"
+    class="chakra-text css-17q9usm"
   >
     Don't have an account?
     <span

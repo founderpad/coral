@@ -15,7 +15,7 @@ const setup = () => {
 	const emailField = loginSetup.getByRole('textbox', { name: /email/i });
 	const passwordField = loginSetup.getByPlaceholderText(/Password/i);
 	const submitButton = loginSetup.getByRole('button', { name: /submit/i });
-	const socialLogin = loginSetup.getByTestId('socialLogin');
+	// const socialLogin = loginSetup.getByTestId('socialLogin');
 
 	return {
 		loginSetup,
@@ -23,17 +23,17 @@ const setup = () => {
 		emailField,
 		passwordField,
 		submitButton,
-		socialLogin,
+		// socialLogin,
 		...loginSetup
 	};
 };
 
 const mockLogin = jest.fn();
-const mockSocialLogin = jest.fn();
+// const mockSocialLogin = jest.fn();
 
 jest.mock('@hooks/auth', () => ({
-	useLogin: (): any => mockLogin,
-	useSocialLogin: (): any => mockSocialLogin
+	useLogin: (): any => mockLogin
+	// useSocialLogin: (): any => mockSocialLogin
 }));
 
 describe('Login form', () => {
@@ -106,13 +106,13 @@ describe('Login form', () => {
 		);
 	});
 
-	it('should make social login request', async () => {
-		const { socialLogin } = setup();
+	// it('should make social login request', async () => {
+	// 	const { socialLogin } = setup();
 
-		await act(async () => {
-			fireEvent.click(socialLogin);
-		});
+	// 	await act(async () => {
+	// 		fireEvent.click(socialLogin);
+	// 	});
 
-		expect(mockSocialLogin).toHaveBeenCalledTimes(1);
-	});
+	// 	expect(mockSocialLogin).toHaveBeenCalledTimes(1);
+	// });
 });

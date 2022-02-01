@@ -1,10 +1,5 @@
 import { Avatar } from '@chakra-ui/avatar';
-import {
-	AvatarBadge,
-	AvatarProps,
-	StackProps,
-	useBreakpointValue
-} from '@chakra-ui/react';
+import { AvatarProps, StackProps, useBreakpointValue } from '@chakra-ui/react';
 import { CaptionLabel, Label } from '@components/labels';
 import { StackLayout } from '@components/layouts';
 import { useCurrentUser } from '@hooks/auth';
