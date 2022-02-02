@@ -103,9 +103,9 @@ const cache = new InMemoryCache({
 		// interested_ideas: {
 		// 	keyFields: ['ideaId']
 		// },
-		// idea_comments: {
-		// 	keyFields: ['ideaId']
-		// },
+		idea_comments: {
+			keyFields: ['ideaId']
+		},
 		Query: {
 			fields: {
 				// resourceCollection: {
@@ -134,6 +134,26 @@ const cache = new InMemoryCache({
 				// 	// offsetLimitPagination()
 				// }
 				// idea_comments: offsetLimitPagination()
+
+				// idea_comments: {
+				// 	keyArgs: ['ideaId'],
+				// 	merge: true
+
+				// }
+				// idea_comments: {
+				// 	// ...offsetLimitPagination(),
+				// 	keyArgs: [],
+				// 	merge(existing = [], incoming) {
+				// 		console.log('existing: ', existing);
+				// 		console.log('incoming: ', incoming);
+				// 		return [...existing, ...incoming];
+				// 	}
+				// 	// read(existing, args) {
+				// 	// 	console.log('existing: ', existing);
+				// 	// 	console.log('args: ', args);
+				// 	// }
+				// 	// merge: true
+				// }
 			}
 		}
 	}
