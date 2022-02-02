@@ -17,7 +17,7 @@ import ProfileSectionLabel from '@pages/account/profile/components/ProfileSectio
 import AuthFilter from '@utils/AuthFilter';
 import { convertCapacityToString, formatDate } from '@utils/validators';
 import React from 'react';
-import AddFollower from './components/AddFollower';
+// import AddFollower from './components/AddFollower';
 
 const User = () => {
 	const { data } = useUserProfileDetailsQuery({
@@ -31,7 +31,7 @@ const User = () => {
 			<DocumentTitle title="View user" />
 			<PageLayout
 				title={`${data?.user?.displayName}'s profile`}
-				action={<AddFollower userId={useQueryParam('id')} />}
+				// action={<AddFollower userId={useQueryParam('id')} />}
 			>
 				<Grid
 					templateRows="repeat(1, 1fr)"
