@@ -44,8 +44,7 @@ export const usePushNotifications = () => {
 							'circle.background': '#2BA4C9',
 							'dialog.button.background': '#2BA4C9'
 						}
-					},
-					allowLocalhostAsSecureOrigin: true
+					}
 				});
 				// window.OneSignal.setExternalUserId(user?.id);
 			});
