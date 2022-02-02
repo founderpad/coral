@@ -1,7 +1,8 @@
 import { FileUploader } from '@components/shared';
 import { TUser_Profile, useUpdateResumeMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
-import { useNotification } from '@hooks/util';
+import { useSuccessNotification } from '@hooks/toast';
+// import { useNotification } from '@hooks/util';
 import { cache } from '@pages/_app';
 import { formatUploadedUrls } from '@utils/validators';
 import gql from 'graphql-tag';
@@ -9,7 +10,8 @@ import { IUploadedFileProps } from '../../../../types/upload';
 
 const ResumeUploader = () => {
 	const { profile } = useCurrentUser() ?? {};
-	const { addNotification } = useNotification();
+	// const { addNotification } = useNotification();
+	const showSuccessNotification = useSuccessNotification();
 	const [updateResume] = useUpdateResumeMutation();
 
 	const userProfile = cache.readFragment({
@@ -33,7 +35,10 @@ const ResumeUploader = () => {
 				}
 			},
 			onCompleted: (_data) => {
-				addNotification('Resume successfully', 'success');
+				// addNotification('Resume successfully', 'success');
+				showSuccessNotification({
+					title: 'Resume updated successfully'
+				});
 			}
 		});
 	};

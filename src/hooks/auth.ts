@@ -1,3 +1,4 @@
+import { logout } from './../slices/auth';
 import { TUsers, useUserLazyQuery } from '@generated/api';
 import { event } from '@lib/ga';
 import { useNhostAuth } from '@nhost/react-auth';
@@ -11,13 +12,14 @@ import {
 	TAuthProvider
 } from 'src/types/auth';
 import { useErrorNotification } from './toast';
-import { useNotification } from './util';
+// import { useNotification } from './util';
 import Router from 'next/router';
 import { useEffect } from 'react';
+// import { useApolloClient } from '@apollo/client';
 
 export const useRegister = (): any => {
-	// const showErrorNotification = useErrorNotification();
-	const { addNotification, removeNotification } = useNotification();
+	const showErrorNotification = useErrorNotification();
+	// const { addNotification, removeNotification } = useNotification();
 
 	return async ({
 		email,
@@ -26,7 +28,7 @@ export const useRegister = (): any => {
 		lastName
 	}: IRegisterFormData): Promise<void> => {
 		try {
-			removeNotification();
+			// removeNotification();
 			const response = await auth.signUp({
 				email,
 				password,
@@ -35,25 +37,21 @@ export const useRegister = (): any => {
 						lastName?.trim() ?? ''
 					}`
 				}
-				// options: {
-				// 	// userData: <{ display_name: string }>{
-				// 	// 	display_name:
-				// 	// 		displayName?.trim() + ' ' + (lastName?.trim() ?? ''),
-				// 	// 	// user_type: type,
-				// 	// 	first_name: displayName?.trim(),
-				// 	// 	last_name: lastName?.trim()
-				// 	// }
 			});
 
 			if (response.error) {
-				addNotification(response.error.message, 'error');
+				// addNotification(response.error.message, 'error');
+				showErrorNotification({
+					title: 'Failed to create account',
+					description: response.error.message
+				});
 				throw 'Failed to register account';
 			}
 
-			addNotification(
-				`You have successfully registered an account. `,
-				'success'
-			);
+			// addNotification(
+			// 	`You have successfully registered an account. `,
+			// 	'success'
+			// );
 
 			event({
 				action: `Register - ${response.error ? 'error' : 'success'}`,
@@ -66,10 +64,15 @@ export const useRegister = (): any => {
 				}
 			});
 		} catch (error) {
-			addNotification(
-				'Failed to create an account. Please try again later.',
-				'error'
-			);
+			// addNotification(
+			// 	'Failed to create an account. Please try again later.',
+			// 	'error'
+			// );
+
+			showErrorNotification({
+				title: 'Failed to create account',
+				description: 'Please try again later'
+			});
 		}
 	};
 };
@@ -81,16 +84,21 @@ export const useLogin = (): (({
 	email: string;
 	password: string;
 }) => Promise<void>) => {
-	const { addNotification, removeNotification } = useNotification();
+	// const { addNotification, removeNotification } = useNotification();
+	const showErrorNotification = useErrorNotification();
 	const [getUser] = useGetAuthUser();
 
 	return async ({ email, password }: IAuthFormData): Promise<void> => {
 		try {
-			removeNotification();
+			// removeNotification();
 			const response = await auth.signIn({ email, password });
 
 			if (response.error) {
-				addNotification(response.error.message, 'error');
+				// addNotification(response.error.message, 'error');
+				showErrorNotification({
+					title: 'Failed to login',
+					description: response.error.message
+				});
 				throw 'Failed to login';
 			} else {
 				getUser();
@@ -121,7 +129,8 @@ export const useSocialLogin = () => {
 };
 
 const useGetAuthUser = () => {
-	const { addNotification } = useNotification();
+	// const { addNotification } = useNotification();
+	const showErrorNotification = useErrorNotification();
 
 	const dispatch = useDispatch();
 
@@ -130,10 +139,14 @@ const useGetAuthUser = () => {
 			userId: auth.getUser()?.id
 		},
 		onError: () => {
-			addNotification(
-				'Failed to get user. Please try again later.',
-				'error'
-			);
+			// addNotification(
+			// 	'Failed to get user. Please try again later.',
+			// 	'error'
+			// );
+			showErrorNotification({
+				title: 'Failed to login',
+				description: 'Please try again later'
+			});
 			throw 'Failed to get user';
 		},
 		onCompleted: (data) => {
@@ -148,7 +161,8 @@ const useGetAuthUser = () => {
 
 export const useLogout = (): any => {
 	const showErrorNotification = useErrorNotification();
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	// const client = useApolloClient();
 	// const client = usePushClient();
 
 	return async (): Promise<void> => {
@@ -157,6 +171,8 @@ export const useLogout = (): any => {
 			// client.push(function () {
 			// 	client.removeExternalUserId();
 			// });
+			// await client.clearStore();
+			dispatch(logout());
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to logout',

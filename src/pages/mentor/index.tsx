@@ -15,14 +15,23 @@ const Investor = () => {
 				alignItems={'center'}
 				flexDirection={'column'}
 			>
-				<Icon
-					as={IoLockClosedSharp}
-					color={'goldenrod'}
-					fontSize={'xxx-large'}
-				/>
-				<Heading color={'gray.400'} mt={6}>
-					Mentor network coming soon
-				</Heading>
+				<Box
+					d={'flex'}
+					flex={1}
+					justifyContent={'center'}
+					alignItems={'center'}
+					flexDirection={'column'}
+				>
+					<Icon
+						as={IoLockClosedSharp}
+						fontSize={'xx-large'}
+						color={'gray.500'}
+						mb={4}
+					/>
+					<Heading color={'gray.500'} fontSize={'lg'}>
+						Mentor network coming soon
+					</Heading>
+				</Box>
 			</Box>
 		</MainMentorLayout>
 	);

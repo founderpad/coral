@@ -4,8 +4,9 @@ import { cache } from '@pages/_app';
 import gql from 'graphql-tag';
 
 const useProfileFragment = (): TUser_Profile => {
+	const profileId = useCurrentUser()?.profile?.id;
 	const result = cache.readFragment({
-		id: `user_profile:${useCurrentUser()?.profile?.id}`, // The value of the profile's cache id
+		id: `user_profile:${profileId}`, // The value of the profile's cache id
 		fragment: gql`
 			fragment ExperienceFragment on user_profile {
 				id

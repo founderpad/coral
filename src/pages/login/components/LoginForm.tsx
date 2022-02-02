@@ -1,10 +1,9 @@
-import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import { EmailField, PasswordField } from '@components/input';
 import { Label } from '@components/labels';
 import { PrimaryLink } from '@components/links';
-import SocialLogins from '@components/shared/SocialLogins';
+// import SocialLogins from '@components/shared/SocialLogins';
 import { useLogin } from '@hooks/auth';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
@@ -47,7 +46,7 @@ const LoginForm = () => {
 					isRequired
 				/>
 
-				<AlertFeedback />
+				{/* <AlertFeedback /> */}
 
 				<SubmitButton
 					id={'submit-login'}
@@ -60,7 +59,7 @@ const LoginForm = () => {
 					w={'full'}
 				/>
 			</Form>
-			<SocialLogins />
+			{/* <SocialLogins /> */}
 			<NoAccountFooter />
 		</React.Fragment>
 	);

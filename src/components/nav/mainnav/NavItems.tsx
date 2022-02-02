@@ -50,26 +50,47 @@ const NavItems: Array<NavItem> = [
 			}
 		]
 	},
+	// {
+	// 	label: 'Founders',
+	// 	href: '/founders?page=1',
+	// 	items: [
+	// 		{
+	// 			label: 'Search founders',
+	// 			subLabel: 'Search for other founders',
+	// 			href: '/founders?page=1',
+	// 			icon: IoSearchSharp
+	// 		}
+	// 	]
+	// },
 	{
-		label: 'Founders',
-		href: '/founders?page=1',
+		label: (
+			<Flex display={'inline-flex'} alignItems={'center'}>
+				Users <Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
+			</Flex>
+		),
+		href: '/users?page=1',
 		items: [
 			{
-				label: 'Search founders',
-				subLabel: 'Search for other founders',
-				href: '/founders?page=1',
+				label: 'Search users',
+				subLabel: 'Search other users',
+				href: '/users?page=1',
 				icon: IoSearchSharp
 			}
 		]
 	},
 	{
-		label: 'Messages',
+		label: (
+			<Flex display={'inline-flex'} alignItems={'center'}>
+				Messages{' '}
+				<Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
+			</Flex>
+		),
 		href: '/messages'
 	},
 	{
 		label: (
 			<Flex display={'inline-flex'} alignItems={'center'}>
-				Coming soon{' '}
+				Mentor{' '}
 				<Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
 			</Flex>
 		),
