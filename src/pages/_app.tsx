@@ -103,9 +103,9 @@ const cache = new InMemoryCache({
 		// interested_ideas: {
 		// 	keyFields: ['ideaId']
 		// },
-		idea_comments: {
-			keyFields: ['id']
-		},
+		// idea_comments: {
+		// 	keyFields: ['ideaId']
+		// },
 		Query: {
 			fields: {
 				// resourceCollection: {
@@ -122,7 +122,7 @@ const cache = new InMemoryCache({
 				// 		return result;
 				// 	}
 				// },
-				resourceCollection: offsetLimitPagination(),
+				resourceCollection: offsetLimitPagination()
 				// CommentsForIdea: relayStylePagination()
 				// CommentsForIdea: offsetLimitPagination()
 				// idea_comments: {
@@ -133,7 +133,7 @@ const cache = new InMemoryCache({
 				// 	}
 				// 	// offsetLimitPagination()
 				// }
-				idea_comments: offsetLimitPagination()
+				// idea_comments: offsetLimitPagination()
 			}
 		}
 	}
