@@ -1,5 +1,5 @@
 import { Icon } from '@chakra-ui/react';
-import { IoThumbsUpSharp } from '@components/icons';
+import { IoArrowUpSharp } from '@components/icons';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import React from 'react';
@@ -18,7 +18,8 @@ export const UpvoteButton = ({
 	<FlexLayout alignItems={'center'}>
 		<Icon
 			name={`upvote-${name}-button`}
-			as={IoThumbsUpSharp}
+			// as={IoThumbsUpSharp}
+			as={IoArrowUpSharp}
 			mr={1}
 			_hover={{ color: 'green.300' }}
 			fontSize={'sm'}
