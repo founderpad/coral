@@ -1,13 +1,10 @@
 const AWS = require('aws-sdk');
 
 const CONFIG = {
-	apiVersion: process.env.AWS_API_VERSION,
-	// accessKeyId: process.env.NEXT_AWS_ACCESS_KEY_ID,
-	// secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY,
-	// region: process.env.NEXT_AWS_DEFAULT_REGION
-	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-	region: process.env.AWS_DEFAULT_REGION
+	apiVersion: '2010-12-01',
+	accessKeyId: 'AKIAXAVHTNCXREX2LSFD',
+	secretAccessKey: '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',
+	region: 'eu-west-1'
 };
 
 const AWS_SES = new AWS.SES(CONFIG);
@@ -17,9 +14,9 @@ export default (req, res) => {
 	AWS_SES.sendEmail({
 		Source: 'jamie@founderpad.com',
 		Destination: {
-			// ToAddresses: [`${req.body.event.data.new.recipientEmail}`],
-			ToAddresses: ['success@simulator.amazonses.com'],
-			BccAddresses: ['jamie@founderpad.com']
+			ToAddresses: [`${req.body.event.data.new.recipientEmail}`],
+			// ToAddresses: ['success@simulator.amazonses.com'],
+			BccAddresses: ['jamie@founderpad.com', 'toby@founderpad.com']
 		},
 		Message: {
 			Body: {

@@ -1,11 +1,7 @@
 var sendNotification = function (message) {
-	console.log(
-		'PROCESS ENVVVVVVV: ',
-		process.env.NEXT_PUBLIC_ONESIGNAL_REST_API_KEY
-	);
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: `Basic ${process.env.NEXT_PUBLIC_ONESIGNAL_REST_API_KEY}`
+		Authorization: `Basic MzJjOWQ4OTctMTUyOC00ZmYzLTk5NjgtMDAwOTk0NTYzZjdi`
 	};
 
 	var options = {
@@ -44,12 +40,12 @@ export default async (req, res) => {
 	if (fromUserId === targetUserId) return null;
 
 	const message = {
-		app_id: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
+		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
 		en: 'text',
 		contents: {
 			en: 'You have received a new comment on your idea. Click here to view it.'
 		},
-		url: `${process.env.SITE_URL}/idea/${ideaId}?d=${id}`,
+		url: `https://app.founderpad.com/idea/${ideaId}?d=${id}`,
 		include_external_user_ids: [targetUserId]
 	};
 
