@@ -43,8 +43,7 @@ export const usePushNotifications = () => {
 						colors: {
 							'circle.background': '#2BA4C9',
 							'dialog.button.background': '#2BA4C9'
-						},
-						subdomainName: 'founderpad'
+						}
 					},
 					allowLocalhostAsSecureOrigin: true
 				});
