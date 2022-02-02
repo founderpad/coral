@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
 				<Head>
 					<script
 						async
-						src={`https://www.googletagmanager.com/gtag/js?id=G-JFDLWXJ2GD`}
+						src="https://www.googletagmanager.com/gtag/js?id=G-JFDLWXJ2GD"
 					></script>
 					<script
 						dangerouslySetInnerHTML={{
@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
 							function gtag(){dataLayer.push(arguments);}
 							gtag('js', new Date());
 						
-							gtag('config', 'G-JFDLWXJ2GD);
+							gtag('config', 'G-JFDLWXJ2GD');
 						`
 						}}
 					></script>
