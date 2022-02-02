@@ -40,7 +40,7 @@ const FounderSearchForm = () => {
 
 		router.push(
 			{
-				pathname: '/founders',
+				pathname: '/users',
 				query: { ...queryParams, page: 1 }
 			},
 			undefined,

@@ -63,7 +63,11 @@ const NavItems: Array<NavItem> = [
 	// 	]
 	// },
 	{
-		label: 'Users',
+		label: (
+			<Flex display={'inline-flex'} alignItems={'center'}>
+				Users <Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
+			</Flex>
+		),
 		href: '/users?page=1',
 		items: [
 			{
