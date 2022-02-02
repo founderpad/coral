@@ -59,10 +59,10 @@ export const CommentsList = ({
 		variables: {
 			ideaId: useQueryParam('id'),
 			offset: 0
-		},
+		}
 		// notifyOnNetworkStatusChange: true,
-		fetchPolicy: 'network-only',
-		nextFetchPolicy: 'cache-and-network'
+		// fetchPolicy: 'network-only',
+		// nextFetchPolicy: 'cache-first'
 		// nextFetchPolicy: 'cache-and-network'
 	});
 
