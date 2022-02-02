@@ -32,7 +32,7 @@ export const usePushNotifications = () => {
 		window.OneSignal = window.OneSignal || [];
 		if (window.OneSignal) {
 			window.OneSignal.push(function () {
-				// window.OneSignal.setExternalUserId(user?.id);
+				window.OneSignal.setExternalUserId(user?.id);
 				window.OneSignal.init({
 					appId: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
 					safari_web_id:
@@ -48,7 +48,7 @@ export const usePushNotifications = () => {
 					},
 					allowLocalhostAsSecureOrigin: true
 				});
-				window.OneSignal.setExternalUserId(user?.id);
+				// window.OneSignal.setExternalUserId(user?.id);
 			});
 		}
 	}, []);
