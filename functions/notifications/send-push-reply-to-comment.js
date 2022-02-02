@@ -1,7 +1,7 @@
 var sendNotification = function (message) {
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: `Basic ${process.env.ONESIGNAL_REST_API_KEY}`
+		Authorization: `Basic MzJjOWQ4OTctMTUyOC00ZmYzLTk5NjgtMDAwOTk0NTYzZjdi`
 	};
 
 	var options = {
@@ -40,12 +40,12 @@ export default (req, _res) => {
 	if (fromUserId === targetUserId) return null;
 
 	const message = {
-		app_id: process.env.ONESIGNAL_APP_ID,
+		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
 		en: 'text',
 		contents: {
 			en: 'Somebody replied to your comment. Click here to see it.'
 		},
-		url: `${process.env.SITE_URL}/idea/${ideaId}?d=${id}`,
+		url: `https://app.founderpad.com/idea/${ideaId}?d=${id}`,
 		include_external_user_ids: [targetUserId]
 	};
 
