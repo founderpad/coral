@@ -1,12 +1,8 @@
 import { Box, Icon, Heading } from '@chakra-ui/react';
-import { PageLayout } from '@components/layouts';
-import SearchContentGridLayout from '@components/layouts/SearchContentGridLayout';
 import { DocumentTitle } from '@components/shared';
 import AuthFilter from '@utils/AuthFilter';
 import React from 'react';
-import { IoLockClosedSharp, IoPeople } from 'react-icons/io5';
-import FounderSearchForm from './components/FounderSearchForm';
-import FoundersContainer from './FoundersContainer';
+import { IoPeople } from 'react-icons/io5';
 
 const Founders = () => (
 	<React.Fragment>
