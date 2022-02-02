@@ -88,6 +88,11 @@ fragment IdeaPreviewFields on idea_preview {
 			count(columns: id)
 		}
 	}
+	interested_aggregate {
+		aggregate {
+			count(columns: id)
+		}
+	}
 	votes(where: { userId: { _eq: $userId } }) {
 		id
 	}

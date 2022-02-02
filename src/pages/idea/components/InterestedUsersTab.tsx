@@ -1,21 +1,24 @@
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import { Loading, NoResults, UserAvatarDetails } from '@components/shared';
-import IdeaContext from '@context/idea/IdeaContext';
 import { useIdeaInterestedUsersLazyQuery } from '@generated/api';
 import { formatDate } from '@utils/validators';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import useIdea from '../query/ideaQuery';
 
 export const InterestedUsersTab = () => {
-	const idea = useContext(IdeaContext)?.data?.idea;
+	// const idea = useContext(IdeaContext)?.data?.idea;
+
+	// const totalInterested = useIdea().idea?.interested_aggregate.aggregate?.count ?? 0;
+	const idea = useIdea()?.idea;
+	const totalInterested =
+		useIdea()?.idea?.interested_aggregate.aggregate?.count ?? 0;
 
 	const [getInterestedUsers, { data }] = useIdeaInterestedUsersLazyQuery({
 		variables: {
 			ideaId: idea?.id
 		}
 	});
-
-	const totalInterested = idea?.totalInterested ?? 0;
 
 	useEffect(() => {
 		if (totalInterested > 0) getInterestedUsers();

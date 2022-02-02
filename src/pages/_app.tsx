@@ -100,9 +100,9 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 const cache = new InMemoryCache({
 	// addTypename: false,
 	typePolicies: {
-		interested_ideas: {
-			keyFields: ['ideaId']
-		},
+		// interested_ideas: {
+		// 	keyFields: ['ideaId']
+		// },
 		idea_comments: {
 			keyFields: ['id']
 		},

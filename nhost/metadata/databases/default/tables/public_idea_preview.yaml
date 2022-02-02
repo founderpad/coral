@@ -21,6 +21,15 @@ array_relationships:
       remote_table:
         name: idea_comments
         schema: public
+- name: interested
+  using:
+    manual_configuration:
+      column_mapping:
+        id: idea_id
+      insertion_order: null
+      remote_table:
+        name: interested_ideas
+        schema: public
 - name: votes
   using:
     manual_configuration:
