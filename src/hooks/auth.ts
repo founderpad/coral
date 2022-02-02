@@ -1,3 +1,4 @@
+import { logout } from './../slices/auth';
 import { TUsers, useUserLazyQuery } from '@generated/api';
 import { event } from '@lib/ga';
 import { useNhostAuth } from '@nhost/react-auth';
@@ -14,6 +15,7 @@ import { useErrorNotification } from './toast';
 // import { useNotification } from './util';
 import Router from 'next/router';
 import { useEffect } from 'react';
+// import { useApolloClient } from '@apollo/client';
 
 export const useRegister = (): any => {
 	const showErrorNotification = useErrorNotification();
@@ -35,14 +37,6 @@ export const useRegister = (): any => {
 						lastName?.trim() ?? ''
 					}`
 				}
-				// options: {
-				// 	// userData: <{ display_name: string }>{
-				// 	// 	display_name:
-				// 	// 		displayName?.trim() + ' ' + (lastName?.trim() ?? ''),
-				// 	// 	// user_type: type,
-				// 	// 	first_name: displayName?.trim(),
-				// 	// 	last_name: lastName?.trim()
-				// 	// }
 			});
 
 			if (response.error) {
@@ -167,7 +161,8 @@ const useGetAuthUser = () => {
 
 export const useLogout = (): any => {
 	const showErrorNotification = useErrorNotification();
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	// const client = useApolloClient();
 	// const client = usePushClient();
 
 	return async (): Promise<void> => {
@@ -176,6 +171,8 @@ export const useLogout = (): any => {
 			// client.push(function () {
 			// 	client.removeExternalUserId();
 			// });
+			// await client.clearStore();
+			dispatch(logout());
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to logout',

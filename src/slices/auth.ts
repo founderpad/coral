@@ -1,6 +1,8 @@
 import { TUsers, TUser_Address } from '@generated/api';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
+
+export const logout = createAction('auth/logout');
 
 const initialState = {
 	user: undefined as TUsers | undefined
@@ -9,6 +11,11 @@ const initialState = {
 const authSlice = createSlice({
 	name: 'authSlice',
 	initialState,
+	extraReducers: (builder) => {
+		builder.addCase(logout, () => {
+			return initialState;
+		});
+	},
 	reducers: {
 		setUser(state, action: PayloadAction<TUsers>) {
 			state.user = action.payload;

@@ -1,7 +1,11 @@
 var sendNotification = function (message) {
+	console.log(
+		'PROCESS ENVVVVVVV: ',
+		process.env.NEXT_PUBLIC_ONESIGNAL_REST_API_KEY
+	);
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: `Basic ${process.env.ONESIGNAL_REST_API_KEY}`
+		Authorization: `Basic ${process.env.NEXT_PUBLIC_ONESIGNAL_REST_API_KEY}`
 	};
 
 	var options = {
@@ -40,7 +44,7 @@ export default async (req, res) => {
 	if (fromUserId === targetUserId) return null;
 
 	const message = {
-		app_id: process.env.ONESIGNAL_APP_ID,
+		app_id: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
 			en: 'You have received a new comment on your idea. Click here to view it.'

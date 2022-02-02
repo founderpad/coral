@@ -145,7 +145,17 @@ export const ImageUploader = (props: Props) => {
 	};
 
 	return (
-		<>
+		<FlexLayout
+			flex={1}
+			as={'label'}
+			justifyContent={'center'}
+			alignItems={'center'}
+			flexDirection={'column'}
+			position={'relative'}
+			rounded={'full'}
+			boxSize={140}
+			boxShadow={'lg'}
+		>
 			<input
 				id={'image-upload'}
 				type="file"
@@ -154,65 +164,52 @@ export const ImageUploader = (props: Props) => {
 				style={{ display: 'none' }}
 			/>
 
-			<FlexLayout
-				bg={'gray.900'}
-				flex={1}
+			<EditButton
 				as={'label'}
-				boxSize={140}
-				justifyContent={'center'}
-				alignItems={'center'}
-				flexDirection={'column'}
+				onClick={undefined}
+				htmlFor={'image-upload'}
+				bg={'white'}
+				size={'sm'}
+				boxShadow={'md'}
+				cursor={'pointer'}
+				aria-label={props['aria-label'] || 'Edit image button'}
+				title={props.title}
+				position={'absolute'}
+				bottom={0}
+				transform={'translateY(5%) translateX(100%)'}
+				zIndex={1}
+				borderWidth={1}
+			/>
+			<Box
+				className="image"
 				position={'relative'}
 				rounded={'full'}
-				boxShadow={'lg'}
+				boxSize={140}
+				css={{
+					'> img': {
+						maxWidth: '100%',
+						maxHeight: '100%'
+					},
+					':after': {
+						content: 'close-quote',
+						position: 'absolute',
+						top: 0,
+						left: 0,
+						bottom: 0,
+						right: 0,
+						transition: 'all .5s',
+						'-webkit-transition': 'all .3s',
+						borderRadius: '100%'
+					},
+					':hover:after': {
+						backgroundColor: 'rgba(0, 0, 0, 0.4)',
+						opacity: 1
+					}
+				}}
 			>
-				<EditButton
-					as={'label'}
-					onClick={undefined}
-					htmlFor={'image-upload'}
-					bg={'white'}
-					size={'sm'}
-					boxShadow={'md'}
-					cursor={'pointer'}
-					aria-label={props['aria-label'] || 'Edit image button'}
-					title={props.title}
-					position={'absolute'}
-					bottom={0}
-					transform={'translateY(5%) translateX(100%)'}
-					zIndex={1}
-					borderWidth={1}
-				/>
-				<Box
-					className="image"
-					position={'relative'}
-					rounded={'full'}
-					boxSize={140}
-					css={{
-						'> img': {
-							maxWidth: '100%',
-							maxHeight: '100%'
-						},
-						':after': {
-							content: 'close-quote',
-							position: 'absolute',
-							top: 0,
-							left: 0,
-							bottom: 0,
-							right: 0,
-							transition: 'all .5s',
-							'-webkit-transition': 'all .3s',
-							borderRadius: '100%'
-						},
-						':hover:after': {
-							backgroundColor: 'rgba(0, 0, 0, 0.4)',
-							opacity: 1
-						}
-					}}
-				>
-					{children}
-				</Box>
-			</FlexLayout>
-		</>
+				{children}
+			</Box>
+		</FlexLayout>
 	);
 };
 
