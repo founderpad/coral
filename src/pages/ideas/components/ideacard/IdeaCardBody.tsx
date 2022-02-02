@@ -7,7 +7,7 @@ import React from 'react';
 
 type TIdeaCardBody = Pick<
 	TIdeaPreviewFieldsFragment,
-	'preview' | 'field' | 'user' | 'status' | 'total_interested'
+	'preview' | 'field' | 'user' | 'status' | 'interested_aggregate'
 >;
 
 const IdeaCardBody = (idea: TIdeaCardBody) => {
@@ -36,7 +36,9 @@ const IdeaCardBody = (idea: TIdeaCardBody) => {
 };
 
 export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
-	const { field, status, total_interested } = idea;
+	const { field, status, interested_aggregate } = idea;
+
+	const totalInterested = interested_aggregate.aggregate?.count;
 
 	return (
 		<FlexLayout
@@ -55,8 +57,8 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 					{field}
 				</Label>
 			</StackLayout>
-			{total_interested ? (
-				<InterestedTotal total={total_interested} />
+			{totalInterested ? (
+				<InterestedTotal total={totalInterested} />
 			) : null}
 		</FlexLayout>
 	);
