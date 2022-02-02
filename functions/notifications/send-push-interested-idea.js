@@ -1,7 +1,7 @@
 var sendNotification = function (message) {
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: `Basic MzJjOWQ4OTctMTUyOC00ZmYzLTk5NjgtMDAwOTk0NTYzZjdi`
+		Authorization: `Basic Yjg0ODY2NmQtMjZmYS00ZmRiLWIzMTUtOWY1ZGJiOTc2YjY1`
 	};
 
 	var options = {
@@ -38,7 +38,7 @@ export default async (req, res) => {
 	if (fromUserId === targetUserId) return null;
 
 	const message = {
-		app_id: 'c4cb5426-3957-47fb-bce2-f363d031aaa2',
+		app_id: 'a890c1f8-d682-4225-ae11-01f7cd717b84',
 		en: 'text',
 		contents: {
 			en: 'Somebody is interested in your idea! 🚀  Click here to see who they are.'
