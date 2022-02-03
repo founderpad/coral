@@ -82,7 +82,7 @@ export default (req, res) => {
 							<body>
 								<table id="outer-container">
 									<th>
-										<img src="https://backend-19728797.nhost.app/storage/o/public/assets/founderpad-logo200x41.png" />
+										<img src="https://founderpad-file-uploads.s3.eu-west-1.amazonaws.com/founderpad-logo-email-185x40.png" />
 									</th>
 									<tr>
 										<td>

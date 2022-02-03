@@ -53,7 +53,6 @@ exports[`Login form matches snapshot 1`] = `
       <button
         aria-label="submit-login"
         class="chakra-button css-xg4mhf"
-        disabled=""
         id="submit-login"
         type="submit"
       >
