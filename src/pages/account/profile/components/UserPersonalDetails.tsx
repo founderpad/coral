@@ -1,15 +1,20 @@
 import { FlexProps } from '@chakra-ui/react';
 import { SubmitButton } from '@components/buttons';
-import { IoLocationSharp, IoMailSharp, IoTimeSharp } from '@components/icons';
+import {
+	IoLocationSharp,
+	IoLockClosedSharp,
+	IoMailSharp,
+	IoTimeSharp
+} from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { TitleEditAction } from '@components/shared';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useCurrentUser } from '@hooks/auth';
 import { formatDate } from '@utils/validators';
 import React, { memo, useContext } from 'react';
+import ChangePasswordForm from './forms/ChangePasswordForm';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';
-import SocialMediaDetails from './SocialMediaDetails';
 import UserImageUploader from './UserImageUploader';
 
 type Props = Pick<FlexProps, 'display' | 'mb'>;
@@ -31,7 +36,7 @@ const UserPersonalInformation = memo((props: Props) => {
 		? country
 		: 'Location not set';
 
-	const onClick = () => {
+	const onPersonalDetailsClick = () => {
 		setModalDrawer({
 			title: 'Your details',
 			isOpen: true,
@@ -48,6 +53,23 @@ const UserPersonalInformation = memo((props: Props) => {
 		});
 	};
 
+	const onPasswordClick = () => {
+		setModalDrawer({
+			title: 'Your password',
+			isOpen: true,
+			actions: (
+				<SubmitButton
+					name={'open-modal-drawer-change-password-button'}
+					form="editPasswordForm"
+					label={'Save'}
+				/>
+			),
+			body: <ChangePasswordForm />,
+			noBtnLabel: 'Cancel',
+			hideFooter: true
+		});
+	};
+
 	return (
 		<StackLayout p={{ base: 4, sm: 0 }}>
 			<UserImageUploader />
@@ -55,7 +77,7 @@ const UserPersonalInformation = memo((props: Props) => {
 				<TitleEditAction
 					// title={`${first_name} ${last_name}`}
 					title={displayName}
-					onClick={onClick}
+					onClick={onPersonalDetailsClick}
 				/>
 
 				<ProfileSectionLabel label={email} icon={IoMailSharp} />
@@ -68,8 +90,16 @@ const UserPersonalInformation = memo((props: Props) => {
 					label={`Joined ` + formatDate(createdAt, true)}
 					icon={IoTimeSharp}
 				/>
-				<SocialMediaDetails />
+				{/* <SocialMediaDetails /> */}
 			</StackLayout>
+
+			{/* <StackLayout spacing={2} w={'full'}>
+				<TitleEditAction title={'Password'} onClick={onPasswordClick} />
+				<ProfileSectionLabel
+					label={'*********'}
+					icon={IoLockClosedSharp}
+				/>
+			</StackLayout> */}
 		</StackLayout>
 	);
 });

@@ -17,13 +17,11 @@ const AuthLayout = ({ header, children, title }: Props) => (
 	<React.Fragment>
 		<DocumentTitle title={title} />
 		<StackLayout
-			minW={{ base: 'full', sm: '400px' }}
-			maxW={{ base: 'full', sm: '450px' }}
+			w={{ base: 'full', sm: '425px' }}
 			borderColor={'gray.100'}
 			p={8}
 			boxShadow={{ sm: 'sm' }}
 			borderWidth={{ sm: '1px' }}
-			// m={'auto'}
 			style={{ margin: 'auto' }}
 			bg={'white'}
 			d={'flex'}

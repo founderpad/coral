@@ -130,11 +130,12 @@ export const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
 );
 
 export const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
-	(props, ref) => (
+	({ name, placeholder = 'Password', ...rest }, ref) => (
 		<InputField
-			{...props}
-			id={`${props.name}-password`}
-			placeholder="Password"
+			{...rest}
+			name={name}
+			id={`${name}-password`}
+			placeholder={placeholder}
 			type="password"
 			errorText="Please enter a valid password between 6 and 20 characters"
 			rules={{ maxLength: 20, minLength: 6 }}

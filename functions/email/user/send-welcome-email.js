@@ -138,7 +138,7 @@ export default (req, res) => {
 													</tr>
 													<tr>
 														<td>
-															Many thanks,<br/>
+															Many thanks,<br/><br/>
 															<strong>The founderpad team</strong>
 														</td>
 													</tr>

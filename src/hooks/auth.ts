@@ -141,6 +141,7 @@ export const useResetPassword = () => {
 	return async ({ email }: { email: string }) => {
 		try {
 			await auth.resetPassword({ email });
+			Router.push('/login');
 		} catch (error) {
 			console.error('Error resetting password: ', error);
 			showErrorNotification({

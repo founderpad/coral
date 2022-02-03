@@ -4,6 +4,8 @@ import { EmailField, PasswordField } from '@components/input';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
+import { AppDivider } from '@components/shared';
+import SocialLogins from '@components/shared/SocialLogins';
 // import SocialLogins from '@components/shared/SocialLogins';
 import { useLogin } from '@hooks/auth';
 import React, { memo } from 'react';
@@ -63,8 +65,10 @@ const LoginForm = () => {
 					fontSize={'sm'}
 					w={{ base: 'full', sm: '175px' }}
 				/>
+
+				{/* <AppDivider /> */}
 			</Form>
-			{/* <SocialLogins /> */}
+			<SocialLogins />
 			<LoginFooter />
 		</React.Fragment>
 	);

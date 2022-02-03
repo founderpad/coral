@@ -10,7 +10,7 @@ export const TitleEditAction = memo(
 			alignItems={'center'}
 			w={'full'}
 		>
-			<Heading size={'h6'} fontSize={'lg'} color={'gray.900'}>
+			<Heading size={'h6'} fontSize={'md'} color={'gray.900'}>
 				{title}
 			</Heading>
 
