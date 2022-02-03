@@ -53,10 +53,11 @@ const LoginForm = () => {
 					name={'submit-login'}
 					label="Log in"
 					isLoading={isSubmitting}
-					disabled={!isValid || isSubmitting}
+					// disabled={!isValid || isSubmitting}
 					size={'md'}
 					fontSize={'sm'}
 					w={'full'}
+					disabled={true}
 				/>
 			</Form>
 			{/* <SocialLogins /> */}

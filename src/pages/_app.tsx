@@ -19,6 +19,7 @@ import store from '@utils/store';
 import 'focus-visible/dist/focus-visible';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
@@ -58,16 +59,28 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 		<React.Fragment>
 			<Head>
 				<link rel="shortcut icon" href="/favicon.svg" />
-				<script
-					src="https://apis.google.com/js/platform.js"
-					async
-					defer
-				></script>
 				<meta
 					name="google-signin-client_id"
 					content="570489210751-cplv3bacb2vvkfml9ie337u9m1f3p2cv.apps.googleusercontent.com"
 				></meta>
 			</Head>
+			<Script
+				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+			/>
+			<Script id="google-analytics" strategy="afterInteractive">
+				{`
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){window.dataLayer.push(arguments);}
+					gtag('js', new Date());
+
+					gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+				`}
+			</Script>
+			<Script
+				src="https://apis.google.com/js/platform.js"
+				strategy="lazyOnload"
+			/>
+
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
 					<NhostAuthProvider nhost={nhost}>
