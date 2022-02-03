@@ -13,14 +13,13 @@ import {
 } from 'src/types/auth';
 import { useErrorNotification } from './toast';
 // import { useNotification } from './util';
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useEffect } from 'react';
 import { encodeString } from '@utils/validators';
 // import { useApolloClient } from '@apollo/client';
 
 export const useRegister = (): any => {
 	const showErrorNotification = useErrorNotification();
-	const router = useRouter();
 	// const { addNotification, removeNotification } = useNotification();
 
 	return async ({
@@ -133,6 +132,39 @@ export const useSocialLogin = () => {
 			});
 		} catch (error) {
 			throw `Failed to login with ${authProvider}`;
+		}
+	};
+};
+
+export const useResetPassword = () => {
+	const showErrorNotification = useErrorNotification();
+	return async ({ email }: { email: string }) => {
+		try {
+			await auth.resetPassword({ email });
+		} catch (error) {
+			console.error('Error resetting password: ', error);
+			showErrorNotification({
+				title: 'Failed to reset password',
+				description:
+					'Please try again later, otherwise contact support@founderpad.com'
+			});
+		}
+	};
+};
+
+export const useChangePassword = () => {
+	const showErrorNotification = useErrorNotification();
+
+	return async ({ newPassword }: { newPassword: string }) => {
+		const { error } = await auth.changePassword({ newPassword });
+
+		if (error) {
+			console.error('Error changing password: ', error);
+			showErrorNotification({
+				title: 'Failed to change password',
+				description:
+					'Please try again later, otherwise contact support@founderpad.com'
+			});
 		}
 	};
 };

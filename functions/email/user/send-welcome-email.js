@@ -14,9 +14,13 @@ export default (req, res) => {
 	AWS_SES.sendEmail({
 		Source: 'support@founderpad.com',
 		Destination: {
-			ToAddresses: [`${req.body.event.data.new.recipientEmail}`],
+			ToAddresses: [`${req.body.event.data.new.email}`],
 			// ToAddresses: ['success@simulator.amazonses.com'],
-			BccAddresses: ['jamie@founderpad.com', 'toby@founderpad.com']
+			BccAddresses: [
+				'jamie@founderpad.com',
+				'toby@founderpad.com',
+				'success@simulator.amazonses.com'
+			]
 		},
 		Message: {
 			Body: {

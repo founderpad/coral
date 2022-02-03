@@ -26,6 +26,9 @@ const RegisterForm = () => {
 				id={'registerForm'}
 				name={'registerForm'}
 				onSubmit={handleSubmit(onRegister)}
+				stackProps={{
+					alignItems: 'center'
+				}}
 			>
 				<InputField
 					name="firstName"
@@ -71,10 +74,11 @@ const RegisterForm = () => {
 					name={'submit-register-account'}
 					label={'Create account'}
 					isLoading={isSubmitting}
-					disabled={!isValid || isSubmitting}
+					// disabled={!isValid || isSubmitting}
+					disabled={isSubmitting}
 					size={'md'}
 					fontSize={'sm'}
-					w={'full'}
+					w={{ base: 'full', sm: '175px' }}
 				/>
 			</Form>
 			{/* <SocialLogins /> */}

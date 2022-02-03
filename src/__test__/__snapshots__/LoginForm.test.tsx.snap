@@ -3,14 +3,14 @@
 exports[`Login form matches snapshot 1`] = `
 <DocumentFragment>
   <form
-    aria-label="loginForm"
+    aria-label="loginform"
     autocomplete="off"
-    id="loginForm"
-    name="loginForm"
+    id="loginform"
+    name="loginform"
     novalidate=""
   >
     <div
-      class="chakra-stack css-k0yr9b"
+      class="chakra-stack css-w4pe59"
     >
       <div
         class="chakra-form-control css-1naxzcr"
@@ -52,7 +52,7 @@ exports[`Login form matches snapshot 1`] = `
       </div>
       <button
         aria-label="submit-login"
-        class="chakra-button css-xg4mhf"
+        class="chakra-button css-1iyhsoz"
         id="submit-login"
         type="submit"
       >
@@ -60,17 +60,28 @@ exports[`Login form matches snapshot 1`] = `
       </button>
     </div>
   </form>
-  <p
-    class="chakra-text css-17q9usm"
+  <div
+    class="css-18voih5"
   >
-    Don't have an account?
+    <p
+      class="chakra-text css-1fihqrz"
+    >
+      No account?
+      <span
+        class="chakra-link css-ntv2za"
+        href="/register"
+        title="Link to register an account"
+      >
+         Register now
+      </span>
+    </p>
     <span
-      class="chakra-link css-ntv2za"
-      href="/register"
+      class="chakra-link css-pkysmm"
+      href="/forgottenpassword"
       title="Link to register an account"
     >
-       Create one here
+       Forgotten password?
     </span>
-  </p>
+  </div>
 </DocumentFragment>
 `;

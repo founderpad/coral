@@ -6,13 +6,17 @@ export const SubmitButton = ({
 	label = 'Submit',
 	...props
 }: BaseButtonProps & { form?: string; label?: string }) => {
-	const { colorScheme, full, isLoading } = props;
+	const {
+		colorScheme = 'fpPrimary',
+		full = false,
+		isLoading = false
+	} = props;
 
 	return (
 		<BaseButton
 			{...props}
 			isFullWidth={full}
-			colorScheme={colorScheme ?? 'fpPrimary'}
+			colorScheme={colorScheme}
 			isLoading={isLoading}
 			type={'submit'}
 		>

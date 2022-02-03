@@ -2,6 +2,7 @@ import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import { EmailField, PasswordField } from '@components/input';
 import { Label } from '@components/labels';
+import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 // import SocialLogins from '@components/shared/SocialLogins';
 import { useLogin } from '@hooks/auth';
@@ -13,16 +14,19 @@ const LoginForm = () => {
 	const {
 		handleSubmit,
 		control,
-		formState: { errors, isSubmitting, isValid }
+		formState: { errors, isSubmitting } // isValid
 	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
 
 	return (
 		<React.Fragment>
 			<Form
-				id={'loginForm'}
-				name={'loginForm'}
+				id={'loginform'}
+				name={'loginform'}
 				onSubmit={handleSubmit(onLogin)}
+				stackProps={{
+					alignItems: 'center'
+				}}
 			>
 				<EmailField
 					id="email"
@@ -57,23 +61,33 @@ const LoginForm = () => {
 					disabled={isSubmitting}
 					size={'md'}
 					fontSize={'sm'}
-					w={'full'}
+					w={{ base: 'full', sm: '175px' }}
 				/>
 			</Form>
 			{/* <SocialLogins /> */}
-			<NoAccountFooter />
+			<LoginFooter />
 		</React.Fragment>
 	);
 };
 
-const NoAccountFooter = memo(() => (
-	<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'} pt={6}>
-		Don&apos;t have an account?
-		<PrimaryLink href="/register" title={'Link to register an account'}>
+const LoginFooter = memo(() => (
+	<FlexLayout justifyContent={'space-between'} alignItems={'center'} pt={8}>
+		<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'}>
+			No account?
+			<PrimaryLink href="/register" title={'Link to register an account'}>
+				{' '}
+				Register now
+			</PrimaryLink>
+		</Label>
+		<PrimaryLink
+			href="/forgottenpassword"
+			title={'Link to register an account'}
+			fontSize={'x-small'}
+		>
 			{' '}
-			Create one here
+			Forgotten password?
 		</PrimaryLink>
-	</Label>
+	</FlexLayout>
 ));
 
 export default LoginForm;

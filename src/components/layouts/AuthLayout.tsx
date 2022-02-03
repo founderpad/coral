@@ -51,6 +51,7 @@ const AuthLayout = ({ header, children, title }: Props) => (
 				fontWeight={'normal'}
 				fontSize={'md'}
 				color={'black'}
+				pb={8}
 			>
 				{header}
 			</Heading>
