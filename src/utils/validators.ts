@@ -76,3 +76,9 @@ export const formatUploadedUrls = (
 
 	return uploadedFiles;
 };
+
+export const encodeString = (value: string) =>
+	Buffer.from(value).toString('base64');
+
+export const decodeString = (value: string) =>
+	Buffer.from(value, 'base64').toString('ascii');

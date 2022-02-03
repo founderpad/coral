@@ -51,10 +51,10 @@ const AuthLayout = ({ header, children, title }: Props) => (
 				fontWeight={'normal'}
 				fontSize={'md'}
 				color={'black'}
-				py={4}
 			>
 				{header}
 			</Heading>
+
 			{children}
 		</StackLayout>
 	</React.Fragment>

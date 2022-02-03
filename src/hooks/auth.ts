@@ -13,12 +13,14 @@ import {
 } from 'src/types/auth';
 import { useErrorNotification } from './toast';
 // import { useNotification } from './util';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { encodeString } from '@utils/validators';
 // import { useApolloClient } from '@apollo/client';
 
 export const useRegister = (): any => {
 	const showErrorNotification = useErrorNotification();
+	const router = useRouter();
 	// const { addNotification, removeNotification } = useNotification();
 
 	return async ({
@@ -63,6 +65,13 @@ export const useRegister = (): any => {
 					user_registration_date: new Date()
 				}
 			});
+
+			// e1=${encodeString(
+			// 	email
+			// )}
+			Router.push(
+				`/register/registersuccess?nm=${encodeString(firstName)}`
+			);
 		} catch (error) {
 			// addNotification(
 			// 	'Failed to create an account. Please try again later.',

@@ -11,7 +11,7 @@ const Register: NextPage = () => {
 		<AuthLayout
 			header="Register an account to get started"
 			subheader="Get started by creating an account below"
-			title="Register "
+			title="Register"
 		>
 			<RegisterForm />
 		</AuthLayout>

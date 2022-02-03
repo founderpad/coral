@@ -53,6 +53,10 @@ module.exports = {
 		return {
 			beforeFiles: [
 				// {
+				// 	source: '/register/registersuccess',
+				// 	source: '/register/register_success'
+				// }
+				// {
 				// 	source: '/about',
 				// 	destination: '/about-us.html'
 				// },
