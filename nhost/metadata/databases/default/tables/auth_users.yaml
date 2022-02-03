@@ -136,8 +136,9 @@ update_permissions:
 event_triggers:
 - definition:
     enable_manual: false
-    insert:
-      columns: "*"
+    update:
+      columns:
+      - email_verified
   name: send-welcome-email
   retry_conf:
     interval_sec: 10
