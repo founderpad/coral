@@ -5,14 +5,10 @@ import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 // import { AppDivider } from '@components/shared';
-import SocialLogins from '@components/shared/SocialLogins';
-import ModalDrawerContext from '@context/ModalDrawerContext';
 // import SocialLogins from '@components/shared/SocialLogins';
 import { useLogin } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
-import PersonalDetailsForm from '@pages/account/profile/components/forms/PersonalDetailsForm';
-import { PASSWORD_RESET } from '@utils/Constants';
-import React, { memo, useContext, useEffect } from 'react';
+
+import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { IAuthFormData } from 'src/types/auth';
 
@@ -20,31 +16,31 @@ const LoginForm = () => {
 	const {
 		handleSubmit,
 		control,
-		formState: { errors, isSubmitting } // isValid
+		formState: { errors, isSubmitting, isValid } // isValid
 	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
 
-	const isPasswordReset = useQueryParam('type') === PASSWORD_RESET;
-	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);
+	// const isPasswordReset = useQueryParam('type') === PASSWORD_RESET;
+	// const { setModalDrawer } = useContext(ModalDrawerContext);
 
-	useEffect(() => {
-		if (isPasswordReset) {
-			setModalDrawer({
-				title: 'Your details',
-				isOpen: true,
-				actions: (
-					<SubmitButton
-						name={'open-modal-drawer-edit-password-button'}
-						form="editPasswordForm"
-						label={'Save'}
-					/>
-				),
-				body: <PersonalDetailsForm />,
-				noBtnLabel: 'Cancel',
-				hideFooter: true
-			});
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (isPasswordReset) {
+	// 		setModalDrawer({
+	// 			title: 'Your details',
+	// 			isOpen: true,
+	// 			actions: (
+	// 				<SubmitButton
+	// 					name={'open-modal-drawer-edit-password-button'}
+	// 					form="editPasswordForm"
+	// 					label={'Save'}
+	// 				/>
+	// 			),
+	// 			body: <PersonalDetailsForm />,
+	// 			noBtnLabel: 'Cancel',
+	// 			hideFooter: true
+	// 		});
+	// 	}
+	// }, []);
 
 	return (
 		<React.Fragment>
@@ -85,8 +81,8 @@ const LoginForm = () => {
 					name={'submit-login'}
 					label="Log in"
 					isLoading={isSubmitting}
-					// disabled={!isValid || isSubmitting}
-					disabled={isSubmitting}
+					disabled={!isValid || isSubmitting}
+					// disabled={isSubmitting}
 					size={'md'}
 					fontSize={'sm'}
 					w={{ base: 'full', sm: '175px' }}
@@ -94,7 +90,7 @@ const LoginForm = () => {
 
 				{/* <AppDivider /> */}
 			</Form>
-			<SocialLogins />
+			{/* <SocialLogins /> */}
 			<LoginFooter />
 		</React.Fragment>
 	);

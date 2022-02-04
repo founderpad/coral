@@ -1,13 +1,8 @@
-import { SubmitButton } from '@components/buttons';
 import MainNav from '@components/nav/mainnav/MainNav';
 import MobileNav from '@components/nav/mainnav/MobileNav';
-import ModalDrawerContext from '@context/ModalDrawerContext';
 import { usePushNotifications } from '@hooks/notifications';
-import { useQueryParam } from '@hooks/util';
-import PersonalDetailsForm from '@pages/account/profile/components/forms/PersonalDetailsForm';
 import MobileNavigationProvider from '@provider/MobileNavigationProvider';
-import { PASSWORD_RESET } from '@utils/Constants';
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { BoxLayout } from './BoxLayout';
 
 export const MainLayout = ({ children }: { children: JSX.Element }) => {

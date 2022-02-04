@@ -74,8 +74,8 @@ const RegisterForm = () => {
 					name={'submit-register-account'}
 					label={'Create account'}
 					isLoading={isSubmitting}
-					// disabled={!isValid || isSubmitting}
-					disabled={isSubmitting}
+					disabled={!isValid || isSubmitting}
+					// disabled={isSubmitting}
 					size={'md'}
 					fontSize={'sm'}
 					w={{ base: 'full', sm: '175px' }}
