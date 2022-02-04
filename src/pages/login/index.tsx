@@ -1,23 +1,18 @@
 import AuthLayout from '@components/layouts/AuthLayout';
-import { useQueryParam } from '@hooks/util';
 import { NextPage } from 'next';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
 import LoginForm from './components/LoginForm';
 
 const Login: NextPage = () => {
-	const isPasswordReset = useQueryParam('type') === 'passwordReset';
-	// const queryParams = Router.query;
+	const changePasswordHash = Router.asPath.split('#')[1] ?? '';
 
 	useEffect(() => {
-		if (isPasswordReset) {
-			console.log('login change owddddd');
-
+		if (changePasswordHash.search('type=passwordReset') !== -1) {
 			Router.replace(
 				{
 					pathname: '/changepassword',
-					search: '?type=passwordReset',
-					hash: 'refreshToken=1234567788'
+					hash: changePasswordHash
 				},
 				undefined,
 				{ shallow: true }

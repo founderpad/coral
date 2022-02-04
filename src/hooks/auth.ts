@@ -14,7 +14,7 @@ import {
 import { useErrorNotification, useSuccessNotification } from './toast';
 // import { useNotification } from './util';
 import Router from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { encodeString } from '@utils/validators';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 // import { useApolloClient } from '@apollo/client';
@@ -168,9 +168,15 @@ export const useChangePassword = () => {
 	const showErrorNotification = useErrorNotification();
 	const showSuccessNotification = useSuccessNotification();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const [isChangeSuccess, setChangeSuccess] = useState(false);
 
-	return async ({ newPassword }: { newPassword: string }) => {
+	const onChangePassword = async ({
+		newPassword
+	}: {
+		newPassword: string;
+	}) => {
 		const { error } = await auth.changePassword({ newPassword });
+		setChangeSuccess(true);
 
 		if (error) {
 			console.error('Error changing password: ', error);
@@ -179,6 +185,7 @@ export const useChangePassword = () => {
 				description:
 					'Please try again later, otherwise contact support@founderpad.com'
 			});
+			setChangeSuccess(false);
 			throw 'Failed to change password';
 		}
 
@@ -187,6 +194,8 @@ export const useChangePassword = () => {
 		});
 		showSuccessNotification({ title: 'Password changed successfully' });
 	};
+
+	return { onChangePassword, isChangeSuccess };
 };
 
 const useGetAuthUser = () => {

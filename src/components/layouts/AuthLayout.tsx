@@ -18,6 +18,7 @@ const AuthLayout = ({ header, children, title }: Props) => (
 		<DocumentTitle title={title} />
 		<StackLayout
 			w={{ base: 'full', sm: '425px' }}
+			minH={{ sm: '400px' }}
 			borderColor={'gray.100'}
 			p={8}
 			boxShadow={{ sm: 'sm' }}
