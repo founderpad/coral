@@ -161,7 +161,7 @@ export const useResetPassword = () => {
 		}
 	};
 
-	return [resetPassword];
+	return resetPassword;
 };
 
 export const useChangePassword = () => {

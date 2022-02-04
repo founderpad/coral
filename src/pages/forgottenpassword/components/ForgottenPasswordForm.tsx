@@ -15,12 +15,12 @@ const ForgottenPasswordForm = () => {
 	const {
 		handleSubmit,
 		control,
-		formState: { errors, isSubmitting } // isValid
+		formState: { errors, isSubmitting, isValid } // isValid
 	} = useForm<{ email: string }>({ mode: 'all' });
 
 	const isEmailSent = useQueryParam('es');
 
-	const [onResetPassword] = useResetPassword();
+	const onResetPassword = useResetPassword();
 
 	return (
 		<React.Fragment>
@@ -62,7 +62,7 @@ const ForgottenPasswordForm = () => {
 					name={'submitresetpassword'}
 					label="Reset password"
 					isLoading={isSubmitting}
-					disabled={isSubmitting}
+					disabled={!isValid || isSubmitting}
 					size={'md'}
 					fontSize={'sm'}
 					w={{ base: 'full', sm: '175px' }}
