@@ -1,4 +1,5 @@
 // import { useForgottenPassword } from '@hooks/auth';
+import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import { EmailField } from '@components/input';
@@ -6,6 +7,7 @@ import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import { useResetPassword } from '@hooks/auth';
+import { useQueryParam } from '@hooks/util';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -16,7 +18,9 @@ const ForgottenPasswordForm = () => {
 		formState: { errors, isSubmitting } // isValid
 	} = useForm<{ email: string }>({ mode: 'all' });
 
-	const onResetPassword = useResetPassword();
+	const isEmailSent = useQueryParam('es');
+
+	const [onResetPassword] = useResetPassword();
 
 	return (
 		<React.Fragment>
@@ -44,6 +48,14 @@ const ForgottenPasswordForm = () => {
 					fontSize={'sm'}
 					isRequired
 				/>
+
+				{isEmailSent && (
+					<AlertFeedback
+						message={
+							'Email sent with instructions to reset your password'
+						}
+					/>
+				)}
 
 				<SubmitButton
 					id={'submitresetpassword'}

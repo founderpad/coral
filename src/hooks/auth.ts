@@ -11,11 +11,12 @@ import {
 	IRegisterFormData,
 	TAuthProvider
 } from 'src/types/auth';
-import { useErrorNotification } from './toast';
+import { useErrorNotification, useSuccessNotification } from './toast';
 // import { useNotification } from './util';
 import Router from 'next/router';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { encodeString } from '@utils/validators';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 // import { useApolloClient } from '@apollo/client';
 
 export const useRegister = (): any => {
@@ -138,10 +139,18 @@ export const useSocialLogin = () => {
 
 export const useResetPassword = () => {
 	const showErrorNotification = useErrorNotification();
-	return async ({ email }: { email: string }) => {
+
+	const resetPassword = async ({ email }: { email: string }) => {
 		try {
 			await auth.resetPassword({ email });
-			Router.push('/login');
+			Router.replace(
+				{
+					pathname: '/forgottenpassword',
+					query: { es: true }
+				},
+				undefined,
+				{ shallow: true }
+			);
 		} catch (error) {
 			console.error('Error resetting password: ', error);
 			showErrorNotification({
@@ -151,10 +160,14 @@ export const useResetPassword = () => {
 			});
 		}
 	};
+
+	return [resetPassword];
 };
 
 export const useChangePassword = () => {
 	const showErrorNotification = useErrorNotification();
+	const showSuccessNotification = useSuccessNotification();
+	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	return async ({ newPassword }: { newPassword: string }) => {
 		const { error } = await auth.changePassword({ newPassword });
@@ -166,7 +179,13 @@ export const useChangePassword = () => {
 				description:
 					'Please try again later, otherwise contact support@founderpad.com'
 			});
+			throw 'Failed to change password';
 		}
+
+		setModalDrawer({
+			isOpen: false
+		});
+		showSuccessNotification({ title: 'Password changed successfully' });
 	};
 };
 

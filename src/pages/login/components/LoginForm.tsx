@@ -4,11 +4,15 @@ import { EmailField, PasswordField } from '@components/input';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
-import { AppDivider } from '@components/shared';
+// import { AppDivider } from '@components/shared';
 import SocialLogins from '@components/shared/SocialLogins';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 // import SocialLogins from '@components/shared/SocialLogins';
 import { useLogin } from '@hooks/auth';
-import React, { memo } from 'react';
+import { useQueryParam } from '@hooks/util';
+import PersonalDetailsForm from '@pages/account/profile/components/forms/PersonalDetailsForm';
+import { PASSWORD_RESET } from '@utils/Constants';
+import React, { memo, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { IAuthFormData } from 'src/types/auth';
 
@@ -19,6 +23,28 @@ const LoginForm = () => {
 		formState: { errors, isSubmitting } // isValid
 	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
+
+	const isPasswordReset = useQueryParam('type') === PASSWORD_RESET;
+	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);
+
+	useEffect(() => {
+		if (isPasswordReset) {
+			setModalDrawer({
+				title: 'Your details',
+				isOpen: true,
+				actions: (
+					<SubmitButton
+						name={'open-modal-drawer-edit-password-button'}
+						form="editPasswordForm"
+						label={'Save'}
+					/>
+				),
+				body: <PersonalDetailsForm />,
+				noBtnLabel: 'Cancel',
+				hideFooter: true
+			});
+		}
+	}, []);
 
 	return (
 		<React.Fragment>

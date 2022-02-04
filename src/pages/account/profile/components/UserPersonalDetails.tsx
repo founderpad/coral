@@ -93,13 +93,13 @@ const UserPersonalInformation = memo((props: Props) => {
 				{/* <SocialMediaDetails /> */}
 			</StackLayout>
 
-			{/* <StackLayout spacing={2} w={'full'}>
+			<StackLayout spacing={2} w={'full'}>
 				<TitleEditAction title={'Password'} onClick={onPasswordClick} />
 				<ProfileSectionLabel
 					label={'*********'}
 					icon={IoLockClosedSharp}
 				/>
-			</StackLayout> */}
+			</StackLayout>
 		</StackLayout>
 	);
 });

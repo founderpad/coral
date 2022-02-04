@@ -361,3 +361,7 @@ export enum MenuActionType {
 	DELETE,
 	REPORT
 }
+
+// Auth
+
+export const PASSWORD_RESET = 'passwordReset';

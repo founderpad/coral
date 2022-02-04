@@ -1,4 +1,5 @@
 import { PrimaryButton } from '@components/buttons';
+import { Label } from '@components/labels';
 import { BoxLayout, StackLayout } from '@components/layouts';
 import { useSocialLogin } from '@hooks/auth';
 import React, { memo, useCallback } from 'react';
@@ -26,13 +27,10 @@ const SocialLogins = memo(() => {
 			alignItems={'center'}
 			alignSelf={'center'}
 		>
-			{/* <PrimaryButton
-				name={'magiclinklogin'}
-				variant={'outline'}
-				w={{ base: 'full', sm: '175px' }}
-			>
-				Login with magic link
-			</PrimaryButton> */}
+			<Label textAlign={'center'} fontSize={'xs'} color={'gray.400'}>
+				Or
+			</Label>
+
 			<BoxLayout
 				id={'socialLogin'}
 				data-testid={'socialLogin'}
@@ -50,7 +48,7 @@ const SocialLogins = memo(() => {
 					data-onsuccess="onSocialLogin"
 					data-theme="light"
 					data-longtitle="true"
-				/>
+				></div>
 			</BoxLayout>
 		</StackLayout>
 	);
