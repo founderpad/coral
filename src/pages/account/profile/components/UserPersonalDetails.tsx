@@ -8,11 +8,11 @@ import {
 } from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { TitleEditAction } from '@components/shared';
+import ChangePasswordForm from '@components/shared/ChangePasswordForm';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useCurrentUser } from '@hooks/auth';
 import { formatDate } from '@utils/validators';
 import React, { memo, useContext } from 'react';
-import ChangePasswordForm from './forms/ChangePasswordForm';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';
 import UserImageUploader from './UserImageUploader';
@@ -55,16 +55,16 @@ const UserPersonalInformation = memo((props: Props) => {
 
 	const onPasswordClick = () => {
 		setModalDrawer({
-			title: 'Your password',
+			title: 'Your new password',
 			isOpen: true,
 			actions: (
 				<SubmitButton
 					name={'open-modal-drawer-change-password-button'}
-					form="editPasswordForm"
+					form="edit-change-password"
 					label={'Save'}
 				/>
 			),
-			body: <ChangePasswordForm />,
+			body: <ChangePasswordForm showPasswordLabel={true} />,
 			noBtnLabel: 'Cancel',
 			hideFooter: true
 		});
