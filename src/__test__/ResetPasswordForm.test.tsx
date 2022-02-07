@@ -1,4 +1,4 @@
-import ForgottenPasswordForm from '@pages/forgottenpassword/components/ForgottenPasswordForm';
+import ResetPasswordFormForm from '@pages/resetpassword/components/ResetPasswordForm';
 import userEvent from '@testing-library/user-event';
 import store from '@utils/store';
 import { Provider } from 'react-redux';
@@ -7,7 +7,7 @@ import { act, cleanup, fireEvent, render, waitFor } from './testUtils';
 const setup = () => {
 	const resetPasswordSetup = render(
 		<Provider store={store}>
-			<ForgottenPasswordForm />
+			<ResetPasswordFormForm />
 		</Provider>
 	);
 
@@ -39,15 +39,15 @@ jest.mock('@hooks/auth', () => ({
 jest.mock('next/router', () => ({
 	useRouter() {
 		return {
-			route: '/forgottenpassword',
-			query: '?es=true'
+			route: '/resetpassword',
+			query: 'rp_success'
 		};
 	}
 }));
 
 // jest.spyOn(require('next/router'), 'useRouter');
 
-describe('Forgotten password form', () => {
+describe('Reset password form', () => {
 	afterEach(cleanup);
 	it('matches snapshot', async () => {
 		const { asFragment } = setup();
@@ -56,12 +56,12 @@ describe('Forgotten password form', () => {
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render ForgottenPasswordForm', async () => {
+	it('should render ResetPasswordForm', async () => {
 		const { resetPasswordForm } = setup();
 		expect(resetPasswordForm).toBeInTheDocument();
 	});
 
-	it('should render ForgottenPasswordForm fields', async () => {
+	it('should render ResetPasswordForm fields', async () => {
 		const { submitButton } = setup();
 		expect(submitButton).toBeDisabled();
 	});

@@ -4,7 +4,7 @@ import React, { memo } from 'react';
 
 const LegalFooter = memo(() => (
 	<React.Fragment>
-		<Label as={'div'} color={'gray.500'} fontSize={'x-small'} pt={6}>
+		<Label as={'div'} color={'gray.500'} fontSize={'xs'} pt={6}>
 			By continuing, you agree to founderpad&apos;s{' '}
 			<PrimaryLink
 				href="/terms-of-conditions"
@@ -25,7 +25,7 @@ const LegalFooter = memo(() => (
 		<Label
 			as={'div'}
 			color={'gray.500'}
-			fontSize={'x-small'}
+			fontSize={'xs'}
 			alignSelf={'center'}
 		>
 			Already have an account?{' '}

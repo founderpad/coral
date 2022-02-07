@@ -50,6 +50,16 @@ exports[`Login form matches snapshot 1`] = `
           value=""
         />
       </div>
+      <div
+        class="chakra-alert css-1g7hz67"
+        role="alert"
+      >
+        <div
+          class="chakra-alert__desc css-1fwxjz3"
+        >
+          Failed to login. Incorrect email and/or password.
+        </div>
+      </div>
       <button
         aria-label="submit-login"
         class="chakra-button css-1iyhsoz"
@@ -65,7 +75,7 @@ exports[`Login form matches snapshot 1`] = `
     class="css-18voih5"
   >
     <p
-      class="chakra-text css-1fihqrz"
+      class="chakra-text css-1gx0chr"
     >
       No account?
       <span
@@ -77,8 +87,8 @@ exports[`Login form matches snapshot 1`] = `
       </span>
     </p>
     <span
-      class="chakra-link css-pkysmm"
-      href="/forgottenpassword"
+      class="chakra-link css-1nbxiji"
+      href="/resetpassword"
       title="Link to register an account"
     >
        Forgotten password?

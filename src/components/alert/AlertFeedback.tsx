@@ -30,11 +30,10 @@ import { Alert, AlertDescription, AlertProps } from '@chakra-ui/react';
 interface Props {
 	status?: AlertProps['status'];
 	message: string;
-	error?: boolean;
 }
 
 export const AlertFeedback = (props: Props) => {
-	const { status = 'success', message, error = false } = props;
+	const { status = 'success', message } = props;
 
 	return (
 		<Alert
@@ -47,7 +46,7 @@ export const AlertFeedback = (props: Props) => {
 		>
 			<AlertDescription
 				fontSize={'xs'}
-				color={error ? 'red.400' : 'green.400'}
+				color={status === 'error' ? 'red.400' : 'green.400'}
 			>
 				{message}
 			</AlertDescription>

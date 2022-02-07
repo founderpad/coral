@@ -29,11 +29,16 @@ const setup = () => {
 };
 
 const mockLogin = jest.fn();
+const mockQueryParams = jest.fn();
 // const mockSocialLogin = jest.fn();
 
 jest.mock('@hooks/auth', () => ({
 	useLogin: (): any => mockLogin
 	// useSocialLogin: (): any => mockSocialLogin
+}));
+
+jest.mock('@hooks/util', () => ({
+	useQueryParam: (): any => mockQueryParams
 }));
 
 describe('Login form', () => {

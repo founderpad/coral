@@ -1,6 +1,7 @@
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 import isYesterday from 'date-fns/isYesterday';
+import Router from 'next/router';
 import { IUploadedFileProps } from '../types/upload';
 
 export const EMAIL_REGEX =
@@ -82,3 +83,29 @@ export const encodeString = (value: string) =>
 
 export const decodeString = (value: string) =>
 	Buffer.from(value, 'base64').toString('ascii');
+
+export const redirectTo = (error: boolean, param?: string) => {
+	if (error) {
+		Router.replace(
+			{
+				pathname: Router.pathname,
+				query: `${param ? `${param}_error=true` : `error=true`}`
+			},
+			undefined,
+			{ shallow: true }
+		);
+
+		return;
+	}
+
+	Router.replace(
+		{
+			pathname: Router.pathname,
+			query: `${param}_success=true`
+		},
+		undefined,
+		{ shallow: true }
+	);
+
+	return;
+};

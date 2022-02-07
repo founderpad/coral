@@ -3,12 +3,15 @@ import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import { PasswordField } from '@components/input';
 import { useChangePassword } from '@hooks/auth';
+import { useQueryParam } from '@hooks/util';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 interface Props {
 	showPasswordLabel?: boolean;
 	showSubmit?: boolean;
+	isSuccess?: boolean;
+	isError?: boolean;
 }
 
 const ChangePasswordForm = (props: Props) => {
@@ -18,7 +21,11 @@ const ChangePasswordForm = (props: Props) => {
 		control,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm({ mode: 'all' });
-	const { onChangePassword, isChangeSuccess } = useChangePassword();
+
+	const onChangePassword = useChangePassword();
+
+	const isChangeSuccess = useQueryParam('cp_success');
+	const isChangeError = useQueryParam('cp_error');
 
 	return (
 		<Form
@@ -40,25 +47,34 @@ const ChangePasswordForm = (props: Props) => {
 				isRequired
 			/>
 
-			{showSubmit &&
-				(isChangeSuccess ? (
-					<AlertFeedback
-						message={
-							'Your password has been changed successfully. You can now log in with your new password.'
-						}
-					/>
-				) : (
-					<SubmitButton
-						id={'submit-change-password'}
-						name={'submit-change-password'}
-						label="Change password"
-						isLoading={isSubmitting}
-						disabled={!isValid || isSubmitting}
-						size={'md'}
-						fontSize={'sm'}
-						w={{ base: 'full', sm: '175px' }}
-					/>
-				))}
+			{isChangeSuccess && (
+				<AlertFeedback
+					status={'success'}
+					message={'Your password has been updated successfully.'}
+				/>
+			)}
+
+			{isChangeError && (
+				<AlertFeedback
+					status={'error'}
+					message={
+						'Failed to change password. Please try again later.'
+					}
+				/>
+			)}
+
+			{!isChangeSuccess && showSubmit && (
+				<SubmitButton
+					id={'submitresetpassword'}
+					name={'submitresetpassword'}
+					label="Reset password"
+					isLoading={isSubmitting}
+					disabled={!isValid || isSubmitting}
+					size={'md'}
+					fontSize={'sm'}
+					w={{ base: 'full', sm: '175px' }}
+				/>
+			)}
 		</Form>
 	);
 };

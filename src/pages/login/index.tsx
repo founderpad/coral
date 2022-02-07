@@ -18,7 +18,7 @@ const Login: NextPage = () => {
 				{ shallow: true }
 			);
 		}
-	}, []);
+	}, [changePasswordHash]);
 
 	return (
 		<AuthLayout header="Log in to founderpad" title="Log in">

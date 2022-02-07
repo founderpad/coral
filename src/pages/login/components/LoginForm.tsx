@@ -1,3 +1,4 @@
+import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
 import { EmailField, PasswordField } from '@components/input';
@@ -5,6 +6,7 @@ import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import { useLogin } from '@hooks/auth';
+import { useQueryParam } from '@hooks/util';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { IAuthFormData } from 'src/types/auth';
@@ -16,6 +18,8 @@ const LoginForm = () => {
 		formState: { errors, isSubmitting, isValid } // isValid
 	} = useForm<IAuthFormData>({ mode: 'all' });
 	const onLogin = useLogin();
+
+	const isError = useQueryParam('error');
 
 	return (
 		<React.Fragment>
@@ -49,7 +53,14 @@ const LoginForm = () => {
 					isRequired
 				/>
 
-				{/* <AlertFeedback /> */}
+				{isError && (
+					<AlertFeedback
+						status={'error'}
+						message={
+							'Failed to login. Incorrect email and/or password.'
+						}
+					/>
+				)}
 
 				<SubmitButton
 					id={'submit-login'}
@@ -73,7 +84,7 @@ const LoginForm = () => {
 
 const LoginFooter = memo(() => (
 	<FlexLayout justifyContent={'space-between'} alignItems={'center'} pt={8}>
-		<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'}>
+		<Label color={'gray.500'} fontSize={'xs'} alignSelf={'center'}>
 			No account?
 			<PrimaryLink href="/register" title={'Link to register an account'}>
 				{' '}
@@ -81,9 +92,9 @@ const LoginFooter = memo(() => (
 			</PrimaryLink>
 		</Label>
 		<PrimaryLink
-			href="/forgottenpassword"
+			href="/resetpassword"
 			title={'Link to register an account'}
-			fontSize={'x-small'}
+			fontSize={'xs'}
 		>
 			{' '}
 			Forgotten password?

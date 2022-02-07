@@ -1,4 +1,3 @@
-// import { useForgottenPassword } from '@hooks/auth';
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
@@ -11,14 +10,15 @@ import { useQueryParam } from '@hooks/util';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 
-const ForgottenPasswordForm = () => {
+const ResetPasswordForm = () => {
 	const {
 		handleSubmit,
 		control,
 		formState: { errors, isSubmitting, isValid } // isValid
 	} = useForm<{ email: string }>({ mode: 'all' });
 
-	const isEmailSent = useQueryParam('es');
+	const isResetSuccess = useQueryParam('rp_success');
+	const isResetError = useQueryParam('rp_error');
 
 	const onResetPassword = useResetPassword();
 
@@ -49,33 +49,45 @@ const ForgottenPasswordForm = () => {
 					isRequired
 				/>
 
-				{isEmailSent && (
+				{!isResetSuccess && (
+					<SubmitButton
+						id={'submitresetpassword'}
+						name={'submitresetpassword'}
+						label="Reset password"
+						isLoading={isSubmitting}
+						disabled={!isValid || isSubmitting}
+						size={'md'}
+						fontSize={'sm'}
+						w={{ base: 'full', sm: '175px' }}
+					/>
+				)}
+
+				{isResetSuccess && (
 					<AlertFeedback
+						status={'success'}
 						message={
 							'Email sent with instructions to reset your password'
 						}
 					/>
 				)}
 
-				<SubmitButton
-					id={'submitresetpassword'}
-					name={'submitresetpassword'}
-					label="Reset password"
-					isLoading={isSubmitting}
-					disabled={!isValid || isSubmitting}
-					size={'md'}
-					fontSize={'sm'}
-					w={{ base: 'full', sm: '175px' }}
-				/>
+				{isResetError && (
+					<AlertFeedback
+						status={'error'}
+						message={
+							'Failed to reset password. Please try again later.'
+						}
+					/>
+				)}
 			</Form>
-			<ForgottenPasswordFooter />
+			<ResetPasswordFooter />
 		</React.Fragment>
 	);
 };
 
-const ForgottenPasswordFooter = memo(() => (
+const ResetPasswordFooter = memo(() => (
 	<FlexLayout justifyContent={'space-between'} alignItems={'center'} pt={8}>
-		<Label color={'gray.500'} fontSize={'x-small'} alignSelf={'center'}>
+		<Label color={'gray.500'} fontSize={'xs'} alignSelf={'center'}>
 			No account?
 			<PrimaryLink href="/register" title={'Link to register an account'}>
 				{' '}
@@ -85,7 +97,7 @@ const ForgottenPasswordFooter = memo(() => (
 		<PrimaryLink
 			href="/login"
 			title={'Link to register an account'}
-			fontSize={'x-small'}
+			fontSize={'xs'}
 		>
 			{' '}
 			Go to login
@@ -93,4 +105,4 @@ const ForgottenPasswordFooter = memo(() => (
 	</FlexLayout>
 ));
 
-export default ForgottenPasswordForm;
+export default ResetPasswordForm;

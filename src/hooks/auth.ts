@@ -11,11 +11,11 @@ import {
 	IRegisterFormData,
 	TAuthProvider
 } from 'src/types/auth';
-import { useErrorNotification, useSuccessNotification } from './toast';
+import { useErrorNotification } from './toast';
 // import { useNotification } from './util';
 import Router from 'next/router';
-import { useContext, useEffect, useState } from 'react';
-import { encodeString } from '@utils/validators';
+import { useContext, useEffect } from 'react';
+import { encodeString, redirectTo } from '@utils/validators';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 // import { useApolloClient } from '@apollo/client';
 
@@ -94,7 +94,7 @@ export const useLogin = (): (({
 	password: string;
 }) => Promise<void>) => {
 	// const { addNotification, removeNotification } = useNotification();
-	const showErrorNotification = useErrorNotification();
+	// const showErrorNotification = useErrorNotification();
 	const [getUser] = useGetAuthUser();
 
 	return async ({ email, password }: IAuthFormData): Promise<void> => {
@@ -103,11 +103,12 @@ export const useLogin = (): (({
 			const response = await auth.signIn({ email, password });
 
 			if (response.error) {
+				redirectTo(true);
 				// addNotification(response.error.message, 'error');
-				showErrorNotification({
-					title: 'Failed to login',
-					description: response.error.message
-				});
+				// showErrorNotification({
+				// 	title: 'Failed to login',
+				// 	description: response.error.message
+				// });
 				throw 'Failed to login';
 			} else {
 				getUser();
@@ -143,15 +144,9 @@ export const useResetPassword = () => {
 	const resetPassword = async ({ email }: { email: string }) => {
 		try {
 			await auth.resetPassword({ email });
-			Router.replace(
-				{
-					pathname: '/forgottenpassword',
-					query: { es: true }
-				},
-				undefined,
-				{ shallow: true }
-			);
+			redirectTo(false, 'rp');
 		} catch (error) {
+			redirectTo(true, 'rp');
 			console.error('Error resetting password: ', error);
 			showErrorNotification({
 				title: 'Failed to reset password',
@@ -165,10 +160,7 @@ export const useResetPassword = () => {
 };
 
 export const useChangePassword = () => {
-	const showErrorNotification = useErrorNotification();
-	const showSuccessNotification = useSuccessNotification();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const [isChangeSuccess, setChangeSuccess] = useState(false);
 
 	const onChangePassword = async ({
 		newPassword
@@ -176,31 +168,26 @@ export const useChangePassword = () => {
 		newPassword: string;
 	}) => {
 		const { error } = await auth.changePassword({ newPassword });
-		setChangeSuccess(true);
 
 		if (error) {
+			redirectTo(true, 'rp');
 			console.error('Error changing password: ', error);
-			showErrorNotification({
-				title: 'Failed to change password',
-				description:
-					'Please try again later, otherwise contact support@founderpad.com'
-			});
-			setChangeSuccess(false);
 			throw 'Failed to change password';
 		}
+
+		redirectTo(false, 'cp');
 
 		setModalDrawer({
 			isOpen: false
 		});
-		showSuccessNotification({ title: 'Password changed successfully' });
 	};
 
-	return { onChangePassword, isChangeSuccess };
+	return onChangePassword;
 };
 
 const useGetAuthUser = () => {
 	// const { addNotification } = useNotification();
-	const showErrorNotification = useErrorNotification();
+	// const showErrorNotification = useErrorNotification();
 
 	const dispatch = useDispatch();
 
@@ -213,10 +200,11 @@ const useGetAuthUser = () => {
 			// 	'Failed to get user. Please try again later.',
 			// 	'error'
 			// );
-			showErrorNotification({
-				title: 'Failed to login',
-				description: 'Please try again later'
-			});
+			// showErrorNotification({
+			// 	title: 'Failed to login',
+			// 	description: 'Please try again later'
+			// });
+			redirectTo(true);
 			throw 'Failed to get user';
 		},
 		onCompleted: (data) => {
