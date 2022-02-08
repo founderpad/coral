@@ -11,6 +11,7 @@ mutation UpdateIdea($idea: ideas_set_input!, $id: uuid!) {
 	update_ideas_by_pk(pk_columns: { id: $id }, _set: $idea) {
 		id
 		name
+		summary
 		description
 		field
 		competitors
@@ -115,6 +116,7 @@ query UserIdeas($userId: uuid!) {
 
 fragment IdeaFields on ideas {
 	id
+	summary
 	name
 	description
 	field

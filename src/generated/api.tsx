@@ -1538,6 +1538,7 @@ export type TIdeas = {
   isPublished: Scalars['Boolean'];
   name: Scalars['String'];
   status?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
   team?: Maybe<Scalars['String']>;
   totalComments: Scalars['Int'];
   totalInterested: Scalars['Int'];
@@ -1725,6 +1726,7 @@ export type TIdeas_Bool_Exp = {
   isPublished?: InputMaybe<TBoolean_Comparison_Exp>;
   name?: InputMaybe<TString_Comparison_Exp>;
   status?: InputMaybe<TString_Comparison_Exp>;
+  summary?: InputMaybe<TString_Comparison_Exp>;
   team?: InputMaybe<TString_Comparison_Exp>;
   totalComments?: InputMaybe<TInt_Comparison_Exp>;
   totalInterested?: InputMaybe<TInt_Comparison_Exp>;
@@ -1759,6 +1761,7 @@ export type TIdeas_Insert_Input = {
   isPublished?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<Scalars['String']>;
+  summary?: InputMaybe<Scalars['String']>;
   team?: InputMaybe<Scalars['String']>;
   votes?: InputMaybe<TIdea_Votes_Arr_Rel_Insert_Input>;
 };
@@ -1775,6 +1778,7 @@ export type TIdeas_Max_Fields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
   team?: Maybe<Scalars['String']>;
   totalComments?: Maybe<Scalars['Int']>;
   totalInterested?: Maybe<Scalars['Int']>;
@@ -1794,6 +1798,7 @@ export type TIdeas_Max_Order_By = {
   id?: InputMaybe<TOrder_By>;
   name?: InputMaybe<TOrder_By>;
   status?: InputMaybe<TOrder_By>;
+  summary?: InputMaybe<TOrder_By>;
   team?: InputMaybe<TOrder_By>;
   totalComments?: InputMaybe<TOrder_By>;
   totalInterested?: InputMaybe<TOrder_By>;
@@ -1814,6 +1819,7 @@ export type TIdeas_Min_Fields = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
   team?: Maybe<Scalars['String']>;
   totalComments?: Maybe<Scalars['Int']>;
   totalInterested?: Maybe<Scalars['Int']>;
@@ -1833,6 +1839,7 @@ export type TIdeas_Min_Order_By = {
   id?: InputMaybe<TOrder_By>;
   name?: InputMaybe<TOrder_By>;
   status?: InputMaybe<TOrder_By>;
+  summary?: InputMaybe<TOrder_By>;
   team?: InputMaybe<TOrder_By>;
   totalComments?: InputMaybe<TOrder_By>;
   totalInterested?: InputMaybe<TOrder_By>;
@@ -1878,6 +1885,7 @@ export type TIdeas_Order_By = {
   isPublished?: InputMaybe<TOrder_By>;
   name?: InputMaybe<TOrder_By>;
   status?: InputMaybe<TOrder_By>;
+  summary?: InputMaybe<TOrder_By>;
   team?: InputMaybe<TOrder_By>;
   totalComments?: InputMaybe<TOrder_By>;
   totalInterested?: InputMaybe<TOrder_By>;
@@ -1916,6 +1924,8 @@ export type TIdeas_Select_Column =
   /** column name */
   | 'status'
   /** column name */
+  | 'summary'
+  /** column name */
   | 'team'
   /** column name */
   | 'totalComments'
@@ -1938,6 +1948,7 @@ export type TIdeas_Set_Input = {
   isPublished?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<Scalars['String']>;
+  summary?: InputMaybe<Scalars['String']>;
   team?: InputMaybe<Scalars['String']>;
   totalComments?: InputMaybe<Scalars['Int']>;
   totalInterested?: InputMaybe<Scalars['Int']>;
@@ -2022,6 +2033,8 @@ export type TIdeas_Update_Column =
   | 'name'
   /** column name */
   | 'status'
+  /** column name */
+  | 'summary'
   /** column name */
   | 'team'
   /** column name */
@@ -4327,7 +4340,7 @@ export type TUpdateIdeaMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateIdeaMutation = { update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined } | null | undefined };
+export type TUpdateIdeaMutation = { update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, summary?: string | null | undefined, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined } | null | undefined };
 
 export type TDeleteIdeaMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4364,7 +4377,7 @@ export type TUserIdeasQueryVariables = Exact<{
 
 export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'ideas', id: any, name: string, createdAt: any, isPublished: boolean, totalInterested: number, totalVotes: number, totalComments: number }> };
 
-export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
+export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, summary?: string | null | undefined, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
 
 export type TIdeaQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -4372,7 +4385,7 @@ export type TIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined } } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null | undefined };
+export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null | undefined, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined } } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null | undefined };
 
 export type TInterestedIdeaFieldsFragment = { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any };
 
@@ -4565,6 +4578,7 @@ export const IdeaPreviewFieldsFragmentDoc = gql`
 export const IdeaFieldsFragmentDoc = gql`
     fragment IdeaFields on ideas {
   id
+  summary
   name
   description
   field
@@ -4884,6 +4898,7 @@ export const UpdateIdeaDocument = gql`
   update_ideas_by_pk(pk_columns: {id: $id}, _set: $idea) {
     id
     name
+    summary
     description
     field
     competitors
@@ -6754,6 +6769,7 @@ export type TIdeasResolvers<ContextType = any, ParentType extends TResolversPare
   isPublished?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   name?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  summary?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   team?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   totalComments?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   totalInterested?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
@@ -6804,6 +6820,7 @@ export type TIdeas_Max_FieldsResolvers<ContextType = any, ParentType extends TRe
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  summary?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   team?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   totalComments?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
   totalInterested?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
@@ -6823,6 +6840,7 @@ export type TIdeas_Min_FieldsResolvers<ContextType = any, ParentType extends TRe
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  summary?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   team?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   totalComments?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
   totalInterested?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;

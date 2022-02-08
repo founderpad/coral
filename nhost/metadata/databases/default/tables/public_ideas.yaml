@@ -66,6 +66,7 @@ insert_permissions:
     - is_published
     - name
     - status
+    - summary
     - team
     set:
       user_id: x-hasura-User-Id
@@ -74,21 +75,22 @@ select_permissions:
 - permission:
     allow_aggregations: true
     columns:
-    - is_published
-    - total_comments
-    - total_interested
-    - total_votes
     - additional_information
     - business_plan
     - competitors
+    - created_at
     - description
     - field
+    - id
+    - is_published
     - name
     - status
+    - summary
     - team
-    - created_at
+    - total_comments
+    - total_interested
+    - total_votes
     - updated_at
-    - id
     - user_id
     filter: {}
   role: user
@@ -104,6 +106,7 @@ update_permissions:
     - is_published
     - name
     - status
+    - summary
     - team
     - total_comments
     - total_interested

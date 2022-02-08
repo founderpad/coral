@@ -6,11 +6,17 @@ import useIdea from '../query/ideaQuery';
 export const IdeaDetails = () => {
 	const { idea } = useIdea();
 
-	const { description, team, competitors, additionalInformation } =
+	const { summary, description, team, competitors, additionalInformation } =
 		idea ?? {};
 
 	return (
 		<StackLayout flex={1}>
+			{summary && (
+				<ContentFieldAndValue
+					title={'Summary of idea'}
+					value={summary}
+				/>
+			)}
 			{description && (
 				<ContentFieldAndValue
 					title={'Description'}

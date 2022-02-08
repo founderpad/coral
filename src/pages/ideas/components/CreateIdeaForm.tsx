@@ -79,18 +79,17 @@ const CreateIdeaForm = () => {
 				variant={'flushed'}
 				isRequired
 			/>
-			{/* <AppDivider /> */}
 
 			<TextareaField
-				id="description"
-				name="description"
+				id="summary"
+				name="summary"
 				label="Summary of idea"
 				placeholder="Write a summary about your idea (max. 200 characters)"
-				error={errors['description']}
+				error={errors['summary']}
 				errorText={
-					errors['description']?.type === 'required'
-						? 'Please enter a description for your idea'
-						: 'Description can not be more than 500 characters'
+					errors['summary']?.type === 'required'
+						? 'Please enter a summary for your idea'
+						: 'Summary can not be more than 200 characters'
 				}
 				maxRows={5}
 				control={control}
