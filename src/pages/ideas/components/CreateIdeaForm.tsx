@@ -4,6 +4,7 @@ import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
 import { SwitchField } from '@components/input/SwitchField';
 import { TextareaField } from '@components/input/TextareaField';
+import { Label } from '@components/labels';
 import {
 	TCreateIdeaMutation,
 	TIdeas_Insert_Input,
@@ -79,11 +80,12 @@ const CreateIdeaForm = () => {
 				isRequired
 			/>
 			{/* <AppDivider /> */}
+
 			<TextareaField
 				id="description"
 				name="description"
-				label="Description of your idea"
-				placeholder="Write a description about your idea (max. 500 characters)"
+				label="Summary of idea"
+				placeholder="Write a summary about your idea (max. 200 characters)"
 				error={errors['description']}
 				errorText={
 					errors['description']?.type === 'required'
@@ -92,15 +94,32 @@ const CreateIdeaForm = () => {
 				}
 				maxRows={5}
 				control={control}
-				rules={{ required: true, maxLength: 500 }}
+				rules={{ required: true, maxLength: 200 }}
+				isRequired
+			/>
+
+			<TextareaField
+				id="description"
+				name="description"
+				label="Description of your idea"
+				placeholder="Write a description about your idea (max. 1000 characters)"
+				error={errors['description']}
+				errorText={
+					errors['description']?.type === 'required'
+						? 'Please enter a description for your idea'
+						: 'Description can not be more than 500 characters'
+				}
+				maxRows={5}
+				control={control}
+				rules={{ required: true, maxLength: 1000 }}
 				isRequired
 			/>
 			<SelectField
 				id="field"
 				name="field"
-				label="What field is your idea?"
+				label="What field is the idea?"
 				error={errors['field']}
-				errorText="Please select the field for your idea"
+				errorText="Please select the field for the idea"
 				placeholder="field"
 				size={'md'}
 				options={industriesList()}
@@ -110,9 +129,9 @@ const CreateIdeaForm = () => {
 			<SelectField
 				id="status"
 				name="status"
-				label="What is its current status?"
+				label="What is the idea's current status?"
 				error={errors['status']}
-				errorText="Please select the status for your idea"
+				errorText="Please select the status for the idea"
 				placeholder="status"
 				size={'md'}
 				options={ideasStatusList()}
@@ -146,8 +165,8 @@ const CreateIdeaForm = () => {
 				placeholder="Any additional information"
 				control={control}
 				error={errors['additionalInformation']}
-				errorText="Additional information must not be more than 200 characters"
-				rules={{ maxLength: 200 }}
+				errorText="Additional information must not be more than 500 characters"
+				rules={{ maxLength: 500 }}
 			/>
 
 			<SwitchField
@@ -166,9 +185,20 @@ const CreateIdeaForm = () => {
 				isLoading={isSubmitting}
 				disabled={!isValid || isSubmitting}
 				mt={'auto'}
-				w={{ base: 'full', sm: 'xs' }}
+				w={{ base: 'full', sm: '200px' }}
 				size={'md'}
 			/>
+
+			<Label fontSize={'9px'} color={'gray.500'}>
+				The content on our site is provided for general information only
+				(including such content uploaded by third parties). This
+				includes any community assessment of business ideas on the
+				sites. None of this content is intended to amount to advice on
+				which you should rely. You must obtain professional or
+				specialist advice before taking, or refraining from, any action
+				on the basis of any of the content on our site, including such
+				content published by any third parties.
+			</Label>
 		</Form>
 	);
 };

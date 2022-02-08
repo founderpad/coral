@@ -5,7 +5,7 @@ import { FlexLayout, StackLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import { useFileUploader } from '@hooks/util';
 import { formatTimestamp } from '@utils/validators';
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { IoDocumentSharp } from 'react-icons/io5';
 import { IUploadedFileProps } from '../../../types/upload';
 
@@ -15,13 +15,13 @@ interface Props {
 }
 
 export const UploadedFiles = memo((props: Props) => {
-	const { defaultFiles, onComplete } = props;
-	const { uploadedFiles, onDelete, isDeleted } = useFileUploader();
+	const { defaultFiles } = props;
+	const { uploadedFiles, onDelete } = useFileUploader();
 
-	useEffect(() => {
-		if (uploadedFiles.length) onComplete?.(uploadedFiles);
-		if (isDeleted) onComplete?.([]);
-	}, [uploadedFiles, isDeleted, onComplete]);
+	// useEffect(() => {
+	// 	if (uploadedFiles.length) onComplete?.(uploadedFiles);
+	// 	if (isDeleted) onComplete?.([]);
+	// }, [uploadedFiles, isDeleted, onComplete]);
 
 	const files = defaultFiles.length ? defaultFiles : uploadedFiles;
 

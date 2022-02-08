@@ -19,6 +19,7 @@ const ProfileSectionLabel = memo(
 			{icon && <Icon as={icon} color={'gray.500'} mr={2} />}
 			{children ?? (
 				<BaseLabel
+					fontSize={'small'}
 					css={{ whiteSpace: 'normal' }}
 					noOfLines={2}
 					isTruncated

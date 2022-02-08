@@ -11,13 +11,9 @@ export const EditButton = (props: Props) => (
 		variant={'ghost'}
 		colorScheme={'gray'}
 		fontSize={'md'}
-		size={'md'}
+		size={'sm'}
 		icon={
-			<Icon
-				as={IoPencilSharp}
-				fontSize={'large'}
-				color={'fpPrimary.500'}
-			/>
+			<Icon as={IoPencilSharp} fontSize={'sm'} color={'fpPrimary.500'} />
 		}
 		rounded={'full'}
 	/>

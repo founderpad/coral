@@ -17,7 +17,7 @@ type Props = Omit<TabsProps, 'children'> & {
 };
 
 interface TabProps {
-	label: string;
+	label?: string;
 	icon?: IconType;
 }
 
@@ -28,16 +28,25 @@ const TabLayout = (props: Props) => {
 		<Tabs
 			{...rest}
 			overflow={'hidden'}
-			colorScheme={'black'}
 			px={0}
 			d={'flex'}
 			flexDirection={'column'}
+			variant={'soft-rounded'}
+			size={'sm'}
 		>
-			<TabList px={4}>
+			<TabList px={4} py={2} borderBottomWidth={1}>
 				{tabs
 					.filter((tab) => Object.keys(tab).length !== 0)
 					.map((tab, key) => (
-						<Tab key={key} fontSize={'small'}>
+						<Tab
+							key={key}
+							fontSize={'xs'}
+							_hover={{ color: 'black', bg: '#F8F8F9' }}
+							_selected={{ bg: '#F5F5F6', color: 'black' }}
+							fontWeight={'normal'}
+							mr={2}
+							rounded={'md'}
+						>
 							{tab?.icon && (
 								<Icon
 									as={tab.icon}

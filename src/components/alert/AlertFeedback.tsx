@@ -1,4 +1,9 @@
-import { Alert, AlertDescription, AlertProps } from '@chakra-ui/react';
+import {
+	Alert,
+	AlertDescription,
+	AlertIcon,
+	AlertProps
+} from '@chakra-ui/react';
 // import { useNotification } from '@hooks/util';
 
 // export const AlertFeedback = () => {
@@ -38,12 +43,14 @@ export const AlertFeedback = (props: Props) => {
 	return (
 		<Alert
 			status={status}
-			alignItems={'flex-start'}
+			alignItems={'center'}
 			px={0}
 			py={0}
 			variant={'subtle'}
 			bg={'transparent'}
 		>
+			<AlertIcon boxSize={'14px'} mr={2} />
+
 			<AlertDescription
 				fontSize={'xs'}
 				color={status === 'error' ? 'red.400' : 'green.400'}

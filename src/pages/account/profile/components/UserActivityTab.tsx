@@ -1,6 +1,6 @@
 import { Stack } from '@chakra-ui/layout';
 import { Divider, Flex, Spinner } from '@chakra-ui/react';
-import { CaptionLabel, SubLabel } from '@components/labels';
+import { CaptionLabel, Label } from '@components/labels';
 import { PrimaryLink } from '@components/links';
 import { NoResults } from '@components/shared';
 import { TActivity, useUserActivityQuery } from '@generated/api';
@@ -41,9 +41,9 @@ const ActivityItem = (
 	<Flex p={0} flexDirection={'column'}>
 		<Flex justifyContent={'space-between'} alignItems={'flex-start'}>
 			<Flex flexDirection={'column'}>
-				<SubLabel fontSize={'xs'} fontWeight={'md'} color={'gray.900'}>
+				<Label fontSize={'xs'} fontWeight={'md'} color={'black'}>
 					{activity.description}
-				</SubLabel>
+				</Label>
 				<PrimaryLink
 					href={`/${activity?.url}`}
 					fontSize={'xs'}

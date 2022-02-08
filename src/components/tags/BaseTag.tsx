@@ -3,12 +3,13 @@ import { Tag, TagLabel, TagLeftIcon, TagProps } from '@chakra-ui/tag';
 import React from 'react';
 import { IconType } from 'react-icons/lib';
 
-type TBaseTag = TagProps & { icon?: IconType };
+type TBaseTag = TagProps & { icon?: IconType; iconColor?: TagProps['color'] };
 
 export const BaseTag = ({
 	bg = 'transparent',
 	color,
 	icon,
+	iconColor = 'fpPrimary.500',
 	fontSize,
 	children,
 	flexDirection,
@@ -25,7 +26,7 @@ export const BaseTag = ({
 	>
 		{icon && (
 			<TagLeftIcon>
-				<Icon as={icon} size={'md'} />
+				<Icon as={icon} size={'md'} color={iconColor} />
 			</TagLeftIcon>
 		)}
 

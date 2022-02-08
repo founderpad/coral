@@ -34,19 +34,19 @@ const OverviewTags = memo(
 						key={overviewTag.title}
 						p={2}
 						d={'flex'}
-						alignItems={'center'}
 						flexDirection={'column'}
-						bg={'fpPrimary.50'}
+						bg={'gray.50'}
 						borderWidth={0}
-						alignSelf={'stretch'}
+						justifyContent={'flex-start'}
 					>
 						<Label
 							fontSize={'xs'}
 							color={'fpPrimary.700'}
 							alignItems={'center'}
 							mb={1}
+							display={'flex'}
 						>
-							<Icon as={overviewTag.icon} mr={1} />
+							<Icon as={overviewTag.icon} mr={2} />
 							{overviewTag.value}
 						</Label>
 						<Label color={'gray.400'} fontSize={'xs'}>

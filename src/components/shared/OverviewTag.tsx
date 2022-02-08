@@ -17,7 +17,7 @@ export const OverviewTag = ({ title, value, icon }: IOverviewTag) => (
 		d={'flex'}
 		alignItems={'center'}
 		flexDirection={'column'}
-		bg={'fpPrimary.50'}
+		bg={'gray.50'}
 		borderWidth={0}
 		alignSelf={'stretch'}
 		justifyContent={'center'}

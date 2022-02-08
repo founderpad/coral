@@ -36,18 +36,20 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 						fieldState: { error }
 					}) => (
 						<Select
-							variant={props.variant}
+							// variant={props.variant}
 							placeholder={`Select ${placeholder ?? 'option'}`}
-							rounded={'sm'}
+							rounded={'md'}
 							value={value}
 							onChange={onChange}
-							size={size ?? 'md'}
+							size={size ?? 'sm'}
 							error={error?.message}
 							id={`select-${name}-field`}
 							name={`select-${name}-field`}
 							aria-label={`select-${name}-field`}
 							fontSize={'small'}
 							color={'gray.500'}
+							cursor={'pointer'}
+							iconSize={'sm'}
 						>
 							{options}
 						</Select>

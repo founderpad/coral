@@ -18,10 +18,10 @@ const ViewIdeaTabLayout = () => {
 			tabs={[
 				{ label: 'Idea' },
 				{
-					...(isMobile ? { label: 'Comments' } : { label: '' })
+					...(isMobile && { label: 'Comments' })
 				},
 				{
-					...(showInterestTab ? { label: 'Interest' } : { label: '' })
+					...(showInterestTab && { label: 'Interest' })
 				}
 			]}
 			overflow={'hidden'}

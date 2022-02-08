@@ -42,7 +42,7 @@ const IdeaCard = (idea: TIdeaPreviewFieldsFragment) => (
 					bg: 'gray.50'
 				}}
 				p={2}
-				mb={2}
+				// mb={2}
 				flex={1}
 				rounded={'sm'}
 			>

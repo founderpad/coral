@@ -1,4 +1,3 @@
-
 const Colors = {
 	fpPrimary: {
 		50: '#E6F4F9',
@@ -25,20 +24,20 @@ const Colors = {
 		900: '#425068'
 	},
 	fpLightGrey: {
-		50: '#FDFDFD',
-		100: '#FAFAFA',
-		200: '#F7F7F7',
-		300: '#F3F3F3',
-		400: '#F1F1F1',
-		500: '#EEEEEE',
-		600: '#ECECEC',
-		700: '#E9E9E9',
-		800: '#E7E7E7',
-		900: '#E2E2E2'
+		50: '#FEFEFE',
+		100: '#FCFCFC',
+		200: '#FAFAFB',
+		300: '#F8F8F9',
+		400: '#F7F7F7',
+		500: '#F5F5F6',
+		600: '#F4F4F5',
+		700: '#F2F2F3',
+		800: '#F0F0F2',
+		900: '#EEEEEF'
 	},
 	instagram: {
 		500: 'linear-gradient(45DEG, #405DE6, #5851DB, #C13584, #E1306C, #FD1D1D)'
 	}
-}
+};
 
 export default Colors;

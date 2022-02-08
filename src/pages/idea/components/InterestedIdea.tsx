@@ -72,6 +72,7 @@ export const InterestedIdea = () => {
 			size={'sm'}
 			fontSize={'xs'}
 			px={4}
+			py={1}
 		>
 			{/* <Icon
 				as={IoStarSharp}

@@ -10,15 +10,12 @@ import {
 	useUpdateUserPersonalDetailsMutation
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
-import { useSuccessNotification } from '@hooks/toast';
-// import { useNotification } from '@hooks/util';
 import { updatePersonalDetails } from '@slices/auth';
 import { countriesList } from '@utils/Constants';
+import { redirectTo } from '@utils/validators';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-
-// type InputProperties = keyof TUsers_Set_Input
 
 type PersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
 	Pick<TUser_Address_Set_Input, 'country' | 'location'>;
@@ -27,11 +24,6 @@ const PersonalDetailsForm = () => {
 	const auth = useCurrentUser();
 	const dispatch = useDispatch();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const showSuccessNotification = useSuccessNotification();
-
-	// const showSuccessNotification = useSuccessNotification();
-	// const { addNotification } = useNotification();
-
 	const {
 		handleSubmit,
 		control,
@@ -68,17 +60,14 @@ const PersonalDetailsForm = () => {
 				})
 			);
 
-			// addNotification('Personal details successfully updated', 'success');
-			showSuccessNotification({
-				title: 'Personal details updated successfully'
-			});
+			redirectTo(false, 'pd');
+
 			setModalDrawer({
 				isOpen: false
 			});
-
-			// showSuccessNotification({
-			// 	title: 'Your personal details have been updated'
-			// });
+		},
+		onError: () => {
+			redirectTo(true, 'pd');
 		}
 	});
 

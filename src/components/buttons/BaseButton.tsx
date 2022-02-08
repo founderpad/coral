@@ -7,7 +7,13 @@ export const BaseButton = (props: BaseButtonProps) => {
 	const { children, size = 'sm', name, ...rest } = props;
 
 	return (
-		<Button {...rest} size={size} aria-label={name} rounded={'sm'}>
+		<Button
+			{...rest}
+			size={size}
+			aria-label={name}
+			rounded={'md'}
+			fontSize={'small'}
+		>
 			{children}
 		</Button>
 	);

@@ -90,7 +90,7 @@ const NavItems: Array<NavItem> = [
 	{
 		label: (
 			<Flex display={'inline-flex'} alignItems={'center'}>
-				Mentor{' '}
+				Coming soon{' '}
 				<Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
 			</Flex>
 		),

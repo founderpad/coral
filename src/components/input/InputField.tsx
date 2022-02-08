@@ -45,7 +45,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							{...rest}
 							placeholder={placeholder}
 							autoComplete={autoComplete}
-							size={size ?? 'md'}
+							size={size ?? 'sm'}
 							ref={ref}
 							value={value}
 							onChange={onChange}
@@ -54,6 +54,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							aria-label={name}
 							fontSize={fontSize ?? 'sm'}
 							color={'gray.500'}
+							rounded={'md'}
 						/>
 					)}
 					name={name}

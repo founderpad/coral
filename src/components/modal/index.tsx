@@ -70,7 +70,7 @@ export const Modal = (props: IModalProps) => {
 				{title && (
 					<ModalHeader
 						fontWeight={'medium'}
-						fontSize={'lg'}
+						fontSize={'md'}
 						p={4}
 						display={'flex'}
 						alignItems={'center'}

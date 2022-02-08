@@ -1,6 +1,6 @@
 import { FormControl } from '@chakra-ui/form-control';
-import { forwardRef, Textarea } from '@chakra-ui/react';
-import { FormLabelText } from '@components/form';
+import { FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
+import { FormErrorText, FormLabelText } from '@components/form';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import ResizeTextarea from 'react-textarea-autosize';
@@ -8,24 +8,22 @@ import { IInputFieldProps } from 'src/types/fields';
 
 export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref) => {
+		const { errorText, helperText, error, ...rest } = props;
 		const {
 			id,
 			isRequired,
 			label,
-			error,
-			// errorText,
 			placeholder,
-			// helperText,
 			name,
 			control,
-			// rules,
+			rules,
 			size,
 			width,
 			maxH = '150px',
 			borderWidth = 1,
 			maxRows = 2,
 			resize = 'vertical'
-		} = props;
+		} = rest;
 
 		return (
 			<FormControl
@@ -42,10 +40,6 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							ref={ref}
 							value={value}
 							onChange={onChange}
-							// error={!!error}
-							// minH="50px"
-							// style={{ minHeight: '50px' }}
-							// size={size ?? 'lg'}
 							maxH={maxH}
 							borderWidth={borderWidth}
 							borderColor={'gray.200'}
@@ -64,19 +58,23 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							_hover={{
 								borderColor: 'gray.300'
 							}}
-							rounded={'sm'}
+							rounded={'md'}
 						/>
 					)}
 					name={name}
 					control={control}
-					// rules={{ required: !!errorText && isRequired, ...rules }}
+					rules={{ required: !!errorText && isRequired, ...rules }}
 				/>
 
-				{/* {error && errorText ? (
+				{error ? (
 					<FormErrorText label={errorText} />
 				) : (
-					helperText && <FormHelperText label={helperText} />
-				)} */}
+					helperText && (
+						<FormHelperText fontSize={'xs'}>
+							{helperText}
+						</FormHelperText>
+					)
+				)}
 			</FormControl>
 		);
 	}

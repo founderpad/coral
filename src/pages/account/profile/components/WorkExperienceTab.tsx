@@ -1,9 +1,10 @@
+import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import {
-	IoAnalyticsSharp,
-	IoBulbSharp,
-	IoRocketSharp,
-	IoTimeSharp
+	IoAnalyticsOutline,
+	IoBulbOutline,
+	IoRocketOutline,
+	IoTimeOutline
 } from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { Loading, TitleEditAction } from '@components/shared';
@@ -11,6 +12,7 @@ import AppDivider from '@components/shared/AppDivider';
 import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
 import OverviewTags from '@components/shared/OverviewTags';
 import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useQueryParam } from '@hooks/util';
 import { convertCapacityToString } from '@utils/validators';
 import React, { useContext } from 'react';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
@@ -20,6 +22,9 @@ import ResumeUploader from './ResumeUploader';
 const WorkExperienceTab = () => {
 	const userProfile = useProfileFragment();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
+
+	const isChangeSuccess = useQueryParam('exp_success');
+	const isChangeError = useQueryParam('exp_error');
 
 	const {
 		specialistIndustry,
@@ -56,32 +61,50 @@ const WorkExperienceTab = () => {
 
 	return (
 		<StackLayout p={4}>
-			<TitleEditAction title="Your experience" onClick={onClick} />
-			<AppDivider />
+			<StackLayout spacing={0}>
+				<TitleEditAction title="Your experience" onClick={onClick} />
+
+				{isChangeSuccess && (
+					<AlertFeedback
+						status={'success'}
+						message={
+							'Your experience has been updated successfully'
+						}
+					/>
+				)}
+
+				{isChangeError && (
+					<AlertFeedback
+						status={'error'}
+						message={
+							'Failed to update experience. Please try again later'
+						}
+					/>
+				)}
+			</StackLayout>
 			<OverviewTags
 				tags={[
 					{
 						title: 'Specialist field',
 						value: specialistIndustry ?? 'Not set',
-						icon: IoBulbSharp
+						icon: IoBulbOutline
 					},
 					{
 						title: 'Previous startups',
 						value: startups ? `${startups} startups` : 'Not set',
-						icon: IoRocketSharp
+						icon: IoRocketOutline
 					},
 					{
 						title: 'Startup status',
 						value: status ?? 'Not set',
-						icon: IoAnalyticsSharp
+						icon: IoAnalyticsOutline
 					},
 					{
 						title: 'Capacity (hours per week)',
 						value: availability
 							? convertCapacityToString(availability)
 							: 'Not set',
-						// value: convertCapacityToString(0),
-						icon: IoTimeSharp
+						icon: IoTimeOutline
 					}
 				]}
 			/>
@@ -89,21 +112,18 @@ const WorkExperienceTab = () => {
 			<AppDivider />
 
 			<StackLayout spacing={8}>
-				<ContentFieldAndValue
-					title={'Background'}
-					value={background ?? 'Not set'}
-				/>
+				<ContentFieldAndValue title={'Background'} value={background} />
 				<ContentFieldAndValue
 					title={'Personal statement'}
-					value={statement ?? 'Not set'}
+					value={statement}
 				/>
 				<ContentFieldAndValue
 					title={'Overview of businesses'}
-					value={businessDescription ?? 'Not set'}
+					value={businessDescription}
 				/>
 				<ContentFieldAndValue
 					title={'Skills'}
-					value={skills?.join(', ') ?? 'No skills selected'}
+					value={skills?.join(', ')}
 				/>
 			</StackLayout>
 

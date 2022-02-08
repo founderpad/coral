@@ -1,16 +1,18 @@
 import { FlexProps } from '@chakra-ui/react';
+import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import {
-	IoLocationSharp,
-	IoLockClosedSharp,
-	IoMailSharp,
-	IoTimeSharp
+	IoLocationOutline,
+	IoLockClosedOutline,
+	IoMailOutline,
+	IoTimeOutline
 } from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { TitleEditAction } from '@components/shared';
 import ChangePasswordForm from '@components/shared/ChangePasswordForm';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useCurrentUser } from '@hooks/auth';
+import { useQueryParam } from '@hooks/util';
 import { formatDate } from '@utils/validators';
 import React, { memo, useContext } from 'react';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
@@ -35,6 +37,10 @@ const UserPersonalInformation = memo((props: Props) => {
 		: country
 		? country
 		: 'Location not set';
+
+	const isDetailsChangeSuccess = useQueryParam('pd_success');
+	const isPwdChangeSuccess = useQueryParam('cp_success');
+	const isPwdChangeError = useQueryParam('cp_error');
 
 	const onPersonalDetailsClick = () => {
 		setModalDrawer({
@@ -64,7 +70,12 @@ const UserPersonalInformation = memo((props: Props) => {
 					label={'Save'}
 				/>
 			),
-			body: <ChangePasswordForm showPasswordLabel={true} />,
+			body: (
+				<ChangePasswordForm
+					showPasswordLabel={true}
+					showSubmit={false}
+				/>
+			),
 			noBtnLabel: 'Cancel',
 			hideFooter: true
 		});
@@ -80,16 +91,22 @@ const UserPersonalInformation = memo((props: Props) => {
 					onClick={onPersonalDetailsClick}
 				/>
 
-				<ProfileSectionLabel label={email} icon={IoMailSharp} />
+				<ProfileSectionLabel label={email} icon={IoMailOutline} />
 
 				<ProfileSectionLabel
 					label={userLocation}
-					icon={IoLocationSharp}
+					icon={IoLocationOutline}
 				/>
 				<ProfileSectionLabel
 					label={`Joined ` + formatDate(createdAt, true)}
-					icon={IoTimeSharp}
+					icon={IoTimeOutline}
 				/>
+				{isDetailsChangeSuccess && (
+					<AlertFeedback
+						status={'success'}
+						message={'Details updated successfully'}
+					/>
+				)}
 				{/* <SocialMediaDetails /> */}
 			</StackLayout>
 
@@ -97,8 +114,22 @@ const UserPersonalInformation = memo((props: Props) => {
 				<TitleEditAction title={'Password'} onClick={onPasswordClick} />
 				<ProfileSectionLabel
 					label={'*********'}
-					icon={IoLockClosedSharp}
+					icon={IoLockClosedOutline}
 				/>
+				{isPwdChangeSuccess && (
+					<AlertFeedback
+						status={'success'}
+						message={'Password updated successfully'}
+					/>
+				)}
+				{isPwdChangeError && (
+					<AlertFeedback
+						status={'error'}
+						message={
+							'Failed to change password. Please try again later'
+						}
+					/>
+				)}
 			</StackLayout>
 		</StackLayout>
 	);

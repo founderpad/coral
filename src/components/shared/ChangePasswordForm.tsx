@@ -50,7 +50,7 @@ const ChangePasswordForm = (props: Props) => {
 			{isChangeSuccess && (
 				<AlertFeedback
 					status={'success'}
-					message={'Your password has been updated successfully.'}
+					message={'Your password has been updated successfully'}
 				/>
 			)}
 
@@ -58,7 +58,7 @@ const ChangePasswordForm = (props: Props) => {
 				<AlertFeedback
 					status={'error'}
 					message={
-						'Failed to change password. Please try again later.'
+						'Failed to change password. Please try again later'
 					}
 				/>
 			)}

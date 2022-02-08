@@ -3,7 +3,6 @@ import { CancelButton, SubmitButton } from '@components/buttons';
 import Form from '@components/form/Form';
 import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
-import { Label } from '@components/labels';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { ideasStatusList, industriesList } from '@utils/Constants';
 import { useRouter } from 'next/router';
@@ -79,14 +78,14 @@ const IdeasSearchForm = () => {
 			onSubmit={handleSubmit(onClick)}
 			stackProps={{ spacing: 4 }}
 		>
-			<Label
+			{/* <Label
 				display={{ base: 'none', md: 'block' }}
 				fontSize={'md'}
 				fontWeight={'semibold'}
 				mb={4}
 			>
 				Search ideas
-			</Label>
+			</Label> */}
 			<InputField
 				id="name"
 				name="name"

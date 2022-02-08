@@ -1,17 +1,15 @@
+import { AlertFeedback } from '@components/alert';
 import { FileUploader } from '@components/shared';
 import { TUser_Profile, useUpdateResumeMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
-import { useSuccessNotification } from '@hooks/toast';
-// import { useNotification } from '@hooks/util';
+import { useQueryParam } from '@hooks/util';
 import { cache } from '@pages/_app';
-import { formatUploadedUrls } from '@utils/validators';
+import { formatUploadedUrls, redirectTo } from '@utils/validators';
 import gql from 'graphql-tag';
 import { IUploadedFileProps } from '../../../../types/upload';
 
 const ResumeUploader = () => {
 	const { profile } = useCurrentUser() ?? {};
-	// const { addNotification } = useNotification();
-	const showSuccessNotification = useSuccessNotification();
 	const [updateResume] = useUpdateResumeMutation();
 
 	const userProfile = cache.readFragment({
@@ -24,6 +22,9 @@ const ResumeUploader = () => {
 		`
 	}) as TUser_Profile;
 
+	const isChangeSuccess = useQueryParam('ru_success');
+	const isChangeError = useQueryParam('ru_error');
+
 	const onComplete = (uploadedFiles: IUploadedFileProps[]) => {
 		updateResume({
 			variables: {
@@ -35,10 +36,11 @@ const ResumeUploader = () => {
 				}
 			},
 			onCompleted: (_data) => {
-				// addNotification('Resume successfully', 'success');
-				showSuccessNotification({
-					title: 'Resume updated successfully'
-				});
+				console.log('ppppppp');
+				redirectTo(false, 'ru');
+			},
+			onError: () => {
+				redirectTo(true, 'ru');
 			}
 		});
 	};
@@ -48,13 +50,28 @@ const ResumeUploader = () => {
 	);
 
 	return (
-		<FileUploader
-			label={'Resume'}
-			defaultFiles={defaultFiles}
-			bucketId={'resumes'}
-			showUpload={true}
-			onComplete={onComplete}
-		/>
+		<>
+			<FileUploader
+				label={'Resume'}
+				defaultFiles={defaultFiles}
+				bucketId={'resumes'}
+				showUpload={true}
+				onComplete={onComplete}
+			/>
+			{isChangeSuccess && (
+				<AlertFeedback
+					status={'success'}
+					message={'Resume has been added successfully'}
+				/>
+			)}
+
+			{isChangeError && (
+				<AlertFeedback
+					status={'error'}
+					message={'Failed to add resume. Please try again later'}
+				/>
+			)}
+		</>
 	);
 };
 

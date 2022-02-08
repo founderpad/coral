@@ -23,7 +23,7 @@ export const UserAvatar = (props: Props) => {
 			name={'user-avatar'}
 			size={size ?? avatarSize}
 			rounded={'full'}
-			bg={'gray.300'}
+			bg={'gray.200'}
 			color={'white'}
 		>
 			{badge}
