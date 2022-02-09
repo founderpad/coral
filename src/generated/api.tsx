@@ -2618,7 +2618,6 @@ export type TMutation_RootUpdate_User_ProfileArgs = {
   _delete_at_path?: InputMaybe<TUser_Profile_Delete_At_Path_Input>;
   _delete_elem?: InputMaybe<TUser_Profile_Delete_Elem_Input>;
   _delete_key?: InputMaybe<TUser_Profile_Delete_Key_Input>;
-  _inc?: InputMaybe<TUser_Profile_Inc_Input>;
   _prepend?: InputMaybe<TUser_Profile_Prepend_Input>;
   _set?: InputMaybe<TUser_Profile_Set_Input>;
   where: TUser_Profile_Bool_Exp;
@@ -2631,7 +2630,6 @@ export type TMutation_RootUpdate_User_Profile_By_PkArgs = {
   _delete_at_path?: InputMaybe<TUser_Profile_Delete_At_Path_Input>;
   _delete_elem?: InputMaybe<TUser_Profile_Delete_Elem_Input>;
   _delete_key?: InputMaybe<TUser_Profile_Delete_Key_Input>;
-  _inc?: InputMaybe<TUser_Profile_Inc_Input>;
   _prepend?: InputMaybe<TUser_Profile_Prepend_Input>;
   _set?: InputMaybe<TUser_Profile_Set_Input>;
   pk_columns: TUser_Profile_Pk_Columns_Input;
@@ -3619,7 +3617,7 @@ export type TUser_Followers_Select_Column =
  */
 export type TUser_Profile = {
   __typename?: 'user_profile';
-  availability?: Maybe<Scalars['Int']>;
+  availability?: Maybe<Scalars['String']>;
   background?: Maybe<Scalars['String']>;
   businessDescription?: Maybe<Scalars['String']>;
   createdAt: Scalars['timestamptz'];
@@ -3632,7 +3630,7 @@ export type TUser_Profile = {
   resume?: Maybe<Scalars['String']>;
   skills?: Maybe<Scalars['jsonb']>;
   specialistIndustry?: Maybe<Scalars['String']>;
-  startups: Scalars['Int'];
+  startups?: Maybe<Scalars['String']>;
   statement?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   twitter?: Maybe<Scalars['String']>;
@@ -3677,17 +3675,9 @@ export type TUser_Profile_Aggregate = {
 /** aggregate fields of "user_profile" */
 export type TUser_Profile_Aggregate_Fields = {
   __typename?: 'user_profile_aggregate_fields';
-  avg?: Maybe<TUser_Profile_Avg_Fields>;
   count: Scalars['Int'];
   max?: Maybe<TUser_Profile_Max_Fields>;
   min?: Maybe<TUser_Profile_Min_Fields>;
-  stddev?: Maybe<TUser_Profile_Stddev_Fields>;
-  stddev_pop?: Maybe<TUser_Profile_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<TUser_Profile_Stddev_Samp_Fields>;
-  sum?: Maybe<TUser_Profile_Sum_Fields>;
-  var_pop?: Maybe<TUser_Profile_Var_Pop_Fields>;
-  var_samp?: Maybe<TUser_Profile_Var_Samp_Fields>;
-  variance?: Maybe<TUser_Profile_Variance_Fields>;
 };
 
 
@@ -3703,19 +3693,12 @@ export type TUser_Profile_Append_Input = {
   skills?: InputMaybe<Scalars['jsonb']>;
 };
 
-/** aggregate avg on columns */
-export type TUser_Profile_Avg_Fields = {
-  __typename?: 'user_profile_avg_fields';
-  availability?: Maybe<Scalars['Float']>;
-  startups?: Maybe<Scalars['Float']>;
-};
-
 /** Boolean expression to filter rows from the table "user_profile". All fields are combined with a logical 'AND'. */
 export type TUser_Profile_Bool_Exp = {
   _and?: InputMaybe<Array<TUser_Profile_Bool_Exp>>;
   _not?: InputMaybe<TUser_Profile_Bool_Exp>;
   _or?: InputMaybe<Array<TUser_Profile_Bool_Exp>>;
-  availability?: InputMaybe<TInt_Comparison_Exp>;
+  availability?: InputMaybe<TString_Comparison_Exp>;
   background?: InputMaybe<TString_Comparison_Exp>;
   businessDescription?: InputMaybe<TString_Comparison_Exp>;
   createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
@@ -3728,7 +3711,7 @@ export type TUser_Profile_Bool_Exp = {
   resume?: InputMaybe<TString_Comparison_Exp>;
   skills?: InputMaybe<TJsonb_Comparison_Exp>;
   specialistIndustry?: InputMaybe<TString_Comparison_Exp>;
-  startups?: InputMaybe<TInt_Comparison_Exp>;
+  startups?: InputMaybe<TString_Comparison_Exp>;
   statement?: InputMaybe<TString_Comparison_Exp>;
   status?: InputMaybe<TString_Comparison_Exp>;
   twitter?: InputMaybe<TString_Comparison_Exp>;
@@ -3756,16 +3739,10 @@ export type TUser_Profile_Delete_Key_Input = {
   skills?: InputMaybe<Scalars['String']>;
 };
 
-/** input type for incrementing numeric columns in table "user_profile" */
-export type TUser_Profile_Inc_Input = {
-  availability?: InputMaybe<Scalars['Int']>;
-  startups?: InputMaybe<Scalars['Int']>;
-};
-
 /** aggregate max on columns */
 export type TUser_Profile_Max_Fields = {
   __typename?: 'user_profile_max_fields';
-  availability?: Maybe<Scalars['Int']>;
+  availability?: Maybe<Scalars['String']>;
   background?: Maybe<Scalars['String']>;
   businessDescription?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
@@ -3775,7 +3752,7 @@ export type TUser_Profile_Max_Fields = {
   linkedin?: Maybe<Scalars['String']>;
   resume?: Maybe<Scalars['String']>;
   specialistIndustry?: Maybe<Scalars['String']>;
-  startups?: Maybe<Scalars['Int']>;
+  startups?: Maybe<Scalars['String']>;
   statement?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   twitter?: Maybe<Scalars['String']>;
@@ -3787,7 +3764,7 @@ export type TUser_Profile_Max_Fields = {
 /** aggregate min on columns */
 export type TUser_Profile_Min_Fields = {
   __typename?: 'user_profile_min_fields';
-  availability?: Maybe<Scalars['Int']>;
+  availability?: Maybe<Scalars['String']>;
   background?: Maybe<Scalars['String']>;
   businessDescription?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
@@ -3797,7 +3774,7 @@ export type TUser_Profile_Min_Fields = {
   linkedin?: Maybe<Scalars['String']>;
   resume?: Maybe<Scalars['String']>;
   specialistIndustry?: Maybe<Scalars['String']>;
-  startups?: Maybe<Scalars['Int']>;
+  startups?: Maybe<Scalars['String']>;
   statement?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
   twitter?: Maybe<Scalars['String']>;
@@ -3896,7 +3873,7 @@ export type TUser_Profile_Select_Column =
 
 /** input type for updating data in table "user_profile" */
 export type TUser_Profile_Set_Input = {
-  availability?: InputMaybe<Scalars['Int']>;
+  availability?: InputMaybe<Scalars['String']>;
   background?: InputMaybe<Scalars['String']>;
   businessDescription?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
@@ -3907,60 +3884,11 @@ export type TUser_Profile_Set_Input = {
   resume?: InputMaybe<Scalars['String']>;
   skills?: InputMaybe<Scalars['jsonb']>;
   specialistIndustry?: InputMaybe<Scalars['String']>;
-  startups?: InputMaybe<Scalars['Int']>;
+  startups?: InputMaybe<Scalars['String']>;
   statement?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<Scalars['String']>;
   twitter?: InputMaybe<Scalars['String']>;
   website?: InputMaybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type TUser_Profile_Stddev_Fields = {
-  __typename?: 'user_profile_stddev_fields';
-  availability?: Maybe<Scalars['Float']>;
-  startups?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type TUser_Profile_Stddev_Pop_Fields = {
-  __typename?: 'user_profile_stddev_pop_fields';
-  availability?: Maybe<Scalars['Float']>;
-  startups?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type TUser_Profile_Stddev_Samp_Fields = {
-  __typename?: 'user_profile_stddev_samp_fields';
-  availability?: Maybe<Scalars['Float']>;
-  startups?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate sum on columns */
-export type TUser_Profile_Sum_Fields = {
-  __typename?: 'user_profile_sum_fields';
-  availability?: Maybe<Scalars['Int']>;
-  startups?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate var_pop on columns */
-export type TUser_Profile_Var_Pop_Fields = {
-  __typename?: 'user_profile_var_pop_fields';
-  availability?: Maybe<Scalars['Float']>;
-  startups?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate var_samp on columns */
-export type TUser_Profile_Var_Samp_Fields = {
-  __typename?: 'user_profile_var_samp_fields';
-  availability?: Maybe<Scalars['Float']>;
-  startups?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate variance on columns */
-export type TUser_Profile_Variance_Fields = {
-  __typename?: 'user_profile_variance_fields';
-  availability?: Maybe<Scalars['Float']>;
-  startups?: Maybe<Scalars['Float']>;
 };
 
 /**
@@ -4430,7 +4358,7 @@ export type TUserProfileDetailsQueryVariables = Exact<{
 }>;
 
 
-export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, profile?: { __typename?: 'user_profile', availability?: number | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups: number, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined } | null | undefined } | null | undefined };
+export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, profile?: { __typename?: 'user_profile', availability?: string | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined } | null | undefined } | null | undefined };
 
 export type TUserQueryVariables = Exact<{
   userId: Scalars['uuid'];
@@ -4447,7 +4375,7 @@ export type TUsersQueryVariables = Exact<{
 }>;
 
 
-export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, startups: number, specialistIndustry?: string | null | undefined, availability?: number | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, user?: { __typename?: 'users', displayName: string, createdAt: any, id: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, startups?: string | null | undefined, specialistIndustry?: string | null | undefined, availability?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, user?: { __typename?: 'users', displayName: string, createdAt: any, id: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
 
 export type TUpdateUserProfileMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4455,14 +4383,14 @@ export type TUpdateUserProfileMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserProfileMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: number | null | undefined, background?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, resume?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, businessDescription?: string | null | undefined, startups: number, website?: string | null | undefined, skills?: any | null | undefined, isComplete: boolean, specialistIndustry?: string | null | undefined, updatedAt: any } | null | undefined };
+export type TUpdateUserProfileMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: string | null | undefined, background?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, resume?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, businessDescription?: string | null | undefined, startups?: string | null | undefined, website?: string | null | undefined, skills?: any | null | undefined, isComplete: boolean, specialistIndustry?: string | null | undefined, updatedAt: any } | null | undefined };
 
 export type TUserExperienceQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type TUserExperienceQuery = { profile?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null | undefined, statement?: string | null | undefined, startups: number, status?: string | null | undefined, availability?: number | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updatedAt: any, isComplete: boolean } | null | undefined };
+export type TUserExperienceQuery = { profile?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, availability?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updatedAt: any, isComplete: boolean } | null | undefined };
 
 export type TUpdateUserExperienceMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4470,7 +4398,7 @@ export type TUpdateUserExperienceMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserExperienceMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null | undefined, statement?: string | null | undefined, startups: number, status?: string | null | undefined, skills?: any | null | undefined, availability?: number | null | undefined, resume?: string | null | undefined, businessDescription?: string | null | undefined } | null | undefined };
+export type TUpdateUserExperienceMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, availability?: string | null | undefined, resume?: string | null | undefined, businessDescription?: string | null | undefined } | null | undefined };
 
 export type TUpdateResumeMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -6039,12 +5967,10 @@ export type TResolversTypes = {
   user_profile_aggregate: ResolverTypeWrapper<TUser_Profile_Aggregate>;
   user_profile_aggregate_fields: ResolverTypeWrapper<TUser_Profile_Aggregate_Fields>;
   user_profile_append_input: TUser_Profile_Append_Input;
-  user_profile_avg_fields: ResolverTypeWrapper<TUser_Profile_Avg_Fields>;
   user_profile_bool_exp: TUser_Profile_Bool_Exp;
   user_profile_delete_at_path_input: TUser_Profile_Delete_At_Path_Input;
   user_profile_delete_elem_input: TUser_Profile_Delete_Elem_Input;
   user_profile_delete_key_input: TUser_Profile_Delete_Key_Input;
-  user_profile_inc_input: TUser_Profile_Inc_Input;
   user_profile_max_fields: ResolverTypeWrapper<TUser_Profile_Max_Fields>;
   user_profile_min_fields: ResolverTypeWrapper<TUser_Profile_Min_Fields>;
   user_profile_mutation_response: ResolverTypeWrapper<TUser_Profile_Mutation_Response>;
@@ -6053,13 +5979,6 @@ export type TResolversTypes = {
   user_profile_prepend_input: TUser_Profile_Prepend_Input;
   user_profile_select_column: TUser_Profile_Select_Column;
   user_profile_set_input: TUser_Profile_Set_Input;
-  user_profile_stddev_fields: ResolverTypeWrapper<TUser_Profile_Stddev_Fields>;
-  user_profile_stddev_pop_fields: ResolverTypeWrapper<TUser_Profile_Stddev_Pop_Fields>;
-  user_profile_stddev_samp_fields: ResolverTypeWrapper<TUser_Profile_Stddev_Samp_Fields>;
-  user_profile_sum_fields: ResolverTypeWrapper<TUser_Profile_Sum_Fields>;
-  user_profile_var_pop_fields: ResolverTypeWrapper<TUser_Profile_Var_Pop_Fields>;
-  user_profile_var_samp_fields: ResolverTypeWrapper<TUser_Profile_Var_Samp_Fields>;
-  user_profile_variance_fields: ResolverTypeWrapper<TUser_Profile_Variance_Fields>;
   users: ResolverTypeWrapper<TUsers>;
   users_aggregate: ResolverTypeWrapper<TUsers_Aggregate>;
   users_aggregate_fields: ResolverTypeWrapper<TUsers_Aggregate_Fields>;
@@ -6271,12 +6190,10 @@ export type TResolversParentTypes = {
   user_profile_aggregate: TUser_Profile_Aggregate;
   user_profile_aggregate_fields: TUser_Profile_Aggregate_Fields;
   user_profile_append_input: TUser_Profile_Append_Input;
-  user_profile_avg_fields: TUser_Profile_Avg_Fields;
   user_profile_bool_exp: TUser_Profile_Bool_Exp;
   user_profile_delete_at_path_input: TUser_Profile_Delete_At_Path_Input;
   user_profile_delete_elem_input: TUser_Profile_Delete_Elem_Input;
   user_profile_delete_key_input: TUser_Profile_Delete_Key_Input;
-  user_profile_inc_input: TUser_Profile_Inc_Input;
   user_profile_max_fields: TUser_Profile_Max_Fields;
   user_profile_min_fields: TUser_Profile_Min_Fields;
   user_profile_mutation_response: TUser_Profile_Mutation_Response;
@@ -6284,13 +6201,6 @@ export type TResolversParentTypes = {
   user_profile_pk_columns_input: TUser_Profile_Pk_Columns_Input;
   user_profile_prepend_input: TUser_Profile_Prepend_Input;
   user_profile_set_input: TUser_Profile_Set_Input;
-  user_profile_stddev_fields: TUser_Profile_Stddev_Fields;
-  user_profile_stddev_pop_fields: TUser_Profile_Stddev_Pop_Fields;
-  user_profile_stddev_samp_fields: TUser_Profile_Stddev_Samp_Fields;
-  user_profile_sum_fields: TUser_Profile_Sum_Fields;
-  user_profile_var_pop_fields: TUser_Profile_Var_Pop_Fields;
-  user_profile_var_samp_fields: TUser_Profile_Var_Samp_Fields;
-  user_profile_variance_fields: TUser_Profile_Variance_Fields;
   users: TUsers;
   users_aggregate: TUsers_Aggregate;
   users_aggregate_fields: TUsers_Aggregate_Fields;
@@ -7153,7 +7063,7 @@ export type TUser_Followers_Mutation_ResponseResolvers<ContextType = any, Parent
 };
 
 export type TUser_ProfileResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile'] = TResolversParentTypes['user_profile']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  availability?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   background?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   businessDescription?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -7166,7 +7076,7 @@ export type TUser_ProfileResolvers<ContextType = any, ParentType extends TResolv
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   skills?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, RequireFields<TUser_ProfileSkillsArgs, never>>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  startups?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  startups?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   statement?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   twitter?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7184,28 +7094,14 @@ export type TUser_Profile_AggregateResolvers<ContextType = any, ParentType exten
 };
 
 export type TUser_Profile_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_aggregate_fields'] = TResolversParentTypes['user_profile_aggregate_fields']> = {
-  avg?: Resolver<Maybe<TResolversTypes['user_profile_avg_fields']>, ParentType, ContextType>;
   count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TUser_Profile_Aggregate_FieldsCountArgs, never>>;
   max?: Resolver<Maybe<TResolversTypes['user_profile_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['user_profile_min_fields']>, ParentType, ContextType>;
-  stddev?: Resolver<Maybe<TResolversTypes['user_profile_stddev_fields']>, ParentType, ContextType>;
-  stddev_pop?: Resolver<Maybe<TResolversTypes['user_profile_stddev_pop_fields']>, ParentType, ContextType>;
-  stddev_samp?: Resolver<Maybe<TResolversTypes['user_profile_stddev_samp_fields']>, ParentType, ContextType>;
-  sum?: Resolver<Maybe<TResolversTypes['user_profile_sum_fields']>, ParentType, ContextType>;
-  var_pop?: Resolver<Maybe<TResolversTypes['user_profile_var_pop_fields']>, ParentType, ContextType>;
-  var_samp?: Resolver<Maybe<TResolversTypes['user_profile_var_samp_fields']>, ParentType, ContextType>;
-  variance?: Resolver<Maybe<TResolversTypes['user_profile_variance_fields']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TUser_Profile_Avg_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_avg_fields'] = TResolversParentTypes['user_profile_avg_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type TUser_Profile_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_max_fields'] = TResolversParentTypes['user_profile_max_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  availability?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   background?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   businessDescription?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
@@ -7215,7 +7111,7 @@ export type TUser_Profile_Max_FieldsResolvers<ContextType = any, ParentType exte
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  startups?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   statement?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   twitter?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7226,7 +7122,7 @@ export type TUser_Profile_Max_FieldsResolvers<ContextType = any, ParentType exte
 };
 
 export type TUser_Profile_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_min_fields'] = TResolversParentTypes['user_profile_min_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  availability?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   background?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   businessDescription?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
@@ -7236,7 +7132,7 @@ export type TUser_Profile_Min_FieldsResolvers<ContextType = any, ParentType exte
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  startups?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   statement?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   twitter?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7249,48 +7145,6 @@ export type TUser_Profile_Min_FieldsResolvers<ContextType = any, ParentType exte
 export type TUser_Profile_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_mutation_response'] = TResolversParentTypes['user_profile_mutation_response']> = {
   affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   returning?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TUser_Profile_Stddev_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_stddev_fields'] = TResolversParentTypes['user_profile_stddev_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TUser_Profile_Stddev_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_stddev_pop_fields'] = TResolversParentTypes['user_profile_stddev_pop_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TUser_Profile_Stddev_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_stddev_samp_fields'] = TResolversParentTypes['user_profile_stddev_samp_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TUser_Profile_Sum_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_sum_fields'] = TResolversParentTypes['user_profile_sum_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TUser_Profile_Var_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_var_pop_fields'] = TResolversParentTypes['user_profile_var_pop_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TUser_Profile_Var_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_var_samp_fields'] = TResolversParentTypes['user_profile_var_samp_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TUser_Profile_Variance_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_variance_fields'] = TResolversParentTypes['user_profile_variance_fields']> = {
-  availability?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  startups?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -7484,17 +7338,9 @@ export type TResolvers<ContextType = any> = {
   user_profile?: TUser_ProfileResolvers<ContextType>;
   user_profile_aggregate?: TUser_Profile_AggregateResolvers<ContextType>;
   user_profile_aggregate_fields?: TUser_Profile_Aggregate_FieldsResolvers<ContextType>;
-  user_profile_avg_fields?: TUser_Profile_Avg_FieldsResolvers<ContextType>;
   user_profile_max_fields?: TUser_Profile_Max_FieldsResolvers<ContextType>;
   user_profile_min_fields?: TUser_Profile_Min_FieldsResolvers<ContextType>;
   user_profile_mutation_response?: TUser_Profile_Mutation_ResponseResolvers<ContextType>;
-  user_profile_stddev_fields?: TUser_Profile_Stddev_FieldsResolvers<ContextType>;
-  user_profile_stddev_pop_fields?: TUser_Profile_Stddev_Pop_FieldsResolvers<ContextType>;
-  user_profile_stddev_samp_fields?: TUser_Profile_Stddev_Samp_FieldsResolvers<ContextType>;
-  user_profile_sum_fields?: TUser_Profile_Sum_FieldsResolvers<ContextType>;
-  user_profile_var_pop_fields?: TUser_Profile_Var_Pop_FieldsResolvers<ContextType>;
-  user_profile_var_samp_fields?: TUser_Profile_Var_Samp_FieldsResolvers<ContextType>;
-  user_profile_variance_fields?: TUser_Profile_Variance_FieldsResolvers<ContextType>;
   users?: TUsersResolvers<ContextType>;
   users_aggregate?: TUsers_AggregateResolvers<ContextType>;
   users_aggregate_fields?: TUsers_Aggregate_FieldsResolvers<ContextType>;

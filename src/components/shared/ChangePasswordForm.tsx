@@ -19,6 +19,7 @@ const ChangePasswordForm = (props: Props) => {
 	const {
 		handleSubmit,
 		control,
+		reset,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm({ mode: 'all' });
 
@@ -44,6 +45,11 @@ const ChangePasswordForm = (props: Props) => {
 				control={control}
 				size={'md'}
 				fontSize={'sm'}
+				onClear={() => {
+					reset({
+						newPassword: ''
+					});
+				}}
 				isRequired
 			/>
 

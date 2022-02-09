@@ -20,7 +20,7 @@ exports[`Login form matches snapshot 1`] = `
           aria-label="email"
           aria-required="true"
           autocomplete="email"
-          class="chakra-input css-1055qse"
+          class="chakra-input css-1gevp3u"
           control="[object Object]"
           id="email-email"
           name="email"
@@ -39,7 +39,7 @@ exports[`Login form matches snapshot 1`] = `
           aria-label="password"
           aria-required="true"
           autocomplete="current-password"
-          class="chakra-input css-1055qse"
+          class="chakra-input css-1gevp3u"
           control="[object Object]"
           id="password-password"
           name="password"
@@ -54,20 +54,24 @@ exports[`Login form matches snapshot 1`] = `
         class="chakra-alert css-1e3grqz"
         role="alert"
       >
-        <span
-          class="chakra-alert__icon css-1a7svfe"
+        <svg
+          class="chakra-alert__icon css-m46e7f"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 512 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            class="chakra-icon css-fi0ww0"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
+          <path
+            d="M368 368L144 144m224 0L144 368"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="32"
+          />
+        </svg>
         <div
           class="chakra-alert__desc css-1fwxjz3"
         >

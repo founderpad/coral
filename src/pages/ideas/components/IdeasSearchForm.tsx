@@ -1,19 +1,24 @@
 import { ButtonGroup } from '@chakra-ui/react';
-import { CancelButton, SubmitButton } from '@components/buttons';
+import { SubmitButton } from '@components/buttons';
 import Form from '@components/form/Form';
 import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
-import { ideasStatusList, industriesList } from '@utils/Constants';
+import { ALL_INDUSTRIES, IDEA_STATUS } from '@utils/Constants';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
+type SelectSearch = {
+	label: string;
+	value: string;
+};
+
 type IdeaSearch = {
-	field?: string;
+	field?: SelectSearch;
 	name?: string;
 	is_new?: boolean;
-	status?: string;
+	status?: SelectSearch;
 };
 
 const IdeasSearchForm = () => {
@@ -32,7 +37,18 @@ const IdeasSearchForm = () => {
 			isOpen: false
 		});
 
+		const formatSelectedValues: Record<string, string> = {};
+		for (const [k, v] of Object.entries(values)) {
+			if (v && typeof v === 'object') {
+				formatSelectedValues[k] = v['value'];
+			}
+			if (typeof v === 'string') {
+				formatSelectedValues[k] = v;
+			}
+		}
+
 		const queryParams = JSON.parse(JSON.stringify(values));
+
 		!queryParams.name && delete queryParams['name'];
 		!queryParams.field && delete queryParams['field'];
 		!queryParams.status && delete queryParams['status'];
@@ -49,43 +65,35 @@ const IdeasSearchForm = () => {
 		);
 	};
 
-	const onClear = () => {
-		setModalDrawer({
-			isOpen: false
-		});
-		reset({
-			name: '',
-			field: '',
-			status: ''
-		});
+	// const onClear = () => {
+	// 	setModalDrawer({
+	// 		isOpen: false
+	// 	});
+	// 	reset({
+	// 		name: '',
+	// 		field: undefined,
+	// 		status: undefined
+	// 	});
 
-		router.push(
-			{
-				pathname: '/ideas',
-				query: { page: 1 }
-			},
-			undefined,
-			{
-				shallow: true
-			}
-		);
-	};
+	// 	router.push(
+	// 		{
+	// 			pathname: '/ideas',
+	// 			query: { page: 1 }
+	// 		},
+	// 		undefined,
+	// 		{
+	// 			shallow: true
+	// 		}
+	// 	);
+	// };
 
 	return (
 		<Form
 			id={'ideaSearchForm'}
 			name={'ideaSearchForm'}
 			onSubmit={handleSubmit(onClick)}
-			stackProps={{ spacing: 4 }}
+			stackProps={{ spacing: 6 }}
 		>
-			{/* <Label
-				display={{ base: 'none', md: 'block' }}
-				fontSize={'md'}
-				fontWeight={'semibold'}
-				mb={4}
-			>
-				Search ideas
-			</Label> */}
 			<InputField
 				id="name"
 				name="name"
@@ -93,42 +101,36 @@ const IdeasSearchForm = () => {
 				control={control}
 				label={'Name'}
 				variant={'filled'}
+				onClear={() => {
+					reset({
+						name: ''
+					});
+				}}
+				isUrl
 			/>
 			<SelectField
 				id="field"
 				name="field"
-				options={industriesList()}
+				options={ALL_INDUSTRIES}
 				placeholder="field"
 				control={control}
 				label={'Field'}
 				variant={'filled'}
+				isUrl
 			/>
 			<SelectField
 				id="status"
 				name="status"
-				options={ideasStatusList()}
+				options={IDEA_STATUS}
 				placeholder="status"
 				control={control}
 				label={'Status'}
 				variant={'filled'}
+				isUrl
 			/>
-			{/* <InputField
-				id="location"
-				name="location"
-				placeholder="Search location"
-				control={control}
-				label={'Location'}
-				variant={'filled'}
-			/> */}
 
-			{/* <Label fontSize={'x-small'} textAlign={'end'}>
-				More coming soon
-			</Label> */}
-
-			{/* business status  */}
-			{/* ideas with questionnaires */}
-			<ButtonGroup pt={4} spacing={4}>
-				<CancelButton label={'Clear'} flex={1} onClick={onClear} />
+			<ButtonGroup spacing={4}>
+				{/* <CancelButton label={'Clear'} flex={1} onClick={onClear} /> */}
 				<SubmitButton
 					name={'search-ideas-button'}
 					label={'Search'}

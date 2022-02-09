@@ -61,8 +61,8 @@ export type TSearchIdea = Partial<Omit<TIdea_Preview, 'comments'>> & {
 // };
 
 export type TIndustry = {
-	name: string;
-	color: string;
+	label: string;
+	value: string;
 };
 
 // export type TIdea = {

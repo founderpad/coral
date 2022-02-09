@@ -4,6 +4,11 @@ import {
 	AlertIcon,
 	AlertProps
 } from '@chakra-ui/react';
+import {
+	IoCheckmarkSharp,
+	IoCloseOutline,
+	IoCloseSharp
+} from 'react-icons/io5';
 // import { useNotification } from '@hooks/util';
 
 // export const AlertFeedback = () => {
@@ -37,6 +42,31 @@ interface Props {
 	message: string;
 }
 
+function getStatusIcon(status: AlertProps['status']) {
+	switch (status) {
+		case 'success':
+			return (
+				<AlertIcon
+					as={IoCheckmarkSharp}
+					boxSize={'16px'}
+					mr={1}
+					color={'green.400'}
+				/>
+			);
+		case 'error':
+			return (
+				<AlertIcon
+					as={IoCloseOutline}
+					boxSize={'16px'}
+					mr={1}
+					color={'red.400'}
+				/>
+			);
+		default:
+			break;
+	}
+}
+
 export const AlertFeedback = (props: Props) => {
 	const { status = 'success', message } = props;
 
@@ -49,7 +79,9 @@ export const AlertFeedback = (props: Props) => {
 			variant={'subtle'}
 			bg={'transparent'}
 		>
-			<AlertIcon boxSize={'14px'} mr={2} />
+			{/* <AlertIcon as={getStatusIcon(status)} boxSize={'14px'} mr={1} /> */}
+
+			{getStatusIcon(status)}
 
 			<AlertDescription
 				fontSize={'xs'}

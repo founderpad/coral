@@ -1,6 +1,7 @@
 import { FormControl } from '@chakra-ui/form-control';
-import { FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
+import { Button, FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
 import { FormErrorText, FormLabelText } from '@components/form';
+import { FlexLayout } from '@components/layouts';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import ResizeTextarea from 'react-textarea-autosize';
@@ -8,7 +9,7 @@ import { IInputFieldProps } from 'src/types/fields';
 
 export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref) => {
-		const { errorText, helperText, error, ...rest } = props;
+		const { errorText, helperText, error, onClear, ...rest } = props;
 		const {
 			id,
 			isRequired,
@@ -32,7 +33,20 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 				isRequired={isRequired}
 				ref={ref}
 			>
-				{label && <FormLabelText label={label} />}
+				{label && (
+					<FlexLayout justifyContent={'space-between'}>
+						<FormLabelText label={label} />
+						<Button
+							fontSize={'x-small'}
+							colorScheme={'fpPrimary'}
+							variant={'link'}
+							mb={1}
+							onClick={onClear}
+						>
+							Clear
+						</Button>
+					</FlexLayout>
+				)}
 				<Controller
 					render={({ field: { onChange, value } }) => (
 						<Textarea
@@ -44,7 +58,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							borderWidth={borderWidth}
 							borderColor={'gray.200'}
 							fontSize={'small'}
-							color={'gray.500'}
+							color={'fpGrey.900'}
 							resize={resize}
 							as={ResizeTextarea}
 							maxRows={maxRows}

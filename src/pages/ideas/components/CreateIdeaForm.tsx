@@ -12,7 +12,7 @@ import {
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
-import { ideasStatusList, industriesList } from '@utils/Constants';
+import { ALL_INDUSTRIES, IDEA_STATUS } from '@utils/Constants';
 import Router from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -121,7 +121,7 @@ const CreateIdeaForm = () => {
 				errorText="Please select the field for the idea"
 				placeholder="field"
 				size={'md'}
-				options={industriesList()}
+				options={ALL_INDUSTRIES}
 				control={control}
 				isRequired
 			/>
@@ -133,7 +133,7 @@ const CreateIdeaForm = () => {
 				errorText="Please select the status for the idea"
 				placeholder="status"
 				size={'md'}
-				options={ideasStatusList()}
+				options={IDEA_STATUS}
 				control={control}
 				isRequired
 			/>

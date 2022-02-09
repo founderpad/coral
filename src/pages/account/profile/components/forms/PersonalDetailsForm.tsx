@@ -11,7 +11,7 @@ import {
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { updatePersonalDetails } from '@slices/auth';
-import { countriesList } from '@utils/Constants';
+import { ALL_COUNTRIES } from '@utils/Constants';
 import { redirectTo } from '@utils/validators';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
@@ -29,6 +29,7 @@ const PersonalDetailsForm = () => {
 		control,
 		getValues,
 		watch,
+		reset,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<PersonalDetailsinput>({
 		mode: 'all',
@@ -87,6 +88,11 @@ const PersonalDetailsForm = () => {
 				errorText="You must input a display name"
 				name="displayName"
 				control={control}
+				onClear={() => {
+					reset({
+						displayName: ''
+					});
+				}}
 				isRequired
 			/>
 			{/* <InputField
@@ -115,7 +121,7 @@ const PersonalDetailsForm = () => {
 				name="country"
 				label="Country"
 				placeholder={'country'}
-				options={countriesList()}
+				options={ALL_COUNTRIES}
 				control={control}
 				full
 			/>
@@ -127,6 +133,11 @@ const PersonalDetailsForm = () => {
 					placeholder="Location"
 					name="location"
 					control={control}
+					onClear={() => {
+						reset({
+							location: ''
+						});
+					}}
 				/>
 			)}
 		</Form>

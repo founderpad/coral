@@ -24,26 +24,26 @@ select_permissions:
 - permission:
     allow_aggregations: true
     columns:
-    - id
     - availability
     - background
-    - statement
-    - industries
-    - status
-    - startups
     - business_description
+    - created_at
+    - facebook
+    - id
+    - industries
+    - instagram
+    - is_complete
+    - linkedin
+    - resume
     - skills
     - specialist_industry
-    - instagram
-    - facebook
+    - startups
+    - statement
+    - status
     - twitter
-    - linkedin
-    - website
-    - resume
-    - is_complete
-    - user_id
-    - created_at
     - updated_at
+    - user_id
+    - website
     filter: {}
   role: user
 update_permissions:

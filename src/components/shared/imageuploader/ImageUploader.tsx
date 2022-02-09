@@ -51,7 +51,6 @@ export const ImageUploader = (props: Props) => {
 			actions: (
 				<PrimaryButton
 					name={'crop-image-modal-button'}
-					size={'xs'}
 					onClick={getCropData}
 				>
 					Upload

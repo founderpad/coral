@@ -36,10 +36,13 @@ export type IInputFieldProps<T extends FieldValues> = InputProps & {
 	rightEl?: JSX.Element;
 	showLabel?: boolean;
 	maxRows?: number;
+	isUrl?: boolean;
+	onClear?: () => void;
 };
 
 export interface ISelectFieldProps extends IInputFieldProps<any> {
 	options: any;
+	isUrl?: boolean;
 }
 
 export interface ICheckboxGroupFieldProps extends IInputFieldProps<any> {

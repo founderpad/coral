@@ -13,7 +13,6 @@ import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
 import OverviewTags from '@components/shared/OverviewTags';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useQueryParam } from '@hooks/util';
-import { convertCapacityToString } from '@utils/validators';
 import React, { useContext } from 'react';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
@@ -31,7 +30,7 @@ const WorkExperienceTab = () => {
 		startups,
 		statement,
 		status,
-		availability = 0,
+		availability,
 		businessDescription,
 		background,
 		skills
@@ -101,9 +100,10 @@ const WorkExperienceTab = () => {
 					},
 					{
 						title: 'Capacity (hours per week)',
-						value: availability
-							? convertCapacityToString(availability)
-							: 'Not set',
+						value: availability ?? 'Not set',
+						// value: availability
+						// 	? convertCapacityToString(availability)
+						// 	: 'Not set',
 						icon: IoTimeOutline
 					}
 				]}

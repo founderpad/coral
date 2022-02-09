@@ -1,6 +1,6 @@
 import {
+	Button,
 	FormControl,
-	FormErrorMessage,
 	FormHelperText,
 	forwardRef,
 	NumberDecrementStepper,
@@ -9,7 +9,8 @@ import {
 	NumberInputField,
 	NumberInputStepper
 } from '@chakra-ui/react';
-import { FormLabelText } from '@components/form';
+import { FormErrorText, FormLabelText } from '@components/form';
+import { FlexLayout } from '@components/layouts';
 import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'src/types/fields';
 
@@ -25,7 +26,8 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 			name,
 			helperText,
 			min,
-			max
+			max,
+			onClear
 		} = props;
 
 		return (
@@ -35,7 +37,21 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 				isRequired={isRequired}
 				w={{ base: 'full' }}
 			>
-				{label && <FormLabelText label={label} />}
+				{/* {label && <FormLabelText label={label} />} */}
+				{label && (
+					<FlexLayout justifyContent={'space-between'}>
+						<FormLabelText label={label} />
+						<Button
+							fontSize={'x-small'}
+							colorScheme={'fpPrimary'}
+							variant={'link'}
+							mb={1}
+							onClick={onClear}
+						>
+							Clear
+						</Button>
+					</FlexLayout>
+				)}
 				<Controller
 					render={({ field: { onChange, value } }) => (
 						<NumberInput
@@ -48,7 +64,7 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 							ref={ref}
 						>
 							<NumberInputField
-								rounded={'sm'}
+								rounded={'md'}
 								_focus={{
 									borderColor: 'gray.400',
 									boxShadow: 'none'
@@ -68,18 +84,11 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 					defaultValue={0}
 					rules={{ required: !!errorText, ...rules }}
 				/>
-
 				{error ? (
-					<FormErrorMessage alignItems="flex-start">
-						{error && <span>{errorText}</span>}
-					</FormErrorMessage>
+					<FormErrorText label={errorText} />
 				) : (
 					helperText && (
-						<FormHelperText
-							textAlign={'end'}
-							mt={1}
-							color={'gray.400'}
-						>
+						<FormHelperText fontSize={'xs'}>
 							{helperText}
 						</FormHelperText>
 					)

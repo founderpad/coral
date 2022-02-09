@@ -3,7 +3,7 @@ import { Stack } from '@chakra-ui/layout';
 import { Checkbox } from '@chakra-ui/react';
 import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
-import { NumberField, SelectField, TextareaField } from '@components/input';
+import { SelectField, TextareaField } from '@components/input';
 import { Label } from '@components/labels';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
@@ -14,12 +14,13 @@ import {
 import { useCurrentUser } from '@hooks/auth';
 import { setProfileComplete } from '@slices/auth';
 import {
+	ALL_INDUSTRIES,
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
-	industriesList,
+	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import React from 'react';
@@ -36,7 +37,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 	);
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const { handleSubmit, control, getValues, setValue, formState } =
+	const { handleSubmit, control, reset, getValues, setValue, formState } =
 		useForm<TUser_Profile_Set_Input>({
 			mode: 'all',
 			defaultValues: {
@@ -53,16 +54,12 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			setModalDrawer({
 				isOpen: false
 			});
-			// addNotification('Experience updated successfully', 'success');
-			// showSuccessNotification({
-			// 	title: 'Experience updated successfully'
-			// });
 
 			redirectTo(false, 'exp');
 
 			if (!isProfileComplete) dispatch(setProfileComplete());
 		},
-		onError: () => {
+		onError: (_data) => {
 			setModalDrawer({
 				isOpen: false
 			});
@@ -83,6 +80,13 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 	const { errors, isSubmitting, isValid } = formState;
 
+	const resetField = useCallback((name: string | number) => {
+		reset({
+			...getValues(),
+			[name]: typeof name === 'string' ? '' : 0
+		});
+	}, []);
+
 	return (
 		<Form
 			id={'editExperienceForm'}
@@ -92,6 +96,15 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			isValid={isValid}
 			stackProps={{ spacing: 10 }}
 		>
+			<SelectField
+				id="userOption"
+				name="userOption"
+				label="What am I looking for?"
+				placeholder="what I am looking for"
+				options={ALL_INDUSTRIES}
+				control={control}
+			/>
+
 			<TextareaField
 				id="background"
 				label="Background"
@@ -102,8 +115,10 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				control={control}
 				minH={'100px'}
 				rules={{ maxLength: 400 }}
+				onClear={() => resetField('background')}
 				isRequired
 			/>
+
 			<TextareaField
 				id="statement"
 				label="Personal statement"
@@ -113,6 +128,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				name="statement"
 				control={control}
 				rules={{ maxLength: 400 }}
+				onClear={() => resetField('statement')}
 			/>
 
 			<SelectField
@@ -120,31 +136,24 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				name="specialistIndustry"
 				label="What is your specialist field?"
 				placeholder="specialist field"
-				options={industriesList()}
+				options={ALL_INDUSTRIES}
 				control={control}
 			/>
 
 			<Stack direction={{ base: 'column', md: 'row' }} spacing={6}>
-				<NumberField
+				<SelectField
 					id="startups"
 					name="startups"
-					label="How many startups have you worked with?"
-					error={errors['startups']}
-					errorText="You must specify how many startups you have worked with"
+					options={NUMBER_OF_STARTUPS}
+					placeholder="number of startups"
 					control={control}
-					min={0}
-					max={30}
-					isRequired
+					label={'How many startups have you worked with?'}
 				/>
 
 				<SelectField
 					id="availability"
 					name="availability"
-					options={AVAILABILITY_IN_HOURS.map((availability) => (
-						<option key={availability.key} value={availability.key}>
-							{availability.value}
-						</option>
-					))}
+					options={AVAILABILITY_IN_HOURS}
 					placeholder="capacity per week"
 					control={control}
 					label={'Capacity (hours per week)'}
@@ -161,11 +170,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				error={errors['status']}
 				errorText="You must specify your current startup status"
 				placeholder="startup status"
-				options={STARTUP_STATUS.map((status) => (
-					<option key={status.key} value={status.value}>
-						{status.value}
-					</option>
-				))}
+				options={STARTUP_STATUS}
 				control={control}
 				isRequired
 			/>
@@ -176,6 +181,11 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				label="What were your previous businesses?"
 				placeholder=""
 				control={control}
+				onClear={() => {
+					reset({
+						businessDescription: ''
+					});
+				}}
 			/>
 
 			<FormControl>
@@ -199,7 +209,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 								fontSize={'xs'}
 								isChecked={selectedSkills.includes(es)}
 							>
-								<Label color={'gray.500'} fontSize={'smaller'}>
+								<Label color={'fpGrey.900'} fontSize={'xs'}>
 									{es}
 								</Label>
 							</Checkbox>

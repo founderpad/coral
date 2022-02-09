@@ -1,20 +1,30 @@
 import { FormControl } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
 import {
+	Button,
 	FormHelperText,
 	forwardRef,
 	InputGroup,
 	InputLeftAddon
 } from '@chakra-ui/react';
 import { FormErrorText, FormLabelText } from '@components/form';
+import { FlexLayout } from '@components/layouts';
 import { EMAIL_REGEX } from '@utils/validators';
-import React from 'react';
+import Router from 'next/router';
+import React, { useCallback } from 'react';
 import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'src/types/fields';
 
 export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 	(props, ref) => {
-		const { errorText, helperText, error, ...rest } = props;
+		const {
+			errorText,
+			helperText,
+			error,
+			isUrl = false,
+			onClear,
+			...rest
+		} = props;
 		const {
 			placeholder,
 			control,
@@ -27,14 +37,46 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			autoComplete
 		} = rest;
 
+		const onClearValue = useCallback(() => {
+			onClear?.();
+			if (isUrl) {
+				delete Router.query[name];
+				Router.push(
+					{
+						pathname: Router.pathname,
+						query: Router.query
+					},
+					undefined,
+					{
+						shallow: true
+					}
+				);
+			}
+		}, []);
+
 		return (
 			<FormControl
 				id={name}
 				isInvalid={!!error}
 				isRequired={isRequired}
 				w={{ base: 'full' }}
+				ref={ref}
 			>
-				{label && <FormLabelText label={label} />}
+				{label && (
+					<FlexLayout justifyContent={'space-between'}>
+						<FormLabelText label={label} />
+
+						<Button
+							fontSize={'x-small'}
+							colorScheme={'fpPrimary'}
+							variant={'link'}
+							mb={1}
+							onClick={onClearValue}
+						>
+							Clear
+						</Button>
+					</FlexLayout>
+				)}
 				<Controller
 					defaultValue={''}
 					render={({
@@ -43,17 +85,17 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 					}) => (
 						<Input
 							{...rest}
+							ref={ref}
 							placeholder={placeholder}
 							autoComplete={autoComplete}
 							size={size ?? 'sm'}
-							ref={ref}
 							value={value}
 							onChange={onChange}
 							error={error?.message}
 							name={name}
 							aria-label={name}
-							fontSize={fontSize ?? 'sm'}
-							color={'gray.500'}
+							fontSize={fontSize ?? '12px'}
+							color={'black'}
 							rounded={'md'}
 						/>
 					)}
