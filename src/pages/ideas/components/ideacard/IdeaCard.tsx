@@ -39,12 +39,14 @@ const IdeaCard = (idea: TIdeaPreviewFieldsFragment) => (
 				_hover={{
 					borderColor: 'gray.50',
 					transition: 'ease-in .3s',
-					bg: 'gray.50'
+					bg: 'fpLightGrey.100'
 				}}
 				p={2}
-				// mb={2}
 				flex={1}
-				rounded={'sm'}
+				rounded={'md'}
+				// borderWidth={1}
+				// borderColor={'fpLightGrey.700'}
+				// boxShadow={'sm'}
 			>
 				<IdeaCardHeader {...idea} />
 				<IdeaCardBody {...idea} />

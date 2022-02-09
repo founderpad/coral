@@ -13,6 +13,11 @@ const Ideas = () => (
 			title="All ideas"
 			subtitle="The latest ideas from the community."
 		>
+			{/* <SearchContentGridLayout>
+				<IdeasSearchForm />
+				<IdeasContainer />
+			</SearchContentGridLayout> */}
+
 			<SearchContentGridLayout>
 				<IdeasSearchForm />
 				<IdeasContainer />

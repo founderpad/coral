@@ -17,7 +17,8 @@ const NewIdeaBadge = () => {
 				title={'A new idea posted in the last 7 days'}
 				minW={'auto'}
 				px={1}
-				rounded={'sm'}
+				rounded={'none'}
+				borderTopLeftRadius={'md'}
 			>
 				New
 			</Tag>

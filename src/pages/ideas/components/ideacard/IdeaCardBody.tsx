@@ -1,3 +1,4 @@
+import { Tag } from '@chakra-ui/react';
 import { Label } from '@components/labels';
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { PointSeparator } from '@components/shared';
@@ -48,14 +49,21 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 			justifyContent={'space-between'}
 			w={'full'}
 		>
-			<StackLayout spacing={0} direction={'row'} alignItems={'center'}>
-				<Label color={'fpPrimary.400'} fontSize={'xs'}>
+			<StackLayout spacing={2} direction={'row'} alignItems={'center'}>
+				{/* <Label color={'fpPrimary.400'} fontSize={'xs'}>
 					{status}
 				</Label>
 				<PointSeparator small />
 				<Label color={'fpPrimary.500'} fontSize={'xs'}>
 					{field}
-				</Label>
+				</Label> */}
+
+				<Tag fontSize={'x-small'} px={4}>
+					{status}
+				</Tag>
+				<Tag fontSize={'x-small'} px={4}>
+					{field}
+				</Tag>
 			</StackLayout>
 			{totalInterested ? (
 				<InterestedTotal total={totalInterested} />
