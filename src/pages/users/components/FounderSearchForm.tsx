@@ -7,9 +7,9 @@ import { Label } from '@components/labels';
 import AppDivider from '@components/shared/AppDivider';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
+	ALL_INDUSTRIES,
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
-	industriesList,
 	STARTUP_STATUS
 } from '@utils/Constants';
 import { useRouter } from 'next/router';
@@ -90,11 +90,7 @@ const FounderSearchForm = () => {
 			<SelectField
 				id="status"
 				name="status"
-				options={STARTUP_STATUS.map((status) => (
-					<option key={status.key} value={status.value}>
-						{status.value}
-					</option>
-				))}
+				options={STARTUP_STATUS}
 				placeholder="start-up status"
 				control={control}
 				label={'Current start-up status'}
@@ -104,11 +100,7 @@ const FounderSearchForm = () => {
 			<SelectField
 				id="availability"
 				name="availability"
-				options={AVAILABILITY_IN_HOURS.map((availability) => (
-					<option key={availability.key} value={availability.key}>
-						{availability.value}
-					</option>
-				))}
+				options={AVAILABILITY_IN_HOURS}
 				placeholder="availability per week"
 				control={control}
 				label={'Availability in hours per week'}
@@ -120,7 +112,7 @@ const FounderSearchForm = () => {
 				name="specialist_industry"
 				label="Specialist field"
 				placeholder="specialist field"
-				options={industriesList()}
+				options={ALL_INDUSTRIES}
 				control={control}
 			/>
 			<AppDivider />

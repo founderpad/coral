@@ -2,7 +2,7 @@ import { GridItem, SimpleGrid } from '@chakra-ui/react';
 import { StackLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import { UserAvatarDetails } from '@components/shared';
-import { convertCapacityToString, formatDate } from '@utils/validators';
+import { formatDate } from '@utils/validators';
 import React from 'react';
 import { TFounderUsers } from 'src/types/founders';
 
@@ -11,9 +11,7 @@ const founderAttrs = (founderProfileAttrs: TFounderUsers): string[] => {
 
 	if (founderProfileAttrs.availability)
 		attrs.push(
-			`Can commit ${convertCapacityToString(
-				founderProfileAttrs.availability
-			)} hours per week`
+			`Can commit ${founderProfileAttrs.availability} hours per week`
 		);
 
 	if (founderProfileAttrs.specialistIndustry)

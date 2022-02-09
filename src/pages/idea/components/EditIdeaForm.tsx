@@ -8,7 +8,7 @@ import { TextareaField } from '@components/input/TextareaField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@generated/api';
 import { useSuccessNotification } from '@hooks/toast';
-import { ideasStatusList, industriesList } from '@utils/Constants';
+import { ALL_INDUSTRIES, IDEA_STATUS } from '@utils/Constants';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useIdeaFragment } from '../query/ideaQuery';
@@ -88,7 +88,7 @@ export const EditIdeaForm = () => {
 				errorText="Please select the status for your idea."
 				placeholder="status"
 				size={'sm'}
-				options={ideasStatusList()}
+				options={IDEA_STATUS}
 				control={control}
 				isRequired
 			/>
@@ -101,7 +101,7 @@ export const EditIdeaForm = () => {
 				errorText="Please select the field for your idea."
 				placeholder="field"
 				size={'sm'}
-				options={industriesList()}
+				options={ALL_INDUSTRIES}
 				control={control}
 				isRequired
 			/>

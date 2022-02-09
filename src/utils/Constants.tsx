@@ -523,13 +523,16 @@ export const AVAILABILITY_IN_HOURS = [
 // *
 
 export const REPORT_REASONS = [
-	'Abusive or harmful content',
-	'Sexualised content',
-	'Discrimination',
-	'Hate speech',
-	'Terrorism',
-	'Spam',
-	'Harrassment'
+	{
+		label: 'Abusive or harmful content',
+		value: 'Abusive or harmful content'
+	},
+	{ label: 'Sexualised content', value: 'Sexualised content' },
+	{ label: 'Discrimination', value: 'Sexualised content' },
+	{ label: 'Hate speech', value: 'Hate speech' },
+	{ label: 'Terrorism', value: 'Hate speech' },
+	{ label: 'Spam', value: 'Hate speech' },
+	{ label: 'Harrassment', value: 'Hate speech' }
 ];
 
 type IdeaStatus = {

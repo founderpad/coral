@@ -3,7 +3,6 @@ export { CreatedAt, LastUpdatedAt } from './CreatedUpdatedAt';
 export { DocumentTitle } from './DocumentTitle';
 export { FileUploader } from './fileuploader/FileUploader';
 export { FixedSubheader } from './FixedSubheader';
-export { IndustriesPicker } from './IndustriesPicker';
 export { Loading } from './Loading';
 export { ModalDrawerFooterActions } from './ModalDrawerFooterActions';
 export { NoResults } from './NoResults';

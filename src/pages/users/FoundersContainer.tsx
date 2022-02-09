@@ -53,7 +53,7 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 		// console.log('split min max: ', where.availability);
 		// where.specialist_industry = { _eq: useQueryParam('field') };
 
-		where.availability = { _eq: parseInt(queryParamAvailability) };
+		where.availability = { _eq: queryParamAvailability };
 	}
 
 	return where;

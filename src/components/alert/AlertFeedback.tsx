@@ -4,11 +4,7 @@ import {
 	AlertIcon,
 	AlertProps
 } from '@chakra-ui/react';
-import {
-	IoCheckmarkSharp,
-	IoCloseOutline,
-	IoCloseSharp
-} from 'react-icons/io5';
+import { IoCheckmarkSharp, IoCloseOutline } from 'react-icons/io5';
 // import { useNotification } from '@hooks/util';
 
 // export const AlertFeedback = () => {

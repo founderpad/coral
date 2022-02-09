@@ -15,7 +15,7 @@ import { useUserProfileDetailsQuery } from '@generated/api';
 import { useQueryParam } from '@hooks/util';
 import ProfileSectionLabel from '@pages/account/profile/components/ProfileSectionLabel';
 import AuthFilter from '@utils/AuthFilter';
-import { convertCapacityToString, formatDate } from '@utils/validators';
+import { formatDate } from '@utils/validators';
 import React from 'react';
 // import AddFollower from './components/AddFollower';
 
@@ -123,11 +123,9 @@ const User = () => {
 								},
 								{
 									title: 'Capacity (Hours per week)',
-									value: data?.user?.profile?.availability
-										? `${convertCapacityToString(
-												data?.user.profile.availability
-										  )} hours`
-										: 'Not set',
+									value:
+										data?.user?.profile?.availability ??
+										'Not set',
 									icon: IoTimeSharp
 								}
 							]}
