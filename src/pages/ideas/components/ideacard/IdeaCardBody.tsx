@@ -1,7 +1,6 @@
 import { Tag } from '@chakra-ui/react';
 import { Label } from '@components/labels';
 import { FlexLayout, StackLayout } from '@components/layouts';
-import { PointSeparator } from '@components/shared';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
 import InterestedTotal from '@pages/idea/components/InterestedTotal';
 import React from 'react';
