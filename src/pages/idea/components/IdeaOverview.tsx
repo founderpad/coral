@@ -1,8 +1,3 @@
-import {
-	IoBulbSharp,
-	IoLocationSharp,
-	IoTrendingUpSharp
-} from '@components/icons';
 import { FlexLayout } from '@components/layouts';
 import { OverviewTag } from '@components/shared';
 import React from 'react';
@@ -24,21 +19,12 @@ export const IdeaOverview = () => {
 				}
 			}}
 		>
-			{status && (
-				<OverviewTag
-					title={'Stage'}
-					value={status}
-					icon={IoTrendingUpSharp}
-				/>
-			)}
-			{field && (
-				<OverviewTag title={'Field'} value={field} icon={IoBulbSharp} />
-			)}
+			{status && <OverviewTag title={'Stage'} value={status} />}
+			{field && <OverviewTag title={'Field'} value={field} />}
 			{country && (
 				<OverviewTag
 					title={'Location'}
 					value={location ? `${location}, ${country}` : country}
-					icon={IoLocationSharp}
 				/>
 			)}
 		</FlexLayout>

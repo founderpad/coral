@@ -52,7 +52,7 @@ export const IdeaTitleHeader = () => {
 
 const IdeaName = () => {
 	const { name } = useIdeaFragment();
-	return <SubheadingText>{name}</SubheadingText>;
+	return <SubheadingText pb={4}>{name}</SubheadingText>;
 };
 
 const IdeaActions = () => {
@@ -74,12 +74,12 @@ const IdeaActions = () => {
 		votes_aggregate: votes_aggregate as TIdea_Votes_Aggregate // need to make these fragments to use types!
 	};
 	return (
-		<StackLayout direction={'row'} spacing={1} pt={2} alignItems={'center'}>
+		<StackLayout direction={'row'} spacing={2} pt={2} alignItems={'center'}>
 			<PublishedLabel isPublished={isPublished} />
 
 			{totalInterested > 0 && (
 				<React.Fragment>
-					<PointSeparator small />
+					{/* <PointSeparator small /> */}
 					<InterestedTotal total={totalInterested} />
 				</React.Fragment>
 			)}

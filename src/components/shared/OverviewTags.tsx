@@ -8,7 +8,7 @@ import { IconType } from 'react-icons/lib';
 
 interface IOverviewTag {
 	title?: string;
-	value: string;
+	value?: string;
 	icon?: IconType;
 	direction?: StackProps['direction'];
 }
@@ -29,13 +29,14 @@ const OverviewTags = memo(
 					}
 				}}
 			>
-				{tags?.map((overviewTag) => (
+				{tags?.map(({ title, value }) => (
 					<BaseTag
-						key={overviewTag.title}
+						key={title}
 						p={2}
 						d={'flex'}
 						flexDirection={'column'}
-						bg={'fpLightGrey.300'}
+						// bg={'fpLightGrey.300'}
+						bg={'fpPrimary.50'}
 						borderWidth={0}
 						justifyContent={'flex-start'}
 					>
@@ -45,12 +46,13 @@ const OverviewTags = memo(
 							alignItems={'center'}
 							mb={1}
 							display={'flex'}
+							color={'fpPrimary.700'}
 						>
 							{/* <Icon as={overviewTag.icon} mr={2} /> */}
-							{overviewTag.value}
+							{value}
 						</Label>
 						<Label color={'gray.400'} fontSize={'xs'}>
-							{overviewTag.title}
+							{title}
 						</Label>
 					</BaseTag>
 				))}

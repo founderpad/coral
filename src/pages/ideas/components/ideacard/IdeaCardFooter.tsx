@@ -1,5 +1,5 @@
 import Icon from '@chakra-ui/icon';
-import { IoChatbubbleSharp } from '@components/icons';
+import { IoChatbubbleOutline, IoChatbubbleSharp } from '@components/icons';
 import { Label } from '@components/labels';
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
@@ -15,6 +15,7 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 			spacing={0}
 			rounded={'none'}
 			mb={2}
+			px={4}
 			w={'full'}
 			justifyContent={'space-between'}
 			alignItems={'center'}
@@ -27,13 +28,13 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 				{totalComments > 0 && (
 					<FlexLayout alignItems={'center'}>
 						<Icon
-							as={IoChatbubbleSharp}
-							fontSize={'sm'}
+							as={IoChatbubbleOutline}
+							fontSize={'md'}
 							pt={0}
 							mr={1}
 							color={'gray.400'}
 						/>
-						<Label color={'gray.400'} fontSize={'xs'}>
+						<Label color={'gray.400'} fontSize={'sm'}>
 							{idea?.comments_aggregate?.aggregate?.count}
 						</Label>
 					</FlexLayout>

@@ -22,9 +22,11 @@ export const PageHeader = memo(
 		return (
 			<React.Fragment>
 				<StackLayout
+					bg={'white'}
 					as={'header'}
-					bg={'transparent'}
+					// bg={'transparent'}
 					p={{ base: 4 }}
+					pb={0}
 					position={fixedHeader ? 'fixed' : 'inherit'}
 					top={0}
 					w={'full'}
@@ -42,13 +44,12 @@ export const PageHeader = memo(
 						<Label
 							as="h4"
 							fontSize="sm"
-							color={'gray.500'}
+							color={'fpGrey.700'}
 							fontWeight={'medium'}
 						>
 							{subtitle}
 						</Label>
 					)}
-					{/* <AlertFeedback /> */}
 				</StackLayout>
 			</React.Fragment>
 		);

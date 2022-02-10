@@ -49,19 +49,11 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 			justifyContent={'space-between'}
 			w={'full'}
 		>
-			<StackLayout spacing={2} direction={'row'} alignItems={'center'}>
-				{/* <Label color={'fpPrimary.400'} fontSize={'xs'}>
-					{status}
-				</Label>
-				<PointSeparator small />
-				<Label color={'fpPrimary.500'} fontSize={'xs'}>
-					{field}
-				</Label> */}
-
-				<Tag fontSize={'x-small'} px={4}>
+			<StackLayout spacing={2} direction={'row'}>
+				<Tag fontSize={'xs'} px={4}>
 					{status}
 				</Tag>
-				<Tag fontSize={'x-small'} px={4}>
+				<Tag fontSize={'xs'} px={4}>
 					{field}
 				</Tag>
 			</StackLayout>

@@ -33,10 +33,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 			placeholder
 		} = props;
 
-		// const [value, setValue] = useState(Router.query[name] ?? '');
-
 		const onClearValue = useCallback(() => {
-			// setValue('');
 			onClear?.();
 			if (!isMobile) {
 				valueRef?.current?.setValue({
@@ -58,7 +55,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					}
 				);
 			}
-		}, []);
+		}, [valueRef]);
 
 		return (
 			<FormControl

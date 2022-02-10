@@ -1,6 +1,7 @@
 import { ButtonGroup } from '@chakra-ui/react';
 import { SubmitButton } from '@components/buttons';
 import Form from '@components/form/Form';
+import BaseHeading from '@components/heading/BaseHeading';
 import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
@@ -106,6 +107,7 @@ const IdeasSearchForm = () => {
 			onSubmit={handleSubmit(onClick)}
 			stackProps={{ spacing: 6 }}
 		>
+			<BaseHeading fontSize={'sm'}>Search</BaseHeading>
 			<InputField
 				id="name"
 				name="name"

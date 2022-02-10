@@ -1,6 +1,7 @@
-import { BoxProps, Divider } from '@chakra-ui/layout';
+import { Divider } from '@chakra-ui/layout';
+import { DividerProps } from '@chakra-ui/react';
 import React from 'react';
 
-export const AppDivider = (props?: BoxProps) => <Divider {...props} />;
+export const AppDivider = (props?: DividerProps) => <Divider {...props} />;
 
 export default AppDivider;

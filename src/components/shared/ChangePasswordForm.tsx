@@ -4,7 +4,7 @@ import { Form } from '@components/form';
 import { PasswordField } from '@components/input';
 import { useChangePassword } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface Props {
@@ -29,12 +29,12 @@ const ChangePasswordForm = (props: Props) => {
 	const isChangeSuccess = useQueryParam('cp_success');
 	const isChangeError = useQueryParam('cp_error');
 
-	const resetField = (name: string) => {
+	const resetField = useCallback((name: string) => {
 		reset({
 			...getValues(),
 			[name]: ''
 		});
-	};
+	}, []);
 
 	return (
 		<Form

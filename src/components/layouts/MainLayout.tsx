@@ -20,7 +20,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				display={'flex'}
 				flexDirection={'column'}
 				flex={1}
-				borderWidth={{ base: 0, lg: 1 }}
+				// borderWidth={{ base: 0, lg: 1 }}
 				borderColor={'gray.100'}
 				// mt={{ base: 0, lg: 4 }}
 				// mb={{ base: 0, lg: 4 }}

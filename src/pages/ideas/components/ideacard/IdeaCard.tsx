@@ -30,7 +30,7 @@ const IdeaCard = (idea: TIdeaPreviewFieldsFragment) => (
 			<IdeaMenu {...idea} />
 		</FlexLayout> */}
 
-		<StackLayout flex={1} spacing={0}>
+		<StackLayout flex={1} spacing={0} bg={'white'}>
 			<FlexLayout
 				flexDirection={'column'}
 				as={BaseLink}
@@ -41,7 +41,8 @@ const IdeaCard = (idea: TIdeaPreviewFieldsFragment) => (
 					transition: 'ease-in .3s',
 					bg: 'fpLightGrey.100'
 				}}
-				p={2}
+				// p={2}
+				p={4}
 				flex={1}
 				rounded={'md'}
 				// borderWidth={1}

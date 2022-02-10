@@ -57,45 +57,48 @@ const IdeasContainer = () => {
 	// if (!loading && hasResults < 1) return <NoResults />;
 
 	return (
-		<StackLayout>
-			{/* {data?.idea_preview.length > 0 && data?.idea_preview_aggregate && ( */}
-			<IdeasActions
-				total={data?.idea_preview_aggregate?.aggregate?.count ?? 0}
-				pageSize={data?.idea_preview?.length ?? 0}
-				hasResults={hasResults > 0}
-			/>
-			{/* )} */}
-
-			{!loading && hasResults < 1 ? (
-				<NoResults back />
-			) : (
-				<StackLayout
-					display={'flex'}
-					flex={1}
-					bg={'white'}
-					spacing={6}
-					mt={{ sm: 3 }}
-				>
-					{data?.idea_preview?.map(
-						(idea: TIdeaPreviewFieldsFragment) => (
-							<React.Fragment key={idea.id}>
-								<IdeaCard {...idea} />
-							</React.Fragment>
-						)
-					)}
-				</StackLayout>
-			)}
-
-			{hasResults && (
-				<OffsetPagination
-					pagesCount={
-						(data?.idea_preview_aggregate?.aggregate?.count || 0) /
-						10
-					}
-					pathname="/ideas"
+		<>
+			<StackLayout>
+				{/* {data?.idea_preview.length > 0 && data?.idea_preview_aggregate && ( */}
+				<IdeasActions
+					total={data?.idea_preview_aggregate?.aggregate?.count ?? 0}
+					pageSize={data?.idea_preview?.length ?? 0}
+					hasResults={hasResults > 0}
 				/>
-			)}
-		</StackLayout>
+				{/* )} */}
+
+				{!loading && hasResults < 1 ? (
+					<NoResults back />
+				) : (
+					<StackLayout
+						display={'flex'}
+						flex={1}
+						// bg={'white'}
+						// bg={'gray.100'}
+						spacing={6}
+						// mt={{ sm: 3 }}
+					>
+						{data?.idea_preview?.map(
+							(idea: TIdeaPreviewFieldsFragment) => (
+								<React.Fragment key={idea.id}>
+									<IdeaCard {...idea} />
+								</React.Fragment>
+							)
+						)}
+					</StackLayout>
+				)}
+
+				{hasResults && (
+					<OffsetPagination
+						pagesCount={
+							(data?.idea_preview_aggregate?.aggregate?.count ||
+								0) / 10
+						}
+						pathname="/ideas"
+					/>
+				)}
+			</StackLayout>
+		</>
 	);
 };
 

@@ -12,9 +12,14 @@ import {
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
-import { ALL_INDUSTRIES, IDEA_STATUS } from '@utils/Constants';
+import {
+	ALL_IDEA_CATEGORY_FIELDS,
+	ALL_IDEA_STATUSES,
+	mobileIdeaCategoryFields,
+	mobileIdeaStatuses
+} from '@utils/Constants';
 import Router from 'next/router';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
 type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'comments'>;
@@ -25,6 +30,7 @@ const CreateIdeaForm = () => {
 		handleSubmit,
 		control,
 		getValues,
+		reset,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<TEditIdea>({
 		mode: 'all',
@@ -53,6 +59,13 @@ const CreateIdeaForm = () => {
 		}
 	});
 
+	const resetField = useCallback((name: string) => {
+		reset({
+			...getValues(),
+			[name]: ''
+		});
+	}, []);
+
 	return (
 		<Form
 			id={'create-edit-idea-form'}
@@ -76,7 +89,8 @@ const CreateIdeaForm = () => {
 				rules={{ required: true, maxLength: 100 }}
 				size={'lg'}
 				fontSize={'lg'}
-				variant={'flushed'}
+				variant={'filled'}
+				onClear={() => resetField('name')}
 				isRequired
 			/>
 
@@ -94,6 +108,7 @@ const CreateIdeaForm = () => {
 				maxRows={5}
 				control={control}
 				rules={{ required: true, maxLength: 200 }}
+				onClear={() => resetField('summary')}
 				isRequired
 			/>
 
@@ -111,6 +126,7 @@ const CreateIdeaForm = () => {
 				maxRows={5}
 				control={control}
 				rules={{ required: true, maxLength: 1000 }}
+				onClear={() => resetField('description')}
 				isRequired
 			/>
 			<SelectField
@@ -121,8 +137,10 @@ const CreateIdeaForm = () => {
 				errorText="Please select the field for the idea"
 				placeholder="field"
 				size={'md'}
-				options={ALL_INDUSTRIES}
+				options={ALL_IDEA_CATEGORY_FIELDS}
+				mobileOptions={mobileIdeaCategoryFields()}
 				control={control}
+				onClear={() => resetField('field')}
 				isRequired
 			/>
 			<SelectField
@@ -133,7 +151,9 @@ const CreateIdeaForm = () => {
 				errorText="Please select the status for the idea"
 				placeholder="status"
 				size={'md'}
-				options={IDEA_STATUS}
+				options={ALL_IDEA_STATUSES}
+				mobileOptions={mobileIdeaStatuses()}
+				onClear={() => resetField('status')}
 				control={control}
 				isRequired
 			/>
@@ -146,6 +166,7 @@ const CreateIdeaForm = () => {
 				error={errors['competitors']}
 				errorText="Competitors must not be more than 200 characters"
 				rules={{ maxLength: 200 }}
+				onClear={() => resetField('competitors')}
 			/>
 			<TextareaField
 				id="team"
@@ -156,6 +177,7 @@ const CreateIdeaForm = () => {
 				error={errors['team']}
 				errorText="Team must not be more than 200 characters"
 				rules={{ maxLength: 200 }}
+				onClear={() => resetField('team')}
 			/>
 			<TextareaField
 				id="additionalInformation"
@@ -166,6 +188,7 @@ const CreateIdeaForm = () => {
 				error={errors['additionalInformation']}
 				errorText="Additional information must not be more than 500 characters"
 				rules={{ maxLength: 500 }}
+				onClear={() => resetField('additionalInformation')}
 			/>
 
 			<SwitchField
@@ -182,7 +205,8 @@ const CreateIdeaForm = () => {
 				label={'Create your idea'}
 				alignSelf={'center'}
 				isLoading={isSubmitting}
-				disabled={!isValid || isSubmitting}
+				// disabled={!isValid || isSubmitting}
+				disabled={isSubmitting}
 				mt={'auto'}
 				w={{ base: 'full', sm: '200px' }}
 				size={'md'}

@@ -85,7 +85,7 @@ const WorkExperienceTab = () => {
 				tags={[
 					{
 						title: 'Specialist field',
-						value: specialistIndustry ?? 'Not set'
+						value: specialistIndustry || 'Not set'
 						// icon: IoBulbOutline
 					},
 					{
@@ -95,12 +95,12 @@ const WorkExperienceTab = () => {
 					},
 					{
 						title: 'Startup status',
-						value: status ?? 'Not set'
+						value: status || 'Not set'
 						// icon: IoAnalyticsOutline
 					},
 					{
 						title: 'Capacity (hours per week)',
-						value: availability ?? 'Not set'
+						value: availability || 'Not set'
 						// value: availability
 						// 	? convertCapacityToString(availability)
 						// 	: 'Not set',

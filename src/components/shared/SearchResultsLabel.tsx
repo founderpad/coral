@@ -22,7 +22,7 @@ export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 		// 	Page {page} of {Math.ceil((total || 0) / limit)}
 		// </CaptionLabel>
 
-		<Label d={'flex'} ml={'auto'} color={'gray.400'} fontSize={'xs'}>
+		<Label d={'flex'} ml={'auto'} color={'fpGrey.500'} fontSize={'x-small'}>
 			{offset + 1} - {offset + pageSize} of {total}
 			<PointSeparator small />
 			Page {page} of {Math.ceil((total || 0) / limit)}

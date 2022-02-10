@@ -26,5 +26,6 @@ body,
 	flex: 1;
 	/* height: 100%; */
 	flex-direction: column;
-	background: #f7fafc;
+	/* background: #f7fafc; */
+	background: #f9f8f8;
 }

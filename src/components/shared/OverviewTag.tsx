@@ -17,7 +17,7 @@ export const OverviewTag = ({ title, value, icon }: IOverviewTag) => (
 		d={'flex'}
 		alignItems={'center'}
 		flexDirection={'column'}
-		bg={'gray.50'}
+		bg={'fpPrimary.50'}
 		borderWidth={0}
 		alignSelf={'stretch'}
 		justifyContent={'center'}
@@ -29,7 +29,7 @@ export const OverviewTag = ({ title, value, icon }: IOverviewTag) => (
 			alignItems={'center'}
 			mb={1}
 		>
-			<Icon as={icon} fontSize={'sm'} mr={1} />
+			{icon && <Icon as={icon} fontSize={'sm'} mr={1} />}
 			{value}
 		</Label>
 		<Label color={'gray.400'} fontSize={'xs'}>
