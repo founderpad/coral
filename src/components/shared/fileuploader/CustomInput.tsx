@@ -1,10 +1,10 @@
-import { Flex, Icon, Text } from '@chakra-ui/react';
-import { CaptionLabel } from '@components/labels';
+import { Flex, Icon } from '@chakra-ui/react';
+import { CaptionLabel, Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { useFileUploader } from '@hooks/util';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { IoCloudUploadSharp } from 'react-icons/io5';
+import { IoCloudUploadOutline } from 'react-icons/io5';
 import {
 	IFileUploadProps,
 	IStorageBucket,
@@ -63,12 +63,12 @@ export const CustomInput = (props: Props) => {
 				d={'flex'}
 				justifyContent={'center'}
 				alignItems={'center'}
-				boxSize={'125px'}
+				boxSize={'100px'}
 				p={2}
-				bgColor={'gray.100'}
+				bgColor={'fpLightGrey.300'}
 				border={'2px dashed'}
-				borderColor={'gray.300'}
-				_hover={{ borderColor: 'gray.400' }}
+				borderColor={'fpLightGrey.900'}
+				_hover={{ borderColor: 'gray.300' }}
 				as="section"
 				cursor={'pointer'}
 				{...getRootProps()}
@@ -81,14 +81,13 @@ export const CustomInput = (props: Props) => {
 					flexDirection={'column'}
 				>
 					<Icon
-						as={IoCloudUploadSharp}
+						as={IoCloudUploadOutline}
 						fontSize={'x-large'}
 						mb={2}
-						color={'gray.400'}
 					/>
-					<Text color={'gray.500'} fontSize={'sm'}>
+					<Label fontSize={'xs'} color={'gray.400'}>
 						Upload
-					</Text>
+					</Label>
 				</Flex>
 			</FlexLayout>
 

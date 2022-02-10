@@ -14,9 +14,13 @@ import {
 import { useCurrentUser } from '@hooks/auth';
 import { setProfileComplete } from '@slices/auth';
 import {
-	ALL_INDUSTRIES,
+	ALL_IDEA_CATEGORY_FIELDS,
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
+	mobileAvailabilityOptions,
+	mobileIdeaCategoryFields,
+	mobileNumberOfStartups,
+	mobileStartupStatuses,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
@@ -80,10 +84,10 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 	const { errors, isSubmitting, isValid } = formState;
 
-	const resetField = useCallback((name: string | number) => {
+	const resetField = useCallback((name: string) => {
 		reset({
 			...getValues(),
-			[name]: typeof name === 'string' ? '' : 0
+			[name]: ''
 		});
 	}, []);
 
@@ -96,14 +100,14 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			isValid={isValid}
 			stackProps={{ spacing: 10 }}
 		>
-			<SelectField
+			{/* <SelectField
 				id="userOption"
 				name="userOption"
 				label="What am I looking for?"
 				placeholder="what I am looking for"
 				options={ALL_INDUSTRIES}
 				control={control}
-			/>
+			/> */}
 
 			<TextareaField
 				id="background"
@@ -136,8 +140,10 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				name="specialistIndustry"
 				label="What is your specialist field?"
 				placeholder="specialist field"
-				options={ALL_INDUSTRIES}
+				options={ALL_IDEA_CATEGORY_FIELDS}
+				mobileOptions={mobileIdeaCategoryFields()}
 				control={control}
+				onClear={() => resetField('specialistIndustry')}
 			/>
 
 			<Stack direction={{ base: 'column', md: 'row' }} spacing={6}>
@@ -145,21 +151,25 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 					id="startups"
 					name="startups"
 					options={NUMBER_OF_STARTUPS}
+					mobileOptions={mobileNumberOfStartups()}
 					placeholder="number of startups"
 					control={control}
 					label={'How many startups have you worked with?'}
+					onClear={() => resetField('startups')}
 				/>
 
 				<SelectField
 					id="availability"
 					name="availability"
 					options={AVAILABILITY_IN_HOURS}
+					mobileOptions={mobileAvailabilityOptions()}
 					placeholder="capacity per week"
 					control={control}
 					label={'Capacity (hours per week)'}
 					helperText={
 						'How many hours you can contribute towards a new idea'
 					}
+					onClear={() => resetField('availability')}
 				/>
 			</Stack>
 
@@ -171,6 +181,8 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				errorText="You must specify your current startup status"
 				placeholder="startup status"
 				options={STARTUP_STATUS}
+				mobileOptions={mobileStartupStatuses()}
+				onClear={() => resetField('status')}
 				control={control}
 				isRequired
 			/>
@@ -179,13 +191,9 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				id="businessDescription"
 				name="businessDescription"
 				label="What were your previous businesses?"
-				placeholder=""
+				placeholder="List your previous businesses"
 				control={control}
-				onClear={() => {
-					reset({
-						businessDescription: ''
-					});
-				}}
+				onClear={() => resetField('businessDescription')}
 			/>
 
 			<FormControl>

@@ -1,11 +1,11 @@
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
-import {
-	IoAnalyticsOutline,
-	IoBulbOutline,
-	IoRocketOutline,
-	IoTimeOutline
-} from '@components/icons';
+// import {
+// 	IoAnalyticsOutline,
+// 	IoBulbOutline,
+// 	IoRocketOutline,
+// 	IoTimeOutline
+// } from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { Loading, TitleEditAction } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
@@ -85,31 +85,29 @@ const WorkExperienceTab = () => {
 				tags={[
 					{
 						title: 'Specialist field',
-						value: specialistIndustry ?? 'Not set',
-						icon: IoBulbOutline
+						value: specialistIndustry ?? 'Not set'
+						// icon: IoBulbOutline
 					},
 					{
 						title: 'Previous startups',
-						value: startups ? `${startups} startups` : 'Not set',
-						icon: IoRocketOutline
+						value: startups ? `${startups}` : 'Not set'
+						// icon: IoRocketOutline
 					},
 					{
 						title: 'Startup status',
-						value: status ?? 'Not set',
-						icon: IoAnalyticsOutline
+						value: status ?? 'Not set'
+						// icon: IoAnalyticsOutline
 					},
 					{
 						title: 'Capacity (hours per week)',
-						value: availability ?? 'Not set',
+						value: availability ?? 'Not set'
 						// value: availability
 						// 	? convertCapacityToString(availability)
 						// 	: 'Not set',
-						icon: IoTimeOutline
+						// icon: IoTimeOutline
 					}
 				]}
 			/>
-
-			<AppDivider />
 
 			<StackLayout spacing={8}>
 				<ContentFieldAndValue title={'Background'} value={background} />

@@ -1,6 +1,6 @@
 import { TIndustry } from 'src/types/idea';
 
-export const ALL_INDUSTRIES: TIndustry[] = [
+export const ALL_IDEA_CATEGORY_FIELDS: TIndustry[] = [
 	{ label: 'Aerospace', value: 'Aerospace' },
 	{ label: 'Agriculture', value: 'Agriculture' },
 	{ label: 'Clothing', value: 'Clothing' },
@@ -24,6 +24,13 @@ export const ALL_INDUSTRIES: TIndustry[] = [
 	{ label: 'Utilities', value: 'Utilities' },
 	{ label: 'Other', value: 'Other' }
 ];
+
+export const mobileIdeaCategoryFields = (): any =>
+	ALL_IDEA_CATEGORY_FIELDS.map((field) => (
+		<option key={field.label} value={field.label}>
+			{field.label}
+		</option>
+	));
 
 export const ALL_COUNTRIES = [
 	{ label: 'Afghanistan', value: 'Afghanistan' },
@@ -232,6 +239,13 @@ export const ALL_COUNTRIES = [
 	{ label: 'Zambia', value: 'Zambia' },
 	{ label: 'Zimbabwe', value: 'Zimbabwe' }
 ];
+
+export const mobileCountriesList = (): any =>
+	ALL_COUNTRIES.map((country) => (
+		<option key={country.value} value={country.value}>
+			{country.value}
+		</option>
+	));
 
 // export const ALL_COUNTRIES = [
 // 	'Afghanistan',
@@ -484,6 +498,13 @@ export const NUMBER_OF_STARTUPS = [
 	{ label: '10+ startups', value: '10+ startups' }
 ];
 
+export const mobileNumberOfStartups = (): any =>
+	NUMBER_OF_STARTUPS.map((startups) => (
+		<option key={startups.value} value={startups.value}>
+			{startups.value}
+		</option>
+	));
+
 // export const STARTUP_STATUS = [
 // 	{ key: 'exited', value: 'Exited the business' },
 // 	{ key: 'parttime', value: 'Still involved part time in a startup' },
@@ -504,6 +525,13 @@ export const STARTUP_STATUS = [
 	{ label: 'Not involved in a startup', value: 'Not involved in a startup' }
 ];
 
+export const mobileStartupStatuses = (): any =>
+	STARTUP_STATUS.map((status) => (
+		<option key={status.value} value={status.value}>
+			{status.value}
+		</option>
+	));
+
 // export const AVAILABILITY_IN_HOURS = [
 // 	{ key: '0110', value: '1-10 hours', min: 1, max: 10 },
 // 	{ key: '1120', value: '11-20 hours', min: 11, max: 20 },
@@ -519,6 +547,13 @@ export const AVAILABILITY_IN_HOURS = [
 	{ label: '31-40 hours', value: '31-40 hours', min: 31, max: 40 },
 	{ label: '41+ hours', value: '41+ hours', min: 41 }
 ];
+
+export const mobileAvailabilityOptions = (): any =>
+	AVAILABILITY_IN_HOURS.map((availability) => (
+		<option key={availability.value} value={availability.value}>
+			{availability.value}
+		</option>
+	));
 
 // *
 
@@ -540,12 +575,19 @@ type IdeaStatus = {
 	readonly value: string;
 };
 
-export const IDEA_STATUS: IdeaStatus[] = [
+export const ALL_IDEA_STATUSES: IdeaStatus[] = [
 	{ label: 'New idea', value: 'New idea' },
 	{ label: 'Building team', value: 'Building team' },
 	{ label: 'Pre-launch', value: 'Pre-launch' },
 	{ label: 'Launched', value: 'Launched' }
 ];
+
+export const mobileIdeaStatuses = (): any =>
+	ALL_IDEA_STATUSES.map((status) => (
+		<option key={status.value} value={status.value}>
+			{status.value}
+		</option>
+	));
 
 export enum UserType {
 	FOUNDER = 'FOUNDER',

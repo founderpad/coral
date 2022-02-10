@@ -1,5 +1,5 @@
 import { StackProps } from '@chakra-ui/layout';
-import { Icon } from '@chakra-ui/react';
+// import { Icon } from '@chakra-ui/react';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import BaseTag from '@components/tags/BaseTag';
@@ -7,7 +7,7 @@ import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
 
 interface IOverviewTag {
-	title: string;
+	title?: string;
 	value: string;
 	icon?: IconType;
 	direction?: StackProps['direction'];
@@ -35,18 +35,18 @@ const OverviewTags = memo(
 						p={2}
 						d={'flex'}
 						flexDirection={'column'}
-						bg={'gray.50'}
+						bg={'fpLightGrey.300'}
 						borderWidth={0}
 						justifyContent={'flex-start'}
 					>
 						<Label
 							fontSize={'xs'}
-							color={'fpPrimary.700'}
+							// color={'fpPrimary.700'}
 							alignItems={'center'}
 							mb={1}
 							display={'flex'}
 						>
-							<Icon as={overviewTag.icon} mr={2} />
+							{/* <Icon as={overviewTag.icon} mr={2} /> */}
 							{overviewTag.value}
 						</Label>
 						<Label color={'gray.400'} fontSize={'xs'}>

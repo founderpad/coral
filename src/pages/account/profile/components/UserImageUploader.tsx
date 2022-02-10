@@ -66,13 +66,13 @@ const UserImageUploader = () => {
 	return (
 		<ImageUploader
 			title="Edit profile photo"
-			boxSize={140}
+			boxSize={{ base: 100, md: 120 }}
 			onUpload={onUpload}
 			defaultSrc={avatarUrl ?? undefined}
 		>
 			<UserAvatar
 				src={avatarUrl ?? undefined}
-				boxSize={140}
+				boxSize={{ base: 100, md: 120 }}
 				aria-label="Edit profile picture"
 			/>
 		</ImageUploader>

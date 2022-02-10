@@ -15,9 +15,9 @@ const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 
 	return (
 		<React.Fragment>
-			<FlexLayout alignItems={'stretch'}>
+			<FlexLayout>
 				{is_new && <NewIdeaBadge />}
-				<FlexLayout direction={'column'}>
+				<FlexLayout direction={'column'} flex={1}>
 					<Label
 						d={'flex'}
 						w={'full'}
@@ -25,7 +25,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 						fontWeight={'medium'}
 						fontSize={'sm'}
 						css={{ whiteSpace: 'normal' }}
-						wordBreak={'break-word'}
+						wordBreak={'break-all'}
 						noOfLines={1}
 						isTruncated
 					>

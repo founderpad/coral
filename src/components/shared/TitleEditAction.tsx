@@ -8,9 +8,19 @@ export const TitleEditAction = memo(
 		<FlexLayout
 			justifyContent={'space-between'}
 			alignItems={'center'}
-			w={'full'}
+			flex={1}
 		>
-			<Heading size={'h6'} fontSize={'sm'} color={'gray.900'}>
+			<Heading
+				d={'flex'}
+				flex={1}
+				css={{ whiteSpace: 'normal' }}
+				wordBreak={'break-all'}
+				noOfLines={1}
+				isTruncated
+				size={'h6'}
+				fontSize={'sm'}
+				color={'gray.900'}
+			>
 				{title}
 			</Heading>
 

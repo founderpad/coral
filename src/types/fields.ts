@@ -42,6 +42,7 @@ export type IInputFieldProps<T extends FieldValues> = InputProps & {
 
 export interface ISelectFieldProps extends IInputFieldProps<any> {
 	options: any;
+	mobileOptions: any;
 	isUrl?: boolean;
 }
 

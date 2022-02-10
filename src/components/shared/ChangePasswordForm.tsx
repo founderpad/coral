@@ -20,6 +20,7 @@ const ChangePasswordForm = (props: Props) => {
 		handleSubmit,
 		control,
 		reset,
+		getValues,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm({ mode: 'all' });
 
@@ -27,6 +28,13 @@ const ChangePasswordForm = (props: Props) => {
 
 	const isChangeSuccess = useQueryParam('cp_success');
 	const isChangeError = useQueryParam('cp_error');
+
+	const resetField = (name: string) => {
+		reset({
+			...getValues(),
+			[name]: ''
+		});
+	};
 
 	return (
 		<Form
@@ -45,11 +53,7 @@ const ChangePasswordForm = (props: Props) => {
 				control={control}
 				size={'md'}
 				fontSize={'sm'}
-				onClear={() => {
-					reset({
-						newPassword: ''
-					});
-				}}
+				onClear={() => resetField('newPassword')}
 				isRequired
 			/>
 

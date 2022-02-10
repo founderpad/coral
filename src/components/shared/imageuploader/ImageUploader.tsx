@@ -152,8 +152,7 @@ export const ImageUploader = (props: Props) => {
 			flexDirection={'column'}
 			position={'relative'}
 			rounded={'full'}
-			boxSize={140}
-			boxShadow={'lg'}
+			boxSize={{ base: 100, md: 120 }}
 		>
 			<input
 				id={'image-upload'}
@@ -175,7 +174,7 @@ export const ImageUploader = (props: Props) => {
 				title={props.title}
 				position={'absolute'}
 				bottom={0}
-				transform={'translateY(5%) translateX(100%)'}
+				transform={'translateY(5%) translateX(125%)'}
 				zIndex={1}
 				borderWidth={1}
 			/>
@@ -183,7 +182,7 @@ export const ImageUploader = (props: Props) => {
 				className="image"
 				position={'relative'}
 				rounded={'full'}
-				boxSize={140}
+				boxSize={{ base: 100, md: 120 }}
 				css={{
 					'> img': {
 						maxWidth: '100%',

@@ -11,7 +11,7 @@ import {
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { updatePersonalDetails } from '@slices/auth';
-import { ALL_COUNTRIES } from '@utils/Constants';
+import { ALL_COUNTRIES, mobileCountriesList } from '@utils/Constants';
 import { redirectTo } from '@utils/validators';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
@@ -72,6 +72,13 @@ const PersonalDetailsForm = () => {
 		}
 	});
 
+	const resetField = (name: string) => {
+		reset({
+			...getValues(),
+			[name]: ''
+		});
+	};
+
 	return (
 		<Form
 			id={'editPersonalDetailsForm'}
@@ -85,14 +92,15 @@ const PersonalDetailsForm = () => {
 				label="Display name"
 				placeholder="Display name"
 				error={errors['displayName']}
-				errorText="You must input a display name"
+				errorText={
+					errors['displayName']?.type === 'required'
+						? 'You must input a display name'
+						: 'Your display name can not be more than 50 characters'
+				}
 				name="displayName"
 				control={control}
-				onClear={() => {
-					reset({
-						displayName: ''
-					});
-				}}
+				onClear={() => resetField('displayName')}
+				rules={{ required: true, maxLength: 50 }}
 				isRequired
 			/>
 			{/* <InputField
@@ -122,6 +130,8 @@ const PersonalDetailsForm = () => {
 				label="Country"
 				placeholder={'country'}
 				options={ALL_COUNTRIES}
+				mobileOptions={mobileCountriesList()}
+				onClear={() => resetField('country')}
 				control={control}
 				full
 			/>
@@ -133,11 +143,7 @@ const PersonalDetailsForm = () => {
 					placeholder="Location"
 					name="location"
 					control={control}
-					onClear={() => {
-						reset({
-							location: ''
-						});
-					}}
+					onClear={() => resetField('location')}
 				/>
 			)}
 		</Form>

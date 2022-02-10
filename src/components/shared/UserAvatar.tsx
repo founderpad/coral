@@ -25,6 +25,7 @@ export const UserAvatar = (props: Props) => {
 			rounded={'full'}
 			bg={'gray.200'}
 			color={'white'}
+			ignoreFallback={false}
 		>
 			{badge}
 		</Avatar>

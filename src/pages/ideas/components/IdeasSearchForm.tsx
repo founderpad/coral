@@ -4,7 +4,12 @@ import Form from '@components/form/Form';
 import { InputField } from '@components/input/InputField';
 import { SelectField } from '@components/input/SelectField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
-import { ALL_INDUSTRIES, IDEA_STATUS } from '@utils/Constants';
+import {
+	ALL_IDEA_CATEGORY_FIELDS,
+	ALL_IDEA_STATUSES,
+	mobileIdeaCategoryFields,
+	mobileIdeaStatuses
+} from '@utils/Constants';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,7 +31,7 @@ const IdeasSearchForm = () => {
 	const router = useRouter();
 	const { page, ...rest } = router.query;
 
-	const { handleSubmit, control, reset } = useForm<IdeaSearch>({
+	const { handleSubmit, control, reset, getValues } = useForm<IdeaSearch>({
 		defaultValues: {
 			...rest
 		}
@@ -87,6 +92,13 @@ const IdeasSearchForm = () => {
 	// 	);
 	// };
 
+	const resetField = (name: string) => {
+		reset({
+			...getValues(),
+			[name]: ''
+		});
+	};
+
 	return (
 		<Form
 			id={'ideaSearchForm'}
@@ -101,17 +113,15 @@ const IdeasSearchForm = () => {
 				control={control}
 				label={'Name'}
 				variant={'filled'}
-				onClear={() => {
-					reset({
-						name: ''
-					});
-				}}
+				onClear={() => resetField('name')}
 				isUrl
 			/>
 			<SelectField
 				id="field"
 				name="field"
-				options={ALL_INDUSTRIES}
+				options={ALL_IDEA_CATEGORY_FIELDS}
+				mobileOptions={mobileIdeaCategoryFields()}
+				onClear={() => resetField('field')}
 				placeholder="field"
 				control={control}
 				label={'Field'}
@@ -121,7 +131,9 @@ const IdeasSearchForm = () => {
 			<SelectField
 				id="status"
 				name="status"
-				options={IDEA_STATUS}
+				options={ALL_IDEA_STATUSES}
+				mobileOptions={mobileIdeaStatuses()}
+				onClear={() => resetField('status')}
 				placeholder="status"
 				control={control}
 				label={'Status'}

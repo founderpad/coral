@@ -55,13 +55,11 @@ export const Drawer = ({
 			<DrawerContent borderTopWidth={1} maxH={'100%'}>
 				{title && (
 					<React.Fragment>
-						{!actions && (
-							<DrawerCloseButton top={3} color={'black'} />
-						)}
 						<DrawerHeader
 							fontWeight={'medium'}
-							fontSize={'lg'}
-							p={4}
+							fontSize={'md'}
+							px={4}
+							py={2}
 							display={'flex'}
 							alignItems={'center'}
 							borderBottomWidth={1}
@@ -78,6 +76,9 @@ export const Drawer = ({
 								</ButtonGroup>
 							)}
 						</DrawerHeader>
+						{!actions && (
+							<DrawerCloseButton top={1} color={'black'} />
+						)}
 					</React.Fragment>
 				)}
 
