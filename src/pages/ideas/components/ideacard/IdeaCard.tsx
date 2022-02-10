@@ -38,14 +38,30 @@ const IdeaCard = (idea: TIdeaPreviewFieldsFragment) => (
 				alignItems={'flex-start'}
 				_hover={{
 					borderColor: 'gray.50',
-					transition: 'ease-in .2s',
+					transition: 'ease-in .3s',
 					transform: 'scale(1.0125)'
 				}}
 				py={4}
 				flex={1}
 				rounded={'md'}
 				position={'relative'}
+				css={{
+					'> .cardHover:hover': {
+						background: 'rgba(255, 255, 255, 0.5)',
+						transition: 'ease-in .3s'
+					}
+				}}
 			>
+				<BoxLayout
+					as={'span'}
+					className={'cardHover'}
+					position={'absolute'}
+					w={'full'}
+					h={'full'}
+					top={0}
+					left={0}
+					zIndex={999}
+				/>
 				<IdeaCardHeader {...idea} />
 				<IdeaCardBody {...idea} />
 			</FlexLayout>
