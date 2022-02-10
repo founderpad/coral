@@ -2,15 +2,15 @@ import { ButtonGroup, Checkbox, FormControl } from '@chakra-ui/react';
 import { CancelButton, SubmitButton } from '@components/buttons';
 import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
-import { SelectField } from '@components/input/SelectField';
+// import { SelectField } from '@components/input/SelectField';
 import { Label } from '@components/labels';
 import AppDivider from '@components/shared/AppDivider';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
-	ALL_INDUSTRIES,
-	AVAILABILITY_IN_HOURS,
-	EXPERIENCE_SKILLS,
-	STARTUP_STATUS
+	// ALL_INDUSTRIES,
+	// AVAILABILITY_IN_HOURS,
+	EXPERIENCE_SKILLS
+	// STARTUP_STATUS
 } from '@utils/Constants';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
@@ -25,7 +25,8 @@ interface ISearchFields {
 const FounderSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
-	const { handleSubmit, control, reset } = useForm<ISearchFields>();
+	// control
+	const { handleSubmit, reset } = useForm<ISearchFields>();
 	const router = useRouter();
 
 	const onClick = (values: ISearchFields) => {
@@ -87,7 +88,7 @@ const FounderSearchForm = () => {
 				Search founders
 			</Label>
 
-			<SelectField
+			{/* <SelectField
 				id="status"
 				name="status"
 				options={STARTUP_STATUS}
@@ -95,9 +96,9 @@ const FounderSearchForm = () => {
 				control={control}
 				label={'Current start-up status'}
 				variant={'filled'}
-			/>
+			/> */}
 
-			<SelectField
+			{/* <SelectField
 				id="availability"
 				name="availability"
 				options={AVAILABILITY_IN_HOURS}
@@ -114,7 +115,7 @@ const FounderSearchForm = () => {
 				placeholder="specialist field"
 				options={ALL_INDUSTRIES}
 				control={control}
-			/>
+			/> */}
 			<AppDivider />
 			<FormControl>
 				<FormLabelText label={'Skills'} />

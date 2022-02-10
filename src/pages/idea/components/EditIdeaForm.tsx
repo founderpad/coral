@@ -8,8 +8,13 @@ import { TextareaField } from '@components/input/TextareaField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@generated/api';
 import { useSuccessNotification } from '@hooks/toast';
-import { ALL_INDUSTRIES, IDEA_STATUS } from '@utils/Constants';
-import React, { useContext } from 'react';
+import {
+	ALL_IDEA_CATEGORY_FIELDS,
+	ALL_IDEA_STATUSES,
+	mobileIdeaCategoryFields,
+	mobileIdeaStatuses
+} from '@utils/Constants';
+import React, { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useIdeaFragment } from '../query/ideaQuery';
 
@@ -24,6 +29,7 @@ export const EditIdeaForm = () => {
 		handleSubmit,
 		control,
 		getValues,
+		reset,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<TIdeas_Set_Input>({
 		mode: 'all',
@@ -47,6 +53,13 @@ export const EditIdeaForm = () => {
 		}
 	});
 
+	const resetField = useCallback((name: string) => {
+		reset({
+			...getValues(),
+			[name]: ''
+		});
+	}, []);
+
 	return (
 		<Form
 			id={'editIdeaForm'}
@@ -65,6 +78,7 @@ export const EditIdeaForm = () => {
 				errorText="Please enter a name for your idea"
 				name="name"
 				control={control}
+				onClear={() => resetField('name')}
 				isRequired
 			/>
 
@@ -77,6 +91,7 @@ export const EditIdeaForm = () => {
 				errorText="Please enter your idea description (max. 500 characters)"
 				control={control}
 				rules={{ maxLength: 500 }}
+				onClear={() => resetField('description')}
 				isRequired
 			/>
 
@@ -88,8 +103,10 @@ export const EditIdeaForm = () => {
 				errorText="Please select the status for your idea."
 				placeholder="status"
 				size={'sm'}
-				options={IDEA_STATUS}
+				options={ALL_IDEA_STATUSES}
+				mobileOptions={mobileIdeaStatuses()}
 				control={control}
+				onClear={() => resetField('status')}
 				isRequired
 			/>
 
@@ -101,8 +118,10 @@ export const EditIdeaForm = () => {
 				errorText="Please select the field for your idea."
 				placeholder="field"
 				size={'sm'}
-				options={ALL_INDUSTRIES}
+				options={ALL_IDEA_CATEGORY_FIELDS}
+				mobileOptions={mobileIdeaCategoryFields()}
 				control={control}
+				onClear={() => resetField('field')}
 				isRequired
 			/>
 
@@ -111,6 +130,7 @@ export const EditIdeaForm = () => {
 				label="Your competitors"
 				name="competitors"
 				placeholder="List your competitors about your idea"
+				onClear={() => resetField('competitors')}
 				control={control}
 			/>
 
@@ -120,6 +140,7 @@ export const EditIdeaForm = () => {
 				name="team"
 				placeholder="List each team member"
 				control={control}
+				onClear={() => resetField('team')}
 			/>
 
 			<TextareaField
@@ -129,6 +150,7 @@ export const EditIdeaForm = () => {
 				placeholder="Any additional information"
 				h={'200px'}
 				control={control}
+				onClear={() => resetField('additionalInformation')}
 			/>
 
 			<SwitchField

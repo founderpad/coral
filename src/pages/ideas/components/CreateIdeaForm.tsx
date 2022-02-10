@@ -31,7 +31,7 @@ const CreateIdeaForm = () => {
 		control,
 		getValues,
 		reset,
-		formState: { errors, isSubmitting, isValid }
+		formState: { errors, isSubmitting }
 	} = useForm<TEditIdea>({
 		mode: 'all',
 		defaultValues: {

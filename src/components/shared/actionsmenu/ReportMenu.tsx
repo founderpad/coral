@@ -7,7 +7,7 @@ import { BaseMenuItem } from '@components/menu';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { TReport_Insert_Input, useCreateReportMutation } from '@generated/api';
 import { useSuccessNotification } from '@hooks/toast';
-import { REPORT_REASONS } from '@utils/Constants';
+import { mobileReportOptions, REPORT_REASONS } from '@utils/Constants';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -98,8 +98,9 @@ const ReportForm = ({
 				name="reason"
 				label={`Why do you want to report this ${title}?`}
 				options={REPORT_REASONS}
+				mobileOptions={mobileReportOptions()}
 				error={errors['reason']}
-				// errorText="You must provide a reason"
+				errorText="You must provide a reason"
 				control={control}
 				isRequired
 			/>

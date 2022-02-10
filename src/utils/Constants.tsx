@@ -25,7 +25,7 @@ export const ALL_IDEA_CATEGORY_FIELDS: TIndustry[] = [
 	{ label: 'Other', value: 'Other' }
 ];
 
-export const mobileIdeaCategoryFields = (): any =>
+export const mobileIdeaCategoryFields = () =>
 	ALL_IDEA_CATEGORY_FIELDS.map((field) => (
 		<option key={field.label} value={field.label}>
 			{field.label}
@@ -240,7 +240,7 @@ export const ALL_COUNTRIES = [
 	{ label: 'Zimbabwe', value: 'Zimbabwe' }
 ];
 
-export const mobileCountriesList = (): any =>
+export const mobileCountriesList = () =>
 	ALL_COUNTRIES.map((country) => (
 		<option key={country.value} value={country.value}>
 			{country.value}
@@ -498,7 +498,7 @@ export const NUMBER_OF_STARTUPS = [
 	{ label: '10+ startups', value: '10+ startups' }
 ];
 
-export const mobileNumberOfStartups = (): any =>
+export const mobileNumberOfStartups = () =>
 	NUMBER_OF_STARTUPS.map((startups) => (
 		<option key={startups.value} value={startups.value}>
 			{startups.value}
@@ -525,7 +525,7 @@ export const STARTUP_STATUS = [
 	{ label: 'Not involved in a startup', value: 'Not involved in a startup' }
 ];
 
-export const mobileStartupStatuses = (): any =>
+export const mobileStartupStatuses = () =>
 	STARTUP_STATUS.map((status) => (
 		<option key={status.value} value={status.value}>
 			{status.value}
@@ -548,7 +548,7 @@ export const AVAILABILITY_IN_HOURS = [
 	{ label: '41+ hours', value: '41+ hours', min: 41 }
 ];
 
-export const mobileAvailabilityOptions = (): any =>
+export const mobileAvailabilityOptions = () =>
 	AVAILABILITY_IN_HOURS.map((availability) => (
 		<option key={availability.value} value={availability.value}>
 			{availability.value}
@@ -570,6 +570,13 @@ export const REPORT_REASONS = [
 	{ label: 'Harrassment', value: 'Hate speech' }
 ];
 
+export const mobileReportOptions = () =>
+	REPORT_REASONS.map((reason) => (
+		<option key={reason.value} value={reason.value}>
+			{reason.value}
+		</option>
+	));
+
 type IdeaStatus = {
 	readonly label: string;
 	readonly value: string;
@@ -582,7 +589,7 @@ export const ALL_IDEA_STATUSES: IdeaStatus[] = [
 	{ label: 'Launched', value: 'Launched' }
 ];
 
-export const mobileIdeaStatuses = (): any =>
+export const mobileIdeaStatuses = () =>
 	ALL_IDEA_STATUSES.map((status) => (
 		<option key={status.value} value={status.value}>
 			{status.value}
