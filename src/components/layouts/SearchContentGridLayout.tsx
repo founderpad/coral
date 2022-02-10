@@ -22,8 +22,8 @@ const SearchContentGridLayout = ({
 				h={'full'}
 				bg={'white'}
 				spacing={1}
-				// borderRightWidth={1}
-				// borderRightColor={'gray.100'}
+				borderRightWidth={1}
+				borderRightColor={'gray.100'}
 				rounded={'none'}
 			>
 				{children[0]}
@@ -32,9 +32,7 @@ const SearchContentGridLayout = ({
 		<GridItem
 			colSpan={{ base: 7, md: 4, lg: 5 }}
 			position={'relative'}
-			bg={'#f9f8f8'}
-			// p={6}
-			px={6}
+			px={4}
 		>
 			{children[1]}
 			{children?.[2]}

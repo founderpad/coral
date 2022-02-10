@@ -1,5 +1,5 @@
 import Icon from '@chakra-ui/icon';
-import { IoChatbubbleOutline, IoChatbubbleSharp } from '@components/icons';
+import { IoChatbubbleOutline } from '@components/icons';
 import { Label } from '@components/labels';
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
