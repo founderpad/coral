@@ -19,7 +19,7 @@ export const PageLayout = (props: Props) => {
 		subtitle,
 		action,
 		children,
-		p = 4,
+		p = 6,
 		back = false,
 		...rest
 	} = props;

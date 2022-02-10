@@ -22,7 +22,12 @@ export const Pagination = (props: Props) => {
 	);
 
 	return (
-		<ButtonGroup justifyContent={'space-between'} w={'full'} mt={8} p={2}>
+		<ButtonGroup
+			justifyContent={'space-between'}
+			w={'full'}
+			pt={8}
+			px={{ base: 0, sm: 6 }}
+		>
 			<CancelButton
 				label={'Previous'}
 				onClick={() => onPageChange((page - 1).toString())}

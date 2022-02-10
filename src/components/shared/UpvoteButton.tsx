@@ -28,13 +28,13 @@ export const UpvoteButton = ({
 			cursor={'pointer'}
 			onClick={onClick}
 		/>
-		{votesTotal > 0 && (
-			<Label
-				fontSize={large ? 'md' : 'sm'}
-				color={hasUserUpvoted ? 'green.300' : 'gray.400'}
-			>
-				{votesTotal}
-			</Label>
-		)}
+		{/* {votesTotal > 0 && ( */}
+		<Label
+			fontSize={large ? 'md' : 'sm'}
+			color={hasUserUpvoted ? 'green.300' : 'gray.400'}
+		>
+			{votesTotal}
+		</Label>
+		{/* )} */}
 	</FlexLayout>
 );

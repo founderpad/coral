@@ -1,5 +1,5 @@
 import { StackLayout } from '@components/layouts';
-import { Loading, NoResults } from '@components/shared';
+import { AppDivider, Loading, NoResults } from '@components/shared';
 import {
 	TIdeaPreviewFieldsFragment,
 	TIdea_Preview_Bool_Exp,
@@ -58,7 +58,7 @@ const IdeasContainer = () => {
 
 	return (
 		<>
-			<StackLayout>
+			<StackLayout p={{ base: 4, sm: 6 }}>
 				{/* {data?.idea_preview.length > 0 && data?.idea_preview_aggregate && ( */}
 				<IdeasActions
 					total={data?.idea_preview_aggregate?.aggregate?.count ?? 0}
@@ -70,18 +70,12 @@ const IdeasContainer = () => {
 				{!loading && hasResults < 1 ? (
 					<NoResults back />
 				) : (
-					<StackLayout
-						display={'flex'}
-						flex={1}
-						// bg={'white'}
-						// bg={'gray.100'}
-						spacing={6}
-						// mt={{ sm: 3 }}
-					>
+					<StackLayout display={'flex'} flex={1} spacing={6}>
 						{data?.idea_preview?.map(
 							(idea: TIdeaPreviewFieldsFragment) => (
 								<React.Fragment key={idea.id}>
 									<IdeaCard {...idea} />
+									<AppDivider />
 								</React.Fragment>
 							)
 						)}

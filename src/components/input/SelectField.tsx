@@ -91,7 +91,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 								placeholder={`Select ${
 									placeholder ?? 'option'
 								}`}
-								rounded={'sm'}
+								rounded={'md'}
 								value={value}
 								onChange={onChange}
 								error={error?.message}

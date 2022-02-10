@@ -25,6 +25,7 @@ const MobileFilterMenu = () => {
 			display={{ base: 'flex', md: 'none' }}
 			variant={'outline'}
 			onClick={onClick}
+			size={'xs'}
 			rightIcon={<IoChevronDownSharp />}
 		>
 			Search

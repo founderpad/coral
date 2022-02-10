@@ -8,17 +8,16 @@ const SearchContentGridLayout = ({
 }: {
 	children: React.ReactChild[];
 }) => (
-	<Grid templateColumns="repeat(7, 1fr)" minH={'full'} flex={1}>
+	<Grid templateColumns="repeat(7, 1fr)" minH={'full'} rowGap={6} flex={1}>
 		<GridItem
 			display={{ base: 'none', md: 'block' }}
 			colSpan={{ md: 3, lg: 2 }}
 			position={'relative'}
-			p={6}
 			pr={0}
 		>
 			<StackLayout
+				p={6}
 				display={{ base: 'none', md: 'flex' }}
-				pr={6}
 				h={'full'}
 				bg={'white'}
 				spacing={1}
@@ -29,11 +28,7 @@ const SearchContentGridLayout = ({
 				{children[0]}
 			</StackLayout>
 		</GridItem>
-		<GridItem
-			colSpan={{ base: 7, md: 4, lg: 5 }}
-			position={'relative'}
-			px={4}
-		>
+		<GridItem colSpan={{ base: 7, md: 4, lg: 5 }} position={'relative'}>
 			{children[1]}
 			{children?.[2]}
 		</GridItem>

@@ -18,7 +18,6 @@ const IdeasActions = ({
 			justifyContent={'space-between'}
 			alignItems={'flex-end'}
 			display={{ base: 'flex', lg: 'none' }}
-			// mb={8}
 		>
 			<StickySubheader title="All ideas">
 				<Flex justifyContent={'space-between'} alignItems={'flex-end'}>
@@ -35,12 +34,7 @@ const IdeasActions = ({
 		</Flex>
 
 		{hasResults && (
-			<Flex
-				display={{ base: 'none', lg: 'flex' }}
-				bg={'white'}
-				px={6}
-				py={1}
-			>
+			<Flex display={{ base: 'none', lg: 'flex' }} bg={'white'}>
 				<SearchResultsLabel
 					pageSize={pageSize}
 					limit={10}

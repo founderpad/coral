@@ -50,10 +50,10 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 			w={'full'}
 		>
 			<StackLayout spacing={2} direction={'row'}>
-				<Tag fontSize={'xs'} px={4}>
+				<Tag fontSize={{ base: 'x-small', sm: 'xs' }} px={4}>
 					{status}
 				</Tag>
-				<Tag fontSize={'xs'} px={4}>
+				<Tag fontSize={{ base: 'x-small', sm: 'xs' }} px={4}>
 					{field}
 				</Tag>
 			</StackLayout>
