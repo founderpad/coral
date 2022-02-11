@@ -44,9 +44,9 @@ export const UserAvatarDetails = ({
 	return (
 		<StackLayout
 			align={'center'}
-			wordBreak={'break-all'}
 			direction={direction}
 			spacing={2}
+			flex={1}
 		>
 			<UserAvatar src={src} size={size} direction={direction} />
 			<StackLayout
@@ -57,7 +57,10 @@ export const UserAvatarDetails = ({
 				<Label
 					fontWeight={'medium'}
 					fontSize={fontSize}
+					css={{ whiteSpace: 'normal' }}
 					wordBreak={'break-all'}
+					noOfLines={1}
+					isTruncated
 				>
 					{name}
 				</Label>

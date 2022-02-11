@@ -21,7 +21,10 @@ export const InterestedUsersTab = () => {
 	});
 
 	useEffect(() => {
-		if (totalInterested > 0) getInterestedUsers();
+		if (totalInterested > 0) {
+			console.log('total interested: ', totalInterested);
+			getInterestedUsers();
+		}
 	}, [totalInterested, getInterestedUsers]);
 
 	if (totalInterested < 1) return <NoResults label={'interested users'} />;
@@ -29,7 +32,7 @@ export const InterestedUsersTab = () => {
 
 	return (
 		<StackLayout p={4}>
-			{data?.interested_users.map((interestedUser) => (
+			{data?.interested_users?.map((interestedUser) => (
 				<FlexLayout
 					key={interestedUser?.user?.id}
 					alignItems={'center'}
@@ -44,6 +47,7 @@ export const InterestedUsersTab = () => {
 						title={'View profile'}
 						href={`/user/${interestedUser?.user?.id}`}
 						fontSize={'xs'}
+						ml={4}
 					>
 						View profile
 					</PrimaryLink>
