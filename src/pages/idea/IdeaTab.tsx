@@ -1,16 +1,8 @@
-import { Box, Button, IconButton } from '@chakra-ui/react';
-import { PrimaryButton } from '@components/buttons';
-import { FlexLayout, StackLayout } from '@components/layouts';
+import { StackLayout } from '@components/layouts';
 import { Loading } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import React from 'react';
-import {
-	IoChevronBack,
-	IoChevronBackSharp,
-	IoChevronForwardSharp
-} from 'react-icons/io5';
 import CommentsList from './components/comments/CommentsList';
-import IdeaCycler from './components/IdeaCycler';
 import IdeaDetails from './components/IdeaDetails';
 import { IdeaOverview } from './components/IdeaOverview';
 import IdeaTitleHeader from './components/IdeaTitleHeader';
@@ -33,7 +25,7 @@ const IdeaTab = () => {
 			overflowY={'hidden'}
 			spacing={0}
 		>
-			<IdeaCycler />
+			{/* <IdeaCycler /> */}
 			<StackLayout p={4} flex={1} d={'flex'} overflowY={'auto'}>
 				<IdeaUserActions />
 				<IdeaTitleHeader />

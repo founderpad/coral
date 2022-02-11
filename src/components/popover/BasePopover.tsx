@@ -29,7 +29,10 @@ export const BasePopover = (props: Props) => {
 					boxShadow={'xl'}
 					bg={bg}
 					p={6}
+					mt={2}
+					borderTopRadius={0}
 					minWidth={'400px'}
+					// bg={'fpLightGrey.300'}
 				>
 					{children}
 				</PopoverContent>

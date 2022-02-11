@@ -41,7 +41,7 @@ const TabLayout = (props: Props) => {
 						<Tab
 							key={key}
 							fontSize={'xs'}
-							_hover={{ color: 'black', bg: '#F8F8F9' }}
+							_hover={{ color: 'black', bg: 'fpLightGrey.300' }}
 							_selected={{
 								bg: 'fpLightGrey.700',
 								color: 'black'

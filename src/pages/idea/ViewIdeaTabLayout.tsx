@@ -17,12 +17,12 @@ const ViewIdeaTabLayout = () => {
 		return (
 			<TabLayout
 				tabs={[
-					{ label: 'Idea' },
+					{ label: 'Idea details' },
 					{
 						label: 'Comments'
 					},
 					{
-						...(showInterestTab && { label: 'Interest' })
+						...(showInterestTab && { label: 'Interested users' })
 					}
 				]}
 				overflow={'hidden'}
@@ -40,9 +40,9 @@ const ViewIdeaTabLayout = () => {
 	return (
 		<TabLayout
 			tabs={[
-				{ label: 'Idea' },
+				{ label: 'Idea details' },
 				{
-					label: 'Interest'
+					label: 'Interested users'
 				}
 			]}
 			overflow={'hidden'}

@@ -59,8 +59,8 @@ const UserMenu = () => {
 						as={BaseLink}
 						href={'/account/profile'}
 						fontSize={'small'}
-						color={'gray.500'}
-						_hover={{ color: 'black' }}
+						color={'fpGrey.500'}
+						_hover={{ color: 'fpGrey.900' }}
 					>
 						Profile
 					</MenuItem>

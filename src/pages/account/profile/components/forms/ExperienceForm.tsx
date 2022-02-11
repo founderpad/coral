@@ -84,12 +84,15 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 	const { errors, isSubmitting, isValid } = formState;
 
-	const resetField = useCallback((name: string) => {
-		reset({
-			...getValues(),
-			[name]: ''
-		});
-	}, []);
+	const resetField = useCallback(
+		(name: string) => {
+			reset({
+				...getValues(),
+				[name]: ''
+			});
+		},
+		[reset, getValues]
+	);
 
 	return (
 		<Form
@@ -211,7 +214,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 								p={2}
 								onChange={onSkillsToggle}
 								colorScheme={'fpPrimary'}
-								color={'fpGrey.400'}
+								color={'fpGrey.900'}
 								ref={ref}
 								size={'md'}
 								fontSize={'xs'}

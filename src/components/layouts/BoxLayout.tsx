@@ -12,7 +12,7 @@ export const BoxLayout = forwardRef<HTMLDivElement, BoxProps>(
 			ref={ref}
 			d={'flex'}
 			p={props.p ?? 4}
-			rounded={'none'}
+			rounded={props.rounded ?? 'none'}
 		/>
 	)
 );

@@ -1,9 +1,13 @@
 import { Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
 import {
+	IoAddOutline,
 	IoAddSharp,
+	IoLockClosedOutline,
 	IoLockClosedSharp,
+	IoPersonOutline,
 	IoPersonSharp,
+	IoSearchOutline,
 	IoSearchSharp
 } from '@components/icons';
 import { IconType } from 'react-icons/lib';
@@ -32,20 +36,20 @@ const NavItems: Array<NavItem> = [
 				label: 'Search ideas',
 				subLabel: 'Search all ideas available for feedback',
 				href: '/ideas?page=1',
-				icon: IoSearchSharp
+				icon: IoSearchOutline
 			},
 			{
 				label: 'My ideas',
 				subLabel: 'See the ideas you have created',
 				href: '/ideas/my-ideas',
-				icon: IoPersonSharp
+				icon: IoPersonOutline
 			},
 			{
 				label: 'Create idea',
 				color: 'fpPrimary.500',
 				subLabel: 'Post your new idea to the community',
 				href: '/ideas/create',
-				icon: IoAddSharp,
+				icon: IoAddOutline,
 				divider: true
 			}
 		]
@@ -65,7 +69,8 @@ const NavItems: Array<NavItem> = [
 	{
 		label: (
 			<Flex display={'inline-flex'} alignItems={'center'}>
-				Users <Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
+				Users{' '}
+				<Icon as={IoLockClosedOutline} ml={2} color={'goldenrod'} />
 			</Flex>
 		),
 		href: '/users?page=1',
@@ -74,7 +79,7 @@ const NavItems: Array<NavItem> = [
 				label: 'Search users',
 				subLabel: 'Search other users',
 				href: '/users?page=1',
-				icon: IoSearchSharp
+				icon: IoSearchOutline
 			}
 		]
 	},
@@ -82,7 +87,7 @@ const NavItems: Array<NavItem> = [
 		label: (
 			<Flex display={'inline-flex'} alignItems={'center'}>
 				Messages{' '}
-				<Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
+				<Icon as={IoLockClosedOutline} ml={2} color={'goldenrod'} />
 			</Flex>
 		),
 		href: '/messages'
@@ -91,7 +96,7 @@ const NavItems: Array<NavItem> = [
 		label: (
 			<Flex display={'inline-flex'} alignItems={'center'}>
 				Coming soon{' '}
-				<Icon as={IoLockClosedSharp} ml={2} color={'goldenrod'} />
+				<Icon as={IoLockClosedOutline} ml={2} color={'goldenrod'} />
 			</Flex>
 		),
 		href: '/mentor',
