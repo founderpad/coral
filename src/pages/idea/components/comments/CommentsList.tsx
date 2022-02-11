@@ -61,7 +61,7 @@ export const CommentsList = ({
 			offset: 0
 		}
 		// notifyOnNetworkStatusChange: true,
-		// fetchPolicy: 'network-only',
+		// fetchPolicy: 'no-cache'
 		// nextFetchPolicy: 'cache-first'
 		// nextFetchPolicy: 'cache-and-network'
 	});
@@ -122,7 +122,12 @@ export const CommentsList = ({
 			) : (
 				<StackLayout flexGrow={1} overflowY={'auto'} minHeight={'2em'}>
 					{data?.comments.map((comment, _index) => (
-						<Comment key={comment.id} {...comment} />
+						<>
+							{/* <BaseHeading fontSize={'large'}>
+								{_index}
+							</BaseHeading> */}
+							<Comment key={comment.id} {...comment} />
+						</>
 					))}
 				</StackLayout>
 			)}

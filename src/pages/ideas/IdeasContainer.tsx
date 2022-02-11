@@ -7,11 +7,12 @@ import {
 } from '@generated/api';
 import { useClaim } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
-import React from 'react';
+import React, { useContext } from 'react';
 import IdeaCard from './components/ideacard/IdeaCard';
 import IdeasActions from './components/IdeasActions';
 import OffsetPagination from './OffsetPagination';
 import Router from 'next/router';
+import IdeaCycleContext from '@context/IdeaCycleContext';
 
 // type TIdeaPreview = Omit<TIdea_Preview, 'comments' | 'nodes'>;
 
@@ -38,6 +39,7 @@ const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 };
 
 const IdeasContainer = () => {
+	const { onSetCachedIdeaIds } = useContext(IdeaCycleContext);
 	const { data, loading } = useIdeasQuery({
 		variables: {
 			where: queryBuilder(),
@@ -48,13 +50,18 @@ const IdeasContainer = () => {
 			},
 			userId: useClaim()
 		},
+		onCompleted: (data) => {
+			onSetCachedIdeaIds(
+				Array.from(data?.['idea_preview'], (idea) => idea.id)
+			);
+		},
 		fetchPolicy: 'network-only'
 	});
 
 	const hasResults = data?.idea_preview?.length ?? 0;
 
 	if (loading) return <Loading small />;
-	// if (!loading && hasResults < 1) return <NoResults />;
+	if (!loading && hasResults < 1) return <NoResults />;
 
 	return (
 		<>

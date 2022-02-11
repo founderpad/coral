@@ -61,9 +61,9 @@ query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 	comments: idea_comments(
 		where: { ideaId: { _eq: $ideaId } }
 		order_by: { updatedAt: desc }
-	) # offset: $offset
-	# limit: 8
-	{
+		offset: $offset
+		limit: 8
+	) {
 		...CommentFields
 	}
 	totalComments: idea_comments_aggregate(

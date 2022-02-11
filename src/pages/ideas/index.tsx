@@ -25,6 +25,7 @@ const Ideas = () => (
 				title="All ideas"
 				subtitle="The latest ideas from the community"
 			/>
+
 			<IdeasContainer />
 		</SearchContentGridLayout>
 	</React.Fragment>

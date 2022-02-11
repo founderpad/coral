@@ -4664,6 +4664,8 @@ export const CommentsForIdeaDocument = gql`
   comments: idea_comments(
     where: {ideaId: {_eq: $ideaId}}
     order_by: {updatedAt: desc}
+    offset: $offset
+    limit: 8
   ) {
     ...CommentFields
   }

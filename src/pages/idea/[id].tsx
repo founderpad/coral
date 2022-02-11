@@ -21,9 +21,7 @@ const ViewIdea: NextPage = () => {
 	return (
 		<React.Fragment>
 			<DocumentTitle title="View idea" />
-			{/* <IdeaContext.Provider value={{ data, setData }}> */}
 			<ViewIdeaTabLayout />
-			{/* </IdeaContext.Provider> */}
 		</React.Fragment>
 	);
 };

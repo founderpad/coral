@@ -10,6 +10,7 @@ import { useTrackAnalytics } from '@hooks/util';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
 import DrawerProvider from '@provider/DrawerProvider';
+import IdeaCycleProvider from '@provider/IdeaCycleProvider';
 import ModalDrawerProvider from '@provider/ModalDrawerProvider';
 import ModalProvider from '@provider/ModalProvider';
 import NotificationProvider from '@provider/NotificationProvider';
@@ -94,9 +95,11 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 									<ModalProvider>
 										<DrawerProvider>
 											<ModalDrawerProvider>
-												<BaseModal />
-												<BaseModalDrawer />
-												<Component {...pageProps} />
+												<IdeaCycleProvider>
+													<BaseModal />
+													<BaseModalDrawer />
+													<Component {...pageProps} />
+												</IdeaCycleProvider>
 											</ModalDrawerProvider>
 										</DrawerProvider>
 									</ModalProvider>
@@ -135,7 +138,7 @@ const cache = new InMemoryCache({
 				// 		return result;
 				// 	}
 				// },
-				resourceCollection: offsetLimitPagination()
+				resourceCollection: offsetLimitPagination(),
 				// CommentsForIdea: relayStylePagination()
 				// CommentsForIdea: offsetLimitPagination()
 				// idea_comments: {
@@ -146,7 +149,7 @@ const cache = new InMemoryCache({
 				// 	}
 				// 	// offsetLimitPagination()
 				// }
-				// idea_comments: offsetLimitPagination()
+				idea_comments: offsetLimitPagination()
 
 				// idea_comments: {
 				// 	keyArgs: ['ideaId'],
