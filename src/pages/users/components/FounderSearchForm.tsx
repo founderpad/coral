@@ -6,12 +6,7 @@ import Form from '@components/form/Form';
 import { Label } from '@components/labels';
 import AppDivider from '@components/shared/AppDivider';
 import ModalDrawerContext from '@context/ModalDrawerContext';
-import {
-	// ALL_INDUSTRIES,
-	// AVAILABILITY_IN_HOURS,
-	EXPERIENCE_SKILLS
-	// STARTUP_STATUS
-} from '@utils/Constants';
+import { EXPERIENCE_SKILLS } from '@utils/Constants';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
