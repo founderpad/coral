@@ -65,12 +65,14 @@ export const UserAvatarDetails = ({
 					{name}
 				</Label>
 				{email && (
-					<Label color={'gray.500'} fontSize={'xs'}>
+					<Label color={'fpGrey.500'} fontSize={'xs'}>
 						{email}
 					</Label>
 				)}
 				{createdAt && (
-					<CaptionLabel color={'gray.400'}>{createdAt}</CaptionLabel>
+					<CaptionLabel color={'fpGrey.400'}>
+						{createdAt}
+					</CaptionLabel>
 				)}
 			</StackLayout>
 		</StackLayout>

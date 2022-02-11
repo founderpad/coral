@@ -1,4 +1,3 @@
-import { useBreakpointValue } from '@chakra-ui/react';
 import TabLayout from '@components/layouts/TabLayout';
 import { useCurrentUser } from '@hooks/auth';
 import React from 'react';
@@ -6,10 +5,11 @@ import CommentsList from './components/comments/CommentsList';
 import InterestedUsersTab from './components/InterestedUsersTab';
 import useIdea from './query/ideaQuery';
 import IdeaTab from './IdeaTab';
+import { useMobile } from '@hooks/util';
 
 const ViewIdeaTabLayout = () => {
 	const user = useCurrentUser();
-	const isMobile = useBreakpointValue({ base: true, md: false });
+	const isMobile = useMobile();
 	const data = useIdea();
 	const showInterestTab = data?.idea?.userId === user?.id;
 

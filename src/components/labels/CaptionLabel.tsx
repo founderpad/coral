@@ -6,6 +6,6 @@ export const CaptionLabel = (props: TLabelProps) => (
 	<BaseLabel
 		{...props}
 		fontSize={'x-small'}
-		color={props.color ?? 'gray.400'}
+		color={props.color ?? 'fpGrey.400'}
 	/>
 );

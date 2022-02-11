@@ -28,7 +28,6 @@ const TabLayout = (props: Props) => {
 		<Tabs
 			{...rest}
 			overflow={'hidden'}
-			px={0}
 			d={'flex'}
 			flexDirection={'column'}
 			variant={'soft-rounded'}

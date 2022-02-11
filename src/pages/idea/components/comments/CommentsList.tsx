@@ -99,7 +99,7 @@ export const CommentsList = ({
 			flexWrap={'nowrap'}
 			transition={'ease-in-out'}
 			transitionDelay={'1s'}
-			px={{ base: 1, sm: 0 }}
+			p={0}
 			justifyContent={'center'}
 			display={display}
 			id={'idea-comments'}
@@ -108,9 +108,9 @@ export const CommentsList = ({
 				fontSize={'sm'}
 				as={'h4'}
 				flexShrink={0}
-				py={4}
-				px={{ base: 4, md: 0 }}
+				p={4}
 				borderTopWidth={{ base: 0, md: 1 }}
+				borderBottomWidth={{ base: 1, md: 0 }}
 			>
 				{data?.totalComments?.aggregate?.count} Comments
 			</BaseHeading>
@@ -126,9 +126,6 @@ export const CommentsList = ({
 					))}
 				</StackLayout>
 			)}
-			{/* <Box flexShrink={0} py={2} px={4} borderTopWidth={1}>
-				<PostComment />
-			</Box> */}
 		</BoxLayout>
 	);
 };

@@ -74,7 +74,12 @@ const PostComment = () => {
 	);
 
 	return (
-		<StackLayout spacing={2} d={'flex'} justifyContent={'flex-end'}>
+		<StackLayout
+			spacing={2}
+			d={'flex'}
+			flex={1}
+			justifyContent={'flex-end'}
+		>
 			<StackLayout
 				direction={'row'}
 				spacing={2}

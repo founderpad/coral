@@ -11,13 +11,11 @@ import CommentActions from './CommentActions';
 const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 	<StackLayout
 		p={2}
-		boxShadow={'sm'}
-		bg={'gray.100'}
+		bg={'fpLightGrey.500'}
 		spacing={0}
 		style={{
 			borderRadius: '0 10px 10px'
 		}}
-		wordBreak={'break-all'}
 	>
 		{children}
 	</StackLayout>
@@ -68,13 +66,17 @@ export const CommentLayout = ({
 						<FlexLayout
 							alignItems={'center'}
 							justifyContent={'space-between'}
+							flex={1}
 						>
 							<FlexLayout alignItems={'center'} mb={1}>
 								<Label
 									fontWeight={'medium'}
 									fontSize={'small'}
-									maxW={'80%'}
+									css={{ whiteSpace: 'normal' }}
+									wordBreak={'break-all'}
+									noOfLines={1}
 									isTruncated
+									flex={1}
 								>
 									{displayName}
 								</Label>
@@ -95,7 +97,7 @@ export const CommentLayout = ({
 							</FlexLayout>
 						</FlexLayout>
 						<Label
-							color={'gray.500'}
+							color={'fpGrey.500'}
 							fontSize={'small'}
 							fontWeight={'normal'}
 							pt={1}
