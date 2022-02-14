@@ -24,7 +24,7 @@ export const BaseMenuItem = ({
 		<MenuItem
 			{...rest}
 			alignItems={'center'}
-			icon={icon && <Icon as={icon} />}
+			icon={icon && <Icon as={icon} mr={1} />}
 		>
 			<Label fontWeight={'medium'} fontSize={'small'} color={color}>
 				{title}

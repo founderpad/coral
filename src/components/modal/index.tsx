@@ -60,9 +60,8 @@ export const Modal = (props: IModalProps) => {
 		>
 			<ModalOverlay />
 			<ModalContent
-				borderRadius={0}
+				rounded={'md'}
 				position={'relative'}
-				minH={'200px'}
 				maxH={'95vh'}
 				my={0}
 				d={'flex'}
@@ -72,9 +71,9 @@ export const Modal = (props: IModalProps) => {
 						fontWeight={'medium'}
 						fontSize={'md'}
 						p={4}
+						pb={6}
 						display={'flex'}
 						alignItems={'center'}
-						borderBottomWidth={1}
 					>
 						{title}
 						{actions && (

@@ -50,7 +50,7 @@ const UserMenu = () => {
 				/>
 				<Icon as={IoEllipsisVertical} ml={1} color={'gray.500'} />
 			</MenuButton>
-			<MenuList rounded={'none'} textAlign={'start'} p={4} maxW={200}>
+			<MenuList rounded={'md'} textAlign={'start'} p={4} maxW={200}>
 				<CurrentUserAvatarDetails size={'md'} direction={'column'} />
 				{!isProfileComplete && <ProfileNotSet />}
 				<MenuDivider my={4} />

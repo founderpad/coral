@@ -1,5 +1,5 @@
 import { SubmitButton } from '@components/buttons';
-import { IoPencilSharp, IoTrashBin } from '@components/icons';
+import { IoPencilOutline, IoTrashBinOutline } from '@components/icons';
 import { BaseMenuItem } from '@components/menu';
 import { BaseMenu } from '@components/menu/BaseMenu';
 import ModalDrawerContext from '@context/ModalDrawerContext';
@@ -56,14 +56,14 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 			<BaseMenuItem
 				title={'Edit'}
 				subTitle={'Edit this idea'}
-				icon={IoPencilSharp}
+				icon={IoPencilOutline}
 				onClick={onEditClick}
 				divider={true}
 			/>
 			<BaseMenuItem
 				title={'Delete'}
 				subTitle={'Delete this idea'}
-				icon={IoTrashBin}
+				icon={IoTrashBinOutline}
 				onClick={onDeleteClick}
 				color={'red.500'}
 			/>

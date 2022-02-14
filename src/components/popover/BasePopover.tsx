@@ -30,10 +30,11 @@ export const BasePopover = (props: Props) => {
 					bg={bg}
 					p={6}
 					mt={2}
-					borderTopRadius={0}
+					rounded={'md'}
 					minWidth={'400px'}
 					// bg={'fpLightGrey.300'}
 				>
+					{/* <PopoverBody rounded={'lg'}>{children}</PopoverBody> */}
 					{children}
 				</PopoverContent>
 				// </Portal>

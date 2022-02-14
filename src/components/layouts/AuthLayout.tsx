@@ -29,6 +29,7 @@ const AuthLayout = ({ header, children, title }: Props) => (
 			flex={{ base: 1, sm: 'none' }}
 			justifyContent={'center'}
 			id={'auth-container'}
+			rounded={'md'}
 		>
 			<FlexLayout mx={'auto'} alignItems={'center'}>
 				<FounderpadLogo />

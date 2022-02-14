@@ -30,6 +30,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				// overflowY={'auto'}
 				position={'relative'}
 				id={'main-container'}
+				rounded={'md'}
 			>
 				{children}
 			</BoxLayout>
