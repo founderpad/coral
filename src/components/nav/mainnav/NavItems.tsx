@@ -2,13 +2,9 @@ import { Flex } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
 import {
 	IoAddOutline,
-	IoAddSharp,
 	IoLockClosedOutline,
-	IoLockClosedSharp,
 	IoPersonOutline,
-	IoPersonSharp,
-	IoSearchOutline,
-	IoSearchSharp
+	IoSearchOutline
 } from '@components/icons';
 import { IconType } from 'react-icons/lib';
 import React from 'react';

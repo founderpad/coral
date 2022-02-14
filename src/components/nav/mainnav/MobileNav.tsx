@@ -2,7 +2,7 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
 import { Flex, Stack, Text } from '@chakra-ui/layout';
-import { Collapse, useBreakpointValue } from '@chakra-ui/react';
+import { Collapse, Fade, useBreakpointValue } from '@chakra-ui/react';
 import { IoChevronDownSharp } from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { useMobileNav } from '@hooks/util';
@@ -17,26 +17,31 @@ const MobileNav = () => {
 
 	if (!isMobile) return null;
 	return (
-		<StackLayout
-			style={{
-				backgroundColor: 'rgba(255,255,255,0.95)'
-			}}
-			display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
-			position={'absolute'}
-			top={10}
-			zIndex={999}
-			p={4}
-			flex={1}
-			w={'full'}
-			overflow={'hidden'}
-			spacing={2}
-			h={'calc(100% - 40px)'}
-			// w={'calc(100% - 16px)'}
-		>
-			{NavItems.map((navItem, i) => (
-				<MobileNavItem {...navItem} key={i} />
-			))}
-		</StackLayout>
+		<Fade in={isOpen}>
+			<StackLayout
+				style={{
+					backgroundColor: 'rgba(255,255,255,0.95)'
+				}}
+				// display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
+				position={'absolute'}
+				top={10}
+				zIndex={999}
+				p={4}
+				flex={1}
+				w={'full'}
+				overflow={'hidden'}
+				spacing={2}
+				h={'calc(100% - 40px)'}
+				// visibility={{
+				// 	base: isOpen ? 'visible' : 'hidden',
+				// 	md: 'hidden'
+				// }}
+			>
+				{NavItems.map((navItem, i) => (
+					<MobileNavItem {...navItem} key={i} />
+				))}
+			</StackLayout>
+		</Fade>
 	);
 };
 
