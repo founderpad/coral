@@ -17,31 +17,25 @@ const MobileNav = () => {
 
 	if (!isMobile) return null;
 	return (
-		<Fade in={isOpen}>
-			<StackLayout
-				style={{
-					backgroundColor: 'rgba(255,255,255,0.95)'
-				}}
-				// display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
-				position={'absolute'}
-				top={10}
-				zIndex={999}
-				p={4}
-				flex={1}
-				w={'full'}
-				overflow={'hidden'}
-				spacing={2}
-				h={'calc(100% - 40px)'}
-				// visibility={{
-				// 	base: isOpen ? 'visible' : 'hidden',
-				// 	md: 'hidden'
-				// }}
-			>
-				{NavItems.map((navItem, i) => (
-					<MobileNavItem {...navItem} key={i} />
-				))}
-			</StackLayout>
-		</Fade>
+		<StackLayout
+			style={{
+				backgroundColor: 'rgba(255,255,255,0.95)'
+			}}
+			display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
+			position={'absolute'}
+			top={10}
+			zIndex={999}
+			p={4}
+			flex={1}
+			w={'full'}
+			overflow={'hidden'}
+			spacing={2}
+			h={'calc(100% - 40px)'}
+		>
+			{NavItems.map((navItem, i) => (
+				<MobileNavItem {...navItem} key={i} />
+			))}
+		</StackLayout>
 	);
 };
 
