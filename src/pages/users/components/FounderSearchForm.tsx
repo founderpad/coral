@@ -1,18 +1,18 @@
-import { ButtonGroup, Checkbox, FormControl } from '@chakra-ui/react';
-import { CancelButton, SubmitButton } from '@components/buttons';
-import { FormLabelText } from '@components/form';
+import { SubmitButton } from '@components/buttons';
 import Form from '@components/form/Form';
 import BaseHeading from '@components/heading/BaseHeading';
 import { SelectField } from '@components/input';
-import { Label } from '@components/labels';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
+	// ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
 	AVAILABILITY_IN_HOURS,
-	EXPERIENCE_SKILLS,
 	mobileAvailabilityOptions,
+	// mobileCountriesList,
 	mobileIdeaCategoryFields,
+	mobileNumberOfStartups,
 	mobileStartupStatuses,
+	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
 import { useRouter } from 'next/router';
@@ -23,6 +23,8 @@ interface ISearchFields {
 	status?: string;
 	availability?: string;
 	field?: string;
+	startups?: string;
+	country?: string;
 }
 
 const FounderSearchForm = () => {
@@ -73,6 +75,17 @@ const FounderSearchForm = () => {
 		>
 			<BaseHeading fontSize={'sm'}>Search</BaseHeading>
 
+			{/* <SelectField
+				id="country"
+				name="country"
+				label="Country"
+				placeholder={'country'}
+				options={ALL_COUNTRIES}
+				mobileOptions={mobileCountriesList()}
+				onClear={() => resetField('country')}
+				control={control}
+				isUrl
+			/> */}
 			<SelectField
 				id="status"
 				name="status"
@@ -86,13 +99,25 @@ const FounderSearchForm = () => {
 			/>
 
 			<SelectField
+				id="startups"
+				name="startups"
+				options={NUMBER_OF_STARTUPS}
+				mobileOptions={mobileNumberOfStartups()}
+				placeholder="number of startups"
+				control={control}
+				label={'Previous number of startups'}
+				onClear={() => resetField('startups')}
+				isUrl
+			/>
+
+			<SelectField
 				id="availability"
 				name="availability"
 				options={AVAILABILITY_IN_HOURS}
 				mobileOptions={mobileAvailabilityOptions()}
 				placeholder="capacity per week"
 				control={control}
-				label={'Capacity (hours per week)'}
+				label={'Availability (hours per week)'}
 				onClear={() => resetField('availability')}
 				isUrl
 			/>

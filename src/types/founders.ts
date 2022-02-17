@@ -9,5 +9,5 @@ export type TFounderUsers = Pick<
 	| 'specialistIndustry'
 	| 'id'
 > & {
-	user?: Pick<TUsers, 'displayName' | 'id' | 'createdAt'> | null;
+	user?: Pick<TUsers, 'displayName' | 'id' | 'createdAt' | 'address'> | null;
 };

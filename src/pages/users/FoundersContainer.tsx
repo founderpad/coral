@@ -7,67 +7,68 @@ import IdeasActions from '@pages/ideas/components/IdeasActions';
 import OffsetPagination from '@pages/ideas/OffsetPagination';
 import Router from 'next/router';
 import React from 'react';
-import { TFounderUsers } from 'src/types/founders';
+// import { TFounderUsers } from 'src/types/founders';
 import FounderCard from './components/FounderCard';
 
 const queryBuilder = (): TUser_Profile_Bool_Exp => {
-	const queryParamName = Router.query['name'] as string;
 	const queryParamStatus = Router.query['status'] as string;
 	const queryParamIndustry = Router.query['field'] as string;
 	const queryParamAvailability = Router.query['availability'] as string;
+	const queryParamStartups = Router.query['startups'] as string;
+	const queryParamCountry = Router.query['country'] as string;
 
 	const where: TUser_Profile_Bool_Exp = {};
 
-	if (Router.query.name) {
-		where.status = { _eq: queryParamName };
+	if (Router.query['status']) {
+		where['status'] = { _eq: queryParamStatus };
 	}
 
-	// if (router.query.availability) {
-	// 	where.availability = { _gt: useQueryParam('availability') };
-	// }
-
-	if (Router.query.status) {
-		where.status = { _eq: queryParamStatus };
-	}
-
-	if (Router.query.field) {
-		where.specialistIndustry = {
+	if (Router.query['field']) {
+		where['specialistIndustry'] = {
 			_eq: queryParamIndustry
 		};
 	}
 
-	if (Router.query.availability) {
-		// const minMaxAvailability = router.query.availability as string;
+	if (Router.query['availability']) {
+		// where['availability']?._eq == queryParamAvailability;
+		// where['availability']?._eq === queryParamAvailability;
+		// where['availability'] = { _eq: queryParamAvailability };
+		where['availability']?._eq === queryParamAvailability;
+	}
 
-		// console.log('minmax: ', minMaxAvailability);
-		// const splitMinMax = minMaxAvailability.split('-');
-		// if (splitMinMax?.length > 1) {
-		// 	where.availability = {
-		// 		_gte: parseInt(splitMinMax[0]),
-		// 		_lte: parseInt(splitMinMax[1])
-		// 	};
-		// } else {
-		// 	where.availability = { _gte: parseInt(splitMinMax[0]) };
+	if (Router.query['startups']) {
+		// where['startups']?._eq === queryParamStartups;
+
+		where['startups'] = { _eq: queryParamStartups };
+	}
+
+	if (Router.query['country']) {
+		// Non-null assertion as we know user will never be null here but TS doesn't know that(!)
+		// const country: NonNullable<TUser_Profile_Bool_Exp['user']>['address'] =
+		// 	{};
+		// country.country = { _eq: queryParamCountry };
+		// let userCountry = where.user?.address?.country
+		// userCountry = { _eq: queryParamCountry };
+		// where['user']?.address['country'] = { _eq: queryParamCountry };
+
+		// where['user']?.['address']?.['country'] = { _eq: queryParamCountry };
+
+		// if (where.user?.address?.country) {
+		// 	where.user?.address?.country._eq('')
+		// 	// where['user']?.['address']?.['country'] = { _eq: queryParamCountry };
 		// }
 
-		// console.log('split min max: ', where.availability);
-		// where.specialist_industry = { _eq: useQueryParam('field') };
-
-		where.availability = { _eq: queryParamAvailability };
+		// where['user']?.['address']?.['country']?._eq == queryParamCountry;
+		where['user']?.['address']?.['country']?._eq == queryParamCountry;
 	}
+
+	console.log('where: ', where);
 
 	return where;
 };
 
 const FoundersContainer = () => {
-	const {
-		// data = {
-		// 	user_profile: {} as TUser_Profile,
-		// 	user_profile_aggregate: {} as TUser_Profile_Aggregate
-		// },
-		data,
-		loading
-	} = useUsersQuery({
+	const { data, loading } = useUsersQuery({
 		variables: {
 			where: queryBuilder(),
 			limit: 10,
@@ -96,7 +97,7 @@ const FoundersContainer = () => {
 				<NoResults back />
 			) : (
 				<StackLayout display={'flex'} flex={1} spacing={6}>
-					{data?.user_profile?.map((user: TFounderUsers) => (
+					{data?.user_profile?.map((user: any) => (
 						<React.Fragment key={user.id}>
 							<FounderCard {...user} />
 							<AppDivider />
