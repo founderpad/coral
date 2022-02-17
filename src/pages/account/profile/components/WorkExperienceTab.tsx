@@ -32,8 +32,6 @@ const WorkExperienceTab = () => {
 		objective
 	} = userProfile ?? {};
 
-	console.log('profile: ', userProfile);
-
 	const onClick = () => {
 		setModalDrawer({
 			title: 'Your experience',
@@ -153,7 +151,7 @@ const SkillsBadges = ({ skills }: { skills: Array<string> }) => {
 	return (
 		<FlexLayout flexWrap={'wrap'} direction={'row'} alignItems={'center'}>
 			{skills?.map((skill) => (
-				<Tag fontSize={'xs'} mr={2} mb={2}>
+				<Tag fontSize={'xs'} mr={2} mb={2} key={skill}>
 					{skill}
 				</Tag>
 			))}

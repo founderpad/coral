@@ -3621,6 +3621,7 @@ export type TUser_Profile = {
   background?: Maybe<Scalars['String']>;
   businessDescription?: Maybe<Scalars['String']>;
   createdAt: Scalars['timestamptz'];
+  customPronouns?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   industries?: Maybe<Scalars['jsonb']>;
@@ -3628,6 +3629,7 @@ export type TUser_Profile = {
   isComplete: Scalars['Boolean'];
   linkedin?: Maybe<Scalars['String']>;
   objective?: Maybe<Scalars['String']>;
+  pronouns?: Maybe<Scalars['String']>;
   resume?: Maybe<Scalars['String']>;
   skills?: Maybe<Scalars['jsonb']>;
   specialistIndustry?: Maybe<Scalars['String']>;
@@ -3703,6 +3705,7 @@ export type TUser_Profile_Bool_Exp = {
   background?: InputMaybe<TString_Comparison_Exp>;
   businessDescription?: InputMaybe<TString_Comparison_Exp>;
   createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  customPronouns?: InputMaybe<TString_Comparison_Exp>;
   facebook?: InputMaybe<TString_Comparison_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
   industries?: InputMaybe<TJsonb_Comparison_Exp>;
@@ -3710,6 +3713,7 @@ export type TUser_Profile_Bool_Exp = {
   isComplete?: InputMaybe<TBoolean_Comparison_Exp>;
   linkedin?: InputMaybe<TString_Comparison_Exp>;
   objective?: InputMaybe<TString_Comparison_Exp>;
+  pronouns?: InputMaybe<TString_Comparison_Exp>;
   resume?: InputMaybe<TString_Comparison_Exp>;
   skills?: InputMaybe<TJsonb_Comparison_Exp>;
   specialistIndustry?: InputMaybe<TString_Comparison_Exp>;
@@ -3748,11 +3752,13 @@ export type TUser_Profile_Max_Fields = {
   background?: Maybe<Scalars['String']>;
   businessDescription?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
+  customPronouns?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   instagram?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
   objective?: Maybe<Scalars['String']>;
+  pronouns?: Maybe<Scalars['String']>;
   resume?: Maybe<Scalars['String']>;
   specialistIndustry?: Maybe<Scalars['String']>;
   startups?: Maybe<Scalars['String']>;
@@ -3771,11 +3777,13 @@ export type TUser_Profile_Min_Fields = {
   background?: Maybe<Scalars['String']>;
   businessDescription?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['timestamptz']>;
+  customPronouns?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   instagram?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
   objective?: Maybe<Scalars['String']>;
+  pronouns?: Maybe<Scalars['String']>;
   resume?: Maybe<Scalars['String']>;
   specialistIndustry?: Maybe<Scalars['String']>;
   startups?: Maybe<Scalars['String']>;
@@ -3802,6 +3810,7 @@ export type TUser_Profile_Order_By = {
   background?: InputMaybe<TOrder_By>;
   businessDescription?: InputMaybe<TOrder_By>;
   createdAt?: InputMaybe<TOrder_By>;
+  customPronouns?: InputMaybe<TOrder_By>;
   facebook?: InputMaybe<TOrder_By>;
   id?: InputMaybe<TOrder_By>;
   industries?: InputMaybe<TOrder_By>;
@@ -3809,6 +3818,7 @@ export type TUser_Profile_Order_By = {
   isComplete?: InputMaybe<TOrder_By>;
   linkedin?: InputMaybe<TOrder_By>;
   objective?: InputMaybe<TOrder_By>;
+  pronouns?: InputMaybe<TOrder_By>;
   resume?: InputMaybe<TOrder_By>;
   skills?: InputMaybe<TOrder_By>;
   specialistIndustry?: InputMaybe<TOrder_By>;
@@ -3844,6 +3854,8 @@ export type TUser_Profile_Select_Column =
   /** column name */
   | 'createdAt'
   /** column name */
+  | 'customPronouns'
+  /** column name */
   | 'facebook'
   /** column name */
   | 'id'
@@ -3857,6 +3869,8 @@ export type TUser_Profile_Select_Column =
   | 'linkedin'
   /** column name */
   | 'objective'
+  /** column name */
+  | 'pronouns'
   /** column name */
   | 'resume'
   /** column name */
@@ -3883,12 +3897,14 @@ export type TUser_Profile_Set_Input = {
   availability?: InputMaybe<Scalars['String']>;
   background?: InputMaybe<Scalars['String']>;
   businessDescription?: InputMaybe<Scalars['String']>;
+  customPronouns?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
   industries?: InputMaybe<Scalars['jsonb']>;
   instagram?: InputMaybe<Scalars['String']>;
   isComplete?: InputMaybe<Scalars['Boolean']>;
   linkedin?: InputMaybe<Scalars['String']>;
   objective?: InputMaybe<Scalars['String']>;
+  pronouns?: InputMaybe<Scalars['String']>;
   resume?: InputMaybe<Scalars['String']>;
   skills?: InputMaybe<Scalars['jsonb']>;
   specialistIndustry?: InputMaybe<Scalars['String']>;
@@ -4366,14 +4382,14 @@ export type TUserProfileDetailsQueryVariables = Exact<{
 }>;
 
 
-export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined, profile?: { __typename?: 'user_profile', availability?: string | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined, objective?: string | null | undefined } | null | undefined } | null | undefined };
+export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined, profile?: { __typename?: 'user_profile', availability?: string | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined, objective?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type TUserQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null | undefined, email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', id: any, isComplete: boolean } | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
+export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null | undefined, email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, isComplete: boolean } | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type TUsersQueryVariables = Exact<{
   where?: InputMaybe<TUser_Profile_Bool_Exp>;
@@ -4383,7 +4399,7 @@ export type TUsersQueryVariables = Exact<{
 }>;
 
 
-export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, startups?: string | null | undefined, specialistIndustry?: string | null | undefined, availability?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, objective?: string | null | undefined, user?: { __typename?: 'users', displayName: string, createdAt: any, id: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, startups?: string | null | undefined, specialistIndustry?: string | null | undefined, availability?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, objective?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, user?: { __typename?: 'users', displayName: string, createdAt: any, id: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
 
 export type TUpdateUserProfileMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4398,7 +4414,7 @@ export type TUserExperienceQueryVariables = Exact<{
 }>;
 
 
-export type TUserExperienceQuery = { profile?: { __typename?: 'user_profile', id: any, userId: any, objective?: string | null | undefined, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, availability?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updatedAt: any, isComplete: boolean } | null | undefined };
+export type TUserExperienceQuery = { profile?: { __typename?: 'user_profile', id: any, userId: any, objective?: string | null | undefined, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, availability?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updatedAt: any, isComplete: boolean, pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined };
 
 export type TUpdateUserExperienceMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4418,12 +4434,14 @@ export type TUpdateResumeMutation = { update_user_profile_by_pk?: { __typename?:
 
 export type TUpdateUserPersonalDetailsMutationVariables = Exact<{
   id: Scalars['uuid'];
+  profileId: Scalars['uuid'];
   userPersonalDetails: TUsers_Set_Input;
   userAddress: TUser_Address_Set_Input;
+  userProfile: TUser_Profile_Set_Input;
 }>;
 
 
-export type TUpdateUserPersonalDetailsMutation = { updateUser?: { __typename?: 'users', displayName: string } | null | undefined, updateUserAddress?: { __typename?: 'user_address', country?: string | null | undefined, location?: string | null | undefined } | null | undefined };
+export type TUpdateUserPersonalDetailsMutation = { updateUser?: { __typename?: 'users', displayName: string } | null | undefined, updateUserProfile?: { __typename?: 'user_profile', id: any, pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined, updateUserAddress?: { __typename?: 'user_address', country?: string | null | undefined, location?: string | null | undefined } | null | undefined };
 
 export type TUpdateUserAvatarMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5302,6 +5320,8 @@ export const UserProfileDetailsDocument = gql`
       statement
       skills
       objective
+      pronouns
+      customPronouns
     }
   }
 }
@@ -5345,6 +5365,8 @@ export const UserDocument = gql`
     lastSeen
     profile {
       id
+      pronouns
+      customPronouns
       isComplete
     }
   }
@@ -5405,6 +5427,8 @@ export const UsersDocument = gql`
     status
     skills
     objective
+    pronouns
+    customPronouns
   }
 }
     `;
@@ -5515,6 +5539,8 @@ export const UserExperienceDocument = gql`
     website
     updatedAt
     isComplete
+    pronouns
+    customPronouns
   }
 }
     `;
@@ -5629,9 +5655,17 @@ export type UpdateResumeMutationHookResult = ReturnType<typeof useUpdateResumeMu
 export type UpdateResumeMutationResult = Apollo.MutationResult<TUpdateResumeMutation>;
 export type UpdateResumeMutationOptions = Apollo.BaseMutationOptions<TUpdateResumeMutation, TUpdateResumeMutationVariables>;
 export const UpdateUserPersonalDetailsDocument = gql`
-    mutation UpdateUserPersonalDetails($id: uuid!, $userPersonalDetails: users_set_input!, $userAddress: user_address_set_input!) {
+    mutation UpdateUserPersonalDetails($id: uuid!, $profileId: uuid!, $userPersonalDetails: users_set_input!, $userAddress: user_address_set_input!, $userProfile: user_profile_set_input!) {
   updateUser(pk_columns: {id: $id}, _set: $userPersonalDetails) {
     displayName
+  }
+  updateUserProfile: update_user_profile_by_pk(
+    pk_columns: {id: $profileId}
+    _set: $userProfile
+  ) {
+    id
+    pronouns
+    customPronouns
   }
   updateUserAddress: update_user_address_by_pk(
     pk_columns: {userId: $id}
@@ -5658,8 +5692,10 @@ export type TUpdateUserPersonalDetailsMutationFn = Apollo.MutationFunction<TUpda
  * const [updateUserPersonalDetailsMutation, { data, loading, error }] = useUpdateUserPersonalDetailsMutation({
  *   variables: {
  *      id: // value for 'id'
+ *      profileId: // value for 'profileId'
  *      userPersonalDetails: // value for 'userPersonalDetails'
  *      userAddress: // value for 'userAddress'
+ *      userProfile: // value for 'userProfile'
  *   },
  * });
  */
@@ -7086,6 +7122,7 @@ export type TUser_ProfileResolvers<ContextType = any, ParentType extends TResolv
   background?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   businessDescription?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  customPronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   facebook?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   industries?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, RequireFields<TUser_ProfileIndustriesArgs, never>>;
@@ -7093,6 +7130,7 @@ export type TUser_ProfileResolvers<ContextType = any, ParentType extends TResolv
   isComplete?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   objective?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  pronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   skills?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, RequireFields<TUser_ProfileSkillsArgs, never>>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7125,11 +7163,13 @@ export type TUser_Profile_Max_FieldsResolvers<ContextType = any, ParentType exte
   background?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   businessDescription?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  customPronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   facebook?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   instagram?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   objective?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  pronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   startups?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7147,11 +7187,13 @@ export type TUser_Profile_Min_FieldsResolvers<ContextType = any, ParentType exte
   background?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   businessDescription?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  customPronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   facebook?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   instagram?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   objective?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  pronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   startups?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;

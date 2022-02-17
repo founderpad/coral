@@ -5,6 +5,7 @@ configuration:
   custom_column_names:
     business_description: businessDescription
     created_at: createdAt
+    custom_pronouns: customPronouns
     is_complete: isComplete
     specialist_industry: specialistIndustry
     updated_at: updatedAt
@@ -28,6 +29,7 @@ select_permissions:
     - background
     - business_description
     - created_at
+    - custom_pronouns
     - facebook
     - id
     - industries
@@ -35,6 +37,7 @@ select_permissions:
     - is_complete
     - linkedin
     - objective
+    - pronouns
     - resume
     - skills
     - specialist_industry
@@ -54,12 +57,14 @@ update_permissions:
     - availability
     - background
     - business_description
+    - custom_pronouns
     - facebook
     - industries
     - instagram
     - is_complete
     - linkedin
     - objective
+    - pronouns
     - resume
     - skills
     - specialist_industry

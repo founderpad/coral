@@ -1,5 +1,19 @@
 import { TIndustry } from 'src/types/idea';
 
+export const ALL_PRONOUNS = [
+	{ label: 'She/Her', value: 'She/Her' },
+	{ label: 'He/Him', value: 'He/Him' },
+	{ label: 'They/Them', value: 'They/Them' },
+	{ label: 'Custom', value: 'Custom' }
+];
+
+export const mobilePronouns = () =>
+	ALL_PRONOUNS.map((pronoun) => (
+		<option key={pronoun.label} value={pronoun.label}>
+			{pronoun.label}
+		</option>
+	));
+
 export const ALL_USER_OBJECTIVES = [
 	{ label: 'Start a business', value: 'Start a business' },
 	{ label: 'Join a business', value: 'Join a business' },

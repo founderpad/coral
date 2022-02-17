@@ -5,6 +5,7 @@ import {
 	IoLocationOutline,
 	IoTimeOutline
 } from '@components/icons';
+import { Label } from '@components/labels';
 import { FlexLayout, PageLayout, StackLayout } from '@components/layouts';
 import { DocumentTitle, TitleEditAction, UserAvatar } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
@@ -25,11 +26,34 @@ const User = () => {
 		}
 	});
 
+	const { user } = data ?? {};
+	const {
+		profile,
+		address,
+		displayName = '',
+		avatarUrl,
+		createdAt,
+		lastSeen
+	} = user ?? {};
+	const {
+		pronouns,
+		customPronouns,
+		specialistIndustry,
+		startups,
+		status,
+		availability,
+		background,
+		statement,
+		businessDescription,
+		skills
+	} = profile ?? {};
+	const { location, country } = address ?? {};
+
 	return (
 		<React.Fragment>
 			<DocumentTitle title="View user" />
 			<PageLayout
-				title={`${data?.user?.displayName}'s profile`}
+				title={`${displayName}'s profile`}
 				// action={<AddFollower userId={useQueryParam('id')} />}
 			>
 				<Grid
@@ -42,12 +66,23 @@ const User = () => {
 					<GridItem colSpan={{ base: 12, md: 4 }}>
 						<StackLayout w={'full'}>
 							<UserAvatar
-								src={data?.user?.avatarUrl || undefined}
+								src={avatarUrl || undefined}
 								boxSize={{ base: 100, md: 120 }}
 								aria-label="Edit profile picture"
 							/>
 							<TitleEditAction
-								title={`${data?.user?.displayName}`}
+								title={displayName}
+								subtitle={
+									<Label fontSize={'xs'} color={'fpGrey.500'}>
+										(
+										{customPronouns
+											? customPronouns
+											: pronouns
+											? pronouns
+											: ''}
+										)
+									</Label>
+								}
 							/>
 							<StackLayout spacing={2}>
 								{/* <ProfileSectionLabel
@@ -58,24 +93,20 @@ const User = () => {
 								{data?.user?.address && (
 									<ProfileSectionLabel
 										label={
-											data?.user?.address?.location
-												? `${data?.user?.address?.location}, ${data?.user?.address?.country}`
-												: data?.user?.address?.country
-												? data?.user?.address?.country
+											location
+												? `${location}, ${country}`
+												: country
+												? country
 												: 'Location not set'
 										}
 										icon={IoLocationOutline}
 									/>
 								)}
-								{data?.user?.createdAt && (
+								{createdAt && (
 									<ProfileSectionLabel
 										label={
 											`Joined ` +
-											formatDate(
-												data?.user.createdAt,
-												false,
-												true
-											)
+											formatDate(createdAt, false, true)
 										}
 										icon={IoCalendarOutline}
 									/>
@@ -83,8 +114,7 @@ const User = () => {
 								{data?.user?.createdAt && (
 									<ProfileSectionLabel
 										label={
-											`Last seen ` +
-											formatDate(data?.user.lastSeen)
+											`Last seen ` + formatDate(lastSeen)
 										}
 										icon={IoTimeOutline}
 									/>
@@ -103,22 +133,19 @@ const User = () => {
 							tags={[
 								{
 									title: 'Specialist field',
-									value: data?.user?.profile
-										?.specialistIndustry
+									value: specialistIndustry
 								},
 								{
 									title: 'Previous startups',
-									value:
-										data?.user?.profile?.startups &&
-										`${data?.user.profile.startups} startups`
+									value: `${startups} startups`
 								},
 								{
 									title: 'Startup status',
-									value: data?.user?.profile?.status
+									value: status
 								},
 								{
 									title: 'Capacity (Hours per week)',
-									value: data?.user?.profile?.availability
+									value: availability
 								}
 							]}
 						/>
@@ -127,21 +154,19 @@ const User = () => {
 							{data?.user?.profile?.background && (
 								<ContentFieldAndValue
 									title={'Background'}
-									value={data?.user.profile.background}
+									value={background}
 								/>
 							)}
 							{data?.user?.profile?.statement && (
 								<ContentFieldAndValue
 									title={'Statement'}
-									value={data?.user.profile.statement}
+									value={statement}
 								/>
 							)}
 							{data?.user?.profile?.businessDescription && (
 								<ContentFieldAndValue
 									title={'Overview of businesses'}
-									value={
-										data?.user.profile.businessDescription
-									}
+									value={businessDescription}
 								/>
 							)}
 							{/* {data?.user?.profile?.skills && (
@@ -158,23 +183,22 @@ const User = () => {
 							<ContentFieldAndValue
 								title={'Skills'}
 								value={
-									data?.user?.profile?.skills.length ? (
+									skills?.length ? (
 										<FlexLayout
 											flexWrap={'wrap'}
 											direction={'row'}
 											alignItems={'center'}
 										>
-											{data?.user?.profile?.skills?.map(
-												(skill: string) => (
-													<Tag
-														fontSize={'xs'}
-														mr={2}
-														mb={2}
-													>
-														{skill}
-													</Tag>
-												)
-											)}
+											{skills?.map((skill: string) => (
+												<Tag
+													fontSize={'xs'}
+													mr={2}
+													mb={2}
+													key={skill}
+												>
+													{skill}
+												</Tag>
+											))}
 										</FlexLayout>
 									) : (
 										'No skills selected'

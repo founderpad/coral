@@ -2,7 +2,7 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
 import { Flex, Stack, Text } from '@chakra-ui/layout';
-import { Collapse, Fade, useBreakpointValue } from '@chakra-ui/react';
+import { Collapse, useBreakpointValue } from '@chakra-ui/react';
 import { IoChevronDownSharp } from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { useMobileNav } from '@hooks/util';

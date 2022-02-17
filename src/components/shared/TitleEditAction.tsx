@@ -7,10 +7,12 @@ import React, { memo } from 'react';
 export const TitleEditAction = memo(
 	({
 		title,
+		subtitle,
 		onClick,
 		headerProps
 	}: {
 		title: string;
+		subtitle?: React.ReactNode;
 		onClick?: () => void;
 		headerProps?: HeadingProps;
 	}) => (
@@ -19,20 +21,24 @@ export const TitleEditAction = memo(
 			justifyContent={'space-between'}
 			alignItems={'center'}
 			flex={1}
+			mb={2}
 		>
-			<Heading
-				d={'flex'}
-				flex={1}
-				css={{ whiteSpace: 'normal' }}
-				wordBreak={'break-all'}
-				noOfLines={1}
-				isTruncated
-				size={'h6'}
-				fontSize={'sm'}
-				color={'gray.900'}
-			>
-				{title}
-			</Heading>
+			<FlexLayout flexDirection={'column'}>
+				<Heading
+					d={'flex'}
+					flex={1}
+					css={{ whiteSpace: 'normal' }}
+					wordBreak={'break-all'}
+					noOfLines={1}
+					isTruncated
+					size={'h6'}
+					fontSize={'sm'}
+					color={'black'}
+				>
+					{title}
+				</Heading>
+				{subtitle}
+			</FlexLayout>
 
 			{onClick && <EditButton onClick={onClick} aria-label={'Edit'} />}
 		</FlexLayout>

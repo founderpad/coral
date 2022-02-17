@@ -109,12 +109,12 @@ export const useLogin = (): (({
 				// 	title: 'Failed to login',
 				// 	description: response.error.message
 				// });
-				throw 'Failed to login';
+				throw new Error('Failed to login');
 			} else {
 				getUser();
 			}
 		} catch (error) {
-			throw 'An error has occurred';
+			throw new Error('An error has occurred');
 		}
 	};
 };
@@ -205,7 +205,7 @@ const useGetAuthUser = () => {
 			// 	description: 'Please try again later'
 			// });
 			redirectTo(true);
-			throw 'Failed to get user';
+			throw new Error('Failed to get user');
 		},
 		onCompleted: (data) => {
 			const user = data.user as TUsers;

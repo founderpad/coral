@@ -7,18 +7,26 @@ import {
 	TUsers_Set_Input,
 	TUser_Address,
 	TUser_Address_Set_Input,
+	TUser_Profile,
+	TUser_Profile_Set_Input,
 	useUpdateUserPersonalDetailsMutation
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { updatePersonalDetails } from '@slices/auth';
-import { ALL_COUNTRIES, mobileCountriesList } from '@utils/Constants';
+import {
+	ALL_COUNTRIES,
+	ALL_PRONOUNS,
+	mobileCountriesList,
+	mobilePronouns
+} from '@utils/Constants';
 import { redirectTo } from '@utils/validators';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 type PersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
-	Pick<TUser_Address_Set_Input, 'country' | 'location'>;
+	Pick<TUser_Address_Set_Input, 'country' | 'location'> &
+	Pick<TUser_Profile_Set_Input, 'pronouns' | 'customPronouns'>;
 
 const PersonalDetailsForm = () => {
 	const auth = useCurrentUser();
@@ -35,29 +43,41 @@ const PersonalDetailsForm = () => {
 		mode: 'all',
 		defaultValues: {
 			...auth,
-			...auth?.address
+			...auth?.address,
+			...auth?.profile
 		}
 	});
 
-	const watchCountry = watch('country', auth?.address?.country);
+	const watchCountry = watch('country', getValues('country'));
+	const watchCustomPronouns = watch('pronouns', getValues('pronouns'));
 
 	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
 		variables: {
 			id: auth?.id,
+			profileId: auth?.profile?.id,
 			userPersonalDetails: {
 				displayName: getValues('displayName')
 			},
 			userAddress: {
 				country: getValues('country'),
 				location: getValues('location')
+			},
+			userProfile: {
+				pronouns: getValues('pronouns'),
+				customPronouns:
+					getValues('pronouns') === 'Custom'
+						? getValues('customPronouns')
+						: null
 			}
 		},
 		onCompleted: (data) => {
-			const { updateUser, updateUserAddress } = data;
+			const { updateUser, updateUserAddress, updateUserProfile } = data;
+
 			dispatch(
 				updatePersonalDetails({
 					user: updateUser as TUsers,
-					userAddress: updateUserAddress as TUser_Address
+					userAddress: updateUserAddress as TUser_Address,
+					userProfile: updateUserProfile as TUser_Profile
 				})
 			);
 
@@ -103,6 +123,38 @@ const PersonalDetailsForm = () => {
 				rules={{ required: true, maxLength: 50 }}
 				isRequired
 			/>
+
+			<SelectField
+				id="pronouns"
+				name="pronouns"
+				label="Pronouns"
+				placeholder={'pronouns'}
+				options={ALL_PRONOUNS}
+				mobileOptions={mobilePronouns()}
+				onClear={() => resetField('pronouns')}
+				control={control}
+				full
+			/>
+
+			{watchCustomPronouns === 'Custom' && (
+				<InputField
+					id="customPronouns"
+					name="customPronouns"
+					label="Custom pronoun"
+					placeholder="Custom pronoun"
+					error={errors['customPronouns']}
+					errorText={
+						errors['customPronouns']?.type === 'required'
+							? 'You must input a custom pronoun'
+							: 'Your custom pronoun can not be more than 15 characters'
+					}
+					control={control}
+					onClear={() => resetField('customPronouns')}
+					rules={{ required: true, maxLength: 15 }}
+					isRequired
+				/>
+			)}
+
 			{/* <InputField
 				id="firstName"
 				label="First name"
