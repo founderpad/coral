@@ -6,7 +6,7 @@ import { useCurrentUser } from '@hooks/auth';
 import React, { memo } from 'react';
 
 type Props = AvatarProps & {
-	email?: string;
+	subtitle?: React.ReactNode;
 	children?: string;
 	createdAt?: string;
 	direction?: StackProps['direction'];
@@ -33,8 +33,8 @@ export const UserAvatar = (props: Props) => {
 };
 
 export const UserAvatarDetails = ({
-	email,
-	name,
+	subtitle,
+	title,
 	src = 'undefined',
 	createdAt,
 	size = 'md',
@@ -62,11 +62,21 @@ export const UserAvatarDetails = ({
 					noOfLines={1}
 					isTruncated
 				>
-					{name}
+					{title}
 				</Label>
-				{email && (
+				{/* {email && (
 					<Label color={'fpGrey.500'} fontSize={'xs'}>
 						{email}
+					</Label>
+				)}
+				{createdAt && (
+					<CaptionLabel color={'fpGrey.400'}>
+						{createdAt}
+					</CaptionLabel>
+				)} */}
+				{subtitle && (
+					<Label color={'fpGrey.500'} fontSize={'xs'}>
+						{subtitle}
 					</Label>
 				)}
 				{createdAt && (
@@ -94,8 +104,8 @@ export const CurrentUserAvatarDetails = memo(
 			return (
 				<UserAvatarDetails
 					// name={`${user?.displayName} ${user?.lastName}`}
-					name={user?.displayName}
-					email={user?.email}
+					title={user?.displayName}
+					subtitle={user?.email}
 					src={user?.avatarUrl || undefined}
 					size={size}
 					direction={direction}

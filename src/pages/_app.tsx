@@ -40,20 +40,6 @@ const persistor = persistStore(store);
  */
 const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	useTrackAnalytics();
-	// const router = useRouter();
-	// const { removeNotification } = useNotification();
-
-	// useEffect(() => {
-	// 	const routeChangeComplete = () => {
-	// 		removeNotification();
-	// 	};
-
-	// 	router.events.on('routeChangeComplete', routeChangeComplete);
-	// 	return () => {
-	// 		router.events.off('routeChangeComplete', routeChangeComplete);
-	// 	};
-	// }, []);
-
 	useCheckLoggedIn();
 
 	return (
@@ -64,6 +50,17 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 					name="google-signin-client_id"
 					content="570489210751-cplv3bacb2vvkfml9ie337u9m1f3p2cv.apps.googleusercontent.com"
 				></meta>
+				<meta property="og:title" content="Founderpad" key="title" />
+				<meta property="og:url" content="https://app.founderpad.com" />
+				<meta
+					property="og:image"
+					content="https://founderpad-file-uploads.s3.eu-west-1.amazonaws.com/founderpad-og-image%40256x256.png"
+				/>
+				<meta property="og:site_name" content="Founderpad" />
+				<meta
+					property="og:description"
+					content="The exclusive platform to collaborate, form a team, and build your business idea."
+				/>
 			</Head>
 			<Script
 				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
