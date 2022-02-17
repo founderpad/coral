@@ -28,8 +28,11 @@ const WorkExperienceTab = () => {
 		availability,
 		businessDescription,
 		background,
-		skills
+		skills,
+		objective
 	} = userProfile ?? {};
+
+	console.log('profile: ', userProfile);
 
 	const onClick = () => {
 		setModalDrawer({
@@ -105,6 +108,10 @@ const WorkExperienceTab = () => {
 			/>
 
 			<StackLayout spacing={8}>
+				<ContentFieldAndValue
+					title={'Objective'}
+					value={objective || 'Not set'}
+				/>
 				<ContentFieldAndValue
 					title={'Background'}
 					value={background || 'Not set'}

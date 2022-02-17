@@ -3627,6 +3627,7 @@ export type TUser_Profile = {
   instagram?: Maybe<Scalars['String']>;
   isComplete: Scalars['Boolean'];
   linkedin?: Maybe<Scalars['String']>;
+  objective?: Maybe<Scalars['String']>;
   resume?: Maybe<Scalars['String']>;
   skills?: Maybe<Scalars['jsonb']>;
   specialistIndustry?: Maybe<Scalars['String']>;
@@ -3708,6 +3709,7 @@ export type TUser_Profile_Bool_Exp = {
   instagram?: InputMaybe<TString_Comparison_Exp>;
   isComplete?: InputMaybe<TBoolean_Comparison_Exp>;
   linkedin?: InputMaybe<TString_Comparison_Exp>;
+  objective?: InputMaybe<TString_Comparison_Exp>;
   resume?: InputMaybe<TString_Comparison_Exp>;
   skills?: InputMaybe<TJsonb_Comparison_Exp>;
   specialistIndustry?: InputMaybe<TString_Comparison_Exp>;
@@ -3750,6 +3752,7 @@ export type TUser_Profile_Max_Fields = {
   id?: Maybe<Scalars['uuid']>;
   instagram?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
+  objective?: Maybe<Scalars['String']>;
   resume?: Maybe<Scalars['String']>;
   specialistIndustry?: Maybe<Scalars['String']>;
   startups?: Maybe<Scalars['String']>;
@@ -3772,6 +3775,7 @@ export type TUser_Profile_Min_Fields = {
   id?: Maybe<Scalars['uuid']>;
   instagram?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
+  objective?: Maybe<Scalars['String']>;
   resume?: Maybe<Scalars['String']>;
   specialistIndustry?: Maybe<Scalars['String']>;
   startups?: Maybe<Scalars['String']>;
@@ -3804,6 +3808,7 @@ export type TUser_Profile_Order_By = {
   instagram?: InputMaybe<TOrder_By>;
   isComplete?: InputMaybe<TOrder_By>;
   linkedin?: InputMaybe<TOrder_By>;
+  objective?: InputMaybe<TOrder_By>;
   resume?: InputMaybe<TOrder_By>;
   skills?: InputMaybe<TOrder_By>;
   specialistIndustry?: InputMaybe<TOrder_By>;
@@ -3851,6 +3856,8 @@ export type TUser_Profile_Select_Column =
   /** column name */
   | 'linkedin'
   /** column name */
+  | 'objective'
+  /** column name */
   | 'resume'
   /** column name */
   | 'skills'
@@ -3881,6 +3888,7 @@ export type TUser_Profile_Set_Input = {
   instagram?: InputMaybe<Scalars['String']>;
   isComplete?: InputMaybe<Scalars['Boolean']>;
   linkedin?: InputMaybe<Scalars['String']>;
+  objective?: InputMaybe<Scalars['String']>;
   resume?: InputMaybe<Scalars['String']>;
   skills?: InputMaybe<Scalars['jsonb']>;
   specialistIndustry?: InputMaybe<Scalars['String']>;
@@ -4358,7 +4366,7 @@ export type TUserProfileDetailsQueryVariables = Exact<{
 }>;
 
 
-export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined, profile?: { __typename?: 'user_profile', availability?: string | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined } | null | undefined } | null | undefined };
+export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined, profile?: { __typename?: 'user_profile', availability?: string | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined, objective?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type TUserQueryVariables = Exact<{
   userId: Scalars['uuid'];
@@ -4375,7 +4383,7 @@ export type TUsersQueryVariables = Exact<{
 }>;
 
 
-export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, startups?: string | null | undefined, specialistIndustry?: string | null | undefined, availability?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, user?: { __typename?: 'users', displayName: string, createdAt: any, id: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, startups?: string | null | undefined, specialistIndustry?: string | null | undefined, availability?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, objective?: string | null | undefined, user?: { __typename?: 'users', displayName: string, createdAt: any, id: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
 
 export type TUpdateUserProfileMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4383,14 +4391,14 @@ export type TUpdateUserProfileMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserProfileMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: string | null | undefined, background?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, resume?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, businessDescription?: string | null | undefined, startups?: string | null | undefined, website?: string | null | undefined, skills?: any | null | undefined, isComplete: boolean, specialistIndustry?: string | null | undefined, updatedAt: any } | null | undefined };
+export type TUpdateUserProfileMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: string | null | undefined, objective?: string | null | undefined, background?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, resume?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, businessDescription?: string | null | undefined, startups?: string | null | undefined, website?: string | null | undefined, skills?: any | null | undefined, isComplete: boolean, specialistIndustry?: string | null | undefined, updatedAt: any } | null | undefined };
 
 export type TUserExperienceQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type TUserExperienceQuery = { profile?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, availability?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updatedAt: any, isComplete: boolean } | null | undefined };
+export type TUserExperienceQuery = { profile?: { __typename?: 'user_profile', id: any, userId: any, objective?: string | null | undefined, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, availability?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updatedAt: any, isComplete: boolean } | null | undefined };
 
 export type TUpdateUserExperienceMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4398,7 +4406,7 @@ export type TUpdateUserExperienceMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserExperienceMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, availability?: string | null | undefined, resume?: string | null | undefined, businessDescription?: string | null | undefined } | null | undefined };
+export type TUpdateUserExperienceMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, availability?: string | null | undefined, resume?: string | null | undefined, businessDescription?: string | null | undefined, objective?: string | null | undefined } | null | undefined };
 
 export type TUpdateResumeMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5293,6 +5301,7 @@ export const UserProfileDetailsDocument = gql`
       specialistIndustry
       statement
       skills
+      objective
     }
   }
 }
@@ -5395,6 +5404,7 @@ export const UsersDocument = gql`
     availability
     status
     skills
+    objective
   }
 }
     `;
@@ -5437,6 +5447,7 @@ export const UpdateUserProfileDocument = gql`
   update_user_profile_by_pk(pk_columns: {id: $id}, _set: $user_profile) {
     id
     availability
+    objective
     background
     linkedin
     twitter
@@ -5487,6 +5498,7 @@ export const UserExperienceDocument = gql`
   profile: user_profile_by_pk(id: $id) {
     id
     userId
+    objective
     background
     statement
     startups
@@ -5550,6 +5562,7 @@ export const UpdateUserExperienceDocument = gql`
     availability
     resume
     businessDescription
+    objective
   }
 }
     `;
@@ -7079,6 +7092,7 @@ export type TUser_ProfileResolvers<ContextType = any, ParentType extends TResolv
   instagram?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   isComplete?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  objective?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   skills?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, RequireFields<TUser_ProfileSkillsArgs, never>>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7115,6 +7129,7 @@ export type TUser_Profile_Max_FieldsResolvers<ContextType = any, ParentType exte
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   instagram?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  objective?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   startups?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7136,6 +7151,7 @@ export type TUser_Profile_Min_FieldsResolvers<ContextType = any, ParentType exte
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   instagram?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  objective?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   startups?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
