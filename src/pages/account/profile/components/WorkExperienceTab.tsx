@@ -55,7 +55,7 @@ const WorkExperienceTab = () => {
 
 	return (
 		<StackLayout p={4} spacing={8}>
-			<StackLayout spacing={0}>
+			<StackLayout spacing={0} mb={6}>
 				<TitleEditAction title="Your experience" onClick={onClick} />
 
 				{isChangeSuccess && (

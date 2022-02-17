@@ -4358,7 +4358,7 @@ export type TUserProfileDetailsQueryVariables = Exact<{
 }>;
 
 
-export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, profile?: { __typename?: 'user_profile', availability?: string | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined } | null | undefined } | null | undefined };
+export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined, profile?: { __typename?: 'user_profile', availability?: string | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined } | null | undefined } | null | undefined };
 
 export type TUserQueryVariables = Exact<{
   userId: Scalars['uuid'];
@@ -5280,6 +5280,10 @@ export const UserProfileDetailsDocument = gql`
     avatarUrl
     createdAt
     lastSeen
+    address {
+      location
+      country
+    }
     profile {
       availability
       background

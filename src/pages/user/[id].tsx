@@ -1,12 +1,11 @@
 import { Grid, GridItem } from '@chakra-ui/layout';
+import { Tag } from '@chakra-ui/react';
 import {
-	IoAnalyticsSharp,
-	IoBulbSharp,
-	IoMailSharp,
-	IoRocketSharp,
-	IoTimeSharp
+	IoCalendarOutline,
+	IoLocationOutline,
+	IoTimeOutline
 } from '@components/icons';
-import { PageLayout, StackLayout } from '@components/layouts';
+import { FlexLayout, PageLayout, StackLayout } from '@components/layouts';
 import { DocumentTitle, TitleEditAction, UserAvatar } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
@@ -44,29 +43,30 @@ const User = () => {
 						<StackLayout w={'full'}>
 							<UserAvatar
 								src={data?.user?.avatarUrl || undefined}
-								boxSize={140}
+								boxSize={{ base: 100, md: 120 }}
 								aria-label="Edit profile picture"
 							/>
 							<TitleEditAction
 								title={`${data?.user?.displayName}`}
 							/>
 							<StackLayout spacing={2}>
-								{/* {data?.user?.country && (
+								{/* <ProfileSectionLabel
+									label={'*****************.com'}
+									icon={IoMailOutline}
+								/> */}
+
+								{data?.user?.address && (
 									<ProfileSectionLabel
 										label={
-											data?.user?.location
-												? `${data?.user?.location}, ${data?.user?.country}`
-												: data?.user?.country
-												? data?.user?.country
+											data?.user?.address?.location
+												? `${data?.user?.address?.location}, ${data?.user?.address?.country}`
+												: data?.user?.address?.country
+												? data?.user?.address?.country
 												: 'Location not set'
 										}
-										icon={IoLocationSharp}
+										icon={IoLocationOutline}
 									/>
-								)} */}
-								<ProfileSectionLabel
-									label={'*****************.com'}
-									icon={IoMailSharp}
-								/>
+								)}
 								{data?.user?.createdAt && (
 									<ProfileSectionLabel
 										label={
@@ -77,7 +77,7 @@ const User = () => {
 												true
 											)
 										}
-										icon={IoTimeSharp}
+										icon={IoCalendarOutline}
 									/>
 								)}
 								{data?.user?.createdAt && (
@@ -86,7 +86,7 @@ const User = () => {
 											`Last seen ` +
 											formatDate(data?.user.lastSeen)
 										}
-										icon={IoTimeSharp}
+										icon={IoTimeOutline}
 									/>
 								)}
 							</StackLayout>
@@ -98,35 +98,27 @@ const User = () => {
 						spacing={6}
 					>
 						<AppDivider display={{ md: 'none' }} />
+
 						<OverviewTags
 							tags={[
 								{
 									title: 'Specialist field',
-									value:
-										data?.user?.profile
-											?.specialistIndustry ?? 'Not set',
-									icon: IoBulbSharp
+									value: data?.user?.profile
+										?.specialistIndustry
 								},
 								{
 									title: 'Previous startups',
-									value: data?.user?.profile?.startups
-										? `${data?.user.profile.startups} startups`
-										: 'Not set',
-									icon: IoRocketSharp
+									value:
+										data?.user?.profile?.startups &&
+										`${data?.user.profile.startups} startups`
 								},
 								{
 									title: 'Startup status',
-									value:
-										data?.user?.profile?.status ??
-										'Not set',
-									icon: IoAnalyticsSharp
+									value: data?.user?.profile?.status
 								},
 								{
 									title: 'Capacity (Hours per week)',
-									value:
-										data?.user?.profile?.availability ??
-										'Not set',
-									icon: IoTimeSharp
+									value: data?.user?.profile?.availability
 								}
 							]}
 						/>
@@ -152,7 +144,7 @@ const User = () => {
 									}
 								/>
 							)}
-							{data?.user?.profile?.skills && (
+							{/* {data?.user?.profile?.skills && (
 								<ContentFieldAndValue
 									title={'Skills'}
 									value={
@@ -161,7 +153,34 @@ const User = () => {
 										) ?? 'No skills selected'
 									}
 								/>
-							)}
+							)} */}
+
+							<ContentFieldAndValue
+								title={'Skills'}
+								value={
+									data?.user?.profile?.skills.length ? (
+										<FlexLayout
+											flexWrap={'wrap'}
+											direction={'row'}
+											alignItems={'center'}
+										>
+											{data?.user?.profile?.skills?.map(
+												(skill: string) => (
+													<Tag
+														fontSize={'xs'}
+														mr={2}
+														mb={2}
+													>
+														{skill}
+													</Tag>
+												)
+											)}
+										</FlexLayout>
+									) : (
+										'No skills selected'
+									)
+								}
+							/>
 						</StackLayout>
 					</GridItem>
 				</Grid>
