@@ -1,12 +1,7 @@
+import { Tag } from '@chakra-ui/react';
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
-// import {
-// 	IoAnalyticsOutline,
-// 	IoBulbOutline,
-// 	IoRocketOutline,
-// 	IoTimeOutline
-// } from '@components/icons';
-import { StackLayout } from '@components/layouts';
+import { FlexLayout, StackLayout } from '@components/layouts';
 import { Loading, TitleEditAction } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
@@ -59,7 +54,7 @@ const WorkExperienceTab = () => {
 	if (!userProfile) return <Loading small />;
 
 	return (
-		<StackLayout p={4}>
+		<StackLayout p={4} spacing={8}>
 			<StackLayout spacing={0}>
 				<TitleEditAction title="Your experience" onClick={onClick} />
 
@@ -110,18 +105,32 @@ const WorkExperienceTab = () => {
 			/>
 
 			<StackLayout spacing={8}>
-				<ContentFieldAndValue title={'Background'} value={background} />
+				<ContentFieldAndValue
+					title={'Background'}
+					value={background || 'Not set'}
+				/>
 				<ContentFieldAndValue
 					title={'Personal statement'}
-					value={statement}
+					value={statement || 'Not set'}
 				/>
 				<ContentFieldAndValue
 					title={'Overview of businesses'}
-					value={businessDescription}
+					value={businessDescription || 'Not set'}
 				/>
+				{/* <ContentFieldAndValue
+					title={'Skills'}
+					value={skills?.join(', ') || 'No skills selected'}
+				/> */}
+
 				<ContentFieldAndValue
 					title={'Skills'}
-					value={skills?.join(', ')}
+					value={
+						skills.length ? (
+							<SkillsBadges skills={skills} />
+						) : (
+							'No skills selected'
+						)
+					}
 				/>
 			</StackLayout>
 
@@ -130,6 +139,18 @@ const WorkExperienceTab = () => {
 			<TitleEditAction title="Your resume" />
 			<ResumeUploader />
 		</StackLayout>
+	);
+};
+
+const SkillsBadges = ({ skills }: { skills: Array<string> }) => {
+	return (
+		<FlexLayout flexWrap={'wrap'} direction={'row'} alignItems={'center'}>
+			{skills?.map((skill) => (
+				<Tag fontSize={'xs'} mr={2} mb={2}>
+					{skill}
+				</Tag>
+			))}
+		</FlexLayout>
 	);
 };
 

@@ -7,7 +7,7 @@ interface Props {
 	value: any;
 }
 
-const ContentFieldAndValue = ({ title, value = 'Not set' }: Props) => (
+const ContentFieldAndValue = ({ title, value }: Props) => (
 	<StackLayout spacing={1} wordBreak={'break-all'}>
 		{title && (
 			<Label
@@ -19,9 +19,13 @@ const ContentFieldAndValue = ({ title, value = 'Not set' }: Props) => (
 				{title}
 			</Label>
 		)}
-		<Label color={'gray.500'} fontSize={'xs'}>
-			{value}
-		</Label>
+		{typeof value === 'string' ? (
+			<Label color={'gray.500'} fontSize={'xs'}>
+				{value}
+			</Label>
+		) : (
+			value
+		)}
 	</StackLayout>
 );
 
