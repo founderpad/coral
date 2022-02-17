@@ -13,7 +13,7 @@ import FounderCard from './components/FounderCard';
 const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	const queryParamName = Router.query['name'] as string;
 	const queryParamStatus = Router.query['status'] as string;
-	const queryParamIndustry = Router.query['specialist_industry'] as string;
+	const queryParamIndustry = Router.query['field'] as string;
 	const queryParamAvailability = Router.query['availability'] as string;
 
 	const where: TUser_Profile_Bool_Exp = {};
@@ -83,50 +83,38 @@ const FoundersContainer = () => {
 	if (loading) return <Loading small />;
 
 	return (
-		<React.Fragment>
+		<StackLayout p={{ base: 4, sm: 6 }}>
 			{/* {data?.user_profile?.length < 1 && <NoResults back />} */}
-			{hasResults ? (
-				<>
-					{data?.user_profile_aggregate && (
-						<IdeasActions
-							total={
-								data?.user_profile_aggregate?.aggregate
-									?.count || 0
-							}
-							pageSize={data?.user_profile.length}
-							hasResults={data?.user_profile.length > 0}
-						/>
-					)}
-
-					<StackLayout
-						display={'flex'}
-						flex={1}
-						bg={'white'}
-						spacing={6}
-						mt={{ sm: 3 }}
-					>
-						{data?.user_profile?.map((up: TFounderUsers) => {
-							<React.Fragment key={up.id}>
-								<FounderCard {...up} />
-								<AppDivider />
-							</React.Fragment>;
-						})}
-					</StackLayout>
-
-					{hasResults && (
-						<OffsetPagination
-							pagesCount={
-								(data?.user_profile_aggregate.aggregate
-									?.count || 0) / 10
-							}
-							pathname="/founders"
-						/>
-					)}
-				</>
-			) : (
-				<NoResults back />
+			{data?.user_profile_aggregate && (
+				<IdeasActions
+					total={data?.user_profile_aggregate?.aggregate?.count || 0}
+					pageSize={data?.user_profile.length}
+					hasResults={data?.user_profile.length > 0}
+				/>
 			)}
-		</React.Fragment>
+			{!loading && hasResults < 1 ? (
+				<NoResults back />
+			) : (
+				<StackLayout display={'flex'} flex={1} spacing={6}>
+					{data?.user_profile?.map((user: TFounderUsers) => (
+						<React.Fragment key={user.id}>
+							<FounderCard {...user} />
+							<AppDivider />
+						</React.Fragment>
+					))}
+				</StackLayout>
+			)}
+			{hasResults && (
+				<OffsetPagination
+					pagesCount={
+						(data?.user_profile_aggregate.aggregate?.count || 0) /
+						10
+					}
+					pathname="/founders"
+				/>
+			)}
+			)
+		</StackLayout>
 	);
 };
 

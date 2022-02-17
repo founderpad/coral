@@ -2,26 +2,34 @@ import { ButtonGroup, Checkbox, FormControl } from '@chakra-ui/react';
 import { CancelButton, SubmitButton } from '@components/buttons';
 import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
-// import { SelectField } from '@components/input/SelectField';
+import BaseHeading from '@components/heading/BaseHeading';
+import { SelectField } from '@components/input';
 import { Label } from '@components/labels';
-import AppDivider from '@components/shared/AppDivider';
 import ModalDrawerContext from '@context/ModalDrawerContext';
-import { EXPERIENCE_SKILLS } from '@utils/Constants';
+import {
+	ALL_IDEA_CATEGORY_FIELDS,
+	AVAILABILITY_IN_HOURS,
+	EXPERIENCE_SKILLS,
+	mobileAvailabilityOptions,
+	mobileIdeaCategoryFields,
+	mobileStartupStatuses,
+	STARTUP_STATUS
+} from '@utils/Constants';
 import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface ISearchFields {
 	status?: string;
 	availability?: string;
-	specialist_field?: string;
+	field?: string;
 }
 
 const FounderSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
-	// control
-	const { handleSubmit, reset } = useForm<ISearchFields>();
+	const { handleSubmit, reset, control, getValues } =
+		useForm<ISearchFields>();
 	const router = useRouter();
 
 	const onClick = (values: ISearchFields) => {
@@ -30,9 +38,10 @@ const FounderSearchForm = () => {
 		});
 
 		const queryParams = JSON.parse(JSON.stringify(values));
-		!queryParams.status && delete queryParams['status'];
-		!queryParams.availability && delete queryParams['availability'];
-		!queryParams.specialist_field && delete queryParams['specialist_field'];
+
+		for (const [k, _v] of Object.entries(values)) {
+			if (!queryParams[k]) delete queryParams[k];
+		}
 
 		router.push(
 			{
@@ -46,27 +55,15 @@ const FounderSearchForm = () => {
 		);
 	};
 
-	const onClear = () => {
-		setModalDrawer({
-			isOpen: false
-		});
-		reset({
-			status: '',
-			availability: '',
-			specialist_field: ''
-		});
-
-		router.push(
-			{
-				pathname: '/founders',
-				query: { page: 1 }
-			},
-			undefined,
-			{
-				shallow: true
-			}
-		);
-	};
+	const resetField = useCallback(
+		(name: string) => {
+			reset({
+				...getValues(),
+				[name]: ''
+			});
+		},
+		[reset, getValues]
+	);
 
 	return (
 		<Form
@@ -74,45 +71,45 @@ const FounderSearchForm = () => {
 			name={'ideaSearchForm'}
 			onSubmit={handleSubmit(onClick)}
 		>
-			<Label
-				display={{ base: 'none', md: 'block' }}
-				fontSize={'md'}
-				fontWeight={'semibold'}
-				mb={4}
-			>
-				Search founders
-			</Label>
+			<BaseHeading fontSize={'sm'}>Search</BaseHeading>
 
-			{/* <SelectField
+			<SelectField
 				id="status"
 				name="status"
+				label="Current startup status"
+				placeholder="startup status"
 				options={STARTUP_STATUS}
-				placeholder="start-up status"
+				mobileOptions={mobileStartupStatuses()}
+				onClear={() => resetField('status')}
 				control={control}
-				label={'Current start-up status'}
-				variant={'filled'}
-			/> */}
-
-			{/* <SelectField
-				id="availability"
-				name="availability"
-				options={AVAILABILITY_IN_HOURS}
-				placeholder="availability per week"
-				control={control}
-				label={'Availability in hours per week'}
-				variant={'filled'}
+				isUrl
 			/>
 
 			<SelectField
-				id="specialist_industry"
-				name="specialist_industry"
-				label="Specialist field"
-				placeholder="specialist field"
-				options={ALL_INDUSTRIES}
+				id="availability"
+				name="availability"
+				options={AVAILABILITY_IN_HOURS}
+				mobileOptions={mobileAvailabilityOptions()}
+				placeholder="capacity per week"
 				control={control}
-			/> */}
-			<AppDivider />
-			<FormControl>
+				label={'Capacity (hours per week)'}
+				onClear={() => resetField('availability')}
+				isUrl
+			/>
+
+			<SelectField
+				id="field"
+				name="field"
+				label="Specialist field"
+				placeholder="field"
+				size={'md'}
+				options={ALL_IDEA_CATEGORY_FIELDS}
+				mobileOptions={mobileIdeaCategoryFields()}
+				control={control}
+				onClear={() => resetField('field')}
+				isUrl
+			/>
+			{/* <FormControl>
 				<FormLabelText label={'Skills'} />
 				{EXPERIENCE_SKILLS.map((es: string) => (
 					<Checkbox
@@ -124,29 +121,26 @@ const FounderSearchForm = () => {
 						p={2}
 						// onChange={onSkillsToggle}
 						colorScheme={'fpPrimary'}
-						color={'fpGrey.400'}
 						size={'sm'}
 						fontSize={'xs'}
 						// isChecked={selectedSkills.includes(es)}
 					>
-						<Label color={'gray.500'} fontSize={'smaller'}>
+						<Label color={'fpGrey.900'} fontSize={'xs'}>
 							{es}
 						</Label>
 					</Checkbox>
 				))}
-			</FormControl>
+			</FormControl> */}
 
 			{/* business status  */}
 			{/* ideas with questionnaires */}
-			<ButtonGroup pt={4} spacing={4}>
-				<CancelButton label={'Clear'} flex={1} onClick={onClear} />
-				<SubmitButton
-					name={'search-ideas-button'}
-					label={'Search'}
-					flex={2}
-					title={'Search ideas'}
-				/>
-			</ButtonGroup>
+
+			<SubmitButton
+				name={'search-ideas-button'}
+				label={'Search'}
+				flex={2}
+				title={'Search ideas'}
+			/>
 		</Form>
 	);
 };

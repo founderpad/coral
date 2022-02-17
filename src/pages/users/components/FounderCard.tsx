@@ -1,5 +1,5 @@
-import { GridItem, SimpleGrid } from '@chakra-ui/react';
-import { StackLayout } from '@components/layouts';
+import { Tag } from '@chakra-ui/react';
+import { BoxLayout, FlexLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import { UserAvatarDetails } from '@components/shared';
 import { formatDate } from '@utils/validators';
@@ -21,7 +21,7 @@ const founderAttrs = (founderProfileAttrs: TFounderUsers): string[] => {
 		attrs.push(`${founderProfileAttrs.status} in a startup`);
 
 	if (founderProfileAttrs.startups)
-		attrs.push(`Worked with ${founderProfileAttrs.startups} startup(s)`);
+		attrs.push(`Worked with ${founderProfileAttrs.startups}`);
 
 	if (founderProfileAttrs.skills)
 		attrs.push(`Has ${founderProfileAttrs.skills.length} skills`);
@@ -36,32 +36,46 @@ const founderAttrs = (founderProfileAttrs: TFounderUsers): string[] => {
 
 const FounderProfileAttributes = (founderProfileAttrs: TFounderUsers) => {
 	if (!founderAttrs(founderProfileAttrs).length) return null;
+
 	return (
-		<SimpleGrid columns={{ base: 2, md: 12 }} gap={{ base: 2, sm: 4 }}>
-			{founderAttrs(founderProfileAttrs).map((attr, key) => (
-				<GridItem
-					key={key}
-					colSpan={{ base: 1, sm: 3 }}
-					bg={'fpPrimary.50'}
-					p={2}
-					textAlign={'center'}
-					minH={'40px'}
-					d={'flex'}
-					justifyContent={'center'}
-					alignItems={'center'}
-				>
+		<FlexLayout
+			flexWrap={'wrap'}
+			direction={'row'}
+			alignItems={'center'}
+			my={6}
+		>
+			{founderAttrs(founderProfileAttrs).map((attr) => (
+				<Tag fontSize={'xs'} mr={2} mb={2} key={attr}>
 					{attr}
-				</GridItem>
+				</Tag>
 			))}
-		</SimpleGrid>
+		</FlexLayout>
 	);
 };
 
 const FounderCard = (founderProfile: TFounderUsers) => (
-	<StackLayout
-		flex={1}
-		d={'flex'}
-		spacing={4}
+	// <StackLayout
+	// 	flex={1}
+	// 	flexDirection={'column'}
+	// 	as={BaseLink}
+	// 	href={`/user/${founderProfile?.user?.id}`}
+	// 	alignItems={'flex-start'}
+	// 	_hover={{
+	// 		borderColor: 'gray.50',
+	// 		transition: 'ease-in .3s',
+	// 		transform: 'scale(1.0125)'
+	// 	}}
+	// 	py={4}
+	// 	rounded={'md'}
+	// 	position={'relative'}
+	// 	css={{
+	// 		'> .cardHover:hover': {
+	// 			background: 'rgba(255, 255, 255, 0.5)',
+	// 			transition: 'ease-in .3s'
+	// 		}
+	// 	}}
+	// >
+	<FlexLayout
 		flexDirection={'column'}
 		as={BaseLink}
 		href={`/user/${founderProfile?.user?.id}`}
@@ -69,12 +83,29 @@ const FounderCard = (founderProfile: TFounderUsers) => (
 		_hover={{
 			borderColor: 'gray.50',
 			transition: 'ease-in .3s',
-			bg: 'gray.50'
+			transform: 'scale(1.0125)'
 		}}
-		p={2}
-		rounded={'sm'}
-		fontSize={'xs'}
+		py={4}
+		flex={1}
+		rounded={'md'}
+		position={'relative'}
+		css={{
+			'> .cardHover:hover': {
+				background: 'rgba(255, 255, 255, 0.5)',
+				transition: 'ease-in .3s'
+			}
+		}}
 	>
+		<BoxLayout
+			as={'span'}
+			className={'cardHover'}
+			position={'absolute'}
+			w={'full'}
+			h={'full'}
+			top={0}
+			left={0}
+			zIndex={999}
+		/>
 		<UserAvatarDetails
 			name={founderProfile?.user?.displayName}
 			createdAt={`Joined ${formatDate(founderProfile?.user?.createdAt)}`}
@@ -82,7 +113,7 @@ const FounderCard = (founderProfile: TFounderUsers) => (
 		/>
 
 		<FounderProfileAttributes {...founderProfile} />
-	</StackLayout>
+	</FlexLayout>
 );
 
 export default FounderCard;

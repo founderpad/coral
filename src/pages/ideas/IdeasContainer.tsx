@@ -66,13 +66,15 @@ const IdeasContainer = () => {
 	return (
 		<>
 			<StackLayout p={{ base: 4, sm: 6 }}>
-				{/* {data?.idea_preview.length > 0 && data?.idea_preview_aggregate && ( */}
-				<IdeasActions
-					total={data?.idea_preview_aggregate?.aggregate?.count ?? 0}
-					pageSize={data?.idea_preview?.length ?? 0}
-					hasResults={hasResults > 0}
-				/>
-				{/* )} */}
+				{data?.idea_preview_aggregate && (
+					<IdeasActions
+						total={
+							data?.idea_preview_aggregate?.aggregate?.count ?? 0
+						}
+						pageSize={data?.idea_preview?.length ?? 0}
+						hasResults={hasResults > 0}
+					/>
+				)}
 
 				{!loading && hasResults < 1 ? (
 					<NoResults back />

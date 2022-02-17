@@ -1,4 +1,3 @@
-import { ButtonGroup } from '@chakra-ui/react';
 import { SubmitButton } from '@components/buttons';
 import Form from '@components/form/Form';
 import BaseHeading from '@components/heading/BaseHeading';
@@ -143,15 +142,12 @@ const IdeasSearchForm = () => {
 				isUrl
 			/>
 
-			<ButtonGroup spacing={4}>
-				{/* <CancelButton label={'Clear'} flex={1} onClick={onClear} /> */}
-				<SubmitButton
-					name={'search-ideas-button'}
-					label={'Search'}
-					flex={2}
-					title={'Search ideas'}
-				/>
-			</ButtonGroup>
+			<SubmitButton
+				name={'search-ideas-button'}
+				label={'Search'}
+				flex={2}
+				title={'Search ideas'}
+			/>
 		</Form>
 	);
 };
