@@ -16,6 +16,9 @@ export const SubNav = memo(
 				role={'group'}
 				display={'block'}
 				rounded={'md'}
+				_hover={{
+					bg: '#F7FBFD'
+				}}
 			>
 				<StackLayout
 					direction={'row'}
@@ -32,7 +35,12 @@ export const SubNav = memo(
 						p={0}
 					>
 						{icon && (
-							<BoxLayout p={2} mr={4} bg={'gray.100'}>
+							<BoxLayout
+								p={2}
+								mr={4}
+								bg={'fpLightGrey.400'}
+								rounded={'md'}
+							>
 								<Icon
 									as={icon}
 									fontSize={'md'}
@@ -50,7 +58,7 @@ export const SubNav = memo(
 								{label}
 							</BaseLabel>
 							<BaseLabel
-								color={'gray.500'}
+								color={'fpGrey.500'}
 								fontWeight={'light'}
 								fontSize={'smaller'}
 							>

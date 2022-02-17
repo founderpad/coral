@@ -59,12 +59,15 @@ const CreateIdeaForm = () => {
 		}
 	});
 
-	const resetField = useCallback((name: string) => {
-		reset({
-			...getValues(),
-			[name]: ''
-		});
-	}, []);
+	const resetField = useCallback(
+		(name: string) => {
+			reset({
+				...getValues(),
+				[name]: ''
+			});
+		},
+		[reset, getValues]
+	);
 
 	return (
 		<Form
@@ -212,7 +215,7 @@ const CreateIdeaForm = () => {
 				size={'md'}
 			/>
 
-			<Label fontSize={'9px'} color={'gray.500'}>
+			<Label fontSize={'9px'} color={'fpGrey.400'}>
 				The content on our site is provided for general information only
 				(including such content uploaded by third parties). This
 				includes any community assessment of business ideas on the

@@ -8,7 +8,7 @@ import { IconType } from 'react-icons/lib';
 
 interface IOverviewTag {
 	title?: string;
-	value?: string;
+	value?: string | undefined | null;
 	icon?: IconType;
 	direction?: StackProps['direction'];
 }
@@ -29,33 +29,34 @@ const OverviewTags = memo(
 					}
 				}}
 			>
-				{tags?.map(({ title, value }) => (
-					<BaseTag
-						key={title}
-						p={2}
-						d={'flex'}
-						flexDirection={'column'}
-						// bg={'fpLightGrey.300'}
-						bg={'fpPrimary.50'}
-						borderWidth={0}
-						justifyContent={'flex-start'}
-					>
-						<Label
-							fontSize={'xs'}
-							// color={'fpPrimary.700'}
-							alignItems={'center'}
-							mb={1}
-							display={'flex'}
-							color={'fpPrimary.700'}
-						>
-							{/* <Icon as={overviewTag.icon} mr={2} /> */}
-							{value}
-						</Label>
-						<Label color={'gray.400'} fontSize={'xs'}>
-							{title}
-						</Label>
-					</BaseTag>
-				))}
+				{tags?.map(({ title, value }) => {
+					if (value) {
+						return (
+							<BaseTag
+								key={title}
+								p={2}
+								d={'flex'}
+								flexDirection={'column'}
+								bg={'fpPrimary.50'}
+								borderWidth={0}
+								justifyContent={'flex-start'}
+							>
+								<Label
+									fontSize={'xs'}
+									alignItems={'center'}
+									mb={1}
+									display={'flex'}
+									color={'fpPrimary.700'}
+								>
+									{value}
+								</Label>
+								<Label color={'gray.400'} fontSize={'xs'}>
+									{title}
+								</Label>
+							</BaseTag>
+						);
+					}
+				})}
 			</FlexLayout>
 		);
 	}

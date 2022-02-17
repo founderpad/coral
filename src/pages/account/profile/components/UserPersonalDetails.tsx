@@ -7,6 +7,7 @@ import {
 	IoMailOutline,
 	IoTimeOutline
 } from '@components/icons';
+import { Label } from '@components/labels';
 import { StackLayout } from '@components/layouts';
 import { TitleEditAction } from '@components/shared';
 import ChangePasswordForm from '@components/shared/ChangePasswordForm';
@@ -28,9 +29,11 @@ const UserPersonalInformation = memo((props: Props) => {
 		createdAt = '',
 		displayName = '',
 		email = '',
-		address
+		address,
+		profile
 	} = user ?? {};
 	const { location = '', country = '' } = address ?? {};
+	const { pronouns = '', customPronouns = '' } = profile ?? {};
 
 	const userLocation = location
 		? `${location}, ${country}`
@@ -86,8 +89,18 @@ const UserPersonalInformation = memo((props: Props) => {
 			<UserImageUploader />
 			<StackLayout {...props} spacing={2}>
 				<TitleEditAction
-					// title={`${first_name} ${last_name}`}
 					title={displayName}
+					subtitle={
+						<Label fontSize={'xs'} color={'fpGrey.500'}>
+							(
+							{customPronouns
+								? customPronouns
+								: pronouns
+								? pronouns
+								: ''}
+							)
+						</Label>
+					}
 					onClick={onPersonalDetailsClick}
 				/>
 

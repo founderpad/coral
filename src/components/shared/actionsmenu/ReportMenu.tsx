@@ -1,6 +1,6 @@
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
-import { IoFlagSharp } from '@components/icons';
+import { IoFlagOutline } from '@components/icons';
 import { SelectField } from '@components/input';
 import { Label } from '@components/labels';
 import { BaseMenuItem } from '@components/menu';
@@ -46,7 +46,7 @@ const ReportMenu = ({
 		<BaseMenuItem
 			title={'Report'}
 			// subTitle={`Report this ${title.toLowerCase()}`}
-			icon={IoFlagSharp}
+			icon={IoFlagOutline}
 			onClick={onClick}
 		/>
 	);
@@ -103,6 +103,7 @@ const ReportForm = ({
 				errorText="You must provide a reason"
 				control={control}
 				isRequired
+				full
 			/>
 		</Form>
 	);

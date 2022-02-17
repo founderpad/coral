@@ -10,6 +10,7 @@ const useProfileFragment = (): TUser_Profile => {
 		fragment: gql`
 			fragment ExperienceFragment on user_profile {
 				id
+				objective
 				background
 				statement
 				status

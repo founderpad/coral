@@ -1,4 +1,4 @@
-import { TUsers, TUser_Address } from '@generated/api';
+import { TUsers, TUser_Address, TUser_Profile } from '@generated/api';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 
@@ -37,9 +37,13 @@ const authSlice = createSlice({
 		},
 		updatePersonalDetails(
 			state,
-			action: PayloadAction<{ user: TUsers; userAddress: TUser_Address }>
+			action: PayloadAction<{
+				user: TUsers;
+				userAddress: TUser_Address;
+				userProfile: TUser_Profile;
+			}>
 		) {
-			const { user, userAddress } = action.payload;
+			const { user, userAddress, userProfile } = action.payload;
 			if (state.user?.address)
 				state.user = {
 					...state.user,
@@ -47,6 +51,10 @@ const authSlice = createSlice({
 					address: {
 						...state.user.address,
 						...userAddress
+					},
+					profile: {
+						...state.user.profile,
+						...userProfile
 					}
 				};
 		},

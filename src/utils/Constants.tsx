@@ -1,5 +1,34 @@
 import { TIndustry } from 'src/types/idea';
 
+export const ALL_PRONOUNS = [
+	{ label: 'She/Her', value: 'She/Her' },
+	{ label: 'He/Him', value: 'He/Him' },
+	{ label: 'They/Them', value: 'They/Them' },
+	{ label: 'Custom', value: 'Custom' }
+];
+
+export const mobilePronouns = () =>
+	ALL_PRONOUNS.map((pronoun) => (
+		<option key={pronoun.label} value={pronoun.label}>
+			{pronoun.label}
+		</option>
+	));
+
+export const ALL_USER_OBJECTIVES = [
+	{ label: 'Start a business', value: 'Start a business' },
+	{ label: 'Join a business', value: 'Join a business' },
+	{ label: 'Find a team', value: 'Find a team' },
+	{ label: 'Collaborate on an idea', value: 'Collaborate on an idea' },
+	{ label: 'Just browsing', value: 'Just browsing' }
+];
+
+export const mobileUserObjectives = () =>
+	ALL_USER_OBJECTIVES.map((objective) => (
+		<option key={objective.label} value={objective.label}>
+			{objective.label}
+		</option>
+	));
+
 export const ALL_IDEA_CATEGORY_FIELDS: TIndustry[] = [
 	{ label: 'Aerospace', value: 'Aerospace' },
 	{ label: 'Agriculture', value: 'Agriculture' },

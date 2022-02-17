@@ -16,7 +16,7 @@ const IdeaCycler = () => {
 			if (i === cachedIdeaIds.length - 1) break;
 
 			if (v === ideaId) {
-				Router.push(
+				Router.replace(
 					{
 						query: { id: cachedIdeaIds[i + 1] }
 					},
@@ -30,7 +30,7 @@ const IdeaCycler = () => {
 	const onPreviousIdea = () => {
 		for (const [i, v] of cachedIdeaIds.entries()) {
 			if (v === ideaId) {
-				Router.push(
+				Router.replace(
 					{ query: { id: cachedIdeaIds[i - 1] } },
 					undefined,
 					{ shallow: true }

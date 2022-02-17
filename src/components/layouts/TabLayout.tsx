@@ -1,5 +1,4 @@
 import {
-	Box,
 	Icon,
 	Tab,
 	TabList,
@@ -34,14 +33,20 @@ const TabLayout = (props: Props) => {
 			variant={'soft-rounded'}
 			size={'sm'}
 		>
-			<TabList px={4} py={2} borderBottomWidth={1}>
+			<TabList
+				px={{ base: 4, sm: 0 }}
+				mx={{ base: 0, sm: 4 }}
+				py={2}
+				borderBottomWidth={1}
+				borderBottomColor={'fpGrey.50'}
+			>
 				{tabs
 					.filter((tab) => Object.keys(tab).length !== 0)
 					.map((tab, key) => (
 						<Tab
 							key={key}
 							fontSize={'xs'}
-							_hover={{ color: 'black', bg: '#F8F8F9' }}
+							_hover={{ color: 'black', bg: 'fpLightGrey.300' }}
 							_selected={{
 								bg: 'fpLightGrey.700',
 								color: 'black'

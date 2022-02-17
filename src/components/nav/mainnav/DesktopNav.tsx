@@ -41,8 +41,8 @@ const DesktopNav = memo(() => {
 							alignItems={'center'}
 							color={
 								getCurrentPath(navItem.href ?? '')
-									? 'gray.900'
-									: 'gray.500'
+									? 'fpGrey.900'
+									: 'fpGrey.500'
 							}
 							_hover={{
 								textDecoration: 'none',

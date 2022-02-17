@@ -21,6 +21,7 @@ export const IdeaUpvote = (idea: TIdeaUpvote) => {
 	});
 
 	const user = useCurrentUser();
+
 	const { hasUserUpvoted, votesTotal = 0 } = upvote;
 
 	const [insertIdeaUpvote] = useInsertIdeaUpvoteMutation({

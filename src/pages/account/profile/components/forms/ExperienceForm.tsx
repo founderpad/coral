@@ -15,12 +15,14 @@ import { useCurrentUser } from '@hooks/auth';
 import { setProfileComplete } from '@slices/auth';
 import {
 	ALL_IDEA_CATEGORY_FIELDS,
+	ALL_USER_OBJECTIVES,
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
 	mobileAvailabilityOptions,
 	mobileIdeaCategoryFields,
 	mobileNumberOfStartups,
 	mobileStartupStatuses,
+	mobileUserObjectives,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
@@ -55,6 +57,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			user_profile: { ...getValues(), isComplete: true }
 		},
 		onCompleted: (_data) => {
+			console.log('vlaues: ', getValues());
 			setModalDrawer({
 				isOpen: false
 			});
@@ -84,12 +87,15 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 	const { errors, isSubmitting, isValid } = formState;
 
-	const resetField = useCallback((name: string) => {
-		reset({
-			...getValues(),
-			[name]: ''
-		});
-	}, []);
+	const resetField = useCallback(
+		(name: string) => {
+			reset({
+				...getValues(),
+				[name]: ''
+			});
+		},
+		[reset, getValues]
+	);
 
 	return (
 		<Form
@@ -100,14 +106,17 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			isValid={isValid}
 			stackProps={{ spacing: 10 }}
 		>
-			{/* <SelectField
-				id="userOption"
-				name="userOption"
-				label="What am I looking for?"
-				placeholder="what I am looking for"
-				options={ALL_INDUSTRIES}
+			<SelectField
+				id="objective"
+				name="objective"
+				label="What is your objective on this platform?"
+				placeholder="your objective on this platform"
+				options={ALL_USER_OBJECTIVES}
+				mobileOptions={mobileUserObjectives()}
+				onClear={() => resetField('objective')}
 				control={control}
-			/> */}
+				isRequired
+			/>
 
 			<TextareaField
 				id="background"
@@ -211,7 +220,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 								p={2}
 								onChange={onSkillsToggle}
 								colorScheme={'fpPrimary'}
-								color={'fpGrey.400'}
+								color={'fpGrey.900'}
 								ref={ref}
 								size={'md'}
 								fontSize={'xs'}

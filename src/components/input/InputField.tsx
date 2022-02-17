@@ -52,7 +52,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 					}
 				);
 			}
-		}, []);
+		}, [isUrl, name, onClear]);
 
 		return (
 			<FormControl
@@ -95,7 +95,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							name={name}
 							aria-label={name}
 							fontSize={fontSize ?? '12px'}
-							color={'black'}
+							color={'fpGrey.900'}
 							rounded={'md'}
 						/>
 					)}
@@ -107,7 +107,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 					<FormErrorText label={errorText} />
 				) : (
 					helperText && (
-						<FormHelperText fontSize={'xs'}>
+						<FormHelperText fontSize={'xs'} color={'fpGrey.400'}>
 							{helperText}
 						</FormHelperText>
 					)

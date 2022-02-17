@@ -10,7 +10,7 @@ import { useTrackAnalytics } from '@hooks/util';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
 import DrawerProvider from '@provider/DrawerProvider';
-import IdeaCycleProvider from '@provider/IdeaCycleProvider';
+// import IdeaCycleProvider from '@provider/IdeaCycleProvider';
 import ModalDrawerProvider from '@provider/ModalDrawerProvider';
 import ModalProvider from '@provider/ModalProvider';
 import NotificationProvider from '@provider/NotificationProvider';
@@ -95,11 +95,11 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 									<ModalProvider>
 										<DrawerProvider>
 											<ModalDrawerProvider>
-												<IdeaCycleProvider>
-													<BaseModal />
-													<BaseModalDrawer />
-													<Component {...pageProps} />
-												</IdeaCycleProvider>
+												{/* <IdeaCycleProvider> */}
+												<BaseModal />
+												<BaseModalDrawer />
+												<Component {...pageProps} />
+												{/* </IdeaCycleProvider> */}
 											</ModalDrawerProvider>
 										</DrawerProvider>
 									</ModalProvider>

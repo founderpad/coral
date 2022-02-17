@@ -29,12 +29,15 @@ const ChangePasswordForm = (props: Props) => {
 	const isChangeSuccess = useQueryParam('cp_success');
 	const isChangeError = useQueryParam('cp_error');
 
-	const resetField = useCallback((name: string) => {
-		reset({
-			...getValues(),
-			[name]: ''
-		});
-	}, []);
+	const resetField = useCallback(
+		(name: string) => {
+			reset({
+				...getValues(),
+				[name]: ''
+			});
+		},
+		[reset, getValues]
+	);
 
 	return (
 		<Form

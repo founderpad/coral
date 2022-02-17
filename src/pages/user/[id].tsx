@@ -1,12 +1,12 @@
 import { Grid, GridItem } from '@chakra-ui/layout';
+import { Tag } from '@chakra-ui/react';
 import {
-	IoAnalyticsSharp,
-	IoBulbSharp,
-	IoMailSharp,
-	IoRocketSharp,
-	IoTimeSharp
+	IoCalendarOutline,
+	IoLocationOutline,
+	IoTimeOutline
 } from '@components/icons';
-import { PageLayout, StackLayout } from '@components/layouts';
+import { Label } from '@components/labels';
+import { FlexLayout, PageLayout, StackLayout } from '@components/layouts';
 import { DocumentTitle, TitleEditAction, UserAvatar } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
@@ -26,11 +26,34 @@ const User = () => {
 		}
 	});
 
+	const { user } = data ?? {};
+	const {
+		profile,
+		address,
+		displayName = '',
+		avatarUrl,
+		createdAt,
+		lastSeen
+	} = user ?? {};
+	const {
+		pronouns,
+		customPronouns,
+		specialistIndustry,
+		startups,
+		status,
+		availability,
+		background,
+		statement,
+		businessDescription,
+		skills
+	} = profile ?? {};
+	const { location, country } = address ?? {};
+
 	return (
 		<React.Fragment>
 			<DocumentTitle title="View user" />
 			<PageLayout
-				title={`${data?.user?.displayName}'s profile`}
+				title={`${displayName}'s profile`}
 				// action={<AddFollower userId={useQueryParam('id')} />}
 			>
 				<Grid
@@ -43,50 +66,57 @@ const User = () => {
 					<GridItem colSpan={{ base: 12, md: 4 }}>
 						<StackLayout w={'full'}>
 							<UserAvatar
-								src={data?.user?.avatarUrl || undefined}
-								boxSize={140}
+								src={avatarUrl || undefined}
+								boxSize={{ base: 100, md: 120 }}
 								aria-label="Edit profile picture"
 							/>
 							<TitleEditAction
-								title={`${data?.user?.displayName}`}
+								title={displayName}
+								subtitle={
+									<Label fontSize={'xs'} color={'fpGrey.500'}>
+										(
+										{customPronouns
+											? customPronouns
+											: pronouns
+											? pronouns
+											: ''}
+										)
+									</Label>
+								}
 							/>
 							<StackLayout spacing={2}>
-								{/* {data?.user?.country && (
+								{/* <ProfileSectionLabel
+									label={'*****************.com'}
+									icon={IoMailOutline}
+								/> */}
+
+								{data?.user?.address && (
 									<ProfileSectionLabel
 										label={
-											data?.user?.location
-												? `${data?.user?.location}, ${data?.user?.country}`
-												: data?.user?.country
-												? data?.user?.country
+											location
+												? `${location}, ${country}`
+												: country
+												? country
 												: 'Location not set'
 										}
-										icon={IoLocationSharp}
+										icon={IoLocationOutline}
 									/>
-								)} */}
-								<ProfileSectionLabel
-									label={'*****************.com'}
-									icon={IoMailSharp}
-								/>
-								{data?.user?.createdAt && (
+								)}
+								{createdAt && (
 									<ProfileSectionLabel
 										label={
 											`Joined ` +
-											formatDate(
-												data?.user.createdAt,
-												false,
-												true
-											)
+											formatDate(createdAt, false, true)
 										}
-										icon={IoTimeSharp}
+										icon={IoCalendarOutline}
 									/>
 								)}
 								{data?.user?.createdAt && (
 									<ProfileSectionLabel
 										label={
-											`Last seen ` +
-											formatDate(data?.user.lastSeen)
+											`Last seen ` + formatDate(lastSeen)
 										}
-										icon={IoTimeSharp}
+										icon={IoTimeOutline}
 									/>
 								)}
 							</StackLayout>
@@ -98,35 +128,24 @@ const User = () => {
 						spacing={6}
 					>
 						<AppDivider display={{ md: 'none' }} />
+
 						<OverviewTags
 							tags={[
 								{
 									title: 'Specialist field',
-									value:
-										data?.user?.profile
-											?.specialistIndustry ?? 'Not set',
-									icon: IoBulbSharp
+									value: specialistIndustry
 								},
 								{
 									title: 'Previous startups',
-									value: data?.user?.profile?.startups
-										? `${data?.user.profile.startups} startups`
-										: 'Not set',
-									icon: IoRocketSharp
+									value: `${startups} startups`
 								},
 								{
 									title: 'Startup status',
-									value:
-										data?.user?.profile?.status ??
-										'Not set',
-									icon: IoAnalyticsSharp
+									value: status
 								},
 								{
 									title: 'Capacity (Hours per week)',
-									value:
-										data?.user?.profile?.availability ??
-										'Not set',
-									icon: IoTimeSharp
+									value: availability
 								}
 							]}
 						/>
@@ -135,24 +154,22 @@ const User = () => {
 							{data?.user?.profile?.background && (
 								<ContentFieldAndValue
 									title={'Background'}
-									value={data?.user.profile.background}
+									value={background}
 								/>
 							)}
 							{data?.user?.profile?.statement && (
 								<ContentFieldAndValue
 									title={'Statement'}
-									value={data?.user.profile.statement}
+									value={statement}
 								/>
 							)}
 							{data?.user?.profile?.businessDescription && (
 								<ContentFieldAndValue
 									title={'Overview of businesses'}
-									value={
-										data?.user.profile.businessDescription
-									}
+									value={businessDescription}
 								/>
 							)}
-							{data?.user?.profile?.skills && (
+							{/* {data?.user?.profile?.skills && (
 								<ContentFieldAndValue
 									title={'Skills'}
 									value={
@@ -161,7 +178,33 @@ const User = () => {
 										) ?? 'No skills selected'
 									}
 								/>
-							)}
+							)} */}
+
+							<ContentFieldAndValue
+								title={'Skills'}
+								value={
+									skills?.length ? (
+										<FlexLayout
+											flexWrap={'wrap'}
+											direction={'row'}
+											alignItems={'center'}
+										>
+											{skills?.map((skill: string) => (
+												<Tag
+													fontSize={'xs'}
+													mr={2}
+													mb={2}
+													key={skill}
+												>
+													{skill}
+												</Tag>
+											))}
+										</FlexLayout>
+									) : (
+										'No skills selected'
+									)
+								}
+							/>
 						</StackLayout>
 					</GridItem>
 				</Grid>

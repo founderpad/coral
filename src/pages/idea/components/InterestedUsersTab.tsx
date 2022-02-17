@@ -22,7 +22,6 @@ export const InterestedUsersTab = () => {
 
 	useEffect(() => {
 		if (totalInterested > 0) {
-			console.log('total interested: ', totalInterested);
 			getInterestedUsers();
 		}
 	}, [totalInterested, getInterestedUsers]);

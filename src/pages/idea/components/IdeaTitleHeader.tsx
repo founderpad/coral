@@ -73,16 +73,12 @@ const IdeaActions = () => {
 		votes: votes as TIdea_Votes[],
 		votes_aggregate: votes_aggregate as TIdea_Votes_Aggregate // need to make these fragments to use types!
 	};
+
 	return (
 		<StackLayout direction={'row'} spacing={2} pt={2} alignItems={'center'}>
 			<PublishedLabel isPublished={isPublished} />
 
-			{totalInterested > 0 && (
-				<React.Fragment>
-					{/* <PointSeparator small /> */}
-					<InterestedTotal total={totalInterested} />
-				</React.Fragment>
-			)}
+			{totalInterested > 0 && <InterestedTotal total={totalInterested} />}
 			<PointSeparator small />
 			<IdeaUpvote {...ideaUpvote} />
 		</StackLayout>

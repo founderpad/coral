@@ -55,7 +55,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					}
 				);
 			}
-		}, [valueRef]);
+		}, [valueRef, isMobile, isUrl, name, onClear, placeholder]);
 
 		return (
 			<FormControl
@@ -207,7 +207,10 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					<FormErrorText label={props.errorText} />
 				) : (
 					helperText && (
-						<FormHelperText fontSize={'smaller'}>
+						<FormHelperText
+							fontSize={'smaller'}
+							color={'fpGrey.400'}
+						>
 							{helperText}
 						</FormHelperText>
 					)

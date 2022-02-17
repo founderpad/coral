@@ -19,7 +19,7 @@ exports[`Register form matches snapshot 1`] = `
         <input
           aria-label="firstName"
           aria-required="true"
-          class="chakra-input css-1gevp3u"
+          class="chakra-input css-wv9m3t"
           control="[object Object]"
           id="firstName"
           name="firstName"
@@ -35,7 +35,7 @@ exports[`Register form matches snapshot 1`] = `
       >
         <input
           aria-label="lastName"
-          class="chakra-input css-1gevp3u"
+          class="chakra-input css-wv9m3t"
           control="[object Object]"
           id="lastName"
           name="lastName"
@@ -51,7 +51,7 @@ exports[`Register form matches snapshot 1`] = `
         <input
           aria-label="email"
           aria-required="true"
-          class="chakra-input css-1gevp3u"
+          class="chakra-input css-wv9m3t"
           control="[object Object]"
           id="email-email"
           name="email"
@@ -70,7 +70,7 @@ exports[`Register form matches snapshot 1`] = `
           aria-label="password"
           aria-required="true"
           autocomplete="current-password"
-          class="chakra-input css-1gevp3u"
+          class="chakra-input css-wv9m3t"
           control="[object Object]"
           id="password-password"
           name="password"

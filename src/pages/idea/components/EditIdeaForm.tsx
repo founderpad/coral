@@ -53,12 +53,15 @@ export const EditIdeaForm = () => {
 		}
 	});
 
-	const resetField = useCallback((name: string) => {
-		reset({
-			...getValues(),
-			[name]: ''
-		});
-	}, []);
+	const resetField = useCallback(
+		(name: string) => {
+			reset({
+				...getValues(),
+				[name]: ''
+			});
+		},
+		[reset, getValues]
+	);
 
 	return (
 		<Form

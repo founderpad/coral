@@ -31,7 +31,6 @@ const MobileNav = () => {
 			overflow={'hidden'}
 			spacing={2}
 			h={'calc(100% - 40px)'}
-			// w={'calc(100% - 16px)'}
 		>
 			{NavItems.map((navItem, i) => (
 				<MobileNavItem {...navItem} key={i} />
