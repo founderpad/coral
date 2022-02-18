@@ -7,7 +7,7 @@ import IdeasActions from '@pages/ideas/components/IdeasActions';
 import OffsetPagination from '@pages/ideas/OffsetPagination';
 import Router from 'next/router';
 import React from 'react';
-// import { TFounderUsers } from 'src/types/founders';
+import { TFounderUsers } from 'src/types/founders';
 import FounderCard from './components/FounderCard';
 
 const queryBuilder = (): TUser_Profile_Bool_Exp => {
@@ -17,7 +17,7 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	const queryParamStartups = Router.query['startups'] as string;
 	const queryParamCountry = Router.query['country'] as string;
 
-	const where: TUser_Profile_Bool_Exp = {};
+	let where: TUser_Profile_Bool_Exp = {};
 
 	if (Router.query['status']) {
 		where['status'] = { _eq: queryParamStatus };
@@ -30,39 +30,24 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	}
 
 	if (Router.query['availability']) {
-		// where['availability']?._eq == queryParamAvailability;
-		// where['availability']?._eq === queryParamAvailability;
-		// where['availability'] = { _eq: queryParamAvailability };
-		where['availability']?._eq === queryParamAvailability;
+		where['availability'] = { _eq: queryParamAvailability };
 	}
 
 	if (Router.query['startups']) {
-		// where['startups']?._eq === queryParamStartups;
-
 		where['startups'] = { _eq: queryParamStartups };
 	}
 
 	if (Router.query['country']) {
-		// Non-null assertion as we know user will never be null here but TS doesn't know that(!)
-		// const country: NonNullable<TUser_Profile_Bool_Exp['user']>['address'] =
-		// 	{};
-		// country.country = { _eq: queryParamCountry };
-		// let userCountry = where.user?.address?.country
-		// userCountry = { _eq: queryParamCountry };
-		// where['user']?.address['country'] = { _eq: queryParamCountry };
-
-		// where['user']?.['address']?.['country'] = { _eq: queryParamCountry };
-
-		// if (where.user?.address?.country) {
-		// 	where.user?.address?.country._eq('')
-		// 	// where['user']?.['address']?.['country'] = { _eq: queryParamCountry };
-		// }
-
-		// where['user']?.['address']?.['country']?._eq == queryParamCountry;
-		where['user']?.['address']?.['country']?._eq == queryParamCountry;
+		where = {
+			user: {
+				address: {
+					country: {
+						_eq: queryParamCountry
+					}
+				}
+			}
+		};
 	}
-
-	console.log('where: ', where);
 
 	return where;
 };
@@ -97,7 +82,7 @@ const FoundersContainer = () => {
 				<NoResults back />
 			) : (
 				<StackLayout display={'flex'} flex={1} spacing={6}>
-					{data?.user_profile?.map((user: any) => (
+					{data?.user_profile?.map((user: TFounderUsers) => (
 						<React.Fragment key={user.id}>
 							<FounderCard {...user} />
 							<AppDivider />
