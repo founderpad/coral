@@ -151,7 +151,7 @@ const SkillsBadges = ({ skills }: { skills: Array<string> }) => {
 	return (
 		<FlexLayout flexWrap={'wrap'} direction={'row'} alignItems={'center'}>
 			{skills?.map((skill) => (
-				<Tag fontSize={'xs'} mr={1} mb={1} key={skill}>
+				<Tag fontSize={'xs'} size={'sm'} mr={1} mb={1} key={skill}>
 					{skill}
 				</Tag>
 			))}

@@ -24,6 +24,9 @@ fragment UserSearch on user_profile {
 	availability
 	specialistIndustry
 	status
+	objective
+	pronouns
+	customPronouns
 	user {
 		...UserFields
 	}

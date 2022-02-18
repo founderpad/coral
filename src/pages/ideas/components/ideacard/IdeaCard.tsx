@@ -47,7 +47,7 @@ const IdeaCard = (idea: TIdeaPreviewFieldsFragment) => (
 				position={'relative'}
 				css={{
 					'> .cardHover:hover': {
-						background: 'rgba(255, 255, 255, 0.5)',
+						background: 'rgba(255, 255, 255, 0.3)',
 						transition: 'ease-in .3s'
 					}
 				}}

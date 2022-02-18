@@ -217,7 +217,8 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 								rounded={'none'}
 								focusBorderColor={'gray.150'}
 								value={es}
-								p={2}
+								py={1}
+								pr={2}
 								onChange={onSkillsToggle}
 								colorScheme={'fpPrimary'}
 								color={'fpGrey.900'}

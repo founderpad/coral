@@ -1,7 +1,7 @@
 import { Avatar } from '@chakra-ui/avatar';
 import { AvatarProps, StackProps, useBreakpointValue } from '@chakra-ui/react';
 import { CaptionLabel, Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
+import { FlexLayout, StackLayout } from '@components/layouts';
 import { useCurrentUser } from '@hooks/auth';
 import React, { memo } from 'react';
 
@@ -11,6 +11,7 @@ type Props = AvatarProps & {
 	createdAt?: string;
 	direction?: StackProps['direction'];
 	badge?: any;
+	actions?: React.ReactNode;
 };
 
 export const UserAvatar = (props: Props) => {
@@ -39,41 +40,32 @@ export const UserAvatarDetails = ({
 	createdAt,
 	size = 'md',
 	direction = 'row',
-	fontSize = 'small'
+	fontSize = 'small',
+	actions
 }: Props) => {
 	return (
-		<StackLayout
-			align={'center'}
-			direction={direction}
-			spacing={2}
-			flex={1}
-		>
+		<StackLayout align={'center'} direction={direction} spacing={2}>
 			<UserAvatar src={src} size={size} direction={direction} />
 			<StackLayout
 				spacing={0}
 				ml={2}
 				alignItems={direction === 'column' ? 'center' : 'flex-start'}
 			>
-				<Label
-					fontWeight={'medium'}
-					fontSize={fontSize}
-					css={{ whiteSpace: 'normal' }}
-					wordBreak={'break-all'}
-					noOfLines={1}
-					isTruncated
-				>
-					{title}
-				</Label>
-				{/* {email && (
-					<Label color={'fpGrey.500'} fontSize={'xs'}>
-						{email}
+				<FlexLayout alignItems={'baseline'} lineHeight={'tall'}>
+					<Label
+						fontWeight={'medium'}
+						fontSize={fontSize}
+						css={{ whiteSpace: 'normal' }}
+						wordBreak={'break-all'}
+						noOfLines={1}
+						mr={1}
+						isTruncated
+						flex={1}
+					>
+						{title}
 					</Label>
-				)}
-				{createdAt && (
-					<CaptionLabel color={'fpGrey.400'}>
-						{createdAt}
-					</CaptionLabel>
-				)} */}
+					{actions}
+				</FlexLayout>
 				{subtitle && (
 					<Label color={'fpGrey.500'} fontSize={'xs'}>
 						{subtitle}
