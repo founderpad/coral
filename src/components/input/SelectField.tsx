@@ -131,7 +131,6 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 										':hover': {
 											background: '#F8F8F9'
 										},
-										// background: 'transparent',
 										background: state.isSelected
 											? '#F8F8F9'
 											: 'transparent',

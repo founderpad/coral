@@ -200,10 +200,12 @@ const FounderSearchForm = () => {
 								color={'fpGrey.900'}
 								ref={ref}
 								size={'md'}
-								fontSize={'xs'}
 								isChecked={selectedSkills.includes(es)}
 							>
-								<Label color={'fpGrey.900'} fontSize={'xs'}>
+								<Label
+									color={'fpGrey.900'}
+									fontSize={{ base: 'small', sm: 'xs' }}
+								>
 									{es}
 								</Label>
 							</Checkbox>
