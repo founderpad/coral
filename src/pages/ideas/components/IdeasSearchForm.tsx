@@ -106,7 +106,9 @@ const IdeasSearchForm = () => {
 			onSubmit={handleSubmit(onClick)}
 			stackProps={{ spacing: 6 }}
 		>
-			<BaseHeading fontSize={'sm'}>Search</BaseHeading>
+			<BaseHeading fontSize={'sm'} display={{ base: 'none', sm: 'flex' }}>
+				Filters
+			</BaseHeading>
 			<InputField
 				id="name"
 				name="name"
@@ -143,10 +145,10 @@ const IdeasSearchForm = () => {
 			/>
 
 			<SubmitButton
-				name={'search-ideas-button'}
-				label={'Search'}
+				name={'filter-ideas-button'}
+				label={'Filter'}
 				flex={2}
-				title={'Search ideas'}
+				title={'Filter ideas'}
 			/>
 		</Form>
 	);

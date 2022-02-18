@@ -19,12 +19,12 @@ export const PostedBy = ({ user, created_at }: TProps) => (
 			href={`/user/${user?.id}`}
 			title={'The user who posted this idea'}
 			_hover={{ color: 'gray.700' }}
-			color={'gray.400'}
 			fontSize={'x-small'}
+			color={'fpGrey.500'}
 		>
 			{user?.displayName}
 		</BaseLink>
-		<Label d={'flex'} color={'gray.400'} fontSize={'x-small'}>
+		<Label d={'flex'} fontSize={'x-small'} color={'fpGrey.500'}>
 			{user?.address?.country && (
 				<>
 					<PointSeparator small /> {user?.address?.country}

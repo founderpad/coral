@@ -95,7 +95,9 @@ const FounderSearchForm = () => {
 			name={'ideaSearchForm'}
 			onSubmit={handleSubmit(onClick)}
 		>
-			<BaseHeading fontSize={'sm'}>Search</BaseHeading>
+			<BaseHeading fontSize={'sm'} display={{ base: 'none', sm: 'flex' }}>
+				Filters
+			</BaseHeading>
 
 			<SelectField
 				id="objective"
@@ -233,10 +235,10 @@ const FounderSearchForm = () => {
 			</FormControl>
 
 			<SubmitButton
-				name={'search-ideas-button'}
-				label={'Search'}
+				name={'filter-users-button'}
+				label={'Filter'}
 				flex={2}
-				title={'Search ideas'}
+				title={'Filter users'}
 			/>
 		</Form>
 	);

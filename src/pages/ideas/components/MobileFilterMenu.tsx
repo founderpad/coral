@@ -1,5 +1,5 @@
-import { PrimaryButton } from '@components/buttons';
-import { IoChevronDownSharp } from '@components/icons';
+import { Button } from '@chakra-ui/react';
+import { IoFilterOutline } from '@components/icons';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import React, { useContext } from 'react';
 
@@ -14,7 +14,7 @@ const MobileFilterMenu = ({
 
 	const onClick = () => {
 		setModalDrawer({
-			title: `Search ${title}`,
+			title: `Filter ${title}`,
 			isOpen: true,
 			body: children,
 			noBtnLabel: 'Cancel',
@@ -25,16 +25,18 @@ const MobileFilterMenu = ({
 	};
 
 	return (
-		<PrimaryButton
+		<Button
 			name={'open-ideas-search-mobile-button'}
 			display={{ base: 'flex', md: 'none' }}
+			leftIcon={<IoFilterOutline size={'16px'} />}
+			size={'sm'}
+			fontSize={'xs'}
 			variant={'outline'}
+			background={'transparent'}
 			onClick={onClick}
-			size={'xs'}
-			rightIcon={<IoChevronDownSharp />}
 		>
-			Search
-		</PrimaryButton>
+			Filters
+		</Button>
 	);
 };
 
