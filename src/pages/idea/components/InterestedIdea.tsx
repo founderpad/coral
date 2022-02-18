@@ -1,10 +1,13 @@
+import { Button } from '@chakra-ui/react';
 import { PrimaryButton } from '@components/buttons';
 import { Label } from '@components/labels';
+import { AppDivider } from '@components/shared';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useCreateInterestedIdeaMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import React, { useContext, useState } from 'react';
+import { IoStarOutline } from 'react-icons/io5';
 import useIdea from '../query/ideaQuery';
 
 export const InterestedIdea = () => {
@@ -52,39 +55,58 @@ export const InterestedIdea = () => {
 		});
 	};
 
-	// if (auth?.id === userId) return null;
-
-	if (interested)
-		return (
-			<Label color={'green.500'} alignItems={'center'} fontSize={'small'}>
-				You have expressed interest in this idea
-			</Label>
-		);
+	if (auth?.id === userId) return null;
 
 	return (
-		<PrimaryButton
-			name={'interested-idea-button'}
-			variant={'outline'}
-			onClick={onClick}
-			alignItems={'center'}
-			position={'relative'}
-			w={'fit-content'}
-			size={'sm'}
-			fontSize={'xs'}
-			px={4}
-			py={1}
-		>
-			{/* <Icon
-				as={IoStarSharp}
-				position={'absolute'}
-				color={'gold'}
-				right={0}
-				top={0}
-				fontSize={'large'}
-				transform={'translateY(-50%)translateX(50%)'}
-			/> */}
-			I&apos;m Interested
-		</PrimaryButton>
+		<>
+			<AppDivider />
+			{interested ? (
+				<Label
+					color={'green.500'}
+					alignItems={'center'}
+					fontSize={'small'}
+				>
+					You have expressed interest in this idea
+				</Label>
+			) : (
+				// <PrimaryButton
+				// 	name={'interested-idea-button'}
+				// 	variant={'outline'}
+				// 	onClick={onClick}
+				// 	alignItems={'center'}
+				// 	position={'relative'}
+				// 	w={'fit-content'}
+				// 	size={'sm'}
+				// 	fontSize={'xs'}
+				// 	px={4}
+				// 	py={1}
+				// >
+				// 	{/* <Icon
+				// 		as={IoStarSharp}
+				// 		position={'absolute'}
+				// 		color={'gold'}
+				// 		right={0}
+				// 		top={0}
+				// 		fontSize={'large'}
+				// 		transform={'translateY(-50%)translateX(50%)'}
+				// 	/> */}
+				// 	I&apos;m Interested
+				// </PrimaryButton>
+				<Button
+					leftIcon={<IoStarOutline />}
+					w={'fit-content'}
+					bg={'transparent'}
+					variant={'outline'}
+					px={4}
+					py={2}
+					color={'fpPrimary.500'}
+					fontSize={'sm'}
+					onClick={onClick}
+				>
+					I&apos;m interested
+				</Button>
+			)}
+		</>
 	);
 };
 

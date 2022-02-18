@@ -61,6 +61,8 @@ const orderBuilder = (): TIdea_Preview_Order_By => {
 		}
 
 		order['comments_aggregate'] = { count: 'desc' };
+	} else {
+		order['created_at'] = 'desc';
 	}
 
 	return order;
@@ -73,10 +75,7 @@ const IdeasContainer = () => {
 			where: queryBuilder(),
 			limit: 10,
 			offset: (parseInt(useQueryParam('page')) - 1) * 10,
-			orderBy: {
-				// created_at: 'desc',
-				...orderBuilder()
-			},
+			orderBy: orderBuilder(),
 			userId: useClaim()
 		},
 		onCompleted: (data) => {
