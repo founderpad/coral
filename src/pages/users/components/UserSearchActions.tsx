@@ -1,11 +1,10 @@
 import { Flex } from '@chakra-ui/layout';
-// import { Label } from '@components/labels';
 import { SearchResultsLabel, StickySubheader } from '@components/shared';
+import MobileFilterMenu from '@pages/ideas/components/MobileFilterMenu';
 import React from 'react';
-import IdeasSearchForm from './IdeasSearchForm';
-import MobileFilterMenu from './MobileFilterMenu';
+import FounderSearchForm from './FounderSearchForm';
 
-const IdeasActions = ({
+const UserSearchActions = ({
 	total,
 	pageSize,
 	hasResults = false
@@ -22,8 +21,8 @@ const IdeasActions = ({
 		>
 			<StickySubheader title="All ideas">
 				<Flex justifyContent={'space-between'} alignItems={'flex-end'}>
-					<MobileFilterMenu title={'ideas'}>
-						<IdeasSearchForm />
+					<MobileFilterMenu title={'users'}>
+						<FounderSearchForm />
 					</MobileFilterMenu>
 					{hasResults && (
 						<SearchResultsLabel
@@ -48,4 +47,4 @@ const IdeasActions = ({
 	</React.Fragment>
 );
 
-export default IdeasActions;
+export default UserSearchActions;

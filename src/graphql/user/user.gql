@@ -1,4 +1,4 @@
-#import { UserFieldsWithEmail } from '../fragments/user.gql'
+#import { UserFieldsWithEmail, UserSearch } from '../fragments/user.gql'
 
 query UserSocials($id: uuid!) {
 	profile: user_profile_by_pk(id: $id) {
@@ -66,23 +66,22 @@ query Users(
 		order_by: $orderBy
 	) {
 		id
-		startups
-		user {
-			displayName
-			createdAt
-			id
-			address {
-				location
-				country
-			}
-		}
-		specialistIndustry
-		availability
-		status
-		skills
+		# startups
+		# user {
+		# 	displayName
+		# 	createdAt
+		# 	id
+		# 	address {
+		# 		location
+		# 		country
+		# 	}
+		# }
+		# specialistIndustry
+		# availability
+		# status
+		# skills
 		objective
-		pronouns
-		customPronouns
+		...UserSearch
 	}
 }
 

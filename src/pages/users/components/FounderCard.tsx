@@ -2,13 +2,13 @@ import { Icon, Tag } from '@chakra-ui/react';
 import { BoxLayout, FlexLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import { PointSeparator, UserAvatarDetails } from '@components/shared';
+import { TUserSearchFragment } from '@generated/api';
 import { formatDate } from '@utils/validators';
 import React from 'react';
 import { IoLocationOutline } from 'react-icons/io5';
-import { TFounderUsers } from 'src/types/founders';
 
-const founderAttrs = (founderProfileAttrs: TFounderUsers): string[] => {
-	const attrs = [];
+const founderAttrs = (founderProfileAttrs: TUserSearchFragment): string[] => {
+	const attrs: string[] = [];
 
 	if (founderProfileAttrs.availability)
 		attrs.push(
@@ -27,15 +27,10 @@ const founderAttrs = (founderProfileAttrs: TFounderUsers): string[] => {
 	if (founderProfileAttrs.skills)
 		attrs.push(`Has ${founderProfileAttrs.skills.length} skills`);
 
-	// for (const attr in Object.entries(founderProfileAttrs)) {
-	// 	attrs.push(attr);
-	// }
-
-	// if (founderProfileAttrs.status) attrs.
-	return attrs as string[];
+	return attrs;
 };
 
-const FounderProfileAttributes = (founderProfileAttrs: TFounderUsers) => {
+const FounderProfileAttributes = (founderProfileAttrs: TUserSearchFragment) => {
 	if (!founderAttrs(founderProfileAttrs).length) return null;
 
 	return (
@@ -54,7 +49,7 @@ const FounderProfileAttributes = (founderProfileAttrs: TFounderUsers) => {
 	);
 };
 
-const FounderCard = (founderProfile: TFounderUsers) => {
+const FounderCard = (founderProfile: TUserSearchFragment) => {
 	return (
 		<FlexLayout
 			flexDirection={'column'}

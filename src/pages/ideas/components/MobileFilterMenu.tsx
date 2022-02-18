@@ -2,16 +2,21 @@ import { PrimaryButton } from '@components/buttons';
 import { IoChevronDownSharp } from '@components/icons';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import React, { useContext } from 'react';
-import IdeasSearchForm from './IdeasSearchForm';
 
-const MobileFilterMenu = () => {
+const MobileFilterMenu = ({
+	title,
+	children
+}: {
+	title: string;
+	children: React.ReactNode;
+}) => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const onClick = () => {
 		setModalDrawer({
-			title: 'Search ideas',
+			title: `Search ${title}`,
 			isOpen: true,
-			body: <IdeasSearchForm />,
+			body: children,
 			noBtnLabel: 'Cancel',
 			yesBtnLabel: 'Search',
 			yesBtnColor: 'fpPrimary',
