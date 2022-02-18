@@ -43,6 +43,7 @@ const User = () => {
 		status,
 		availability,
 		background,
+		objective,
 		statement,
 		businessDescription,
 		skills
@@ -151,6 +152,12 @@ const User = () => {
 						/>
 						<AppDivider />
 						<StackLayout flex={1}>
+							{data?.user?.profile?.objective && (
+								<ContentFieldAndValue
+									title={'Looking for'}
+									value={objective}
+								/>
+							)}
 							{data?.user?.profile?.background && (
 								<ContentFieldAndValue
 									title={'Background'}

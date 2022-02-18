@@ -4279,7 +4279,7 @@ export type TUserFieldsWithEmailFragment = { __typename?: 'users', email?: any |
 
 export type TUserAddressFragment = { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined };
 
-export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null | undefined, startups?: string | null | undefined, availability?: string | null | undefined, specialistIndustry?: string | null | undefined, status?: string | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
+export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null | undefined, startups?: string | null | undefined, availability?: string | null | undefined, specialistIndustry?: string | null | undefined, status?: string | null | undefined, objective?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type TCreateIdeaMutationVariables = Exact<{
   idea: TIdeas_Insert_Input;
@@ -4401,7 +4401,7 @@ export type TUsersQueryVariables = Exact<{
 }>;
 
 
-export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, objective?: string | null | undefined, skills?: any | null | undefined, startups?: string | null | undefined, availability?: string | null | undefined, specialistIndustry?: string | null | undefined, status?: string | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, objective?: string | null | undefined, skills?: any | null | undefined, startups?: string | null | undefined, availability?: string | null | undefined, specialistIndustry?: string | null | undefined, status?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
 
 export type TUpdateUserProfileMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4498,6 +4498,9 @@ export const UserSearchFragmentDoc = gql`
   availability
   specialistIndustry
   status
+  objective
+  pronouns
+  customPronouns
   user {
     ...UserFields
   }

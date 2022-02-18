@@ -6,10 +6,12 @@ import BaseHeading from '@components/heading/BaseHeading';
 import { SelectField } from '@components/input';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
+import { AppDivider } from '@components/shared';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
 	ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
+	ALL_USER_OBJECTIVES,
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
 	mobileAvailabilityOptions,
@@ -17,6 +19,7 @@ import {
 	mobileIdeaCategoryFields,
 	mobileNumberOfStartups,
 	mobileStartupStatuses,
+	mobileUserObjectives,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
@@ -31,6 +34,7 @@ interface ISearchFields {
 	startups?: string;
 	country?: string;
 	skills?: Array<string>;
+	objective?: string;
 }
 
 const FounderSearchForm = () => {
@@ -46,15 +50,11 @@ const FounderSearchForm = () => {
 			isOpen: false
 		});
 
-		// console.log('values: ', values);
-
 		const queryParams = JSON.parse(JSON.stringify(values));
 
 		for (const [k, _v] of Object.entries(values)) {
 			if (!queryParams[k]) delete queryParams[k];
 		}
-
-		console.log('values: ', values);
 
 		router.push(
 			{
@@ -98,6 +98,18 @@ const FounderSearchForm = () => {
 			<BaseHeading fontSize={'sm'}>Search</BaseHeading>
 
 			<SelectField
+				id="objective"
+				name="objective"
+				label="Looking for"
+				placeholder="looking for"
+				options={ALL_USER_OBJECTIVES}
+				mobileOptions={mobileUserObjectives()}
+				onClear={() => resetField('objective')}
+				control={control}
+				isUrl
+			/>
+
+			<SelectField
 				id="country"
 				name="country"
 				label="Country"
@@ -108,10 +120,12 @@ const FounderSearchForm = () => {
 				control={control}
 				isUrl
 			/>
+
+			<AppDivider />
 			<SelectField
 				id="status"
 				name="status"
-				label="Current startup status"
+				label="Startup status"
 				placeholder="startup status"
 				options={STARTUP_STATUS}
 				mobileOptions={mobileStartupStatuses()}
@@ -127,7 +141,7 @@ const FounderSearchForm = () => {
 				mobileOptions={mobileNumberOfStartups()}
 				placeholder="number of startups"
 				control={control}
-				label={'Previous number of startups'}
+				label={'Previous startups'}
 				onClear={() => resetField('startups')}
 				isUrl
 			/>
@@ -156,6 +170,7 @@ const FounderSearchForm = () => {
 				onClear={() => resetField('field')}
 				isUrl
 			/>
+			<AppDivider />
 
 			<FormControl>
 				<FlexLayout justifyContent={'space-between'}>
@@ -184,39 +199,38 @@ const FounderSearchForm = () => {
 						Clear
 					</Button>
 				</FlexLayout>
-				{EXPERIENCE_SKILLS.map((es: string) => (
-					<Controller
-						key={es}
-						name={'skills'}
-						render={({ field: { ref } }) => (
-							<Checkbox
-								name={es}
-								rounded={'none'}
-								focusBorderColor={'gray.150'}
-								value={es}
-								p={2}
-								onChange={onSkillsToggle}
-								colorScheme={'fpPrimary'}
-								color={'fpGrey.900'}
-								ref={ref}
-								size={'md'}
-								isChecked={selectedSkills.includes(es)}
-							>
-								<Label
-									color={'fpGrey.900'}
-									fontSize={{ base: 'small', sm: 'xs' }}
-								>
-									{es}
-								</Label>
-							</Checkbox>
-						)}
-						control={control}
-					/>
-				))}
-			</FormControl>
 
-			{/* business status  */}
-			{/* ideas with questionnaires */}
+				<FlexLayout flexDirection={'column'}>
+					{EXPERIENCE_SKILLS.map((es: string) => (
+						<Controller
+							key={es}
+							name={'skills'}
+							render={({ field: { ref } }) => (
+								<Checkbox
+									name={es}
+									rounded={'none'}
+									focusBorderColor={'gray.150'}
+									value={es}
+									py={1}
+									onChange={onSkillsToggle}
+									colorScheme={'fpPrimary'}
+									color={'fpGrey.900'}
+									ref={ref}
+									isChecked={selectedSkills.includes(es)}
+								>
+									<Label
+										color={'fpGrey.900'}
+										fontSize={{ base: 'small', sm: 'xs' }}
+									>
+										{es}
+									</Label>
+								</Checkbox>
+							)}
+							control={control}
+						/>
+					))}
+				</FlexLayout>
+			</FormControl>
 
 			<SubmitButton
 				name={'search-ideas-button'}

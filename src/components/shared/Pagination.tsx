@@ -26,7 +26,7 @@ export const Pagination = (props: Props) => {
 			justifyContent={'space-between'}
 			w={'full'}
 			pt={8}
-			px={{ base: 0, sm: 6 }}
+			// px={{ base: 0, sm: 6 }}
 		>
 			<CancelButton
 				label={'Previous'}
