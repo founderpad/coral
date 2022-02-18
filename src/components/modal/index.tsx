@@ -91,7 +91,7 @@ export const Modal = (props: IModalProps) => {
 				<ModalBody
 					fontWeight={'normal'}
 					fontSize={'sm'}
-					color={'gray.500'}
+					color={'fpGrey.500'}
 					flex={1}
 					p={removePadding ? 0 : 4}
 					maxH={'100%'}

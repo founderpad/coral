@@ -39,7 +39,7 @@ export const InterestedUsersTab = () => {
 				>
 					<UserAvatarDetails
 						src={interestedUser?.user?.avatarUrl || undefined}
-						name={interestedUser?.user?.displayName}
+						title={interestedUser?.user?.displayName}
 						createdAt={formatDate(interestedUser.createdAt, true)}
 					/>
 					<PrimaryLink

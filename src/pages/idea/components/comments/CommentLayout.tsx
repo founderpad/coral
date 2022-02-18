@@ -86,6 +86,7 @@ export const CommentLayout = ({
 										bg={'fpPrimary.700'}
 										ml={1}
 										fontSize={'x-small'}
+										size={'sm'}
 									>
 										Creator
 									</BaseTag>
