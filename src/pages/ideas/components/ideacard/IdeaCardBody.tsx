@@ -49,11 +49,11 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 			justifyContent={'space-between'}
 			w={'full'}
 		>
-			<StackLayout spacing={2} direction={'row'}>
-				<Tag fontSize={{ base: 'x-small', sm: 'xs' }} px={4}>
+			<StackLayout spacing={1} direction={'row'}>
+				<Tag fontSize={'xs'} size={'sm'}>
 					{status}
 				</Tag>
-				<Tag fontSize={{ base: 'x-small', sm: 'xs' }} px={4}>
+				<Tag fontSize={'xs'} size={'sm'}>
 					{field}
 				</Tag>
 			</StackLayout>

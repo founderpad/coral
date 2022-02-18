@@ -3,6 +3,7 @@ import { AppDivider, Loading, NoResults } from '@components/shared';
 import {
 	TIdeaPreviewFieldsFragment,
 	TIdea_Preview_Bool_Exp,
+	TIdea_Preview_Order_By,
 	useIdeasQuery
 } from '@generated/api';
 import { useClaim } from '@hooks/auth';
@@ -14,12 +15,11 @@ import OffsetPagination from './OffsetPagination';
 import Router from 'next/router';
 import IdeaCycleContext from '@context/IdeaCycleContext';
 
-// type TIdeaPreview = Omit<TIdea_Preview, 'comments' | 'nodes'>;
-
 const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 	const queryParamName = Router.query['name'] as string;
 	const queryParamField = Router.query['field'] as string;
 	const queryParamStatus = Router.query['status'] as string;
+	const queryParamCountry = Router.query['country'] as string;
 
 	const where: TIdea_Preview_Bool_Exp = {};
 
@@ -35,7 +35,35 @@ const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 		where.status = { _eq: queryParamStatus };
 	}
 
+	if (Router.query['country']) {
+		where['user'] = {
+			address: {
+				country: {
+					_eq: queryParamCountry
+				}
+			}
+		};
+	}
+
+	if (Router.query['is_new']) {
+		where['is_new'] = { _eq: !!Router.query['is_new'] };
+	}
+
 	return where;
+};
+
+const orderBuilder = (): TIdea_Preview_Order_By => {
+	const order: TIdea_Preview_Order_By = {};
+	if (Router.query['popularity']) {
+		const popularity = parseInt(Router.query['popularity'] as string);
+		if (popularity === 0) {
+			order['votes_aggregate'] = { count: 'desc' };
+		}
+
+		order['comments_aggregate'] = { count: 'desc' };
+	}
+
+	return order;
 };
 
 const IdeasContainer = () => {
@@ -46,7 +74,8 @@ const IdeasContainer = () => {
 			limit: 10,
 			offset: (parseInt(useQueryParam('page')) - 1) * 10,
 			orderBy: {
-				created_at: 'desc'
+				// created_at: 'desc',
+				...orderBuilder()
 			},
 			userId: useClaim()
 		},

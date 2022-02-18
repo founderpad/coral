@@ -569,12 +569,12 @@ export const mobileStartupStatuses = () =>
 // 	{ key: '41', value: '41+ hours', min: 41 }
 // ];
 
-export const AVAILABILITY_IN_HOURS = [
-	{ label: '1-10 hours', value: '1-10 hours', min: 1, max: 10 },
-	{ label: '11-20 hours', value: '11-20 hours', min: 11, max: 20 },
-	{ label: '21-30 hours', value: '21-30 hours', min: 21, max: 30 },
-	{ label: '31-40 hours', value: '31-40 hours', min: 31, max: 40 },
-	{ label: '41+ hours', value: '41+ hours', min: 41 }
+export const AVAILABILITY_IN_HOURS: Option[] = [
+	{ label: '1-10 hours', value: '1-10 hours' },
+	{ label: '11-20 hours', value: '11-20 hours' },
+	{ label: '21-30 hours', value: '21-30 hours' },
+	{ label: '31-40 hours', value: '31-40 hours' },
+	{ label: '41+ hours', value: '41+ hours' }
 ];
 
 export const mobileAvailabilityOptions = () =>
@@ -586,7 +586,7 @@ export const mobileAvailabilityOptions = () =>
 
 // *
 
-export const REPORT_REASONS = [
+export const REPORT_REASONS: Option[] = [
 	{
 		label: 'Abusive or harmful content',
 		value: 'Abusive or harmful content'
@@ -606,12 +606,12 @@ export const mobileReportOptions = () =>
 		</option>
 	));
 
-type IdeaStatus = {
+type Option = {
 	readonly label: string;
-	readonly value: string;
+	readonly value: string | number;
 };
 
-export const ALL_IDEA_STATUSES: IdeaStatus[] = [
+export const ALL_IDEA_STATUSES: Option[] = [
 	{ label: 'New idea', value: 'New idea' },
 	{ label: 'Building team', value: 'Building team' },
 	{ label: 'Pre-launch', value: 'Pre-launch' },
@@ -622,6 +622,18 @@ export const mobileIdeaStatuses = () =>
 	ALL_IDEA_STATUSES.map((status) => (
 		<option key={status.value} value={status.value}>
 			{status.value}
+		</option>
+	));
+
+export const BY_IDEA_POPULARITY: Option[] = [
+	{ label: 'Upvotes', value: 0 },
+	{ label: 'Comments', value: 1 }
+];
+
+export const mobileIdeaPopularity = () =>
+	BY_IDEA_POPULARITY.map((popularityOption) => (
+		<option key={popularityOption.value} value={popularityOption.value}>
+			{popularityOption.value}
 		</option>
 	));
 
@@ -638,7 +650,5 @@ export enum MenuActionType {
 	DELETE,
 	REPORT
 }
-
-// Auth
 
 export const PASSWORD_RESET = 'passwordReset';
