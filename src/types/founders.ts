@@ -9,5 +9,11 @@ export type TFounderUsers = Pick<
 	| 'specialistIndustry'
 	| 'id'
 > & {
-	user?: Pick<TUsers, 'displayName' | 'id' | 'createdAt' | 'address'> | null;
+	user?: Pick<TUsers, 'displayName' | 'id' | 'createdAt'> | null;
+} & {
+	address: Pick<NonNullable<TUsers['address']>, 'country'>;
 };
+
+// export type TFounderUsers = ReturnType<TUser_Profile>;
+
+// type Address = Pick<NonNullable<TUsers['address']>, 'country'>;

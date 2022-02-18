@@ -1,14 +1,29 @@
 import { StackLayout } from '@components/layouts';
 import { Loading, NoResults } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
-import { TUser_Profile_Bool_Exp, useUsersQuery } from '@generated/api';
+import {
+	TUserSearchFragment,
+	TUser_Profile_Bool_Exp,
+	useUsersQuery
+} from '@generated/api';
 import { useQueryParam } from '@hooks/util';
-import IdeasActions from '@pages/ideas/components/IdeasActions';
 import OffsetPagination from '@pages/ideas/OffsetPagination';
 import Router from 'next/router';
 import React from 'react';
-// import { TFounderUsers } from 'src/types/founders';
 import FounderCard from './components/FounderCard';
+import UserSearchActions from './components/UserSearchActions';
+
+// function buildQuery<T>(values: Array<string>): T {
+// 	let where = {} as any;
+
+// 	for (const value in values) {
+// 		if (Router.query[value]) {
+// 			where[value] = { _eq: Router.query[value] };
+// 		}
+// 	}
+
+// 	return where;
+// }
 
 const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	const queryParamStatus = Router.query['status'] as string;
@@ -16,8 +31,9 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	const queryParamAvailability = Router.query['availability'] as string;
 	const queryParamStartups = Router.query['startups'] as string;
 	const queryParamCountry = Router.query['country'] as string;
+	const queryParamSkills = Router.query['skills'] as string[];
 
-	const where: TUser_Profile_Bool_Exp = {};
+	let where: TUser_Profile_Bool_Exp = {};
 
 	if (Router.query['status']) {
 		where['status'] = { _eq: queryParamStatus };
@@ -30,39 +46,26 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	}
 
 	if (Router.query['availability']) {
-		// where['availability']?._eq == queryParamAvailability;
-		// where['availability']?._eq === queryParamAvailability;
-		// where['availability'] = { _eq: queryParamAvailability };
-		where['availability']?._eq === queryParamAvailability;
+		where['availability'] = { _eq: queryParamAvailability };
 	}
 
 	if (Router.query['startups']) {
-		// where['startups']?._eq === queryParamStartups;
-
 		where['startups'] = { _eq: queryParamStartups };
 	}
 
-	if (Router.query['country']) {
-		// Non-null assertion as we know user will never be null here but TS doesn't know that(!)
-		// const country: NonNullable<TUser_Profile_Bool_Exp['user']>['address'] =
-		// 	{};
-		// country.country = { _eq: queryParamCountry };
-		// let userCountry = where.user?.address?.country
-		// userCountry = { _eq: queryParamCountry };
-		// where['user']?.address['country'] = { _eq: queryParamCountry };
-
-		// where['user']?.['address']?.['country'] = { _eq: queryParamCountry };
-
-		// if (where.user?.address?.country) {
-		// 	where.user?.address?.country._eq('')
-		// 	// where['user']?.['address']?.['country'] = { _eq: queryParamCountry };
-		// }
-
-		// where['user']?.['address']?.['country']?._eq == queryParamCountry;
-		where['user']?.['address']?.['country']?._eq == queryParamCountry;
+	if (Router.query['skills']) {
+		where['skills'] = { _contains: queryParamSkills };
 	}
 
-	console.log('where: ', where);
+	if (Router.query['country']) {
+		where['user'] = {
+			address: {
+				country: {
+					_eq: queryParamCountry
+				}
+			}
+		};
+	}
 
 	return where;
 };
@@ -71,6 +74,13 @@ const FoundersContainer = () => {
 	const { data, loading } = useUsersQuery({
 		variables: {
 			where: queryBuilder(),
+			// where: buildQuery<TUser_Profile_Bool_Exp>([
+			// 	'status',
+			// 	'field',
+			// 	'availability',
+			// 	'startups',
+			// 	'country'
+			// ]),
 			limit: 10,
 			offset: (parseInt(useQueryParam('id')) - 1) * 10,
 			orderBy: {
@@ -87,7 +97,7 @@ const FoundersContainer = () => {
 		<StackLayout p={{ base: 4, sm: 6 }}>
 			{/* {data?.user_profile?.length < 1 && <NoResults back />} */}
 			{data?.user_profile_aggregate && (
-				<IdeasActions
+				<UserSearchActions
 					total={data?.user_profile_aggregate?.aggregate?.count || 0}
 					pageSize={data?.user_profile.length}
 					hasResults={data?.user_profile.length > 0}
@@ -97,12 +107,14 @@ const FoundersContainer = () => {
 				<NoResults back />
 			) : (
 				<StackLayout display={'flex'} flex={1} spacing={6}>
-					{data?.user_profile?.map((user: any) => (
-						<React.Fragment key={user.id}>
-							<FounderCard {...user} />
-							<AppDivider />
-						</React.Fragment>
-					))}
+					{data?.user_profile?.map(
+						(searchedUser: TUserSearchFragment) => (
+							<React.Fragment key={searchedUser.user?.id}>
+								<FounderCard {...searchedUser} />
+								<AppDivider />
+							</React.Fragment>
+						)
+					)}
 				</StackLayout>
 			)}
 			{hasResults && (

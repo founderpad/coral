@@ -1,23 +1,28 @@
+import { FormControl, Checkbox, Button } from '@chakra-ui/react';
 import { SubmitButton } from '@components/buttons';
+import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
 import BaseHeading from '@components/heading/BaseHeading';
 import { SelectField } from '@components/input';
+import { Label } from '@components/labels';
+import { FlexLayout } from '@components/layouts';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
-	// ALL_COUNTRIES,
+	ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
 	AVAILABILITY_IN_HOURS,
+	EXPERIENCE_SKILLS,
 	mobileAvailabilityOptions,
-	// mobileCountriesList,
+	mobileCountriesList,
 	mobileIdeaCategoryFields,
 	mobileNumberOfStartups,
 	mobileStartupStatuses,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
-import { useRouter } from 'next/router';
-import React, { useCallback, useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import Router, { useRouter } from 'next/router';
+import React, { useCallback, useContext, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 interface ISearchFields {
 	status?: string;
@@ -25,12 +30,14 @@ interface ISearchFields {
 	field?: string;
 	startups?: string;
 	country?: string;
+	skills?: Array<string>;
 }
 
 const FounderSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
-	const { handleSubmit, reset, control, getValues } =
+	const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+	const { handleSubmit, reset, control, getValues, setValue } =
 		useForm<ISearchFields>();
 	const router = useRouter();
 
@@ -39,11 +46,15 @@ const FounderSearchForm = () => {
 			isOpen: false
 		});
 
+		// console.log('values: ', values);
+
 		const queryParams = JSON.parse(JSON.stringify(values));
 
 		for (const [k, _v] of Object.entries(values)) {
 			if (!queryParams[k]) delete queryParams[k];
 		}
+
+		console.log('values: ', values);
 
 		router.push(
 			{
@@ -55,6 +66,17 @@ const FounderSearchForm = () => {
 				shallow: true
 			}
 		);
+	};
+
+	const onSkillsToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const skill = e.target.name;
+		const skillsCopy = [...selectedSkills];
+
+		const index = skillsCopy.findIndex((s) => s === skill);
+		index > -1 ? skillsCopy.splice(index, 1) : skillsCopy.push(skill);
+
+		setSelectedSkills(skillsCopy);
+		setValue('skills', skillsCopy);
 	};
 
 	const resetField = useCallback(
@@ -75,7 +97,7 @@ const FounderSearchForm = () => {
 		>
 			<BaseHeading fontSize={'sm'}>Search</BaseHeading>
 
-			{/* <SelectField
+			<SelectField
 				id="country"
 				name="country"
 				label="Country"
@@ -85,7 +107,7 @@ const FounderSearchForm = () => {
 				onClear={() => resetField('country')}
 				control={control}
 				isUrl
-			/> */}
+			/>
 			<SelectField
 				id="status"
 				name="status"
@@ -134,28 +156,64 @@ const FounderSearchForm = () => {
 				onClear={() => resetField('field')}
 				isUrl
 			/>
-			{/* <FormControl>
-				<FormLabelText label={'Skills'} />
-				{EXPERIENCE_SKILLS.map((es: string) => (
-					<Checkbox
-						key={es}
-						name={es}
-						rounded={'none'}
-						focusBorderColor={'gray.150'}
-						value={es}
-						p={2}
-						// onChange={onSkillsToggle}
+
+			<FormControl>
+				<FlexLayout justifyContent={'space-between'}>
+					<FormLabelText label={'Skills'} />
+					<Button
+						fontSize={'x-small'}
 						colorScheme={'fpPrimary'}
-						size={'sm'}
-						fontSize={'xs'}
-						// isChecked={selectedSkills.includes(es)}
+						variant={'link'}
+						mb={1}
+						onClick={() => {
+							delete Router.query['skills'];
+							resetField('skills');
+							setSelectedSkills([]);
+							Router.push(
+								{
+									pathname: Router.pathname,
+									query: Router.query
+								},
+								undefined,
+								{
+									shallow: true
+								}
+							);
+						}}
 					>
-						<Label color={'fpGrey.900'} fontSize={'xs'}>
-							{es}
-						</Label>
-					</Checkbox>
+						Clear
+					</Button>
+				</FlexLayout>
+				{EXPERIENCE_SKILLS.map((es: string) => (
+					<Controller
+						key={es}
+						name={'skills'}
+						render={({ field: { ref } }) => (
+							<Checkbox
+								name={es}
+								rounded={'none'}
+								focusBorderColor={'gray.150'}
+								value={es}
+								p={2}
+								onChange={onSkillsToggle}
+								colorScheme={'fpPrimary'}
+								color={'fpGrey.900'}
+								ref={ref}
+								size={'md'}
+								isChecked={selectedSkills.includes(es)}
+							>
+								<Label
+									color={'fpGrey.900'}
+									fontSize={{ base: 'small', sm: 'xs' }}
+								>
+									{es}
+								</Label>
+							</Checkbox>
+						)}
+						control={control}
+					/>
 				))}
-			</FormControl> */}
+			</FormControl>
 
 			{/* business status  */}
 			{/* ideas with questionnaires */}

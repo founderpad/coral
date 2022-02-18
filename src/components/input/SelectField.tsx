@@ -129,9 +129,11 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 										fontSize: '12px',
 										cursor: 'pointer',
 										':hover': {
-											background: '#F5F5F6'
+											background: '#F8F8F9'
 										},
-										background: 'transparent',
+										background: state.isSelected
+											? '#F8F8F9'
+											: 'transparent',
 										color: state.isSelected
 											? '#2092BC'
 											: '#718096'
@@ -190,7 +192,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 											width: '14px',
 											height: '14px',
 											transform: state.isFocused
-												? 'rotate(180deg)'
+												? 'rotate(-180deg)'
 												: 'rotate(0deg)',
 											transition: 'transform .1s linear'
 										}
