@@ -92,7 +92,7 @@ const IdeasSearchForm = () => {
 	const onSetNewIdea = useCallback(() => {
 		setValue('isNew', !isNewIdea);
 		setIsNewIdea(!isNewIdea);
-	}, [isNewIdea]);
+	}, [isNewIdea, setValue]);
 
 	const onClearNewIdeas = () => {
 		delete Router.query['isNew'];
