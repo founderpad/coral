@@ -44,7 +44,6 @@ const WorkExperienceTab = () => {
 				/>
 			),
 			body: <ExperienceForm {...userProfile} />,
-			noBtnLabel: 'Cancel',
 			size: '3xl'
 		});
 	};

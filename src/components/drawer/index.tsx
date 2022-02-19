@@ -1,5 +1,4 @@
 import {
-	ButtonGroup,
 	ButtonProps,
 	Drawer as ChakraDrawer,
 	DrawerBody,
@@ -24,7 +23,6 @@ type IModalProps = Omit<ModalProps, 'children'> & {
 	closeLabel?: string | 'Cancel';
 	yesBtnColor?: 'fpPrimary' | 'red' | ButtonProps['colorScheme'];
 	hideFooter?: boolean;
-	// actions?: React.ReactNode;
 	removePadding?: boolean;
 	action?: typeof BaseButton;
 };
@@ -34,13 +32,8 @@ export const Drawer = ({
 	isOpen,
 	body,
 	onClose,
-	onConfirm,
 	noBtnLabel,
-	yesBtnLabel,
-	yesBtnColor,
-	hideFooter,
 	removePadding,
-	// actions,
 	action
 }: IModalProps) => {
 	return (
@@ -70,35 +63,6 @@ export const Drawer = ({
 					<DrawerCloseButton color={'black'} left={2} top={3} />
 					{title}
 				</DrawerHeader>
-				{/* {title && (
-					<React.Fragment>
-						<DrawerHeader
-							fontWeight={'medium'}
-							fontSize={'md'}
-							px={4}
-							py={2}
-							display={'flex'}
-							alignItems={'center'}
-							borderBottomWidth={1}
-						>
-							{title}
-							{actions && (
-								<ButtonGroup ml={'auto'} spacing={4}>
-									<CancelButton
-										label={'Cancel'}
-										onClick={onClose}
-										size={'sm'}
-									/>
-									{actions}
-								</ButtonGroup>
-							)}
-						</DrawerHeader>
-						{!actions && (
-							<DrawerCloseButton top={1} color={'black'} />
-						)}
-					</React.Fragment>
-				)} */}
-
 				<DrawerBody
 					fontWeight={'normal'}
 					fontSize={'sm'}
@@ -110,34 +74,8 @@ export const Drawer = ({
 				>
 					{body}
 				</DrawerBody>
-				{/* {!hideFooter && (
-					<DrawerFooter d={'flex'} w={'full'} p={4}>
-						<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
-							<BaseButton
-								name={'drawer-actions-confirm-button'}
-								variant={'ghost'}
-								colorScheme={yesBtnColor}
-								onClick={onConfirm}
-								rounded={'md'}
-							>
-								{yesBtnLabel ?? 'OK'}
-							</BaseButton>
-						</ModalDrawerFooterActions>
-					</DrawerFooter>
-				)} */}
-
 				<DrawerFooter d={'flex'} w={'full'} p={4} borderTopWidth={1}>
 					<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
-						{/* <BaseButton
-							name={'drawer-actions-confirm-button'}
-							variant={'ghost'}
-							colorScheme={yesBtnColor}
-							onClick={onConfirm}
-							rounded={'md'}
-						>
-							{yesBtnLabel ?? 'OK'}
-						</BaseButton> */}
-						{/* {actionButton} */}
 						{action}
 					</ModalDrawerFooterActions>
 				</DrawerFooter>

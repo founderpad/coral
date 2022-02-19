@@ -71,8 +71,8 @@ const CreateIdeaForm = () => {
 
 	return (
 		<Form
-			id={'create-edit-idea-form'}
-			name={'create-edit-Create edit idea form-form'}
+			id="create-edit-idea-form"
+			name="create-edit-idea-form"
 			onSubmit={handleSubmit(createIdeaMutation)}
 			noValidate
 			stackProps={{ spacing: 10 }}

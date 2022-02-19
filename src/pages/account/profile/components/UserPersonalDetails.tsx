@@ -51,14 +51,12 @@ const UserPersonalInformation = memo((props: Props) => {
 			isOpen: true,
 			action: (
 				<SubmitButton
-					name={'open-modal-drawer-personal-details-button'}
+					name="open-modal-drawer-personal-details-button"
 					form="editPersonalDetailsForm"
-					label={'Save'}
+					label="Save"
 				/>
 			),
-			body: <PersonalDetailsForm />,
-			noBtnLabel: 'Cancel',
-			hideFooter: true
+			body: <PersonalDetailsForm />
 		});
 	};
 
@@ -68,9 +66,9 @@ const UserPersonalInformation = memo((props: Props) => {
 			isOpen: true,
 			action: (
 				<SubmitButton
-					name={'open-modal-drawer-change-password-button'}
+					name="open-modal-drawer-change-password-button"
 					form="edit-change-password"
-					label={'Save'}
+					label="Save"
 				/>
 			),
 			body: (
@@ -78,9 +76,7 @@ const UserPersonalInformation = memo((props: Props) => {
 					showPasswordLabel={true}
 					showSubmit={false}
 				/>
-			),
-			noBtnLabel: 'Cancel',
-			hideFooter: true
+			)
 		});
 	};
 

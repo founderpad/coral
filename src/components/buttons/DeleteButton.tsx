@@ -4,16 +4,14 @@ import { BaseButton } from '.';
 import { BaseButtonProps } from './types/buttons';
 
 const DeleteButton = (props: BaseButtonProps) => {
-	const { variant, children } = props;
+	const { variant = 'solid', children } = props;
 
 	return (
 		<BaseButton
 			{...props}
-			colorScheme={'red'}
-			variant={variant ?? 'solid'}
-			borderWidth={0}
-			fontSize={'small'}
-			mr={'auto'}
+			colorScheme="red"
+			variant={variant}
+			fontSize="small"
 		>
 			{children}
 		</BaseButton>
@@ -22,7 +20,7 @@ const DeleteButton = (props: BaseButtonProps) => {
 
 const DeleteMenuButton = (props: BaseButtonProps) => {
 	return (
-		<MenuButton {...props} colorScheme={'red'}>
+		<MenuButton {...props} colorScheme="red">
 			Delete
 		</MenuButton>
 	);
@@ -31,13 +29,13 @@ const DeleteMenuButton = (props: BaseButtonProps) => {
 const DeleteIconButton = ({ onClick }: { onClick: () => void }) => (
 	<IconButton
 		onClick={onClick}
-		aria-label={'Delete'}
-		variant={'ghost'}
-		colorScheme={'gray'}
-		fontSize={'md'}
-		size={'md'}
-		icon={<Icon as={IoTrashSharp} fontSize={'large'} color={'red.500'} />}
-		rounded={'full'}
+		aria-label="Delete"
+		variant="ghost"
+		colorScheme="gray"
+		fontSize="md"
+		size="md"
+		icon={<Icon as={IoTrashSharp} fontSize="large" color="red.500" />}
+		rounded="full"
 	/>
 );
 

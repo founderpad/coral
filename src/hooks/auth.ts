@@ -196,14 +196,6 @@ const useGetAuthUser = () => {
 			userId: auth.getUser()?.id
 		},
 		onError: () => {
-			// addNotification(
-			// 	'Failed to get user. Please try again later.',
-			// 	'error'
-			// );
-			// showErrorNotification({
-			// 	title: 'Failed to login',
-			// 	description: 'Please try again later'
-			// });
 			redirectTo(true);
 			throw new Error('Failed to get user');
 		},
@@ -217,9 +209,10 @@ const useGetAuthUser = () => {
 	return getUser;
 };
 
-export const useLogout = (): any => {
+export const useLogout = (): (() => Promise<void>) => {
 	const showErrorNotification = useErrorNotification();
 	const dispatch = useDispatch();
+	const { setModalDrawer } = useContext(ModalDrawerContext);
 	// const client = useApolloClient();
 	// const client = usePushClient();
 
@@ -231,6 +224,9 @@ export const useLogout = (): any => {
 			// });
 			// await client.clearStore();
 			dispatch(logout());
+			setModalDrawer({
+				isOpen: false
+			});
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to logout',

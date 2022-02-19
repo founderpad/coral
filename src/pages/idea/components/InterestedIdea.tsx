@@ -39,19 +39,17 @@ export const InterestedIdea = () => {
 
 	const onClick = () => {
 		setModalDrawer({
-			title: 'Interested in idea',
+			title: 'Confirm interest in idea',
 			isOpen: true,
-			actions: (
+			action: (
 				<PrimaryButton
-					name={'confirm-idea-interest'}
+					name="confirm-idea-interest"
 					onClick={() => createInterestedIdeaMutation()}
 				>
 					Confirm
 				</PrimaryButton>
 			),
-			body: 'Are you sure you want to show interest in this idea? The idea creator will be able to contact you.',
-			noBtnLabel: 'Cancel',
-			hideFooter: true
+			body: 'Are you sure you want to show interest in this idea? The idea creator will be able to contact you.'
 		});
 	};
 

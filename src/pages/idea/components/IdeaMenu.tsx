@@ -1,4 +1,4 @@
-import { SubmitButton } from '@components/buttons';
+import { DeleteButton, SubmitButton } from '@components/buttons';
 import { IoPencilOutline, IoTrashBinOutline } from '@components/icons';
 import { BaseMenuItem } from '@components/menu';
 import { BaseMenu } from '@components/menu/BaseMenu';
@@ -9,8 +9,6 @@ import React, { memo, useCallback, useContext } from 'react';
 import EditIdeaForm from './EditIdeaForm';
 
 export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
-	// const [deleteIdea] = useDeleteIdea(ideaId);
-	// const idea = useIdea();
 	const [deleteIdeaMutation] = useDeleteIdeaMutation({
 		variables: {
 			id: ideaId
@@ -27,10 +25,15 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 			title: 'Delete idea',
 			isOpen: true,
 			body: 'Are you want to delete this idea? You will no longer be able to view its comments, workshop or metrics.',
-			handler: () => deleteIdeaMutation(),
-			noBtnLabel: 'Cancel',
-			yesBtnLabel: 'Delete idea',
-			yesBtnColor: 'red'
+			action: (
+				<DeleteButton
+					name="confirm-delete-idea-button"
+					onClick={() => deleteIdeaMutation()}
+					variant="outline"
+				>
+					Delete idea
+				</DeleteButton>
+			)
 		});
 	}, [deleteIdeaMutation, setModalDrawer]);
 
@@ -39,14 +42,13 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 			title: 'Edit idea',
 			isOpen: true,
 			body: <EditIdeaForm />,
-			actions: (
+			action: (
 				<SubmitButton
-					name={'open-modal-drawer-edit-idea-button'}
-					form={'editIdeaForm'}
-					label={'Save'}
+					name="open-modal-drawer-edit-idea-button"
+					form="edit-idea-form"
+					label="Save"
 				/>
 			),
-			hideFooter: true,
 			size: '2xl'
 		});
 	}, [setModalDrawer]);

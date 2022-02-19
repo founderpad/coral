@@ -1,6 +1,6 @@
-import { useBreakpointValue } from '@chakra-ui/react';
 import Drawer from '@components/drawer';
 import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useMobile } from '@hooks/util';
 import React, { useContext } from 'react';
 import Modal from '.';
 
@@ -13,7 +13,7 @@ import Modal from '.';
  * @author jlee
  */
 const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
-	const isModal = useBreakpointValue({ base: false, sm: true });
+	const isMobile = useMobile();
 
 	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);
 	const {
@@ -27,7 +27,6 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 		hideFooter,
 		width,
 		size,
-		actions,
 		action,
 		removePadding
 	} = modalDrawer;
@@ -57,7 +56,7 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 		closeDialog();
 	};
 
-	if (isModal) {
+	if (!isMobile) {
 		return (
 			<Modal
 				{...rest}
@@ -72,7 +71,7 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 				hideFooter={hideFooter}
 				width={width}
 				size={size}
-				actions={actions}
+				action={action}
 				removePadding={removePadding}
 			/>
 		);

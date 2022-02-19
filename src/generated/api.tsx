@@ -4575,7 +4575,7 @@ export const InterestedIdeaFieldsFragmentDoc = gql`
     `;
 export const UserActivityDocument = gql`
     query UserActivity($userId: uuid!) {
-  activity(where: {userId: {_eq: $userId}}) {
+  activity(where: {userId: {_eq: $userId}}, order_by: {createdAt: desc}) {
     ideaId
     event
     description

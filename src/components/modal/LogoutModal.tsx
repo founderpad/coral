@@ -12,18 +12,22 @@ const LogoutModal = () => {
 			title: 'Confirm log out',
 			isOpen: true,
 			body: 'Are you want to log out of founderpad?',
-			handler: () => logout(),
-			noBtnLabel: 'Cancel',
-			yesBtnLabel: 'Log out',
-			yesBtnColor: 'red'
+			action: (
+				<DeleteButton
+					name="logout-confirm-button"
+					onClick={logout}
+					variant="outline"
+				>
+					Log out
+				</DeleteButton>
+			)
 		});
 	};
 
 	return (
 		<DeleteButton
-			name={'logout-modal-open-button'}
-			// w={{ lg: 'full' }}
-			variant={'outline'}
+			name="logout-modal-open-button"
+			variant="ghost"
 			onClick={onClick}
 			ml={1}
 		>

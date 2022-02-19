@@ -29,16 +29,15 @@ const ReportMenu = ({
 			body: (
 				<ReportForm title={title} report={report} content={content} />
 			),
-			actions: (
+			action: (
 				<SubmitButton
-					name={'open-modal-drawer-button'}
+					name="open-modal-drawer-button"
 					form="reportForm"
-					label={'Report'}
+					label="Report"
+					variant={'outline'}
+					colorScheme={'red'}
 				/>
-			),
-			handler: () => console.log(''),
-			noBtnLabel: 'Cancel',
-			hideFooter: true
+			)
 		});
 	};
 

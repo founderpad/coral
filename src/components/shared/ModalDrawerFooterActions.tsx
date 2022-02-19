@@ -6,7 +6,7 @@ import React, { memo, useCallback, useContext } from 'react';
 export const ModalDrawerFooterActions = memo(
 	({
 		children,
-		noBtnLabel
+		noBtnLabel = 'Cancel'
 	}: {
 		children: React.ReactNode;
 		noBtnLabel?: string;
@@ -15,15 +15,7 @@ export const ModalDrawerFooterActions = memo(
 
 		const onClose = useCallback(() => {
 			setModalDrawer({
-				isOpen: undefined,
-				title: undefined,
-				text: undefined,
-				body: undefined,
-				handler: undefined,
-				yesBtnLabel: undefined,
-				noBtnText: undefined,
-				hideFooter: undefined,
-				width: undefined
+				isOpen: false
 			});
 		}, [setModalDrawer]);
 
@@ -33,7 +25,6 @@ export const ModalDrawerFooterActions = memo(
 				w={'full'}
 				as={'footer'}
 				display={'flex'}
-				// ml={'auto'}
 				spacing={4}
 			>
 				<CancelButton
