@@ -65,7 +65,6 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				{label && (
 					<FlexLayout justifyContent={'space-between'}>
 						<FormLabelText label={label} />
-
 						<Button
 							fontSize={'x-small'}
 							colorScheme={'fpPrimary'}

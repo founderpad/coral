@@ -1,5 +1,4 @@
 import { Grid, GridItem } from '@chakra-ui/layout';
-// import { PageHeader } from '@components/shared';
 import React from 'react';
 import { StackLayout } from './StackLayout';
 
@@ -28,7 +27,12 @@ const SearchContentGridLayout = ({
 				{children[0]}
 			</StackLayout>
 		</GridItem>
-		<GridItem colSpan={{ base: 7, md: 4, lg: 5 }} position={'relative'}>
+		<GridItem
+			colSpan={{ base: 7, md: 4, lg: 5 }}
+			position={'relative'}
+			display={'flex'}
+			flexDirection={'column'}
+		>
 			{children[1]}
 			{children?.[2]}
 		</GridItem>

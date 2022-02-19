@@ -122,12 +122,7 @@ export const CommentsList = ({
 			) : (
 				<StackLayout flexGrow={1} overflowY={'auto'} minHeight={'2em'}>
 					{data?.comments.map((comment, _index) => (
-						<>
-							{/* <BaseHeading fontSize={'large'}>
-								{_index}
-							</BaseHeading> */}
-							<Comment key={comment.id} {...comment} />
-						</>
+						<Comment key={comment.id} {...comment} />
 					))}
 				</StackLayout>
 			)}

@@ -15,13 +15,13 @@ const UserSearchActions = ({
 }) => (
 	<React.Fragment>
 		<Flex
-			justifyContent={'space-between'}
-			alignItems={'flex-end'}
+			justifyContent="space-between"
+			alignItems="flex-end"
 			display={{ base: 'flex', lg: 'none' }}
 		>
 			<StickySubheader title="All ideas">
-				<Flex justifyContent={'space-between'} alignItems={'flex-end'}>
-					<MobileFilterMenu title={'users'}>
+				<Flex justifyContent="space-between" alignItems="flex-end">
+					<MobileFilterMenu title="users" form="users-filter-form">
 						<FounderSearchForm />
 					</MobileFilterMenu>
 					{hasResults && (
@@ -36,7 +36,7 @@ const UserSearchActions = ({
 		</Flex>
 
 		{hasResults && (
-			<Flex display={{ base: 'none', lg: 'flex' }} bg={'white'}>
+			<Flex display={{ base: 'none', lg: 'flex' }} bg="white">
 				<SearchResultsLabel
 					pageSize={pageSize}
 					limit={10}

@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/layout';
-// import { Label } from '@components/labels';
+import { SubmitButton } from '@components/buttons';
 import { SearchResultsLabel, StickySubheader } from '@components/shared';
 import React from 'react';
 import IdeasSearchForm from './IdeasSearchForm';
@@ -16,14 +16,21 @@ const IdeasActions = ({
 }) => (
 	<React.Fragment>
 		<Flex
-			justifyContent={'space-between'}
-			alignItems={'flex-end'}
+			justifyContent="space-between"
+			alignItems="flex-end"
 			display={{ base: 'flex', lg: 'none' }}
 		>
 			<StickySubheader title="All ideas">
-				<Flex justifyContent={'space-between'} alignItems={'flex-end'}>
-					<MobileFilterMenu title={'ideas'}>
+				<Flex justifyContent="space-between" alignItems="flex-end">
+					<MobileFilterMenu title="ideas" form="idea-filter-form">
 						<IdeasSearchForm />
+						<SubmitButton
+							display={{ base: 'none', sm: 'flex' }}
+							name="filter-search-button"
+							// form="idea-filter-form"
+							label="Show results"
+							title="Filter ideas"
+						/>
 					</MobileFilterMenu>
 					{hasResults && (
 						<SearchResultsLabel
@@ -37,7 +44,7 @@ const IdeasActions = ({
 		</Flex>
 
 		{hasResults && (
-			<Flex display={{ base: 'none', lg: 'flex' }} bg={'white'}>
+			<Flex display={{ base: 'none', lg: 'flex' }} bg="white">
 				<SearchResultsLabel
 					pageSize={pageSize}
 					limit={10}

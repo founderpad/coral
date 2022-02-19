@@ -25,9 +25,8 @@ export const IdeaUserActions = () => {
 			mb={4}
 		>
 			<UserAvatarDetails
-				rounded={'full'}
-				name={`Published by ${publishedName}`}
-				src={idea?.user?.avatarUrl ?? ''}
+				title={`Published by ${publishedName}`}
+				src={idea?.user?.avatarUrl || undefined}
 				createdAt={formatDate(idea?.createdAt, true)}
 			/>
 

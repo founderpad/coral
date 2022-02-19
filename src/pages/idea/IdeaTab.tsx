@@ -29,7 +29,6 @@ const IdeaTab = () => {
 			<StackLayout p={4} flex={1} d={'flex'} overflowY={'auto'}>
 				<IdeaUserActions />
 				<IdeaTitleHeader />
-
 				<InterestedIdea />
 				<AppDivider />
 				<IdeaOverview />

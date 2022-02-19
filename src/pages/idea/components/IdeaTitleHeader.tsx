@@ -51,7 +51,7 @@ export const IdeaTitleHeader = () => {
 };
 
 const IdeaName = () => {
-	const { name } = useIdeaFragment();
+	const { name } = useIdeaFragment() ?? {};
 	return <SubheadingText pb={4}>{name}</SubheadingText>;
 };
 

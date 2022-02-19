@@ -65,8 +65,8 @@ export const EditIdeaForm = () => {
 
 	return (
 		<Form
-			id={'editIdeaForm'}
-			name={'editIdeaForm'}
+			id="edit-idea-form"
+			name="edit-idea-form"
 			onSubmit={handleSubmit(updateIdeaMutation)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}

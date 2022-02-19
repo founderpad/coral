@@ -91,8 +91,8 @@ const FounderSearchForm = () => {
 
 	return (
 		<Form
-			id={'ideaSearchForm'}
-			name={'ideaSearchForm'}
+			id={'users-filter-form'}
+			name={'users-filter-form'}
 			onSubmit={handleSubmit(onClick)}
 		>
 			<BaseHeading fontSize={'sm'} display={{ base: 'none', sm: 'flex' }}>

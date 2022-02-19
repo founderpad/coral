@@ -45,8 +45,8 @@ const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 		};
 	}
 
-	if (Router.query['is_new']) {
-		where['is_new'] = { _eq: !!Router.query['is_new'] };
+	if (Router.query['new']) {
+		where['is_new'] = { _eq: !!Router.query['new'] };
 	}
 
 	return where;
@@ -55,8 +55,8 @@ const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 const orderBuilder = (): TIdea_Preview_Order_By => {
 	const order: TIdea_Preview_Order_By = {};
 	if (Router.query['popularity']) {
-		const popularity = parseInt(Router.query['popularity'] as string);
-		if (popularity === 0) {
+		const popularity = Router.query['popularity'] as string;
+		if (popularity === 'Upvotes') {
 			order['votes_aggregate'] = { count: 'desc' };
 		}
 
@@ -89,7 +89,7 @@ const IdeasContainer = () => {
 	const hasResults = data?.idea_preview?.length ?? 0;
 
 	if (loading) return <Loading small />;
-	if (!loading && hasResults < 1) return <NoResults />;
+	if (!loading && hasResults < 1) return <NoResults back />;
 
 	return (
 		<>

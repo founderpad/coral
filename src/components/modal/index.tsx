@@ -1,8 +1,7 @@
 import {
-	ButtonGroup,
-	ButtonProps,
 	Modal as ChakraModal,
 	ModalBody,
+	ModalCloseButton,
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
@@ -10,25 +9,19 @@ import {
 	ModalProps,
 	useBreakpointValue
 } from '@chakra-ui/react';
-import { BaseButton, CancelButton } from '@components/buttons';
+import { BaseButton } from '@components/buttons';
 import { ModalDrawerFooterActions } from '@components/shared';
 import React from 'react';
 
 type IModalProps = Omit<ModalProps, 'children'> & {
 	title?: React.ReactNode;
 	isOpen: boolean;
-	onConfirm: () => void;
 	body?: React.ReactNode;
 	noBtnLabel?: string | 'Cancel';
-	yesBtnLabel?: string | 'Yes';
-	closeLabel?: string | 'Cancel';
-	yesBtnColor?: 'fpPrimary' | 'red' | ButtonProps['colorScheme'];
-	hideFooter?: boolean;
 	width?: number | string;
 	maxW?: number | string;
-	bodyPadding?: number;
-	actions?: React.ReactNode;
 	removePadding?: boolean;
+	action?: typeof BaseButton;
 };
 
 export const Modal = (props: IModalProps) => {
@@ -37,13 +30,9 @@ export const Modal = (props: IModalProps) => {
 		isOpen,
 		body,
 		onClose,
-		onConfirm,
 		noBtnLabel,
-		yesBtnLabel,
-		yesBtnColor,
-		hideFooter,
 		size,
-		actions,
+		action,
 		removePadding
 	} = props;
 
@@ -66,53 +55,35 @@ export const Modal = (props: IModalProps) => {
 				my={0}
 				d={'flex'}
 			>
-				{title && (
-					<ModalHeader
-						fontWeight={'medium'}
-						fontSize={'md'}
-						p={4}
-						pb={6}
-						display={'flex'}
-						alignItems={'center'}
-					>
-						{title}
-						{actions && (
-							<ButtonGroup ml={'auto'} spacing={4}>
-								<CancelButton
-									label={'Cancel'}
-									onClick={onClose}
-									size={'sm'}
-								/>
-								{actions}
-							</ButtonGroup>
-						)}
-					</ModalHeader>
-				)}
+				<ModalHeader
+					borderBottomWidth={1}
+					fontSize={'md'}
+					p={4}
+					display={'flex'}
+					justifyContent={'center'}
+					fontWeight={'semibold'}
+				>
+					<ModalCloseButton color={'black'} left={2} top={3} />
+					{title}
+				</ModalHeader>
+
 				<ModalBody
 					fontWeight={'normal'}
 					fontSize={'sm'}
-					color={'fpGrey.500'}
+					color={'gray.600'}
 					flex={1}
 					p={removePadding ? 0 : 4}
 					maxH={'100%'}
+					borderRadius={'md'}
 				>
 					{body}
 				</ModalBody>
-				{!hideFooter && (
-					<ModalFooter d={'flex'} w={'full'} p={4}>
-						<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
-							<BaseButton
-								name={'modal-actions-confirm-button'}
-								variant={'ghost'}
-								colorScheme={yesBtnColor ?? 'fpPrimary'}
-								onClick={onConfirm}
-								rounded={'md'}
-							>
-								{yesBtnLabel ?? 'OK'}
-							</BaseButton>
-						</ModalDrawerFooterActions>
-					</ModalFooter>
-				)}
+
+				<ModalFooter d={'flex'} w={'full'} p={4} borderTopWidth={1}>
+					<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
+						{action}
+					</ModalDrawerFooterActions>
+				</ModalFooter>
 			</ModalContent>
 		</ChakraModal>
 	);

@@ -4,16 +4,7 @@ import Drawer from '.';
 
 const BaseDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 	const { drawer, setDrawer } = useContext(DrawerContext);
-	const {
-		isOpen,
-		title,
-		body,
-		handler,
-		noBtnLabel,
-		yesBtnLabel,
-		yesBtnColor,
-		hideFooter
-	} = drawer;
+	const { isOpen, title, body, noBtnLabel } = drawer;
 
 	const closeDrawer = () => {
 		setDrawer({
@@ -27,30 +18,17 @@ const BaseDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 		});
 	};
 
-	const onCloseClick = () => {
-		closeDrawer();
-	};
+	const onCloseClick = () => closeDrawer();
 
-	const onConfirmClick = () => {
-		handler?.();
-		closeDrawer();
-	};
-
-	// return ReactDOM.createPortal(
 	return (
 		<Drawer
 			{...rest}
 			isOpen={isOpen}
 			title={title}
-			yesBtnLabel={yesBtnLabel}
-			onConfirm={onConfirmClick}
 			onClose={onCloseClick}
 			noBtnLabel={noBtnLabel}
 			body={body}
-			yesBtnColor={yesBtnColor}
-			hideFooter={hideFooter}
 		/>
-		// document.getElementById('portal')
 	);
 };
 

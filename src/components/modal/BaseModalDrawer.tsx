@@ -1,6 +1,6 @@
-import { useBreakpointValue } from '@chakra-ui/react';
 import Drawer from '@components/drawer';
 import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useMobile } from '@hooks/util';
 import React, { useContext } from 'react';
 import Modal from '.';
 
@@ -13,21 +13,17 @@ import Modal from '.';
  * @author jlee
  */
 const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
-	const isModal = useBreakpointValue({ base: false, sm: true });
+	const isMobile = useMobile();
 
 	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);
 	const {
 		isOpen,
 		title,
 		body,
-		handler,
 		noBtnLabel,
-		yesBtnLabel,
-		yesBtnColor,
-		hideFooter,
 		width,
 		size,
-		actions,
+		action,
 		removePadding
 	} = modalDrawer;
 
@@ -37,11 +33,8 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 			title: '',
 			text: '',
 			body: null,
-			handler: null,
-			yesBtnLabel: '',
 			noBtnText: '',
-			hideFooter: false,
-			actions: undefined,
+			action: undefined,
 			size
 		});
 	};
@@ -50,27 +43,18 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 		closeDialog();
 	};
 
-	const onConfirmClick = () => {
-		handler();
-		closeDialog();
-	};
-
-	if (isModal) {
+	if (!isMobile) {
 		return (
 			<Modal
 				{...rest}
 				isOpen={isOpen}
 				title={title}
-				yesBtnLabel={yesBtnLabel}
-				onConfirm={onConfirmClick}
 				onClose={onCloseClick}
 				noBtnLabel={noBtnLabel}
 				body={body}
-				yesBtnColor={yesBtnColor}
-				hideFooter={hideFooter}
 				width={width}
 				size={size}
-				actions={actions}
+				action={action}
 				removePadding={removePadding}
 			/>
 		);
@@ -81,14 +65,10 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 			{...rest}
 			isOpen={isOpen}
 			title={title}
-			yesBtnLabel={yesBtnLabel}
-			onConfirm={onConfirmClick}
 			onClose={onCloseClick}
 			noBtnLabel={noBtnLabel}
 			body={body}
-			yesBtnColor={yesBtnColor}
-			hideFooter={hideFooter}
-			actions={actions}
+			action={action}
 			removePadding={removePadding}
 		/>
 	);
