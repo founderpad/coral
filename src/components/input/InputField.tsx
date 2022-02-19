@@ -11,7 +11,7 @@ import { FormErrorText, FormLabelText } from '@components/form';
 import { FlexLayout } from '@components/layouts';
 import { EMAIL_REGEX } from '@utils/validators';
 import Router from 'next/router';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'src/types/fields';
 
@@ -37,6 +37,8 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			autoComplete
 		} = rest;
 
+		const [showClear, setShowClear] = useState(false);
+
 		const onClearValue = useCallback(() => {
 			onClear?.();
 			if (isUrl) {
@@ -54,6 +56,14 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			}
 		}, [isUrl, name, onClear]);
 
+		const onToggleClear = useCallback(
+			(value: string) => {
+				if (value) setShowClear(true);
+				else setShowClear(false);
+			},
+			[setShowClear]
+		);
+
 		return (
 			<FormControl
 				id={name}
@@ -65,15 +75,17 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				{label && (
 					<FlexLayout justifyContent={'space-between'}>
 						<FormLabelText label={label} />
-						<Button
-							fontSize={'x-small'}
-							colorScheme={'fpPrimary'}
-							variant={'link'}
-							mb={1}
-							onClick={onClearValue}
-						>
-							Clear
-						</Button>
+						{showClear && (
+							<Button
+								fontSize={'x-small'}
+								colorScheme={'fpPrimary'}
+								variant={'link'}
+								mb={1}
+								onClick={onClearValue}
+							>
+								Clear
+							</Button>
+						)}
 					</FlexLayout>
 				)}
 				<Controller
@@ -89,7 +101,10 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							autoComplete={autoComplete}
 							size={size ?? 'sm'}
 							value={value}
-							onChange={onChange}
+							onChange={(e) => {
+								onChange(e);
+								onToggleClear(e.target.value);
+							}}
 							error={error?.message}
 							name={name}
 							aria-label={name}

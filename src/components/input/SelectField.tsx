@@ -1,7 +1,7 @@
 import { FormControl, FormHelperText } from '@chakra-ui/form-control';
 import { Button, forwardRef, Select as ChakraSelect } from '@chakra-ui/react';
 import { FormErrorText, FormLabelText } from '@components/form';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { ISelectFieldProps } from 'src/types/fields';
 import Select from 'react-select';
@@ -20,6 +20,8 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 		} = props;
 		const isMobile = useMobile();
 
+		const [showClear, setShowClear] = useState(false);
+
 		const valueRef = useRef<any>();
 
 		const {
@@ -31,7 +33,6 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 			name,
 			full,
 			placeholder
-			// setValue
 		} = props;
 
 		const onClearValue = useCallback(() => {
@@ -56,7 +57,15 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					}
 				);
 			}
-		}, [valueRef, isMobile, isUrl, name, onClear, placeholder]);
+		}, [valueRef, isMobile, isUrl, name, onClear, placeholder, showClear]);
+
+		const onToggleClear = useCallback(
+			(value: string) => {
+				if (value) setShowClear(true);
+				else setShowClear(false);
+			},
+			[setShowClear]
+		);
 
 		return (
 			<FormControl
@@ -70,15 +79,17 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					<FlexLayout justifyContent="space-between">
 						<FormLabelText label={label} />
 
-						<Button
-							fontSize="x-small"
-							colorScheme="fpPrimary"
-							variant="link"
-							mb={1}
-							onClick={onClearValue}
-						>
-							Clear
-						</Button>
+						{showClear && (
+							<Button
+								fontSize="x-small"
+								colorScheme="fpPrimary"
+								variant="link"
+								mb={1}
+								onClick={onClearValue}
+							>
+								Clear
+							</Button>
+						)}
 					</FlexLayout>
 				)}
 				<Controller
@@ -94,7 +105,11 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 								}`}
 								rounded="md"
 								value={value}
-								onChange={onChange}
+								// onChange={onChange}
+								onChange={(e) => {
+									onChange(e);
+									onToggleClear(e.target.value);
+								}}
 								error={error?.message}
 								id={`select-${name}-field`}
 								name={`select-${name}-field`}
@@ -112,7 +127,11 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 								placeholder={`Select ${
 									placeholder ?? 'option'
 								}`}
-								onChange={(e) => onChange(e.value)}
+								// onChange={(e) => onChange(e.value)}
+								onChange={(e) => {
+									onChange(e.value);
+									onToggleClear(e.value);
+								}}
 								defaultValue={{
 									label: `Select ${placeholder ?? 'option'}`,
 									value: null
