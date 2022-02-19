@@ -151,14 +151,6 @@ const IdeasSearchForm = () => {
 	// 	);
 	// };
 
-	const onToggleClear = useCallback(
-		(value: string) => {
-			if (value) setShowClear(true);
-			else setShowClear(false);
-		},
-		[setShowClear]
-	);
-
 	return (
 		<Form
 			id="idea-filter-form"
