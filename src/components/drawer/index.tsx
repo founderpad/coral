@@ -52,7 +52,11 @@ export const Drawer = ({
 			useInert={true}
 		>
 			<DrawerOverlay />
-			<DrawerContent borderTopWidth={1} maxH={'100%'}>
+			<DrawerContent
+				borderTopWidth={1}
+				maxH={'99.1%'}
+				borderTopRadius={'xl'}
+			>
 				{title && (
 					<React.Fragment>
 						<DrawerHeader
@@ -89,6 +93,7 @@ export const Drawer = ({
 					flex={1}
 					p={removePadding ? 0 : 4}
 					maxH={'100%'}
+					borderRadius={'md'}
 				>
 					{body}
 				</DrawerBody>
