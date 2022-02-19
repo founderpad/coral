@@ -55,6 +55,8 @@ const IdeasSearchForm = () => {
 	// 	'popularity'
 	// ];
 
+	const [showClear, setShowClear] = useState(false);
+
 	const { handleSubmit, control, resetField, setValue } =
 		useForm<TIdeaSearch>({
 			defaultValues: {
@@ -105,12 +107,14 @@ const IdeasSearchForm = () => {
 	const onSetNewIdea = useCallback(() => {
 		setValue('new', !isNewIdea);
 		setIsNewIdea(!isNewIdea);
+		setShowClear(true);
 	}, [isNewIdea, setValue]);
 
 	const onClearNewIdeas = () => {
 		delete Router.query['new'];
 		setValue('new', undefined);
 		setIsNewIdea(false);
+		setShowClear(false);
 
 		Router.push(
 			{
@@ -254,15 +258,17 @@ const IdeasSearchForm = () => {
 						)}
 						control={control}
 					/>
-					<Button
-						fontSize="x-small"
-						colorScheme="fpPrimary"
-						variant="link"
-						mb={1}
-						onClick={onClearNewIdeas}
-					>
-						Clear
-					</Button>
+					{showClear && (
+						<Button
+							fontSize="x-small"
+							colorScheme="fpPrimary"
+							variant="link"
+							mb={1}
+							onClick={onClearNewIdeas}
+						>
+							Clear
+						</Button>
+					)}
 				</FlexLayout>
 			</FormControl>
 
