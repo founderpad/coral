@@ -54,7 +54,7 @@ export const Drawer = ({
 			<DrawerOverlay />
 			<DrawerContent
 				borderTopWidth={1}
-				maxH={'99%'}
+				maxH={'99.1%'}
 				borderTopRadius={'xl'}
 			>
 				{title && (
