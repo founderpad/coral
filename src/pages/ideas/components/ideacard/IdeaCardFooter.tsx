@@ -14,12 +14,10 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 			direction={'row'}
 			spacing={0}
 			rounded={'none'}
-			// px={4}
 			w={'full'}
+			px={{ base: 0, sm: 4 }}
 			justifyContent={'space-between'}
 			alignItems={'center'}
-			// borderTopWidth={1}
-			// borderTopColor={'gray.100'}
 		>
 			<StackLayout direction={'row'} spacing={3} alignItems={'center'}>
 				<IdeaUpvote {...idea} />
