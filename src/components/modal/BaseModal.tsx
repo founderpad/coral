@@ -4,7 +4,6 @@ import Modal from '.';
 
 const BaseModal = ({ ...rest }: { children?: React.ReactNode }) => {
 	const { modal, setModal } = useContext(ModalContext);
-	const { handler } = modal;
 
 	const closeDialog = () => {
 		setModal({
@@ -12,8 +11,6 @@ const BaseModal = ({ ...rest }: { children?: React.ReactNode }) => {
 			title: '',
 			text: '',
 			body: null,
-			handler: null,
-			yesBtnLabel: '',
 			noBtnText: ''
 		});
 	};
@@ -22,19 +19,7 @@ const BaseModal = ({ ...rest }: { children?: React.ReactNode }) => {
 		closeDialog();
 	};
 
-	const onConfirmClick = () => {
-		handler();
-		closeDialog();
-	};
-
-	return (
-		<Modal
-			{...modal}
-			{...rest}
-			onConfirm={onConfirmClick}
-			onClose={onCloseClick}
-		/>
-	);
+	return <Modal {...modal} {...rest} onClose={onCloseClick} />;
 };
 
 export default BaseModal;

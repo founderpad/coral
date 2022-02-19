@@ -69,7 +69,7 @@ const orderBuilder = (): TIdea_Preview_Order_By => {
 };
 
 const IdeasContainer = () => {
-	// const { onSetCachedIdeaIds } = useContext(IdeaCycleContext);
+	const { onSetCachedIdeaIds } = useContext(IdeaCycleContext);
 	const { data, loading } = useIdeasQuery({
 		variables: {
 			where: queryBuilder(),
@@ -79,9 +79,9 @@ const IdeasContainer = () => {
 			userId: useClaim()
 		},
 		onCompleted: (data) => {
-			// onSetCachedIdeaIds(
-			// 	Array.from(data?.['idea_preview'], (idea) => idea.id)
-			// );
+			onSetCachedIdeaIds(
+				Array.from(data?.['idea_preview'], (idea) => idea.id)
+			);
 		},
 		fetchPolicy: 'network-only'
 	});

@@ -4,15 +4,10 @@ const ModalDrawerContext = createContext({
 		isOpen: false,
 		title: '',
 		body: '',
-		handler: () => null,
 		noBtnLabel: '',
-		yesBtnLabel: '',
-		yesBtnColor: '',
-		hideFooter: false,
 		removePadding: false,
 		width: undefined,
 		size: undefined,
-		actions: null,
 		action: undefined
 	},
 	setModalDrawer: {} as any

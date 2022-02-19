@@ -23,23 +23,23 @@ const MobileFilterMenu = ({
 			noBtnLabel: 'Cancel',
 			action: (
 				<SubmitButton
-					name={'filter-search-button'}
+					name="filter-search-button"
 					form={form}
-					label={'Show results'}
+					label="Show results"
 				/>
 			)
 		});
-	}, [setModalDrawer]);
+	}, [setModalDrawer, children, form, title]);
 
 	return (
 		<Button
-			name={'open-ideas-search-mobile-button'}
+			name="open-ideas-search-mobile-button"
 			display={{ base: 'flex', md: 'none' }}
-			leftIcon={<IoFilterOutline size={'16px'} />}
-			size={'sm'}
-			fontSize={'xs'}
-			variant={'outline'}
-			background={'transparent'}
+			leftIcon={<IoFilterOutline size="16px" />}
+			size="sm"
+			fontSize="xs"
+			variant="outline"
+			background="transparent"
 			onClick={onClick}
 		>
 			Filters

@@ -1,5 +1,4 @@
 import {
-	ButtonProps,
 	Drawer as ChakraDrawer,
 	DrawerBody,
 	DrawerCloseButton,
@@ -16,13 +15,8 @@ import React from 'react';
 type IModalProps = Omit<ModalProps, 'children'> & {
 	title: React.ReactNode;
 	isOpen: boolean;
-	onConfirm: () => void;
 	body?: React.ReactNode;
 	noBtnLabel?: string | 'Cancel';
-	yesBtnLabel?: string | 'Yes';
-	closeLabel?: string | 'Cancel';
-	yesBtnColor?: 'fpPrimary' | 'red' | ButtonProps['colorScheme'];
-	hideFooter?: boolean;
 	removePadding?: boolean;
 	action?: typeof BaseButton;
 };

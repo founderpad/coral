@@ -20,11 +20,7 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 		isOpen,
 		title,
 		body,
-		handler,
 		noBtnLabel,
-		yesBtnLabel,
-		yesBtnColor,
-		hideFooter,
 		width,
 		size,
 		action,
@@ -37,11 +33,7 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 			title: '',
 			text: '',
 			body: null,
-			handler: null,
-			yesBtnLabel: '',
 			noBtnText: '',
-			hideFooter: false,
-			actions: undefined,
 			action: undefined,
 			size
 		});
@@ -51,24 +43,15 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 		closeDialog();
 	};
 
-	const onConfirmClick = () => {
-		handler();
-		closeDialog();
-	};
-
 	if (!isMobile) {
 		return (
 			<Modal
 				{...rest}
 				isOpen={isOpen}
 				title={title}
-				yesBtnLabel={yesBtnLabel}
-				onConfirm={onConfirmClick}
 				onClose={onCloseClick}
 				noBtnLabel={noBtnLabel}
 				body={body}
-				yesBtnColor={yesBtnColor}
-				hideFooter={hideFooter}
 				width={width}
 				size={size}
 				action={action}
@@ -82,13 +65,9 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 			{...rest}
 			isOpen={isOpen}
 			title={title}
-			yesBtnLabel={yesBtnLabel}
-			onConfirm={onConfirmClick}
 			onClose={onCloseClick}
 			noBtnLabel={noBtnLabel}
 			body={body}
-			yesBtnColor={yesBtnColor}
-			hideFooter={hideFooter}
 			action={action}
 			removePadding={removePadding}
 		/>

@@ -19,7 +19,7 @@ import {
 	mobileIdeaStatuses
 } from '@utils/Constants';
 import Router from 'next/router';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 type SelectSearch = {
@@ -36,25 +36,33 @@ type TIdeaSearch = {
 	popularity?: string;
 };
 
+// interface IQueryParams<T extends TIdeaSearch> {
+// 	[key: string]: T;
+// }
+
 const IdeasSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const { page, ...rest } = Router.query;
 	const [isNewIdea, setIsNewIdea] = useState<boolean | undefined>(undefined);
 
-	const { handleSubmit, control, resetField, setValue, getValues } =
+	// const queryParams: IQueryParams<['field', 'name', 'new', 'status', 'country', 'popularity']>;
+	// const queryParamsArr = [
+	// 	'field',
+	// 	'name',
+	// 	'new',
+	// 	'status',
+	// 	'country',
+	// 	'popularity'
+	// ];
+
+	const { handleSubmit, control, resetField, setValue } =
 		useForm<TIdeaSearch>({
 			defaultValues: {
 				...rest
 			}
 		});
 
-	useEffect(() => {
-		console.log('value changed');
-	}, [setValue]);
-
 	const onClick = (values: TIdeaSearch) => {
-		console.log('query params111: ', getValues());
-
 		setModalDrawer({
 			isOpen: false
 		});
@@ -70,6 +78,10 @@ const IdeasSearchForm = () => {
 		}
 
 		const queryParams = JSON.parse(JSON.stringify(values));
+
+		// for (const param in queryParamsArr) {
+		// 	if (!queryParams[param]) delete queryParams[param];
+		// }
 
 		!queryParams.name && delete queryParams['name'];
 		!queryParams.field && delete queryParams['field'];

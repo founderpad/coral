@@ -1,5 +1,4 @@
 import {
-	ButtonProps,
 	Modal as ChakraModal,
 	ModalBody,
 	ModalCloseButton,
@@ -17,17 +16,10 @@ import React from 'react';
 type IModalProps = Omit<ModalProps, 'children'> & {
 	title?: React.ReactNode;
 	isOpen: boolean;
-	onConfirm: () => void;
 	body?: React.ReactNode;
 	noBtnLabel?: string | 'Cancel';
-	yesBtnLabel?: string | 'Yes';
-	closeLabel?: string | 'Cancel';
-	yesBtnColor?: 'fpPrimary' | 'red' | ButtonProps['colorScheme'];
-	hideFooter?: boolean;
 	width?: number | string;
 	maxW?: number | string;
-	bodyPadding?: number;
-	actions?: React.ReactNode;
 	removePadding?: boolean;
 	action?: typeof BaseButton;
 };
