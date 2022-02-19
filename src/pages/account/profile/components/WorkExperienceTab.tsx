@@ -36,18 +36,15 @@ const WorkExperienceTab = () => {
 		setModalDrawer({
 			title: 'Your experience',
 			isOpen: true,
-			actions: (
+			action: (
 				<SubmitButton
-					name={'open-modal-drawer-experience-button'}
-					form="editExperienceForm"
-					label={'Save'}
+					name="open-modal-drawer-experience-button"
+					form="edit-experience-form"
+					label="Save"
 				/>
 			),
 			body: <ExperienceForm {...userProfile} />,
 			noBtnLabel: 'Cancel',
-			yesBtnLabel: 'Update',
-			yesBtnColor: 'red',
-			hideFooter: true,
 			size: '3xl'
 		});
 	};

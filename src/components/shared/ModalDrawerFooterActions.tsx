@@ -1,7 +1,7 @@
 import { ButtonGroup } from '@chakra-ui/react';
 import { CancelButton } from '@components/buttons';
 import ModalDrawerContext from '@context/ModalDrawerContext';
-import React, { memo, useContext } from 'react';
+import React, { memo, useCallback, useContext } from 'react';
 
 export const ModalDrawerFooterActions = memo(
 	({
@@ -13,7 +13,7 @@ export const ModalDrawerFooterActions = memo(
 	}) => {
 		const { setModalDrawer } = useContext(ModalDrawerContext);
 
-		const onClose = () => {
+		const onClose = useCallback(() => {
 			setModalDrawer({
 				isOpen: undefined,
 				title: undefined,
@@ -25,16 +25,15 @@ export const ModalDrawerFooterActions = memo(
 				hideFooter: undefined,
 				width: undefined
 			});
-		};
+		}, [setModalDrawer]);
 
 		return (
 			<ButtonGroup
 				justifyContent={'flex-end'}
 				w={'full'}
-				mt={4}
 				as={'footer'}
 				display={'flex'}
-				ml={'auto'}
+				// ml={'auto'}
 				spacing={4}
 			>
 				<CancelButton

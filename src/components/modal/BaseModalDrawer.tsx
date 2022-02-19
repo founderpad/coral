@@ -28,6 +28,7 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 		width,
 		size,
 		actions,
+		action,
 		removePadding
 	} = modalDrawer;
 
@@ -42,6 +43,7 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 			noBtnText: '',
 			hideFooter: false,
 			actions: undefined,
+			action: undefined,
 			size
 		});
 	};
@@ -88,7 +90,7 @@ const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
 			body={body}
 			yesBtnColor={yesBtnColor}
 			hideFooter={hideFooter}
-			actions={actions}
+			action={action}
 			removePadding={removePadding}
 		/>
 	);

@@ -49,7 +49,7 @@ const UserPersonalInformation = memo((props: Props) => {
 		setModalDrawer({
 			title: 'Your details',
 			isOpen: true,
-			actions: (
+			action: (
 				<SubmitButton
 					name={'open-modal-drawer-personal-details-button'}
 					form="editPersonalDetailsForm"
@@ -66,7 +66,7 @@ const UserPersonalInformation = memo((props: Props) => {
 		setModalDrawer({
 			title: 'Your new password',
 			isOpen: true,
-			actions: (
+			action: (
 				<SubmitButton
 					name={'open-modal-drawer-change-password-button'}
 					form="edit-change-password"

@@ -31,6 +31,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 			name,
 			full,
 			placeholder
+			// setValue
 		} = props;
 
 		const onClearValue = useCallback(() => {
@@ -42,7 +43,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 				});
 			}
 			if (isUrl) {
-				delete Router.query[name];
+				delete Router['query'][name];
 
 				Router.push(
 					{
@@ -66,13 +67,13 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 				ref={ref}
 			>
 				{label && (
-					<FlexLayout justifyContent={'space-between'}>
+					<FlexLayout justifyContent="space-between">
 						<FormLabelText label={label} />
 
 						<Button
-							fontSize={'x-small'}
-							colorScheme={'fpPrimary'}
-							variant={'link'}
+							fontSize="x-small"
+							colorScheme="fpPrimary"
+							variant="link"
 							mb={1}
 							onClick={onClearValue}
 						>
@@ -91,15 +92,15 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 								placeholder={`Select ${
 									placeholder ?? 'option'
 								}`}
-								rounded={'md'}
+								rounded="md"
 								value={value}
 								onChange={onChange}
 								error={error?.message}
 								id={`select-${name}-field`}
 								name={`select-${name}-field`}
 								aria-label={`select-${name}-field`}
-								fontSize={'small'}
-								color={'gray.500'}
+								fontSize="small"
+								color="gray.500"
 							>
 								{mobileOptions}
 							</ChakraSelect>

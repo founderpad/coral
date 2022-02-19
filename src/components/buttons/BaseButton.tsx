@@ -14,6 +14,7 @@ export const BaseButton = (props: BaseButtonProps) => {
 			rounded={'md'}
 			fontSize={'small'}
 			p={2}
+			minW={'75px'}
 		>
 			{children}
 		</Button>

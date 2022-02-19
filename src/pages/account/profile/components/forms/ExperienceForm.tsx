@@ -57,7 +57,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			user_profile: { ...getValues(), isComplete: true }
 		},
 		onCompleted: (_data) => {
-			console.log('vlaues: ', getValues());
 			setModalDrawer({
 				isOpen: false
 			});
@@ -99,8 +98,8 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 	return (
 		<Form
-			id={'editExperienceForm'}
-			name={'editExperienceForm'}
+			id="edit-experience-form"
+			name="edit-experience-form"
 			onSubmit={handleSubmit(updateUserProfileMutation)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}
@@ -111,6 +110,8 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				name="objective"
 				label="What is your objective on this platform?"
 				placeholder="your objective on this platform"
+				error={errors['objective']}
+				errorText="You must provide your objective on this platform"
 				options={ALL_USER_OBJECTIVES}
 				mobileOptions={mobileUserObjectives()}
 				onClear={() => resetField('objective')}

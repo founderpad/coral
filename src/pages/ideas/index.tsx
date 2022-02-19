@@ -1,4 +1,3 @@
-// import { PageLayout } from '@components/layouts';
 import SearchContentGridLayout from '@components/layouts/SearchContentGridLayout';
 import { DocumentTitle, PageHeader } from '@components/shared';
 import AuthFilter from '@utils/AuthFilter';

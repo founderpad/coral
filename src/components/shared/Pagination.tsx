@@ -25,7 +25,7 @@ export const Pagination = (props: Props) => {
 		<ButtonGroup
 			justifyContent={'space-between'}
 			w={'full'}
-			pt={8}
+			pt={4}
 			// px={{ base: 0, sm: 6 }}
 		>
 			<CancelButton
@@ -43,7 +43,9 @@ export const Pagination = (props: Props) => {
 						label={p.toString()}
 						key={p}
 						title={`Page ${p} of results`}
-						background={page === p ? 'gray.300' : 'transparent'}
+						background={
+							page === p ? 'fpLightGrey.500' : 'transparent'
+						}
 						onClick={() =>
 							router.push(
 								{

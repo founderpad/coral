@@ -19,25 +19,21 @@ type Props = {
  * @returns
  */
 export const NoResults = ({ label, back, fontSize = 'sm' }: Props) => (
-	<React.Fragment>
-		<BoxLayout
-			display={'flex'}
-			flex={1}
-			flexDirection={'column'}
-			justifyContent={'center'}
-			alignItems={'center'}
-			h={'full'}
-		>
-			<Icon
-				as={VscSearchStop}
-				color={'gray.700'}
-				fontSize={'x-large'}
-				mb={2}
-			/>
-			<SubheadingText fontSize={fontSize}>
-				No {label ?? 'results'}.
-			</SubheadingText>
-			{back && <GoBackButton />}
-		</BoxLayout>
-	</React.Fragment>
+	<BoxLayout
+		flex={1}
+		flexDirection={'column'}
+		justifyContent={'center'}
+		alignItems={'center'}
+	>
+		<Icon
+			as={VscSearchStop}
+			color={'fpGrey.700'}
+			fontSize={'x-large'}
+			mb={2}
+		/>
+		<SubheadingText fontSize={fontSize} color={'fpGrey.700'}>
+			No {label ?? 'results'}.
+		</SubheadingText>
+		{back && <GoBackButton />}
+	</BoxLayout>
 );

@@ -10,7 +10,7 @@ import {
 	DrawerOverlay,
 	ModalProps
 } from '@chakra-ui/react';
-import { BaseButton, CancelButton } from '@components/buttons';
+import { BaseButton } from '@components/buttons';
 import { ModalDrawerFooterActions } from '@components/shared';
 import React from 'react';
 
@@ -24,8 +24,9 @@ type IModalProps = Omit<ModalProps, 'children'> & {
 	closeLabel?: string | 'Cancel';
 	yesBtnColor?: 'fpPrimary' | 'red' | ButtonProps['colorScheme'];
 	hideFooter?: boolean;
-	actions?: React.ReactNode;
+	// actions?: React.ReactNode;
 	removePadding?: boolean;
+	action?: typeof BaseButton;
 };
 
 export const Drawer = ({
@@ -39,7 +40,8 @@ export const Drawer = ({
 	yesBtnColor,
 	hideFooter,
 	removePadding,
-	actions
+	// actions,
+	action
 }: IModalProps) => {
 	return (
 		<ChakraDrawer
@@ -57,7 +59,18 @@ export const Drawer = ({
 				maxH={'99.1%'}
 				borderTopRadius={'xl'}
 			>
-				{title && (
+				<DrawerHeader
+					borderBottomWidth={1}
+					fontSize={'md'}
+					p={4}
+					display={'flex'}
+					justifyContent={'center'}
+					fontWeight={'semibold'}
+				>
+					<DrawerCloseButton color={'black'} left={2} top={3} />
+					{title}
+				</DrawerHeader>
+				{/* {title && (
 					<React.Fragment>
 						<DrawerHeader
 							fontWeight={'medium'}
@@ -84,7 +97,7 @@ export const Drawer = ({
 							<DrawerCloseButton top={1} color={'black'} />
 						)}
 					</React.Fragment>
-				)}
+				)} */}
 
 				<DrawerBody
 					fontWeight={'normal'}
@@ -97,7 +110,7 @@ export const Drawer = ({
 				>
 					{body}
 				</DrawerBody>
-				{!hideFooter && (
+				{/* {!hideFooter && (
 					<DrawerFooter d={'flex'} w={'full'} p={4}>
 						<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
 							<BaseButton
@@ -111,7 +124,23 @@ export const Drawer = ({
 							</BaseButton>
 						</ModalDrawerFooterActions>
 					</DrawerFooter>
-				)}
+				)} */}
+
+				<DrawerFooter d={'flex'} w={'full'} p={4} borderTopWidth={1}>
+					<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
+						{/* <BaseButton
+							name={'drawer-actions-confirm-button'}
+							variant={'ghost'}
+							colorScheme={yesBtnColor}
+							onClick={onConfirm}
+							rounded={'md'}
+						>
+							{yesBtnLabel ?? 'OK'}
+						</BaseButton> */}
+						{/* {actionButton} */}
+						{action}
+					</ModalDrawerFooterActions>
+				</DrawerFooter>
 			</DrawerContent>
 		</ChakraDrawer>
 	);

@@ -18,8 +18,8 @@ import {
 	mobileIdeaPopularity,
 	mobileIdeaStatuses
 } from '@utils/Constants';
-import Router, { useRouter } from 'next/router';
-import React, { useCallback, useContext, useState } from 'react';
+import Router from 'next/router';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 type SelectSearch = {
@@ -27,27 +27,34 @@ type SelectSearch = {
 	value: string;
 };
 
-type IdeaSearch = {
+type TIdeaSearch = {
 	field?: SelectSearch;
 	name?: string;
-	isNew?: boolean;
+	new?: boolean;
 	status?: SelectSearch;
+	country?: string;
+	popularity?: string;
 };
 
 const IdeasSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const router = useRouter();
-	const { page, ...rest } = router.query;
-	const [isNewIdea, setIsNewIdea] = useState(false);
+	const { page, ...rest } = Router.query;
+	const [isNewIdea, setIsNewIdea] = useState<boolean | undefined>(undefined);
 
-	const { handleSubmit, control, reset, getValues, setValue } =
-		useForm<IdeaSearch>({
+	const { handleSubmit, control, resetField, setValue, getValues } =
+		useForm<TIdeaSearch>({
 			defaultValues: {
 				...rest
 			}
 		});
 
-	const onClick = (values: IdeaSearch) => {
+	useEffect(() => {
+		console.log('value changed');
+	}, [setValue]);
+
+	const onClick = (values: TIdeaSearch) => {
+		console.log('query params111: ', getValues());
+
 		setModalDrawer({
 			isOpen: false
 		});
@@ -68,9 +75,10 @@ const IdeasSearchForm = () => {
 		!queryParams.field && delete queryParams['field'];
 		!queryParams.status && delete queryParams['status'];
 		!queryParams.country && delete queryParams['country'];
-		!queryParams.isNew && delete queryParams['is_new'];
+		!queryParams.new && delete queryParams['new'];
+		!queryParams.popularity && delete queryParams['popularity'];
 
-		router.push(
+		Router.push(
 			{
 				pathname: '/ideas',
 				query: { ...queryParams, page: 1 }
@@ -82,21 +90,14 @@ const IdeasSearchForm = () => {
 		);
 	};
 
-	const resetField = (name: string) => {
-		reset({
-			...getValues(),
-			[name]: ''
-		});
-	};
-
 	const onSetNewIdea = useCallback(() => {
-		setValue('isNew', !isNewIdea);
+		setValue('new', !isNewIdea);
 		setIsNewIdea(!isNewIdea);
 	}, [isNewIdea, setValue]);
 
 	const onClearNewIdeas = () => {
-		delete Router.query['isNew'];
-		setValue('isNew', false);
+		delete Router.query['new'];
+		setValue('new', undefined);
 		setIsNewIdea(false);
 
 		Router.push(
@@ -111,10 +112,33 @@ const IdeasSearchForm = () => {
 		);
 	};
 
+	// const onClearAll = () => {
+	// 	reset({
+	// 		...getValues(),
+	// 		country: '',
+	// 		field: undefined,
+	// 		name: '',
+	// 		new: undefined,
+	// 		popularity: '',
+	// 		status: undefined
+	// 	});
+
+	// 	Router.push(
+	// 		{
+	// 			pathname: Router.pathname,
+	// 			query: { page: Router.query['page'] }
+	// 		},
+	// 		undefined,
+	// 		{
+	// 			shallow: true
+	// 		}
+	// 	);
+	// };
+
 	return (
 		<Form
-			id={'ideaSearchForm'}
-			name={'ideaSearchForm'}
+			id="idea-filter-form"
+			name="idea-filter-form"
 			onSubmit={handleSubmit(onClick)}
 			stackProps={{ spacing: 6 }}
 		>
@@ -125,82 +149,91 @@ const IdeasSearchForm = () => {
 				id="country"
 				name="country"
 				label="Country"
-				placeholder={'country'}
+				placeholder="country"
 				options={ALL_COUNTRIES}
 				mobileOptions={mobileCountriesList()}
-				onClear={() => resetField('country')}
+				onClear={() => resetField('country', { defaultValue: '' })}
 				control={control}
 				isUrl
 			/>
 			<InputField
 				id="name"
 				name="name"
+				label="Idea name"
 				placeholder="Search name"
+				variant="filled"
 				control={control}
-				label={'Idea name'}
-				variant={'filled'}
-				onClear={() => resetField('name')}
+				onClear={() => resetField('name', { defaultValue: '' })}
 				isUrl
 			/>
 			<SelectField
 				id="field"
 				name="field"
+				label="Field"
+				placeholder="field"
+				variant="filled"
 				options={ALL_IDEA_CATEGORY_FIELDS}
 				mobileOptions={mobileIdeaCategoryFields()}
-				onClear={() => resetField('field')}
-				placeholder="field"
+				onClear={() => resetField('field', { defaultValue: '' })}
 				control={control}
-				label={'Field'}
-				variant={'filled'}
 				isUrl
 			/>
 			<SelectField
 				id="status"
 				name="status"
+				label="Status"
+				placeholder="status"
+				variant="filled"
 				options={ALL_IDEA_STATUSES}
 				mobileOptions={mobileIdeaStatuses()}
-				onClear={() => resetField('status')}
-				placeholder="status"
+				onClear={() => resetField('status', { defaultValue: '' })}
 				control={control}
-				label={'Status'}
-				variant={'filled'}
 				isUrl
 			/>
 
 			<SelectField
 				id="popularity"
 				name="popularity"
+				label="Most popular"
+				placeholder="most popular"
+				variant="filled"
 				options={BY_IDEA_POPULARITY}
 				mobileOptions={mobileIdeaPopularity()}
-				onClear={() => resetField('popularity')}
-				placeholder="most popular"
+				onClear={() => resetField('popularity', { defaultValue: '' })}
 				control={control}
-				label={'Most popular'}
-				variant={'filled'}
 				isUrl
 			/>
 
 			<AppDivider />
 
 			<FormControl>
-				<FlexLayout justifyContent={'space-between'}>
+				<FlexLayout justifyContent="space-between">
 					<Controller
-						name={'isNew'}
+						name="new"
 						render={({ field: { ref } }) => (
 							<Checkbox
-								name={'isNew'}
-								rounded={'none'}
-								focusBorderColor={'gray.150'}
+								id="new"
+								name="new"
+								rounded="none"
+								focusBorderColor="fpGrey.150"
 								value={1}
 								py={1}
 								onChange={onSetNewIdea}
-								colorScheme={'fpPrimary'}
-								color={'fpGrey.900'}
+								colorScheme="fpPrimary"
 								ref={ref}
+								size="lg"
 								isChecked={isNewIdea}
+								borderColor="gray.200"
+								// sx={{
+								// 	'[data-checked]': {
+								// 		background: 'transparent',
+								// 		borderColor: 'gray.200',
+								// 		color: 'fpPrimary.300'
+								// 	}
+								// }}
 							>
 								<Label
-									color={'fpGrey.900'}
+									color="fpGrey.900"
 									fontSize={{ base: 'small', sm: 'xs' }}
 								>
 									New ideas
@@ -210,9 +243,9 @@ const IdeasSearchForm = () => {
 						control={control}
 					/>
 					<Button
-						fontSize={'x-small'}
-						colorScheme={'fpPrimary'}
-						variant={'link'}
+						fontSize="x-small"
+						colorScheme="fpPrimary"
+						variant="link"
 						mb={1}
 						onClick={onClearNewIdeas}
 					>
@@ -222,10 +255,10 @@ const IdeasSearchForm = () => {
 			</FormControl>
 
 			<SubmitButton
-				name={'filter-ideas-button'}
-				label={'Filter'}
-				flex={2}
-				title={'Filter ideas'}
+				display={{ base: 'none', sm: 'flex' }}
+				name="filter-search-button"
+				label="Show results"
+				title="Filter ideas"
 			/>
 		</Form>
 	);

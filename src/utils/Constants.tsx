@@ -626,8 +626,8 @@ export const mobileIdeaStatuses = () =>
 	));
 
 export const BY_IDEA_POPULARITY: Option[] = [
-	{ label: 'Upvotes', value: 0 },
-	{ label: 'Comments', value: 1 }
+	{ label: 'Upvotes', value: 'Upvotes' },
+	{ label: 'Comments', value: 'Comments' }
 ];
 
 export const mobileIdeaPopularity = () =>
