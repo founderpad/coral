@@ -37,7 +37,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			autoComplete
 		} = rest;
 
-		const [showClear, setShowClear] = useState(false);
+		const [showClear, setShowClear] = useState(!!control._formValues[name]);
 
 		const onClearValue = useCallback(() => {
 			onClear?.();
@@ -100,7 +100,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							ref={ref}
 							placeholder={placeholder}
 							autoComplete={autoComplete}
-							size={size ?? 'sm'}
+							size={size ?? 'md'}
 							value={value}
 							onChange={(e) => {
 								onChange(e);

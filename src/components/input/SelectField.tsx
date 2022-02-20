@@ -18,11 +18,6 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 			mobileOptions,
 			onClear
 		} = props;
-		const isMobile = useMobile();
-
-		const [showClear, setShowClear] = useState(false);
-
-		const valueRef = useRef<any>();
 
 		const {
 			id,
@@ -34,9 +29,15 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 			full,
 			placeholder
 		} = props;
+		const isMobile = useMobile();
+
+		const [showClear, setShowClear] = useState(!!control._formValues[name]);
+
+		const valueRef = useRef<any>();
 
 		const onClearValue = useCallback(() => {
 			onClear?.();
+			setShowClear(false);
 			if (!isMobile) {
 				valueRef?.current?.setValue({
 					label: `Select ${placeholder ?? 'option'}`,
@@ -93,6 +94,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					</FlexLayout>
 				)}
 				<Controller
+					defaultValue={''}
 					render={({
 						field: { onChange, value },
 						fieldState: { error }
@@ -104,6 +106,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 									placeholder ?? 'option'
 								}`}
 								rounded="md"
+								size={'md'}
 								value={value}
 								// onChange={onChange}
 								onChange={(e) => {

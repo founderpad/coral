@@ -55,14 +55,17 @@ const IdeasSearchForm = () => {
 	// 	'popularity'
 	// ];
 
-	const [showClear, setShowClear] = useState(false);
-
-	const { handleSubmit, control, resetField, setValue } =
+	const { handleSubmit, control, resetField, setValue, formState } =
 		useForm<TIdeaSearch>({
+			mode: 'all',
 			defaultValues: {
 				...rest
 			}
 		});
+
+	const { isSubmitting, isValid } = formState;
+
+	const [showClear, setShowClear] = useState(false);
 
 	const onClick = (values: TIdeaSearch) => {
 		setModalDrawer({
@@ -156,9 +159,10 @@ const IdeasSearchForm = () => {
 			id="idea-filter-form"
 			name="idea-filter-form"
 			onSubmit={handleSubmit(onClick)}
-			stackProps={{ spacing: 6 }}
+			isSubmitting={isSubmitting}
+			isValid={isValid}
 		>
-			<BaseHeading fontSize={'sm'} display={{ base: 'none', sm: 'flex' }}>
+			<BaseHeading fontSize="sm" display={{ base: 'none', sm: 'flex' }}>
 				Filters
 			</BaseHeading>
 			<SelectField
@@ -226,18 +230,18 @@ const IdeasSearchForm = () => {
 				<FlexLayout justifyContent="space-between">
 					<Controller
 						name="new"
-						render={({ field: { ref } }) => (
+						render={({ field: { ref, value } }) => (
 							<Checkbox
 								id="new"
 								name="new"
 								rounded="none"
 								focusBorderColor="fpGrey.150"
-								value={1}
 								py={1}
 								onChange={onSetNewIdea}
 								colorScheme="fpPrimary"
 								ref={ref}
 								size="lg"
+								defaultChecked={!!Router.query['new']}
 								isChecked={isNewIdea}
 								borderColor="gray.200"
 								// sx={{
@@ -258,7 +262,7 @@ const IdeasSearchForm = () => {
 						)}
 						control={control}
 					/>
-					{showClear && (
+					{(showClear || !!Router.query['new']) && (
 						<Button
 							fontSize="x-small"
 							colorScheme="fpPrimary"
@@ -273,7 +277,7 @@ const IdeasSearchForm = () => {
 			</FormControl>
 
 			<SubmitButton
-				display={{ base: 'none', sm: 'flex' }}
+				// display={{ base: 'none', sm: 'flex' }}
 				name="filter-search-button"
 				label="Show results"
 				title="Filter ideas"

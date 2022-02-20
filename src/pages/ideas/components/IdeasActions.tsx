@@ -1,5 +1,4 @@
 import { Flex } from '@chakra-ui/layout';
-import { SubmitButton } from '@components/buttons';
 import { SearchResultsLabel, StickySubheader } from '@components/shared';
 import React from 'react';
 import IdeasSearchForm from './IdeasSearchForm';
@@ -24,13 +23,6 @@ const IdeasActions = ({
 				<Flex justifyContent="space-between" alignItems="flex-end">
 					<MobileFilterMenu title="ideas" form="idea-filter-form">
 						<IdeasSearchForm />
-						<SubmitButton
-							display={{ base: 'none', sm: 'flex' }}
-							name="filter-search-button"
-							// form="idea-filter-form"
-							label="Show results"
-							title="Filter ideas"
-						/>
 					</MobileFilterMenu>
 					{hasResults && (
 						<SearchResultsLabel
