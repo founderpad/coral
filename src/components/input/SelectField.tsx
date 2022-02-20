@@ -57,7 +57,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					}
 				);
 			}
-		}, [valueRef, isMobile, isUrl, name, onClear, placeholder, showClear]);
+		}, [valueRef, isMobile, isUrl, name, onClear, placeholder]);
 
 		const onToggleClear = useCallback(
 			(value: string) => {

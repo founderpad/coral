@@ -41,6 +41,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 
 		const onClearValue = useCallback(() => {
 			onClear?.();
+			setShowClear(false);
 			if (isUrl) {
 				delete Router.query[name];
 				Router.push(
@@ -103,7 +104,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							value={value}
 							onChange={(e) => {
 								onChange(e);
-								onToggleClear(e.target.value);
+								onToggleClear(value);
 							}}
 							error={error?.message}
 							name={name}

@@ -36,7 +36,6 @@ const ResumeUploader = () => {
 				}
 			},
 			onCompleted: (_data) => {
-				console.log('ppppppp');
 				redirectTo(false, 'ru');
 			},
 			onError: () => {
