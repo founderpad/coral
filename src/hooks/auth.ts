@@ -114,7 +114,7 @@ export const useLogin = (): (({
 				getUser();
 			}
 		} catch (error) {
-			throw new Error('An error has occurred');
+			// throw new Error('An error has occurred');
 		}
 	};
 };

@@ -19,7 +19,7 @@ const AuthLayout = ({ header, children, title }: Props) => (
 		<StackLayout
 			w={{ base: 'full', sm: '425px' }}
 			minH={{ sm: '400px' }}
-			borderColor={'gray.100'}
+			borderColor={'fpLightGrey.900'}
 			p={8}
 			boxShadow={{ sm: 'sm' }}
 			borderWidth={{ sm: '1px' }}
@@ -29,7 +29,7 @@ const AuthLayout = ({ header, children, title }: Props) => (
 			flex={{ base: 1, sm: 'none' }}
 			justifyContent={'center'}
 			id={'auth-container'}
-			rounded={'md'}
+			rounded={'lg'}
 		>
 			<FlexLayout mx={'auto'} alignItems={'center'}>
 				<FounderpadLogo />
