@@ -1,22 +1,29 @@
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
-import { EmailField, PasswordField } from '@components/input';
+import { FormInput } from '@components/form/inputs/FormField';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import { useLogin } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
+import { emailPattern } from '@utils/validators';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
-import { IAuthFormData } from 'src/types/auth';
+
+type ILoginFields = {
+	email: string;
+	password: string;
+};
 
 const LoginForm = () => {
 	const {
-		handleSubmit,
 		control,
-		formState: { errors, isSubmitting, isValid } // isValid
-	} = useForm<IAuthFormData>({ mode: 'all' });
+		handleSubmit,
+		register,
+		resetField,
+		formState: { errors, isSubmitting } // isValid
+	} = useForm<ILoginFields>();
 	const onLogin = useLogin();
 
 	const isError = useQueryParam('error');
@@ -24,38 +31,93 @@ const LoginForm = () => {
 	return (
 		<React.Fragment>
 			<Form
-				id={'loginform'}
-				name={'loginform'}
+				id="login-form"
+				name="login-form"
 				onSubmit={handleSubmit(onLogin)}
 				stackProps={{
 					alignItems: 'center'
 				}}
 			>
-				<EmailField
+				{/* <FormField<ILoginFields>
 					id="email"
 					name="email"
-					error={errors['email']}
-					errorText="Please enter a valid email"
+					placeholder="Email"
+					register={register}
 					control={control}
-					autoComplete="email"
-					size={'md'}
-					fontSize={'sm'}
-					isRequired
+					rules={{
+						required: 'You must enter a valid email address',
+						pattern: emailPattern
+					}}
+					errors={errors}
+					onClear={() => resetField('email')}
+				/> */}
+
+				<FormInput<ILoginFields>
+					id="email"
+					name="email"
+					placeholder="Email"
+					register={register}
+					control={control}
+					rules={{
+						required: 'You must enter a valid email address',
+						pattern: emailPattern
+					}}
+					errors={errors}
+					onClear={() => resetField('email')}
 				/>
-				<PasswordField
+
+				<FormInput<ILoginFields>
 					id="password"
 					name="password"
-					error={errors['password']}
-					rules={{ maxLength: 20, minLength: 6 }}
+					placeholder="Password"
+					register={register}
 					control={control}
-					size={'md'}
-					fontSize={'sm'}
-					isRequired
+					rules={{
+						required:
+							'You must enter a valid password between 6 and 20 characters',
+						minLength: {
+							value: 6,
+							message:
+								'Your password must be a minimum of 6 characters'
+						},
+						maxLength: {
+							value: 20,
+							message:
+								'Your password must be a maximum of 20 characters'
+						}
+					}}
+					errors={errors}
+					onClear={() => resetField('password')}
 				/>
+
+				{/* <FormField<ILoginFields>
+					id="password"
+					name="password"
+					type="password"
+					placeholder="Password"
+					register={register}
+					control={control}
+					rules={{
+						required:
+							'You must enter a password between 6 and 20 characters',
+						minLength: {
+							value: 6,
+							message:
+								'You password must be a minimum of 6 characters'
+						},
+						maxLength: {
+							value: 20,
+							message:
+								'You password must be a maximum of 20 characters'
+						}
+					}}
+					errors={errors}
+					onClear={() => resetField('password')}
+				/> */}
 
 				{isError && (
 					<AlertFeedback
-						status={'error'}
+						status="error"
 						message={
 							'Failed to login. Incorrect email and/or password.'
 						}
@@ -63,18 +125,15 @@ const LoginForm = () => {
 				)}
 
 				<SubmitButton
-					id={'submit-login'}
-					name={'submit-login'}
+					id="submit-login"
+					name="submit-login"
 					label="Log in"
 					isLoading={isSubmitting}
-					disabled={!isValid || isSubmitting}
-					// disabled={isSubmitting}
-					size={'md'}
-					fontSize={'sm'}
+					disabled={isSubmitting}
+					size="md"
+					fontSize="sm"
 					w={{ base: 'full', sm: '175px' }}
 				/>
-
-				{/* <AppDivider /> */}
 			</Form>
 			{/* <SocialLogins /> */}
 			<LoginFooter />

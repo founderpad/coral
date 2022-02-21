@@ -1,15 +1,3 @@
-export type IAuthFormData = {
-	email: string;
-	password: string;
-};
-
-export interface IRegisterFormData extends IAuthFormData {
-	firstName: string;
-	lastName: string;
-	// type: string;
-	// country: string;
-}
-
 export type ProfileFormData = {
 	categories: string[];
 	background: string;

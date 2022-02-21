@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { FormErrorText, FormLabelText } from '@components/form';
 import { FlexLayout } from '@components/layouts';
-import { EMAIL_REGEX } from '@utils/validators';
+import { emailPattern } from '@utils/validators';
 import Router from 'next/router';
 import React, { useCallback, useState } from 'react';
 import { Controller } from 'react-hook-form';
@@ -180,7 +180,7 @@ export const EmailField = forwardRef<IInputFieldProps<any>, 'input'>(
 			placeholder="Email"
 			type="email"
 			errorText="Please enter a valid email"
-			rules={{ pattern: EMAIL_REGEX }}
+			rules={{ pattern: emailPattern }}
 			ref={ref}
 			label={props.showLabel ? 'Email' : undefined}
 		/>

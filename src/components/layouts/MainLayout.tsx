@@ -20,16 +20,8 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				display={'flex'}
 				flexDirection={'column'}
 				flex={1}
-				// borderWidth={{ base: 0, lg: 1 }}
-				// borderColor={'fpLightGrey.900'}
-				// borderWidth={{ base: 0, lg: 1 }}
-				// mt={{ base: 0, lg: 4 }}
-				// mb={{ base: 0, lg: 4 }}
 				mt={{ base: 10, lg: 14 }}
 				mb={{ base: 0, lg: 4 }}
-				// p={{ base: 0, sm: 4 }}
-				// overflowY={'auto'}
-				position={'relative'}
 				id={'main-container'}
 				rounded={'md'}
 			>

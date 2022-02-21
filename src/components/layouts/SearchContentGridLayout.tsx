@@ -15,6 +15,7 @@ const SearchContentGridLayout = ({
 		rowGap={6}
 		flex={1}
 		bg={'#f9f8f8'}
+		position={'relative'}
 	>
 		<GridItem
 			display={{ base: 'none', md: 'block' }}
@@ -30,14 +31,14 @@ const SearchContentGridLayout = ({
 				rounded={{ base: 'none', lg: 'md' }}
 				borderWidth={{ base: 0, lg: 1 }}
 				borderColor={'fpLightGrey.900'}
-				position={'fixed'}
+				position={'sticky'}
+				top={0}
 			>
 				{search}
 			</StackLayout>
 		</GridItem>
 		<GridItem
 			colSpan={{ base: 7, md: 4, lg: 5 }}
-			position={'relative'}
 			display={'flex'}
 			flexDirection={'column'}
 			bg={'white'}
