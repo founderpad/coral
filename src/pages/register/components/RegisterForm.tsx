@@ -22,7 +22,7 @@ const RegisterForm = () => {
 		register,
 		resetField,
 		formState: { errors, isSubmitting }
-	} = useForm<IRegisterFormData>();
+	} = useForm<IRegisterFormData>({ mode: 'all' });
 	const onRegister = useRegister();
 
 	return (
@@ -68,7 +68,7 @@ const RegisterForm = () => {
 						maxLength: {
 							value: 20,
 							message:
-								'You last name must be a maximum of 20 characters'
+								'Your last name must be a maximum of 20 characters'
 						}
 					}}
 					errors={errors}

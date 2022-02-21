@@ -11,14 +11,18 @@ import { emailPattern } from '@utils/validators';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 
+type TResetPasswordFields = {
+	email: string;
+};
+
 const ResetPasswordForm = () => {
 	const {
 		handleSubmit,
 		control,
 		resetField,
 		register,
-		formState: { errors, isSubmitting } // isValid
-	} = useForm<{ email: string }>();
+		formState: { errors, isSubmitting }
+	} = useForm<TResetPasswordFields>({ mode: 'all' });
 
 	const isResetSuccess = useQueryParam('rp_success');
 	const isResetError = useQueryParam('rp_error');
@@ -40,7 +44,7 @@ const ResetPasswordForm = () => {
 					an email with instructions to reset your password.
 				</Label>
 
-				<FormInput<{ email: string }>
+				<FormInput<TResetPasswordFields>
 					id="email"
 					name="email"
 					placeholder="Email"

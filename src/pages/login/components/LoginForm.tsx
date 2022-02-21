@@ -11,7 +11,7 @@ import { emailPattern } from '@utils/validators';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
 
-type ILoginFields = {
+type TLoginFields = {
 	email: string;
 	password: string;
 };
@@ -23,7 +23,7 @@ const LoginForm = () => {
 		register,
 		resetField,
 		formState: { errors, isSubmitting } // isValid
-	} = useForm<ILoginFields>();
+	} = useForm<TLoginFields>({ mode: 'all' });
 	const onLogin = useLogin();
 
 	const isError = useQueryParam('error');
@@ -38,21 +38,7 @@ const LoginForm = () => {
 					alignItems: 'center'
 				}}
 			>
-				{/* <FormField<ILoginFields>
-					id="email"
-					name="email"
-					placeholder="Email"
-					register={register}
-					control={control}
-					rules={{
-						required: 'You must enter a valid email address',
-						pattern: emailPattern
-					}}
-					errors={errors}
-					onClear={() => resetField('email')}
-				/> */}
-
-				<FormInput<ILoginFields>
+				<FormInput<TLoginFields>
 					id="email"
 					name="email"
 					placeholder="Email"
@@ -66,15 +52,14 @@ const LoginForm = () => {
 					onClear={() => resetField('email')}
 				/>
 
-				<FormInput<ILoginFields>
+				<FormInput<TLoginFields>
 					id="password"
 					name="password"
 					placeholder="Password"
 					register={register}
 					control={control}
 					rules={{
-						required:
-							'You must enter a valid password between 6 and 20 characters',
+						required: 'You must enter a valid password',
 						minLength: {
 							value: 6,
 							message:
@@ -89,31 +74,6 @@ const LoginForm = () => {
 					errors={errors}
 					onClear={() => resetField('password')}
 				/>
-
-				{/* <FormField<ILoginFields>
-					id="password"
-					name="password"
-					type="password"
-					placeholder="Password"
-					register={register}
-					control={control}
-					rules={{
-						required:
-							'You must enter a password between 6 and 20 characters',
-						minLength: {
-							value: 6,
-							message:
-								'You password must be a minimum of 6 characters'
-						},
-						maxLength: {
-							value: 20,
-							message:
-								'You password must be a maximum of 20 characters'
-						}
-					}}
-					errors={errors}
-					onClear={() => resetField('password')}
-				/> */}
 
 				{isError && (
 					<AlertFeedback

@@ -3,51 +3,49 @@
 exports[`Login form matches snapshot 1`] = `
 <DocumentFragment>
   <form
-    aria-label="loginform"
+    aria-label="login-form"
     autocomplete="off"
-    id="loginform"
-    name="loginform"
+    id="login-form"
+    name="login-form"
     novalidate=""
   >
     <div
       class="chakra-stack css-w4pe59"
     >
       <div
-        class="chakra-form-control css-1naxzcr"
-        role="group"
+        aria-live="polite"
+        class="css-a5klzw"
+        id="form-input"
       >
+        <div
+          class="css-qnoc8j"
+        />
         <input
           aria-label="email"
-          aria-required="true"
-          autocomplete="email"
-          class="chakra-input css-wv9m3t"
+          class="chakra-input css-jq642s"
           control="[object Object]"
-          id="email-email"
+          errors="[object Object]"
+          id="email"
           name="email"
           placeholder="Email"
-          required=""
-          rules="[object Object]"
-          type="email"
-          value=""
         />
       </div>
       <div
-        class="chakra-form-control css-1naxzcr"
-        role="group"
+        aria-live="polite"
+        class="css-a5klzw"
+        id="form-input"
       >
+        <div
+          class="css-qnoc8j"
+        />
         <input
           aria-label="password"
-          aria-required="true"
-          autocomplete="current-password"
-          class="chakra-input css-wv9m3t"
+          class="chakra-input css-jq642s"
           control="[object Object]"
-          id="password-password"
+          errors="[object Object]"
+          id="password"
           name="password"
           placeholder="Password"
-          required=""
-          rules="[object Object]"
-          type="password"
-          value=""
         />
       </div>
       <div
@@ -55,7 +53,7 @@ exports[`Login form matches snapshot 1`] = `
         role="alert"
       >
         <svg
-          class="chakra-alert__icon css-m46e7f"
+          class="chakra-alert__icon css-1tw3v2n"
           fill="currentColor"
           height="1em"
           stroke="currentColor"
@@ -73,7 +71,7 @@ exports[`Login form matches snapshot 1`] = `
           />
         </svg>
         <div
-          class="chakra-alert__desc css-1fwxjz3"
+          class="chakra-alert__desc css-1g4x3gd"
         >
           Failed to login. Incorrect email and/or password.
         </div>
@@ -81,7 +79,6 @@ exports[`Login form matches snapshot 1`] = `
       <button
         aria-label="submit-login"
         class="chakra-button css-hyn8au"
-        disabled=""
         id="submit-login"
         type="submit"
       >

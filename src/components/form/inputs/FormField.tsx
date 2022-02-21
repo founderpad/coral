@@ -43,9 +43,12 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 
 				{watchValue && (
 					<Button
-						fontSize={'x-small'}
-						colorScheme={'fpPrimary'}
-						variant={'link'}
+						id="clear-value-button"
+						name="clear-value-button"
+						aria-label="clear-value-button"
+						fontSize="x-small"
+						colorScheme="fpPrimary"
+						variant="link"
 						mb={1}
 						ml="auto"
 						onClick={() => onClear(name)}
@@ -67,6 +70,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 				{...(register && register(name, rules))}
 			/> */}
 			{children}
+
 			<ErrorMessage
 				errors={errors}
 				name={name as any}
@@ -89,10 +93,13 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 	name,
 	register,
 	rules,
+	onClear,
 	...rest
 }: TFormInputProps<TFormValues>) => {
+	const errorMessages = rest.errors?.[name];
+	const hasError = !!(rest.errors && errorMessages);
 	return (
-		<FormField name={name} {...rest}>
+		<FormField name={name} onClear={onClear} {...rest}>
 			<Input
 				id={name}
 				name={name}
@@ -100,6 +107,15 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 				size="md"
 				fontSize="sm"
 				variant="outline"
+				aria-label={name}
+				aria-invalid={hasError}
+				borderColor={hasError ? 'red.500' : 'inherit'}
+				_focus={{
+					borderColor: hasError ? 'red.500' : 'inherit'
+				}}
+				_hover={{
+					borderColor: hasError ? 'red.500' : 'inherit'
+				}}
 				{...rest}
 				{...(register && register(name, rules))}
 			/>
