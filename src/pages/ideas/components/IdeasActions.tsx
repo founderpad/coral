@@ -6,12 +6,12 @@ import MobileFilterMenu from './MobileFilterMenu';
 
 const IdeasActions = ({
 	total,
-	pageSize,
-	hasResults = false
-}: {
+	pageSize
+}: // hasResults = false
+{
 	total: number;
 	pageSize: number;
-	hasResults?: boolean;
+	// hasResults?: boolean;
 }) => (
 	<React.Fragment>
 		<Flex
@@ -24,26 +24,27 @@ const IdeasActions = ({
 					<MobileFilterMenu title="ideas" form="idea-filter-form">
 						<IdeasSearchForm />
 					</MobileFilterMenu>
-					{hasResults && (
-						<SearchResultsLabel
-							pageSize={pageSize}
-							limit={10}
-							total={total}
-						/>
-					)}
+
+					<SearchResultsLabel
+						labelProps={{
+							display: { base: 'flex', lg: 'none' }
+						}}
+						pageSize={pageSize}
+						limit={10}
+						total={total}
+					/>
 				</Flex>
 			</StickySubheader>
 		</Flex>
 
-		{hasResults && (
-			<Flex display={{ base: 'none', lg: 'flex' }} bg="white">
-				<SearchResultsLabel
-					pageSize={pageSize}
-					limit={10}
-					total={total}
-				/>
-			</Flex>
-		)}
+		<SearchResultsLabel
+			labelProps={{
+				display: { base: 'none', lg: 'flex' }
+			}}
+			pageSize={pageSize}
+			limit={10}
+			total={total}
+		/>
 	</React.Fragment>
 );
 

@@ -26,6 +26,7 @@ export const StickySubheader = memo(
 				left={0}
 				bg={'white'}
 				borderBottomWidth={fixed ? 1 : 0}
+				borderColor={'fpLightGrey.900'}
 				transition={fixed ? 'ease .9' : undefined}
 				mb={{ sm: 2 }}
 				zIndex={1}

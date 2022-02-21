@@ -1,3 +1,4 @@
+import { TextProps } from '@chakra-ui/react';
 import { Label } from '@components/labels';
 import { useRouter } from 'next/router';
 import React, { memo } from 'react';
@@ -7,25 +8,35 @@ type TSearchResultsLabel = {
 	pageSize: number;
 	limit: number;
 	total: number;
+	labelProps?: TextProps;
 };
 
 export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
-	const { pageSize, limit, total } = props;
+	const { pageSize, limit, total, labelProps } = props;
 	const page = useRouter().query.page;
 
 	const offset = (parseInt(page as string) - 1) * limit;
 
 	return (
-		// <CaptionLabel d={'flex'} ml={'auto'}>
-		// 	{offset + 1} - {offset + pageSize} of {total}
-		// 	<PointSeparator small />
-		// 	Page {page} of {Math.ceil((total || 0) / limit)}
-		// </CaptionLabel>
-
-		<Label d={'flex'} ml={'auto'} color={'fpGrey.500'} fontSize={'x-small'}>
-			{offset + 1} - {offset + pageSize} of {total}
+		<Label
+			{...labelProps}
+			color={'fpGrey.500'}
+			fontSize={'x-small'}
+			alignSelf={'flex-end'}
+		>
+			{/* {offset + 1} - {offset + pageSize} of {total}
 			<PointSeparator small />
-			Page {page} of {Math.ceil((total || 0) / limit)}
+			Page {page} of {Math.ceil((total || 0) / limit)} */}
+			{/* divider */}
+			{total === 0 ? (
+				'0 - 0 of 0'
+			) : (
+				<>
+					{offset + 1} - {offset + pageSize} of {total}
+				</>
+			)}
+			<PointSeparator small />
+			Page {total > 0 ? page : 0} of {Math.ceil((total || 0) / limit)}
 		</Label>
 	);
 });

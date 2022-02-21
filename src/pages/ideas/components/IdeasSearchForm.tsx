@@ -40,6 +40,7 @@ type TIdeaSearch = {
 // 	[key: string]: T;
 // }
 
+/** TODO: Build out reusable generic form component (e.g. BaseForm) **/
 const IdeasSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const { page, ...rest } = Router.query;
@@ -230,7 +231,7 @@ const IdeasSearchForm = () => {
 				<FlexLayout justifyContent="space-between">
 					<Controller
 						name="new"
-						render={({ field: { ref, value } }) => (
+						render={({ field: { ref } }) => (
 							<Checkbox
 								id="new"
 								name="new"

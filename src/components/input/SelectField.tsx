@@ -158,7 +158,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 											? '#F8F8F9'
 											: 'transparent',
 										color: state.isSelected
-											? '#2092BC'
+											? '#1078A9'
 											: '#718096'
 									}),
 									control: (provided) => ({

@@ -6,12 +6,12 @@ import FounderSearchForm from './FounderSearchForm';
 
 const UserSearchActions = ({
 	total,
-	pageSize,
-	hasResults = false
-}: {
+	pageSize
+}: // hasResults = false
+{
 	total: number;
 	pageSize: number;
-	hasResults?: boolean;
+	// hasResults?: boolean;
 }) => (
 	<React.Fragment>
 		<Flex
@@ -19,31 +19,32 @@ const UserSearchActions = ({
 			alignItems="flex-end"
 			display={{ base: 'flex', lg: 'none' }}
 		>
-			<StickySubheader title="All ideas">
+			<StickySubheader title="All users">
 				<Flex justifyContent="space-between" alignItems="flex-end">
 					<MobileFilterMenu title="users" form="users-filter-form">
 						<FounderSearchForm />
 					</MobileFilterMenu>
-					{hasResults && (
-						<SearchResultsLabel
-							pageSize={pageSize}
-							limit={10}
-							total={total}
-						/>
-					)}
+
+					<SearchResultsLabel
+						labelProps={{
+							display: { base: 'flex', lg: 'none' }
+						}}
+						pageSize={pageSize}
+						limit={10}
+						total={total}
+					/>
 				</Flex>
 			</StickySubheader>
 		</Flex>
 
-		{hasResults && (
-			<Flex display={{ base: 'none', lg: 'flex' }} bg="white">
-				<SearchResultsLabel
-					pageSize={pageSize}
-					limit={10}
-					total={total}
-				/>
-			</Flex>
-		)}
+		<SearchResultsLabel
+			labelProps={{
+				display: { base: 'none', lg: 'flex' }
+			}}
+			pageSize={pageSize}
+			limit={10}
+			total={total}
+		/>
 	</React.Fragment>
 );
 

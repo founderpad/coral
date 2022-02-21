@@ -26,7 +26,7 @@ export const PageLayout = (props: Props) => {
 	const headerProps = { fixedHeader, title, subtitle, action, back };
 
 	return (
-		<StackLayout {...rest} spacing={8} w={'full'}>
+		<StackLayout {...rest} spacing={8} w={'full'} rounded={'md'}>
 			<PageHeader {...headerProps} />
 			<Box
 				as={'main'}
