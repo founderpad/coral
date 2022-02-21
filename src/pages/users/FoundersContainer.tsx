@@ -99,19 +99,15 @@ const FoundersContainer = () => {
 	if (loading) return <Loading small />;
 
 	return (
-		<StackLayout p={{ base: 4, sm: 6 }}>
-			{/* {data?.user_profile?.length < 1 && <NoResults back />} */}
-			{data?.user_profile_aggregate && (
-				<UserSearchActions
-					total={data?.user_profile_aggregate?.aggregate?.count || 0}
-					pageSize={data?.user_profile.length}
-					hasResults={data?.user_profile.length > 0}
-				/>
-			)}
+		<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
+			<UserSearchActions
+				total={data?.user_profile_aggregate?.aggregate?.count || 0}
+				pageSize={data?.user_profile?.length ?? 0}
+			/>
 			{!loading && hasResults < 1 ? (
 				<NoResults back />
 			) : (
-				<StackLayout display={'flex'} flex={1} spacing={6}>
+				<StackLayout display={'flex'} spacing={6}>
 					{data?.user_profile?.map(
 						(searchedUser: TUserSearchFragment) => (
 							<React.Fragment key={searchedUser.user?.id}>

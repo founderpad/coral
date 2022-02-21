@@ -37,10 +37,11 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 			autoComplete
 		} = rest;
 
-		const [showClear, setShowClear] = useState(false);
+		const [showClear, setShowClear] = useState(!!control._formValues[name]);
 
 		const onClearValue = useCallback(() => {
 			onClear?.();
+			setShowClear(false);
 			if (isUrl) {
 				delete Router.query[name];
 				Router.push(
@@ -99,11 +100,11 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							ref={ref}
 							placeholder={placeholder}
 							autoComplete={autoComplete}
-							size={size ?? 'sm'}
+							size={size ?? 'md'}
 							value={value}
 							onChange={(e) => {
 								onChange(e);
-								onToggleClear(e.target.value);
+								onToggleClear(value);
 							}}
 							error={error?.message}
 							name={name}

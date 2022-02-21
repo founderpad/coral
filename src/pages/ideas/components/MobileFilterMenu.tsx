@@ -19,15 +19,16 @@ const MobileFilterMenu = ({
 		setModalDrawer({
 			title: `Filter ${title}`,
 			isOpen: true,
-			body: children,
-			noBtnLabel: 'Cancel',
 			action: (
 				<SubmitButton
 					name="filter-search-button"
 					form={form}
 					label="Show results"
+					title="Filter ideas"
 				/>
-			)
+			),
+			body: children,
+			hideFooter: true
 		});
 	}, [setModalDrawer, children, form, title]);
 

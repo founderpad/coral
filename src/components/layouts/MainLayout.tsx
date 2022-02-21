@@ -21,7 +21,8 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				flexDirection={'column'}
 				flex={1}
 				// borderWidth={{ base: 0, lg: 1 }}
-				borderColor={'gray.100'}
+				// borderColor={'fpLightGrey.900'}
+				// borderWidth={{ base: 0, lg: 1 }}
 				// mt={{ base: 0, lg: 4 }}
 				// mb={{ base: 0, lg: 4 }}
 				mt={{ base: 10, lg: 14 }}

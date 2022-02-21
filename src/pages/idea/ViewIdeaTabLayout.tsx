@@ -48,6 +48,8 @@ const ViewIdeaTabLayout = () => {
 			overflow={'hidden'}
 			minH={'full'}
 			flex={1}
+			borderColor={'fpLightGrey.900'}
+			borderWidth={1}
 		>
 			<IdeaTab />
 			{showInterestTab ? <InterestedUsersTab /> : <></>}

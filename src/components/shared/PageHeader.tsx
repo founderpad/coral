@@ -22,7 +22,7 @@ export const PageHeader = memo(
 		return (
 			<React.Fragment>
 				<StackLayout
-					bg={'white'}
+					// bg={'tran'}
 					as={'header'}
 					// bg={'transparent'}
 					// py={{ base: 4 }}

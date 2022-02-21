@@ -13,8 +13,8 @@ import UserMenu from './UserMenu';
 const MainNav = memo(() => (
 	<Flex
 		bg={useColorModeValue('white', 'gray.800')}
-		borderBottom={'1px solid'}
-		borderBottomColor={'gray.100'}
+		borderBottomWidth={1}
+		borderBottomColor={'fpLightGrey.900'}
 		zIndex={1000}
 		// position={'sticky'}
 		position={'fixed'}

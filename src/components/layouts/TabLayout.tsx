@@ -21,7 +21,7 @@ interface TabProps {
 	icon?: IconType;
 }
 
-const TabLayout = (props: Props) => {
+const TabLayout = (props: Props & TabsProps) => {
 	const { tabs, children, ...rest } = props;
 
 	return (
@@ -32,13 +32,13 @@ const TabLayout = (props: Props) => {
 			flexDirection={'column'}
 			variant={'soft-rounded'}
 			size={'sm'}
+			rounded={'md'}
 		>
 			<TabList
-				px={{ base: 4, sm: 0 }}
-				mx={{ base: 0, sm: 4 }}
+				px={4}
 				py={2}
 				borderBottomWidth={1}
-				borderBottomColor={'fpGrey.50'}
+				borderBottomColor={'fpLightGrey.900'}
 			>
 				{tabs
 					.filter((tab) => Object.keys(tab).length !== 0)

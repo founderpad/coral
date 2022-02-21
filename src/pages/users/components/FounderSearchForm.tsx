@@ -236,7 +236,7 @@ const FounderSearchForm = () => {
 
 			<SubmitButton
 				name={'filter-users-button'}
-				label={'Filter'}
+				label={'Show results'}
 				flex={2}
 				title={'Filter users'}
 			/>
