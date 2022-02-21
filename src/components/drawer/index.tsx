@@ -70,7 +70,7 @@ export const Drawer = ({
 				>
 					{body}
 				</DrawerBody>
-				{hideFooter && (
+				{!hideFooter && (
 					<DrawerFooter
 						d={'flex'}
 						w={'full'}

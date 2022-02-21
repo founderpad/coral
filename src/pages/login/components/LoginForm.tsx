@@ -58,6 +58,7 @@ const LoginForm = () => {
 					placeholder="Password"
 					register={register}
 					control={control}
+					type="password"
 					rules={{
 						required: 'You must enter a valid password',
 						minLength: {

@@ -1,12 +1,15 @@
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
-import { PasswordField } from '@components/input';
+import { FormInput } from '@components/form/inputs/FormField';
 import { useChangePassword } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
+type TChangePasswordFields = {
+	newPassword: string;
+};
 interface Props {
 	showPasswordLabel?: boolean;
 	showSubmit?: boolean;
@@ -14,77 +17,78 @@ interface Props {
 	isError?: boolean;
 }
 
-const ChangePasswordForm = (props: Props) => {
+const ConfirmChangePasswordForm = (props: Props) => {
 	const { showPasswordLabel = false, showSubmit = false } = props;
 	const {
 		handleSubmit,
 		control,
-		reset,
-		getValues,
-		formState: { errors, isSubmitting, isValid }
-	} = useForm({ mode: 'all' });
+		resetField,
+		register,
+		formState: { errors, isSubmitting }
+	} = useForm<TChangePasswordFields>({ mode: 'all' });
 
 	const onChangePassword = useChangePassword();
 
 	const isChangeSuccess = useQueryParam('cp_success');
 	const isChangeError = useQueryParam('cp_error');
 
-	const resetField = useCallback(
-		(name: string) => {
-			reset({
-				...getValues(),
-				[name]: ''
-			});
-		},
-		[reset, getValues]
-	);
-
 	return (
 		<Form
-			id={'edit-change-password'}
-			name={'edit-change-password'}
+			id="edit-change-password"
+			name="edit-change-password"
 			onSubmit={handleSubmit(onChangePassword)}
 			stackProps={{
 				alignItems: 'center'
 			}}
 		>
-			<PasswordField
+			<FormInput<TChangePasswordFields>
 				id="newPassword"
 				name="newPassword"
-				error={errors['newPassword']}
-				label={showPasswordLabel ? 'New password' : undefined}
+				placeholder="Password"
+				type="password"
+				register={register}
 				control={control}
-				size={'md'}
-				fontSize={'sm'}
+				label={showPasswordLabel ? 'New password' : undefined}
+				rules={{
+					required: 'You must enter a valid password',
+					minLength: {
+						value: 6,
+						message:
+							'Your password must be a minimum of 6 characters'
+					},
+					maxLength: {
+						value: 20,
+						message:
+							'Your password must be a maximum of 20 characters'
+					}
+				}}
+				errors={errors}
 				onClear={() => resetField('newPassword')}
-				isRequired
 			/>
 
 			{isChangeSuccess && (
 				<AlertFeedback
-					status={'success'}
-					message={'Your password has been updated successfully'}
+					status="success"
+					message="Your password has been updated successfully"
 				/>
 			)}
 
 			{isChangeError && (
 				<AlertFeedback
-					status={'error'}
-					message={
-						'Failed to change password. Please try again later'
-					}
+					status="error"
+					message="Failed to change password. Please try again later"
 				/>
 			)}
 
 			{!isChangeSuccess && showSubmit && (
 				<SubmitButton
-					id={'submitresetpassword'}
-					name={'submitresetpassword'}
+					id="submit-reset-password"
+					name="submit-reset-password"
 					label="Reset password"
 					isLoading={isSubmitting}
-					disabled={!isValid || isSubmitting}
-					size={'md'}
-					fontSize={'sm'}
+					disabled={isSubmitting}
+					size="md"
+					fontSize="sm"
 					w={{ base: 'full', sm: '175px' }}
 				/>
 			)}
@@ -92,4 +96,4 @@ const ChangePasswordForm = (props: Props) => {
 	);
 };
 
-export default ChangePasswordForm;
+export default ConfirmChangePasswordForm;

@@ -14,7 +14,7 @@ exports[`Register form matches snapshot 1`] = `
     >
       <div
         aria-live="polite"
-        class="css-a5klzw"
+        class="css-jhkd4z"
         id="form-input"
       >
         <div
@@ -22,7 +22,7 @@ exports[`Register form matches snapshot 1`] = `
         />
         <input
           aria-label="firstName"
-          class="chakra-input css-jq642s"
+          class="chakra-input css-133xfak"
           control="[object Object]"
           errors="[object Object]"
           id="firstName"
@@ -32,7 +32,7 @@ exports[`Register form matches snapshot 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="css-a5klzw"
+        class="css-jhkd4z"
         id="form-input"
       >
         <div
@@ -40,7 +40,7 @@ exports[`Register form matches snapshot 1`] = `
         />
         <input
           aria-label="lastName"
-          class="chakra-input css-jq642s"
+          class="chakra-input css-133xfak"
           control="[object Object]"
           errors="[object Object]"
           id="lastName"
@@ -50,7 +50,7 @@ exports[`Register form matches snapshot 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="css-a5klzw"
+        class="css-jhkd4z"
         id="form-input"
       >
         <div
@@ -58,7 +58,7 @@ exports[`Register form matches snapshot 1`] = `
         />
         <input
           aria-label="email"
-          class="chakra-input css-jq642s"
+          class="chakra-input css-133xfak"
           control="[object Object]"
           errors="[object Object]"
           id="email"
@@ -68,7 +68,7 @@ exports[`Register form matches snapshot 1`] = `
       </div>
       <div
         aria-live="polite"
-        class="css-a5klzw"
+        class="css-jhkd4z"
         id="form-input"
       >
         <div
@@ -76,7 +76,7 @@ exports[`Register form matches snapshot 1`] = `
         />
         <input
           aria-label="password"
-          class="chakra-input css-jq642s"
+          class="chakra-input css-133xfak"
           control="[object Object]"
           errors="[object Object]"
           id="password"
@@ -86,7 +86,7 @@ exports[`Register form matches snapshot 1`] = `
       </div>
       <button
         aria-label="submit-register-account"
-        class="chakra-button css-hyn8au"
+        class="chakra-button css-1ktoofj"
         id="submit-register-account"
         type="submit"
       >
