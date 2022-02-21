@@ -1,5 +1,5 @@
 import { StackLayout } from '@components/layouts';
-import { AppDivider, Loading, NoResults } from '@components/shared';
+import { AppDivider, Loading, NoResults, PageHeader } from '@components/shared';
 import {
 	TIdeaPreviewFieldsFragment,
 	TIdea_Preview_Bool_Exp,
@@ -92,37 +92,43 @@ const IdeasContainer = () => {
 	// if (!loading && hasResults < 1) return <NoResults back />;
 
 	return (
-		<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
-			<IdeasActions
-				total={data?.idea_preview_aggregate?.aggregate?.count ?? 0}
-				pageSize={data?.idea_preview?.length ?? 0}
+		<>
+			<PageHeader
+				title="All ideas"
+				subtitle="The latest ideas from the community"
 			/>
-
-			{!loading && hasResults < 1 ? (
-				<NoResults back />
-			) : (
-				<StackLayout display={'flex'} spacing={6}>
-					{data?.idea_preview?.map(
-						(idea: TIdeaPreviewFieldsFragment) => (
-							<React.Fragment key={idea.id}>
-								<IdeaCard {...idea} />
-								<AppDivider />
-							</React.Fragment>
-						)
-					)}
-				</StackLayout>
-			)}
-
-			{hasResults && (
-				<OffsetPagination
-					pagesCount={
-						(data?.idea_preview_aggregate?.aggregate?.count || 0) /
-						10
-					}
-					pathname="/ideas"
+			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
+				<IdeasActions
+					total={data?.idea_preview_aggregate?.aggregate?.count ?? 0}
+					pageSize={data?.idea_preview?.length ?? 0}
 				/>
-			)}
-		</StackLayout>
+
+				{!loading && hasResults < 1 ? (
+					<NoResults back />
+				) : (
+					<StackLayout display={'flex'} spacing={6}>
+						{data?.idea_preview?.map(
+							(idea: TIdeaPreviewFieldsFragment) => (
+								<React.Fragment key={idea.id}>
+									<IdeaCard {...idea} />
+									<AppDivider />
+								</React.Fragment>
+							)
+						)}
+					</StackLayout>
+				)}
+
+				{hasResults && (
+					<OffsetPagination
+						pagesCount={
+							(data?.idea_preview_aggregate?.aggregate?.count ||
+								0) / 10
+						}
+						pathname="/ideas"
+					/>
+				)}
+			</StackLayout>
+		</>
 	);
 };
 

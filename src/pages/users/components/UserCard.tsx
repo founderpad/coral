@@ -7,37 +7,35 @@ import { TUserSearchFragment } from '@generated/api';
 import { formatDate } from '@utils/validators';
 import React, { memo } from 'react';
 
-const founderAttrs = (
-	founderProfileAttrs: TUserSearchFragment
-): Array<string> => {
+const userAttrs = (userProfileAttrs: TUserSearchFragment): Array<string> => {
 	const attrs = [];
 
-	if (founderProfileAttrs['availability'])
+	if (userProfileAttrs['availability'])
 		attrs.push(
-			`Can commit ${founderProfileAttrs['availability']} hours per week`
+			`Can commit ${userProfileAttrs['availability']} hours per week`
 		);
 
-	if (founderProfileAttrs['specialistIndustry'])
+	if (userProfileAttrs['specialistIndustry'])
 		attrs.push(
-			`Specialises in ${founderProfileAttrs[
+			`Specialises in ${userProfileAttrs[
 				'specialistIndustry'
 			].toLowerCase()} `
 		);
 
-	if (founderProfileAttrs['status'])
-		attrs.push(`${founderProfileAttrs['status']} in a startup`);
+	if (userProfileAttrs['status'])
+		attrs.push(`${userProfileAttrs['status']} in a startup`);
 
-	if (founderProfileAttrs['startups'])
-		attrs.push(`Worked with ${founderProfileAttrs['startups']}`);
+	if (userProfileAttrs['startups'])
+		attrs.push(`Worked with ${userProfileAttrs['startups']}`);
 
-	if (founderProfileAttrs['skills'])
-		attrs.push(`Has ${founderProfileAttrs['skills'].length} skill(s)`);
+	if (userProfileAttrs['skills'])
+		attrs.push(`Has ${userProfileAttrs['skills'].length} skill(s)`);
 
 	return attrs as string[];
 };
 
-const FounderProfileAttributes = (founderProfileAttrs: TUserSearchFragment) => {
-	if (!founderAttrs(founderProfileAttrs).length) return null;
+const UserProfileAttributes = (userProfileAttrs: TUserSearchFragment) => {
+	if (!userAttrs(userProfileAttrs).length) return null;
 
 	return (
 		<FlexLayout
@@ -46,7 +44,7 @@ const FounderProfileAttributes = (founderProfileAttrs: TUserSearchFragment) => {
 			alignItems={'center'}
 			pt={4}
 		>
-			{founderAttrs(founderProfileAttrs).map((attr) => (
+			{userAttrs(userProfileAttrs).map((attr) => (
 				<Tag fontSize={'xs'} size={'sm'} mr={1} mb={1} key={attr}>
 					{attr}
 				</Tag>
@@ -55,28 +53,28 @@ const FounderProfileAttributes = (founderProfileAttrs: TUserSearchFragment) => {
 	);
 };
 
-const FounderCard = (founderProfile: TUserSearchFragment) => (
-	<LinkCard href={`/user/${founderProfile?.user?.id}`}>
+const UserCard = (userProfile: TUserSearchFragment) => (
+	<LinkCard href={`/user/${userProfile?.user?.id}`}>
 		<UserAvatarDetails
-			src={founderProfile?.user?.avatarUrl || undefined}
-			title={founderProfile?.user?.displayName}
+			src={userProfile?.user?.avatarUrl || undefined}
+			title={userProfile?.user?.displayName}
 			subtitle={
 				<FlexLayout alignItems={'center'} flexDirection={'column'}>
 					<FlexLayout>
-						{founderProfile?.user?.address?.country}
+						{userProfile?.user?.address?.country}
 						<PointSeparator small />
-						Joined {formatDate(founderProfile?.user?.createdAt)}
+						Joined {formatDate(userProfile?.user?.createdAt)}
 					</FlexLayout>
 				</FlexLayout>
 			}
-			actions={<FounderCardHeaderActions {...founderProfile} />}
+			actions={<UserCardHeaderActions {...userProfile} />}
 			size={'md'}
 		/>
-		<FounderProfileAttributes {...founderProfile} />
+		<UserProfileAttributes {...userProfile} />
 	</LinkCard>
 );
 
-const FounderCardHeaderActions = memo(
+const UserCardHeaderActions = memo(
 	(
 		actions: Pick<
 			TUserSearchFragment,
@@ -101,4 +99,4 @@ const FounderCardHeaderActions = memo(
 	)
 );
 
-export default FounderCard;
+export default UserCard;

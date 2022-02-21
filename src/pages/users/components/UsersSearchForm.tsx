@@ -37,7 +37,7 @@ interface ISearchFields {
 	objective?: string;
 }
 
-const FounderSearchForm = () => {
+const UsersSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
@@ -244,4 +244,4 @@ const FounderSearchForm = () => {
 	);
 };
 
-export default FounderSearchForm;
+export default UsersSearchForm;
