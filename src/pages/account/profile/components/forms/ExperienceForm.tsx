@@ -2,7 +2,6 @@ import { FormControl } from '@chakra-ui/form-control';
 import { Checkbox } from '@chakra-ui/react';
 import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
-import { SelectField, TextareaField } from '@components/input';
 import { Label } from '@components/labels';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
@@ -17,7 +16,6 @@ import {
 	ALL_USER_OBJECTIVES,
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
-	mobileIdeaCategoryFields,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
@@ -98,20 +96,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			isSubmitting={isSubmitting}
 			isValid={isValid}
 		>
-			{/* <SelectField
-				id="objective"
-				name="objective"
-				label="What is your objective on this platform?"
-				placeholder="your objective on this platform"
-				error={errors['objective']}
-				errorText="You must provide your objective on this platform"
-				options={ALL_USER_OBJECTIVES}
-				mobileOptions={mobileUserObjectives()}
-				onClear={() => resetField('objective')}
-				control={control}
-				isRequired
-			/> */}
-
 			<FormSelect<TUser_Profile_Set_Input>
 				id="objective"
 				name="objective"

@@ -4,7 +4,8 @@ import {
 	Input,
 	InputProps,
 	Text,
-	Textarea
+	Textarea,
+	FormHelperText
 } from '@chakra-ui/react';
 import { FlexLayout } from '@components/layouts';
 import { ErrorMessage } from '@hookform/error-message';
@@ -32,6 +33,7 @@ export type TFormFieldProps<TFormValues> = {
 	register?: UseFormRegister<TFormValues>;
 	errors?: Partial<DeepMap<TFormValues, FieldError>>;
 	label?: string;
+	helperText?: string;
 } & Omit<InputProps, 'name'>;
 
 export type TFormSelectFieldProps<TFormValues> =
@@ -47,6 +49,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 	control,
 	errors,
 	label,
+	helperText,
 	children,
 	onClear
 }: TFormFieldProps<TFormValues>) => {
@@ -83,8 +86,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 			</FlexLayout>
 
 			{children}
-
-			{errors && (
+			{/* {errors && (
 				<ErrorMessage
 					errors={errors}
 					name={name as any}
@@ -99,6 +101,29 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 						</Text>
 					)}
 				/>
+			)} */}
+
+			{errors && Object.keys(errors).length ? (
+				<ErrorMessage
+					errors={errors}
+					name={name as any}
+					render={({ message }) => (
+						<Text
+							mt={2}
+							color="red.500"
+							fontSize="xs"
+							textAlign="start"
+						>
+							{message}
+						</Text>
+					)}
+				/>
+			) : (
+				helperText && (
+					<FormHelperText fontSize={'xs'} color={'fpGrey.300'}>
+						{helperText}
+					</FormHelperText>
+				)
 			)}
 		</FlexLayout>
 	);

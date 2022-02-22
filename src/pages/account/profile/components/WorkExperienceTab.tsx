@@ -26,7 +26,7 @@ const WorkExperienceTab = () => {
 		statement,
 		status,
 		availability,
-		businessDescription,
+		// businessDescription,
 		background,
 		skills,
 		objective

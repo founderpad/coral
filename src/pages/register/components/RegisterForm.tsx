@@ -7,13 +7,7 @@ import { emailPattern } from '@utils/validators';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import LegalFooter from './LegalFooter';
-
-type IRegisterFormData = {
-	firstName: string;
-	lastName: string;
-	email: string;
-	password: string;
-};
+import { TRegisterFormFields } from '../../../types/auth';
 
 const RegisterForm = () => {
 	const {
@@ -22,7 +16,7 @@ const RegisterForm = () => {
 		register,
 		resetField,
 		formState: { errors, isSubmitting }
-	} = useForm<IRegisterFormData>({ mode: 'all' });
+	} = useForm<TRegisterFormFields>({ mode: 'all' });
 	const onRegister = useRegister();
 
 	return (
@@ -35,7 +29,7 @@ const RegisterForm = () => {
 					alignItems: 'center'
 				}}
 			>
-				<FormInput<IRegisterFormData>
+				<FormInput<TRegisterFormFields>
 					id="firstName"
 					name="firstName"
 					placeholder="First name"
@@ -58,7 +52,7 @@ const RegisterForm = () => {
 					onClear={() => resetField('firstName')}
 				/>
 
-				<FormInput<IRegisterFormData>
+				<FormInput<TRegisterFormFields>
 					id="lastName"
 					name="lastName"
 					placeholder="Last name"
@@ -74,7 +68,7 @@ const RegisterForm = () => {
 					errors={errors}
 					onClear={() => resetField('lastName')}
 				/>
-				<FormInput<IRegisterFormData>
+				<FormInput<TRegisterFormFields>
 					id="email"
 					name="email"
 					placeholder="Email"
@@ -88,7 +82,7 @@ const RegisterForm = () => {
 					onClear={() => resetField('email')}
 				/>
 
-				<FormInput<IRegisterFormData>
+				<FormInput<TRegisterFormFields>
 					id="password"
 					name="password"
 					placeholder="Password"

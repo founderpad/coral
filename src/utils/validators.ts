@@ -105,8 +105,9 @@ export const redirectTo = (error: boolean, param?: string) => {
 
 	Router.replace(
 		{
-			pathname: Router.pathname,
-			query: `${param}_success=true`
+			pathname: Router.pathname
+			// query: `${param}_success=true`,
+			// query: { ...Router.query, `${param ? `${param}_error=true` : `error=true`}` }
 		},
 		undefined,
 		{ shallow: true }

@@ -10,11 +10,7 @@ import { useQueryParam } from '@hooks/util';
 import { emailPattern } from '@utils/validators';
 import React, { memo } from 'react';
 import { useForm } from 'react-hook-form';
-
-type TLoginFields = {
-	email: string;
-	password: string;
-};
+import { TLoginFields } from '../../../types/auth';
 
 const LoginForm = () => {
 	const {
