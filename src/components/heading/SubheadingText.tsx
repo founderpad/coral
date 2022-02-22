@@ -9,7 +9,7 @@ export const SubheadingText = (props: THeadingProps) => {
 	return (
 		<BaseHeading
 			{...props}
-			as={'h1'}
+			as="h1"
 			size={props.size ?? size}
 			color={props.color ?? 'gray.700'}
 		/>

@@ -8,19 +8,14 @@ interface Props {
 }
 
 const ContentFieldAndValue = ({ title, value }: Props) => (
-	<StackLayout spacing={1} wordBreak={'break-all'}>
+	<StackLayout spacing={1} wordBreak="break-all">
 		{title && (
-			<Label
-				fontSize={'small'}
-				as={'h4'}
-				color={'black'}
-				fontWeight={'medium'}
-			>
+			<Label fontSize="small" as="h4" color="black" fontWeight="medium">
 				{title}
 			</Label>
 		)}
 		{typeof value === 'string' ? (
-			<Label color={'gray.500'} fontSize={'xs'}>
+			<Label color="gray.500" fontSize="xs">
 				{value}
 			</Label>
 		) : (

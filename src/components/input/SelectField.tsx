@@ -94,7 +94,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					</FlexLayout>
 				)}
 				<Controller
-					defaultValue={''}
+					defaultValue=""
 					render={({
 						field: { onChange, value },
 						fieldState: { error }
@@ -106,7 +106,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 									placeholder ?? 'option'
 								}`}
 								rounded="md"
-								size={'md'}
+								size="md"
 								value={value}
 								// onChange={onChange}
 								onChange={(e) => {
@@ -232,10 +232,7 @@ export const SelectField = forwardRef<ISelectFieldProps, 'select'>(
 					<FormErrorText label={props.errorText} />
 				) : (
 					helperText && (
-						<FormHelperText
-							fontSize={'smaller'}
-							color={'fpGrey.400'}
-						>
+						<FormHelperText fontSize="smaller" color="fpGrey.400">
 							{helperText}
 						</FormHelperText>
 					)

@@ -105,13 +105,13 @@ const RegisterForm = () => {
 					onClear={() => resetField('password')}
 				/>
 				<SubmitButton
-					id={'submit-register-account'}
-					name={'submit-register-account'}
-					label={'Create account'}
+					id="submit-register-account"
+					name="submit-register-account"
+					label="Create account"
 					isLoading={isSubmitting}
 					disabled={isSubmitting}
-					size={'md'}
-					fontSize={'sm'}
+					size="md"
+					fontSize="sm"
 					w={{ base: 'full', sm: '175px' }}
 				/>
 			</Form>

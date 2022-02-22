@@ -5,7 +5,7 @@ import { BaseLink } from '.';
 export const PrimaryLink = (props: LinkProps & { title: string }) => (
 	<BaseLink
 		{...props}
-		color={'fpPrimary.500'}
+		color="fpPrimary.500"
 		_hover={{ color: 'fpPrimary.900' }}
 	/>
 );

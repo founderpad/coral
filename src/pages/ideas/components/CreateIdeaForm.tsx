@@ -90,9 +90,9 @@ const CreateIdeaForm = () => {
 				}
 				control={control}
 				rules={{ required: true, maxLength: 100 }}
-				size={'lg'}
-				fontSize={'lg'}
-				variant={'filled'}
+				size="lg"
+				fontSize="lg"
+				variant="filled"
 				onClear={() => resetField('name')}
 				isRequired
 			/>
@@ -139,7 +139,7 @@ const CreateIdeaForm = () => {
 				error={errors['field']}
 				errorText="Please select the field for the idea"
 				placeholder="field"
-				size={'md'}
+				size="md"
 				options={ALL_IDEA_CATEGORY_FIELDS}
 				mobileOptions={mobileIdeaCategoryFields()}
 				control={control}
@@ -153,7 +153,7 @@ const CreateIdeaForm = () => {
 				error={errors['status']}
 				errorText="Please select the status for the idea"
 				placeholder="status"
-				size={'md'}
+				size="md"
 				options={ALL_IDEA_STATUSES}
 				mobileOptions={mobileIdeaStatuses()}
 				onClear={() => resetField('status')}
@@ -204,18 +204,18 @@ const CreateIdeaForm = () => {
 			/>
 
 			<SubmitButton
-				name={'create-idea-button'}
-				label={'Create your idea'}
-				alignSelf={'center'}
+				name="create-idea-button"
+				label="Create your idea"
+				alignSelf="center"
 				isLoading={isSubmitting}
 				// disabled={!isValid || isSubmitting}
 				disabled={isSubmitting}
-				mt={'auto'}
+				mt="auto"
 				w={{ base: 'full', sm: '200px' }}
-				size={'md'}
+				size="md"
 			/>
 
-			<Label fontSize={'9px'} color={'fpGrey.400'}>
+			<Label fontSize="9px" color="fpGrey.400">
 				The content on our site is provided for general information only
 				(including such content uploaded by third parties). This
 				includes any community assessment of business ideas on the

@@ -27,9 +27,9 @@ const UserMenu = () => {
 			<MenuButton
 				p={1}
 				as={Button}
-				rounded={'full'}
-				cursor={'pointer'}
-				bg={'transparent'}
+				rounded="full"
+				cursor="pointer"
+				bg="transparent"
 				_hover={{ bg: 'gray.100' }}
 				_active={{ bg: 'transparent' }}
 				css={{
@@ -40,35 +40,35 @@ const UserMenu = () => {
 				}}
 			>
 				<UserAvatar
-					size={'xs'}
+					size="xs"
 					src={avatarUrl || undefined}
 					badge={
 						!isProfileComplete && (
-							<AvatarBadge bg={'red.500'} boxSize={'1em'} />
+							<AvatarBadge bg="red.500" boxSize="1em" />
 						)
 					}
 				/>
-				<Icon as={IoEllipsisVertical} ml={1} color={'gray.500'} />
+				<Icon as={IoEllipsisVertical} ml={1} color="gray.500" />
 			</MenuButton>
-			<MenuList rounded={'md'} textAlign={'start'} p={4} maxW={200}>
-				<CurrentUserAvatarDetails size={'md'} direction={'column'} />
+			<MenuList rounded="md" textAlign="start" p={4} maxW={200}>
+				<CurrentUserAvatarDetails size="md" direction="column" />
 				{!isProfileComplete && <ProfileNotSet />}
 				<MenuDivider my={4} />
 				<MenuGroup>
 					<MenuItem
 						as={BaseLink}
-						href={'/account/profile'}
-						fontSize={'small'}
-						color={'fpGrey.500'}
+						href="/account/profile"
+						fontSize="small"
+						color="fpGrey.500"
 						_hover={{ color: 'fpGrey.900' }}
 					>
 						Profile
 					</MenuItem>
 					{/* <MenuItem
 						as={BaseLink}
-						href={'/user/settings'}
-						fontSize={'small'}
-						color={'gray.500'}
+						href="/user/settings"
+						fontSize="small"
+						color="gray.500"
 						_hover={{ color: 'black' }}
 					>
 						Settings
@@ -84,12 +84,12 @@ const UserMenu = () => {
 const ProfileNotSet = memo(() => (
 	<Label
 		py={3}
-		color={'red.500'}
-		fontSize={'xs'}
+		color="red.500"
+		fontSize="xs"
 		icon={IoAlertCircleSharp}
-		iconColor={'red.500'}
-		alignItems={'center'}
-		d={'flex'}
+		iconColor="red.500"
+		alignItems="center"
+		d="flex"
 	>
 		Profile not set
 	</Label>

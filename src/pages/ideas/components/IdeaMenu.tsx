@@ -26,13 +26,13 @@ export const IdeaMenu = (idea: TIdeaProps) => {
 	return (
 		<BaseMenu>
 			{/* <BaseMenuItem
-				title={'Share'}
-				subTitle={'Share this idea'}
+				title="Share"
+				subTitle="Share this idea"
 				icon={IoShareSocialSharp}
 				divider={true}
 			/> */}
 			<ReportMenu
-				title={'idea'}
+				title="idea"
 				report={report}
 				content={`"${idea.name}"`}
 			/>

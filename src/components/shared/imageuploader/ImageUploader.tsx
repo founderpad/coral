@@ -50,14 +50,14 @@ export const ImageUploader = (props: Props) => {
 			title,
 			actions: (
 				<PrimaryButton
-					name={'crop-image-modal-button'}
+					name="crop-image-modal-button"
 					onClick={getCropData}
 				>
 					Upload
 				</PrimaryButton>
 			),
 			body: (
-				<Box position={'relative'}>
+				<Box position="relative">
 					<Cropper
 						initialAspectRatio={1}
 						preview=".img-preview"
@@ -75,12 +75,12 @@ export const ImageUploader = (props: Props) => {
 					/>
 
 					<Box
-						position={'absolute'}
+						position="absolute"
 						bottom={0}
 						right={0}
-						boxSize={'60px'}
-						bg={'rgba(0,0,0,0.4)'}
-						overflow={'hidden'}
+						boxSize="60px"
+						bg="rgba(0,0,0,0.4)"
+						overflow="hidden"
 						className="img-preview"
 						style={{
 							height: '60px !important',
@@ -146,16 +146,16 @@ export const ImageUploader = (props: Props) => {
 	return (
 		<FlexLayout
 			flex={1}
-			as={'label'}
-			justifyContent={'center'}
-			alignItems={'center'}
-			flexDirection={'column'}
-			position={'relative'}
-			rounded={'full'}
+			as="label"
+			justifyContent="center"
+			alignItems="center"
+			flexDirection="column"
+			position="relative"
+			rounded="full"
 			boxSize={{ base: 100, md: 120 }}
 		>
 			<input
-				id={'image-upload'}
+				id="image-upload"
 				type="file"
 				onChange={onChange}
 				onClick={onInputClick}
@@ -163,25 +163,25 @@ export const ImageUploader = (props: Props) => {
 			/>
 
 			<EditButton
-				as={'label'}
+				as="label"
 				onClick={undefined}
-				htmlFor={'image-upload'}
-				bg={'white'}
-				size={'sm'}
-				boxShadow={'md'}
-				cursor={'pointer'}
+				htmlFor="image-upload"
+				bg="white"
+				size="sm"
+				boxShadow="md"
+				cursor="pointer"
 				aria-label={props['aria-label'] || 'Edit image button'}
 				title={props.title}
-				position={'absolute'}
+				position="absolute"
 				bottom={0}
-				transform={'translateY(5%) translateX(125%)'}
+				transform="translateY(5%) translateX(125%)"
 				zIndex={1}
 				borderWidth={1}
 			/>
 			<Box
 				className="image"
-				position={'relative'}
-				rounded={'full'}
+				position="relative"
+				rounded="full"
 				boxSize={{ base: 100, md: 120 }}
 				css={{
 					'> img': {

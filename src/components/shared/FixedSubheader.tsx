@@ -28,14 +28,14 @@ export const FixedSubheader = memo(
 		return (
 			<Box
 				position={fixed ? 'fixed' : 'static'}
-				w={'full'}
+				w="full"
 				py={fixed ? 2 : 0}
 				px={fixed ? 4 : 0}
 				top={fixed ? topOffset || 10 : 'initial'}
 				left={0}
-				bg={'white'}
+				bg="white"
 				borderBottomWidth={fixed ? 1 : 0}
-				transition={'ease .9'}
+				transition="ease .9"
 				zIndex={1}
 			>
 				{children}

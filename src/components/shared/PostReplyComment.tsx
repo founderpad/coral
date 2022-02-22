@@ -72,18 +72,13 @@ const PostReplyComment = ({
 	);
 
 	return (
-		<FlexLayout
-			flexDirection={'column'}
-			alignItems={'flex-start'}
-			w={'full'}
-		>
-			{' '}
+		<FlexLayout flexDirection="column" alignItems="flex-start" w="full">
 			<PrimaryButton
-				name={'reply-to-comment'}
+				name="reply-to-comment"
 				onClick={onShowReplyClick}
-				variant={'unstyled'}
-				color={'gray.500'}
-				fontSize={'xs'}
+				variant="unstyled"
+				color="gray.500"
+				fontSize="xs"
 			>
 				Reply
 			</PrimaryButton>
@@ -91,39 +86,39 @@ const PostReplyComment = ({
 				<StackLayout
 					py={3}
 					spacing={2}
-					justifyContent={'space-between'}
-					alignItems={'flex-end'}
-					w={'full'}
+					justifyContent="space-between"
+					alignItems="flex-end"
+					w="full"
 				>
 					<Textarea
-						name={'value'}
-						id={'value'}
-						minH={'unset'}
-						placeholder={'Write your reply here'}
-						w={'full'}
+						name="value"
+						id="value"
+						minH="unset"
+						placeholder="Write your reply here"
+						w="full"
 						as={ResizeTextarea}
 						onChange={onValueChange}
 						value={value}
 						maxRows={3}
-						resize={'none'}
-						maxH={'100px'}
+						resize="none"
+						maxH="100px"
 						p={2}
 						autoFocus
-						title={'Write your reply here'}
+						title="Write your reply here"
 						_focus={{
 							borderColor: 'gray.400',
 							boxShadow: 'none'
 						}}
 					/>
-					<ButtonGroup alignItems={'center'}>
+					<ButtonGroup alignItems="center">
 						<CancelButton
-							label={'Cancel'}
-							size={'xs'}
+							label="Cancel"
+							size="xs"
 							onClick={onShowReplyClick}
 						/>
 						<PrimaryButton
-							name={'send-reply'}
-							size={'xs'}
+							name="send-reply"
+							size="xs"
 							onClick={() => postReplyMutation()}
 						>
 							Send

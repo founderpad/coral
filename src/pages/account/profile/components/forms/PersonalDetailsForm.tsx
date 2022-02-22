@@ -89,8 +89,8 @@ const PersonalDetailsForm = () => {
 
 	return (
 		<Form
-			id={'editPersonalDetailsForm'}
-			name={'editPersonalDetailsForm'}
+			id="editPersonalDetailsForm"
+			name="editPersonalDetailsForm"
 			onSubmit={handleSubmit(updateUserPersonalDetails)}
 			isSubmitting={isSubmitting}
 		>

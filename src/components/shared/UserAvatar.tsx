@@ -21,11 +21,11 @@ export const UserAvatar = (props: Props) => {
 	return (
 		<Avatar
 			{...rest}
-			name={'user-avatar'}
+			name="user-avatar"
 			size={size ?? avatarSize}
-			rounded={'full'}
-			bg={'gray.200'}
-			color={'white'}
+			rounded="full"
+			bg="gray.200"
+			color="white"
 			ignoreFallback={false}
 		>
 			{badge}
@@ -44,19 +44,19 @@ export const UserAvatarDetails = ({
 	actions
 }: Props) => {
 	return (
-		<StackLayout align={'center'} direction={direction} spacing={2}>
+		<StackLayout align="center" direction={direction} spacing={2}>
 			<UserAvatar src={src} size={size} direction={direction} />
 			<StackLayout
 				spacing={0}
 				ml={2}
 				alignItems={direction === 'column' ? 'center' : 'flex-start'}
 			>
-				<FlexLayout alignItems={'baseline'} lineHeight={'tall'}>
+				<FlexLayout alignItems="baseline" lineHeight="tall">
 					<Label
-						fontWeight={'medium'}
+						fontWeight="medium"
 						fontSize={fontSize}
 						css={{ whiteSpace: 'normal' }}
-						wordBreak={'break-all'}
+						wordBreak="break-all"
 						noOfLines={1}
 						mr={1}
 						isTruncated
@@ -67,14 +67,12 @@ export const UserAvatarDetails = ({
 					{actions}
 				</FlexLayout>
 				{subtitle && (
-					<Label color={'fpGrey.500'} fontSize={'xs'}>
+					<Label color="fpGrey.500" fontSize="xs">
 						{subtitle}
 					</Label>
 				)}
 				{createdAt && (
-					<CaptionLabel color={'fpGrey.400'}>
-						{createdAt}
-					</CaptionLabel>
+					<CaptionLabel color="fpGrey.400">{createdAt}</CaptionLabel>
 				)}
 			</StackLayout>
 		</StackLayout>

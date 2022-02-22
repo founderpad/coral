@@ -15,9 +15,9 @@ const NavLink = (props: LinkProps) => {
 					color: hoverColor
 				}
 			}
-			fontSize={'sm'}
+			fontSize="sm"
 			fontWeight={500}
-			title={'Navigation link'}
+			title="Navigation link"
 		>
 			{children}
 		</BaseLink>

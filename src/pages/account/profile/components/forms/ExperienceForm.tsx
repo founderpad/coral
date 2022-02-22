@@ -211,28 +211,28 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			/> */}
 
 			<FormControl>
-				<FormLabelText label={'Your skills'} />
+				<FormLabelText label="Your skills" />
 				{EXPERIENCE_SKILLS.map((es: string) => (
 					<Controller
 						key={es}
-						name={'skills'}
+						name="skills"
 						render={({ field: { ref } }) => (
 							<Checkbox
 								name={es}
-								rounded={'none'}
-								focusBorderColor={'gray.150'}
+								rounded="none"
+								focusBorderColor="gray.150"
 								value={es}
 								py={1}
 								pr={2}
 								onChange={onSkillsToggle}
-								colorScheme={'fpPrimary'}
-								color={'fpGrey.900'}
+								colorScheme="fpPrimary"
+								color="fpGrey.900"
 								ref={ref}
-								size={'md'}
-								fontSize={'xs'}
+								size="md"
+								fontSize="xs"
 								isChecked={selectedSkills.includes(es)}
 							>
-								<Label color={'fpGrey.900'} fontSize={'xs'}>
+								<Label color="fpGrey.900" fontSize="xs">
 									{es}
 								</Label>
 							</Checkbox>

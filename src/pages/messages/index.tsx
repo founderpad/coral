@@ -26,19 +26,19 @@ const ViewIdea: NextPage = () => {
 			{/* <ViewIdeaTabLayout /> */}
 			{/* </IdeaContext.Provider> */}
 			<Box
-				d={'flex'}
+				d="flex"
 				flex={1}
-				justifyContent={'center'}
-				alignItems={'center'}
-				flexDirection={'column'}
+				justifyContent="center"
+				alignItems="center"
+				flexDirection="column"
 			>
 				<Icon
 					as={IoChatboxEllipsesSharp}
-					fontSize={'xx-large'}
-					color={'gray.500'}
+					fontSize="xx-large"
+					color="gray.500"
 					mb={4}
 				/>
-				<Heading color={'gray.500'} fontSize={'lg'}>
+				<Heading color="gray.500" fontSize="lg">
 					Messages coming soon
 				</Heading>
 			</Box>

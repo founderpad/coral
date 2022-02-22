@@ -19,22 +19,22 @@ export const BaseTag = ({
 		background={bg}
 		borderWidth={1}
 		color={color}
-		rounded={'md'}
-		alignItems={'center'}
-		d={'flex'}
+		rounded="md"
+		alignItems="center"
+		d="flex"
 		{...rest}
 	>
 		{icon && (
 			<TagLeftIcon>
-				<Icon as={icon} size={'md'} color={iconColor} />
+				<Icon as={icon} size="md" color={iconColor} />
 			</TagLeftIcon>
 		)}
 
 		<TagLabel
-			d={'flex'}
+			d="flex"
 			flexDirection={flexDirection}
 			fontSize={fontSize ?? { base: 'x-small', sm: 'xs' }}
-			alignItems={'center'}
+			alignItems="center"
 		>
 			{children}
 		</TagLabel>

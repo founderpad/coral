@@ -5,7 +5,7 @@ import React from 'react';
 
 const Report = () => {
 	return (
-		<IconButton aria-label={'report-button'}>
+		<IconButton aria-label="report-button">
 			<Icon as={IoFlagSharp} />
 		</IconButton>
 	);

@@ -8,8 +8,8 @@ import {
 import React from 'react';
 
 export const PointSeparator = ({
-	color,
-	display,
+	color = 'fpGrey.700',
+	display = 'block',
 	small,
 	px
 }: {
@@ -18,17 +18,12 @@ export const PointSeparator = ({
 	small?: boolean;
 	px?: BoxProps['px'];
 }) => (
-	<Box
-		as={'span'}
-		px={px ?? 1}
-		display={display ?? 'block'}
-		color={color ?? 'gray.400'}
-	>
+	<Box as="span" px={px ?? 1} display={display} color={color}>
 		{small ? <>&middot;</> : <>&bull;</>}
 	</Box>
 );
 
 export const LineSeparator = (props?: DividerProps) => (
-	// <Box {...props} as={'hr'} />
-	<Divider {...props} orientation={'vertical'} />
+	// <Box {...props} as="hr" />
+	<Divider {...props} orientation="vertical" />
 );

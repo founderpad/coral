@@ -17,15 +17,15 @@ const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 		<React.Fragment>
 			<FlexLayout>
 				{is_new && <NewIdeaBadge />}
-				<FlexLayout direction={'column'} flex={1}>
+				<FlexLayout direction="column" flex={1}>
 					<Label
-						d={'flex'}
-						w={'full'}
-						overflow={'hidden'}
-						fontWeight={'medium'}
-						fontSize={'sm'}
+						d="flex"
+						w="full"
+						overflow="hidden"
+						fontWeight="medium"
+						fontSize="sm"
 						css={{ whiteSpace: 'normal' }}
-						wordBreak={'break-all'}
+						wordBreak="break-all"
 						noOfLines={1}
 						isTruncated
 					>

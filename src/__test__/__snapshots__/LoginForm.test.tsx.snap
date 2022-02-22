@@ -111,7 +111,7 @@ exports[`Login form matches snapshot 1`] = `
         href="/register"
         title="Link to register an account"
       >
-         Register now
+        Register now
       </span>
     </p>
     <span
@@ -119,7 +119,7 @@ exports[`Login form matches snapshot 1`] = `
       href="/resetpassword"
       title="Link to register an account"
     >
-       Forgotten password?
+      Forgotten password?
     </span>
   </div>
 </DocumentFragment>

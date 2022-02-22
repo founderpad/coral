@@ -34,8 +34,8 @@ const ReportMenu = ({
 					name="open-modal-drawer-button"
 					form="reportForm"
 					label="Report"
-					variant={'outline'}
-					colorScheme={'red'}
+					variant="outline"
+					colorScheme="red"
 				/>
 			)
 		});
@@ -43,7 +43,7 @@ const ReportMenu = ({
 
 	return (
 		<BaseMenuItem
-			title={'Report'}
+			title="Report"
 			// subTitle={`Report this ${title.toLowerCase()}`}
 			icon={IoFlagOutline}
 			onClick={onClick}
@@ -85,8 +85,8 @@ const ReportForm = ({
 
 	return (
 		<Form
-			id={'reportForm'}
-			name={'reportForm'}
+			id="reportForm"
+			name="reportForm"
 			onSubmit={handleSubmit(addReport)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}

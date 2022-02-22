@@ -9,7 +9,7 @@ const Notification = () => {
 		return (
 			<Alert status={notification.status}>
 				{/* <AlertTitle>{notification.title}</AlertTitle> */}
-				<AlertDescription fontSize={'xs'}>
+				<AlertDescription fontSize="xs">
 					{notification.message}
 				</AlertDescription>
 			</Alert>

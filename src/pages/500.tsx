@@ -5,14 +5,14 @@ import { NextPage } from 'next';
 const NotFound: NextPage = () => {
 	return (
 		<Stack
-			h={'full'}
-			display={'flex'}
+			h="full"
+			display="flex"
 			flex={1}
-			justifyContent={'center'}
-			alignItems={'center'}
+			justifyContent="center"
+			alignItems="center"
 			spacing={4}
 		>
-			<Heading color={'fpGrey.900'}>Server error</Heading>
+			<Heading color="fpGrey.900">Server error</Heading>
 			<GoBackButton />
 		</Stack>
 	);

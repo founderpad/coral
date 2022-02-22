@@ -17,20 +17,20 @@ export const UpvoteButton = ({
 	votesTotal?: number;
 	large?: boolean;
 }) => (
-	<FlexLayout alignItems={'center'}>
+	<FlexLayout alignItems="center">
 		<Icon
 			name={`upvote-${name}-button`}
 			as={IoArrowUpSharp}
 			mr={1}
 			_hover={{ color: 'green.300' }}
 			fontSize={large ? 'lg' : 'md'}
-			color={hasUserUpvoted ? 'green.300' : 'gray.400'}
-			cursor={'pointer'}
+			color={hasUserUpvoted ? 'green.300' : 'fpGrey.900'}
+			cursor="pointer"
 			onClick={onClick}
 		/>
 		<Label
 			fontSize={large ? 'md' : 'sm'}
-			color={hasUserUpvoted ? 'green.300' : 'gray.400'}
+			color={hasUserUpvoted ? 'green.300' : 'fpGrey.900'}
 		>
 			{votesTotal}
 		</Label>

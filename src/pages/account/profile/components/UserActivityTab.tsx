@@ -20,8 +20,8 @@ const UserActivityTab = () => {
 	const activities = data?.activity ?? [];
 	const hasResults = activities?.length > 0;
 
-	if (loading) return <Spinner display={'flex'} m={'auto'} />;
-	if (!hasResults) return <NoResults label={'activity'} />;
+	if (loading) return <Spinner display="flex" m="auto" />;
+	if (!hasResults) return <NoResults label="activity" />;
 
 	return (
 		<Stack p={4}>
@@ -38,16 +38,16 @@ const UserActivityTab = () => {
 const ActivityItem = (
 	activity: Omit<TActivity, 'id' | 'userId' | 'user' | 'updatedAt'>
 ) => (
-	<Flex p={0} flexDirection={'column'}>
-		<Flex justifyContent={'space-between'} alignItems={'flex-start'}>
-			<Flex flexDirection={'column'}>
-				<Label fontSize={'xs'} fontWeight={'md'} color={'black'}>
+	<Flex p={0} flexDirection="column">
+		<Flex justifyContent="space-between" alignItems="flex-start">
+			<Flex flexDirection="column">
+				<Label fontSize="xs" fontWeight="md" color="black">
 					{activity.description}
 				</Label>
 				<PrimaryLink
 					href={`/${activity?.url}`}
-					fontSize={'xs'}
-					title={'Link to view the idea'}
+					fontSize="xs"
+					title="Link to view the idea"
 				>
 					View this {activity.type}
 				</PrimaryLink>

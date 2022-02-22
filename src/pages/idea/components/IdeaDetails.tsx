@@ -12,27 +12,18 @@ export const IdeaDetails = () => {
 	return (
 		<StackLayout flex={1}>
 			{summary && (
-				<ContentFieldAndValue
-					title={'Summary of idea'}
-					value={summary}
-				/>
+				<ContentFieldAndValue title="Summary of idea" value={summary} />
 			)}
 			{description && (
-				<ContentFieldAndValue
-					title={'Description'}
-					value={description}
-				/>
+				<ContentFieldAndValue title="Description" value={description} />
 			)}
-			{team && <ContentFieldAndValue title={'Team'} value={team} />}
+			{team && <ContentFieldAndValue title="Team" value={team} />}
 			{competitors && (
-				<ContentFieldAndValue
-					title={'Competitors'}
-					value={competitors}
-				/>
+				<ContentFieldAndValue title="Competitors" value={competitors} />
 			)}
 			{additionalInformation && (
 				<ContentFieldAndValue
-					title={'Additional information'}
+					title="Additional information"
 					value={additionalInformation}
 				/>
 			)}

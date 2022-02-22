@@ -23,37 +23,37 @@ export const IdeaHighlights = memo((props: IdeaHighlightsProps) => {
 			<StackLayout spacing={4} display={{ base: 'none', md: 'flex' }}>
 				{status && (
 					<KeyInformationBox
-						title={'Stage'}
+						title="Stage"
 						value={status}
 						icon={IoBulbSharp}
 					/>
 				)}
 				<KeyInformationBox
-					title={'Field'}
+					title="Field"
 					value={field}
 					icon={IoBusinessSharp}
 				/>
 				{/* <KeyInformationBox
-						title={'Location'}
+						title="Location"
 						value={user.country}
 						icon={IoLocationSharp}
 					/> */}
 				<KeyInformationBox
-					title={'Documents'}
-					value={'4 supporting documents'}
+					title="Documents"
+					value="4 supporting documents"
 					icon={IoDocumentsSharp}
 				/>
 			</StackLayout>
 			<FlexLayout
-				direction={'row'}
+				direction="row"
 				display={{ base: 'flex', md: 'none' }}
 				flexWrap="wrap"
-				alignItems={'center'}
+				alignItems="center"
 			>
 				{status && <HighlightTag value={status} />}
 				<HighlightTag value={field} />
 				{/* <HighlightTag value={user.country} /> */}
-				<HighlightTag value={'4 documents'} />
+				<HighlightTag value="4 documents" />
 			</FlexLayout>
 		</React.Fragment>
 	);

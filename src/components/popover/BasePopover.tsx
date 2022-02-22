@@ -16,8 +16,8 @@ export const BasePopover = (props: Props) => {
 	return (
 		<Popover
 			trigger={trigger ?? 'hover'}
-			placement={'bottom'}
-			strategy={'fixed'}
+			placement="bottom"
+			strategy="fixed"
 		>
 			<PopoverTrigger>{triggerEl}</PopoverTrigger>
 
@@ -26,15 +26,14 @@ export const BasePopover = (props: Props) => {
 				<PopoverContent
 					border={0}
 					borderWidth={1}
-					boxShadow={'xl'}
+					boxShadow="xl"
 					bg={bg}
 					p={6}
 					mt={2}
-					rounded={'md'}
-					minWidth={'400px'}
-					// bg={'fpLightGrey.300'}
+					rounded="md"
+					minWidth="400px"
 				>
-					{/* <PopoverBody rounded={'lg'}>{children}</PopoverBody> */}
+					{/* <PopoverBody rounded="lg">{children}</PopoverBody> */}
 					{children}
 				</PopoverContent>
 				// </Portal>

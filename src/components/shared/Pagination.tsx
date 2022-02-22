@@ -23,19 +23,19 @@ export const Pagination = (props: Props) => {
 
 	return (
 		<ButtonGroup
-			justifyContent={'space-between'}
-			w={'full'}
+			justifyContent="space-between"
+			w="full"
 			pt={4}
 			// px={{ base: 0, sm: 6 }}
 		>
 			<CancelButton
-				label={'Previous'}
+				label="Previous"
 				onClick={() => onPageChange((page - 1).toString())}
-				variant={'ghost'}
+				variant="ghost"
 				leftIcon={<IoChevronBackSharp />}
 				isDisabled={page <= 1}
-				aria-label={'Previous page of results'}
-				title={'Previous page of results'}
+				aria-label="Previous page of results"
+				title="Previous page of results"
 			/>
 			<ButtonGroup display={{ base: 'none', sm: 'flex' }}>
 				{pagesArray.map((p) => (
@@ -62,13 +62,13 @@ export const Pagination = (props: Props) => {
 				))}
 			</ButtonGroup>
 			<CancelButton
-				label={'Next'}
+				label="Next"
 				onClick={() => onPageChange((page + 1).toString())}
-				variant={'ghost'}
+				variant="ghost"
 				rightIcon={<IoChevronForwardSharp />}
 				isDisabled={page >= pagesCount || page < 1}
-				aria-label={'Next page of results'}
-				title={'Next page of results'}
+				aria-label="Next page of results"
+				title="Next page of results"
 			/>
 		</ButtonGroup>
 	);

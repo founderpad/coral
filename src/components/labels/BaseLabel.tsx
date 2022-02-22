@@ -16,7 +16,7 @@ export const BaseLabel = ({
 			<Icon
 				as={icon}
 				mr={2}
-				fontSize={'md'}
+				fontSize="md"
 				color={iconColor ?? 'gray.900'}
 			/>
 		)}

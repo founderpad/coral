@@ -11,6 +11,7 @@ import { DocumentTitle, TitleEditAction, UserAvatar } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
 import OverviewTags from '@components/shared/OverviewTags';
+import PronounsLabel from '@components/shared/PronounsLabel';
 import { useUserProfileDetailsQuery } from '@generated/api';
 import { useQueryParam } from '@hooks/util';
 import ProfileSectionLabel from '@pages/account/profile/components/ProfileSectionLabel';
@@ -61,11 +62,11 @@ const User = () => {
 					templateRows="repeat(1, 1fr)"
 					templateColumns="repeat(12, 1fr)"
 					template
-					w={'full'}
+					w="full"
 					gridGap={6}
 				>
 					<GridItem colSpan={{ base: 12, md: 4 }}>
-						<StackLayout w={'full'}>
+						<StackLayout w="full">
 							<UserAvatar
 								src={avatarUrl || undefined}
 								boxSize={{ base: 100, md: 120 }}
@@ -74,20 +75,15 @@ const User = () => {
 							<TitleEditAction
 								title={displayName}
 								subtitle={
-									<Label fontSize={'xs'} color={'fpGrey.500'}>
-										(
-										{customPronouns
-											? customPronouns
-											: pronouns
-											? pronouns
-											: ''}
-										)
-									</Label>
+									<PronounsLabel
+										pronouns={pronouns}
+										customPronouns={customPronouns}
+									/>
 								}
 							/>
 							<StackLayout spacing={2}>
 								{/* <ProfileSectionLabel
-									label={'*****************.com'}
+									label="*****************.com"
 									icon={IoMailOutline}
 								/> */}
 
@@ -154,31 +150,31 @@ const User = () => {
 						<StackLayout flex={1}>
 							{data?.user?.profile?.objective && (
 								<ContentFieldAndValue
-									title={'Looking for'}
+									title="Looking for"
 									value={objective}
 								/>
 							)}
 							{data?.user?.profile?.background && (
 								<ContentFieldAndValue
-									title={'Background'}
+									title="Background"
 									value={background}
 								/>
 							)}
 							{data?.user?.profile?.statement && (
 								<ContentFieldAndValue
-									title={'Statement'}
+									title="Statement"
 									value={statement}
 								/>
 							)}
 							{data?.user?.profile?.businessDescription && (
 								<ContentFieldAndValue
-									title={'Overview of businesses'}
+									title="Overview of businesses"
 									value={businessDescription}
 								/>
 							)}
 							{/* {data?.user?.profile?.skills && (
 								<ContentFieldAndValue
-									title={'Skills'}
+									title="Skills"
 									value={
 										data?.user?.profile?.skills?.join(
 											', '
@@ -188,17 +184,17 @@ const User = () => {
 							)} */}
 
 							<ContentFieldAndValue
-								title={'Skills'}
+								title="Skills"
 								value={
 									skills?.length ? (
 										<FlexLayout
-											flexWrap={'wrap'}
-											direction={'row'}
-											alignItems={'center'}
+											flexWrap="wrap"
+											direction="row"
+											alignItems="center"
 										>
 											{skills?.map((skill: string) => (
 												<Tag
-													fontSize={'xs'}
+													fontSize="xs"
 													mr={2}
 													mb={2}
 													key={skill}

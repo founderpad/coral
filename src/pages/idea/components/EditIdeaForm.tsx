@@ -59,7 +59,7 @@ export const EditIdeaForm = () => {
 			onSubmit={handleSubmit(updateIdeaMutation)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}
-			label={'Update idea'}
+			label="Update idea"
 			stackProps={{ spacing: 8 }}
 		>
 			<FormInput<TIdeas_Set_Input>

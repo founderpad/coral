@@ -119,7 +119,7 @@ exports[`Register form matches snapshot 1`] = `
   <div
     class="chakra-text css-i2jbli"
   >
-    By continuing, you agree to founderpad's 
+    By continuing, you agree to founderpad's
     <span
       class="chakra-link css-ntv2za"
       href="/terms-of-conditions"
@@ -129,7 +129,7 @@ exports[`Register form matches snapshot 1`] = `
     >
       Terms of Service
     </span>
-     and acknowledge that you've read our 
+    and acknowledge that you've read our
     <span
       class="chakra-link css-ntv2za"
       href="/privacy-policy"
@@ -139,12 +139,11 @@ exports[`Register form matches snapshot 1`] = `
     >
       Privacy Policy.
     </span>
-     
   </div>
   <div
     class="chakra-text css-1gx0chr"
   >
-    Already have an account? 
+    Already have an account?
     <span
       class="chakra-link css-ntv2za"
       href="/login"

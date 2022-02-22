@@ -13,17 +13,17 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 			<MainNav />
 			<BoxLayout
 				p={0}
-				as={'main'}
+				as="main"
 				mx={{ base: 0, md: 'auto' }}
 				w={{ base: 'full', xl: '95ch' }}
-				bg={'white'}
-				display={'flex'}
-				flexDirection={'column'}
+				bg="white"
+				display="flex"
+				flexDirection="column"
 				flex={1}
 				mt={{ base: 10, lg: 14 }}
 				mb={{ base: 0, lg: 4 }}
-				id={'main-container'}
-				rounded={'md'}
+				id="main-container"
+				rounded="md"
 			>
 				{children}
 			</BoxLayout>
@@ -41,7 +41,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 // 	label: string;
 // }):  => {
 // 	return (
-// 		<Link fontSize={'sm'} href={href} color={'fpGrey.700'} isExternal>
+// 		<Link fontSize="sm" href={href} color="fpGrey.700" isExternal>
 // 			{label}
 // 		</Link>
 // 	);

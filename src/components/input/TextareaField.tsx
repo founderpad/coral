@@ -34,12 +34,12 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 				ref={ref}
 			>
 				{label && (
-					<FlexLayout justifyContent={'space-between'}>
+					<FlexLayout justifyContent="space-between">
 						<FormLabelText label={label} />
 						<Button
-							fontSize={'x-small'}
-							colorScheme={'fpPrimary'}
-							variant={'link'}
+							fontSize="x-small"
+							colorScheme="fpPrimary"
+							variant="link"
 							mb={1}
 							onClick={onClear}
 						>
@@ -56,15 +56,15 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							onChange={onChange}
 							maxH={maxH}
 							borderWidth={borderWidth}
-							borderColor={'gray.200'}
-							fontSize={'small'}
-							color={'fpGrey.900'}
+							borderColor="gray.200"
+							fontSize="small"
+							color="fpGrey.900"
 							resize={resize}
 							as={ResizeTextarea}
 							maxRows={maxRows}
 							size={size ?? 'md'}
 							w={width}
-							bg={'white'}
+							bg="white"
 							_focus={{
 								borderColor: 'gray.400',
 								boxShadow: 'none'
@@ -72,7 +72,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 							_hover={{
 								borderColor: 'gray.300'
 							}}
-							rounded={'md'}
+							rounded="md"
 						/>
 					)}
 					name={name}
@@ -84,7 +84,7 @@ export const TextareaField = forwardRef<IInputFieldProps<any>, 'input'>(
 					<FormErrorText label={errorText} />
 				) : (
 					helperText && (
-						<FormHelperText fontSize={'xs'}>
+						<FormHelperText fontSize="xs">
 							{helperText}
 						</FormHelperText>
 					)

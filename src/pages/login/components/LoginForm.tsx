@@ -99,20 +99,18 @@ const LoginForm = () => {
 };
 
 const LoginFooter = memo(() => (
-	<FlexLayout justifyContent={'space-between'} alignItems={'center'} pt={8}>
-		<Label color={'gray.500'} fontSize={'xs'} alignSelf={'center'}>
+	<FlexLayout justifyContent="space-between" alignItems="center" pt={8}>
+		<Label color="gray.500" fontSize="xs" alignSelf="center">
 			No account?
-			<PrimaryLink href="/register" title={'Link to register an account'}>
-				{' '}
+			<PrimaryLink href="/register" title="Link to register an account">
 				Register now
 			</PrimaryLink>
 		</Label>
 		<PrimaryLink
 			href="/resetpassword"
-			title={'Link to register an account'}
-			fontSize={'xs'}
+			title="Link to register an account"
+			fontSize="xs"
 		>
-			{' '}
 			Forgotten password?
 		</PrimaryLink>
 	</FlexLayout>

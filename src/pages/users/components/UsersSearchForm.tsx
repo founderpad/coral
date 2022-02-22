@@ -91,11 +91,11 @@ const UsersSearchForm = () => {
 
 	return (
 		<Form
-			id={'users-filter-form'}
-			name={'users-filter-form'}
+			id="users-filter-form"
+			name="users-filter-form"
 			onSubmit={handleSubmit(onClick)}
 		>
-			<BaseHeading fontSize={'sm'} display={{ base: 'none', sm: 'flex' }}>
+			<BaseHeading fontSize="sm" display={{ base: 'none', sm: 'flex' }}>
 				Filters
 			</BaseHeading>
 
@@ -115,7 +115,7 @@ const UsersSearchForm = () => {
 				id="country"
 				name="country"
 				label="Country"
-				placeholder={'country'}
+				placeholder="country"
 				options={ALL_COUNTRIES}
 				mobileOptions={mobileCountriesList()}
 				onClear={() => resetField('country')}
@@ -143,7 +143,7 @@ const UsersSearchForm = () => {
 				mobileOptions={mobileNumberOfStartups()}
 				placeholder="number of startups"
 				control={control}
-				label={'Previous startups'}
+				label="Previous startups"
 				onClear={() => resetField('startups')}
 				isUrl
 			/>
@@ -155,7 +155,7 @@ const UsersSearchForm = () => {
 				mobileOptions={mobileAvailabilityOptions()}
 				placeholder="capacity per week"
 				control={control}
-				label={'Availability (hours per week)'}
+				label="Availability (hours per week)"
 				onClear={() => resetField('availability')}
 				isUrl
 			/>
@@ -165,7 +165,7 @@ const UsersSearchForm = () => {
 				name="field"
 				label="Specialist field"
 				placeholder="field"
-				size={'md'}
+				size="md"
 				options={ALL_IDEA_CATEGORY_FIELDS}
 				mobileOptions={mobileIdeaCategoryFields()}
 				control={control}
@@ -175,12 +175,12 @@ const UsersSearchForm = () => {
 			<AppDivider />
 
 			<FormControl>
-				<FlexLayout justifyContent={'space-between'}>
-					<FormLabelText label={'Skills'} />
+				<FlexLayout justifyContent="space-between">
+					<FormLabelText label="Skills" />
 					<Button
-						fontSize={'x-small'}
-						colorScheme={'fpPrimary'}
-						variant={'link'}
+						fontSize="x-small"
+						colorScheme="fpPrimary"
+						variant="link"
 						mb={1}
 						onClick={() => {
 							delete Router.query['skills'];
@@ -202,26 +202,26 @@ const UsersSearchForm = () => {
 					</Button>
 				</FlexLayout>
 
-				<FlexLayout flexDirection={'column'}>
+				<FlexLayout flexDirection="column">
 					{EXPERIENCE_SKILLS.map((es: string) => (
 						<Controller
 							key={es}
-							name={'skills'}
+							name="skills"
 							render={({ field: { ref } }) => (
 								<Checkbox
 									name={es}
-									rounded={'none'}
-									focusBorderColor={'gray.150'}
+									rounded="none"
+									focusBorderColor="gray.150"
 									value={es}
 									py={1}
 									onChange={onSkillsToggle}
-									colorScheme={'fpPrimary'}
-									color={'fpGrey.900'}
+									colorScheme="fpPrimary"
+									color="fpGrey.900"
 									ref={ref}
 									isChecked={selectedSkills.includes(es)}
 								>
 									<Label
-										color={'fpGrey.900'}
+										color="fpGrey.900"
 										fontSize={{ base: 'small', sm: 'xs' }}
 									>
 										{es}
@@ -235,10 +235,10 @@ const UsersSearchForm = () => {
 			</FormControl>
 
 			<SubmitButton
-				name={'filter-users-button'}
-				label={'Show results'}
+				name="filter-users-button"
+				label="Show results"
 				flex={2}
-				title={'Filter users'}
+				title="Filter users"
 			/>
 		</Form>
 	);

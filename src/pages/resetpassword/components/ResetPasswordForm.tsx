@@ -95,7 +95,6 @@ const ResetPasswordFooter = memo(() => (
 		<Label color="fpGrey.500" fontSize="xs" alignSelf="center">
 			No account?
 			<PrimaryLink href="/register" title="Link to register an account">
-				{' '}
 				Register now
 			</PrimaryLink>
 		</Label>
@@ -104,7 +103,6 @@ const ResetPasswordFooter = memo(() => (
 			title="Link to register an account"
 			fontSize="xs"
 		>
-			{' '}
 			Go to login
 		</PrimaryLink>
 	</FlexLayout>

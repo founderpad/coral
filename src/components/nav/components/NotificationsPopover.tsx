@@ -9,15 +9,15 @@ const NotificationsPopover = () => {
 		<BasePopover
 			triggerEl={
 				<IconButton
-					aria-label={'Notifications'}
-					variant={'link'}
-					alignItems={'center'}
+					aria-label="Notifications"
+					variant="link"
+					alignItems="center"
 				>
 					<Icon as={IoNotificationsSharp} />
 				</IconButton>
 			}
 		>
-			<NoResults label={'notifications'} fontSize={'xs'} />
+			<NoResults label="notifications" fontSize="xs" />
 		</BasePopover>
 	);
 };

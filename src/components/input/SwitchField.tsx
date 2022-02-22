@@ -14,14 +14,14 @@ export const SwitchField = forwardRef((props, ref) => {
 				render={({ field: { onChange, value } }) => (
 					<Switch
 						id={id}
-						rounded={'none'}
+						rounded="none"
 						value={value}
-						focusBorderColor={'gray.150"'}
+						focusBorderColor="gray.150"
 						onChange={onChange}
 						defaultChecked={defaultChecked}
-						colorScheme={'fpPrimary'}
-						size={'md'}
-						role={'switch'}
+						colorScheme="fpPrimary"
+						size="md"
+						role="switch"
 					/>
 				)}
 				name={name}
@@ -30,8 +30,8 @@ export const SwitchField = forwardRef((props, ref) => {
 			{helperText && (
 				<FormHelperText
 					id={`helper-text-${id}`}
-					fontSize={'xs'}
-					color={'fpGrey.400'}
+					fontSize="xs"
+					color="fpGrey.400"
 				>
 					{helperText}
 				</FormHelperText>

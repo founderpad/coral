@@ -11,10 +11,10 @@ export const BaseButton = (props: BaseButtonProps) => {
 			{...rest}
 			size={size}
 			aria-label={name}
-			rounded={'md'}
+			rounded="md"
 			fontSize={fontSize}
 			p={2}
-			minW={'75px'}
+			minW="75px"
 		>
 			{children}
 		</Button>

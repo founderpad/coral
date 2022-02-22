@@ -10,21 +10,21 @@ type TProps = Pick<TIdeaPreviewFieldsFragment, 'user' | 'created_at'>;
 
 export const PostedBy = ({ user, created_at }: TProps) => (
 	<FlexLayout
-		position={'relative'}
-		alignItems={'center'}
-		lineHeight={'0.875rem'}
+		position="relative"
+		alignItems="center"
+		lineHeight="0.875rem"
 		fontSize={{ base: '11px', sm: 'xs' }}
 	>
 		<BaseLink
 			href={`/user/${user?.id}`}
-			title={'The user who posted this idea'}
+			title="The user who posted this idea"
 			_hover={{ color: 'gray.700' }}
-			fontSize={'x-small'}
-			color={'fpGrey.500'}
+			fontSize="x-small"
+			color="fpGrey.500"
 		>
 			{user?.displayName}
 		</BaseLink>
-		<Label d={'flex'} fontSize={'x-small'} color={'fpGrey.500'}>
+		<Label d="flex" fontSize="x-small" color="fpGrey.500">
 			{user?.address?.country && (
 				<>
 					<PointSeparator small /> {user?.address?.country}

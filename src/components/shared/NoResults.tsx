@@ -18,21 +18,16 @@ type Props = {
  * @param param0
  * @returns
  */
-export const NoResults = ({ label, back, fontSize = 'sm' }: Props) => (
+export const NoResults = ({ label, back = true, fontSize = 'sm' }: Props) => (
 	<BoxLayout
 		flex={1}
-		flexDirection={'column'}
-		justifyContent={'center'}
-		alignItems={'center'}
+		flexDirection="column"
+		justifyContent="center"
+		alignItems="center"
 	>
-		<Icon
-			as={VscSearchStop}
-			color={'fpGrey.700'}
-			fontSize={'x-large'}
-			mb={2}
-		/>
-		<SubheadingText fontSize={fontSize} color={'fpGrey.700'}>
-			No {label ?? 'results'}.
+		<Icon as={VscSearchStop} color="fpGrey.700" fontSize="x-large" mb={2} />
+		<SubheadingText fontSize={fontSize} color="fpGrey.700">
+			No {label ?? 'results'}
 		</SubheadingText>
 		{back && <GoBackButton />}
 	</BoxLayout>

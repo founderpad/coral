@@ -11,27 +11,27 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 	// const totalComments = idea?.total_comments ?? 0;
 	return (
 		<StackLayout
-			direction={'row'}
+			direction="row"
 			spacing={0}
-			rounded={'none'}
-			w={'full'}
+			rounded="none"
+			w="full"
 			px={{ base: 0, sm: 4 }}
-			justifyContent={'space-between'}
-			alignItems={'center'}
+			justifyContent="space-between"
+			alignItems="center"
 		>
-			<StackLayout direction={'row'} spacing={3} alignItems={'center'}>
+			<StackLayout direction="row" spacing={3} alignItems="center">
 				<IdeaUpvote {...idea} />
 
 				{/* {totalComments > 0 && ( */}
-				<FlexLayout alignItems={'center'}>
+				<FlexLayout alignItems="center">
 					<Icon
 						as={IoChatbubbleOutline}
-						fontSize={'md'}
+						fontSize="md"
 						pt={0}
 						mr={1}
-						color={'gray.400'}
+						color="gray.400"
 					/>
-					<Label color={'gray.400'} fontSize={'sm'}>
+					<Label color="gray.400" fontSize="sm">
 						{idea?.comments_aggregate?.aggregate?.count}
 					</Label>
 				</FlexLayout>

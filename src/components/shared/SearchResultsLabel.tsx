@@ -20,9 +20,9 @@ export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 	return (
 		<Label
 			{...labelProps}
-			color={'fpGrey.500'}
-			fontSize={'x-small'}
-			alignSelf={'flex-end'}
+			color="fpGrey.500"
+			fontSize="x-small"
+			alignSelf="flex-end"
 		>
 			{/* {offset + 1} - {offset + pageSize} of {total}
 			<PointSeparator small />

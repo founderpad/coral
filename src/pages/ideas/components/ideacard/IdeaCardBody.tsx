@@ -17,13 +17,13 @@ const IdeaCardBody = (idea: TIdeaCardBody) => {
 		<React.Fragment>
 			<Label
 				my={6}
-				d={'flex'}
-				color={'gray.500'}
-				overflow={'hidden'}
-				whiteSpace={'normal'}
-				fontSize={'small'}
+				d="flex"
+				color="gray.500"
+				overflow="hidden"
+				whiteSpace="normal"
+				fontSize="small"
 				css={{ whiteSpace: 'normal' }}
-				wordBreak={'break-all'}
+				wordBreak="break-all"
 				noOfLines={2}
 				isTruncated
 			>
@@ -43,17 +43,17 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 
 	return (
 		<FlexLayout
-			direction={'row'}
+			direction="row"
 			flex={1}
-			alignItems={'center'}
-			justifyContent={'space-between'}
-			w={'full'}
+			alignItems="center"
+			justifyContent="space-between"
+			w="full"
 		>
-			<StackLayout spacing={1} direction={'row'}>
-				<Tag fontSize={'xs'} size={'sm'}>
+			<StackLayout spacing={1} direction="row">
+				<Tag fontSize="xs" size="sm">
 					{status}
 				</Tag>
-				<Tag fontSize={'xs'} size={'sm'}>
+				<Tag fontSize="xs" size="sm">
 					{field}
 				</Tag>
 			</StackLayout>

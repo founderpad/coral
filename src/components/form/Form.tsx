@@ -18,7 +18,7 @@ const Form = (props: TFormProps): ReactElement<any> => {
 
 	return (
 		<form
-			autoComplete={'off'}
+			autoComplete="off"
 			name={name}
 			aria-label={name}
 			noValidate

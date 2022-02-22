@@ -51,23 +51,23 @@ const ResumeUploader = () => {
 	return (
 		<>
 			<FileUploader
-				label={'Resume'}
+				label="Resume"
 				defaultFiles={defaultFiles}
-				bucketId={'resumes'}
+				bucketId="resumes"
 				showUpload={true}
 				onComplete={onComplete}
 			/>
 			{isChangeSuccess && (
 				<AlertFeedback
-					status={'success'}
-					message={'Resume has been added successfully'}
+					status="success"
+					message="Resume has been added successfully"
 				/>
 			)}
 
 			{isChangeError && (
 				<AlertFeedback
-					status={'error'}
-					message={'Failed to add resume. Please try again later'}
+					status="error"
+					message="Failed to add resume. Please try again later"
 				/>
 			)}
 		</>

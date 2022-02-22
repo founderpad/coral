@@ -18,38 +18,38 @@ export const AttachedFiles = memo(
 		return (
 			<React.Fragment>
 				{attachedFiles.map((uf) => (
-					<StackLayout w={'full'} spacing={0} key={uf.file.name}>
+					<StackLayout w="full" spacing={0} key={uf.file.name}>
 						<FlexLayout
-							justifyContent={'space-between'}
-							alignItems={'center'}
-							w={'full'}
+							justifyContent="space-between"
+							alignItems="center"
+							w="full"
 						>
 							<AttachedFile
 								name={uf.file.name}
 								size={uf.file.size}
 							/>
 							<ButtonGroup
-								display={'flex'}
+								display="flex"
 								spacing={4}
 								mt={{ base: 2, sm: 0 }}
 							>
 								{showUpload && (
 									<PrimaryButton
-										name={'Upload'}
-										variant={'outline'}
-										fontSize={'xs'}
-										size={'xs'}
+										name="Upload"
+										variant="outline"
+										fontSize="xs"
+										size="xs"
 										onClick={onUpload}
 									>
 										Upload
 									</PrimaryButton>
 								)}
 								<DeleteButton
-									name={'remove-file'}
+									name="remove-file"
 									onClick={() => removeAttachedFile(uf)}
-									variant={'outline'}
-									fontSize={'xs'}
-									size={'xs'}
+									variant="outline"
+									fontSize="xs"
+									size="xs"
 								>
 									Remove
 								</DeleteButton>

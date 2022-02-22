@@ -9,7 +9,7 @@ export const CommentMenu = (comment: any) => {
 	return (
 		<BaseMenu>
 			<ReportMenu
-				title={'comment'}
+				title="comment"
 				content={`"${value}"`}
 				report={{
 					type: 'COMMENT',

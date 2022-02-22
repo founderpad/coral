@@ -19,38 +19,38 @@ const AuthLayout = ({ header, children, title }: Props) => (
 		<StackLayout
 			w={{ base: 'full', sm: '425px' }}
 			minH={{ sm: '400px' }}
-			borderColor={'fpLightGrey.900'}
+			borderColor="fpLightGrey.900"
 			p={8}
 			boxShadow={{ sm: 'sm' }}
 			borderWidth={{ sm: '1px' }}
 			style={{ margin: 'auto' }}
-			bg={'white'}
-			d={'flex'}
+			bg="white"
+			d="flex"
 			flex={{ base: 1, sm: 'none' }}
-			justifyContent={'center'}
-			id={'auth-container'}
-			rounded={'lg'}
+			justifyContent="center"
+			id="auth-container"
+			rounded="lg"
 		>
-			<FlexLayout mx={'auto'} alignItems={'center'}>
+			<FlexLayout mx="auto" alignItems="center">
 				<FounderpadLogo />
 				<Tag
-					bg={'fpPrimary.700'}
-					color={'white'}
-					textTransform={'capitalize'}
-					fontWeight={'medium'}
-					textAlign={'center'}
-					verticalAlign={'center'}
-					fontSize={'sm'}
-					rounded={'sm'}
+					bg="fpPrimary.700"
+					color="white"
+					textTransform="capitalize"
+					fontWeight="medium"
+					textAlign="center"
+					verticalAlign="center"
+					fontSize="sm"
+					rounded="sm"
 				>
 					0.1.0
 				</Tag>
 			</FlexLayout>
 			<Heading
-				textAlign={'center'}
-				fontWeight={'normal'}
-				fontSize={'md'}
-				color={'black'}
+				textAlign="center"
+				fontWeight="normal"
+				fontSize="md"
+				color="black"
 				pb={8}
 			>
 				{header}

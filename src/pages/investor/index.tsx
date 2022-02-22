@@ -9,16 +9,16 @@ const Investor = () => {
 	return (
 		// <MainInvestorLayout>
 		<Box
-			d={'flex'}
+			d="flex"
 			flex={1}
-			justifyContent={'center'}
-			alignItems={'center'}
-			flexDirection={'column'}
+			justifyContent="center"
+			alignItems="center"
+			flexDirection="column"
 		>
 			<Icon
 				as={IoLockClosedSharp}
 				color="goldenrod"
-				fontSize={'xxx-large'}
+				fontSize="xxx-large"
 			/>
 			<Heading color="fpGrey.700" mt={6}>
 				Investor network coming soon

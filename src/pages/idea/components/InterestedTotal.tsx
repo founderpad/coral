@@ -5,14 +5,14 @@ import { IoStarSharp } from 'react-icons/io5';
 export const InterestedTotal = ({ total = 0 }: { total?: number }) => {
 	if (total > 0)
 		return (
-			// <Label color={'yellow.500'} fontSize={'small'}>
+			// <Label color="yellow.500" fontSize="small">
 			// 	{total} interested
 			// </Label>
 			<Tag
-				variant={'solid'}
+				variant="solid"
 				fontSize={{ base: 'x-small', sm: 'xs' }}
-				colorScheme={'yellow'}
-				alignItems={'center'}
+				colorScheme="yellow"
+				alignItems="center"
 			>
 				<Icon
 					as={IoStarSharp}

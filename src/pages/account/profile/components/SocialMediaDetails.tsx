@@ -45,10 +45,10 @@ const SocialMediaDetails = () => {
 	// 		isOpen: true,
 	// 		actions: (
 	// 			<SubmitButton
-	// 				name={'open-modal-drawer-socials-button'}
+	// 				name="open-modal-drawer-socials-button"
 	// 				form="editSocialDetailsForm"
-	// 				label={'Save'}
-	// 				size={'sm'}
+	// 				label="Save"
+	// 				size="sm"
 	// 			/>
 	// 		),
 	// 		body: <SocialMediaDetailsForm {...socials} />,
@@ -60,20 +60,20 @@ const SocialMediaDetails = () => {
 	// };
 
 	return (
-		<FlexLayout justifyContent={'space-between'} pt={6}>
+		<FlexLayout justifyContent="space-between" pt={6}>
 			{/* {Object.values(socialsObj).every(
 				(social) => social === undefined
 			) ? (
-				<ProfileSectionLabel label={'Socials not set'} />
+				<ProfileSectionLabel label="Socials not set" />
 			) : (
 				<> */}
-			<StackLayout direction={'row'} alignItems={'center'} spacing={3}>
+			<StackLayout direction="row" alignItems="center" spacing={3}>
 				{socials?.linkedin && (
 					<IconLink
 						title={socials.linkedin}
 						href={socials.linkedin}
 						icon={IoLogoLinkedin}
-						color={'gray.400'}
+						color="gray.400"
 						_hover={{
 							color: 'linkedin.700',
 							cursor: 'pointer'
@@ -86,7 +86,7 @@ const SocialMediaDetails = () => {
 						title={socials.twitter}
 						href={socials.twitter}
 						icon={IoLogoTwitter}
-						color={'gray.400'}
+						color="gray.400"
 						_hover={{
 							color: 'twitter.500',
 							cursor: 'pointer'
@@ -99,7 +99,7 @@ const SocialMediaDetails = () => {
 						title={socials.instagram}
 						href={socials.instagram}
 						icon={IoLogoInstagram}
-						color={'gray.400'}
+						color="gray.400"
 						_hover={{
 							color: 'instagram.500',
 							cursor: 'pointer'
@@ -112,7 +112,7 @@ const SocialMediaDetails = () => {
 						title={socials.facebook}
 						href={socials.facebook}
 						icon={IoLogoFacebook}
-						color={'gray.400'}
+						color="gray.400"
 						_hover={{
 							color: 'facebook.500',
 							cursor: 'pointer'
@@ -125,7 +125,7 @@ const SocialMediaDetails = () => {
 						title={socials.website}
 						href={socials.website}
 						icon={IoGlobe}
-						color={'gray.400'}
+						color="gray.400"
 						_hover={{
 							color: 'website.500',
 							cursor: 'pointer'
@@ -134,7 +134,7 @@ const SocialMediaDetails = () => {
 					/>
 				)}
 			</StackLayout>
-			{/* <EditButton onClick={onClick} aria-label={'Edit'} /> */}
+			{/* <EditButton onClick={onClick} aria-label="Edit" /> */}
 			{/* </> */}
 			{/* )} */}
 		</FlexLayout>

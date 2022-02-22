@@ -3,14 +3,14 @@ import { Spinner } from '@chakra-ui/spinner';
 import React from 'react';
 
 export const Loading = ({ small }: { small?: boolean }) => (
-	<Flex flex={1} h={'full'} justifyContent={'center'}>
+	<Flex flex={1} h="full" justifyContent="center">
 		<Spinner
-			display={'flex'}
-			alignSelf={'center'}
-			justifySelf={'center'}
-			color={'fpPrimary.500'}
+			display="flex"
+			alignSelf="center"
+			justifySelf="center"
+			color="fpPrimary.500"
 			size={small ? 'md' : 'xl'}
-			variant={'outline'}
+			variant="outline"
 		/>
 	</Flex>
 );

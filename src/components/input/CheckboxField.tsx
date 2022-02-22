@@ -16,15 +16,15 @@ const CheckboxGroupField = forwardRef<ISelectFieldProps, 'select'>(
 
 		return (
 			<FormControl id={id} isInvalid={!!error} isRequired={isRequired}>
-				<FormLabel as={'label'} fontSize={'sm'} color={'gray.500'}>
+				<FormLabel as="label" fontSize="sm" color="gray.500">
 					{label}
 				</FormLabel>
 				<Select
-					placeholder={'Select option'}
-					rounded={'none'}
-					focusBorderColor={'gray.150"'}
+					placeholder="Select option"
+					rounded="none"
+					focusBorderColor="gray.150"
 					w={{ base: 'full', sm: 'xs' }}
-					variant={'outline'}
+					variant="outline"
 					ref={ref}
 				>
 					{options}
@@ -34,7 +34,7 @@ const CheckboxGroupField = forwardRef<ISelectFieldProps, 'select'>(
 						You will not be able to change this later.
 					</FormHelperText>
 				)}
-				<FormErrorMessage alignItems={'flex-start'}>
+				<FormErrorMessage alignItems="flex-start">
 					{error && <span>{errorText}</span>}
 				</FormErrorMessage>
 			</FormControl>
@@ -48,7 +48,7 @@ const CheckboxField = forwardRef<TCheckboxfieldProps<any>, 'input'>(
 
 		return (
 			<FormControl id={name} isRequired={isRequired} w={{ base: 'full' }}>
-				{/* <FormLabel as="label" fontSize={'sm'} color={'fpGrey.900'}>
+				{/* <FormLabel as="label" fontSize="sm" color="fpGrey.900">
 					{label}
 				</FormLabel> */}
 				<Controller
@@ -58,19 +58,19 @@ const CheckboxField = forwardRef<TCheckboxfieldProps<any>, 'input'>(
 					}) => (
 						<Checkbox
 							{...props}
-							focusBorderColor={'gray.150'}
+							focusBorderColor="gray.150"
 							ref={ref}
 							value={value}
 							onChange={onChange}
 							checked={checked}
-							fontSize={'sm'}
+							fontSize="sm"
 							error={!!error}
-							colorScheme={'fpPrimary'}
+							colorScheme="fpPrimary"
 						>
 							<FormLabel
 								as="label"
-								fontSize={'sm'}
-								color={'fpGrey.900'}
+								fontSize="sm"
+								color="fpGrey.900"
 								mb={0}
 							>
 								{label}

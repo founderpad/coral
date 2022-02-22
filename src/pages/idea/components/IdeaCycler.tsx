@@ -45,21 +45,21 @@ const IdeaCycler = () => {
 				borderBottomWidth={1}
 				py={1}
 				px={4}
-				rounded={'none'}
-				justifyContent={'flex-end'}
+				rounded="none"
+				justifyContent="flex-end"
 			>
 				<ButtonGroup>
 					<PrimaryButton
-						name={'Previous'}
-						variant={'ghost'}
+						name="Previous"
+						variant="ghost"
 						onClick={onPreviousIdea}
 						hidden={ideaId === cachedIdeaIds?.[0]}
 					>
 						<Icon as={IoChevronBackSharp} />
 					</PrimaryButton>
 					<PrimaryButton
-						name={'Next'}
-						variant={'ghost'}
+						name="Next"
+						variant="ghost"
 						onClick={onNextIdea}
 						hidden={
 							ideaId === cachedIdeaIds[cachedIdeaIds.length - 1]

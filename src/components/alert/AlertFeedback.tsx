@@ -17,15 +17,15 @@ import { IoCheckmarkSharp, IoCloseOutline } from 'react-icons/io5';
 // 	return (
 // 		<Alert
 // 			status={notification.status}
-// 			alignItems={'flex-start'}
+// 			alignItems="flex-start"
 // 			px={0}
 // 			py={0}
-// 			variant={'subtle'}
-// 			bg={'transparent'}
+// 			variant="subtle"
+// 			bg="transparent"
 // 		>
 // 			<AlertDescription
-// 				fontSize={'xs'}
-// 				color={isSuccess ? 'green.400' : 'red.400'}
+// 				fontSize="xs"
+// 				color={isSuccess ? 'green.400' : 'red.400"
 // 			>
 // 				{notification.message}
 // 			</AlertDescription>
@@ -44,18 +44,18 @@ function getStatusIcon(status: AlertProps['status']) {
 			return (
 				<AlertIcon
 					as={IoCheckmarkSharp}
-					boxSize={'16px'}
+					boxSize="16px"
 					mr={1}
-					color={'green.400'}
+					color="green.400"
 				/>
 			);
 		case 'error':
 			return (
 				<AlertIcon
 					as={IoCloseOutline}
-					boxSize={'16px'}
+					boxSize="16px"
 					mr={1}
-					color={'red.500'}
+					color="red.500"
 				/>
 			);
 		default:
@@ -77,12 +77,12 @@ export const AlertFeedback = (props: Props) => {
 			w="auto"
 			ml="auto"
 		>
-			{/* <AlertIcon as={getStatusIcon(status)} boxSize={'14px'} mr={1} /> */}
+			{/* <AlertIcon as={getStatusIcon(status)} boxSize="14px" mr={1} /> */}
 
 			{getStatusIcon(status)}
 
 			<AlertDescription
-				fontSize={'xs'}
+				fontSize="xs"
 				color={status === 'error' ? 'red.500' : 'green.400'}
 			>
 				{message}

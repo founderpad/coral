@@ -106,7 +106,7 @@ const IdeasContainer = () => {
 				{!loading && hasResults < 1 ? (
 					<NoResults back />
 				) : (
-					<StackLayout display={'flex'} spacing={6}>
+					<StackLayout display="flex" spacing={6}>
 						{data?.idea_preview?.map(
 							(idea: TIdeaPreviewFieldsFragment) => (
 								<React.Fragment key={idea.id}>

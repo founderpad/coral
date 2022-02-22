@@ -36,47 +36,38 @@ export const Drawer = ({
 		<ChakraDrawer
 			isOpen={isOpen}
 			onClose={onClose}
-			placement={'bottom'}
+			placement="bottom"
 			closeOnOverlayClick={false}
 			isFullHeight={false}
 			preserveScrollBarGap={true}
 			useInert={true}
 		>
 			<DrawerOverlay />
-			<DrawerContent
-				borderTopWidth={1}
-				maxH={'99.1%'}
-				borderTopRadius={'xl'}
-			>
+			<DrawerContent borderTopWidth={1} maxH="99.1%" borderTopRadius="xl">
 				<DrawerHeader
 					borderBottomWidth={1}
-					fontSize={'md'}
+					fontSize="md"
 					p={4}
-					display={'flex'}
-					justifyContent={'center'}
-					fontWeight={'semibold'}
+					display="flex"
+					justifyContent="center"
+					fontWeight="semibold"
 				>
-					<DrawerCloseButton color={'black'} left={2} top={3} />
+					<DrawerCloseButton color="black" left={2} top={3} />
 					{title}
 				</DrawerHeader>
 				<DrawerBody
-					fontWeight={'normal'}
-					fontSize={'sm'}
-					color={'gray.600'}
+					fontWeight="normal"
+					fontSize="sm"
+					color="gray.600"
 					flex={1}
 					p={removePadding ? 0 : 4}
-					maxH={'100%'}
-					borderRadius={'md'}
+					maxH="100%"
+					borderRadius="md"
 				>
 					{body}
 				</DrawerBody>
 				{showFooter && (
-					<DrawerFooter
-						d={'flex'}
-						w={'full'}
-						p={4}
-						borderTopWidth={1}
-					>
+					<DrawerFooter d="flex" w="full" p={4} borderTopWidth={1}>
 						<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
 							{action}
 						</ModalDrawerFooterActions>

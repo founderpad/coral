@@ -25,9 +25,9 @@ const RegisterSuccess: NextPage = () => {
 			<StackLayout py={4}>
 				<Icon
 					as={IoCheckmarkCircleSharp}
-					fontSize={'xxx-large'}
-					mx={'auto'}
-					color={'green'}
+					fontSize="xxx-large"
+					mx="auto"
+					color="green"
 				/>
 				<Label>
 					Hi {firstName},<br />
@@ -40,12 +40,12 @@ const RegisterSuccess: NextPage = () => {
 				</Label>
 
 				<Label
-					as={'div'}
-					color={'gray.500'}
-					fontSize={'x-small'}
-					alignSelf={'center'}
+					as="div"
+					color="gray.500"
+					fontSize="x-small"
+					alignSelf="center"
 				>
-					<PrimaryLink href="/login" title={'Link to login'}>
+					<PrimaryLink href="/login" title="Link to login">
 						Go to login
 					</PrimaryLink>
 				</Label>

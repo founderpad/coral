@@ -37,9 +37,9 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 						<RepliesList commentId={comment.id} />
 					</Collapse>
 					<PrimaryButton
-						name={'show-replies'}
-						variant={'link'}
-						fontSize={'xs'}
+						name="show-replies"
+						variant="link"
+						fontSize="xs"
 						onClick={onToggle}
 					>
 						{isOpen ? 'Hide replies' : 'Show more replies'}
@@ -92,21 +92,21 @@ export const CommentsList = ({
 
 	return (
 		<BoxLayout
-			w={'full'}
-			h={'full'}
-			d={'flex'}
-			flexDirection={'column'}
-			flexWrap={'nowrap'}
-			transition={'ease-in-out'}
-			transitionDelay={'1s'}
+			w="full"
+			h="full"
+			d="flex"
+			flexDirection="column"
+			flexWrap="nowrap"
+			transition="ease-in-out"
+			transitionDelay="1s"
 			p={0}
-			justifyContent={'center'}
+			justifyContent="center"
 			display={display}
-			id={'idea-comments'}
+			id="idea-comments"
 		>
 			<BaseHeading
-				fontSize={'sm'}
-				as={'h4'}
+				fontSize="sm"
+				as="h4"
 				flexShrink={0}
 				p={4}
 				borderTopWidth={{ base: 0, md: 1 }}
@@ -118,9 +118,9 @@ export const CommentsList = ({
 				<PostComment />
 			</Box>
 			{hasComments < 1 ? (
-				<NoResults label={'comments yet'} />
+				<NoResults label="comments yet" />
 			) : (
-				<StackLayout flexGrow={1} overflowY={'auto'} minHeight={'2em'}>
+				<StackLayout flexGrow={1} overflowY="auto" minHeight="2em">
 					{data?.comments.map((comment, _index) => (
 						<Comment key={comment.id} {...comment} />
 					))}
@@ -140,7 +140,7 @@ const RepliesList = ({ commentId }: { commentId: string }) => {
 
 	if (data?.replies?.length)
 		return (
-			<StackLayout spacing={0} pt={4} rounded={'none'} pl={2}>
+			<StackLayout spacing={0} pt={4} rounded="none" pl={2}>
 				{data?.replies?.map((reply, _index) => {
 					return (
 						<CommentLayout

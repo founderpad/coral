@@ -77,18 +77,18 @@ const NavItems: Array<NavItem> = [
 	},
 	{
 		label: (
-			<Flex display={'inline-flex'} alignItems={'center'}>
-				Messages{' '}
-				<Icon as={IoLockClosedOutline} ml={2} color={'goldenrod'} />
+			<Flex display="inline-flex" alignItems="center">
+				Messages
+				<Icon as={IoLockClosedOutline} ml={2} color="goldenrod" />
 			</Flex>
 		),
 		href: '/messages'
 	},
 	{
 		label: (
-			<Flex display={'inline-flex'} alignItems={'center'}>
-				Coming soon{' '}
-				<Icon as={IoLockClosedOutline} ml={2} color={'goldenrod'} />
+			<Flex display="inline-flex" alignItems="center">
+				Coming soon
+				<Icon as={IoLockClosedOutline} ml={2} color="goldenrod" />
 			</Flex>
 		),
 		href: '/mentor',

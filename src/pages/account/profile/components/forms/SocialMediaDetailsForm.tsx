@@ -44,8 +44,8 @@ const SocialMediaDetailsForm = (socials: TUser_Profile) => {
 
 	return (
 		<Form
-			id={'editSocialDetailsForm'}
-			name={'editSocialDetailsForm'}
+			id="editSocialDetailsForm"
+			name="editSocialDetailsForm"
 			onSubmit={handleSubmit(updateUserProfileMutation)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}

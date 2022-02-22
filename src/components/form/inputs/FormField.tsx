@@ -63,7 +63,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 			id="form-input"
 			aria-live="polite"
 			width="full"
-			flexDirection={'column'}
+			flexDirection="column"
 		>
 			<FlexLayout justifyContent="space-between" flex={1}>
 				{label && <FormLabelText label={label} />}
@@ -104,7 +104,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 				/>
 			) : (
 				helperText && (
-					<FormHelperText fontSize={'xs'} color={'fpGrey.300'}>
+					<FormHelperText fontSize="xs" color="fpGrey.300">
 						{helperText}
 					</FormHelperText>
 				)
@@ -203,7 +203,7 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 					size="md"
 					fontSize="smaller"
 					variant="outline"
-					maxH={'100px'}
+					maxH="100px"
 					aria-label={name}
 					aria-invalid={hasError}
 					borderColor={hasError ? 'red.500' : 'inherit'}

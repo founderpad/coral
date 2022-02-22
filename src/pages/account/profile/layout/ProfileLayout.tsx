@@ -8,7 +8,7 @@ const ProfileLayout = () => (
 		templateRows="repeat(1, 1fr)"
 		templateColumns="repeat(12, 1fr)"
 		template
-		w={'full'}
+		w="full"
 		gridGap={6}
 	>
 		{/* <GridItem colSpan={{ md: 3 }} display={{ base: 'none', md: 'block' }}> */}

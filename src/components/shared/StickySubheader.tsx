@@ -19,24 +19,24 @@ export const StickySubheader = memo(
 		return (
 			<Box
 				position={fixed ? 'fixed' : 'static'}
-				w={'full'}
+				w="full"
 				py={fixed ? 2 : undefined}
 				px={fixed ? 4 : undefined}
 				top={fixed ? 10 : undefined}
 				left={0}
-				bg={'white'}
+				bg="white"
 				borderBottomWidth={fixed ? 1 : 0}
-				borderColor={'fpLightGrey.900'}
+				borderColor="fpLightGrey.900"
 				transition={fixed ? 'ease .9' : undefined}
 				mb={{ sm: 2 }}
 				zIndex={1}
 			>
 				{/* {fixed && (
 				<Text
-					as={'header'}
+					as="header"
 					mb={1}
-					fontWeight={'bold'}
-					color={'fpGrey.900'}
+					fontWeight="bold"
+					color="fpGrey.900"
 				>
 					{title}
 				</Text>

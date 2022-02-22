@@ -11,8 +11,8 @@ const BaseLink = (props: LinkProps & { title: string }) => {
 				{...rest}
 				color={color}
 				_hover={{ ..._hover }}
-				alignItems={'center'}
-				as={'span'}
+				alignItems="center"
+				as="span"
 			>
 				{children}
 			</Link>

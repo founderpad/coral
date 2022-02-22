@@ -21,39 +21,39 @@ const KeyInformationBox = ({
 	// direction?: StackProps['direction'];
 }) => (
 	// <StackLayout
-	// 	alignItems={'center'}
+	// 	alignItems="center"
 	// 	spacing={4}
-	// 	rounded={'sm'}
-	// 	direction={'row'}
-	// 	color={'fpPrimary.900'}
-	// 	fontSize={'x-large'}
-	// 	h={'60px'}
-	// 	justifyContent={'center'}
+	// 	rounded="sm"
+	// 	direction="row"
+	// 	color="fpPrimary.900"
+	// 	fontSize="x-large"
+	// 	h="60px"
+	// 	justifyContent="center"
 	// 	p={4}
-	// 	bg={'gray.50'}
-	// 	boxShadow={'sm'}
+	// 	bg="gray.50"
+	// 	boxShadow="sm"
 	// >
-	// 	<FlexLayout flexDirection={'column'} alignItems={'center'}>
+	// 	<FlexLayout flexDirection="column" alignItems="center">
 	// 		{icon && (
 	// 			<Icon
 	// 				as={icon}
-	// 				fontSize={'lg'}
-	// 				color={'fpPrimary.500'}
+	// 				fontSize="lg"
+	// 				color="fpPrimary.500"
 	// 				mb={2}
 	// 			/>
 	// 		)}
-	// 		<Label fontWeight={'medium'} color={'gray.900'}>
+	// 		<Label fontWeight="medium" color="gray.900">
 	// 			{value}
 	// 		</Label>
-	// 		<Label color={'gray.400'} fontSize={'xs'}>
+	// 		<Label color="gray.400" fontSize="xs">
 	// 			{title}
 	// 		</Label>
 	// 	</FlexLayout>
 	// </StackLayout>
 
 	// <FlexLayout
-	// 	flexDirection={'column'}
-	// 	alignItems={'center'}
+	// 	flexDirection="column"
+	// 	alignItems="center"
 	// 	flex={1}
 	// >
 	<React.Fragment>
@@ -65,21 +65,17 @@ const KeyInformationBox = ({
 			{icon && (
 				<Icon
 					as={icon}
-					fontSize={'x-large'}
-					color={'fpPrimary.500'}
+					fontSize="x-large"
+					color="fpPrimary.500"
 					mb={2}
 					mr={4}
 				/>
 			)}
 			<StackLayout spacing={0}>
-				<Label
-					fontWeight={'medium'}
-					color={'gray.900'}
-					fontSize={'small'}
-				>
+				<Label fontWeight="medium" color="gray.900" fontSize="small">
 					{value}
 				</Label>
-				<Label color={'gray.400'} fontSize={'xs'}>
+				<Label color="gray.400" fontSize="xs">
 					{title}
 				</Label>
 			</StackLayout>

@@ -37,7 +37,7 @@ const ContentHighlightsLayout = (props: Props) => {
 				colSpan={{ md: 4, lg: 3 }}
 				order={{ base: 1, md: 2 }}
 				borderLeftWidth={{ base: 'none', md: '1px' }}
-				borderLeftColor={'gray.100'}
+				borderLeftColor="gray.100"
 			>
 				{/* <StackLayout
 					display={{ base: 'none', md: 'flex' }}
@@ -50,10 +50,10 @@ const ContentHighlightsLayout = (props: Props) => {
 				</StackLayout> */}
 
 				<FlexLayout
-					direction={'row'}
+					direction="row"
 					display={{ base: 'flex', md: 'none' }}
-					flexWrap={'wrap'}
-					alignItems={'center'}
+					flexWrap="wrap"
+					alignItems="center"
 				>
 					{highlights.map((h, key) => (
 						<HighlightTag key={key} {...h} />

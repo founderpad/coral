@@ -18,7 +18,7 @@ export const SubmitButton = ({
 			isFullWidth={full}
 			colorScheme={colorScheme}
 			isLoading={isLoading}
-			type={'submit'}
+			type="submit"
 		>
 			{label}
 		</BaseButton>
