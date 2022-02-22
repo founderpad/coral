@@ -1,35 +1,32 @@
-// eslint-disable-line no-unused-vars
-// eslint-disable-line @typescript-eslint/no-unused-vars
 import Form from '@components/form/Form';
-import { InputField } from '@components/input/InputField';
-import { SelectField } from '@components/input/SelectField';
+import {
+	FormInput,
+	FormSelect,
+	FormTextarea
+} from '@components/form/inputs/FormField';
+
 import { SwitchField } from '@components/input/SwitchField';
-import { TextareaField } from '@components/input/TextareaField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@generated/api';
-import { useSuccessNotification } from '@hooks/toast';
-import {
-	ALL_IDEA_CATEGORY_FIELDS,
-	ALL_IDEA_STATUSES,
-	mobileIdeaCategoryFields,
-	mobileIdeaStatuses
-} from '@utils/Constants';
-import React, { useCallback, useContext } from 'react';
+import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@utils/Constants';
+import { redirectTo } from '@utils/validators';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useIdeaFragment } from '../query/ideaQuery';
 
 export const EditIdeaForm = () => {
 	const idea = useIdeaFragment();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const showSuccessNotification = useSuccessNotification();
+	// const showSuccessNotification = useSuccessNotification();
 
 	const { __typename, id, ...rest } = idea;
 
 	const {
 		handleSubmit,
 		control,
+		register,
 		getValues,
-		reset,
+		resetField,
 		formState: { errors, isSubmitting, isValid }
 	} = useForm<TIdeas_Set_Input>({
 		mode: 'all',
@@ -47,21 +44,13 @@ export const EditIdeaForm = () => {
 			setModalDrawer({
 				isOpen: false
 			});
-			showSuccessNotification({
-				title: 'Your idea has been updated'
-			});
+			// showSuccessNotification({
+			// 	title: 'Your idea has been updated'
+			// });
+
+			redirectTo(false, 'exp');
 		}
 	});
-
-	const resetField = useCallback(
-		(name: string) => {
-			reset({
-				...getValues(),
-				[name]: ''
-			});
-		},
-		[reset, getValues]
-	);
 
 	return (
 		<Form
@@ -73,87 +62,148 @@ export const EditIdeaForm = () => {
 			label={'Update idea'}
 			stackProps={{ spacing: 8 }}
 		>
-			<InputField
+			<FormInput<TIdeas_Set_Input>
 				id="name"
-				label="Name of your idea"
-				placeholder="Name of your idea"
-				error={errors['name']}
-				errorText="Please enter a name for your idea"
 				name="name"
+				label="Name of your idea"
+				placeholder="Write the idea name (max. 75 characters)"
+				helperText="Make your idea name stand out"
+				register={register}
 				control={control}
-				onClear={() => resetField('name')}
-				isRequired
+				rules={{
+					required:
+						'You must provide a name for your idea (max. 75 characters)',
+					maxLength: {
+						value: 75,
+						message: 'Idea name can not be more than 75 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('name', { defaultValue: '' })}
 			/>
 
-			<TextareaField
+			<FormTextarea<TIdeas_Set_Input>
+				id="summary"
+				name="summary"
+				label="Summary"
+				placeholder="Write a brief summary of your idea (max. 150 characters)"
+				helperText="Make your summary pop! This is what people will see when they search"
+				register={register}
+				control={control}
+				rules={{
+					required:
+						'You must provide a summary for your idea (max. 150 characters)',
+					maxLength: {
+						value: 500,
+						message:
+							'Your summary can not be more than 150 characters'
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('summary', { defaultValue: '' })}
+			/>
+
+			<FormTextarea<TIdeas_Set_Input>
 				id="description"
-				label="Description of your idea"
 				name="description"
-				placeholder="Write a description about your idea (max. 500 characters)"
-				error={errors['description']}
-				errorText="Please enter your idea description (max. 500 characters)"
+				label="Description"
+				placeholder="Write a description of your idea (max. 750 characters)"
+				register={register}
 				control={control}
-				rules={{ maxLength: 500 }}
-				onClear={() => resetField('description')}
-				isRequired
+				rules={{
+					maxLength: {
+						value: 500,
+						message:
+							'Your description can not be more than 750 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('description', { defaultValue: '' })}
 			/>
 
-			<SelectField
+			<FormSelect<TIdeas_Set_Input>
 				id="status"
 				name="status"
-				label="What is its current status?"
-				error={errors['status']}
-				errorText="Please select the status for your idea."
+				label="Current status"
 				placeholder="status"
-				size={'sm'}
 				options={ALL_IDEA_STATUSES}
-				mobileOptions={mobileIdeaStatuses()}
+				register={register}
 				control={control}
-				onClear={() => resetField('status')}
-				isRequired
+				rules={{
+					required: 'You must provide the status for your idea'
+				}}
+				errors={errors}
+				onClear={() => resetField('status', { defaultValue: '' })}
 			/>
 
-			<SelectField
+			<FormSelect<TIdeas_Set_Input>
 				id="field"
 				name="field"
-				label="What field is your idea?"
-				error={errors['field']}
-				errorText="Please select the field for your idea."
+				label="Field"
 				placeholder="field"
-				size={'sm'}
 				options={ALL_IDEA_CATEGORY_FIELDS}
-				mobileOptions={mobileIdeaCategoryFields()}
+				register={register}
 				control={control}
-				onClear={() => resetField('field')}
-				isRequired
+				rules={{
+					required: 'You must provide the field for your idea'
+				}}
+				errors={errors}
+				onClear={() => resetField('field', { defaultValue: '' })}
 			/>
 
-			<TextareaField
+			<FormTextarea<TIdeas_Set_Input>
 				id="competitors"
-				label="Your competitors"
 				name="competitors"
-				placeholder="List your competitors about your idea"
-				onClear={() => resetField('competitors')}
+				label="Competitors"
+				placeholder="Write about what competitors your idea may face (max. 250 characters)"
+				register={register}
 				control={control}
+				rules={{
+					maxLength: {
+						value: 250,
+						message:
+							'Competitors can not be more than 250 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('competitors', { defaultValue: '' })}
 			/>
 
-			<TextareaField
+			<FormTextarea<TIdeas_Set_Input>
 				id="team"
-				label="Your team"
 				name="team"
-				placeholder="List each team member"
+				label="Team"
+				placeholder="Write about your team for this idea (max. 250 characters)"
+				register={register}
 				control={control}
-				onClear={() => resetField('team')}
+				rules={{
+					maxLength: {
+						value: 250,
+						message: 'Team can not be more than 250 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('team', { defaultValue: '' })}
 			/>
 
-			<TextareaField
+			<FormTextarea<TIdeas_Set_Input>
 				id="additionalInformation"
-				label="Additional information"
 				name="additionalInformation"
-				placeholder="Any additional information"
-				h={'200px'}
+				label="Additional information"
+				placeholder="Write any additional information about your idea (max. 500 characters)"
+				register={register}
 				control={control}
-				onClear={() => resetField('additionalInformation')}
+				rules={{
+					maxLength: {
+						value: 500,
+						message:
+							'Additional information can not be more than 500 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() =>
+					resetField('additionalInformation', { defaultValue: '' })
+				}
 			/>
 
 			<SwitchField

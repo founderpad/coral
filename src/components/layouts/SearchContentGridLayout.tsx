@@ -3,9 +3,11 @@ import React from 'react';
 import { StackLayout } from './StackLayout';
 
 const SearchContentGridLayout = ({
+	search,
 	children
 }: {
-	children: React.ReactChild[];
+	search: React.ReactNode;
+	children: React.ReactNode;
 }) => (
 	<Grid
 		templateColumns="repeat(7, 1fr)"
@@ -13,11 +15,11 @@ const SearchContentGridLayout = ({
 		rowGap={6}
 		flex={1}
 		bg={'#f9f8f8'}
+		position={'relative'}
 	>
 		<GridItem
 			display={{ base: 'none', md: 'block' }}
 			colSpan={{ md: 3, lg: 2 }}
-			position={'relative'}
 			mr={4}
 		>
 			<StackLayout
@@ -29,22 +31,23 @@ const SearchContentGridLayout = ({
 				rounded={{ base: 'none', lg: 'md' }}
 				borderWidth={{ base: 0, lg: 1 }}
 				borderColor={'fpLightGrey.900'}
+				position={'sticky'}
+				top={0}
 			>
-				{children[0]}
+				{search}
 			</StackLayout>
 		</GridItem>
 		<GridItem
 			colSpan={{ base: 7, md: 4, lg: 5 }}
-			position={'relative'}
 			display={'flex'}
 			flexDirection={'column'}
 			bg={'white'}
 			rounded={{ base: 'none', lg: 'md' }}
 			borderWidth={{ base: 0, lg: 1 }}
 			borderColor={'fpLightGrey.900'}
+			overflowY={'auto'}
 		>
-			{children[1]}
-			{children?.[2]}
+			{children}
 		</GridItem>
 	</Grid>
 );

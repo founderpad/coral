@@ -1,14 +1,12 @@
-export type IAuthFormData = {
+export type TLoginFields = {
 	email: string;
 	password: string;
 };
 
-export interface IRegisterFormData extends IAuthFormData {
+export type TRegisterFormFields = {
 	firstName: string;
-	lastName: string;
-	// type: string;
-	// country: string;
-}
+	lastName?: string;
+} & TLoginFields;
 
 export type ProfileFormData = {
 	categories: string[];

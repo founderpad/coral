@@ -12,7 +12,7 @@ const setup = () => {
 	);
 
 	const resetPasswordForm = resetPasswordSetup.getByRole('form', {
-		name: /resetpasswordform/i
+		name: /reset-password-form/i
 	});
 	const emailField = resetPasswordSetup.getByRole('textbox', {
 		name: /email/i
@@ -62,8 +62,9 @@ describe('Reset password form', () => {
 	});
 
 	it('should render ResetPasswordForm fields', async () => {
-		const { submitButton } = setup();
-		expect(submitButton).toBeDisabled();
+		const { emailField, submitButton } = setup();
+		expect(emailField).toBeInTheDocument();
+		expect(submitButton).toBeEnabled();
 	});
 
 	it('should make reset password request on submit', async () => {
@@ -81,17 +82,29 @@ describe('Reset password form', () => {
 		expect(mockResetPassword).toHaveBeenCalledTimes(1);
 	});
 
-	it('should error on empty email on blur', async () => {
+	it('should error if invalid email on blur', async () => {
 		const { resetPasswordSetup, emailField } = setup();
 
 		expect(emailField).toBeInTheDocument();
 
 		fireEvent.focus(emailField);
-		userEvent.type(emailField, 'j@gmail');
-		await waitFor(() => expect(emailField).toHaveValue('j@gmail'));
+		userEvent.type(emailField, 'testemail');
+		await waitFor(() => expect(emailField).toHaveValue('testemail'));
 
 		fireEvent.blur(emailField);
 
-		resetPasswordSetup.getByText('Please enter a valid email');
+		resetPasswordSetup.getByText('You must enter a valid email address');
+	});
+
+	it('should error if email is empty on submit', async () => {
+		const { resetPasswordSetup, emailField, submitButton } = setup();
+
+		expect(emailField).toBeInTheDocument();
+
+		await act(async () => {
+			fireEvent.click(submitButton);
+		});
+
+		resetPasswordSetup.getByText('You must enter a valid email address');
 	});
 });

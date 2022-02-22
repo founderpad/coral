@@ -1,12 +1,13 @@
 import SearchContentGridLayout from '@components/layouts/SearchContentGridLayout';
-import { DocumentTitle, PageHeader } from '@components/shared';
+import { DocumentTitle } from '@components/shared';
 import AuthFilter from '@utils/AuthFilter';
+import { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import FounderSearchForm from './components/FounderSearchForm';
-import FoundersContainer from './FoundersContainer';
+import UsersSearchForm from './components/UsersSearchForm';
+import UsersContainer from './UsersContainer';
 
-const Founders = () => (
+const UsersSearch: NextPage = () => (
 	<React.Fragment>
 		<DocumentTitle title="All users" />
 
@@ -31,44 +32,10 @@ const Founders = () => (
 			/>
 		</Head>
 
-		<SearchContentGridLayout>
-			<FounderSearchForm />
-			<PageHeader title="All users" subtitle="Search all users" />
-			<FoundersContainer />
+		<SearchContentGridLayout search={<UsersSearchForm />}>
+			<UsersContainer />
 		</SearchContentGridLayout>
-
-		{/* <PageLayout title="All users"> */}
-		{/* <SearchContentGridLayout>
-				<FounderSearchForm />
-				<FoundersContainer />
-			</SearchContentGridLayout> */}
-		{/* <Box
-			d={'flex'}
-			flex={1}
-			justifyContent={'center'}
-			alignItems={'center'}
-			flexDirection={'column'}
-		>
-			<Box
-				d={'flex'}
-				flex={1}
-				justifyContent={'center'}
-				alignItems={'center'}
-				flexDirection={'column'}
-			>
-				<Icon
-					as={IoPeople}
-					fontSize={'xx-large'}
-					color={'gray.500'}
-					mb={4}
-				/>
-				<Heading color={'gray.500'} fontSize={'lg'}>
-					Users coming soon
-				</Heading>
-			</Box>
-		</Box> */}
-		{/* </PageLayout> */}
 	</React.Fragment>
 );
 
-export default AuthFilter(Founders);
+export default AuthFilter(UsersSearch);

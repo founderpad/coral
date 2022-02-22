@@ -1,9 +1,7 @@
 import { FormControl } from '@chakra-ui/form-control';
-import { Stack } from '@chakra-ui/layout';
 import { Checkbox } from '@chakra-ui/react';
 import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
-import { SelectField, TextareaField } from '@components/input';
 import { Label } from '@components/labels';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
@@ -18,19 +16,16 @@ import {
 	ALL_USER_OBJECTIVES,
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
-	mobileAvailabilityOptions,
-	mobileIdeaCategoryFields,
-	mobileNumberOfStartups,
-	mobileStartupStatuses,
-	mobileUserObjectives,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
-import { useCallback, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { redirectTo } from '@utils/validators';
+import { FormSelect, FormTextarea } from '@components/form/inputs/FormField';
+import { StackLayout } from '@components/layouts';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
@@ -43,13 +38,20 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 	);
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const { handleSubmit, control, reset, getValues, setValue, formState } =
-		useForm<TUser_Profile_Set_Input>({
-			mode: 'all',
-			defaultValues: {
-				...rest
-			}
-		});
+	const {
+		handleSubmit,
+		control,
+		getValues,
+		setValue,
+		register,
+		resetField,
+		formState
+	} = useForm<TUser_Profile_Set_Input>({
+		mode: 'all',
+		defaultValues: {
+			...rest
+		}
+	});
 
 	const [updateUserProfileMutation] = useUpdateUserProfileMutation({
 		variables: {
@@ -86,16 +88,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 	const { errors, isSubmitting, isValid } = formState;
 
-	const resetField = useCallback(
-		(name: string) => {
-			reset({
-				...getValues(),
-				[name]: ''
-			});
-		},
-		[reset, getValues]
-	);
-
 	return (
 		<Form
 			id="edit-experience-form"
@@ -103,108 +95,120 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			onSubmit={handleSubmit(updateUserProfileMutation)}
 			isSubmitting={isSubmitting}
 			isValid={isValid}
-			stackProps={{ spacing: 10 }}
 		>
-			<SelectField
+			<FormSelect<TUser_Profile_Set_Input>
 				id="objective"
 				name="objective"
 				label="What is your objective on this platform?"
 				placeholder="your objective on this platform"
-				error={errors['objective']}
-				errorText="You must provide your objective on this platform"
 				options={ALL_USER_OBJECTIVES}
-				mobileOptions={mobileUserObjectives()}
-				onClear={() => resetField('objective')}
+				register={register}
 				control={control}
-				isRequired
+				rules={{
+					required: 'You must provide your objective on this platform'
+				}}
+				errors={errors}
+				onClear={() => resetField('objective', { defaultValue: '' })}
 			/>
 
-			<TextareaField
+			<FormTextarea<TUser_Profile_Set_Input>
 				id="background"
-				label="Background"
-				placeholder="Your background"
-				error={errors['background']}
-				errorText="You must provide a background (max. 400 characters)"
 				name="background"
+				label="Background"
+				placeholder="Write about your background, such as past experiences in business"
+				register={register}
 				control={control}
-				minH={'100px'}
-				rules={{ maxLength: 400 }}
-				onClear={() => resetField('background')}
-				isRequired
+				rules={{
+					maxLength: {
+						value: 400,
+						message:
+							'Your background can not be more than 400 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('background', { defaultValue: '' })}
 			/>
 
-			<TextareaField
+			<FormTextarea<TUser_Profile_Set_Input>
 				id="statement"
-				label="Personal statement"
-				placeholder="Your personal statement"
-				error={errors['statement']}
-				errorText="Your personal statement can not be more than 400 characters"
 				name="statement"
+				label="Personal statement"
+				placeholder="Write about what you're looking to achieve so that ther"
+				register={register}
 				control={control}
-				rules={{ maxLength: 400 }}
-				onClear={() => resetField('statement')}
+				rules={{
+					maxLength: {
+						value: 400,
+						message:
+							'Your personal statement can not be more than 400 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('statement', { defaultValue: '' })}
 			/>
 
-			<SelectField
+			<FormSelect<TUser_Profile_Set_Input>
 				id="specialistIndustry"
 				name="specialistIndustry"
-				label="What is your specialist field?"
+				label="Your specialist field"
 				placeholder="specialist field"
 				options={ALL_IDEA_CATEGORY_FIELDS}
-				mobileOptions={mobileIdeaCategoryFields()}
+				register={register}
 				control={control}
-				onClear={() => resetField('specialistIndustry')}
+				onClear={() =>
+					resetField('specialistIndustry', { defaultValue: '' })
+				}
 			/>
 
-			<Stack direction={{ base: 'column', md: 'row' }} spacing={6}>
-				<SelectField
+			<StackLayout direction={{ base: 'column', md: 'row' }} spacing={6}>
+				<FormSelect<TUser_Profile_Set_Input>
 					id="startups"
 					name="startups"
-					options={NUMBER_OF_STARTUPS}
-					mobileOptions={mobileNumberOfStartups()}
+					label="Startups have you have worked with"
 					placeholder="number of startups"
+					options={NUMBER_OF_STARTUPS}
+					register={register}
 					control={control}
-					label={'How many startups have you worked with?'}
-					onClear={() => resetField('startups')}
+					onClear={() => resetField('startups', { defaultValue: '' })}
 				/>
 
-				<SelectField
+				<FormSelect<TUser_Profile_Set_Input>
 					id="availability"
 					name="availability"
-					options={AVAILABILITY_IN_HOURS}
-					mobileOptions={mobileAvailabilityOptions()}
+					label="Capacity (hours per week)"
 					placeholder="capacity per week"
+					options={AVAILABILITY_IN_HOURS}
+					register={register}
 					control={control}
-					label={'Capacity (hours per week)'}
-					helperText={
-						'How many hours you can contribute towards a new idea'
+					onClear={() =>
+						resetField('availability', { defaultValue: '' })
 					}
-					onClear={() => resetField('availability')}
 				/>
-			</Stack>
+			</StackLayout>
 
-			<SelectField
+			<FormSelect<TUser_Profile_Set_Input>
 				id="status"
 				name="status"
-				label="What is your current startup status?"
-				error={errors['status']}
-				errorText="You must specify your current startup status"
+				label="Your current startup status"
 				placeholder="startup status"
 				options={STARTUP_STATUS}
-				mobileOptions={mobileStartupStatuses()}
-				onClear={() => resetField('status')}
+				register={register}
 				control={control}
-				isRequired
+				onClear={() => resetField('status', { defaultValue: '' })}
+				rules={{
+					required: 'You must provide your current startup status'
+				}}
+				errors={errors}
 			/>
 
-			<TextareaField
+			{/* <TextareaField
 				id="businessDescription"
 				name="businessDescription"
 				label="What were your previous businesses?"
 				placeholder="List your previous businesses"
 				control={control}
 				onClear={() => resetField('businessDescription')}
-			/>
+			/> */}
 
 			<FormControl>
 				<FormLabelText label={'Your skills'} />

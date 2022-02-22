@@ -1,5 +1,5 @@
 import { StackLayout } from '@components/layouts';
-import { Loading, NoResults } from '@components/shared';
+import { Loading, NoResults, PageHeader } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import {
 	TUserSearchFragment,
@@ -10,7 +10,7 @@ import { useQueryParam } from '@hooks/util';
 import OffsetPagination from '@pages/ideas/OffsetPagination';
 import Router from 'next/router';
 import React from 'react';
-import FounderCard from './components/FounderCard';
+import UserCard from './components/UserCard';
 import UserSearchActions from './components/UserSearchActions';
 
 // function buildQuery<T>(values: Array<string>): T {
@@ -99,36 +99,39 @@ const FoundersContainer = () => {
 	if (loading) return <Loading small />;
 
 	return (
-		<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
-			<UserSearchActions
-				total={data?.user_profile_aggregate?.aggregate?.count || 0}
-				pageSize={data?.user_profile?.length ?? 0}
-			/>
-			{!loading && hasResults < 1 ? (
-				<NoResults back />
-			) : (
-				<StackLayout display={'flex'} spacing={6}>
-					{data?.user_profile?.map(
-						(searchedUser: TUserSearchFragment) => (
-							<React.Fragment key={searchedUser.user?.id}>
-								<FounderCard {...searchedUser} />
-								<AppDivider />
-							</React.Fragment>
-						)
-					)}
-				</StackLayout>
-			)}
-			{hasResults && (
-				<OffsetPagination
-					pagesCount={
-						(data?.user_profile_aggregate.aggregate?.count || 0) /
-						10
-					}
-					pathname="/founders"
+		<React.Fragment>
+			<PageHeader title="All users" subtitle="Search all users" />
+			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
+				<UserSearchActions
+					total={data?.user_profile_aggregate?.aggregate?.count || 0}
+					pageSize={data?.user_profile?.length ?? 0}
 				/>
-			)}
-			)
-		</StackLayout>
+				{!loading && hasResults < 1 ? (
+					<NoResults back />
+				) : (
+					<StackLayout display={'flex'} spacing={6}>
+						{data?.user_profile?.map(
+							(searchedUser: TUserSearchFragment) => (
+								<React.Fragment key={searchedUser.user?.id}>
+									<UserCard {...searchedUser} />
+									<AppDivider />
+								</React.Fragment>
+							)
+						)}
+					</StackLayout>
+				)}
+				{hasResults && (
+					<OffsetPagination
+						pagesCount={
+							(data?.user_profile_aggregate.aggregate?.count ||
+								0) / 10
+						}
+						pathname="/founders"
+					/>
+				)}
+				)
+			</StackLayout>
+		</React.Fragment>
 	);
 };
 

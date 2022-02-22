@@ -9,16 +9,19 @@ import React, { memo, useCallback, useContext } from 'react';
 import EditIdeaForm from './EditIdeaForm';
 
 export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
+	const { setModalDrawer } = useContext(ModalDrawerContext);
+
 	const [deleteIdeaMutation] = useDeleteIdeaMutation({
 		variables: {
 			id: ideaId
 		},
 		onCompleted: () => {
 			Router.replace('/ideas?page=1');
+			setModalDrawer({
+				isOpen: false
+			});
 		}
 	});
-
-	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const onDeleteClick = useCallback(() => {
 		setModalDrawer({

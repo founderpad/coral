@@ -19,7 +19,7 @@ type IModalProps = Omit<ModalProps, 'children'> & {
 	noBtnLabel?: string | 'Cancel';
 	removePadding?: boolean;
 	action?: typeof BaseButton;
-	hideFooter?: boolean;
+	showFooter?: boolean;
 };
 
 export const Drawer = ({
@@ -30,7 +30,7 @@ export const Drawer = ({
 	noBtnLabel,
 	removePadding,
 	action,
-	hideFooter = false
+	showFooter = true
 }: IModalProps) => {
 	return (
 		<ChakraDrawer
@@ -70,7 +70,7 @@ export const Drawer = ({
 				>
 					{body}
 				</DrawerBody>
-				{hideFooter && (
+				{showFooter && (
 					<DrawerFooter
 						d={'flex'}
 						w={'full'}

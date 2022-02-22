@@ -55,7 +55,7 @@ function getStatusIcon(status: AlertProps['status']) {
 					as={IoCloseOutline}
 					boxSize={'16px'}
 					mr={1}
-					color={'red.400'}
+					color={'red.500'}
 				/>
 			);
 		default:
@@ -69,11 +69,13 @@ export const AlertFeedback = (props: Props) => {
 	return (
 		<Alert
 			status={status}
-			alignItems={'center'}
+			alignItems="center"
 			px={0}
 			py={0}
-			variant={'subtle'}
-			bg={'transparent'}
+			variant="subtle"
+			bg="transparent"
+			w="auto"
+			ml="auto"
 		>
 			{/* <AlertIcon as={getStatusIcon(status)} boxSize={'14px'} mr={1} /> */}
 
@@ -81,7 +83,7 @@ export const AlertFeedback = (props: Props) => {
 
 			<AlertDescription
 				fontSize={'xs'}
-				color={status === 'error' ? 'red.400' : 'green.400'}
+				color={status === 'error' ? 'red.500' : 'green.400'}
 			>
 				{message}
 			</AlertDescription>

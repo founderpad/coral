@@ -87,15 +87,17 @@ const UserPersonalInformation = memo((props: Props) => {
 				<TitleEditAction
 					title={displayName}
 					subtitle={
-						<Label fontSize={'xs'} color={'fpGrey.500'}>
-							(
-							{customPronouns
-								? customPronouns
-								: pronouns
-								? pronouns
-								: ''}
-							)
-						</Label>
+						pronouns && (
+							<Label fontSize={'xs'} color={'fpGrey.500'}>
+								(
+								{customPronouns
+									? customPronouns
+									: pronouns
+									? pronouns
+									: ''}
+								)
+							</Label>
+						)
 					}
 					onClick={onPersonalDetailsClick}
 				/>

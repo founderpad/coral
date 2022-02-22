@@ -26,7 +26,7 @@ const WorkExperienceTab = () => {
 		statement,
 		status,
 		availability,
-		businessDescription,
+		// businessDescription,
 		background,
 		skills,
 		objective
@@ -44,7 +44,7 @@ const WorkExperienceTab = () => {
 				/>
 			),
 			body: <ExperienceForm {...userProfile} />,
-			size: '3xl'
+			size: '2xl'
 		});
 	};
 
@@ -114,10 +114,10 @@ const WorkExperienceTab = () => {
 					title={'Personal statement'}
 					value={statement || 'Not set'}
 				/>
-				<ContentFieldAndValue
+				{/* <ContentFieldAndValue
 					title={'Overview of businesses'}
 					value={businessDescription || 'Not set'}
-				/>
+				/> */}
 				{/* <ContentFieldAndValue
 					title={'Skills'}
 					value={skills?.join(', ') || 'No skills selected'}

@@ -1,5 +1,5 @@
 import SearchContentGridLayout from '@components/layouts/SearchContentGridLayout';
-import { DocumentTitle, PageHeader } from '@components/shared';
+import { DocumentTitle } from '@components/shared';
 import AuthFilter from '@utils/AuthFilter';
 import Head from 'next/head';
 import React from 'react';
@@ -9,15 +9,6 @@ import IdeasContainer from './IdeasContainer';
 const Ideas = () => (
 	<React.Fragment>
 		<DocumentTitle title="All ideas" />
-		{/* <PageLayout
-			title="All ideas"
-			subtitle="The latest ideas from the community."
-		>
-			<SearchContentGridLayout>
-				<IdeasSearchForm />
-				<IdeasContainer />
-			</SearchContentGridLayout>
-		</PageLayout> */}
 		<Head>
 			<meta
 				property="og:title"
@@ -39,13 +30,7 @@ const Ideas = () => (
 			/>
 		</Head>
 
-		<SearchContentGridLayout>
-			<IdeasSearchForm />
-			<PageHeader
-				title="All ideas"
-				subtitle="The latest ideas from the community"
-			/>
-
+		<SearchContentGridLayout search={<IdeasSearchForm />}>
 			<IdeasContainer />
 		</SearchContentGridLayout>
 	</React.Fragment>

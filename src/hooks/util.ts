@@ -1,6 +1,7 @@
 import { useBreakpointValue } from '@chakra-ui/react';
 import FileUploadContext from '@context/FileUploadContext';
 import MobileNavigationContext from '@context/MobileNavigationContext';
+import ModalDrawerContext from '@context/ModalDrawerContext';
 import NotificationContext from '@context/NotificationContext';
 import { pageview } from '@lib/ga';
 import { storage } from '@utils/nhost';
@@ -143,4 +144,10 @@ export const useFileUploader = () => {
 		onDelete,
 		isDeleted
 	};
+};
+
+export const useModalDrawer = () => {
+	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);
+
+	return { modalDrawer, setModalDrawer };
 };

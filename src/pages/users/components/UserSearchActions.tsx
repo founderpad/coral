@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/layout';
 import { SearchResultsLabel, StickySubheader } from '@components/shared';
 import MobileFilterMenu from '@pages/ideas/components/MobileFilterMenu';
 import React from 'react';
-import FounderSearchForm from './FounderSearchForm';
+import FounderSearchForm from './UsersSearchForm';
 
 const UserSearchActions = ({
 	total,

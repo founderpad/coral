@@ -7,6 +7,11 @@ import { IUploadedFileProps } from '../types/upload';
 export const EMAIL_REGEX =
 	/^[-a-z0-9~!$%^&*_=+}{'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
 
+export const emailPattern = {
+	value: new RegExp(EMAIL_REGEX),
+	message: 'You must enter a valid email address'
+};
+
 export const formatDate = (
 	dateStr: string,
 	withTime?: boolean,
@@ -85,27 +90,29 @@ export const decodeString = (value: string) =>
 	Buffer.from(value, 'base64').toString('ascii');
 
 export const redirectTo = (error: boolean, param?: string) => {
-	if (error) {
-		Router.replace(
-			{
-				pathname: Router.pathname,
-				query: `${param ? `${param}_error=true` : `error=true`}`
-			},
-			undefined,
-			{ shallow: true }
-		);
-
-		return;
+	for (const [k, _v] of Object.entries(Router.query)) {
+		if (k.includes('success') || k.includes('error'))
+			delete Router.query[k];
 	}
+
+	const buildParams = (): { [key: string]: true } => {
+		return {
+			[`${
+				param
+					? `${param}_${error ? 'error' : 'success'}`
+					: error
+					? 'error'
+					: 'success'
+			}`]: true
+		};
+	};
 
 	Router.replace(
 		{
 			pathname: Router.pathname,
-			query: `${param}_success=true`
+			query: { ...Router.query, ...buildParams() }
 		},
 		undefined,
 		{ shallow: true }
 	);
-
-	return;
 };

@@ -3,59 +3,70 @@
 exports[`Login form matches snapshot 1`] = `
 <DocumentFragment>
   <form
-    aria-label="loginform"
+    aria-label="login-form"
     autocomplete="off"
-    id="loginform"
-    name="loginform"
+    id="login-form"
+    name="login-form"
     novalidate=""
   >
     <div
       class="chakra-stack css-w4pe59"
     >
       <div
-        class="chakra-form-control css-1naxzcr"
+        class="chakra-form-control css-0"
         role="group"
       >
-        <input
-          aria-label="email"
-          aria-required="true"
-          autocomplete="email"
-          class="chakra-input css-wv9m3t"
-          control="[object Object]"
-          id="email-email"
-          name="email"
-          placeholder="Email"
-          required=""
-          rules="[object Object]"
-          type="email"
-          value=""
-        />
+        <div
+          aria-live="polite"
+          class="css-jhkd4z"
+          id="form-input"
+        >
+          <div
+            class="css-qnoc8j"
+          />
+          <input
+            aria-label="email"
+            aria-required="true"
+            class="chakra-input css-133xfak"
+            errors="[object Object]"
+            id="email"
+            placeholder="Email"
+            required=""
+            value=""
+          />
+        </div>
       </div>
       <div
-        class="chakra-form-control css-1naxzcr"
+        class="chakra-form-control css-0"
         role="group"
       >
-        <input
-          aria-label="password"
-          aria-required="true"
-          autocomplete="current-password"
-          class="chakra-input css-wv9m3t"
-          control="[object Object]"
-          id="password-password"
-          name="password"
-          placeholder="Password"
-          required=""
-          rules="[object Object]"
-          type="password"
-          value=""
-        />
+        <div
+          aria-live="polite"
+          class="css-jhkd4z"
+          id="form-input"
+        >
+          <div
+            class="css-qnoc8j"
+          />
+          <input
+            aria-label="password"
+            aria-required="true"
+            class="chakra-input css-133xfak"
+            errors="[object Object]"
+            id="password"
+            placeholder="Password"
+            required=""
+            type="password"
+            value=""
+          />
+        </div>
       </div>
       <div
-        class="chakra-alert css-1e3grqz"
+        class="chakra-alert css-mzg8f4"
         role="alert"
       >
         <svg
-          class="chakra-alert__icon css-m46e7f"
+          class="chakra-alert__icon css-1tw3v2n"
           fill="currentColor"
           height="1em"
           stroke="currentColor"
@@ -73,15 +84,14 @@ exports[`Login form matches snapshot 1`] = `
           />
         </svg>
         <div
-          class="chakra-alert__desc css-1fwxjz3"
+          class="chakra-alert__desc css-1g4x3gd"
         >
           Failed to login. Incorrect email and/or password.
         </div>
       </div>
       <button
         aria-label="submit-login"
-        class="chakra-button css-hyn8au"
-        disabled=""
+        class="chakra-button css-1ktoofj"
         id="submit-login"
         type="submit"
       >

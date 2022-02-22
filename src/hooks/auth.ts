@@ -7,9 +7,9 @@ import { auth } from '@utils/nhost';
 import { RootState } from '@utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	IAuthFormData,
-	IRegisterFormData,
-	TAuthProvider
+	TRegisterFormFields,
+	TAuthProvider,
+	TLoginFields
 } from 'src/types/auth';
 import { useErrorNotification } from './toast';
 // import { useNotification } from './util';
@@ -28,7 +28,7 @@ export const useRegister = (): any => {
 		password,
 		firstName,
 		lastName
-	}: IRegisterFormData): Promise<void> => {
+	}: TRegisterFormFields): Promise<void> => {
 		try {
 			// removeNotification();
 			const response = await auth.signUp({
@@ -97,7 +97,7 @@ export const useLogin = (): (({
 	// const showErrorNotification = useErrorNotification();
 	const [getUser] = useGetAuthUser();
 
-	return async ({ email, password }: IAuthFormData): Promise<void> => {
+	return async ({ email, password }: TLoginFields): Promise<void> => {
 		try {
 			// removeNotification();
 			const response = await auth.signIn({ email, password });

@@ -1,81 +1,115 @@
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
-import {
-	EmailField,
-	InputField,
-	PasswordField
-} from '@components/input/InputField';
+import { FormInput } from '@components/form/inputs/FormField';
 // import SocialLogins from '@components/shared/SocialLogins';
 import { useRegister } from '@hooks/auth';
+import { emailPattern } from '@utils/validators';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { IRegisterFormData } from 'src/types/auth';
 import LegalFooter from './LegalFooter';
+import { TRegisterFormFields } from '../../../types/auth';
 
 const RegisterForm = () => {
 	const {
 		handleSubmit,
 		control,
-		formState: { errors, isSubmitting, isValid }
-	} = useForm<IRegisterFormData>({ mode: 'all' });
+		register,
+		resetField,
+		formState: { errors, isSubmitting }
+	} = useForm<TRegisterFormFields>({ mode: 'all' });
 	const onRegister = useRegister();
 
 	return (
 		<React.Fragment>
 			<Form
-				id={'registerForm'}
-				name={'registerForm'}
+				id="register-form"
+				name="register-form"
 				onSubmit={handleSubmit(onRegister)}
 				stackProps={{
 					alignItems: 'center'
 				}}
 			>
-				<InputField
+				<FormInput<TRegisterFormFields>
+					id="firstName"
 					name="firstName"
-					error={errors.firstName}
-					errorText="You must input a first name"
 					placeholder="First name"
-					fontSize={'sm'}
+					register={register}
 					control={control}
-					rules={{ maxLength: 20, minLength: 2 }}
-					size={'md'}
-					isRequired
+					rules={{
+						required: 'You must enter a first name',
+						minLength: {
+							value: 2,
+							message:
+								'You first name must be a minimum of 2 characters'
+						},
+						maxLength: {
+							value: 20,
+							message:
+								'You first name must be a maximum of 20 characters'
+						}
+					}}
+					errors={errors}
+					onClear={() => resetField('firstName')}
 				/>
-				<InputField
+
+				<FormInput<TRegisterFormFields>
+					id="lastName"
 					name="lastName"
 					placeholder="Last name"
+					register={register}
 					control={control}
-					rules={{ minLength: 0, maxLength: 20 }}
-					size={'md'}
-					fontSize={'sm'}
+					rules={{
+						maxLength: {
+							value: 20,
+							message:
+								'Your last name must be a maximum of 20 characters'
+						}
+					}}
+					errors={errors}
+					onClear={() => resetField('lastName')}
 				/>
-				<EmailField
+				<FormInput<TRegisterFormFields>
 					id="email"
 					name="email"
-					error={errors['email']}
+					placeholder="Email"
+					register={register}
 					control={control}
-					size={'md'}
-					fontSize={'sm'}
-					isRequired
+					rules={{
+						required: 'You must enter a valid email address',
+						pattern: emailPattern
+					}}
+					errors={errors}
+					onClear={() => resetField('email')}
 				/>
-				<PasswordField
+
+				<FormInput<TRegisterFormFields>
 					id="password"
 					name="password"
-					error={errors['password']}
-					rules={{ maxLength: 20, minLength: 6 }}
+					placeholder="Password"
+					register={register}
 					control={control}
-					size={'md'}
-					fontSize={'sm'}
-					isRequired
+					rules={{
+						required: 'You must enter a valid password',
+						minLength: {
+							value: 6,
+							message:
+								'Your password must be a minimum of 6 characters'
+						},
+						maxLength: {
+							value: 20,
+							message:
+								'Your password must be a maximum of 20 characters'
+						}
+					}}
+					errors={errors}
+					onClear={() => resetField('password')}
 				/>
-				{/* <AlertFeedback /> */}
 				<SubmitButton
 					id={'submit-register-account'}
 					name={'submit-register-account'}
 					label={'Create account'}
 					isLoading={isSubmitting}
-					disabled={!isValid || isSubmitting}
-					// disabled={isSubmitting}
+					disabled={isSubmitting}
 					size={'md'}
 					fontSize={'sm'}
 					w={{ base: 'full', sm: '175px' }}

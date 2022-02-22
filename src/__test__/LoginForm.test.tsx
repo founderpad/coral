@@ -11,10 +11,11 @@ const setup = () => {
 		</Provider>
 	);
 
-	const loginForm = loginSetup.getByRole('form', { name: /loginform/i });
+	const loginForm = loginSetup.getByRole('form', { name: /login-form/i });
 	const emailField = loginSetup.getByRole('textbox', { name: /email/i });
 	const passwordField = loginSetup.getByPlaceholderText(/Password/i);
 	const submitButton = loginSetup.getByRole('button', { name: /submit/i });
+
 	// const socialLogin = loginSetup.getByTestId('socialLogin');
 
 	return {
@@ -56,8 +57,10 @@ describe('Login form', () => {
 	});
 
 	it('should render LoginForm fields', async () => {
-		const { submitButton } = setup();
-		expect(submitButton).toBeDisabled();
+		const { emailField, passwordField, submitButton } = setup();
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
+		expect(submitButton).toBeEnabled();
 	});
 
 	it('should make login request on submit', async () => {
@@ -79,22 +82,97 @@ describe('Login form', () => {
 		expect(mockLogin).toHaveBeenCalledTimes(1);
 	});
 
-	it('should error on empty email on blur', async () => {
-		const { loginSetup, emailField, passwordField } = setup();
+	// it('should error if empty email on blur', async () => {
+	// 	const { loginSetup, emailField } = setup();
+
+	// 	expect(emailField).toBeInTheDocument();
+
+	// 	fireEvent.focus(emailField);
+
+	// 	fireEvent.blur(emailField);
+
+	// 	loginSetup.getByText('You must enter a valid email address');
+	// });
+
+	it('should display clear value button when email field has a value', async () => {
+		const { emailField, loginSetup } = setup();
+		expect(emailField).toBeInTheDocument();
+		userEvent.type(emailField, 'jamie@gmail.com');
+		await waitFor(() => expect(emailField).toHaveValue('jamie@gmail.com'));
+
+		const clearButton = loginSetup.getByRole('button', {
+			name: /clear-value-button/i
+		});
+
+		expect(clearButton).toBeInTheDocument();
+	});
+
+	it('should clear the value of the field when clicked', async () => {
+		const { emailField, loginSetup } = setup();
+		expect(emailField).toBeInTheDocument();
+		userEvent.type(emailField, 'jamie@gmail.com');
+		await waitFor(() => expect(emailField).toHaveValue('jamie@gmail.com'));
+
+		const clearButton = loginSetup.getByRole('button', {
+			name: /clear-value-button/i
+		});
+
+		expect(clearButton).toBeInTheDocument();
+
+		await act(async () => {
+			fireEvent.click(clearButton);
+		});
+
+		expect(emailField).toHaveValue('');
+	});
+
+	it('should remove the clear value button if the value is cleared on click', async () => {
+		const { emailField, loginSetup } = setup();
+		expect(emailField).toBeInTheDocument();
+		userEvent.type(emailField, 'jamie@gmail.com');
+		await waitFor(() => expect(emailField).toHaveValue('jamie@gmail.com'));
+
+		const clearButton = loginSetup.getByRole('button', {
+			name: /clear-value-button/i
+		});
+
+		expect(clearButton).toBeInTheDocument();
+
+		await act(async () => {
+			fireEvent.click(clearButton);
+		});
+
+		expect(emailField).toHaveValue('');
+		expect(clearButton).not.toBeInTheDocument();
+	});
+
+	it('should error if invalid email on blur', async () => {
+		const { loginSetup, emailField } = setup();
 
 		expect(emailField).toBeInTheDocument();
-		expect(passwordField).toBeInTheDocument();
 
 		fireEvent.focus(emailField);
-		userEvent.type(emailField, 'j@gmail');
-		await waitFor(() => expect(emailField).toHaveValue('j@gmail'));
+		userEvent.type(emailField, 'testemail');
+		await waitFor(() => expect(emailField).toHaveValue('testemail'));
 
 		fireEvent.blur(emailField);
 
-		loginSetup.getByText('Please enter a valid email');
+		loginSetup.getByText('You must enter a valid email address');
 	});
 
-	it('should error on empty password on blur', async () => {
+	it('should error if email is empty on submit', async () => {
+		const { loginSetup, emailField, submitButton } = setup();
+
+		expect(emailField).toBeInTheDocument();
+
+		await act(async () => {
+			fireEvent.click(submitButton);
+		});
+
+		loginSetup.getByText('You must enter a valid email address');
+	});
+
+	it('should error if password too short (< 6 characters) on blur', async () => {
 		const { loginSetup, emailField, passwordField } = setup();
 
 		expect(emailField).toBeInTheDocument();
@@ -106,9 +184,39 @@ describe('Login form', () => {
 
 		fireEvent.blur(passwordField);
 
-		loginSetup.getByText(
-			'Please enter a valid password between 6 and 20 characters'
+		loginSetup.getByText('Your password must be a minimum of 6 characters');
+	});
+
+	it('should error if password too long (> 20 characters) on blur', async () => {
+		const { loginSetup, emailField, passwordField } = setup();
+
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
+
+		fireEvent.focus(passwordField);
+		userEvent.type(passwordField, 'abcdefghjklmnopqrstuvwxyz');
+		await waitFor(() =>
+			expect(passwordField).toHaveValue('abcdefghjklmnopqrstuvwxyz')
 		);
+
+		fireEvent.blur(passwordField);
+
+		loginSetup.getByText(
+			'Your password must be a maximum of 20 characters'
+		);
+	});
+
+	it('should error if submitted without valid password', async () => {
+		const { loginSetup, emailField, passwordField, submitButton } = setup();
+
+		expect(emailField).toBeInTheDocument();
+		expect(passwordField).toBeInTheDocument();
+
+		await act(async () => {
+			fireEvent.click(submitButton);
+		});
+
+		loginSetup.getByText('You must enter a valid password');
 	});
 
 	// it('should make social login request', async () => {
