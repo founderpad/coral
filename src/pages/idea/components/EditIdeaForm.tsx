@@ -48,7 +48,7 @@ export const EditIdeaForm = () => {
 			// 	title: 'Your idea has been updated'
 			// });
 
-			redirectTo(false);
+			redirectTo(false, 'exp');
 		}
 	});
 

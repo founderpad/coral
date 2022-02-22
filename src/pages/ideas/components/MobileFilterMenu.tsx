@@ -28,7 +28,7 @@ const MobileFilterMenu = ({
 				/>
 			),
 			body: children,
-			hideFooter: true
+			showFooter: false
 		});
 	}, [setModalDrawer, children, form, title]);
 

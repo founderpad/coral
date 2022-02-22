@@ -9,7 +9,7 @@ const ModalDrawerContext = createContext({
 		width: undefined,
 		size: undefined,
 		action: undefined,
-		hideFooter: false
+		showFooter: false
 	},
 	setModalDrawer: {} as any
 });

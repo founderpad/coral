@@ -90,28 +90,29 @@ export const decodeString = (value: string) =>
 	Buffer.from(value, 'base64').toString('ascii');
 
 export const redirectTo = (error: boolean, param?: string) => {
-	if (error) {
-		Router.replace(
-			{
-				pathname: Router.pathname,
-				query: `${param ? `${param}_error=true` : `error=true`}`
-			},
-			undefined,
-			{ shallow: true }
-		);
-
-		return;
+	for (const [k, _v] of Object.entries(Router.query)) {
+		if (k.includes('success') || k.includes('error'))
+			delete Router.query[k];
 	}
+
+	const buildParams = (): { [key: string]: true } => {
+		return {
+			[`${
+				param
+					? `${param}_${error ? 'error' : 'success'}`
+					: error
+					? 'error'
+					: 'success'
+			}`]: true
+		};
+	};
 
 	Router.replace(
 		{
-			pathname: Router.pathname
-			// query: `${param}_success=true`,
-			// query: { ...Router.query, `${param ? `${param}_error=true` : `error=true`}` }
+			pathname: Router.pathname,
+			query: { ...Router.query, ...buildParams() }
 		},
 		undefined,
 		{ shallow: true }
 	);
-
-	return;
 };

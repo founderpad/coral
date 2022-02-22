@@ -69,11 +69,13 @@ export const AlertFeedback = (props: Props) => {
 	return (
 		<Alert
 			status={status}
-			alignItems={'center'}
+			alignItems="center"
 			px={0}
 			py={0}
-			variant={'subtle'}
-			bg={'transparent'}
+			variant="subtle"
+			bg="transparent"
+			w="auto"
+			ml="auto"
 		>
 			{/* <AlertIcon as={getStatusIcon(status)} boxSize={'14px'} mr={1} /> */}
 

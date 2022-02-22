@@ -1,7 +1,6 @@
 import Drawer from '@components/drawer';
-import ModalDrawerContext from '@context/ModalDrawerContext';
-import { useMobile } from '@hooks/util';
-import React, { useContext } from 'react';
+import { useMobile, useModalDrawer } from '@hooks/util';
+import React, { useCallback } from 'react';
 import Modal from '.';
 
 /**
@@ -12,66 +11,23 @@ import Modal from '.';
  *
  * @author jlee
  */
-const BaseModalDrawer = ({ ...rest }: { children?: React.ReactNode }) => {
+const BaseModalDrawer = () => {
 	const isMobile = useMobile();
 
-	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);
-	const {
-		isOpen,
-		title,
-		body,
-		noBtnLabel,
-		width,
-		size,
-		action,
-		removePadding
-	} = modalDrawer;
+	const { modalDrawer, setModalDrawer } = useModalDrawer();
 
-	const closeDialog = () => {
+	const closeDialog = useCallback(() => {
 		setModalDrawer({
-			isOpen: false,
-			title: '',
-			text: '',
-			body: null,
-			noBtnText: '',
-			action: undefined,
-			size
+			isOpen: false
 		});
-	};
+	}, [setModalDrawer]);
 
 	const onCloseClick = () => {
 		closeDialog();
 	};
 
-	if (!isMobile) {
-		return (
-			<Modal
-				{...rest}
-				isOpen={isOpen}
-				title={title}
-				onClose={onCloseClick}
-				noBtnLabel={noBtnLabel}
-				body={body}
-				width={width}
-				size={size}
-				action={action}
-				removePadding={removePadding}
-			/>
-		);
-	}
-
-	return (
-		<Drawer
-			{...rest}
-			isOpen={isOpen}
-			title={title}
-			onClose={onCloseClick}
-			noBtnLabel={noBtnLabel}
-			body={body}
-			action={action}
-			removePadding={removePadding}
-		/>
-	);
+	if (isMobile) return <Drawer {...modalDrawer} onClose={onCloseClick} />;
+	return <Modal {...modalDrawer} onClose={onCloseClick} />;
 };
 
 export default BaseModalDrawer;
