@@ -13,41 +13,53 @@ exports[`Login form matches snapshot 1`] = `
       class="chakra-stack css-w4pe59"
     >
       <div
-        aria-live="polite"
-        class="css-jhkd4z"
-        id="form-input"
+        class="chakra-form-control css-0"
+        role="group"
       >
         <div
-          class="css-qnoc8j"
-        />
-        <input
-          aria-label="email"
-          class="chakra-input css-133xfak"
-          control="[object Object]"
-          errors="[object Object]"
-          id="email"
-          name="email"
-          placeholder="Email"
-        />
+          aria-live="polite"
+          class="css-jhkd4z"
+          id="form-input"
+        >
+          <div
+            class="css-qnoc8j"
+          />
+          <input
+            aria-label="email"
+            aria-required="true"
+            class="chakra-input css-133xfak"
+            errors="[object Object]"
+            id="email"
+            placeholder="Email"
+            required=""
+            value=""
+          />
+        </div>
       </div>
       <div
-        aria-live="polite"
-        class="css-jhkd4z"
-        id="form-input"
+        class="chakra-form-control css-0"
+        role="group"
       >
         <div
-          class="css-qnoc8j"
-        />
-        <input
-          aria-label="password"
-          class="chakra-input css-133xfak"
-          control="[object Object]"
-          errors="[object Object]"
-          id="password"
-          name="password"
-          placeholder="Password"
-          type="password"
-        />
+          aria-live="polite"
+          class="css-jhkd4z"
+          id="form-input"
+        >
+          <div
+            class="css-qnoc8j"
+          />
+          <input
+            aria-label="password"
+            aria-required="true"
+            class="chakra-input css-133xfak"
+            errors="[object Object]"
+            id="password"
+            placeholder="Password"
+            required=""
+            type="password"
+            value=""
+          />
+        </div>
       </div>
       <div
         class="chakra-alert css-1e3grqz"

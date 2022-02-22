@@ -13,76 +13,98 @@ exports[`Register form matches snapshot 1`] = `
       class="chakra-stack css-w4pe59"
     >
       <div
-        aria-live="polite"
-        class="css-jhkd4z"
-        id="form-input"
+        class="chakra-form-control css-0"
+        role="group"
       >
         <div
-          class="css-qnoc8j"
-        />
-        <input
-          aria-label="firstName"
-          class="chakra-input css-133xfak"
-          control="[object Object]"
-          errors="[object Object]"
-          id="firstName"
-          name="firstName"
-          placeholder="First name"
-        />
+          aria-live="polite"
+          class="css-jhkd4z"
+          id="form-input"
+        >
+          <div
+            class="css-qnoc8j"
+          />
+          <input
+            aria-label="firstName"
+            aria-required="true"
+            class="chakra-input css-133xfak"
+            errors="[object Object]"
+            id="firstName"
+            placeholder="First name"
+            required=""
+            value=""
+          />
+        </div>
       </div>
       <div
-        aria-live="polite"
-        class="css-jhkd4z"
-        id="form-input"
+        class="chakra-form-control css-0"
+        role="group"
       >
         <div
-          class="css-qnoc8j"
-        />
-        <input
-          aria-label="lastName"
-          class="chakra-input css-133xfak"
-          control="[object Object]"
-          errors="[object Object]"
-          id="lastName"
-          name="lastName"
-          placeholder="Last name"
-        />
+          aria-live="polite"
+          class="css-jhkd4z"
+          id="form-input"
+        >
+          <div
+            class="css-qnoc8j"
+          />
+          <input
+            aria-label="lastName"
+            class="chakra-input css-133xfak"
+            errors="[object Object]"
+            id="lastName"
+            placeholder="Last name"
+            value=""
+          />
+        </div>
       </div>
       <div
-        aria-live="polite"
-        class="css-jhkd4z"
-        id="form-input"
+        class="chakra-form-control css-0"
+        role="group"
       >
         <div
-          class="css-qnoc8j"
-        />
-        <input
-          aria-label="email"
-          class="chakra-input css-133xfak"
-          control="[object Object]"
-          errors="[object Object]"
-          id="email"
-          name="email"
-          placeholder="Email"
-        />
+          aria-live="polite"
+          class="css-jhkd4z"
+          id="form-input"
+        >
+          <div
+            class="css-qnoc8j"
+          />
+          <input
+            aria-label="email"
+            aria-required="true"
+            class="chakra-input css-133xfak"
+            errors="[object Object]"
+            id="email"
+            placeholder="Email"
+            required=""
+            value=""
+          />
+        </div>
       </div>
       <div
-        aria-live="polite"
-        class="css-jhkd4z"
-        id="form-input"
+        class="chakra-form-control css-0"
+        role="group"
       >
         <div
-          class="css-qnoc8j"
-        />
-        <input
-          aria-label="password"
-          class="chakra-input css-133xfak"
-          control="[object Object]"
-          errors="[object Object]"
-          id="password"
-          name="password"
-          placeholder="Password"
-        />
+          aria-live="polite"
+          class="css-jhkd4z"
+          id="form-input"
+        >
+          <div
+            class="css-qnoc8j"
+          />
+          <input
+            aria-label="password"
+            aria-required="true"
+            class="chakra-input css-133xfak"
+            errors="[object Object]"
+            id="password"
+            placeholder="Password"
+            required=""
+            value=""
+          />
+        </div>
       </div>
       <button
         aria-label="submit-register-account"

@@ -19,6 +19,7 @@ export const useIdeaFragment = (id?: string) => {
 				team
 				additionalInformation
 				isPublished
+				summary
 				status
 			}
 		`,

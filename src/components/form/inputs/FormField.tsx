@@ -12,11 +12,11 @@ import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import {
 	Control,
-	Controller,
 	DeepMap,
 	FieldError,
 	Path,
 	RegisterOptions,
+	useController,
 	UseFormRegister,
 	useWatch
 } from 'react-hook-form';
@@ -28,7 +28,7 @@ import ResizeTextarea from 'react-textarea-autosize';
 export type TFormFieldProps<TFormValues> = {
 	name: Path<TFormValues>;
 	onClear: (name: string) => void;
-	control: Control<TFormValues, object>;
+	control: Control<TFormValues>;
 	rules?: RegisterOptions;
 	register?: UseFormRegister<TFormValues>;
 	errors?: Partial<DeepMap<TFormValues, FieldError>>;
@@ -49,8 +49,8 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 	control,
 	errors,
 	label,
-	helperText,
 	children,
+	helperText,
 	onClear
 }: TFormFieldProps<TFormValues>) => {
 	const watchValue = useWatch({
@@ -86,22 +86,6 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 			</FlexLayout>
 
 			{children}
-			{/* {errors && (
-				<ErrorMessage
-					errors={errors}
-					name={name as any}
-					render={({ message }) => (
-						<Text
-							mt={2}
-							color="red.500"
-							fontSize="xs"
-							textAlign="start"
-						>
-							{message}
-						</Text>
-					)}
-				/>
-			)} */}
 
 			{errors && Object.keys(errors).length ? (
 				<ErrorMessage
@@ -133,33 +117,50 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 	name,
 	register,
 	rules,
-	onClear,
+	control,
 	...rest
 }: TFormFieldProps<TFormValues>) => {
 	const errorMessages = rest.errors?.[name];
 	const hasError = !!(rest.errors && errorMessages);
+
+	const {
+		field: { onChange, value }
+	} = useController({
+		name,
+		rules,
+		control,
+		defaultValue: undefined
+	});
+
 	return (
-		<FormField name={name} onClear={onClear} {...rest}>
-			<Input
-				id={name}
+		<FormControl isRequired={!!rules?.required}>
+			<FormField
 				name={name}
-				rounded="md"
-				size="md"
-				fontSize="smaller"
-				variant="outline"
-				aria-label={name}
-				aria-invalid={hasError}
-				borderColor={hasError ? 'red.500' : 'inherit'}
-				_focus={{
-					borderColor: hasError ? 'red.500' : 'inherit'
-				}}
-				_hover={{
-					borderColor: hasError ? 'red.500' : 'inherit'
-				}}
+				isInvalid={!!rest.errors}
+				isRequired={!!rules?.required}
+				control={control}
 				{...rest}
-				{...(register && register(name, rules))}
-			/>
-		</FormField>
+			>
+				<Input
+					onChange={onChange}
+					value={value as any}
+					rounded="md"
+					size="md"
+					fontSize="smaller"
+					variant="outline"
+					aria-label={name}
+					aria-invalid={hasError}
+					borderColor={hasError ? 'red.500' : 'inherit'}
+					_focus={{
+						borderColor: hasError ? 'red.500' : 'inherit'
+					}}
+					_hover={{
+						borderColor: hasError ? 'red.500' : 'inherit'
+					}}
+					{...rest}
+				/>
+			</FormField>
+		</FormControl>
 	);
 };
 
@@ -173,6 +174,16 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 }: TFormTextareaFieldProps<TFormValues>) => {
 	const errorMessages = rest.errors?.[name];
 	const hasError = !!(rest.errors && errorMessages);
+
+	const {
+		field: { onChange, value }
+	} = useController({
+		name,
+		rules,
+		control,
+		defaultValue: undefined
+	});
+
 	return (
 		<FormControl isRequired={!!rules?.required}>
 			<FormField
@@ -182,34 +193,26 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 				control={control}
 				{...rest}
 			>
-				<Controller
-					defaultValue={undefined}
+				<Textarea
 					name={name}
-					control={control}
-					rules={rules}
-					render={({ field: { onChange, value } }) => (
-						<Textarea
-							placeholder={placeholder}
-							as={ResizeTextarea}
-							value={value as string}
-							onChange={onChange}
-							rounded="md"
-							size="md"
-							fontSize="smaller"
-							variant="outline"
-							maxH={'100px'}
-							aria-label={name}
-							aria-invalid={hasError}
-							borderColor={hasError ? 'red.500' : 'inherit'}
-							_focus={{
-								borderColor: hasError ? 'red.500' : 'inherit'
-							}}
-							_hover={{
-								borderColor: hasError ? 'red.500' : 'inherit'
-							}}
-							{...(register && register(name, rules))}
-						/>
-					)}
+					onChange={onChange}
+					value={value as any}
+					placeholder={placeholder}
+					as={ResizeTextarea}
+					rounded="md"
+					size="md"
+					fontSize="smaller"
+					variant="outline"
+					maxH={'100px'}
+					aria-label={name}
+					aria-invalid={hasError}
+					borderColor={hasError ? 'red.500' : 'inherit'}
+					_focus={{
+						borderColor: hasError ? 'red.500' : 'inherit'
+					}}
+					_hover={{
+						borderColor: hasError ? 'red.500' : 'inherit'
+					}}
 				/>
 			</FormField>
 		</FormControl>
@@ -229,6 +232,16 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 }: TFormSelectFieldProps<TFormValues>) => {
 	const errorMessages = rest.errors?.[name];
 	const hasError = !!(rest.errors && errorMessages);
+
+	const {
+		field: { onChange, value, ...field }
+	} = useController({
+		name,
+		rules,
+		control,
+		defaultValue: undefined
+	});
+
 	return (
 		<FormControl isInvalid={!!rest.errors} isRequired={!!rules?.required}>
 			<FormField
@@ -237,117 +250,100 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 				control={control}
 				{...rest}
 			>
-				<Controller
-					defaultValue={undefined}
+				<Select
+					{...field}
+					id={name}
 					name={name}
-					control={control}
-					rules={rules}
-					render={({ field: { onChange, value } }) => (
-						<Select
-							id={name}
-							name={name}
-							aria-label={name}
-							aria-invalid={hasError}
-							menuPortalTarget={document.body}
-							menuPlacement={selectProps?.menuPlacement}
-							options={options}
-							placeholder={`Select ${placeholder ?? 'option'}`}
-							onChange={(e) => onChange(e.value)}
-							value={
-								options.find(
-									(opt: any) => opt.value === value
-								) || null
+					aria-label={name}
+					aria-invalid={hasError}
+					menuPortalTarget={document.body}
+					menuPlacement={selectProps?.menuPlacement}
+					options={options}
+					placeholder={`Select ${placeholder ?? 'option'}`}
+					onChange={(e) => onChange(e.value)}
+					value={
+						options.find((opt: any) => opt.value === value) || null
+					}
+					styles={{
+						menuPortal: (provided) => ({
+							...provided,
+							zIndex: 9999
+						}),
+						option: (provided, state) => ({
+							...provided,
+							fontSize: '12px',
+							cursor: 'pointer',
+							':hover': {
+								background: '#F8F8F9'
+							},
+							background: state.isSelected
+								? '#F8F8F9'
+								: 'transparent',
+							color: state.isSelected ? '#1078A9' : '#718096'
+						}),
+						control: (provided) => ({
+							...provided,
+							fontSize: '12px',
+							cursor: 'pointer',
+							color: '#718096',
+							borderColor: hasError ? '#E53E3E' : '#E2E8F0',
+							boxShadow: 'none',
+							borderRadius: '0.375rem',
+							':focus-within': {
+								borderColor: hasError ? '#E53E3E' : '#E2E8F0'
+							},
+							':hover': {
+								borderColor: hasError ? '#E53E3E' : '#E2E8F0'
 							}
-							styles={{
-								menuPortal: (provided) => ({
-									...provided,
-									zIndex: 9999
-								}),
-								option: (provided, state) => ({
-									...provided,
-									fontSize: '12px',
-									cursor: 'pointer',
-									':hover': {
-										background: '#F8F8F9'
-									},
-									background: state.isSelected
-										? '#F8F8F9'
-										: 'transparent',
-									color: state.isSelected
-										? '#1078A9'
-										: '#718096'
-								}),
-								control: (provided) => ({
-									...provided,
-									fontSize: '12px',
-									cursor: 'pointer',
-									color: '#718096',
-									borderColor: hasError
-										? '#E53E3E'
-										: '#E2E8F0',
-									boxShadow: 'none',
-									borderRadius: '0.375rem',
-									':focus-within': {
-										borderColor: hasError
-											? '#E53E3E'
-											: '#E2E8F0'
-									},
-									':hover': {
-										borderColor: hasError
-											? '#E53E3E'
-											: '#E2E8F0'
-									}
-								}),
-								singleValue: (provided) => ({
-									...provided,
-									color: '#425068'
-								}),
-								placeholder: (provided) => ({
-									...provided,
-									fontSize: '12px'
-								}),
-								indicatorSeparator: () => ({
-									width: 0
-								}),
-								container: (provided) => ({
-									...provided,
-									borderRadius: '0.375rem'
-								}),
-								valueContainer: (provided) => ({
-									...provided,
-									color: '#718096'
-								}),
-								noOptionsMessage: (provided) => ({
-									...provided,
-									fontSize: '12px'
-								}),
-								menuList: (provided) => ({
-									...provided,
-									'::-webkit-scrollbar': {
-										width: '4px',
-										height: '0px'
-									},
-									'::-webkit-scrollbar-track': {
-										background: 'inherit'
-									},
-									'::-webkit-scrollbar-thumb': {
-										background: '#E2E8F0'
-									}
-								}),
-								dropdownIndicator: (provided, state) => ({
-									...provided,
-									svg: {
-										width: '14px',
-										height: '14px',
-										transform: state.isFocused
-											? 'rotate(-180deg)'
-											: 'rotate(0deg)',
-										transition: 'transform .1s linear'
-									}
-								})
-							}}
-						/>
-					)}
+						}),
+						singleValue: (provided) => ({
+							...provided,
+							color: '#425068'
+						}),
+						placeholder: (provided) => ({
+							...provided,
+							fontSize: '12px'
+						}),
+						indicatorSeparator: () => ({
+							width: 0
+						}),
+						container: (provided) => ({
+							...provided,
+							borderRadius: '0.375rem'
+						}),
+						valueContainer: (provided) => ({
+							...provided,
+							color: '#718096'
+						}),
+						noOptionsMessage: (provided) => ({
+							...provided,
+							fontSize: '12px'
+						}),
+						menuList: (provided) => ({
+							...provided,
+							'::-webkit-scrollbar': {
+								width: '4px',
+								height: '0px'
+							},
+							'::-webkit-scrollbar-track': {
+								background: 'inherit'
+							},
+							'::-webkit-scrollbar-thumb': {
+								background: '#E2E8F0'
+							}
+						}),
+						dropdownIndicator: (provided, state) => ({
+							...provided,
+							svg: {
+								width: '14px',
+								height: '14px',
+								transform: state.isFocused
+									? 'rotate(-180deg)'
+									: 'rotate(0deg)',
+								transition: 'transform .1s linear'
+							}
+						})
+					}}
 				/>
 			</FormField>
 		</FormControl>

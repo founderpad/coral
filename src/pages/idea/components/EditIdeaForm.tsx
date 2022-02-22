@@ -66,6 +66,7 @@ export const EditIdeaForm = () => {
 				id="name"
 				name="name"
 				label="Name of your idea"
+				placeholder="Write the idea name (max. 75 characters)"
 				helperText="Make your idea name stand out"
 				register={register}
 				control={control}
