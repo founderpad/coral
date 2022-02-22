@@ -6,8 +6,7 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
-	ModalProps,
-	useBreakpointValue
+	ModalProps
 } from '@chakra-ui/react';
 import { BaseButton } from '@components/buttons';
 import { ModalDrawerFooterActions } from '@components/shared';
@@ -36,13 +35,11 @@ export const Modal = (props: IModalProps) => {
 		removePadding
 	} = props;
 
-	const isMobile = useBreakpointValue({ base: true, sm: false });
-
 	return (
 		<ChakraModal
 			isOpen={isOpen}
 			onClose={onClose}
-			size={isMobile ? 'full' : size}
+			size={size}
 			scrollBehavior={'inside'}
 			closeOnOverlayClick={false}
 			isCentered
