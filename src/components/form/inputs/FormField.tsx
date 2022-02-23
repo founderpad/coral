@@ -3,7 +3,6 @@ import {
 	FormControl,
 	Input,
 	InputProps,
-	Text,
 	Textarea,
 	FormHelperText
 } from '@chakra-ui/react';
@@ -18,7 +17,8 @@ import {
 	RegisterOptions,
 	useController,
 	UseFormRegister,
-	useWatch
+	useWatch,
+	ValidationRule
 } from 'react-hook-form';
 import { Props as SelectProps } from 'react-select';
 import Select from 'react-select';
@@ -45,6 +45,23 @@ export type TFormSelectFieldProps<TFormValues> =
 
 export type TFormTextareaFieldProps<TFormValues> = TFormFieldProps<TFormValues>;
 
+const FormFieldLimit = ({ max, value }: { max: number; value: string }) => {
+	// const []
+
+	// color="fpGrey.300"
+	return (
+		<FormHelperText
+			fontSize="x-small"
+			color={value.length > max ? 'red.500' : 'fpGrey.300'}
+			ml="auto"
+		>
+			{max - value.length} remaining
+			{/* {value.length} / {max} */}
+			{/* {max - value.length} / {max} */}
+		</FormHelperText>
+	);
+};
+
 export const FormField = <TFormValues extends Record<string, unknown>>({
 	name,
 	control,
@@ -52,12 +69,17 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 	children,
 	label,
 	helperText,
-	onClear
+	onClear,
+	value,
+	rules
 }: TFormFieldProps<TFormValues>) => {
 	const watchValue = useWatch({
 		control,
 		name
 	});
+
+	// const res = rules?.maxLength as any;
+	// console.log('input fieldddd value: ', res.value);
 
 	return (
 		<FlexLayout
@@ -79,7 +101,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 						variant="link"
 						mb={1}
 						ml="auto"
-						onClick={() => onClear('email')}
+						onClick={() => onClear(name)}
 					>
 						Clear
 					</Button>
@@ -88,7 +110,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 
 			{children}
 
-			{errors && Object.keys(errors).length ? (
+			{/* {errors && Object.keys(errors).length ? (
 				<ErrorMessage
 					errors={errors}
 					name={name as any}
@@ -109,7 +131,38 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 						{helperText}
 					</FormHelperText>
 				)
-			)}
+			)} */}
+
+			<FlexLayout justifyContent="space-between" alignItems="center">
+				{errors && Object.keys(errors).length ? (
+					<ErrorMessage
+						errors={errors}
+						name={name as any}
+						render={({ message }) => (
+							<FormHelperText
+								color="red.500"
+								fontSize="x-small"
+								textAlign="start"
+							>
+								{message}
+							</FormHelperText>
+						)}
+					/>
+				) : (
+					helperText && (
+						<FormHelperText fontSize="x-small" color="fpGrey.300">
+							{helperText}
+						</FormHelperText>
+					)
+				)}
+
+				{rules?.maxLength && value && (
+					<FormFieldLimit
+						max={(rules?.maxLength as any).value}
+						value={value as string}
+					/>
+				)}
+			</FlexLayout>
 		</FlexLayout>
 	);
 };
@@ -133,6 +186,8 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 		control
 	});
 
+	// console.log('value', field);
+
 	return (
 		<FormControl isRequired={!!rules?.required}>
 			<FormField
@@ -140,12 +195,14 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 				isInvalid={!!rest.errors}
 				isRequired={!!rules?.required}
 				control={control}
+				rules={rules}
+				value={value as string}
 				{...rest}
 			>
 				<Input
 					{...fieldProps}
 					onChange={onChange}
-					value={value as any}
+					value={value as string}
 					rounded="md"
 					size="md"
 					fontSize="smaller"

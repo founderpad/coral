@@ -33,6 +33,9 @@ exports[`Login form matches snapshot 1`] = `
             required=""
             value=""
           />
+          <div
+            class="css-11633wt"
+          />
         </div>
       </div>
       <div
@@ -56,6 +59,9 @@ exports[`Login form matches snapshot 1`] = `
             required=""
             type="password"
             value=""
+          />
+          <div
+            class="css-11633wt"
           />
         </div>
       </div>

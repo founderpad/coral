@@ -101,14 +101,14 @@ const PersonalDetailsForm = () => {
 				register={register}
 				control={control}
 				fieldProps={{
-					placeholder: 'Display name'
+					placeholder: 'Display name (max. 25 characters)'
 				}}
 				rules={{
-					required: 'You must input a display name',
+					required: 'You must enter a display name',
 					maxLength: {
-						value: 10,
+						value: 25,
 						message:
-							'Your display name can not be more than 50 characters'
+							'Your display name can not be more than 25 characters'
 					}
 				}}
 				errors={errors}
@@ -134,7 +134,7 @@ const PersonalDetailsForm = () => {
 					register={register}
 					control={control}
 					fieldProps={{
-						placeholder: 'Custom pronouns'
+						placeholder: 'Custom pronouns (max. 20 characters)'
 					}}
 					rules={{
 						required: 'You must input a custom pronoun',
