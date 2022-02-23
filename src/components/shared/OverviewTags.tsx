@@ -35,22 +35,22 @@ const OverviewTags = memo(
 							<BaseTag
 								key={title}
 								p={2}
-								d={'flex'}
-								flexDirection={'column'}
-								bg={'fpPrimary.50'}
+								d="flex"
+								flexDirection="column"
+								bg="fpPrimary.50"
 								borderWidth={0}
-								justifyContent={'flex-start'}
+								justifyContent="flex-start"
 							>
 								<Label
-									fontSize={'xs'}
-									alignItems={'center'}
+									fontSize="xs"
+									alignItems="center"
 									mb={1}
-									display={'flex'}
-									color={'fpPrimary.700'}
+									display="flex"
+									color="fpPrimary.700"
 								>
 									{value}
 								</Label>
-								<Label color={'gray.400'} fontSize={'xs'}>
+								<Label color="gray.400" fontSize="xs">
 									{title}
 								</Label>
 							</BaseTag>

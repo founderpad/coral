@@ -6,8 +6,7 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
-	ModalProps,
-	useBreakpointValue
+	ModalProps
 } from '@chakra-ui/react';
 import { BaseButton } from '@components/buttons';
 import { ModalDrawerFooterActions } from '@components/shared';
@@ -36,50 +35,48 @@ export const Modal = (props: IModalProps) => {
 		removePadding
 	} = props;
 
-	const isMobile = useBreakpointValue({ base: true, sm: false });
-
 	return (
 		<ChakraModal
 			isOpen={isOpen}
 			onClose={onClose}
-			size={isMobile ? 'full' : size}
-			scrollBehavior={'inside'}
+			size={size}
+			scrollBehavior="inside"
 			closeOnOverlayClick={false}
 			isCentered
 		>
 			<ModalOverlay />
 			<ModalContent
-				rounded={'md'}
-				position={'relative'}
-				maxH={'95vh'}
+				rounded="md"
+				position="relative"
+				maxH="95vh"
 				my={0}
-				d={'flex'}
+				d="flex"
 			>
 				<ModalHeader
 					borderBottomWidth={1}
-					fontSize={'md'}
+					fontSize="md"
 					p={4}
-					display={'flex'}
-					justifyContent={'center'}
-					fontWeight={'semibold'}
+					display="flex"
+					justifyContent="center"
+					fontWeight="semibold"
 				>
-					<ModalCloseButton color={'black'} left={2} top={3} />
+					<ModalCloseButton color="black" left={2} top={3} />
 					{title}
 				</ModalHeader>
 
 				<ModalBody
-					fontWeight={'normal'}
-					fontSize={'sm'}
-					color={'gray.600'}
+					fontWeight="normal"
+					fontSize="sm"
+					color="gray.600"
 					flex={1}
 					p={removePadding ? 0 : 4}
-					maxH={'100%'}
-					borderRadius={'md'}
+					maxH="100%"
+					borderRadius="md"
 				>
 					{body}
 				</ModalBody>
 
-				<ModalFooter d={'flex'} w={'full'} p={4} borderTopWidth={1}>
+				<ModalFooter d="flex" w="full" p={4} borderTopWidth={1}>
 					<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
 						{action}
 					</ModalDrawerFooterActions>

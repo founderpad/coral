@@ -2,8 +2,8 @@ import { FormControl, Checkbox, Button } from '@chakra-ui/react';
 import { SubmitButton } from '@components/buttons';
 import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
+import { FormSelect } from '@components/form/inputs/FormField';
 import BaseHeading from '@components/heading/BaseHeading';
-import { SelectField } from '@components/input';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { AppDivider } from '@components/shared';
@@ -14,20 +14,14 @@ import {
 	ALL_USER_OBJECTIVES,
 	AVAILABILITY_IN_HOURS,
 	EXPERIENCE_SKILLS,
-	mobileAvailabilityOptions,
-	mobileCountriesList,
-	mobileIdeaCategoryFields,
-	mobileNumberOfStartups,
-	mobileStartupStatuses,
-	mobileUserObjectives,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
 import Router, { useRouter } from 'next/router';
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-interface ISearchFields {
+type TSearchFields = {
 	status?: string;
 	availability?: string;
 	field?: string;
@@ -35,17 +29,17 @@ interface ISearchFields {
 	country?: string;
 	skills?: Array<string>;
 	objective?: string;
-}
+};
 
 const UsersSearchForm = () => {
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-	const { handleSubmit, reset, control, getValues, setValue } =
-		useForm<ISearchFields>();
+	const { handleSubmit, control, register, resetField, setValue } =
+		useForm<TSearchFields>();
 	const router = useRouter();
 
-	const onClick = (values: ISearchFields) => {
+	const onClick = (values: TSearchFields) => {
 		setModalDrawer({
 			isOpen: false
 		});
@@ -79,108 +73,106 @@ const UsersSearchForm = () => {
 		setValue('skills', skillsCopy);
 	};
 
-	const resetField = useCallback(
-		(name: string) => {
-			reset({
-				...getValues(),
-				[name]: ''
-			});
-		},
-		[reset, getValues]
-	);
+	const onResetField = (name: keyof TSearchFields) => {
+		resetField(name);
+		if (Router['query'][name]) {
+			delete Router['query'][name];
+			Router.push(
+				{
+					query: { ...Router.query }
+				},
+				undefined,
+				{
+					shallow: true
+				}
+			);
+		}
+	};
 
 	return (
 		<Form
-			id={'users-filter-form'}
-			name={'users-filter-form'}
+			id="users-filter-form"
+			name="users-filter-form"
 			onSubmit={handleSubmit(onClick)}
 		>
-			<BaseHeading fontSize={'sm'} display={{ base: 'none', sm: 'flex' }}>
+			<BaseHeading fontSize="sm" display={{ base: 'none', sm: 'flex' }}>
 				Filters
 			</BaseHeading>
 
-			<SelectField
+			<FormSelect<TSearchFields>
 				id="objective"
 				name="objective"
 				label="Looking for"
-				placeholder="looking for"
+				placeholder="objective"
 				options={ALL_USER_OBJECTIVES}
-				mobileOptions={mobileUserObjectives()}
-				onClear={() => resetField('objective')}
+				register={register}
 				control={control}
-				isUrl
+				onClear={onResetField}
 			/>
 
-			<SelectField
+			<FormSelect<TSearchFields>
 				id="country"
 				name="country"
 				label="Country"
-				placeholder={'country'}
+				placeholder="country"
 				options={ALL_COUNTRIES}
-				mobileOptions={mobileCountriesList()}
-				onClear={() => resetField('country')}
+				register={register}
 				control={control}
-				isUrl
+				onClear={onResetField}
 			/>
 
 			<AppDivider />
-			<SelectField
+
+			<FormSelect<TSearchFields>
 				id="status"
 				name="status"
 				label="Startup status"
-				placeholder="startup status"
+				placeholder="status"
 				options={STARTUP_STATUS}
-				mobileOptions={mobileStartupStatuses()}
-				onClear={() => resetField('status')}
+				register={register}
 				control={control}
-				isUrl
+				onClear={onResetField}
 			/>
-
-			<SelectField
+			<FormSelect<TSearchFields>
 				id="startups"
 				name="startups"
-				options={NUMBER_OF_STARTUPS}
-				mobileOptions={mobileNumberOfStartups()}
+				label="Startup status"
 				placeholder="number of startups"
+				options={NUMBER_OF_STARTUPS}
+				register={register}
 				control={control}
-				label={'Previous startups'}
-				onClear={() => resetField('startups')}
-				isUrl
+				onClear={onResetField}
 			/>
-
-			<SelectField
+			<FormSelect<TSearchFields>
 				id="availability"
 				name="availability"
+				label="Availability (hours per week)"
+				placeholder="availability"
 				options={AVAILABILITY_IN_HOURS}
-				mobileOptions={mobileAvailabilityOptions()}
-				placeholder="capacity per week"
+				register={register}
 				control={control}
-				label={'Availability (hours per week)'}
-				onClear={() => resetField('availability')}
-				isUrl
+				onClear={onResetField}
 			/>
-
-			<SelectField
+			<FormSelect<TSearchFields>
 				id="field"
 				name="field"
 				label="Specialist field"
 				placeholder="field"
-				size={'md'}
 				options={ALL_IDEA_CATEGORY_FIELDS}
-				mobileOptions={mobileIdeaCategoryFields()}
+				register={register}
 				control={control}
-				onClear={() => resetField('field')}
-				isUrl
+				onClear={onResetField}
 			/>
+
 			<AppDivider />
 
 			<FormControl>
-				<FlexLayout justifyContent={'space-between'}>
-					<FormLabelText label={'Skills'} />
+				<FlexLayout justifyContent="space-between">
+					<FormLabelText label="Skills" />
 					<Button
-						fontSize={'x-small'}
-						colorScheme={'fpPrimary'}
-						variant={'link'}
+						fontSize="x-small"
+						colorScheme="fpPrimary"
+						variant="link"
 						mb={1}
 						onClick={() => {
 							delete Router.query['skills'];
@@ -202,26 +194,26 @@ const UsersSearchForm = () => {
 					</Button>
 				</FlexLayout>
 
-				<FlexLayout flexDirection={'column'}>
+				<FlexLayout flexDirection="column">
 					{EXPERIENCE_SKILLS.map((es: string) => (
 						<Controller
 							key={es}
-							name={'skills'}
+							name="skills"
 							render={({ field: { ref } }) => (
 								<Checkbox
 									name={es}
-									rounded={'none'}
-									focusBorderColor={'gray.150'}
+									rounded="none"
+									focusBorderColor="gray.150"
 									value={es}
 									py={1}
 									onChange={onSkillsToggle}
-									colorScheme={'fpPrimary'}
-									color={'fpGrey.900'}
+									colorScheme="fpPrimary"
+									color="fpGrey.900"
 									ref={ref}
 									isChecked={selectedSkills.includes(es)}
 								>
 									<Label
-										color={'fpGrey.900'}
+										color="fpGrey.900"
 										fontSize={{ base: 'small', sm: 'xs' }}
 									>
 										{es}
@@ -235,10 +227,10 @@ const UsersSearchForm = () => {
 			</FormControl>
 
 			<SubmitButton
-				name={'filter-users-button'}
-				label={'Show results'}
+				name="filter-users-button"
+				label="Show results"
 				flex={2}
-				title={'Filter users'}
+				title="Filter users"
 			/>
 		</Form>
 	);

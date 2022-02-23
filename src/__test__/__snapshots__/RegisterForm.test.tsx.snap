@@ -10,7 +10,7 @@ exports[`Register form matches snapshot 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-w4pe59"
+      class="chakra-stack css-1givsb"
     >
       <div
         class="chakra-form-control css-0"
@@ -23,17 +23,29 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
             aria-label="firstName"
             aria-required="true"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="firstName"
+            class="chakra-input css-gr2y0"
+            id="field-1"
             placeholder="First name"
             required=""
             value=""
           />
+          <div
+            class="css-11633wt"
+          />
         </div>
       </div>
       <div
@@ -47,15 +59,27 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
             aria-label="lastName"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="lastName"
+            class="chakra-input css-gr2y0"
+            id="field-2"
             placeholder="Last name"
             value=""
           />
+          <div
+            class="css-11633wt"
+          />
         </div>
       </div>
       <div
@@ -69,17 +93,29 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
             aria-label="email"
             aria-required="true"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="email"
+            class="chakra-input css-gr2y0"
+            id="field-3"
             placeholder="Email"
             required=""
             value=""
           />
+          <div
+            class="css-11633wt"
+          />
         </div>
       </div>
       <div
@@ -93,22 +129,39 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
             aria-label="password"
             aria-required="true"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="password"
+            class="chakra-input css-gr2y0"
+            id="field-4"
             placeholder="Password"
             required=""
+            type="password"
             value=""
+          />
+          <div
+            class="css-11633wt"
           />
         </div>
       </div>
+    </div>
+    <div
+      class="css-1eo0s4i"
+    >
       <button
         aria-label="submit-register-account"
-        class="chakra-button css-1ktoofj"
+        class="chakra-button css-1r0kqo2"
         id="submit-register-account"
         type="submit"
       >
@@ -117,7 +170,7 @@ exports[`Register form matches snapshot 1`] = `
     </div>
   </form>
   <div
-    class="chakra-text css-i2jbli"
+    class="chakra-text css-av3fgh"
   >
     By continuing, you agree to founderpad's 
     <span
@@ -127,9 +180,9 @@ exports[`Register form matches snapshot 1`] = `
       target="_blank"
       title="Link to Terms of Service"
     >
-      Terms of Service
+      Terms of Service 
     </span>
-     and acknowledge that you've read our 
+    and acknowledge that you've read our 
     <span
       class="chakra-link css-ntv2za"
       href="/privacy-policy"
@@ -139,10 +192,9 @@ exports[`Register form matches snapshot 1`] = `
     >
       Privacy Policy.
     </span>
-     
   </div>
   <div
-    class="chakra-text css-1gx0chr"
+    class="chakra-text css-1fihqrz"
   >
     Already have an account? 
     <span

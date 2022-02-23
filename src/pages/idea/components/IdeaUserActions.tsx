@@ -19,11 +19,7 @@ export const IdeaUserActions = () => {
 			: '';
 
 	return (
-		<FlexLayout
-			alignItems={'center'}
-			justifyContent={'space-between'}
-			mb={4}
-		>
+		<FlexLayout alignItems="center" justifyContent="space-between" mb={4}>
 			<UserAvatarDetails
 				title={`Published by ${publishedName}`}
 				src={idea?.user?.avatarUrl || undefined}

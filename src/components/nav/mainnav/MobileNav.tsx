@@ -2,10 +2,10 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
 import { Flex, Stack, Text } from '@chakra-ui/layout';
-import { Collapse, useBreakpointValue } from '@chakra-ui/react';
+import { Collapse } from '@chakra-ui/react';
 import { IoChevronDownSharp } from '@components/icons';
 import { StackLayout } from '@components/layouts';
-import { useMobileNav } from '@hooks/util';
+import { useMobile, useMobileNav } from '@hooks/util';
 import React, { memo } from 'react';
 import NavItems, { NavItem } from './NavItems';
 import { SubNav } from './SubNav';
@@ -13,7 +13,7 @@ import { SubNav } from './SubNav';
 const MobileNav = () => {
 	const { isOpen } = useMobileNav();
 
-	const isMobile = useBreakpointValue({ base: true, md: false });
+	const isMobile = useMobile();
 
 	if (!isMobile) return null;
 	return (
@@ -22,13 +22,13 @@ const MobileNav = () => {
 				backgroundColor: 'rgba(255,255,255,0.95)'
 			}}
 			display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
-			position={'absolute'}
+			position="absolute"
 			top={10}
 			zIndex={999}
 			p={4}
 			flex={1}
-			w={'full'}
-			overflow={'hidden'}
+			w="full"
+			overflow="hidden"
 			spacing={2}
 			h={'calc(100% - 40px)'}
 		>
@@ -47,13 +47,13 @@ const MobileNavItem = (navItem: NavItem) => {
 		<StackLayout spacing={4} onClick={navItem && onToggle}>
 			<Flex
 				pb={2}
-				justify={'space-between'}
-				align={'center'}
+				justify="space-between"
+				align="center"
 				_hover={{ textDecoration: 'none' }}
 			>
 				<Text
 					py={2}
-					fontSize={'sm'}
+					fontSize="sm"
 					fontWeight={500}
 					_hover={{
 						textDecoration: 'none',

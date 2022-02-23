@@ -32,25 +32,25 @@ export const UploadedFiles = memo((props: Props) => {
 			{files.map((f) => (
 				<FlexLayout
 					key={f.fileId}
-					justifyContent={'space-between'}
-					alignItems={'center'}
+					justifyContent="space-between"
+					alignItems="center"
 				>
 					<StackLayout
-						alignItems={'center'}
-						direction={'row'}
+						alignItems="center"
+						direction="row"
 						flex={1}
 						spacing={0}
 					>
 						<Icon
 							as={IoDocumentSharp}
-							color={'gray.400'}
-							fontSize={'xx-large'}
+							color="gray.400"
+							fontSize="xx-large"
 							mr={3}
 						/>
-						<Flex flexDirection={'column'}>
+						<Flex flexDirection="column">
 							<PrimaryLink
-								fontSize={'smaller'}
-								title={'View file'}
+								fontSize="smaller"
+								title="View file"
 								href={f.fileUrl}
 								isExternal
 							>
@@ -62,8 +62,8 @@ export const UploadedFiles = memo((props: Props) => {
 						</Flex>
 					</StackLayout>
 					<DeleteButton
-						name={'delete-file-button'}
-						variant={'ghost'}
+						name="delete-file-button"
+						variant="ghost"
 						onClick={() => onDelete(f.fileId)}
 					>
 						Delete

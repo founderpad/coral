@@ -7,5 +7,5 @@ export const Label = ({ fontSize = 'sm', ...rest }: TLabelProps) => (
 );
 
 export const CaptionLabel = ({ color = 'gray.400', ...rest }: TLabelProps) => (
-	<BaseLabel {...rest} fontSize={'x-small'} color={color} />
+	<BaseLabel {...rest} fontSize="x-small" color={color} />
 );

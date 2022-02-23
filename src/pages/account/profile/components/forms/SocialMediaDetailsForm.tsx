@@ -17,7 +17,7 @@ const SocialMediaDetailsForm = (socials: TUser_Profile) => {
 
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 	const showSuccessNotification = useSuccessNotification();
-	const { handleSubmit, control, formState, getValues } =
+	const { handleSubmit, control, getValues } =
 		useForm<TUser_Profile_Set_Input>({
 			mode: 'all',
 			defaultValues: {
@@ -40,15 +40,11 @@ const SocialMediaDetailsForm = (socials: TUser_Profile) => {
 		}
 	});
 
-	const { isSubmitting, isValid } = formState;
-
 	return (
 		<Form
-			id={'editSocialDetailsForm'}
-			name={'editSocialDetailsForm'}
+			id="editSocialDetailsForm"
+			name="editSocialDetailsForm"
 			onSubmit={handleSubmit(updateUserProfileMutation)}
-			isSubmitting={isSubmitting}
-			isValid={isValid}
 		>
 			{/* <InputFieldWithLabelAndIcon
                 id="linkedin"

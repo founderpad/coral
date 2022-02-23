@@ -23,7 +23,7 @@ const MyIdeasContainer = () => {
 	const hasResults = data?.user_ideas?.length ?? 0;
 
 	if (loading) return <Loading small />;
-	if (hasResults < 1) return <NoResults label={'ideas yet'} />;
+	if (hasResults < 1) return <NoResults label="ideas yet" />;
 
 	return (
 		<StackLayout>
@@ -32,10 +32,10 @@ const MyIdeasContainer = () => {
 				<>
 					<StackLayout spacing={4}>
 						<FlexLayout
-							flexDirection={'column'}
+							flexDirection="column"
 							as={BaseLink}
 							href={`/idea/${idea?.id}`}
-							alignItems={'flex-start'}
+							alignItems="flex-start"
 							_hover={{
 								borderColor: 'gray.50',
 								transition: 'ease-in .3s',
@@ -44,16 +44,16 @@ const MyIdeasContainer = () => {
 							p={2}
 							mb={2}
 							flex={1}
-							rounded={'sm'}
+							rounded="sm"
 						>
 							<Label
-								d={'flex'}
-								w={'full'}
-								overflow={'hidden'}
-								fontWeight={'medium'}
+								d="flex"
+								w="full"
+								overflow="hidden"
+								fontWeight="medium"
 								fontSize={{ base: 'smaller', sm: 'md' }}
 								css={{ whiteSpace: 'normal' }}
-								wordBreak={'break-word'}
+								wordBreak="break-word"
 								noOfLines={2}
 								isTruncated
 							>
@@ -63,10 +63,10 @@ const MyIdeasContainer = () => {
 								{formatDate(idea?.createdAt, true)}
 							</CaptionLabel>
 							<StackLayout
-								direction={'row'}
+								direction="row"
 								spacing={2}
 								pt={4}
-								alignItems={'center'}
+								alignItems="center"
 							>
 								<PublishedLabel
 									isPublished={idea?.isPublished}

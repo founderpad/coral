@@ -1,38 +1,31 @@
-import { Icon } from '@chakra-ui/react';
+import { Button, Icon } from '@chakra-ui/react';
 import { IoArrowUpSharp } from '@components/icons';
-import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
 import React from 'react';
 
 export const UpvoteButton = ({
 	onClick,
 	hasUserUpvoted,
 	name,
-	votesTotal = 0,
-	large = false
+	votesTotal = 0
 }: {
 	onClick: () => void;
 	hasUserUpvoted: boolean;
 	name: string;
 	votesTotal?: number;
-	large?: boolean;
 }) => (
-	<FlexLayout alignItems={'center'}>
-		<Icon
-			name={`upvote-${name}-button`}
-			as={IoArrowUpSharp}
-			mr={1}
-			_hover={{ color: 'green.300' }}
-			fontSize={large ? 'lg' : 'md'}
-			color={hasUserUpvoted ? 'green.300' : 'gray.400'}
-			cursor={'pointer'}
-			onClick={onClick}
-		/>
-		<Label
-			fontSize={large ? 'md' : 'sm'}
-			color={hasUserUpvoted ? 'green.300' : 'gray.400'}
-		>
-			{votesTotal}
-		</Label>
-	</FlexLayout>
+	<Button
+		name={`update-${name}-button`}
+		pl={0}
+		size="sm"
+		variant="unstyled"
+		leftIcon={<Icon as={IoArrowUpSharp} />}
+		_selected={{ background: 'transparent' }}
+		onClick={onClick}
+		d="flex"
+		alignItems="center"
+		color={hasUserUpvoted ? 'green.300' : 'fpGrey.400'}
+		_hover={{ color: 'green.300' }}
+	>
+		{votesTotal}
+	</Button>
 );

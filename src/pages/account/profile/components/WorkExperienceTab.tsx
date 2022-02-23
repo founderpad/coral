@@ -8,7 +8,7 @@ import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
 import OverviewTags from '@components/shared/OverviewTags';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useQueryParam } from '@hooks/util';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
@@ -26,7 +26,6 @@ const WorkExperienceTab = () => {
 		statement,
 		status,
 		availability,
-		// businessDescription,
 		background,
 		skills,
 		objective
@@ -57,7 +56,7 @@ const WorkExperienceTab = () => {
 
 				{isChangeSuccess && (
 					<AlertFeedback
-						status={'success'}
+						status="success"
 						message={
 							'Your experience has been updated successfully'
 						}
@@ -66,7 +65,7 @@ const WorkExperienceTab = () => {
 
 				{isChangeError && (
 					<AlertFeedback
-						status={'error'}
+						status="error"
 						message={
 							'Failed to update experience. Please try again later'
 						}
@@ -78,53 +77,38 @@ const WorkExperienceTab = () => {
 					{
 						title: 'Specialist field',
 						value: specialistIndustry || 'Not set'
-						// icon: IoBulbOutline
 					},
 					{
 						title: 'Previous startups',
 						value: startups ? `${startups}` : 'Not set'
-						// icon: IoRocketOutline
 					},
 					{
 						title: 'Startup status',
 						value: status || 'Not set'
-						// icon: IoAnalyticsOutline
 					},
 					{
 						title: 'Capacity (hours per week)',
 						value: availability || 'Not set'
-						// value: availability
-						// 	? convertCapacityToString(availability)
-						// 	: 'Not set',
-						// icon: IoTimeOutline
 					}
 				]}
 			/>
 
 			<StackLayout spacing={8}>
 				<ContentFieldAndValue
-					title={'Objective'}
+					title="Objective"
 					value={objective || 'Not set'}
 				/>
 				<ContentFieldAndValue
-					title={'Background'}
+					title="Background"
 					value={background || 'Not set'}
 				/>
 				<ContentFieldAndValue
-					title={'Personal statement'}
+					title="Personal statement"
 					value={statement || 'Not set'}
 				/>
-				{/* <ContentFieldAndValue
-					title={'Overview of businesses'}
-					value={businessDescription || 'Not set'}
-				/> */}
-				{/* <ContentFieldAndValue
-					title={'Skills'}
-					value={skills?.join(', ') || 'No skills selected'}
-				/> */}
 
 				<ContentFieldAndValue
-					title={'Skills'}
+					title="Skills"
 					value={
 						skills.length ? (
 							<SkillsBadges skills={skills} />
@@ -143,16 +127,16 @@ const WorkExperienceTab = () => {
 	);
 };
 
-const SkillsBadges = ({ skills }: { skills: Array<string> }) => {
+const SkillsBadges = memo(({ skills }: { skills: Array<string> }) => {
 	return (
-		<FlexLayout flexWrap={'wrap'} direction={'row'} alignItems={'center'}>
+		<FlexLayout flexWrap="wrap" direction="row" alignItems="center">
 			{skills?.map((skill) => (
-				<Tag fontSize={'xs'} size={'sm'} mr={1} mb={1} key={skill}>
+				<Tag fontSize="xs" size="sm" mr={1} mb={1} key={skill}>
 					{skill}
 				</Tag>
 			))}
 		</FlexLayout>
 	);
-};
+});
 
 export default WorkExperienceTab;

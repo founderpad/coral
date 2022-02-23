@@ -10,7 +10,7 @@ exports[`Login form matches snapshot 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-w4pe59"
+      class="chakra-stack css-1givsb"
     >
       <div
         class="chakra-form-control css-0"
@@ -23,16 +23,28 @@ exports[`Login form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
             aria-label="email"
             aria-required="true"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="email"
+            class="chakra-input css-gr2y0"
+            id="field-1"
             placeholder="Email"
             required=""
             value=""
+          />
+          <div
+            class="css-11633wt"
           />
         </div>
       </div>
@@ -47,22 +59,34 @@ exports[`Login form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
             aria-label="password"
             aria-required="true"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="password"
+            class="chakra-input css-gr2y0"
+            id="field-2"
             placeholder="Password"
             required=""
             type="password"
             value=""
           />
+          <div
+            class="css-11633wt"
+          />
         </div>
       </div>
       <div
-        class="chakra-alert css-mzg8f4"
+        class="chakra-alert css-glexlw"
         role="alert"
       >
         <svg
@@ -89,9 +113,14 @@ exports[`Login form matches snapshot 1`] = `
           Failed to login. Incorrect email and/or password.
         </div>
       </div>
+    </div>
+    <div
+      class="css-1eo0s4i"
+    >
       <button
         aria-label="submit-login"
-        class="chakra-button css-1ktoofj"
+        class="chakra-button css-1r0kqo2"
+        form="login-form"
         id="submit-login"
         type="submit"
       >
@@ -103,23 +132,23 @@ exports[`Login form matches snapshot 1`] = `
     class="css-18voih5"
   >
     <p
-      class="chakra-text css-1gx0chr"
+      class="chakra-text css-1fihqrz"
     >
-      No account?
+      No account? 
       <span
         class="chakra-link css-ntv2za"
         href="/register"
         title="Link to register an account"
       >
-         Register now
+        Register now
       </span>
     </p>
     <span
-      class="chakra-link css-1nbxiji"
+      class="chakra-link css-pkysmm"
       href="/resetpassword"
       title="Link to register an account"
     >
-       Forgotten password?
+      Forgotten password?
     </span>
   </div>
 </DocumentFragment>

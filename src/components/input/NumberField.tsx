@@ -39,12 +39,12 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 			>
 				{/* {label && <FormLabelText label={label} />} */}
 				{label && (
-					<FlexLayout justifyContent={'space-between'}>
+					<FlexLayout justifyContent="space-between">
 						<FormLabelText label={label} />
 						<Button
-							fontSize={'x-small'}
-							colorScheme={'fpPrimary'}
-							variant={'link'}
+							fontSize="x-small"
+							colorScheme="fpPrimary"
+							variant="link"
 							mb={1}
 							onClick={onClear}
 						>
@@ -64,7 +64,7 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 							ref={ref}
 						>
 							<NumberInputField
-								rounded={'md'}
+								rounded="md"
 								_focus={{
 									borderColor: 'gray.400',
 									boxShadow: 'none'
@@ -88,7 +88,7 @@ export const NumberField = forwardRef<IInputFieldProps<any>, 'input'>(
 					<FormErrorText label={errorText} />
 				) : (
 					helperText && (
-						<FormHelperText fontSize={'xs'}>
+						<FormHelperText fontSize="xs">
 							{helperText}
 						</FormHelperText>
 					)

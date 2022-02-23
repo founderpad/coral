@@ -27,39 +27,42 @@ const TabLayout = (props: Props & TabsProps) => {
 	return (
 		<Tabs
 			{...rest}
-			overflow={'hidden'}
-			d={'flex'}
-			flexDirection={'column'}
-			variant={'soft-rounded'}
-			size={'sm'}
-			rounded={'md'}
+			overflow="hidden"
+			d="flex"
+			flexDirection="column"
+			variant="soft-rounded"
+			size="sm"
+			rounded="md"
 		>
 			<TabList
 				px={4}
 				py={2}
 				borderBottomWidth={1}
-				borderBottomColor={'fpLightGrey.900'}
+				borderBottomColor="fpLightGrey.900"
+				// d="flex"
+				// w="100vw"
+				// overflowX="auto"
 			>
 				{tabs
 					.filter((tab) => Object.keys(tab).length !== 0)
 					.map((tab, key) => (
 						<Tab
 							key={key}
-							fontSize={'xs'}
+							fontSize="xs"
 							_hover={{ color: 'black', bg: 'fpLightGrey.300' }}
 							_selected={{
 								bg: 'fpLightGrey.700',
 								color: 'black'
 							}}
-							fontWeight={'normal'}
+							fontWeight="normal"
 							mr={2}
-							rounded={'md'}
+							rounded="md"
 						>
 							{tab?.icon && (
 								<Icon
 									as={tab.icon}
 									mr={2}
-									fontSize={'xl'}
+									fontSize="xl"
 									display={{ base: 'none', sm: 'block' }}
 								/>
 							)}
@@ -67,14 +70,14 @@ const TabLayout = (props: Props & TabsProps) => {
 						</Tab>
 					))}
 			</TabList>
-			<TabPanels d={'flex'} flex={1} overflowY={'hidden'}>
+			<TabPanels d="flex" flex={1} overflowY="hidden">
 				{children?.map((tp: TabPanelProps, key) => {
 					return (
 						<TabPanel
 							key={key}
-							overflowY={'hidden'}
+							overflowY="hidden"
 							p={0}
-							display={'flex'}
+							display="flex"
 							flex={1}
 							css={{
 								'> *': {

@@ -1,5 +1,5 @@
 import { FormControl } from '@chakra-ui/form-control';
-import { Checkbox } from '@chakra-ui/react';
+import { Button, Checkbox } from '@chakra-ui/react';
 import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
 import { Label } from '@components/labels';
@@ -25,7 +25,7 @@ import { useDispatch } from 'react-redux';
 import React from 'react';
 import { redirectTo } from '@utils/validators';
 import { FormSelect, FormTextarea } from '@components/form/inputs/FormField';
-import { StackLayout } from '@components/layouts';
+import { FlexLayout, StackLayout } from '@components/layouts';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 		setValue,
 		register,
 		resetField,
-		formState
+		formState: { errors }
 	} = useForm<TUser_Profile_Set_Input>({
 		mode: 'all',
 		defaultValues: {
@@ -86,15 +86,16 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 		setValue('skills', skillsCopy);
 	};
 
-	const { errors, isSubmitting, isValid } = formState;
+	const onClearSkills = () => {
+		setSelectedSkills([]);
+		setValue('skills', []);
+	};
 
 	return (
 		<Form
 			id="edit-experience-form"
 			name="edit-experience-form"
 			onSubmit={handleSubmit(updateUserProfileMutation)}
-			isSubmitting={isSubmitting}
-			isValid={isValid}
 		>
 			<FormSelect<TUser_Profile_Set_Input>
 				id="objective"
@@ -115,7 +116,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				id="background"
 				name="background"
 				label="Background"
-				placeholder="Write about your background, such as past experiences in business"
+				placeholder="Write about your background, such as past experiences in business (max. 400 characters)"
 				register={register}
 				control={control}
 				rules={{
@@ -133,7 +134,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				id="statement"
 				name="statement"
 				label="Personal statement"
-				placeholder="Write about what you're looking to achieve so that ther"
+				placeholder="Write about what you're looking to achieve (max. 400 characters)"
 				register={register}
 				control={control}
 				rules={{
@@ -147,29 +148,20 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				onClear={() => resetField('statement', { defaultValue: '' })}
 			/>
 
-			<FormSelect<TUser_Profile_Set_Input>
-				id="specialistIndustry"
-				name="specialistIndustry"
-				label="Your specialist field"
-				placeholder="specialist field"
-				options={ALL_IDEA_CATEGORY_FIELDS}
-				register={register}
-				control={control}
-				onClear={() =>
-					resetField('specialistIndustry', { defaultValue: '' })
-				}
-			/>
-
-			<StackLayout direction={{ base: 'column', md: 'row' }} spacing={6}>
+			<StackLayout direction={{ base: 'column', sm: 'row' }}>
 				<FormSelect<TUser_Profile_Set_Input>
-					id="startups"
-					name="startups"
-					label="Startups have you have worked with"
-					placeholder="number of startups"
-					options={NUMBER_OF_STARTUPS}
+					id="status"
+					name="status"
+					label="Your current startup status"
+					placeholder="startup status"
+					options={STARTUP_STATUS}
 					register={register}
 					control={control}
-					onClear={() => resetField('startups', { defaultValue: '' })}
+					onClear={() => resetField('status', { defaultValue: '' })}
+					rules={{
+						required: 'You must provide your current startup status'
+					}}
+					errors={errors}
 				/>
 
 				<FormSelect<TUser_Profile_Set_Input>
@@ -186,53 +178,104 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				/>
 			</StackLayout>
 
-			<FormSelect<TUser_Profile_Set_Input>
-				id="status"
-				name="status"
-				label="Your current startup status"
-				placeholder="startup status"
-				options={STARTUP_STATUS}
-				register={register}
-				control={control}
-				onClear={() => resetField('status', { defaultValue: '' })}
-				rules={{
-					required: 'You must provide your current startup status'
-				}}
-				errors={errors}
-			/>
+			<StackLayout direction={{ base: 'column', sm: 'row' }}>
+				<FormSelect<TUser_Profile_Set_Input>
+					id="specialistIndustry"
+					name="specialistIndustry"
+					label="Your specialist field"
+					placeholder="specialist field"
+					options={ALL_IDEA_CATEGORY_FIELDS}
+					register={register}
+					control={control}
+					onClear={() =>
+						resetField('specialistIndustry', { defaultValue: '' })
+					}
+				/>
 
-			{/* <TextareaField
-				id="businessDescription"
-				name="businessDescription"
-				label="What were your previous businesses?"
-				placeholder="List your previous businesses"
-				control={control}
-				onClear={() => resetField('businessDescription')}
-			/> */}
+				<FormSelect<TUser_Profile_Set_Input>
+					id="startups"
+					name="startups"
+					label="Startups have you have worked with"
+					placeholder="number of startups"
+					options={NUMBER_OF_STARTUPS}
+					register={register}
+					control={control}
+					onClear={() => resetField('startups', { defaultValue: '' })}
+				/>
+			</StackLayout>
 
-			<FormControl>
-				<FormLabelText label={'Your skills'} />
+			{/* <FormControl>
+				<FormLabelText label="Your skills" />
 				{EXPERIENCE_SKILLS.map((es: string) => (
 					<Controller
 						key={es}
-						name={'skills'}
+						name="skills"
 						render={({ field: { ref } }) => (
 							<Checkbox
 								name={es}
-								rounded={'none'}
-								focusBorderColor={'gray.150'}
+								rounded="none"
+								focusBorderColor="gray.150"
 								value={es}
 								py={1}
 								pr={2}
 								onChange={onSkillsToggle}
-								colorScheme={'fpPrimary'}
-								color={'fpGrey.900'}
+								colorScheme="fpPrimary"
+								color="fpGrey.900"
 								ref={ref}
-								size={'md'}
-								fontSize={'xs'}
+								size="md"
+								fontSize="xs"
 								isChecked={selectedSkills.includes(es)}
 							>
-								<Label color={'fpGrey.900'} fontSize={'xs'}>
+								<Label color="fpGrey.900" fontSize="xs">
+									{es}
+								</Label>
+							</Checkbox>
+						)}
+						control={control}
+					/>
+				))}
+			</FormControl> */}
+
+			<FormControl>
+				<FlexLayout justifyContent="space-between">
+					<FormLabelText label="Your skills" />
+					{selectedSkills.length > 0 && (
+						<Button
+							fontSize="x-small"
+							colorScheme="fpPrimary"
+							variant="link"
+							mb={1}
+							onClick={onClearSkills}
+						>
+							Clear
+						</Button>
+					)}
+				</FlexLayout>
+				{EXPERIENCE_SKILLS.map((es: string) => (
+					<Controller
+						key={es}
+						name="skills"
+						render={({ field: { ref } }) => (
+							<Checkbox
+								name={es}
+								rounded="none"
+								focusBorderColor="gray.150"
+								value={es}
+								py={1}
+								pr={2}
+								onChange={onSkillsToggle}
+								colorScheme="fpPrimary"
+								color="fpGrey.900"
+								ref={ref}
+								size="md"
+								fontSize="xs"
+								isChecked={selectedSkills.includes(es)}
+							>
+								<Label
+									color="fpGrey.900"
+									fontWeight="normal"
+									fontSize="xs"
+								>
 									{es}
 								</Label>
 							</Checkbox>

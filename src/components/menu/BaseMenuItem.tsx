@@ -23,13 +23,13 @@ export const BaseMenuItem = ({
 	<React.Fragment>
 		<MenuItem
 			{...rest}
-			alignItems={'center'}
+			alignItems="center"
 			icon={icon && <Icon as={icon} mr={1} />}
 		>
-			<Label fontWeight={'medium'} fontSize={'small'} color={color}>
+			<Label fontWeight="medium" fontSize="small" color={color}>
 				{title}
 			</Label>
-			<Label fontSize={'xs'} color={'gray.400'}>
+			<Label fontSize="xs" color="gray.400">
 				{subTitle}
 			</Label>
 		</MenuItem>

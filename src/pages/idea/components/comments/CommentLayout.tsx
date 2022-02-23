@@ -11,7 +11,7 @@ import CommentActions from './CommentActions';
 const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 	<StackLayout
 		p={2}
-		bg={'fpLightGrey.500'}
+		bg="fpLightGrey.500"
 		spacing={0}
 		style={{
 			borderRadius: '0 10px 10px'
@@ -48,9 +48,9 @@ export const CommentLayout = ({
 	return (
 		<React.Fragment>
 			<StackLayout
-				direction={'row'}
+				direction="row"
 				spacing={2}
-				w={'full'}
+				w="full"
 				id={comment.id}
 				p={2}
 				bg={
@@ -60,20 +60,20 @@ export const CommentLayout = ({
 				}
 				borderLeftWidth={actions ? 4 : 3}
 			>
-				<UserAvatar size={'sm'} src={comment.user.avatarUrl} />
+				<UserAvatar size="sm" src={comment.user.avatarUrl} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
 					<ChatContainer>
 						<FlexLayout
-							alignItems={'center'}
-							justifyContent={'space-between'}
+							alignItems="center"
+							justifyContent="space-between"
 							flex={1}
 						>
-							<FlexLayout alignItems={'center'} mb={1}>
+							<FlexLayout alignItems="center" mb={1}>
 								<Label
-									fontWeight={'medium'}
-									fontSize={'small'}
+									fontWeight="medium"
+									fontSize="small"
 									css={{ whiteSpace: 'normal' }}
-									wordBreak={'break-all'}
+									wordBreak="break-all"
 									noOfLines={1}
 									isTruncated
 									flex={1}
@@ -82,11 +82,11 @@ export const CommentLayout = ({
 								</Label>
 								{isAuthor && (
 									<BaseTag
-										color={'white'}
-										bg={'fpPrimary.700'}
+										color="white"
+										bg="fpPrimary.700"
 										ml={1}
-										fontSize={'x-small'}
-										size={'sm'}
+										fontSize="x-small"
+										size="sm"
 									>
 										Creator
 									</BaseTag>
@@ -98,9 +98,9 @@ export const CommentLayout = ({
 							</FlexLayout>
 						</FlexLayout>
 						<Label
-							color={'fpGrey.500'}
-							fontSize={'small'}
-							fontWeight={'normal'}
+							color="fpGrey.500"
+							fontSize="small"
+							fontWeight="normal"
 							pt={1}
 						>
 							{value}

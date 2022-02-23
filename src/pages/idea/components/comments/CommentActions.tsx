@@ -14,23 +14,23 @@ export const CommentActions = ({
 
 	return (
 		<StackLayout
-			direction={'row'}
+			direction="row"
 			spacing={1}
-			alignItems={'center'}
-			// justifyContent={'space-between'}
+			alignItems="center"
+			// justifyContent="space-between"
 		>
 			{/* <BaseButton
-				name={'upvote-idea-button'}
-				variant={'unstyled'}
-				d={'flex'}
+				name="upvote-idea-button"
+				variant="unstyled"
+				d="flex"
 			>
 				<Icon
 					as={IoArrowUpSharp}
-					fontSize={'sm'}
+					fontSize="sm"
 					mr={1}
-					size={'sm'}
-					fontWeight={'normal'}
-					color={'gray.400'}
+					size="sm"
+					fontWeight="normal"
+					color="gray.400"
 				/>
 			</BaseButton> */}
 			{showReply && (

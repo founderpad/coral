@@ -11,11 +11,11 @@ const SearchContentGridLayout = ({
 }) => (
 	<Grid
 		templateColumns="repeat(7, 1fr)"
-		minH={'full'}
+		minH="full"
 		rowGap={6}
 		flex={1}
-		bg={'#f9f8f8'}
-		position={'relative'}
+		bg="#f9f8f8"
+		position="relative"
 	>
 		<GridItem
 			display={{ base: 'none', md: 'block' }}
@@ -25,13 +25,13 @@ const SearchContentGridLayout = ({
 			<StackLayout
 				p={6}
 				display={{ base: 'none', md: 'flex' }}
-				h={'full'}
+				h="full"
 				spacing={1}
-				bg={'white'}
+				bg="white"
 				rounded={{ base: 'none', lg: 'md' }}
 				borderWidth={{ base: 0, lg: 1 }}
-				borderColor={'fpLightGrey.900'}
-				position={'sticky'}
+				borderColor="fpLightGrey.900"
+				position="sticky"
 				top={0}
 			>
 				{search}
@@ -39,13 +39,13 @@ const SearchContentGridLayout = ({
 		</GridItem>
 		<GridItem
 			colSpan={{ base: 7, md: 4, lg: 5 }}
-			display={'flex'}
-			flexDirection={'column'}
-			bg={'white'}
+			display="flex"
+			flexDirection="column"
+			bg="white"
 			rounded={{ base: 'none', lg: 'md' }}
 			borderWidth={{ base: 0, lg: 1 }}
-			borderColor={'fpLightGrey.900'}
-			overflowY={'auto'}
+			borderColor="fpLightGrey.900"
+			overflowY="auto"
 		>
 			{children}
 		</GridItem>

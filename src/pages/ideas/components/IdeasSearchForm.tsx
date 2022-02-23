@@ -1,25 +1,20 @@
 import { Button, Checkbox, FormControl } from '@chakra-ui/react';
 import { SubmitButton } from '@components/buttons';
 import Form from '@components/form/Form';
+import { FormInput, FormSelect } from '@components/form/inputs/FormField';
 import BaseHeading from '@components/heading/BaseHeading';
-import { InputField } from '@components/input/InputField';
-import { SelectField } from '@components/input/SelectField';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { AppDivider } from '@components/shared';
-import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useModalDrawer } from '@hooks/util';
 import {
 	ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
 	ALL_IDEA_STATUSES,
-	BY_IDEA_POPULARITY,
-	mobileCountriesList,
-	mobileIdeaCategoryFields,
-	mobileIdeaPopularity,
-	mobileIdeaStatuses
+	BY_IDEA_POPULARITY
 } from '@utils/Constants';
 import Router from 'next/router';
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 type SelectSearch = {
@@ -27,48 +22,43 @@ type SelectSearch = {
 	value: string;
 };
 
-type TIdeaSearch = {
+type TSearchFields = {
 	field?: SelectSearch;
 	name?: string;
 	new?: boolean;
 	status?: SelectSearch;
 	country?: string;
-	popularity?: string;
+	popular?: string;
 };
-
-// interface IQueryParams<T extends TIdeaSearch> {
-// 	[key: string]: T;
-// }
 
 /** TODO: Build out reusable generic form component (e.g. BaseForm) **/
 const IdeasSearchForm = () => {
-	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const { page, ...rest } = Router.query;
+	const { setModalDrawer } = useModalDrawer();
 	const [isNewIdea, setIsNewIdea] = useState<boolean | undefined>(undefined);
 
-	// const queryParams: IQueryParams<['field', 'name', 'new', 'status', 'country', 'popularity']>;
-	// const queryParamsArr = [
-	// 	'field',
-	// 	'name',
-	// 	'new',
-	// 	'status',
-	// 	'country',
-	// 	'popularity'
-	// ];
-
-	const { handleSubmit, control, resetField, setValue, formState } =
-		useForm<TIdeaSearch>({
-			mode: 'all',
-			defaultValues: {
-				...rest
-			}
-		});
-
-	const { isSubmitting, isValid } = formState;
+	const {
+		handleSubmit,
+		control,
+		register,
+		resetField,
+		reset,
+		setValue,
+		getValues
+	} = useForm<TSearchFields>({
+		mode: 'all',
+		defaultValues: {
+			field: undefined,
+			name: '',
+			new: false,
+			status: undefined,
+			country: '',
+			popular: ''
+		}
+	});
 
 	const [showClear, setShowClear] = useState(false);
 
-	const onClick = (values: TIdeaSearch) => {
+	const onClick = (values: TSearchFields) => {
 		setModalDrawer({
 			isOpen: false
 		});
@@ -85,16 +75,12 @@ const IdeasSearchForm = () => {
 
 		const queryParams = JSON.parse(JSON.stringify(values));
 
-		// for (const param in queryParamsArr) {
-		// 	if (!queryParams[param]) delete queryParams[param];
-		// }
-
 		!queryParams.name && delete queryParams['name'];
 		!queryParams.field && delete queryParams['field'];
 		!queryParams.status && delete queryParams['status'];
 		!queryParams.country && delete queryParams['country'];
 		!queryParams.new && delete queryParams['new'];
-		!queryParams.popularity && delete queryParams['popularity'];
+		!queryParams.popular && delete queryParams['popular'];
 
 		Router.push(
 			{
@@ -122,8 +108,7 @@ const IdeasSearchForm = () => {
 
 		Router.push(
 			{
-				pathname: Router.pathname,
-				query: Router.query
+				query: { ...Router.query }
 			},
 			undefined,
 			{
@@ -132,97 +117,122 @@ const IdeasSearchForm = () => {
 		);
 	};
 
-	// const onClearAll = () => {
-	// 	reset({
-	// 		...getValues(),
-	// 		country: '',
-	// 		field: undefined,
-	// 		name: '',
-	// 		new: undefined,
-	// 		popularity: '',
-	// 		status: undefined
-	// 	});
+	const onResetField = (name: keyof TSearchFields) => {
+		resetField(name);
+		if (Router['query'][name]) {
+			delete Router['query'][name];
+			Router.push(
+				{
+					query: { ...Router.query }
+				},
+				undefined,
+				{
+					shallow: true
+				}
+			);
+		}
+	};
 
-	// 	Router.push(
-	// 		{
-	// 			pathname: Router.pathname,
-	// 			query: { page: Router.query['page'] }
-	// 		},
-	// 		undefined,
-	// 		{
-	// 			shallow: true
-	// 		}
-	// 	);
-	// };
+	const onResetAll = useCallback(() => {
+		reset();
+		setIsNewIdea(false);
+
+		Object.keys(getValues()).forEach(
+			(param) => delete Router['query'][param]
+		);
+
+		Router.push(
+			{
+				query: { ...Router.query }
+			},
+			undefined,
+			{
+				shallow: true
+			}
+		);
+	}, [getValues, reset]);
 
 	return (
 		<Form
 			id="idea-filter-form"
 			name="idea-filter-form"
 			onSubmit={handleSubmit(onClick)}
-			isSubmitting={isSubmitting}
-			isValid={isValid}
 		>
-			<BaseHeading fontSize="sm" display={{ base: 'none', sm: 'flex' }}>
-				Filters
-			</BaseHeading>
-			<SelectField
+			<FlexLayout justifyContent="space-between">
+				<BaseHeading
+					fontSize="sm"
+					display={{ base: 'none', sm: 'flex' }}
+				>
+					Filters
+				</BaseHeading>
+				{/* {!Object.values(getValues()).includes('undefined') && ( */}
+				<Button
+					fontSize="x-small"
+					colorScheme="fpPrimary"
+					variant="link"
+					mb={1}
+					onClick={onResetAll}
+					textAlign="left"
+					ml="auto"
+				>
+					Clear all
+				</Button>
+				{/* )} */}
+			</FlexLayout>
+			<FormSelect<TSearchFields>
 				id="country"
 				name="country"
 				label="Country"
 				placeholder="country"
 				options={ALL_COUNTRIES}
-				mobileOptions={mobileCountriesList()}
-				onClear={() => resetField('country', { defaultValue: '' })}
+				register={register}
 				control={control}
-				isUrl
+				onClear={onResetField}
 			/>
-			<InputField
+
+			<FormInput<TSearchFields>
 				id="name"
 				name="name"
 				label="Idea name"
-				placeholder="Search name"
-				variant="filled"
+				register={register}
 				control={control}
-				onClear={() => resetField('name', { defaultValue: '' })}
-				isUrl
+				fieldProps={{
+					placeholder: 'Search by idea name'
+				}}
+				onClear={onResetField}
 			/>
-			<SelectField
+
+			<FormSelect<TSearchFields>
 				id="field"
 				name="field"
 				label="Field"
 				placeholder="field"
-				variant="filled"
 				options={ALL_IDEA_CATEGORY_FIELDS}
-				mobileOptions={mobileIdeaCategoryFields()}
-				onClear={() => resetField('field', { defaultValue: '' })}
+				register={register}
 				control={control}
-				isUrl
+				onClear={onResetField}
 			/>
-			<SelectField
+
+			<FormSelect<TSearchFields>
 				id="status"
 				name="status"
 				label="Status"
 				placeholder="status"
-				variant="filled"
 				options={ALL_IDEA_STATUSES}
-				mobileOptions={mobileIdeaStatuses()}
-				onClear={() => resetField('status', { defaultValue: '' })}
+				register={register}
 				control={control}
-				isUrl
+				onClear={onResetField}
 			/>
 
-			<SelectField
-				id="popularity"
-				name="popularity"
+			<FormSelect<TSearchFields>
+				id="popular"
+				name="popular"
 				label="Most popular"
-				placeholder="most popular"
-				variant="filled"
+				placeholder="by most popular"
 				options={BY_IDEA_POPULARITY}
-				mobileOptions={mobileIdeaPopularity()}
-				onClear={() => resetField('popularity', { defaultValue: '' })}
+				register={register}
 				control={control}
-				isUrl
+				onClear={onResetField}
 			/>
 
 			<AppDivider />

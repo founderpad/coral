@@ -10,8 +10,8 @@ const SaveCancelButtons = ({
 	form?: string;
 }) => {
 	return (
-		<ButtonGroup ml={'auto'} spacing={4}>
-			<CancelButton label={'Cancel'} onClick={onCancel} />
+		<ButtonGroup ml="auto" spacing={4}>
+			<CancelButton label="Cancel" onClick={onCancel} />
 			<SubmitButton name={`submit-button`} form={form} />
 		</ButtonGroup>
 	);

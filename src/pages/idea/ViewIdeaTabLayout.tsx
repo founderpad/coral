@@ -17,16 +17,16 @@ const ViewIdeaTabLayout = () => {
 		return (
 			<TabLayout
 				tabs={[
-					{ label: 'Idea details' },
+					{ label: 'Idea' },
 					{
 						label: 'Comments'
 					},
 					{
-						...(showInterestTab && { label: 'Interested users' })
+						...(showInterestTab && { label: 'Interest' })
 					}
 				]}
-				overflow={'hidden'}
-				minH={'full'}
+				overflow="hidden"
+				minH="full"
 				flex={1}
 			>
 				<IdeaTab />
@@ -40,15 +40,15 @@ const ViewIdeaTabLayout = () => {
 	return (
 		<TabLayout
 			tabs={[
-				{ label: 'Idea details' },
+				{ label: 'Idea' },
 				{
-					label: 'Interested users'
+					label: 'Interest'
 				}
 			]}
-			overflow={'hidden'}
-			minH={'full'}
+			overflow="hidden"
+			minH="full"
 			flex={1}
-			borderColor={'fpLightGrey.900'}
+			borderColor="fpLightGrey.900"
 			borderWidth={1}
 		>
 			<IdeaTab />

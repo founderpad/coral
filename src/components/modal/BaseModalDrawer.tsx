@@ -22,9 +22,7 @@ const BaseModalDrawer = () => {
 		});
 	}, [setModalDrawer]);
 
-	const onCloseClick = () => {
-		closeDialog();
-	};
+	const onCloseClick = () => closeDialog();
 
 	if (isMobile) return <Drawer {...modalDrawer} onClose={onCloseClick} />;
 	return <Modal {...modalDrawer} onClose={onCloseClick} />;

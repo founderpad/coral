@@ -15,7 +15,8 @@ const ModalDrawerProvider = ({
 		removePadding: false,
 		width: undefined,
 		size: undefined,
-		action: undefined
+		action: undefined,
+		showFooter: true
 	});
 
 	return (

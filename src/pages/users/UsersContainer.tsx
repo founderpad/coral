@@ -109,7 +109,7 @@ const FoundersContainer = () => {
 				{!loading && hasResults < 1 ? (
 					<NoResults back />
 				) : (
-					<StackLayout display={'flex'} spacing={6}>
+					<StackLayout display="flex" spacing={6}>
 						{data?.user_profile?.map(
 							(searchedUser: TUserSearchFragment) => (
 								<React.Fragment key={searchedUser.user?.id}>

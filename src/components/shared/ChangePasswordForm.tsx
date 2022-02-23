@@ -25,7 +25,12 @@ const ConfirmChangePasswordForm = (props: Props) => {
 		resetField,
 		register,
 		formState: { errors, isSubmitting }
-	} = useForm<TChangePasswordFields>({ mode: 'all' });
+	} = useForm<TChangePasswordFields>({
+		mode: 'all',
+		defaultValues: {
+			newPassword: ''
+		}
+	});
 
 	const onChangePassword = useChangePassword();
 
@@ -37,6 +42,21 @@ const ConfirmChangePasswordForm = (props: Props) => {
 			id="edit-change-password"
 			name="edit-change-password"
 			onSubmit={handleSubmit(onChangePassword)}
+			actions={
+				!isChangeSuccess &&
+				showSubmit && (
+					<SubmitButton
+						id="submit-reset-password"
+						name="submit-reset-password"
+						label="Reset password"
+						isLoading={isSubmitting}
+						disabled={isSubmitting}
+						size="md"
+						fontSize="small"
+						w={{ base: 'full', sm: '150px' }}
+					/>
+				)
+			}
 			stackProps={{
 				alignItems: 'center'
 			}}
@@ -44,11 +64,14 @@ const ConfirmChangePasswordForm = (props: Props) => {
 			<FormInput<TChangePasswordFields>
 				id="newPassword"
 				name="newPassword"
-				placeholder="Password"
 				type="password"
+				label={showPasswordLabel ? 'New password' : undefined}
 				register={register}
 				control={control}
-				label={showPasswordLabel ? 'New password' : undefined}
+				fieldProps={{
+					placeholder: 'Password *',
+					type: 'password'
+				}}
 				rules={{
 					required: 'You must enter a valid password',
 					minLength: {
@@ -62,6 +85,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 							'Your password must be a maximum of 20 characters'
 					}
 				}}
+				hideLimit={true}
 				errors={errors}
 				onClear={() => resetField('newPassword')}
 			/>
@@ -80,7 +104,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 				/>
 			)}
 
-			{!isChangeSuccess && showSubmit && (
+			{/* {!isChangeSuccess && showSubmit && (
 				<SubmitButton
 					id="submit-reset-password"
 					name="submit-reset-password"
@@ -91,7 +115,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 					fontSize="sm"
 					w={{ base: 'full', sm: '175px' }}
 				/>
-			)}
+			)} */}
 		</Form>
 	);
 };

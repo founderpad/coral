@@ -14,39 +14,39 @@ const MainNav = memo(() => (
 	<Flex
 		bg={useColorModeValue('white', 'gray.800')}
 		borderBottomWidth={1}
-		borderBottomColor={'fpLightGrey.900'}
+		borderBottomColor="fpLightGrey.900"
 		zIndex={1000}
-		// position={'sticky'}
-		position={'fixed'}
+		// position="sticky"
+		position="fixed"
 		top={0}
-		h={'40px'}
-		w={'full'}
+		h="40px"
+		w="full"
 	>
 		<Container
 			bg={useColorModeValue('white', 'gray.800')}
 			color={useColorModeValue('gray.600', 'white')}
 			py={{ base: 2 }}
 			px={{ base: 4 }}
-			display={'flex'}
-			align={'center'}
-			justifySelf={'center'}
-			position={'sticky'}
+			display="flex"
+			align="center"
+			justifySelf="center"
+			position="sticky"
 			maxW={{ lg: '95ch' }}
-			alignItems={'center'}
-			justifyContent={'space-between'}
+			alignItems="center"
+			justifyContent="space-between"
 			flex={1}
 		>
 			{/* <Flex
-				alignItems={'center'}
-				justifyContent={'space-between'}
+				alignItems="center"
+				justifyContent="space-between"
 				flex={1}
 			> */}
-			<Flex alignItems={'center'}>
+			<Flex alignItems="center">
 				<MobileMenu />
 				<FounderpadLogoWithBadge w={100} />
 			</Flex>
 			<DesktopNav />
-			<FlexLayout alignItems={'center'} ml={8}>
+			<FlexLayout alignItems="center" ml={8}>
 				{/* <NotificationsPopover /> */}
 				<UserMenu />
 			</FlexLayout>
@@ -63,9 +63,9 @@ const MobileMenu = () => {
 			display={{ base: 'inline-flex', md: 'none' }}
 			as={isOpen ? IoCloseOutline : IoMenuSharp}
 			mr={4}
-			fontSize={'2xl'}
+			fontSize="2xl"
 			onClick={onToggle}
-			color={'gray.900'}
+			color="gray.900"
 		/>
 	);
 };

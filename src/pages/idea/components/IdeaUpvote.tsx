@@ -72,7 +72,7 @@ export const IdeaUpvote = (idea: TIdeaUpvote) => {
 	return (
 		<UpvoteButton
 			onClick={toggleUpvote}
-			name={'idea'}
+			name="idea"
 			hasUserUpvoted={hasUserUpvoted}
 			votesTotal={votesTotal}
 		/>

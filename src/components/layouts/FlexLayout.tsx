@@ -4,5 +4,5 @@ export const FlexLayout = ({
 	rounded = 'md',
 	...rest
 }: FlexProps & { href?: string }) => (
-	<Flex {...rest} flexWrap={'wrap'} rounded={rounded} />
+	<Flex {...rest} flexWrap="wrap" rounded={rounded} />
 );

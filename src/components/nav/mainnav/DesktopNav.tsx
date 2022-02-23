@@ -17,12 +17,12 @@ const DesktopNav = memo(() => {
 
 	return (
 		<StackLayout
-			direction={'row'}
-			alignItems={'center'}
+			direction="row"
+			alignItems="center"
 			spacing={4}
-			ml={'auto'}
+			ml="auto"
 			display={{ base: 'none', md: 'flex' }}
-			position={'relative'}
+			position="relative"
 		>
 			{NavItems.map((navItem, key) => (
 				<BasePopover
@@ -30,15 +30,15 @@ const DesktopNav = memo(() => {
 					triggerEl={
 						<Link
 							px={2}
-							d={'flex'}
+							d="flex"
 							href={navItem.href ?? '#'}
-							fontSize={'xs'}
+							fontSize="xs"
 							fontWeight={
 								getCurrentPath(navItem.href ?? '')
 									? 'medium'
 									: 'normal'
 							}
-							alignItems={'center'}
+							alignItems="center"
 							color={
 								getCurrentPath(navItem.href ?? '')
 									? 'fpGrey.900'
@@ -52,7 +52,7 @@ const DesktopNav = memo(() => {
 							{navItem.label}
 							{navItem.rightIcon && (
 								<Icon
-									color={'inherit'}
+									color="inherit"
 									ml={1}
 									as={navItem.rightIcon}
 								/>

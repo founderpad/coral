@@ -23,24 +23,24 @@ const IdeaTab = () => {
 
 	return (
 		<StackLayout
-			direction={'column'}
+			direction="column"
 			flex={1}
-			rounded={'none'}
-			overflowY={'hidden'}
+			rounded="none"
+			overflowY="hidden"
 			spacing={0}
 		>
 			{/* <IdeaCycler /> */}
-			<StackLayout p={4} flex={1} d={'flex'} overflowY={'auto'}>
+			<StackLayout p={4} flex={1} d="flex" overflowY="auto">
 				{isChangeSuccess && (
 					<AlertFeedback
-						status={'success'}
-						message={'Your idea has been updated successfully'}
+						status="success"
+						message="Your idea has been updated successfully"
 					/>
 				)}
 
 				{isChangeError && (
 					<AlertFeedback
-						status={'error'}
+						status="error"
 						message={
 							'Failed to update idea. Please try again later'
 						}

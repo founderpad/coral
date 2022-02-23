@@ -1,4 +1,4 @@
-import Form from '@components/form/Form';
+import { Form } from '@components/form';
 import { FormInput, FormSelect } from '@components/form/inputs/FormField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
@@ -18,6 +18,20 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
+// type TBaseFormProps<TFormValues> = {
+// 	id: string;
+// 	name: string;
+// 	defaultValues?: Record<string, any>;
+// 	onSubmit: SubmitHandler<TFormValues>;
+// 	children: ReactElement<
+// 		{
+// 			control: Control<TFormValues, object>;
+// 			register: UseFormRegister<TFormValues>;
+// 		},
+// 		string | JSXElementConstructor<any>
+// 	>;
+// };
+
 type TPersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
 	Pick<TUser_Address_Set_Input, 'country' | 'location'> &
 	Pick<TUser_Profile_Set_Input, 'pronouns' | 'customPronouns'>;
@@ -33,7 +47,7 @@ const PersonalDetailsForm = () => {
 		watch,
 		resetField,
 		register,
-		formState: { errors, isSubmitting }
+		formState: { errors }
 	} = useForm<TPersonalDetailsinput>({
 		mode: 'all',
 		defaultValues: {
@@ -89,28 +103,29 @@ const PersonalDetailsForm = () => {
 
 	return (
 		<Form
-			id={'editPersonalDetailsForm'}
-			name={'editPersonalDetailsForm'}
+			id="editPersonalDetailsForm"
+			name="editPersonalDetailsForm"
 			onSubmit={handleSubmit(updateUserPersonalDetails)}
-			isSubmitting={isSubmitting}
 		>
 			<FormInput<TPersonalDetailsinput>
 				id="displayName"
 				name="displayName"
 				label="Display name"
-				placeholder="Display name"
 				register={register}
 				control={control}
+				fieldProps={{
+					placeholder: 'Display name (max. 25 characters)'
+				}}
 				rules={{
-					required: 'You must input a display name',
+					required: 'You must enter a display name',
 					maxLength: {
-						value: 10,
+						value: 25,
 						message:
-							'Your display name can not be more than 50 characters'
+							'Your display name can not be more than 25 characters'
 					}
 				}}
 				errors={errors}
-				onClear={() => resetField('displayName')}
+				onClear={() => resetField('displayName', { defaultValue: '' })}
 			/>
 
 			<FormSelect<TPersonalDetailsinput>
@@ -129,9 +144,11 @@ const PersonalDetailsForm = () => {
 					id="customPronouns"
 					name="customPronouns"
 					label="Custom pronouns"
-					placeholder="Custom pronouns"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Custom pronouns (max. 20 characters)'
+					}}
 					rules={{
 						required: 'You must input a custom pronoun',
 						maxLength: {

@@ -3,7 +3,6 @@ import {
 	FormControl,
 	Input,
 	InputProps,
-	Text,
 	Textarea,
 	FormHelperText
 } from '@chakra-ui/react';
@@ -27,13 +26,15 @@ import ResizeTextarea from 'react-textarea-autosize';
 
 export type TFormFieldProps<TFormValues> = {
 	name: Path<TFormValues>;
-	onClear: (name: string) => void;
 	control: Control<TFormValues>;
 	rules?: RegisterOptions;
 	register?: UseFormRegister<TFormValues>;
 	errors?: Partial<DeepMap<TFormValues, FieldError>>;
+	onClear: (name: keyof TFormValues) => void;
 	label?: string;
 	helperText?: string;
+	hideLimit?: boolean;
+	fieldProps?: Omit<InputProps, 'name'>;
 } & Omit<InputProps, 'name'>;
 
 export type TFormSelectFieldProps<TFormValues> =
@@ -44,14 +45,35 @@ export type TFormSelectFieldProps<TFormValues> =
 
 export type TFormTextareaFieldProps<TFormValues> = TFormFieldProps<TFormValues>;
 
+const FormFieldLimit = ({
+	max,
+	value = ''
+}: {
+	max: number;
+	value: string;
+}) => {
+	return (
+		<FormHelperText
+			fontSize="x-small"
+			color={value?.length > max ? 'red.500' : 'fpGrey.300'}
+			ml="auto"
+		>
+			{max - value?.length} / {max}
+		</FormHelperText>
+	);
+};
+
 export const FormField = <TFormValues extends Record<string, unknown>>({
 	name,
 	control,
 	errors,
-	label,
 	children,
+	label,
 	helperText,
-	onClear
+	onClear,
+	hideLimit,
+	value,
+	rules
 }: TFormFieldProps<TFormValues>) => {
 	const watchValue = useWatch({
 		control,
@@ -63,52 +85,59 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 			id="form-input"
 			aria-live="polite"
 			width="full"
-			flexDirection={'column'}
+			flexDirection="column"
 		>
 			<FlexLayout justifyContent="space-between" flex={1}>
 				{label && <FormLabelText label={label} />}
 
-				{watchValue && (
-					<Button
-						id="clear-value-button"
-						name="clear-value-button"
-						aria-label="clear-value-button"
-						fontSize="x-small"
-						colorScheme="fpPrimary"
-						variant="link"
-						mb={1}
-						ml="auto"
-						onClick={() => onClear(name)}
-					>
-						Clear
-					</Button>
-				)}
+				<Button
+					id="clear-value-button"
+					name="clear-value-button"
+					aria-label="clear-value-button"
+					fontSize="x-small"
+					colorScheme="fpPrimary"
+					variant="link"
+					mb={1}
+					ml="auto"
+					onClick={() => onClear(name)}
+					visibility={watchValue ? 'visible' : 'hidden'}
+				>
+					Clear
+				</Button>
 			</FlexLayout>
 
 			{children}
 
-			{errors && Object.keys(errors).length ? (
-				<ErrorMessage
-					errors={errors}
-					name={name as any}
-					render={({ message }) => (
-						<Text
-							mt={2}
-							color="red.500"
-							fontSize="xs"
-							textAlign="start"
-						>
-							{message}
-						</Text>
-					)}
-				/>
-			) : (
-				helperText && (
-					<FormHelperText fontSize={'xs'} color={'fpGrey.300'}>
-						{helperText}
-					</FormHelperText>
-				)
-			)}
+			<FlexLayout justifyContent="space-between" alignItems="center">
+				{errors && Object.keys(errors).length ? (
+					<ErrorMessage
+						errors={errors}
+						name={name as any}
+						render={({ message }) => (
+							<FormHelperText
+								color="red.500"
+								fontSize="x-small"
+								textAlign="start"
+							>
+								{message}
+							</FormHelperText>
+						)}
+					/>
+				) : (
+					helperText && (
+						<FormHelperText fontSize="x-small" color="fpGrey.300">
+							{helperText}
+						</FormHelperText>
+					)
+				)}
+
+				{rules?.maxLength && !hideLimit && (
+					<FormFieldLimit
+						max={(rules?.maxLength as any).value}
+						value={value as string}
+					/>
+				)}
+			</FlexLayout>
 		</FlexLayout>
 	);
 };
@@ -118,6 +147,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 	register,
 	rules,
 	control,
+	fieldProps,
 	...rest
 }: TFormFieldProps<TFormValues>) => {
 	const errorMessages = rest.errors?.[name];
@@ -128,8 +158,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 	} = useController({
 		name,
 		rules,
-		control,
-		defaultValue: undefined
+		control
 	});
 
 	return (
@@ -139,25 +168,27 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 				isInvalid={!!rest.errors}
 				isRequired={!!rules?.required}
 				control={control}
+				rules={rules}
+				value={value as string}
 				{...rest}
 			>
 				<Input
+					{...fieldProps}
 					onChange={onChange}
-					value={value as any}
+					value={value as string}
 					rounded="md"
 					size="md"
-					fontSize="smaller"
-					variant="outline"
+					fontSize="xs"
 					aria-label={name}
 					aria-invalid={hasError}
 					borderColor={hasError ? 'red.500' : 'inherit'}
 					_focus={{
-						borderColor: hasError ? 'red.500' : 'inherit'
+						borderColor: hasError ? 'red.500' : 'inherit',
+						background: 'transparent'
 					}}
 					_hover={{
 						borderColor: hasError ? 'red.500' : 'inherit'
 					}}
-					{...rest}
 				/>
 			</FormField>
 		</FormControl>
@@ -180,8 +211,7 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 	} = useController({
 		name,
 		rules,
-		control,
-		defaultValue: undefined
+		control
 	});
 
 	return (
@@ -191,6 +221,8 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 				isInvalid={!!rest.errors}
 				isRequired={!!rules?.required}
 				control={control}
+				rules={rules}
+				value={value as string}
 				{...rest}
 			>
 				<Textarea
@@ -203,7 +235,7 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 					size="md"
 					fontSize="smaller"
 					variant="outline"
-					maxH={'100px'}
+					maxH="75px"
 					aria-label={name}
 					aria-invalid={hasError}
 					borderColor={hasError ? 'red.500' : 'inherit'}
@@ -238,8 +270,7 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	} = useController({
 		name,
 		rules,
-		control,
-		defaultValue: undefined
+		control
 	});
 
 	return (

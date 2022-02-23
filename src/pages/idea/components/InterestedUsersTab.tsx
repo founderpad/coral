@@ -26,7 +26,7 @@ export const InterestedUsersTab = () => {
 		}
 	}, [totalInterested, getInterestedUsers]);
 
-	if (totalInterested < 1) return <NoResults label={'interested users'} />;
+	if (totalInterested < 1) return <NoResults label="interested users" />;
 	if (!data) return <Loading small />;
 
 	return (
@@ -34,8 +34,8 @@ export const InterestedUsersTab = () => {
 			{data?.interested_users?.map((interestedUser) => (
 				<FlexLayout
 					key={interestedUser?.user?.id}
-					alignItems={'center'}
-					justifyContent={'space-between'}
+					alignItems="center"
+					justifyContent="space-between"
 				>
 					<UserAvatarDetails
 						src={interestedUser?.user?.avatarUrl || undefined}
@@ -43,9 +43,9 @@ export const InterestedUsersTab = () => {
 						createdAt={formatDate(interestedUser.createdAt, true)}
 					/>
 					<PrimaryLink
-						title={'View profile'}
+						title="View profile"
 						href={`/user/${interestedUser?.user?.id}`}
-						fontSize={'xs'}
+						fontSize="xs"
 						ml={4}
 					>
 						View profile

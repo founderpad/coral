@@ -14,18 +14,18 @@ const LinkCard = (props: Props) => {
 	return (
 		<StackLayout flex={1} spacing={0}>
 			<FlexLayout
-				flexDirection={'column'}
+				flexDirection="column"
 				as={BaseLink}
 				href={href}
-				alignItems={'flex-start'}
+				alignItems="flex-start"
 				_hover={{
 					bg: 'fpLightGrey.200'
 				}}
 				py={4}
 				px={{ base: 0, sm: 4 }}
 				flex={1}
-				rounded={'md'}
-				position={'relative'}
+				rounded="md"
+				position="relative"
 			>
 				{children}
 			</FlexLayout>

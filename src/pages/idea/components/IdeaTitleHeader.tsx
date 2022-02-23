@@ -31,17 +31,17 @@ export const IdeaTitleHeader = () => {
 	}, [showComments]);
 
 	return (
-		<FlexLayout wordBreak={'break-all'} flexDirection={'column'}>
+		<FlexLayout wordBreak="break-all" flexDirection="column">
 			<IdeaName />
-			<FlexLayout justifyContent={'space-between'} alignItems={'center'}>
+			<FlexLayout justifyContent="space-between" alignItems="center">
 				<IdeaActions />
 
 				<PrimaryButton
-					name={'show-comments'}
-					variant={'ghost'}
+					name="show-comments"
+					variant="ghost"
 					onClick={onShowCommentsClick}
 					display={{ base: 'none', md: 'block' }}
-					alignContent={'center'}
+					alignContent="center"
 				>
 					View comments
 				</PrimaryButton>
@@ -75,7 +75,7 @@ const IdeaActions = () => {
 	};
 
 	return (
-		<StackLayout direction={'row'} spacing={2} pt={2} alignItems={'center'}>
+		<StackLayout direction="row" spacing={2} pt={2} alignItems="center">
 			<PublishedLabel isPublished={isPublished} />
 
 			{totalInterested > 0 && <InterestedTotal total={totalInterested} />}

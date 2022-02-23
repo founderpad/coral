@@ -122,39 +122,41 @@ describe('Register form', () => {
 		);
 	});
 
-	it('should error if firstName is too long (> 20 characters) on blur', async () => {
+	it('should error if firstName is too long (> 30 characters) on blur', async () => {
 		const { registerSetup, firstNameField } = setup();
 
 		expect(firstNameField).toBeInTheDocument();
 
 		fireEvent.focus(firstNameField);
-		userEvent.type(firstNameField, 'abcdefghjklmnopqrstuvwxyz');
+		userEvent.type(firstNameField, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
 		await waitFor(() =>
-			expect(firstNameField).toHaveValue('abcdefghjklmnopqrstuvwxyz')
+			expect(firstNameField).toHaveValue(
+				'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+			)
 		);
 
 		fireEvent.blur(firstNameField);
 
 		registerSetup.getByText(
-			'You first name must be a maximum of 20 characters'
+			'You first name must be a maximum of 30 characters'
 		);
 	});
 
-	it('should error if lastName is too long (> 20 characters) on blur', async () => {
+	it('should error if lastName is too long (> 30 characters) on blur', async () => {
 		const { registerSetup, lastNameField } = setup();
 
 		expect(lastNameField).toBeInTheDocument();
 
 		fireEvent.focus(lastNameField);
-		userEvent.type(lastNameField, 'abcdefghjklmnopqrstuvwxyz');
+		userEvent.type(lastNameField, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
 		await waitFor(() =>
-			expect(lastNameField).toHaveValue('abcdefghjklmnopqrstuvwxyz')
+			expect(lastNameField).toHaveValue('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 		);
 
 		fireEvent.blur(lastNameField);
 
 		registerSetup.getByText(
-			'Your last name must be a maximum of 20 characters'
+			'Your last name must be a maximum of 30 characters'
 		);
 	});
 

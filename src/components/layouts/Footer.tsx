@@ -8,7 +8,7 @@ export const Footer = memo(() => {
 			h="48px"
 			p={3}
 			borderTopWidth="1px"
-			borderTopColor={'gray.200'}
+			borderTopColor="gray.200"
 		>
 			footer
 		</Box>

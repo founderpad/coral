@@ -16,21 +16,21 @@ export const BaseMenu = ({
 		| React.ReactElement<BaseMenuItemProps>[];
 	boxProps?: BoxProps;
 }) => (
-	<BoxLayout {...boxProps} p={0} ml={'auto'}>
+	<BoxLayout {...boxProps} p={0} ml="auto">
 		<Menu>
 			<MenuButton
 				p={1}
-				id={'menu-button'}
+				id="menu-button"
 				as={Button}
-				cursor={'pointer'}
-				bg={'transparent'}
-				rounded={'full'}
-				size={'sm'}
-				alignSelf={'normal'}
+				cursor="pointer"
+				bg="transparent"
+				rounded="full"
+				size="sm"
+				alignSelf="normal"
 			>
-				<Icon as={IoEllipsisVerticalOutline} color={'gray.500'} />
+				<Icon as={IoEllipsisVerticalOutline} color="gray.500" />
 			</MenuButton>
-			<MenuList rounded={'md'} textAlign={'start'} minW={'auto'} p={0}>
+			<MenuList rounded="md" textAlign="start" minW="auto" p={0}>
 				{children}
 			</MenuList>
 		</Menu>

@@ -16,7 +16,15 @@ const RegisterForm = () => {
 		register,
 		resetField,
 		formState: { errors, isSubmitting }
-	} = useForm<TRegisterFormFields>({ mode: 'all' });
+	} = useForm<TRegisterFormFields>({
+		mode: 'all',
+		defaultValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			password: ''
+		}
+	});
 	const onRegister = useRegister();
 
 	return (
@@ -25,8 +33,21 @@ const RegisterForm = () => {
 				id="register-form"
 				name="register-form"
 				onSubmit={handleSubmit(onRegister)}
+				actions={
+					<SubmitButton
+						id="submit-register-account"
+						name="submit-register-account"
+						label="Create account"
+						isLoading={isSubmitting}
+						disabled={isSubmitting}
+						size="md"
+						fontSize="small"
+						w={{ base: 'full', sm: '150px' }}
+					/>
+				}
 				stackProps={{
-					alignItems: 'center'
+					alignItems: 'center',
+					spacing: 3
 				}}
 			>
 				<FormInput<TRegisterFormFields>
@@ -35,6 +56,9 @@ const RegisterForm = () => {
 					placeholder="First name"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'First name'
+					}}
 					rules={{
 						required: 'You must enter a first name',
 						minLength: {
@@ -43,11 +67,12 @@ const RegisterForm = () => {
 								'You first name must be a minimum of 2 characters'
 						},
 						maxLength: {
-							value: 20,
+							value: 30,
 							message:
-								'You first name must be a maximum of 20 characters'
+								'You first name must be a maximum of 30 characters'
 						}
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('firstName')}
 				/>
@@ -58,13 +83,17 @@ const RegisterForm = () => {
 					placeholder="Last name"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Last name'
+					}}
 					rules={{
 						maxLength: {
-							value: 20,
+							value: 30,
 							message:
-								'Your last name must be a maximum of 20 characters'
+								'Your last name must be a maximum of 30 characters'
 						}
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('lastName')}
 				/>
@@ -74,10 +103,14 @@ const RegisterForm = () => {
 					placeholder="Email"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Email'
+					}}
 					rules={{
 						required: 'You must enter a valid email address',
 						pattern: emailPattern
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('email')}
 				/>
@@ -88,6 +121,10 @@ const RegisterForm = () => {
 					placeholder="Password"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Password',
+						type: 'password'
+					}}
 					rules={{
 						required: 'You must enter a valid password',
 						minLength: {
@@ -101,18 +138,9 @@ const RegisterForm = () => {
 								'Your password must be a maximum of 20 characters'
 						}
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('password')}
-				/>
-				<SubmitButton
-					id={'submit-register-account'}
-					name={'submit-register-account'}
-					label={'Create account'}
-					isLoading={isSubmitting}
-					disabled={isSubmitting}
-					size={'md'}
-					fontSize={'sm'}
-					w={{ base: 'full', sm: '175px' }}
 				/>
 			</Form>
 			{/* <SocialLogins /> */}

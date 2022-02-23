@@ -14,25 +14,20 @@ interface IOverviewTag {
 export const OverviewTag = ({ title, value, icon }: IOverviewTag) => (
 	<BaseTag
 		p={2}
-		d={'flex'}
-		alignItems={'center'}
-		flexDirection={'column'}
-		bg={'fpPrimary.50'}
+		d="flex"
+		alignItems="center"
+		flexDirection="column"
+		bg="fpPrimary.50"
 		borderWidth={0}
-		alignSelf={'stretch'}
-		justifyContent={'center'}
-		minW={'100px'}
+		alignSelf="stretch"
+		justifyContent="center"
+		minW="100px"
 	>
-		<Label
-			fontSize={'xs'}
-			color={'fpPrimary.700'}
-			alignItems={'center'}
-			mb={1}
-		>
-			{icon && <Icon as={icon} fontSize={'sm'} mr={1} />}
+		<Label fontSize="xs" color="fpPrimary.700" alignItems="center" mb={1}>
+			{icon && <Icon as={icon} fontSize="sm" mr={1} />}
 			{value}
 		</Label>
-		<Label color={'gray.400'} fontSize={'xs'}>
+		<Label color="gray.400" fontSize="xs">
 			{title}
 		</Label>
 	</BaseTag>

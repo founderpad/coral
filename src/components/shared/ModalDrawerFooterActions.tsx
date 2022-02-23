@@ -21,16 +21,16 @@ export const ModalDrawerFooterActions = memo(
 
 		return (
 			<ButtonGroup
-				justifyContent={'flex-end'}
-				w={'full'}
-				as={'footer'}
-				display={'flex'}
+				justifyContent="flex-end"
+				w="full"
+				as="footer"
+				display="flex"
 				spacing={4}
 			>
 				<CancelButton
 					label={noBtnLabel ?? 'Clear'}
 					onClick={onClose}
-					title={'Reset search'}
+					title="Reset search"
 				/>
 				{children}
 			</ButtonGroup>

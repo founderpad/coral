@@ -15,11 +15,11 @@ const ProfileSectionLabel = memo(
 		icon?: IconType;
 		children?: React.ReactNode;
 	}) => (
-		<FlexLayout alignItems={'center'} wordBreak={'break-all'}>
-			{icon && <Icon as={icon} color={'gray.500'} mr={2} />}
+		<FlexLayout alignItems="center" wordBreak="break-all">
+			{icon && <Icon as={icon} color="gray.500" mr={2} />}
 			{children ?? (
 				<BaseLabel
-					fontSize={'small'}
+					fontSize="small"
 					css={{ whiteSpace: 'normal' }}
 					noOfLines={2}
 					isTruncated
@@ -42,12 +42,7 @@ const LinkSectionLabel = ({
 }) => (
 	<ProfileSectionLabel label={label} icon={icon}>
 		{link && (
-			<PrimaryLink
-				title={'Profile link'}
-				size={'xs'}
-				href={link}
-				isExternal
-			>
+			<PrimaryLink title="Profile link" size="xs" href={link} isExternal>
 				{label}
 			</PrimaryLink>
 		)}

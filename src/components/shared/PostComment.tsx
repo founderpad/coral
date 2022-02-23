@@ -74,37 +74,32 @@ const PostComment = () => {
 	);
 
 	return (
-		<StackLayout
-			spacing={2}
-			d={'flex'}
-			flex={1}
-			justifyContent={'flex-end'}
-		>
+		<StackLayout spacing={2} d="flex" flex={1} justifyContent="flex-end">
 			<StackLayout
-				direction={'row'}
+				direction="row"
 				spacing={2}
-				w={'full'}
-				alignItems={'center'}
+				w="full"
+				alignItems="center"
 			>
-				<CurrentUserAvatar size={'sm'} />
+				<CurrentUserAvatar size="sm" />
 
 				<Textarea
-					name={'value'}
-					id={'value'}
-					// minH={''}
-					placeholder={'Write your comment here'}
-					w={'full'}
+					name="value"
+					id="value"
+					// minH=""
+					placeholder="Write your comment here"
+					w="full"
 					as={ResizeTextarea}
 					onChange={onValueChange}
 					value={value}
 					borderBottomWidth={2}
-					borderColor={'white'}
+					borderColor="white"
 					maxRows={2}
-					resize={'none'}
+					resize="none"
 					minRows={1}
-					minH={'fit-content'}
+					minH="fit-content"
 					p={2}
-					title={'Write your comment here'}
+					title="Write your comment here"
 					_hover={{
 						borderColor: 'transparent'
 					}}
@@ -114,11 +109,11 @@ const PostComment = () => {
 				/>
 
 				<IconButton
-					aria-label={'send-message'}
-					variant={'ghost'}
-					colorScheme={'fpPrimary'}
-					title={'Send message'}
-					type={'submit'}
+					aria-label="send-message"
+					variant="ghost"
+					colorScheme="fpPrimary"
+					title="Send message"
+					type="submit"
 					onClick={() => postCommentMutation()}
 					visibility={value.length ? 'visible' : 'hidden'}
 				>

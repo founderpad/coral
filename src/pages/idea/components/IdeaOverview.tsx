@@ -19,11 +19,11 @@ export const IdeaOverview = () => {
 				}
 			}}
 		>
-			{status && <OverviewTag title={'Stage'} value={status} />}
-			{field && <OverviewTag title={'Field'} value={field} />}
+			{status && <OverviewTag title="Stage" value={status} />}
+			{field && <OverviewTag title="Field" value={field} />}
 			{country && (
 				<OverviewTag
-					title={'Location'}
+					title="Location"
 					value={location ? `${location}, ${country}` : country}
 				/>
 			)}

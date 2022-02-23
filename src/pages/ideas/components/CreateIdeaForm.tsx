@@ -1,40 +1,41 @@
 import { SubmitButton } from '@components/buttons';
 import { Form } from '@components/form';
-import { InputField } from '@components/input/InputField';
-import { SelectField } from '@components/input/SelectField';
-import { SwitchField } from '@components/input/SwitchField';
-import { TextareaField } from '@components/input/TextareaField';
-import { Label } from '@components/labels';
 import {
-	TCreateIdeaMutation,
-	TIdeas_Insert_Input,
-	useCreateIdeaMutation
-} from '@generated/api';
+	FormInput,
+	FormSelect,
+	FormTextarea
+} from '@components/form/inputs/FormField';
+import { TIdeas_Set_Input } from '@generated/api';
+
+import { Label } from '@components/labels';
+import { TCreateIdeaMutation, useCreateIdeaMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
-import {
-	ALL_IDEA_CATEGORY_FIELDS,
-	ALL_IDEA_STATUSES,
-	mobileIdeaCategoryFields,
-	mobileIdeaStatuses
-} from '@utils/Constants';
+import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@utils/Constants';
 import Router from 'next/router';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-
-type TEditIdea = Omit<TIdeas_Insert_Input, 'user' | 'votes' | 'comments'>;
+import { SwitchField } from '@components/input';
+import { StackLayout } from '@components/layouts';
 
 const CreateIdeaForm = () => {
 	const user = useCurrentUser();
 	const {
 		handleSubmit,
 		control,
+		register,
 		getValues,
-		reset,
+		resetField,
 		formState: { errors, isSubmitting }
-	} = useForm<TEditIdea>({
+	} = useForm<TIdeas_Set_Input>({
 		mode: 'all',
 		defaultValues: {
+			name: '',
+			summary: '',
+			status: '',
+			field: '',
+			competitors: '',
+			team: '',
 			isPublished: true
 		}
 	});
@@ -59,16 +60,6 @@ const CreateIdeaForm = () => {
 		}
 	});
 
-	const resetField = useCallback(
-		(name: string) => {
-			reset({
-				...getValues(),
-				[name]: ''
-			});
-		},
-		[reset, getValues]
-	);
-
 	return (
 		<Form
 			id="create-edit-idea-form"
@@ -77,145 +68,176 @@ const CreateIdeaForm = () => {
 			noValidate
 			stackProps={{ spacing: 10 }}
 		>
-			<InputField
+			<FormInput<TIdeas_Set_Input>
 				id="name"
 				name="name"
 				label="Name of your idea"
-				placeholder="Name of your idea (max. 100 characters)"
-				error={errors['name']}
-				errorText={
-					errors['name']?.type === 'required'
-						? 'Please enter a name for your idea'
-						: 'Idea name can not be more than 100 characters'
-				}
+				placeholder="Write the idea name (max. 75 characters)"
+				helperText="Make your idea name stand out"
+				register={register}
 				control={control}
-				rules={{ required: true, maxLength: 100 }}
-				size={'lg'}
-				fontSize={'lg'}
-				variant={'filled'}
-				onClear={() => resetField('name')}
-				isRequired
+				fieldProps={{
+					placeholder: 'Write the idea name (max. 75 characters)'
+				}}
+				rules={{
+					required:
+						'You must provide a name for your idea (max. 75 characters)',
+					maxLength: {
+						value: 75,
+						message: 'Idea name can not be more than 75 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('name', { defaultValue: '' })}
 			/>
 
-			<TextareaField
+			<FormTextarea<TIdeas_Set_Input>
 				id="summary"
 				name="summary"
-				label="Summary of idea"
-				placeholder="Write a summary about your idea (max. 200 characters)"
-				error={errors['summary']}
-				errorText={
-					errors['summary']?.type === 'required'
-						? 'Please enter a summary for your idea'
-						: 'Summary can not be more than 200 characters'
-				}
-				maxRows={5}
+				label="Summary"
+				placeholder="Write a brief summary of your idea (max. 200 characters)"
+				helperText="Make your summary pop! This is what people will see when they search"
+				register={register}
 				control={control}
-				rules={{ required: true, maxLength: 200 }}
-				onClear={() => resetField('summary')}
-				isRequired
+				rules={{
+					required:
+						'You must provide a summary for your idea (max. 200 characters)',
+					maxLength: {
+						value: 200,
+						message:
+							'Your summary can not be more than 200 characters'
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('summary', { defaultValue: '' })}
 			/>
 
-			<TextareaField
+			<FormTextarea<TIdeas_Set_Input>
 				id="description"
 				name="description"
-				label="Description of your idea"
-				placeholder="Write a description about your idea (max. 1000 characters)"
-				error={errors['description']}
-				errorText={
-					errors['description']?.type === 'required'
-						? 'Please enter a description for your idea'
-						: 'Description can not be more than 500 characters'
-				}
-				maxRows={5}
+				label="Description"
+				placeholder="Write a description of your idea (max. 750 characters)"
+				register={register}
 				control={control}
-				rules={{ required: true, maxLength: 1000 }}
-				onClear={() => resetField('description')}
-				isRequired
+				rules={{
+					maxLength: {
+						value: 750,
+						message:
+							'Your description can not be more than 750 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('description', { defaultValue: '' })}
 			/>
-			<SelectField
-				id="field"
-				name="field"
-				label="What field is the idea?"
-				error={errors['field']}
-				errorText="Please select the field for the idea"
-				placeholder="field"
-				size={'md'}
-				options={ALL_IDEA_CATEGORY_FIELDS}
-				mobileOptions={mobileIdeaCategoryFields()}
-				control={control}
-				onClear={() => resetField('field')}
-				isRequired
-			/>
-			<SelectField
-				id="status"
-				name="status"
-				label="What is the idea's current status?"
-				error={errors['status']}
-				errorText="Please select the status for the idea"
-				placeholder="status"
-				size={'md'}
-				options={ALL_IDEA_STATUSES}
-				mobileOptions={mobileIdeaStatuses()}
-				onClear={() => resetField('status')}
-				control={control}
-				isRequired
-			/>
-			<TextareaField
+
+			<StackLayout direction={{ base: 'column', sm: 'row' }}>
+				<FormSelect<TIdeas_Set_Input>
+					id="status"
+					name="status"
+					label="Current status"
+					placeholder="status"
+					options={ALL_IDEA_STATUSES}
+					register={register}
+					control={control}
+					rules={{
+						required: 'You must provide the status for your idea'
+					}}
+					errors={errors}
+					onClear={() => resetField('status', { defaultValue: '' })}
+				/>
+
+				<FormSelect<TIdeas_Set_Input>
+					id="field"
+					name="field"
+					label="Field"
+					placeholder="field"
+					options={ALL_IDEA_CATEGORY_FIELDS}
+					register={register}
+					control={control}
+					rules={{
+						required: 'You must provide the field for your idea'
+					}}
+					errors={errors}
+					onClear={() => resetField('field', { defaultValue: '' })}
+				/>
+			</StackLayout>
+
+			<FormTextarea<TIdeas_Set_Input>
 				id="competitors"
 				name="competitors"
-				label="Your competitors"
-				placeholder="List your competitors (max. 200 characters)"
+				label="Competitors"
+				placeholder="Write about what competitors your idea may face (max. 250 characters)"
+				register={register}
 				control={control}
-				error={errors['competitors']}
-				errorText="Competitors must not be more than 200 characters"
-				rules={{ maxLength: 200 }}
-				onClear={() => resetField('competitors')}
+				rules={{
+					maxLength: {
+						value: 250,
+						message:
+							'Competitors can not be more than 250 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('competitors', { defaultValue: '' })}
 			/>
-			<TextareaField
+
+			<FormTextarea<TIdeas_Set_Input>
 				id="team"
-				label="Your team"
 				name="team"
-				placeholder="List your team (max. 200 characters)"
+				label="Team"
+				placeholder="Write about your team for this idea (max. 250 characters)"
+				register={register}
 				control={control}
-				error={errors['team']}
-				errorText="Team must not be more than 200 characters"
-				rules={{ maxLength: 200 }}
-				onClear={() => resetField('team')}
+				rules={{
+					maxLength: {
+						value: 250,
+						message: 'Team can not be more than 250 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() => resetField('team', { defaultValue: '' })}
 			/>
-			<TextareaField
+
+			<FormTextarea<TIdeas_Set_Input>
 				id="additionalInformation"
-				label="Additional information"
 				name="additionalInformation"
-				placeholder="Any additional information"
+				label="Additional information"
+				placeholder="Write any additional information about your idea (max. 500 characters)"
+				register={register}
 				control={control}
-				error={errors['additionalInformation']}
-				errorText="Additional information must not be more than 500 characters"
-				rules={{ maxLength: 500 }}
-				onClear={() => resetField('additionalInformation')}
+				rules={{
+					maxLength: {
+						value: 500,
+						message:
+							'Additional information can not be more than 500 characters '
+					}
+				}}
+				errors={errors}
+				onClear={() =>
+					resetField('additionalInformation', { defaultValue: '' })
+				}
 			/>
 
 			<SwitchField
 				id="isPublished"
 				name="isPublished"
 				label="Publish your idea"
-				helperText="You can change this after it's been created"
+				helperText="Unpublished ideas will not be searchable by other users. You can change this after it's been created."
 				defaultChecked={true}
 				control={control}
 			/>
 
 			<SubmitButton
-				name={'create-idea-button'}
-				label={'Create your idea'}
-				alignSelf={'center'}
+				name="create-idea-button"
+				label="Create your idea"
+				alignSelf="center"
 				isLoading={isSubmitting}
-				// disabled={!isValid || isSubmitting}
 				disabled={isSubmitting}
-				mt={'auto'}
+				mt="auto"
 				w={{ base: 'full', sm: '200px' }}
-				size={'md'}
+				size="md"
 			/>
 
-			<Label fontSize={'9px'} color={'fpGrey.400'}>
+			<Label fontSize="9px" color="fpGrey.300">
 				The content on our site is provided for general information only
 				(including such content uploaded by third parties). This
 				includes any community assessment of business ideas on the

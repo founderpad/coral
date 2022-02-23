@@ -59,46 +59,42 @@ export const InterestedIdea = () => {
 		<>
 			<AppDivider />
 			{interested ? (
-				<Label
-					color={'green.500'}
-					alignItems={'center'}
-					fontSize={'small'}
-				>
+				<Label color="green.500" alignItems="center" fontSize="small">
 					You have expressed interest in this idea
 				</Label>
 			) : (
 				// <PrimaryButton
-				// 	name={'interested-idea-button'}
-				// 	variant={'outline'}
+				// 	name="interested-idea-button"
+				// 	variant="outline"
 				// 	onClick={onClick}
-				// 	alignItems={'center'}
-				// 	position={'relative'}
-				// 	w={'fit-content'}
-				// 	size={'sm'}
-				// 	fontSize={'xs'}
+				// 	alignItems="center"
+				// 	position="relative"
+				// 	w="fit-content"
+				// 	size="sm"
+				// 	fontSize="xs"
 				// 	px={4}
 				// 	py={1}
 				// >
 				// 	{/* <Icon
 				// 		as={IoStarSharp}
-				// 		position={'absolute'}
-				// 		color={'gold'}
+				// 		position="absolute"
+				// 		color="gold"
 				// 		right={0}
 				// 		top={0}
-				// 		fontSize={'large'}
-				// 		transform={'translateY(-50%)translateX(50%)'}
+				// 		fontSize="large"
+				// 		transform="translateY(-50%)translateX(50%)"
 				// 	/> */}
 				// 	I&apos;m Interested
 				// </PrimaryButton>
 				<Button
 					leftIcon={<IoStarOutline />}
-					w={'fit-content'}
-					bg={'transparent'}
-					variant={'outline'}
+					w="fit-content"
+					bg="transparent"
+					variant="outline"
 					px={4}
 					py={2}
-					color={'fpPrimary.500'}
-					fontSize={'sm'}
+					color="fpPrimary.500"
+					fontSize="sm"
 					onClick={onClick}
 				>
 					I&apos;m interested

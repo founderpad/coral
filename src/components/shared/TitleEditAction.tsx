@@ -18,29 +18,29 @@ export const TitleEditAction = memo(
 	}) => (
 		<FlexLayout
 			{...headerProps}
-			justifyContent={'space-between'}
-			alignItems={'center'}
+			justifyContent="space-between"
+			alignItems="center"
 			flex={1}
 			mb={2}
 		>
-			<FlexLayout flexDirection={'column'}>
+			<FlexLayout flexDirection="column">
 				<Heading
-					d={'flex'}
+					d="flex"
 					flex={1}
 					css={{ whiteSpace: 'normal' }}
-					wordBreak={'break-all'}
+					wordBreak="break-all"
 					noOfLines={1}
 					isTruncated
-					size={'h6'}
-					fontSize={'sm'}
-					color={'black'}
+					size="h6"
+					fontSize="sm"
+					color="black"
 				>
 					{title}
 				</Heading>
 				{subtitle}
 			</FlexLayout>
 
-			{onClick && <EditButton onClick={onClick} aria-label={'Edit'} />}
+			{onClick && <EditButton onClick={onClick} aria-label="Edit" />}
 		</FlexLayout>
 	)
 );

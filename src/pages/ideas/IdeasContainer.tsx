@@ -46,7 +46,7 @@ const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 	}
 
 	if (Router.query['new']) {
-		where['is_new'] = { _eq: !!Router.query['new'] };
+		where['isNew'] = { _eq: !!Router.query['new'] };
 	}
 
 	return where;
@@ -62,7 +62,7 @@ const orderBuilder = (): TIdea_Preview_Order_By => {
 
 		order['comments_aggregate'] = { count: 'desc' };
 	} else {
-		order['created_at'] = 'desc';
+		order['createdAt'] = 'desc';
 	}
 
 	return order;
@@ -72,7 +72,10 @@ const IdeasContainer = () => {
 	const { onSetCachedIdeaIds } = useContext(IdeaCycleContext);
 	const { data, loading } = useIdeasQuery({
 		variables: {
-			where: queryBuilder(),
+			where: {
+				isPublished: { _eq: true },
+				...queryBuilder()
+			},
 			limit: 10,
 			offset: (parseInt(useQueryParam('page')) - 1) * 10,
 			orderBy: orderBuilder(),
@@ -106,7 +109,7 @@ const IdeasContainer = () => {
 				{!loading && hasResults < 1 ? (
 					<NoResults back />
 				) : (
-					<StackLayout display={'flex'} spacing={6}>
+					<StackLayout display="flex" spacing={6}>
 						{data?.idea_preview?.map(
 							(idea: TIdeaPreviewFieldsFragment) => (
 								<React.Fragment key={idea.id}>

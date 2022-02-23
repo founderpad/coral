@@ -59,18 +59,18 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 	return (
 		<BaseMenu>
 			<BaseMenuItem
-				title={'Edit'}
-				subTitle={'Edit this idea'}
+				title="Edit"
+				subTitle="Edit this idea"
 				icon={IoPencilOutline}
 				onClick={onEditClick}
 				divider={true}
 			/>
 			<BaseMenuItem
-				title={'Delete'}
-				subTitle={'Delete this idea'}
+				title="Delete"
+				subTitle="Delete this idea"
 				icon={IoTrashBinOutline}
 				onClick={onDeleteClick}
-				color={'red.500'}
+				color="red.500"
 			/>
 		</BaseMenu>
 	);

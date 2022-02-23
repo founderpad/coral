@@ -9,26 +9,26 @@ const Investor = () => {
 	return (
 		<MainMentorLayout>
 			<Box
-				d={'flex'}
+				d="flex"
 				flex={1}
-				justifyContent={'center'}
-				alignItems={'center'}
-				flexDirection={'column'}
+				justifyContent="center"
+				alignItems="center"
+				flexDirection="column"
 			>
 				<Box
-					d={'flex'}
+					d="flex"
 					flex={1}
-					justifyContent={'center'}
-					alignItems={'center'}
-					flexDirection={'column'}
+					justifyContent="center"
+					alignItems="center"
+					flexDirection="column"
 				>
 					<Icon
 						as={IoLockClosedSharp}
-						fontSize={'xx-large'}
-						color={'gray.500'}
+						fontSize="xx-large"
+						color="gray.500"
 						mb={4}
 					/>
-					<Heading color={'gray.500'} fontSize={'lg'}>
+					<Heading color="gray.500" fontSize="lg">
 						Mentor network coming soon
 					</Heading>
 				</Box>

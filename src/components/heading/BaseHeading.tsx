@@ -15,7 +15,7 @@ const BaseHeading = (props: BaseHeadingProps) => {
 			{...props}
 			size={size ?? 'md'}
 			color={color ?? 'black'}
-			alignItems={'center'}
+			alignItems="center"
 			mb={1}
 		>
 			{icon && <Icon as={icon} mr={2} />}

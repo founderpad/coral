@@ -60,40 +60,36 @@ export const CustomInput = (props: Props) => {
 	return (
 		<React.Fragment>
 			<FlexLayout
-				d={'flex'}
-				justifyContent={'center'}
-				alignItems={'center'}
-				boxSize={'100px'}
+				d="flex"
+				justifyContent="center"
+				alignItems="center"
+				boxSize="100px"
 				p={2}
-				bgColor={'fpLightGrey.300'}
-				border={'2px dashed'}
-				borderColor={'fpLightGrey.900'}
+				bgColor="fpLightGrey.300"
+				border="2px dashed"
+				borderColor="fpLightGrey.900"
 				_hover={{ borderColor: 'gray.300' }}
 				as="section"
-				cursor={'pointer'}
+				cursor="pointer"
 				{...getRootProps()}
 			>
 				<input {...getInputProps()} />
 				<Flex
 					as="p"
-					color={'gray.400'}
-					alignItems={'center'}
-					flexDirection={'column'}
+					color="gray.400"
+					alignItems="center"
+					flexDirection="column"
 				>
-					<Icon
-						as={IoCloudUploadOutline}
-						fontSize={'x-large'}
-						mb={2}
-					/>
-					<Label fontSize={'xs'} color={'gray.400'}>
+					<Icon as={IoCloudUploadOutline} fontSize="x-large" mb={2} />
+					<Label fontSize="xs" color="gray.400">
 						Upload
 					</Label>
 				</Flex>
 			</FlexLayout>
 
 			<CaptionLabel
-				fontSize={'smaller'}
-				color={error ? 'red.500' : 'gray.400'}
+				fontSize="smaller"
+				color={error ? 'red.500' : 'fpGrey.900'}
 				mt={2}
 			>
 				<React.Fragment>

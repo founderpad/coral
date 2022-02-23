@@ -74,13 +74,13 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 				ref={ref}
 			>
 				{label && (
-					<FlexLayout justifyContent={'space-between'}>
+					<FlexLayout justifyContent="space-between">
 						<FormLabelText label={label} />
 						{showClear && (
 							<Button
-								fontSize={'x-small'}
-								colorScheme={'fpPrimary'}
-								variant={'link'}
+								fontSize="x-small"
+								colorScheme="fpPrimary"
+								variant="link"
 								mb={1}
 								onClick={onClearValue}
 							>
@@ -90,7 +90,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 					</FlexLayout>
 				)}
 				<Controller
-					defaultValue={''}
+					defaultValue=""
 					render={({
 						field: { onChange, value },
 						fieldState: { error }
@@ -110,8 +110,8 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 							name={name}
 							aria-label={name}
 							fontSize={fontSize ?? '12px'}
-							color={'fpGrey.900'}
-							rounded={'md'}
+							color="fpGrey.900"
+							rounded="md"
 						/>
 					)}
 					name={name}
@@ -122,7 +122,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 					<FormErrorText label={errorText} />
 				) : (
 					helperText && (
-						<FormHelperText fontSize={'xs'} color={'fpGrey.400'}>
+						<FormHelperText fontSize="xs" color="fpGrey.400">
 							{helperText}
 						</FormHelperText>
 					)
@@ -133,7 +133,7 @@ export const InputField = forwardRef<IInputFieldProps<any>, 'input'>(
 );
 
 // const InputFieldLabel = ({ label }: { label: string }):  => (
-// 	<FormLabel as="label" fontSize={'sm'} mb={'1px'} color={'black'}>
+// 	<FormLabel as="label" fontSize="sm" mb="1px" color="black">
 // 		{label}
 // 	</FormLabel>
 // );
@@ -155,17 +155,13 @@ export const InputFieldWithLabelAndIcon = forwardRef<
 		// <InputFieldLabel {...props}>
 		<InputGroup>
 			{leftEl && (
-				<InputLeftAddon
-					fontSize={'large'}
-					borderRadius={0}
-					bg={'white'}
-				>
+				<InputLeftAddon fontSize="large" borderRadius={0} bg="white">
 					{leftEl}
 				</InputLeftAddon>
 			)}
 			<InputField {...props} ref={ref} />
 			{rightEl && (
-				<InputLeftAddon bg={'transparent'}>{rightEl}</InputLeftAddon>
+				<InputLeftAddon bg="transparent">{rightEl}</InputLeftAddon>
 			)}
 		</InputGroup>
 		// </InputFieldLabel>
@@ -197,7 +193,7 @@ export const PasswordField = forwardRef<IInputFieldProps<any>, 'input'>(
 			type="password"
 			errorText="Please enter a valid password between 6 and 20 characters"
 			rules={{ maxLength: 20, minLength: 6 }}
-			fontSize={'sm'}
+			fontSize="sm"
 			autoComplete="current-password"
 			ref={ref}
 		/>

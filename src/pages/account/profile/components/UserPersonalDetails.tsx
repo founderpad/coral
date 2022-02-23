@@ -7,10 +7,10 @@ import {
 	IoMailOutline,
 	IoTimeOutline
 } from '@components/icons';
-import { Label } from '@components/labels';
 import { StackLayout } from '@components/layouts';
 import { TitleEditAction } from '@components/shared';
 import ChangePasswordForm from '@components/shared/ChangePasswordForm';
+import PronounsLabel from '@components/shared/PronounsLabel';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useCurrentUser } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
@@ -87,17 +87,10 @@ const UserPersonalInformation = memo((props: Props) => {
 				<TitleEditAction
 					title={displayName}
 					subtitle={
-						pronouns && (
-							<Label fontSize={'xs'} color={'fpGrey.500'}>
-								(
-								{customPronouns
-									? customPronouns
-									: pronouns
-									? pronouns
-									: ''}
-								)
-							</Label>
-						)
+						<PronounsLabel
+							pronouns={pronouns}
+							customPronouns={customPronouns}
+						/>
 					}
 					onClick={onPersonalDetailsClick}
 				/>
@@ -114,28 +107,28 @@ const UserPersonalInformation = memo((props: Props) => {
 				/>
 				{isDetailsChangeSuccess && (
 					<AlertFeedback
-						status={'success'}
-						message={'Details updated successfully'}
+						status="success"
+						message="Details updated successfully"
 					/>
 				)}
 				{/* <SocialMediaDetails /> */}
 			</StackLayout>
 
-			<StackLayout spacing={2} w={'full'}>
-				<TitleEditAction title={'Password'} onClick={onPasswordClick} />
+			<StackLayout spacing={2} w="full">
+				<TitleEditAction title="Password" onClick={onPasswordClick} />
 				<ProfileSectionLabel
-					label={'*********'}
+					label="*********"
 					icon={IoLockClosedOutline}
 				/>
 				{isPwdChangeSuccess && (
 					<AlertFeedback
-						status={'success'}
-						message={'Password updated successfully'}
+						status="success"
+						message="Password updated successfully"
 					/>
 				)}
 				{isPwdChangeError && (
 					<AlertFeedback
-						status={'error'}
+						status="error"
 						message={
 							'Failed to change password. Please try again later'
 						}

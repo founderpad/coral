@@ -7,12 +7,12 @@ export const PrimaryButton = (props: BaseButtonProps) => {
 	return (
 		<BaseButton
 			{...props}
-			colorScheme={'fpPrimary'}
-			borderColor={'initial'}
+			colorScheme="fpPrimary"
+			borderColor="initial"
 			variant={variant}
 			size={size}
-			minW={'40px'}
-			rounded={'md'}
+			minW="40px"
+			rounded="md"
 		>
 			{children}
 		</BaseButton>

@@ -20,23 +20,23 @@ const SocialLogins = memo(() => {
 
 	return (
 		<StackLayout
-			d={'flex'}
-			justifyContent={'center'}
+			d="flex"
+			justifyContent="center"
 			spacing={0}
 			w={{ base: 'full', sm: '175px' }}
-			alignItems={'center'}
-			alignSelf={'center'}
+			alignItems="center"
+			alignSelf="center"
 		>
-			<Label textAlign={'center'} fontSize={'xs'} color={'gray.400'}>
+			<Label textAlign="center" fontSize="xs" color="gray.400">
 				Or
 			</Label>
 
 			<BoxLayout
-				id={'socialLogin'}
-				data-testid={'socialLogin'}
-				alignSelf={'center'}
+				id="socialLogin"
+				data-testid="socialLogin"
+				alignSelf="center"
 				onClick={() => onSocialLogin('google')}
-				cursor={'pointer'}
+				cursor="pointer"
 				css={{
 					'> *:active': {
 						pointerEvents: 'none'

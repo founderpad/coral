@@ -20,18 +20,14 @@ const AddFollower = ({ userId }: { userId: string }) => {
 
 	if (followed) {
 		return (
-			<Label color={'green.500'} alignItems={'center'} fontSize={'small'}>
+			<Label color="green.500" alignItems="center" fontSize="small">
 				A follow request has been sent to this user
 			</Label>
 		);
 	}
 
 	return (
-		<PrimaryButton
-			name={'Add to network'}
-			fontSize={'xs'}
-			onClick={onClick}
-		>
+		<PrimaryButton name="Add to network" fontSize="xs" onClick={onClick}>
 			Add to network
 		</PrimaryButton>
 	);

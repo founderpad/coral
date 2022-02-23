@@ -18,8 +18,14 @@ const LoginForm = () => {
 		handleSubmit,
 		register,
 		resetField,
-		formState: { errors, isSubmitting } // isValid
-	} = useForm<TLoginFields>({ mode: 'all' });
+		formState: { errors, isSubmitting }
+	} = useForm<TLoginFields>({
+		mode: 'all',
+		defaultValues: {
+			email: '',
+			password: ''
+		}
+	});
 	const onLogin = useLogin();
 
 	const isError = useQueryParam('error');
@@ -30,8 +36,22 @@ const LoginForm = () => {
 				id="login-form"
 				name="login-form"
 				onSubmit={handleSubmit(onLogin)}
+				actions={
+					<SubmitButton
+						id="submit-login"
+						name="submit-login"
+						form="login-form"
+						label="Log in"
+						size="md"
+						fontSize="small"
+						w={{ base: 'full', sm: '150px' }}
+						isLoading={isSubmitting}
+						disabled={isSubmitting}
+					/>
+				}
 				stackProps={{
-					alignItems: 'center'
+					alignItems: 'center',
+					spacing: 3
 				}}
 			>
 				<FormInput<TLoginFields>
@@ -40,10 +60,14 @@ const LoginForm = () => {
 					placeholder="Email"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Email'
+					}}
 					rules={{
 						required: 'You must enter a valid email address',
 						pattern: emailPattern
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('email')}
 				/>
@@ -54,7 +78,10 @@ const LoginForm = () => {
 					placeholder="Password"
 					register={register}
 					control={control}
-					type="password"
+					fieldProps={{
+						placeholder: 'Password',
+						type: 'password'
+					}}
 					rules={{
 						required: 'You must enter a valid password',
 						minLength: {
@@ -68,6 +95,7 @@ const LoginForm = () => {
 								'Your password must be a maximum of 20 characters'
 						}
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('password')}
 				/>
@@ -80,18 +108,8 @@ const LoginForm = () => {
 						}
 					/>
 				)}
-
-				<SubmitButton
-					id="submit-login"
-					name="submit-login"
-					label="Log in"
-					isLoading={isSubmitting}
-					disabled={isSubmitting}
-					size="md"
-					fontSize="sm"
-					w={{ base: 'full', sm: '175px' }}
-				/>
 			</Form>
+
 			{/* <SocialLogins /> */}
 			<LoginFooter />
 		</React.Fragment>
@@ -99,20 +117,18 @@ const LoginForm = () => {
 };
 
 const LoginFooter = memo(() => (
-	<FlexLayout justifyContent={'space-between'} alignItems={'center'} pt={8}>
-		<Label color={'gray.500'} fontSize={'xs'} alignSelf={'center'}>
-			No account?
-			<PrimaryLink href="/register" title={'Link to register an account'}>
-				{' '}
+	<FlexLayout justifyContent="space-between" alignItems="center" pt={8}>
+		<Label color="gray.500" fontSize="x-small" alignSelf="center">
+			No account?{' '}
+			<PrimaryLink href="/register" title="Link to register an account">
 				Register now
 			</PrimaryLink>
 		</Label>
 		<PrimaryLink
 			href="/resetpassword"
-			title={'Link to register an account'}
-			fontSize={'xs'}
+			title="Link to register an account"
+			fontSize="x-small"
 		>
-			{' '}
 			Forgotten password?
 		</PrimaryLink>
 	</FlexLayout>
