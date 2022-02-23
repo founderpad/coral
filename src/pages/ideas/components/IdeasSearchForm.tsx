@@ -150,7 +150,7 @@ const IdeasSearchForm = () => {
 				shallow: true
 			}
 		);
-	}, []);
+	}, [getValues, reset]);
 
 	return (
 		<Form
