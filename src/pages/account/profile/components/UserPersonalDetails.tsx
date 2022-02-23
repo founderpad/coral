@@ -7,7 +7,6 @@ import {
 	IoMailOutline,
 	IoTimeOutline
 } from '@components/icons';
-import { Label } from '@components/labels';
 import { StackLayout } from '@components/layouts';
 import { TitleEditAction } from '@components/shared';
 import ChangePasswordForm from '@components/shared/ChangePasswordForm';
