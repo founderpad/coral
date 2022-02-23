@@ -14,7 +14,7 @@ const ChangePassword: NextPage = () => {
 			<PrimaryLink
 				href="/login"
 				title="Link to login"
-				fontSize="xs"
+				fontSize="x-small"
 				textAlign="end"
 			>
 				Login here

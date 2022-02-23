@@ -27,9 +27,8 @@ exports[`Register form matches snapshot 1`] = `
           <input
             aria-label="firstName"
             aria-required="true"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="firstName"
+            class="chakra-input css-ka9a58"
+            id="field-1"
             placeholder="First name"
             required=""
             value=""
@@ -50,9 +49,8 @@ exports[`Register form matches snapshot 1`] = `
           />
           <input
             aria-label="lastName"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="lastName"
+            class="chakra-input css-ka9a58"
+            id="field-2"
             placeholder="Last name"
             value=""
           />
@@ -73,9 +71,8 @@ exports[`Register form matches snapshot 1`] = `
           <input
             aria-label="email"
             aria-required="true"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="email"
+            class="chakra-input css-ka9a58"
+            id="field-3"
             placeholder="Email"
             required=""
             value=""
@@ -97,11 +94,11 @@ exports[`Register form matches snapshot 1`] = `
           <input
             aria-label="password"
             aria-required="true"
-            class="chakra-input css-133xfak"
-            errors="[object Object]"
-            id="password"
+            class="chakra-input css-ka9a58"
+            id="field-4"
             placeholder="Password"
             required=""
+            type="password"
             value=""
           />
         </div>
@@ -117,9 +114,9 @@ exports[`Register form matches snapshot 1`] = `
     </div>
   </form>
   <div
-    class="chakra-text css-i2jbli"
+    class="chakra-text css-av3fgh"
   >
-    By continuing, you agree to founderpad's
+    By continuing, you agree to founderpad's 
     <span
       class="chakra-link css-ntv2za"
       href="/terms-of-conditions"
@@ -127,9 +124,9 @@ exports[`Register form matches snapshot 1`] = `
       target="_blank"
       title="Link to Terms of Service"
     >
-      Terms of Service
+      Terms of Service 
     </span>
-    and acknowledge that you've read our
+    and acknowledge that you've read our 
     <span
       class="chakra-link css-ntv2za"
       href="/privacy-policy"
@@ -141,9 +138,9 @@ exports[`Register form matches snapshot 1`] = `
     </span>
   </div>
   <div
-    class="chakra-text css-1gx0chr"
+    class="chakra-text css-1fihqrz"
   >
-    Already have an account?
+    Already have an account? 
     <span
       class="chakra-link css-ntv2za"
       href="/login"

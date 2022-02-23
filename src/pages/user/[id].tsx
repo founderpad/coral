@@ -5,7 +5,6 @@ import {
 	IoLocationOutline,
 	IoTimeOutline
 } from '@components/icons';
-import { Label } from '@components/labels';
 import { FlexLayout, PageLayout, StackLayout } from '@components/layouts';
 import { DocumentTitle, TitleEditAction, UserAvatar } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';

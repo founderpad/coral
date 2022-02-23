@@ -6,6 +6,7 @@ import {
 } from '@components/form/inputs/FormField';
 
 import { SwitchField } from '@components/input/SwitchField';
+import { StackLayout } from '@components/layouts';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@generated/api';
 import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@utils/Constants';
@@ -70,6 +71,9 @@ export const EditIdeaForm = () => {
 				helperText="Make your idea name stand out"
 				register={register}
 				control={control}
+				fieldProps={{
+					placeholder: 'Write the idea name (max. 75 characters)'
+				}}
 				rules={{
 					required:
 						'You must provide a name for your idea (max. 75 characters)',
@@ -121,35 +125,37 @@ export const EditIdeaForm = () => {
 				onClear={() => resetField('description', { defaultValue: '' })}
 			/>
 
-			<FormSelect<TIdeas_Set_Input>
-				id="status"
-				name="status"
-				label="Current status"
-				placeholder="status"
-				options={ALL_IDEA_STATUSES}
-				register={register}
-				control={control}
-				rules={{
-					required: 'You must provide the status for your idea'
-				}}
-				errors={errors}
-				onClear={() => resetField('status', { defaultValue: '' })}
-			/>
+			<StackLayout direction={{ base: 'column', sm: 'row' }}>
+				<FormSelect<TIdeas_Set_Input>
+					id="status"
+					name="status"
+					label="Current status"
+					placeholder="status"
+					options={ALL_IDEA_STATUSES}
+					register={register}
+					control={control}
+					rules={{
+						required: 'You must provide the status for your idea'
+					}}
+					errors={errors}
+					onClear={() => resetField('status', { defaultValue: '' })}
+				/>
 
-			<FormSelect<TIdeas_Set_Input>
-				id="field"
-				name="field"
-				label="Field"
-				placeholder="field"
-				options={ALL_IDEA_CATEGORY_FIELDS}
-				register={register}
-				control={control}
-				rules={{
-					required: 'You must provide the field for your idea'
-				}}
-				errors={errors}
-				onClear={() => resetField('field', { defaultValue: '' })}
-			/>
+				<FormSelect<TIdeas_Set_Input>
+					id="field"
+					name="field"
+					label="Field"
+					placeholder="field"
+					options={ALL_IDEA_CATEGORY_FIELDS}
+					register={register}
+					control={control}
+					rules={{
+						required: 'You must provide the field for your idea'
+					}}
+					errors={errors}
+					onClear={() => resetField('field', { defaultValue: '' })}
+				/>
+			</StackLayout>
 
 			<FormTextarea<TIdeas_Set_Input>
 				id="competitors"

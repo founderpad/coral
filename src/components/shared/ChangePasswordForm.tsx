@@ -25,7 +25,12 @@ const ConfirmChangePasswordForm = (props: Props) => {
 		resetField,
 		register,
 		formState: { errors, isSubmitting }
-	} = useForm<TChangePasswordFields>({ mode: 'all' });
+	} = useForm<TChangePasswordFields>({
+		mode: 'all',
+		defaultValues: {
+			newPassword: ''
+		}
+	});
 
 	const onChangePassword = useChangePassword();
 
@@ -44,11 +49,14 @@ const ConfirmChangePasswordForm = (props: Props) => {
 			<FormInput<TChangePasswordFields>
 				id="newPassword"
 				name="newPassword"
-				placeholder="Password"
 				type="password"
+				label={showPasswordLabel ? 'New password' : undefined}
 				register={register}
 				control={control}
-				label={showPasswordLabel ? 'New password' : undefined}
+				fieldProps={{
+					placeholder: 'Password',
+					type: 'password'
+				}}
 				rules={{
 					required: 'You must enter a valid password',
 					minLength: {

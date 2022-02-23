@@ -147,29 +147,20 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				onClear={() => resetField('statement', { defaultValue: '' })}
 			/>
 
-			<FormSelect<TUser_Profile_Set_Input>
-				id="specialistIndustry"
-				name="specialistIndustry"
-				label="Your specialist field"
-				placeholder="specialist field"
-				options={ALL_IDEA_CATEGORY_FIELDS}
-				register={register}
-				control={control}
-				onClear={() =>
-					resetField('specialistIndustry', { defaultValue: '' })
-				}
-			/>
-
-			<StackLayout direction={{ base: 'column', md: 'row' }} spacing={6}>
+			<StackLayout direction={{ base: 'column', sm: 'row' }}>
 				<FormSelect<TUser_Profile_Set_Input>
-					id="startups"
-					name="startups"
-					label="Startups have you have worked with"
-					placeholder="number of startups"
-					options={NUMBER_OF_STARTUPS}
+					id="status"
+					name="status"
+					label="Your current startup status"
+					placeholder="startup status"
+					options={STARTUP_STATUS}
 					register={register}
 					control={control}
-					onClear={() => resetField('startups', { defaultValue: '' })}
+					onClear={() => resetField('status', { defaultValue: '' })}
+					rules={{
+						required: 'You must provide your current startup status'
+					}}
+					errors={errors}
 				/>
 
 				<FormSelect<TUser_Profile_Set_Input>
@@ -186,29 +177,31 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				/>
 			</StackLayout>
 
-			<FormSelect<TUser_Profile_Set_Input>
-				id="status"
-				name="status"
-				label="Your current startup status"
-				placeholder="startup status"
-				options={STARTUP_STATUS}
-				register={register}
-				control={control}
-				onClear={() => resetField('status', { defaultValue: '' })}
-				rules={{
-					required: 'You must provide your current startup status'
-				}}
-				errors={errors}
-			/>
+			<StackLayout direction={{ base: 'column', sm: 'row' }}>
+				<FormSelect<TUser_Profile_Set_Input>
+					id="specialistIndustry"
+					name="specialistIndustry"
+					label="Your specialist field"
+					placeholder="specialist field"
+					options={ALL_IDEA_CATEGORY_FIELDS}
+					register={register}
+					control={control}
+					onClear={() =>
+						resetField('specialistIndustry', { defaultValue: '' })
+					}
+				/>
 
-			{/* <TextareaField
-				id="businessDescription"
-				name="businessDescription"
-				label="What were your previous businesses?"
-				placeholder="List your previous businesses"
-				control={control}
-				onClear={() => resetField('businessDescription')}
-			/> */}
+				<FormSelect<TUser_Profile_Set_Input>
+					id="startups"
+					name="startups"
+					label="Startups have you have worked with"
+					placeholder="number of startups"
+					options={NUMBER_OF_STARTUPS}
+					register={register}
+					control={control}
+					onClear={() => resetField('startups', { defaultValue: '' })}
+				/>
+			</StackLayout>
 
 			<FormControl>
 				<FormLabelText label="Your skills" />

@@ -98,9 +98,11 @@ const PersonalDetailsForm = () => {
 				id="displayName"
 				name="displayName"
 				label="Display name"
-				placeholder="Display name"
 				register={register}
 				control={control}
+				fieldProps={{
+					placeholder: 'Display name'
+				}}
 				rules={{
 					required: 'You must input a display name',
 					maxLength: {
@@ -110,7 +112,7 @@ const PersonalDetailsForm = () => {
 					}
 				}}
 				errors={errors}
-				onClear={() => resetField('displayName')}
+				onClear={() => resetField('displayName', { defaultValue: '' })}
 			/>
 
 			<FormSelect<TPersonalDetailsinput>
@@ -129,9 +131,11 @@ const PersonalDetailsForm = () => {
 					id="customPronouns"
 					name="customPronouns"
 					label="Custom pronouns"
-					placeholder="Custom pronouns"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Custom pronouns'
+					}}
 					rules={{
 						required: 'You must input a custom pronoun',
 						maxLength: {

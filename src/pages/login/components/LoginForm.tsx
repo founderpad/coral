@@ -19,7 +19,13 @@ const LoginForm = () => {
 		register,
 		resetField,
 		formState: { errors, isSubmitting } // isValid
-	} = useForm<TLoginFields>({ mode: 'all' });
+	} = useForm<TLoginFields>({
+		mode: 'all',
+		defaultValues: {
+			email: '',
+			password: ''
+		}
+	});
 	const onLogin = useLogin();
 
 	const isError = useQueryParam('error');
@@ -37,9 +43,11 @@ const LoginForm = () => {
 				<FormInput<TLoginFields>
 					id="email"
 					name="email"
-					placeholder="Email"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Email'
+					}}
 					rules={{
 						required: 'You must enter a valid email address',
 						pattern: emailPattern
@@ -51,10 +59,13 @@ const LoginForm = () => {
 				<FormInput<TLoginFields>
 					id="password"
 					name="password"
-					placeholder="Password"
 					register={register}
 					control={control}
 					type="password"
+					fieldProps={{
+						placeholder: 'Password',
+						type: 'password'
+					}}
 					rules={{
 						required: 'You must enter a valid password',
 						minLength: {
@@ -100,8 +111,8 @@ const LoginForm = () => {
 
 const LoginFooter = memo(() => (
 	<FlexLayout justifyContent="space-between" alignItems="center" pt={8}>
-		<Label color="gray.500" fontSize="xs" alignSelf="center">
-			No account?
+		<Label color="gray.500" fontSize="x-small" alignSelf="center">
+			No account?{' '}
 			<PrimaryLink href="/register" title="Link to register an account">
 				Register now
 			</PrimaryLink>
@@ -109,7 +120,7 @@ const LoginFooter = memo(() => (
 		<PrimaryLink
 			href="/resetpassword"
 			title="Link to register an account"
-			fontSize="xs"
+			fontSize="x-small"
 		>
 			Forgotten password?
 		</PrimaryLink>

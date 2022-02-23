@@ -16,7 +16,15 @@ const RegisterForm = () => {
 		register,
 		resetField,
 		formState: { errors, isSubmitting }
-	} = useForm<TRegisterFormFields>({ mode: 'all' });
+	} = useForm<TRegisterFormFields>({
+		mode: 'all',
+		defaultValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			password: ''
+		}
+	});
 	const onRegister = useRegister();
 
 	return (
@@ -35,6 +43,9 @@ const RegisterForm = () => {
 					placeholder="First name"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'First name'
+					}}
 					rules={{
 						required: 'You must enter a first name',
 						minLength: {
@@ -58,6 +69,9 @@ const RegisterForm = () => {
 					placeholder="Last name"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Last name'
+					}}
 					rules={{
 						maxLength: {
 							value: 20,
@@ -74,6 +88,9 @@ const RegisterForm = () => {
 					placeholder="Email"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Email'
+					}}
 					rules={{
 						required: 'You must enter a valid email address',
 						pattern: emailPattern
@@ -88,6 +105,10 @@ const RegisterForm = () => {
 					placeholder="Password"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Password',
+						type: 'password'
+					}}
 					rules={{
 						required: 'You must enter a valid password',
 						minLength: {

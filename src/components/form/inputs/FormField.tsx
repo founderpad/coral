@@ -27,13 +27,14 @@ import ResizeTextarea from 'react-textarea-autosize';
 
 export type TFormFieldProps<TFormValues> = {
 	name: Path<TFormValues>;
-	onClear: (name: string) => void;
 	control: Control<TFormValues>;
 	rules?: RegisterOptions;
 	register?: UseFormRegister<TFormValues>;
 	errors?: Partial<DeepMap<TFormValues, FieldError>>;
+	onClear: (name: string) => void;
 	label?: string;
 	helperText?: string;
+	fieldProps?: Omit<InputProps, 'name'>;
 } & Omit<InputProps, 'name'>;
 
 export type TFormSelectFieldProps<TFormValues> =
@@ -48,8 +49,8 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 	name,
 	control,
 	errors,
-	label,
 	children,
+	label,
 	helperText,
 	onClear
 }: TFormFieldProps<TFormValues>) => {
@@ -78,7 +79,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 						variant="link"
 						mb={1}
 						ml="auto"
-						onClick={() => onClear(name)}
+						onClick={() => onClear('email')}
 					>
 						Clear
 					</Button>
@@ -104,7 +105,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 				/>
 			) : (
 				helperText && (
-					<FormHelperText fontSize="xs" color="fpGrey.300">
+					<FormHelperText fontSize="x-small" color="fpGrey.300">
 						{helperText}
 					</FormHelperText>
 				)
@@ -118,6 +119,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 	register,
 	rules,
 	control,
+	fieldProps,
 	...rest
 }: TFormFieldProps<TFormValues>) => {
 	const errorMessages = rest.errors?.[name];
@@ -128,8 +130,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 	} = useController({
 		name,
 		rules,
-		control,
-		defaultValue: undefined
+		control
 	});
 
 	return (
@@ -142,22 +143,22 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 				{...rest}
 			>
 				<Input
+					{...fieldProps}
 					onChange={onChange}
 					value={value as any}
 					rounded="md"
 					size="md"
 					fontSize="smaller"
-					variant="outline"
 					aria-label={name}
 					aria-invalid={hasError}
 					borderColor={hasError ? 'red.500' : 'inherit'}
 					_focus={{
-						borderColor: hasError ? 'red.500' : 'inherit'
+						borderColor: hasError ? 'red.500' : 'inherit',
+						background: 'transparent'
 					}}
 					_hover={{
 						borderColor: hasError ? 'red.500' : 'inherit'
 					}}
-					{...rest}
 				/>
 			</FormField>
 		</FormControl>
@@ -180,8 +181,7 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 	} = useController({
 		name,
 		rules,
-		control,
-		defaultValue: undefined
+		control
 	});
 
 	return (
@@ -238,8 +238,7 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	} = useController({
 		name,
 		rules,
-		control,
-		defaultValue: undefined
+		control
 	});
 
 	return (

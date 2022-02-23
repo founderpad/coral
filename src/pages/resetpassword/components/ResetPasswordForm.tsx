@@ -22,7 +22,12 @@ const ResetPasswordForm = () => {
 		resetField,
 		register,
 		formState: { errors, isSubmitting }
-	} = useForm<TResetPasswordFields>({ mode: 'all' });
+	} = useForm<TResetPasswordFields>({
+		mode: 'all',
+		defaultValues: {
+			email: ''
+		}
+	});
 
 	const isResetSuccess = useQueryParam('rp_success');
 	const isResetError = useQueryParam('rp_error');
@@ -47,9 +52,11 @@ const ResetPasswordForm = () => {
 				<FormInput<TResetPasswordFields>
 					id="email"
 					name="email"
-					placeholder="Email"
 					register={register}
 					control={control}
+					fieldProps={{
+						placeholder: 'Email'
+					}}
 					rules={{
 						required: 'You must enter a valid email address',
 						pattern: emailPattern
@@ -92,8 +99,8 @@ const ResetPasswordForm = () => {
 
 const ResetPasswordFooter = memo(() => (
 	<FlexLayout justifyContent="space-between" alignItems="center" pt={8}>
-		<Label color="fpGrey.500" fontSize="xs" alignSelf="center">
-			No account?
+		<Label color="fpGrey.500" fontSize="x-small" alignSelf="center">
+			No account?{' '}
 			<PrimaryLink href="/register" title="Link to register an account">
 				Register now
 			</PrimaryLink>
@@ -101,7 +108,7 @@ const ResetPasswordFooter = memo(() => (
 		<PrimaryLink
 			href="/login"
 			title="Link to register an account"
-			fontSize="xs"
+			fontSize="x-small"
 		>
 			Go to login
 		</PrimaryLink>
