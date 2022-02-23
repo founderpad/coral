@@ -1,4 +1,4 @@
-import Form from '@components/form/Form';
+import { Form } from '@components/form';
 import { FormInput, FormSelect } from '@components/form/inputs/FormField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
@@ -17,6 +17,20 @@ import { redirectTo } from '@utils/validators';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+
+// type TBaseFormProps<TFormValues> = {
+// 	id: string;
+// 	name: string;
+// 	defaultValues?: Record<string, any>;
+// 	onSubmit: SubmitHandler<TFormValues>;
+// 	children: ReactElement<
+// 		{
+// 			control: Control<TFormValues, object>;
+// 			register: UseFormRegister<TFormValues>;
+// 		},
+// 		string | JSXElementConstructor<any>
+// 	>;
+// };
 
 type TPersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
 	Pick<TUser_Address_Set_Input, 'country' | 'location'> &

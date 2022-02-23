@@ -1,5 +1,5 @@
 import { FormControl } from '@chakra-ui/form-control';
-import { Checkbox } from '@chakra-ui/react';
+import { Button, Checkbox } from '@chakra-ui/react';
 import { FormLabelText } from '@components/form';
 import Form from '@components/form/Form';
 import { Label } from '@components/labels';
@@ -25,7 +25,7 @@ import { useDispatch } from 'react-redux';
 import React from 'react';
 import { redirectTo } from '@utils/validators';
 import { FormSelect, FormTextarea } from '@components/form/inputs/FormField';
-import { StackLayout } from '@components/layouts';
+import { FlexLayout, StackLayout } from '@components/layouts';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
@@ -86,6 +86,11 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 		setValue('skills', skillsCopy);
 	};
 
+	const onClearSkills = () => {
+		setSelectedSkills([]);
+		setValue('skills', []);
+	};
+
 	const { errors, isSubmitting, isValid } = formState;
 
 	return (
@@ -115,7 +120,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				id="background"
 				name="background"
 				label="Background"
-				placeholder="Write about your background, such as past experiences in business"
+				placeholder="Write about your background, such as past experiences in business (max. 400 characters)"
 				register={register}
 				control={control}
 				rules={{
@@ -133,7 +138,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				id="statement"
 				name="statement"
 				label="Personal statement"
-				placeholder="Write about what you're looking to achieve so that ther"
+				placeholder="Write about what you're looking to achieve (max. 400 characters)"
 				register={register}
 				control={control}
 				rules={{
@@ -203,7 +208,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				/>
 			</StackLayout>
 
-			<FormControl>
+			{/* <FormControl>
 				<FormLabelText label="Your skills" />
 				{EXPERIENCE_SKILLS.map((es: string) => (
 					<Controller
@@ -226,6 +231,55 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 								isChecked={selectedSkills.includes(es)}
 							>
 								<Label color="fpGrey.900" fontSize="xs">
+									{es}
+								</Label>
+							</Checkbox>
+						)}
+						control={control}
+					/>
+				))}
+			</FormControl> */}
+
+			<FormControl>
+				<FlexLayout justifyContent="space-between">
+					<FormLabelText label="Your skills" />
+					{selectedSkills.length > 0 && (
+						<Button
+							fontSize="x-small"
+							colorScheme="fpPrimary"
+							variant="link"
+							mb={1}
+							onClick={onClearSkills}
+						>
+							Clear
+						</Button>
+					)}
+				</FlexLayout>
+				{EXPERIENCE_SKILLS.map((es: string) => (
+					<Controller
+						key={es}
+						name="skills"
+						render={({ field: { ref } }) => (
+							<Checkbox
+								name={es}
+								rounded="none"
+								focusBorderColor="gray.150"
+								value={es}
+								py={1}
+								pr={2}
+								onChange={onSkillsToggle}
+								colorScheme="fpPrimary"
+								color="fpGrey.900"
+								ref={ref}
+								size="md"
+								fontSize="xs"
+								isChecked={selectedSkills.includes(es)}
+							>
+								<Label
+									color="fpGrey.900"
+									fontWeight="normal"
+									fontSize="xs"
+								>
 									{es}
 								</Label>
 							</Checkbox>

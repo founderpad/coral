@@ -25,6 +25,7 @@ exports[`Register form matches snapshot 1`] = `
             class="css-qnoc8j"
           />
           <input
+            aria-describedby="field-1-helptext"
             aria-label="firstName"
             aria-required="true"
             class="chakra-input css-ka9a58"
@@ -35,7 +36,14 @@ exports[`Register form matches snapshot 1`] = `
           />
           <div
             class="css-11633wt"
-          />
+          >
+            <div
+              class="chakra-form__helper-text css-yd35os"
+              id="field-1-helptext"
+            >
+              20 / 20
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -51,6 +59,7 @@ exports[`Register form matches snapshot 1`] = `
             class="css-qnoc8j"
           />
           <input
+            aria-describedby="field-2-helptext"
             aria-label="lastName"
             class="chakra-input css-ka9a58"
             id="field-2"
@@ -59,7 +68,14 @@ exports[`Register form matches snapshot 1`] = `
           />
           <div
             class="css-11633wt"
-          />
+          >
+            <div
+              class="chakra-form__helper-text css-yd35os"
+              id="field-2-helptext"
+            >
+              20 / 20
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -101,6 +117,7 @@ exports[`Register form matches snapshot 1`] = `
             class="css-qnoc8j"
           />
           <input
+            aria-describedby="field-4-helptext"
             aria-label="password"
             aria-required="true"
             class="chakra-input css-ka9a58"
@@ -112,7 +129,14 @@ exports[`Register form matches snapshot 1`] = `
           />
           <div
             class="css-11633wt"
-          />
+          >
+            <div
+              class="chakra-form__helper-text css-yd35os"
+              id="field-4-helptext"
+            >
+              20 / 20
+            </div>
+          </div>
         </div>
       </div>
       <button
