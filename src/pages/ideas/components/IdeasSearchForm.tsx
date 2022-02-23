@@ -173,6 +173,7 @@ const IdeasSearchForm = () => {
 					mb={1}
 					onClick={onResetAll}
 					textAlign="left"
+					ml="auto"
 				>
 					Clear all
 				</Button>
