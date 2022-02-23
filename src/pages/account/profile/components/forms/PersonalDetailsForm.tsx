@@ -47,7 +47,7 @@ const PersonalDetailsForm = () => {
 		watch,
 		resetField,
 		register,
-		formState: { errors, isSubmitting }
+		formState: { errors }
 	} = useForm<TPersonalDetailsinput>({
 		mode: 'all',
 		defaultValues: {
@@ -106,7 +106,6 @@ const PersonalDetailsForm = () => {
 			id="editPersonalDetailsForm"
 			name="editPersonalDetailsForm"
 			onSubmit={handleSubmit(updateUserPersonalDetails)}
-			isSubmitting={isSubmitting}
 		>
 			<FormInput<TPersonalDetailsinput>
 				id="displayName"

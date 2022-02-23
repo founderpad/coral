@@ -45,7 +45,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 		setValue,
 		register,
 		resetField,
-		formState
+		formState: { errors }
 	} = useForm<TUser_Profile_Set_Input>({
 		mode: 'all',
 		defaultValues: {
@@ -91,15 +91,11 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 		setValue('skills', []);
 	};
 
-	const { errors, isSubmitting, isValid } = formState;
-
 	return (
 		<Form
 			id="edit-experience-form"
 			name="edit-experience-form"
 			onSubmit={handleSubmit(updateUserProfileMutation)}
-			isSubmitting={isSubmitting}
-			isValid={isValid}
 		>
 			<FormSelect<TUser_Profile_Set_Input>
 				id="objective"

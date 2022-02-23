@@ -1072,23 +1072,21 @@ export type TIdea_Preview = {
   comments: Array<TIdea_Comments>;
   /** An aggregate relationship */
   comments_aggregate: TIdea_Comments_Aggregate;
-  created_at?: Maybe<Scalars['timestamptz']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   field?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   /** An array relationship */
   interested: Array<TInterested_Ideas>;
   /** An aggregate relationship */
   interested_aggregate: TInterested_Ideas_Aggregate;
-  is_new?: Maybe<Scalars['Boolean']>;
+  isNew?: Maybe<Scalars['Boolean']>;
+  isPublished?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
-  preview?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  total_comments?: Maybe<Scalars['Int']>;
-  total_interested?: Maybe<Scalars['Int']>;
-  total_votes?: Maybe<Scalars['Int']>;
+  summary?: Maybe<Scalars['String']>;
   /** An object relationship */
   user?: Maybe<TUsers>;
-  user_id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
   /** An array relationship */
   votes: Array<TIdea_Votes>;
   /** An aggregate relationship */
@@ -1165,17 +1163,9 @@ export type TIdea_Preview_Aggregate = {
 /** aggregate fields of "idea_preview" */
 export type TIdea_Preview_Aggregate_Fields = {
   __typename?: 'idea_preview_aggregate_fields';
-  avg?: Maybe<TIdea_Preview_Avg_Fields>;
   count: Scalars['Int'];
   max?: Maybe<TIdea_Preview_Max_Fields>;
   min?: Maybe<TIdea_Preview_Min_Fields>;
-  stddev?: Maybe<TIdea_Preview_Stddev_Fields>;
-  stddev_pop?: Maybe<TIdea_Preview_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<TIdea_Preview_Stddev_Samp_Fields>;
-  sum?: Maybe<TIdea_Preview_Sum_Fields>;
-  var_pop?: Maybe<TIdea_Preview_Var_Pop_Fields>;
-  var_samp?: Maybe<TIdea_Preview_Var_Samp_Fields>;
-  variance?: Maybe<TIdea_Preview_Variance_Fields>;
 };
 
 
@@ -1185,186 +1175,87 @@ export type TIdea_Preview_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
-/** aggregate avg on columns */
-export type TIdea_Preview_Avg_Fields = {
-  __typename?: 'idea_preview_avg_fields';
-  total_comments?: Maybe<Scalars['Float']>;
-  total_interested?: Maybe<Scalars['Float']>;
-  total_votes?: Maybe<Scalars['Float']>;
-};
-
 /** Boolean expression to filter rows from the table "idea_preview". All fields are combined with a logical 'AND'. */
 export type TIdea_Preview_Bool_Exp = {
   _and?: InputMaybe<Array<TIdea_Preview_Bool_Exp>>;
   _not?: InputMaybe<TIdea_Preview_Bool_Exp>;
   _or?: InputMaybe<Array<TIdea_Preview_Bool_Exp>>;
   comments?: InputMaybe<TIdea_Comments_Bool_Exp>;
-  created_at?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   field?: InputMaybe<TString_Comparison_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
   interested?: InputMaybe<TInterested_Ideas_Bool_Exp>;
-  is_new?: InputMaybe<TBoolean_Comparison_Exp>;
+  isNew?: InputMaybe<TBoolean_Comparison_Exp>;
+  isPublished?: InputMaybe<TBoolean_Comparison_Exp>;
   name?: InputMaybe<TString_Comparison_Exp>;
-  preview?: InputMaybe<TString_Comparison_Exp>;
   status?: InputMaybe<TString_Comparison_Exp>;
-  total_comments?: InputMaybe<TInt_Comparison_Exp>;
-  total_interested?: InputMaybe<TInt_Comparison_Exp>;
-  total_votes?: InputMaybe<TInt_Comparison_Exp>;
+  summary?: InputMaybe<TString_Comparison_Exp>;
   user?: InputMaybe<TUsers_Bool_Exp>;
-  user_id?: InputMaybe<TUuid_Comparison_Exp>;
+  userId?: InputMaybe<TUuid_Comparison_Exp>;
   votes?: InputMaybe<TIdea_Votes_Bool_Exp>;
-};
-
-/** input type for inserting data into table "idea_preview" */
-export type TIdea_Preview_Insert_Input = {
-  comments?: InputMaybe<TIdea_Comments_Arr_Rel_Insert_Input>;
-  field?: InputMaybe<Scalars['String']>;
-  interested?: InputMaybe<TInterested_Ideas_Arr_Rel_Insert_Input>;
-  is_new?: InputMaybe<Scalars['Boolean']>;
-  name?: InputMaybe<Scalars['String']>;
-  preview?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<Scalars['String']>;
-  votes?: InputMaybe<TIdea_Votes_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
 export type TIdea_Preview_Max_Fields = {
   __typename?: 'idea_preview_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   field?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
-  preview?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  total_comments?: Maybe<Scalars['Int']>;
-  total_interested?: Maybe<Scalars['Int']>;
-  total_votes?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['uuid']>;
+  summary?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate min on columns */
 export type TIdea_Preview_Min_Fields = {
   __typename?: 'idea_preview_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   field?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
-  preview?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
-  total_comments?: Maybe<Scalars['Int']>;
-  total_interested?: Maybe<Scalars['Int']>;
-  total_votes?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['uuid']>;
-};
-
-/** response of any mutation on the table "idea_preview" */
-export type TIdea_Preview_Mutation_Response = {
-  __typename?: 'idea_preview_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<TIdea_Preview>;
+  summary?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
 };
 
 /** Ordering options when selecting data from "idea_preview". */
 export type TIdea_Preview_Order_By = {
   comments_aggregate?: InputMaybe<TIdea_Comments_Aggregate_Order_By>;
-  created_at?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
   field?: InputMaybe<TOrder_By>;
   id?: InputMaybe<TOrder_By>;
   interested_aggregate?: InputMaybe<TInterested_Ideas_Aggregate_Order_By>;
-  is_new?: InputMaybe<TOrder_By>;
+  isNew?: InputMaybe<TOrder_By>;
+  isPublished?: InputMaybe<TOrder_By>;
   name?: InputMaybe<TOrder_By>;
-  preview?: InputMaybe<TOrder_By>;
   status?: InputMaybe<TOrder_By>;
-  total_comments?: InputMaybe<TOrder_By>;
-  total_interested?: InputMaybe<TOrder_By>;
-  total_votes?: InputMaybe<TOrder_By>;
+  summary?: InputMaybe<TOrder_By>;
   user?: InputMaybe<TUsers_Order_By>;
-  user_id?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
   votes_aggregate?: InputMaybe<TIdea_Votes_Aggregate_Order_By>;
 };
 
 /** select columns of table "idea_preview" */
 export type TIdea_Preview_Select_Column =
   /** column name */
-  | 'created_at'
+  | 'createdAt'
   /** column name */
   | 'field'
   /** column name */
   | 'id'
   /** column name */
-  | 'is_new'
+  | 'isNew'
+  /** column name */
+  | 'isPublished'
   /** column name */
   | 'name'
   /** column name */
-  | 'preview'
-  /** column name */
   | 'status'
   /** column name */
-  | 'total_comments'
+  | 'summary'
   /** column name */
-  | 'total_interested'
-  /** column name */
-  | 'total_votes'
-  /** column name */
-  | 'user_id';
-
-/** aggregate stddev on columns */
-export type TIdea_Preview_Stddev_Fields = {
-  __typename?: 'idea_preview_stddev_fields';
-  total_comments?: Maybe<Scalars['Float']>;
-  total_interested?: Maybe<Scalars['Float']>;
-  total_votes?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type TIdea_Preview_Stddev_Pop_Fields = {
-  __typename?: 'idea_preview_stddev_pop_fields';
-  total_comments?: Maybe<Scalars['Float']>;
-  total_interested?: Maybe<Scalars['Float']>;
-  total_votes?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type TIdea_Preview_Stddev_Samp_Fields = {
-  __typename?: 'idea_preview_stddev_samp_fields';
-  total_comments?: Maybe<Scalars['Float']>;
-  total_interested?: Maybe<Scalars['Float']>;
-  total_votes?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate sum on columns */
-export type TIdea_Preview_Sum_Fields = {
-  __typename?: 'idea_preview_sum_fields';
-  total_comments?: Maybe<Scalars['Int']>;
-  total_interested?: Maybe<Scalars['Int']>;
-  total_votes?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate var_pop on columns */
-export type TIdea_Preview_Var_Pop_Fields = {
-  __typename?: 'idea_preview_var_pop_fields';
-  total_comments?: Maybe<Scalars['Float']>;
-  total_interested?: Maybe<Scalars['Float']>;
-  total_votes?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate var_samp on columns */
-export type TIdea_Preview_Var_Samp_Fields = {
-  __typename?: 'idea_preview_var_samp_fields';
-  total_comments?: Maybe<Scalars['Float']>;
-  total_interested?: Maybe<Scalars['Float']>;
-  total_votes?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate variance on columns */
-export type TIdea_Preview_Variance_Fields = {
-  __typename?: 'idea_preview_variance_fields';
-  total_comments?: Maybe<Scalars['Float']>;
-  total_interested?: Maybe<Scalars['Float']>;
-  total_votes?: Maybe<Scalars['Float']>;
-};
+  | 'userId';
 
 /**
  * The table to store all ideas
@@ -1528,7 +1419,7 @@ export type TIdeas = {
   comments_aggregate: TIdea_Comments_Aggregate;
   competitors?: Maybe<Scalars['String']>;
   createdAt: Scalars['timestamptz'];
-  description: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
   field: Scalars['String'];
   id: Scalars['uuid'];
   /** An array relationship */
@@ -2287,10 +2178,6 @@ export type TMutation_Root = {
   insert_idea_comments?: Maybe<TIdea_Comments_Mutation_Response>;
   /** insert a single row into the table: "idea_comments" */
   insert_idea_comments_one?: Maybe<TIdea_Comments>;
-  /** insert data into the table: "idea_preview" */
-  insert_idea_preview?: Maybe<TIdea_Preview_Mutation_Response>;
-  /** insert a single row into the table: "idea_preview" */
-  insert_idea_preview_one?: Maybe<TIdea_Preview>;
   /** insert data into the table: "idea_votes" */
   insert_idea_votes?: Maybe<TIdea_Votes_Mutation_Response>;
   /** insert a single row into the table: "idea_votes" */
@@ -2461,18 +2348,6 @@ export type TMutation_RootInsert_Idea_CommentsArgs = {
 export type TMutation_RootInsert_Idea_Comments_OneArgs = {
   object: TIdea_Comments_Insert_Input;
   on_conflict?: InputMaybe<TIdea_Comments_On_Conflict>;
-};
-
-
-/** mutation root */
-export type TMutation_RootInsert_Idea_PreviewArgs = {
-  objects: Array<TIdea_Preview_Insert_Input>;
-};
-
-
-/** mutation root */
-export type TMutation_RootInsert_Idea_Preview_OneArgs = {
-  object: TIdea_Preview_Insert_Input;
 };
 
 
@@ -4294,7 +4169,7 @@ export type TUpdateIdeaMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateIdeaMutation = { update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, summary?: string | null | undefined, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined } | null | undefined };
+export type TUpdateIdeaMutation = { update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, summary?: string | null | undefined, description?: string | null | undefined, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined } | null | undefined };
 
 export type TDeleteIdeaMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -4320,9 +4195,9 @@ export type TIdeasQueryVariables = Exact<{
 }>;
 
 
-export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user_id?: any | null | undefined, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
+export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, createdAt?: any | null | undefined, isNew?: boolean | null | undefined, isPublished?: boolean | null | undefined, summary?: string | null | undefined, userId?: any | null | undefined, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
 
-export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, preview?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, created_at?: any | null | undefined, is_new?: boolean | null | undefined, total_interested?: number | null | undefined, total_comments?: number | null | undefined, user_id?: any | null | undefined, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
+export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, createdAt?: any | null | undefined, isNew?: boolean | null | undefined, isPublished?: boolean | null | undefined, summary?: string | null | undefined, userId?: any | null | undefined, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
 
 export type TUserIdeasQueryVariables = Exact<{
   userId: Scalars['uuid'];
@@ -4331,7 +4206,7 @@ export type TUserIdeasQueryVariables = Exact<{
 
 export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'ideas', id: any, name: string, createdAt: any, isPublished: boolean, totalInterested: number, totalVotes: number, totalComments: number }> };
 
-export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, summary?: string | null | undefined, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
+export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, summary?: string | null | undefined, name: string, description?: string | null | undefined, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
 
 export type TIdeaQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -4339,7 +4214,7 @@ export type TIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null | undefined, name: string, description: string, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined } } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null | undefined };
+export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null | undefined, name: string, description?: string | null | undefined, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined } } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null | undefined };
 
 export type TInterestedIdeaFieldsFragment = { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any };
 
@@ -4516,14 +4391,13 @@ export const IdeaPreviewFieldsFragmentDoc = gql`
     fragment IdeaPreviewFields on idea_preview {
   id
   name
-  preview
   field
   status
-  created_at
-  is_new
-  total_interested
-  total_comments
-  user_id
+  createdAt
+  isNew
+  isPublished
+  summary
+  userId
   user {
     ...UserFieldsWithEmail
   }
@@ -5911,21 +5785,11 @@ export type TResolversTypes = {
   idea_preview: ResolverTypeWrapper<TIdea_Preview>;
   idea_preview_aggregate: ResolverTypeWrapper<TIdea_Preview_Aggregate>;
   idea_preview_aggregate_fields: ResolverTypeWrapper<TIdea_Preview_Aggregate_Fields>;
-  idea_preview_avg_fields: ResolverTypeWrapper<TIdea_Preview_Avg_Fields>;
   idea_preview_bool_exp: TIdea_Preview_Bool_Exp;
-  idea_preview_insert_input: TIdea_Preview_Insert_Input;
   idea_preview_max_fields: ResolverTypeWrapper<TIdea_Preview_Max_Fields>;
   idea_preview_min_fields: ResolverTypeWrapper<TIdea_Preview_Min_Fields>;
-  idea_preview_mutation_response: ResolverTypeWrapper<TIdea_Preview_Mutation_Response>;
   idea_preview_order_by: TIdea_Preview_Order_By;
   idea_preview_select_column: TIdea_Preview_Select_Column;
-  idea_preview_stddev_fields: ResolverTypeWrapper<TIdea_Preview_Stddev_Fields>;
-  idea_preview_stddev_pop_fields: ResolverTypeWrapper<TIdea_Preview_Stddev_Pop_Fields>;
-  idea_preview_stddev_samp_fields: ResolverTypeWrapper<TIdea_Preview_Stddev_Samp_Fields>;
-  idea_preview_sum_fields: ResolverTypeWrapper<TIdea_Preview_Sum_Fields>;
-  idea_preview_var_pop_fields: ResolverTypeWrapper<TIdea_Preview_Var_Pop_Fields>;
-  idea_preview_var_samp_fields: ResolverTypeWrapper<TIdea_Preview_Var_Samp_Fields>;
-  idea_preview_variance_fields: ResolverTypeWrapper<TIdea_Preview_Variance_Fields>;
   idea_votes: ResolverTypeWrapper<TIdea_Votes>;
   idea_votes_aggregate: ResolverTypeWrapper<TIdea_Votes_Aggregate>;
   idea_votes_aggregate_fields: ResolverTypeWrapper<TIdea_Votes_Aggregate_Fields>;
@@ -6144,20 +6008,10 @@ export type TResolversParentTypes = {
   idea_preview: TIdea_Preview;
   idea_preview_aggregate: TIdea_Preview_Aggregate;
   idea_preview_aggregate_fields: TIdea_Preview_Aggregate_Fields;
-  idea_preview_avg_fields: TIdea_Preview_Avg_Fields;
   idea_preview_bool_exp: TIdea_Preview_Bool_Exp;
-  idea_preview_insert_input: TIdea_Preview_Insert_Input;
   idea_preview_max_fields: TIdea_Preview_Max_Fields;
   idea_preview_min_fields: TIdea_Preview_Min_Fields;
-  idea_preview_mutation_response: TIdea_Preview_Mutation_Response;
   idea_preview_order_by: TIdea_Preview_Order_By;
-  idea_preview_stddev_fields: TIdea_Preview_Stddev_Fields;
-  idea_preview_stddev_pop_fields: TIdea_Preview_Stddev_Pop_Fields;
-  idea_preview_stddev_samp_fields: TIdea_Preview_Stddev_Samp_Fields;
-  idea_preview_sum_fields: TIdea_Preview_Sum_Fields;
-  idea_preview_var_pop_fields: TIdea_Preview_Var_Pop_Fields;
-  idea_preview_var_samp_fields: TIdea_Preview_Var_Samp_Fields;
-  idea_preview_variance_fields: TIdea_Preview_Variance_Fields;
   idea_votes: TIdea_Votes;
   idea_votes_aggregate: TIdea_Votes_Aggregate;
   idea_votes_aggregate_fields: TIdea_Votes_Aggregate_Fields;
@@ -6544,20 +6398,18 @@ export type TIdea_Comments_Variance_FieldsResolvers<ContextType = any, ParentTyp
 export type TIdea_PreviewResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview'] = TResolversParentTypes['idea_preview']> = {
   comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, RequireFields<TIdea_PreviewCommentsArgs, never>>;
   comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, RequireFields<TIdea_PreviewComments_AggregateArgs, never>>;
-  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   field?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   interested?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TIdea_PreviewInterestedArgs, never>>;
   interested_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, RequireFields<TIdea_PreviewInterested_AggregateArgs, never>>;
-  is_new?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
+  isNew?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
+  isPublished?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
   name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  preview?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  total_comments?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  summary?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType>;
-  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   votes?: Resolver<Array<TResolversTypes['idea_votes']>, ParentType, ContextType, RequireFields<TIdea_PreviewVotesArgs, never>>;
   votes_aggregate?: Resolver<TResolversTypes['idea_votes_aggregate'], ParentType, ContextType, RequireFields<TIdea_PreviewVotes_AggregateArgs, never>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -6570,107 +6422,31 @@ export type TIdea_Preview_AggregateResolvers<ContextType = any, ParentType exten
 };
 
 export type TIdea_Preview_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_aggregate_fields'] = TResolversParentTypes['idea_preview_aggregate_fields']> = {
-  avg?: Resolver<Maybe<TResolversTypes['idea_preview_avg_fields']>, ParentType, ContextType>;
   count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TIdea_Preview_Aggregate_FieldsCountArgs, never>>;
   max?: Resolver<Maybe<TResolversTypes['idea_preview_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['idea_preview_min_fields']>, ParentType, ContextType>;
-  stddev?: Resolver<Maybe<TResolversTypes['idea_preview_stddev_fields']>, ParentType, ContextType>;
-  stddev_pop?: Resolver<Maybe<TResolversTypes['idea_preview_stddev_pop_fields']>, ParentType, ContextType>;
-  stddev_samp?: Resolver<Maybe<TResolversTypes['idea_preview_stddev_samp_fields']>, ParentType, ContextType>;
-  sum?: Resolver<Maybe<TResolversTypes['idea_preview_sum_fields']>, ParentType, ContextType>;
-  var_pop?: Resolver<Maybe<TResolversTypes['idea_preview_var_pop_fields']>, ParentType, ContextType>;
-  var_samp?: Resolver<Maybe<TResolversTypes['idea_preview_var_samp_fields']>, ParentType, ContextType>;
-  variance?: Resolver<Maybe<TResolversTypes['idea_preview_variance_fields']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Avg_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_avg_fields'] = TResolversParentTypes['idea_preview_avg_fields']> = {
-  total_comments?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type TIdea_Preview_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_max_fields'] = TResolversParentTypes['idea_preview_max_fields']> = {
-  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   field?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  preview?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  total_comments?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  summary?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type TIdea_Preview_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_min_fields'] = TResolversParentTypes['idea_preview_min_fields']> = {
-  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   field?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  preview?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  total_comments?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_mutation_response'] = TResolversParentTypes['idea_preview_mutation_response']> = {
-  affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
-  returning?: Resolver<Array<TResolversTypes['idea_preview']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Stddev_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_stddev_fields'] = TResolversParentTypes['idea_preview_stddev_fields']> = {
-  total_comments?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Stddev_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_stddev_pop_fields'] = TResolversParentTypes['idea_preview_stddev_pop_fields']> = {
-  total_comments?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Stddev_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_stddev_samp_fields'] = TResolversParentTypes['idea_preview_stddev_samp_fields']> = {
-  total_comments?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Sum_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_sum_fields'] = TResolversParentTypes['idea_preview_sum_fields']> = {
-  total_comments?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Var_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_var_pop_fields'] = TResolversParentTypes['idea_preview_var_pop_fields']> = {
-  total_comments?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Var_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_var_samp_fields'] = TResolversParentTypes['idea_preview_var_samp_fields']> = {
-  total_comments?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type TIdea_Preview_Variance_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_variance_fields'] = TResolversParentTypes['idea_preview_variance_fields']> = {
-  total_comments?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_interested?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
-  total_votes?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  summary?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -6729,7 +6505,7 @@ export type TIdeasResolvers<ContextType = any, ParentType extends TResolversPare
   comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, RequireFields<TIdeasComments_AggregateArgs, never>>;
   competitors?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
-  description?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
+  description?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   field?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   interested?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TIdeasInterestedArgs, never>>;
@@ -6942,8 +6718,6 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   insert_idea_comment_replies_one?: Resolver<Maybe<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Idea_Comment_Replies_OneArgs, 'object'>>;
   insert_idea_comments?: Resolver<Maybe<TResolversTypes['idea_comments_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Idea_CommentsArgs, 'objects'>>;
   insert_idea_comments_one?: Resolver<Maybe<TResolversTypes['idea_comments']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Idea_Comments_OneArgs, 'object'>>;
-  insert_idea_preview?: Resolver<Maybe<TResolversTypes['idea_preview_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Idea_PreviewArgs, 'objects'>>;
-  insert_idea_preview_one?: Resolver<Maybe<TResolversTypes['idea_preview']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Idea_Preview_OneArgs, 'object'>>;
   insert_idea_votes?: Resolver<Maybe<TResolversTypes['idea_votes_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Idea_VotesArgs, 'objects'>>;
   insert_idea_votes_one?: Resolver<Maybe<TResolversTypes['idea_votes']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Idea_Votes_OneArgs, 'object'>>;
   insert_ideas?: Resolver<Maybe<TResolversTypes['ideas_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_IdeasArgs, 'objects'>>;
@@ -7350,17 +7124,8 @@ export type TResolvers<ContextType = any> = {
   idea_preview?: TIdea_PreviewResolvers<ContextType>;
   idea_preview_aggregate?: TIdea_Preview_AggregateResolvers<ContextType>;
   idea_preview_aggregate_fields?: TIdea_Preview_Aggregate_FieldsResolvers<ContextType>;
-  idea_preview_avg_fields?: TIdea_Preview_Avg_FieldsResolvers<ContextType>;
   idea_preview_max_fields?: TIdea_Preview_Max_FieldsResolvers<ContextType>;
   idea_preview_min_fields?: TIdea_Preview_Min_FieldsResolvers<ContextType>;
-  idea_preview_mutation_response?: TIdea_Preview_Mutation_ResponseResolvers<ContextType>;
-  idea_preview_stddev_fields?: TIdea_Preview_Stddev_FieldsResolvers<ContextType>;
-  idea_preview_stddev_pop_fields?: TIdea_Preview_Stddev_Pop_FieldsResolvers<ContextType>;
-  idea_preview_stddev_samp_fields?: TIdea_Preview_Stddev_Samp_FieldsResolvers<ContextType>;
-  idea_preview_sum_fields?: TIdea_Preview_Sum_FieldsResolvers<ContextType>;
-  idea_preview_var_pop_fields?: TIdea_Preview_Var_Pop_FieldsResolvers<ContextType>;
-  idea_preview_var_samp_fields?: TIdea_Preview_Var_Samp_FieldsResolvers<ContextType>;
-  idea_preview_variance_fields?: TIdea_Preview_Variance_FieldsResolvers<ContextType>;
   idea_votes?: TIdea_VotesResolvers<ContextType>;
   idea_votes_aggregate?: TIdea_Votes_AggregateResolvers<ContextType>;
   idea_votes_aggregate_fields?: TIdea_Votes_Aggregate_FieldsResolvers<ContextType>;

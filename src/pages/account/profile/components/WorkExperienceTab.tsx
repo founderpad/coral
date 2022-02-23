@@ -8,7 +8,7 @@ import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
 import OverviewTags from '@components/shared/OverviewTags';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useQueryParam } from '@hooks/util';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
@@ -26,7 +26,6 @@ const WorkExperienceTab = () => {
 		statement,
 		status,
 		availability,
-		// businessDescription,
 		background,
 		skills,
 		objective
@@ -78,25 +77,18 @@ const WorkExperienceTab = () => {
 					{
 						title: 'Specialist field',
 						value: specialistIndustry || 'Not set'
-						// icon: IoBulbOutline
 					},
 					{
 						title: 'Previous startups',
 						value: startups ? `${startups}` : 'Not set'
-						// icon: IoRocketOutline
 					},
 					{
 						title: 'Startup status',
 						value: status || 'Not set'
-						// icon: IoAnalyticsOutline
 					},
 					{
 						title: 'Capacity (hours per week)',
 						value: availability || 'Not set'
-						// value: availability
-						// 	? convertCapacityToString(availability)
-						// 	: 'Not set',
-						// icon: IoTimeOutline
 					}
 				]}
 			/>
@@ -135,7 +127,7 @@ const WorkExperienceTab = () => {
 	);
 };
 
-const SkillsBadges = ({ skills }: { skills: Array<string> }) => {
+const SkillsBadges = memo(({ skills }: { skills: Array<string> }) => {
 	return (
 		<FlexLayout flexWrap="wrap" direction="row" alignItems="center">
 			{skills?.map((skill) => (
@@ -145,6 +137,6 @@ const SkillsBadges = ({ skills }: { skills: Array<string> }) => {
 			))}
 		</FlexLayout>
 	);
-};
+});
 
 export default WorkExperienceTab;

@@ -33,8 +33,21 @@ const RegisterForm = () => {
 				id="register-form"
 				name="register-form"
 				onSubmit={handleSubmit(onRegister)}
+				actions={
+					<SubmitButton
+						id="submit-register-account"
+						name="submit-register-account"
+						label="Create account"
+						isLoading={isSubmitting}
+						disabled={isSubmitting}
+						size="md"
+						fontSize="small"
+						w={{ base: 'full', sm: '150px' }}
+					/>
+				}
 				stackProps={{
-					alignItems: 'center'
+					alignItems: 'center',
+					spacing: 3
 				}}
 			>
 				<FormInput<TRegisterFormFields>
@@ -54,11 +67,12 @@ const RegisterForm = () => {
 								'You first name must be a minimum of 2 characters'
 						},
 						maxLength: {
-							value: 20,
+							value: 30,
 							message:
-								'You first name must be a maximum of 20 characters'
+								'You first name must be a maximum of 30 characters'
 						}
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('firstName')}
 				/>
@@ -74,11 +88,12 @@ const RegisterForm = () => {
 					}}
 					rules={{
 						maxLength: {
-							value: 20,
+							value: 30,
 							message:
-								'Your last name must be a maximum of 20 characters'
+								'Your last name must be a maximum of 30 characters'
 						}
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('lastName')}
 				/>
@@ -95,6 +110,7 @@ const RegisterForm = () => {
 						required: 'You must enter a valid email address',
 						pattern: emailPattern
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('email')}
 				/>
@@ -122,18 +138,9 @@ const RegisterForm = () => {
 								'Your password must be a maximum of 20 characters'
 						}
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('password')}
-				/>
-				<SubmitButton
-					id="submit-register-account"
-					name="submit-register-account"
-					label="Create account"
-					isLoading={isSubmitting}
-					disabled={isSubmitting}
-					size="md"
-					fontSize="sm"
-					w={{ base: 'full', sm: '175px' }}
 				/>
 			</Form>
 			{/* <SocialLogins /> */}

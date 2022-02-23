@@ -7,16 +7,16 @@ import PostedBy from './PostedBy';
 
 type TIdeaCardHeader = Pick<
 	TIdeaPreviewFieldsFragment,
-	'name' | 'user' | 'is_new' | 'created_at' | 'user_id' | 'id'
+	'name' | 'user' | 'isNew' | 'createdAt' | 'userId' | 'id'
 >;
 
 const IdeaCardHeader = (idea: TIdeaCardHeader) => {
-	const { name, is_new } = idea;
+	const { name, isNew } = idea;
 
 	return (
 		<React.Fragment>
 			<FlexLayout>
-				{is_new && <NewIdeaBadge />}
+				{isNew && <NewIdeaBadge />}
 				<FlexLayout direction="column" flex={1}>
 					<Label
 						d="flex"

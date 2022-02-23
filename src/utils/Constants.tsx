@@ -1,20 +1,16 @@
-import { TIndustry } from 'src/types/idea';
+type TOption = {
+	readonly label: string;
+	readonly value: string | number;
+};
 
-export const ALL_PRONOUNS = [
+export const ALL_PRONOUNS: TOption[] = [
 	{ label: 'She/Her', value: 'She/Her' },
 	{ label: 'He/Him', value: 'He/Him' },
 	{ label: 'They/Them', value: 'They/Them' },
 	{ label: 'Custom', value: 'Custom' }
 ];
 
-export const mobilePronouns = () =>
-	ALL_PRONOUNS.map((pronoun) => (
-		<option key={pronoun.label} value={pronoun.label}>
-			{pronoun.label}
-		</option>
-	));
-
-export const ALL_USER_OBJECTIVES = [
+export const ALL_USER_OBJECTIVES: TOption[] = [
 	{ label: 'Start a business', value: 'Start a business' },
 	{ label: 'Join a business', value: 'Join a business' },
 	{ label: 'Find a team', value: 'Find a team' },
@@ -22,14 +18,7 @@ export const ALL_USER_OBJECTIVES = [
 	{ label: 'Just browsing', value: 'Just browsing' }
 ];
 
-export const mobileUserObjectives = () =>
-	ALL_USER_OBJECTIVES.map((objective) => (
-		<option key={objective.label} value={objective.label}>
-			{objective.label}
-		</option>
-	));
-
-export const ALL_IDEA_CATEGORY_FIELDS: TIndustry[] = [
+export const ALL_IDEA_CATEGORY_FIELDS: TOption[] = [
 	{ label: 'Aerospace', value: 'Aerospace' },
 	{ label: 'Agriculture', value: 'Agriculture' },
 	{ label: 'Clothing', value: 'Clothing' },
@@ -54,14 +43,7 @@ export const ALL_IDEA_CATEGORY_FIELDS: TIndustry[] = [
 	{ label: 'Other', value: 'Other' }
 ];
 
-export const mobileIdeaCategoryFields = () =>
-	ALL_IDEA_CATEGORY_FIELDS.map((field) => (
-		<option key={field.label} value={field.label}>
-			{field.label}
-		</option>
-	));
-
-export const ALL_COUNTRIES = [
+export const ALL_COUNTRIES: TOption[] = [
 	{ label: 'Afghanistan', value: 'Afghanistan' },
 	{ label: 'Albania', value: 'Albania' },
 	{ label: 'Algeria', value: 'Algeria' },
@@ -269,238 +251,6 @@ export const ALL_COUNTRIES = [
 	{ label: 'Zimbabwe', value: 'Zimbabwe' }
 ];
 
-export const mobileCountriesList = () =>
-	ALL_COUNTRIES.map((country) => (
-		<option key={country.value} value={country.value}>
-			{country.value}
-		</option>
-	));
-
-// export const ALL_COUNTRIES = [
-// 	'Afghanistan',
-// 	'Albania',
-// 	'Algeria',
-// 	'Andorra',
-// 	'Angola',
-// 	'Antigua and Barbuda',
-// 	'Argentina',
-// 	'Armenia',
-// 	'Australia',
-// 	'Austria',
-// 	'Azerbaijan',
-// 	'The Bahamas',
-// 	'Bahrain',
-// 	'Bangladesh',
-// 	'Barbados',
-// 	'Belarus',
-// 	'Belgium',
-// 	'Belize',
-// 	'Benin',
-// 	'Bhutan',
-// 	'Bolivia',
-// 	'Bosnia and Herzegovina',
-// 	'Botswana',
-// 	'Brazil',
-// 	'Brunei',
-// 	'Bulgaria',
-// 	'Burkina Faso',
-// 	'Burundi',
-// 	'Cabo Verde',
-// 	'Cambodia',
-// 	'Cameroon',
-// 	'Canada',
-// 	'Central African Republic',
-// 	'Chad',
-// 	'Chile',
-// 	'China',
-// 	'Colombia',
-// 	'Comoros',
-// 	'Congo, Democratic Republic of the',
-// 	'Congo, Republic of the',
-// 	'Costa Rica',
-// 	'Côte d’Ivoire',
-// 	'Croatia',
-// 	'Cuba',
-// 	'Cyprus',
-// 	'Czech Republic',
-// 	'Denmark',
-// 	'Djibouti',
-// 	'Dominica',
-// 	'Dominican Republic',
-// 	'East Timor (Timor-Leste)',
-// 	'Ecuador',
-// 	'Egypt',
-// 	'El Salvador',
-// 	'Equatorial Guinea',
-// 	'Eritrea',
-// 	'Estonia',
-// 	'Eswatini',
-// 	'Ethiopia',
-// 	'Fiji',
-// 	'Finland',
-// 	'France',
-// 	'Gabon',
-// 	'The Gambia',
-// 	'Georgia',
-// 	'Germany',
-// 	'Ghana',
-// 	'Greece',
-// 	'Grenada',
-// 	'Guatemala',
-// 	'Guinea',
-// 	'Guinea-Bissau',
-// 	'Guyana',
-// 	'Haiti',
-// 	'Honduras',
-// 	'Hungary',
-// 	'Iceland',
-// 	'India',
-// 	'Indonesia',
-// 	'Iran',
-// 	'Iraq',
-// 	'Ireland',
-// 	'Israel',
-// 	'Italy',
-// 	'Jamaica',
-// 	'Japan',
-// 	'Jordan',
-// 	'Kazakhstan',
-// 	'Kenya',
-// 	'Kiribati',
-// 	'Korea, North',
-// 	'Korea, South',
-// 	'Kosovo',
-// 	'Kuwait',
-// 	'Kyrgyzstan',
-// 	'Laos',
-// 	'Latvia',
-// 	'Lebanon',
-// 	'Lesotho',
-// 	'Liberia',
-// 	'Libya',
-// 	'Liechtenstein',
-// 	'Lithuania',
-// 	'Luxembourg',
-// 	'Madagascar',
-// 	'Malawi',
-// 	'Malaysia',
-// 	'Maldives',
-// 	'Mali',
-// 	'Malta',
-// 	'Marshall Islands',
-// 	'Mauritania',
-// 	'Mauritius',
-// 	'Mexico',
-// 	'Micronesia, Federated States of',
-// 	'Moldova',
-// 	'Monaco',
-// 	'Mongolia',
-// 	'Montenegro',
-// 	'Morocco',
-// 	'Mozambique',
-// 	'Myanmar (Burma)',
-// 	'Namibia',
-// 	'Nauru',
-// 	'Nepal',
-// 	'Netherlands',
-// 	'New Zealand',
-// 	'Nicaragua',
-// 	'Niger',
-// 	'Nigeria',
-// 	'North Macedonia',
-// 	'Norway',
-// 	'Oman',
-// 	'Pakistan',
-// 	'Palau',
-// 	'Panama',
-// 	'Papua New Guinea',
-// 	'Paraguay',
-// 	'Peru',
-// 	'Philippines',
-// 	'Poland',
-// 	'Portugal',
-// 	'Qatar',
-// 	'Romania',
-// 	'Russia',
-// 	'Rwanda',
-// 	'Saint Kitts and Nevis',
-// 	'Saint Lucia',
-// 	'Saint Vincent and the Grenadines',
-// 	'Samoa',
-// 	'San Marino',
-// 	'Sao Tome and Principe',
-// 	'Saudi Arabia',
-// 	'Senegal',
-// 	'Serbia',
-// 	'Seychelles',
-// 	'Sierra Leone',
-// 	'Singapore',
-// 	'Slovakia',
-// 	'Slovenia',
-// 	'Solomon Islands',
-// 	'Somalia',
-// 	'South Africa',
-// 	'Spain',
-// 	'Sri Lanka',
-// 	'Sudan',
-// 	'Sudan, South',
-// 	'Suriname',
-// 	'Sweden',
-// 	'Switzerland',
-// 	'Syria',
-// 	'Taiwan',
-// 	'Tajikistan',
-// 	'Tanzania',
-// 	'Thailand',
-// 	'Togo',
-// 	'Tonga',
-// 	'Trinidad and Tobago',
-// 	'Tunisia',
-// 	'Turkey',
-// 	'Turkmenistan',
-// 	'Tuvalu',
-// 	'Uganda',
-// 	'Ukraine',
-// 	'United Arab Emirates',
-// 	'United Kingdom',
-// 	'United States',
-// 	'Uruguay',
-// 	'Uzbekistan',
-// 	'Vanuatu',
-// 	'Vatican City',
-// 	'Venezuela',
-// 	'Vietnam',
-// 	'Yemen',
-// 	'Zambia',
-// 	'Zimbabwe'
-// ];
-
-// const availabilityOptions = () => (
-// 	<>
-// 		<option value={10}>1 - 10 hours</option>
-// 		<option value={1120}>11 - 20 hours</option>
-// 		<option value={2130}>21 - 30 hours</option>
-// 		<option value={3140}>31 - 40 hours</option>
-// 		<option value={40}>40+ hours</option>
-// 	</>
-// );
-
-// export const AVAILABILITY_OPTIONS = [
-// 	{ key: 10, value: '1 - 10 hours' },
-// 	{ key: 1120, value: '11 - 20 hours' },
-// 	{ key: 2130, value: '21 - 30 hours' },
-// 	{ key: 3140, value: '31 - 40 hours' },
-// 	{ key: 40, value: '40+ hours' }
-// ];
-
-// export const AVAILABILITY_OPTIONS = [
-// 	{ key: 10, value: '1 - 10 hours' },
-// 	{ key: 1120, value: '11 - 20 hours' },
-// 	{ key: 2130, value: '21 - 30 hours' },
-// 	{ key: 3140, value: '31 - 40 hours' },
-// 	{ key: 40, value: '40+ hours' }
-// ];
-
 export const EXPERIENCE_SKILLS = [
 	'Business development',
 	'Commercial',
@@ -520,28 +270,14 @@ export const EXPERIENCE_SKILLS = [
 	'Team building and management'
 ];
 
-export const NUMBER_OF_STARTUPS = [
+export const NUMBER_OF_STARTUPS: TOption[] = [
 	{ label: 'No startups', value: 'No startups' },
 	{ label: '1-5 startups', value: '1-5 startups' },
 	{ label: '6-10 startups', value: '6-10 startups' },
 	{ label: '10+ startups', value: '10+ startups' }
 ];
 
-export const mobileNumberOfStartups = () =>
-	NUMBER_OF_STARTUPS.map((startups) => (
-		<option key={startups.value} value={startups.value}>
-			{startups.value}
-		</option>
-	));
-
-// export const STARTUP_STATUS = [
-// 	{ key: 'exited', value: 'Exited the business' },
-// 	{ key: 'parttime', value: 'Still involved part time in a startup' },
-// 	{ key: 'fulltime', value: 'Still involved full time in a startup' },
-// 	{ key: 'none', value: 'Not involved in a startup' }
-// ];
-
-export const STARTUP_STATUS = [
+export const STARTUP_STATUS: TOption[] = [
 	{ label: 'Exited the business', value: 'Exited the business' },
 	{
 		label: 'Involved part time',
@@ -554,22 +290,7 @@ export const STARTUP_STATUS = [
 	{ label: 'Not involved in a startup', value: 'Not involved in a startup' }
 ];
 
-export const mobileStartupStatuses = () =>
-	STARTUP_STATUS.map((status) => (
-		<option key={status.value} value={status.value}>
-			{status.value}
-		</option>
-	));
-
-// export const AVAILABILITY_IN_HOURS = [
-// 	{ key: '0110', value: '1-10 hours', min: 1, max: 10 },
-// 	{ key: '1120', value: '11-20 hours', min: 11, max: 20 },
-// 	{ key: '2130', value: '21-30 hours', min: 21, max: 30 },
-// 	{ key: '3140', value: '31-40 hours', min: 31, max: 40 },
-// 	{ key: '41', value: '41+ hours', min: 41 }
-// ];
-
-export const AVAILABILITY_IN_HOURS: Option[] = [
+export const AVAILABILITY_IN_HOURS: TOption[] = [
 	{ label: '1-10 hours', value: '1-10 hours' },
 	{ label: '11-20 hours', value: '11-20 hours' },
 	{ label: '21-30 hours', value: '21-30 hours' },
@@ -577,16 +298,7 @@ export const AVAILABILITY_IN_HOURS: Option[] = [
 	{ label: '41+ hours', value: '41+ hours' }
 ];
 
-export const mobileAvailabilityOptions = () =>
-	AVAILABILITY_IN_HOURS.map((availability) => (
-		<option key={availability.value} value={availability.value}>
-			{availability.value}
-		</option>
-	));
-
-// *
-
-export const REPORT_REASONS: Option[] = [
+export const REPORT_REASONS: TOption[] = [
 	{
 		label: 'Abusive or harmful content',
 		value: 'Abusive or harmful content'
@@ -599,43 +311,17 @@ export const REPORT_REASONS: Option[] = [
 	{ label: 'Harrassment', value: 'Hate speech' }
 ];
 
-export const mobileReportOptions = () =>
-	REPORT_REASONS.map((reason) => (
-		<option key={reason.value} value={reason.value}>
-			{reason.value}
-		</option>
-	));
-
-type Option = {
-	readonly label: string;
-	readonly value: string | number;
-};
-
-export const ALL_IDEA_STATUSES: Option[] = [
+export const ALL_IDEA_STATUSES: TOption[] = [
 	{ label: 'New idea', value: 'New idea' },
 	{ label: 'Building team', value: 'Building team' },
 	{ label: 'Pre-launch', value: 'Pre-launch' },
 	{ label: 'Launched', value: 'Launched' }
 ];
 
-export const mobileIdeaStatuses = () =>
-	ALL_IDEA_STATUSES.map((status) => (
-		<option key={status.value} value={status.value}>
-			{status.value}
-		</option>
-	));
-
-export const BY_IDEA_POPULARITY: Option[] = [
-	{ label: 'Upvotes', value: 'Upvotes' },
-	{ label: 'Comments', value: 'Comments' }
+export const BY_IDEA_POPULARITY: TOption[] = [
+	{ label: 'By most upvotes', value: 'upvotes' },
+	{ label: 'By most comments', value: 'comments' }
 ];
-
-export const mobileIdeaPopularity = () =>
-	BY_IDEA_POPULARITY.map((popularityOption) => (
-		<option key={popularityOption.value} value={popularityOption.value}>
-			{popularityOption.value}
-		</option>
-	));
 
 export enum UserType {
 	FOUNDER = 'FOUNDER',
@@ -644,11 +330,3 @@ export enum UserType {
 	STARTUP = 'STARTUP',
 	BRAINSTORM = 'BRAINSTORM'
 }
-
-export enum MenuActionType {
-	EDIT,
-	DELETE,
-	REPORT
-}
-
-export const PASSWORD_RESET = 'passwordReset';

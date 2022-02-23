@@ -7,13 +7,11 @@ import { decodeString } from '@utils/validators';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { IoCheckmarkCircleSharp } from 'react-icons/io5';
+import { IoRocketSharp } from 'react-icons/io5';
 
 const RegisterSuccess: NextPage = () => {
-	// const encodedEmail = (useRouter().query.e1 as string) ?? '';
 	const encodedFirstName = (useRouter().query.nm as string) ?? '';
 
-	// const email = decodeString(encodedEmail) ?? '';
 	const firstName = decodeString(encodedFirstName) ?? '';
 
 	return (
@@ -24,12 +22,12 @@ const RegisterSuccess: NextPage = () => {
 		>
 			<StackLayout py={4}>
 				<Icon
-					as={IoCheckmarkCircleSharp}
-					fontSize="xxx-large"
+					as={IoRocketSharp}
+					fontSize="75px"
 					mx="auto"
-					color="green"
+					color="green.500"
 				/>
-				<Label>
+				<Label fontSize="small" pt={8}>
 					Hi {firstName},<br />
 					Thanks for signing up to founderpad!
 					<br />

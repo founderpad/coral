@@ -1,5 +1,5 @@
 import { StackProps } from '@chakra-ui/layout';
-import { StackLayout } from '@components/layouts';
+import { FlexLayout, StackLayout } from '@components/layouts';
 import React, { FormHTMLAttributes, ReactElement } from 'react';
 
 type TFormProps = FormHTMLAttributes<HTMLFormElement> & {
@@ -8,13 +8,12 @@ type TFormProps = FormHTMLAttributes<HTMLFormElement> & {
 	onSubmit: any;
 	label?: string;
 	children: React.ReactNode;
-	isSubmitting?: boolean;
-	isValid?: boolean;
 	stackProps?: StackProps;
+	actions?: React.ReactNode;
 };
 
 const Form = (props: TFormProps): ReactElement<any> => {
-	const { children, name, stackProps, ...rest } = props;
+	const { children, name, stackProps, actions, ...rest } = props;
 
 	return (
 		<form
@@ -31,6 +30,10 @@ const Form = (props: TFormProps): ReactElement<any> => {
 			>
 				{children}
 			</StackLayout>
+
+			<FlexLayout mt={4} justifyContent="center">
+				{actions}
+			</FlexLayout>
 		</form>
 	);
 };

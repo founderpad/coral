@@ -30,9 +30,10 @@ export type TFormFieldProps<TFormValues> = {
 	rules?: RegisterOptions;
 	register?: UseFormRegister<TFormValues>;
 	errors?: Partial<DeepMap<TFormValues, FieldError>>;
-	onClear: (name: string) => void;
+	onClear: (name: keyof TFormValues) => void;
 	label?: string;
 	helperText?: string;
+	hideLimit?: boolean;
 	fieldProps?: Omit<InputProps, 'name'>;
 } & Omit<InputProps, 'name'>;
 
@@ -44,14 +45,20 @@ export type TFormSelectFieldProps<TFormValues> =
 
 export type TFormTextareaFieldProps<TFormValues> = TFormFieldProps<TFormValues>;
 
-const FormFieldLimit = ({ max, value }: { max: number; value: string }) => {
+const FormFieldLimit = ({
+	max,
+	value = ''
+}: {
+	max: number;
+	value: string;
+}) => {
 	return (
 		<FormHelperText
 			fontSize="x-small"
-			color={value.length > max ? 'red.500' : 'fpGrey.300'}
+			color={value?.length > max ? 'red.500' : 'fpGrey.300'}
 			ml="auto"
 		>
-			{max - value.length} / {max}
+			{max - value?.length} / {max}
 		</FormHelperText>
 	);
 };
@@ -64,6 +71,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 	label,
 	helperText,
 	onClear,
+	hideLimit,
 	value,
 	rules
 }: TFormFieldProps<TFormValues>) => {
@@ -82,21 +90,20 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 			<FlexLayout justifyContent="space-between" flex={1}>
 				{label && <FormLabelText label={label} />}
 
-				{watchValue && (
-					<Button
-						id="clear-value-button"
-						name="clear-value-button"
-						aria-label="clear-value-button"
-						fontSize="x-small"
-						colorScheme="fpPrimary"
-						variant="link"
-						mb={1}
-						ml="auto"
-						onClick={() => onClear(name)}
-					>
-						Clear
-					</Button>
-				)}
+				<Button
+					id="clear-value-button"
+					name="clear-value-button"
+					aria-label="clear-value-button"
+					fontSize="x-small"
+					colorScheme="fpPrimary"
+					variant="link"
+					mb={1}
+					ml="auto"
+					onClick={() => onClear(name)}
+					visibility={watchValue ? 'visible' : 'hidden'}
+				>
+					Clear
+				</Button>
 			</FlexLayout>
 
 			{children}
@@ -124,7 +131,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 					)
 				)}
 
-				{rules?.maxLength && (
+				{rules?.maxLength && !hideLimit && (
 					<FormFieldLimit
 						max={(rules?.maxLength as any).value}
 						value={value as string}
@@ -154,8 +161,6 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 		control
 	});
 
-	// console.log('value', field);
-
 	return (
 		<FormControl isRequired={!!rules?.required}>
 			<FormField
@@ -173,7 +178,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 					value={value as string}
 					rounded="md"
 					size="md"
-					fontSize="smaller"
+					fontSize="xs"
 					aria-label={name}
 					aria-invalid={hasError}
 					borderColor={hasError ? 'red.500' : 'inherit'}

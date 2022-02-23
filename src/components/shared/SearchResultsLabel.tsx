@@ -24,10 +24,6 @@ export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 			fontSize="x-small"
 			alignSelf="flex-end"
 		>
-			{/* {offset + 1} - {offset + pageSize} of {total}
-			<PointSeparator small />
-			Page {page} of {Math.ceil((total || 0) / limit)} */}
-			{/* divider */}
 			{total === 0 ? (
 				'0 - 0 of 0'
 			) : (

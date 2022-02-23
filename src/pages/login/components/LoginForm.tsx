@@ -18,7 +18,7 @@ const LoginForm = () => {
 		handleSubmit,
 		register,
 		resetField,
-		formState: { errors, isSubmitting } // isValid
+		formState: { errors, isSubmitting }
 	} = useForm<TLoginFields>({
 		mode: 'all',
 		defaultValues: {
@@ -36,13 +36,28 @@ const LoginForm = () => {
 				id="login-form"
 				name="login-form"
 				onSubmit={handleSubmit(onLogin)}
+				actions={
+					<SubmitButton
+						id="submit-login"
+						name="submit-login"
+						form="login-form"
+						label="Log in"
+						size="md"
+						fontSize="small"
+						w={{ base: 'full', sm: '150px' }}
+						isLoading={isSubmitting}
+						disabled={isSubmitting}
+					/>
+				}
 				stackProps={{
-					alignItems: 'center'
+					alignItems: 'center',
+					spacing: 3
 				}}
 			>
 				<FormInput<TLoginFields>
 					id="email"
 					name="email"
+					placeholder="Email"
 					register={register}
 					control={control}
 					fieldProps={{
@@ -52,6 +67,7 @@ const LoginForm = () => {
 						required: 'You must enter a valid email address',
 						pattern: emailPattern
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('email')}
 				/>
@@ -59,9 +75,9 @@ const LoginForm = () => {
 				<FormInput<TLoginFields>
 					id="password"
 					name="password"
+					placeholder="Password"
 					register={register}
 					control={control}
-					type="password"
 					fieldProps={{
 						placeholder: 'Password',
 						type: 'password'
@@ -79,6 +95,7 @@ const LoginForm = () => {
 								'Your password must be a maximum of 20 characters'
 						}
 					}}
+					hideLimit={true}
 					errors={errors}
 					onClear={() => resetField('password')}
 				/>
@@ -91,18 +108,8 @@ const LoginForm = () => {
 						}
 					/>
 				)}
-
-				<SubmitButton
-					id="submit-login"
-					name="submit-login"
-					label="Log in"
-					isLoading={isSubmitting}
-					disabled={isSubmitting}
-					size="md"
-					fontSize="sm"
-					w={{ base: 'full', sm: '175px' }}
-				/>
 			</Form>
+
 			{/* <SocialLogins /> */}
 			<LoginFooter />
 		</React.Fragment>

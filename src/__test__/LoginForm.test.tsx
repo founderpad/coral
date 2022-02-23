@@ -126,7 +126,7 @@ describe('Login form', () => {
 		expect(emailField).toHaveValue('');
 	});
 
-	it('should remove the clear value button if the value is cleared on click', async () => {
+	it('should hide the clear value button if the value is cleared on click', async () => {
 		const { emailField, loginSetup } = setup();
 		expect(emailField).toBeInTheDocument();
 		userEvent.type(emailField, 'jamie@gmail.com');
@@ -143,7 +143,7 @@ describe('Login form', () => {
 		});
 
 		expect(emailField).toHaveValue('');
-		expect(clearButton).not.toBeInTheDocument();
+		expect(clearButton).not.toBeVisible();
 	});
 
 	it('should error if invalid email on blur', async () => {

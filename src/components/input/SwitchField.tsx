@@ -30,8 +30,8 @@ export const SwitchField = forwardRef((props, ref) => {
 			{helperText && (
 				<FormHelperText
 					id={`helper-text-${id}`}
-					fontSize="xs"
-					color="fpGrey.400"
+					fontSize="x-small"
+					color="fpGrey.300"
 				>
 					{helperText}
 				</FormHelperText>

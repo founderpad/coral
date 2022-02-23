@@ -42,6 +42,21 @@ const ConfirmChangePasswordForm = (props: Props) => {
 			id="edit-change-password"
 			name="edit-change-password"
 			onSubmit={handleSubmit(onChangePassword)}
+			actions={
+				!isChangeSuccess &&
+				showSubmit && (
+					<SubmitButton
+						id="submit-reset-password"
+						name="submit-reset-password"
+						label="Reset password"
+						isLoading={isSubmitting}
+						disabled={isSubmitting}
+						size="md"
+						fontSize="small"
+						w={{ base: 'full', sm: '150px' }}
+					/>
+				)
+			}
 			stackProps={{
 				alignItems: 'center'
 			}}
@@ -54,7 +69,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 				register={register}
 				control={control}
 				fieldProps={{
-					placeholder: 'Password',
+					placeholder: 'Password *',
 					type: 'password'
 				}}
 				rules={{
@@ -70,6 +85,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 							'Your password must be a maximum of 20 characters'
 					}
 				}}
+				hideLimit={true}
 				errors={errors}
 				onClear={() => resetField('newPassword')}
 			/>
@@ -88,7 +104,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 				/>
 			)}
 
-			{!isChangeSuccess && showSubmit && (
+			{/* {!isChangeSuccess && showSubmit && (
 				<SubmitButton
 					id="submit-reset-password"
 					name="submit-reset-password"
@@ -99,7 +115,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 					fontSize="sm"
 					w={{ base: 'full', sm: '175px' }}
 				/>
-			)}
+			)} */}
 		</Form>
 	);
 };

@@ -8,7 +8,9 @@ import React from 'react';
 const ChangePassword: NextPage = () => {
 	return (
 		<AuthLayout title="Change password" header="Change your password">
-			<Label>Please enter your new password below.</Label>
+			<Label fontSize="small">
+				Please enter your new password below.
+			</Label>
 			<ChangePasswordForm showSubmit={true} />
 
 			<PrimaryLink

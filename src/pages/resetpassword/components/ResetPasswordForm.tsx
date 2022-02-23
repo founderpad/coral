@@ -40,11 +40,25 @@ const ResetPasswordForm = () => {
 				id="reset-password-form"
 				name="reset-password-form"
 				onSubmit={handleSubmit(onResetPassword)}
+				actions={
+					!isResetSuccess && (
+						<SubmitButton
+							id="submit-reset-password"
+							name="submit-reset-password"
+							label="Reset password"
+							isLoading={isSubmitting}
+							disabled={isSubmitting}
+							size="md"
+							fontSize="small"
+							w={{ base: 'full', sm: '150px' }}
+						/>
+					)
+				}
 				stackProps={{
 					alignItems: 'center'
 				}}
 			>
-				<Label>
+				<Label fontSize="small">
 					Please enter your email address below and we will send you
 					an email with instructions to reset your password.
 				</Label>
@@ -64,19 +78,6 @@ const ResetPasswordForm = () => {
 					errors={errors}
 					onClear={() => resetField('email')}
 				/>
-
-				{!isResetSuccess && (
-					<SubmitButton
-						id="submit-reset-password"
-						name="submit-reset-password"
-						label="Reset password"
-						isLoading={isSubmitting}
-						disabled={isSubmitting}
-						size="md"
-						fontSize="sm"
-						w={{ base: 'full', sm: '175px' }}
-					/>
-				)}
 
 				{isResetSuccess && (
 					<AlertFeedback

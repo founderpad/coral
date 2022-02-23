@@ -118,7 +118,7 @@ export const CommentsList = ({
 				<PostComment />
 			</Box>
 			{hasComments < 1 ? (
-				<NoResults label="comments yet" />
+				<NoResults label="comments yet" back={false} />
 			) : (
 				<StackLayout flexGrow={1} overflowY="auto" minHeight="2em">
 					{data?.comments.map((comment, _index) => (

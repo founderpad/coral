@@ -5,40 +5,12 @@ import {
 	AlertProps
 } from '@chakra-ui/react';
 import { IoCheckmarkSharp, IoCloseOutline } from 'react-icons/io5';
-// import { useNotification } from '@hooks/util';
 
-// export const AlertFeedback = () => {
-// 	const { notification } = useNotification();
-
-// 	if (!notification.message) return null;
-
-// 	const isSuccess = notification.status === 'success';
-
-// 	return (
-// 		<Alert
-// 			status={notification.status}
-// 			alignItems="flex-start"
-// 			px={0}
-// 			py={0}
-// 			variant="subtle"
-// 			bg="transparent"
-// 		>
-// 			<AlertDescription
-// 				fontSize="xs"
-// 				color={isSuccess ? 'green.400' : 'red.400"
-// 			>
-// 				{notification.message}
-// 			</AlertDescription>
-// 		</Alert>
-// 	);
-// };
-
-interface Props {
-	status?: AlertProps['status'];
+type Props = AlertProps & {
 	message: string;
-}
+};
 
-function getStatusIcon(status: AlertProps['status']) {
+function getStatusIcon(status: Props['status']) {
 	switch (status) {
 		case 'success':
 			return (
@@ -46,7 +18,7 @@ function getStatusIcon(status: AlertProps['status']) {
 					as={IoCheckmarkSharp}
 					boxSize="16px"
 					mr={1}
-					color="green.400"
+					color="green.500"
 				/>
 			);
 		case 'error':
@@ -64,24 +36,21 @@ function getStatusIcon(status: AlertProps['status']) {
 }
 
 export const AlertFeedback = (props: Props) => {
-	const { status = 'success', message } = props;
+	const { status, message, ...rest } = props;
 
 	return (
 		<Alert
+			{...rest}
 			status={status}
 			px={0}
-			py={0}
+			py={1}
 			variant="subtle"
 			bg="transparent"
-			ml="auto"
 		>
-			{/* <AlertIcon as={getStatusIcon(status)} boxSize="14px" mr={1} /> */}
-
 			{getStatusIcon(status)}
-
 			<AlertDescription
 				fontSize="xs"
-				color={status === 'error' ? 'red.500' : 'green.400'}
+				color={status === 'error' ? 'red.500' : 'green.500'}
 			>
 				{message}
 			</AlertDescription>

@@ -7,29 +7,30 @@ import React from 'react';
 
 type TIdeaCardBody = Pick<
 	TIdeaPreviewFieldsFragment,
-	'preview' | 'field' | 'user' | 'status' | 'interested_aggregate'
+	'field' | 'user' | 'status' | 'summary' | 'interested_aggregate'
 >;
 
 const IdeaCardBody = (idea: TIdeaCardBody) => {
-	const { preview } = idea;
+	const { summary } = idea;
 
 	return (
 		<React.Fragment>
 			<Label
 				my={6}
 				d="flex"
-				color="gray.500"
+				color="fpGrey.500"
 				overflow="hidden"
 				whiteSpace="normal"
-				fontSize="small"
+				fontSize="xs"
 				css={{ whiteSpace: 'normal' }}
 				wordBreak="break-all"
 				noOfLines={2}
 				isTruncated
 			>
-				{preview?.length && preview?.length <= 25
+				{/* {preview?.length && preview?.length <= 25
 					? preview
-					: `${preview}...`}
+					: `${preview}...`} */}
+				{summary}
 			</Label>
 			<IdeaCardBodyBadges {...idea} />
 		</React.Fragment>

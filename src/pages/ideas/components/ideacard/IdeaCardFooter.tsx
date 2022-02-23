@@ -1,45 +1,41 @@
 import Icon from '@chakra-ui/icon';
+import { Button } from '@chakra-ui/react';
 import { IoChatbubbleOutline } from '@components/icons';
-import { Label } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
+import { StackLayout } from '@components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
 import IdeaUpvote from '@pages/idea/components/IdeaUpvote';
 import React, { memo } from 'react';
 import IdeaMenu from '../IdeaMenu';
 
-const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
-	// const totalComments = idea?.total_comments ?? 0;
-	return (
-		<StackLayout
-			direction="row"
-			spacing={0}
-			rounded="none"
-			w="full"
-			px={{ base: 0, sm: 4 }}
-			justifyContent="space-between"
-			alignItems="center"
-		>
-			<StackLayout direction="row" spacing={3} alignItems="center">
-				<IdeaUpvote {...idea} />
-
-				{/* {totalComments > 0 && ( */}
-				<FlexLayout alignItems="center">
-					<Icon
-						as={IoChatbubbleOutline}
-						fontSize="md"
-						pt={0}
-						mr={1}
-						color="gray.400"
-					/>
-					<Label color="gray.400" fontSize="sm">
-						{idea?.comments_aggregate?.aggregate?.count}
-					</Label>
-				</FlexLayout>
-				{/* )} */}
-			</StackLayout>
-			<IdeaMenu {...idea} />
+const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => (
+	<StackLayout
+		direction="row"
+		spacing={0}
+		rounded="none"
+		w="full"
+		px={{ base: 0, sm: 4 }}
+		justifyContent="space-between"
+		alignItems="center"
+	>
+		<StackLayout direction="row" spacing={4} alignItems="center">
+			<IdeaUpvote {...idea} />
+			<Button
+				as="div"
+				name={`update-${name}-button`}
+				pl={0}
+				size="sm"
+				variant="unstyled"
+				leftIcon={<Icon as={IoChatbubbleOutline} />}
+				_selected={{ background: 'transparent' }}
+				color={'fpGrey.400'}
+				d="flex"
+				alignItems="center"
+			>
+				{idea?.comments_aggregate?.aggregate?.count}
+			</Button>
 		</StackLayout>
-	);
-};
+		<IdeaMenu {...idea} />
+	</StackLayout>
+);
 
 export default memo(IdeaCardFooter);

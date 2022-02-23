@@ -68,14 +68,13 @@ query Ideas(
 fragment IdeaPreviewFields on idea_preview {
 	id
 	name
-	preview
 	field
 	status
-	created_at
-	is_new
-	total_interested
-	total_comments
-	user_id
+	createdAt
+	isNew
+	isPublished
+	summary
+	userId
 	user {
 		...UserFieldsWithEmail
 	}

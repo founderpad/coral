@@ -10,7 +10,7 @@ exports[`Register form matches snapshot 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-w4pe59"
+      class="chakra-stack css-1givsb"
     >
       <div
         class="chakra-form-control css-0"
@@ -23,12 +23,21 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
-            aria-describedby="field-1-helptext"
             aria-label="firstName"
             aria-required="true"
-            class="chakra-input css-ka9a58"
+            class="chakra-input css-gr2y0"
             id="field-1"
             placeholder="First name"
             required=""
@@ -36,14 +45,7 @@ exports[`Register form matches snapshot 1`] = `
           />
           <div
             class="css-11633wt"
-          >
-            <div
-              class="chakra-form__helper-text css-yd35os"
-              id="field-1-helptext"
-            >
-              20 / 20
-            </div>
-          </div>
+          />
         </div>
       </div>
       <div
@@ -57,25 +59,27 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
-            aria-describedby="field-2-helptext"
             aria-label="lastName"
-            class="chakra-input css-ka9a58"
+            class="chakra-input css-gr2y0"
             id="field-2"
             placeholder="Last name"
             value=""
           />
           <div
             class="css-11633wt"
-          >
-            <div
-              class="chakra-form__helper-text css-yd35os"
-              id="field-2-helptext"
-            >
-              20 / 20
-            </div>
-          </div>
+          />
         </div>
       </div>
       <div
@@ -89,11 +93,21 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
             aria-label="email"
             aria-required="true"
-            class="chakra-input css-ka9a58"
+            class="chakra-input css-gr2y0"
             id="field-3"
             placeholder="Email"
             required=""
@@ -115,12 +129,21 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          />
+          >
+            <button
+              aria-label="clear-value-button"
+              class="chakra-button css-pm1p4k"
+              id="clear-value-button"
+              name="clear-value-button"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
           <input
-            aria-describedby="field-4-helptext"
             aria-label="password"
             aria-required="true"
-            class="chakra-input css-ka9a58"
+            class="chakra-input css-gr2y0"
             id="field-4"
             placeholder="Password"
             required=""
@@ -129,19 +152,16 @@ exports[`Register form matches snapshot 1`] = `
           />
           <div
             class="css-11633wt"
-          >
-            <div
-              class="chakra-form__helper-text css-yd35os"
-              id="field-4-helptext"
-            >
-              20 / 20
-            </div>
-          </div>
+          />
         </div>
       </div>
+    </div>
+    <div
+      class="css-1eo0s4i"
+    >
       <button
         aria-label="submit-register-account"
-        class="chakra-button css-1ktoofj"
+        class="chakra-button css-1r0kqo2"
         id="submit-register-account"
         type="submit"
       >

@@ -4,11 +4,11 @@ import { BaseLink } from '@components/links';
 import { PointSeparator } from '@components/shared';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
 import { formatDate } from '@utils/validators';
-import React from 'react';
+import React, { memo } from 'react';
 
-type TProps = Pick<TIdeaPreviewFieldsFragment, 'user' | 'created_at'>;
+type TProps = Pick<TIdeaPreviewFieldsFragment, 'user' | 'createdAt'>;
 
-export const PostedBy = ({ user, created_at }: TProps) => (
+export const PostedBy = memo(({ user, createdAt }: TProps) => (
 	<FlexLayout
 		position="relative"
 		alignItems="center"
@@ -31,9 +31,9 @@ export const PostedBy = ({ user, created_at }: TProps) => (
 				</>
 			)}
 			<PointSeparator small />
-			{formatDate(created_at)}
+			{formatDate(createdAt)}
 		</Label>
 	</FlexLayout>
-);
+));
 
 export default PostedBy;

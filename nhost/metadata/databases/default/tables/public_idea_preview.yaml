@@ -1,6 +1,13 @@
 table:
   name: idea_preview
   schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    is_new: isNew
+    is_published: isPublished
+    user_id: userId
+  custom_root_fields: {}
 object_relationships:
 - name: user
   using:
@@ -39,35 +46,19 @@ array_relationships:
       remote_table:
         name: idea_votes
         schema: public
-insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      user_id:
-        _eq: X-Hasura-User-Id
-    columns:
-    - field
-    - is_new
-    - name
-    - preview
-    - status
-    set:
-      user_id: x-hasura-User-Id
-  role: user
 select_permissions:
 - permission:
     allow_aggregations: true
     columns:
     - is_new
-    - total_comments
-    - total_interested
-    - total_votes
+    - is_published
     - field
     - name
-    - preview
     - status
+    - summary
     - created_at
     - id
     - user_id
     filter: {}
+    limit: 10
   role: user
