@@ -13,20 +13,22 @@ import {
 	ALL_IDEA_STATUSES,
 	BY_IDEA_POPULARITY
 } from '@utils/Constants';
+import {
+	buildParams,
+	deleteParam,
+	deleteParams,
+	navigateTo
+} from '@utils/routerUtils';
 import Router from 'next/router';
 import React, { useCallback, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-
-type SelectSearch = {
-	label: string;
-	value: string;
-};
+import { useQueryParam } from '@hooks/util';
 
 type TSearchFields = {
-	field?: SelectSearch;
+	field?: string;
 	name?: string;
 	new?: boolean;
-	status?: SelectSearch;
+	status?: string;
 	country?: string;
 	popular?: string;
 };
@@ -47,12 +49,12 @@ const IdeasSearchForm = () => {
 	} = useForm<TSearchFields>({
 		mode: 'all',
 		defaultValues: {
-			field: undefined,
-			name: '',
-			new: false,
-			status: undefined,
-			country: '',
-			popular: ''
+			field: useQueryParam<string>('field') || '',
+			name: useQueryParam<string>('name') || '',
+			new: !!useQueryParam<string>('new') || undefined,
+			status: useQueryParam<string>('status') || '',
+			country: useQueryParam<string>('country') || '',
+			popular: useQueryParam<string>('popular') || ''
 		}
 	});
 
@@ -63,35 +65,7 @@ const IdeasSearchForm = () => {
 			isOpen: false
 		});
 
-		const formatSelectedValues: Record<string, string> = {};
-		for (const [k, v] of Object.entries(values)) {
-			if (v && typeof v === 'object') {
-				formatSelectedValues[k] = v['value'];
-			}
-			if (typeof v === 'string') {
-				formatSelectedValues[k] = v;
-			}
-		}
-
-		const queryParams = JSON.parse(JSON.stringify(values));
-
-		!queryParams.name && delete queryParams['name'];
-		!queryParams.field && delete queryParams['field'];
-		!queryParams.status && delete queryParams['status'];
-		!queryParams.country && delete queryParams['country'];
-		!queryParams.new && delete queryParams['new'];
-		!queryParams.popular && delete queryParams['popular'];
-
-		Router.push(
-			{
-				pathname: '/ideas',
-				query: { ...queryParams, page: 1 }
-			},
-			undefined,
-			{
-				shallow: true
-			}
-		);
+		buildParams<TSearchFields>(values);
 	};
 
 	const onSetNewIdea = useCallback(() => {
@@ -101,55 +75,31 @@ const IdeasSearchForm = () => {
 	}, [isNewIdea, setValue]);
 
 	const onClearNewIdeas = () => {
-		delete Router.query['new'];
 		setValue('new', undefined);
 		setIsNewIdea(false);
 		setShowClear(false);
-
-		Router.push(
-			{
-				query: { ...Router.query }
-			},
-			undefined,
-			{
-				shallow: true
-			}
-		);
+		deleteParam<TSearchFields>('new');
+		navigateTo();
 	};
 
 	const onResetField = (name: keyof TSearchFields) => {
-		resetField(name);
-		if (Router['query'][name]) {
-			delete Router['query'][name];
-			Router.push(
-				{
-					query: { ...Router.query }
-				},
-				undefined,
-				{
-					shallow: true
-				}
-			);
-		}
+		resetField(name, { defaultValue: '' });
+		deleteParam<TSearchFields>(name);
+		navigateTo();
 	};
 
 	const onResetAll = useCallback(() => {
-		reset();
+		reset({
+			field: '',
+			name: '',
+			country: '',
+			status: '',
+			popular: '',
+			new: false
+		});
+
 		setIsNewIdea(false);
-
-		Object.keys(getValues()).forEach(
-			(param) => delete Router['query'][param]
-		);
-
-		Router.push(
-			{
-				query: { ...Router.query }
-			},
-			undefined,
-			{
-				shallow: true
-			}
-		);
+		deleteParams<TSearchFields>(getValues());
 	}, [getValues, reset]);
 
 	return (
@@ -165,7 +115,7 @@ const IdeasSearchForm = () => {
 				>
 					Filters
 				</BaseHeading>
-				{/* {!Object.values(getValues()).includes('undefined') && ( */}
+
 				<Button
 					fontSize="x-small"
 					colorScheme="fpPrimary"
@@ -177,7 +127,6 @@ const IdeasSearchForm = () => {
 				>
 					Clear all
 				</Button>
-				{/* )} */}
 			</FlexLayout>
 			<FormSelect<TSearchFields>
 				id="country"
@@ -288,7 +237,6 @@ const IdeasSearchForm = () => {
 			</FormControl>
 
 			<SubmitButton
-				// display={{ base: 'none', sm: 'flex' }}
 				name="filter-search-button"
 				label="Show results"
 				title="Filter ideas"

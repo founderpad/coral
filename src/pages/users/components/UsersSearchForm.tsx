@@ -8,6 +8,7 @@ import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { AppDivider } from '@components/shared';
 import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useQueryParam } from '@hooks/util';
 import {
 	ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
@@ -17,18 +18,19 @@ import {
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
-import Router, { useRouter } from 'next/router';
+import { buildParams, deleteParam, navigateTo } from '@utils/routerUtils';
+import Router from 'next/router';
 import React, { useContext, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 type TSearchFields = {
+	objective?: string;
+	country?: string;
 	status?: string;
 	availability?: string;
 	field?: string;
 	startups?: string;
-	country?: string;
 	skills?: Array<string>;
-	objective?: string;
 };
 
 const UsersSearchForm = () => {
@@ -36,30 +38,24 @@ const UsersSearchForm = () => {
 
 	const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 	const { handleSubmit, control, register, resetField, setValue } =
-		useForm<TSearchFields>();
-	const router = useRouter();
+		useForm<TSearchFields>({
+			defaultValues: {
+				objective: useQueryParam<string>('objective') || '',
+				country: useQueryParam<string>('country') || '',
+				status: useQueryParam<string>('status') || '',
+				startups: useQueryParam<string>('startups') || '',
+				availability: useQueryParam<string>('availability') || '',
+				field: useQueryParam<string>('field') || '',
+				skills: useQueryParam<string[]>('skills') || []
+			}
+		});
 
 	const onClick = (values: TSearchFields) => {
 		setModalDrawer({
 			isOpen: false
 		});
 
-		const queryParams = JSON.parse(JSON.stringify(values));
-
-		for (const [k, _v] of Object.entries(values)) {
-			if (!queryParams[k]) delete queryParams[k];
-		}
-
-		router.push(
-			{
-				pathname: '/users',
-				query: { ...queryParams, page: 1 }
-			},
-			undefined,
-			{
-				shallow: true
-			}
-		);
+		buildParams<TSearchFields>(values);
 	};
 
 	const onSkillsToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,19 +70,9 @@ const UsersSearchForm = () => {
 	};
 
 	const onResetField = (name: keyof TSearchFields) => {
-		resetField(name);
-		if (Router['query'][name]) {
-			delete Router['query'][name];
-			Router.push(
-				{
-					query: { ...Router.query }
-				},
-				undefined,
-				{
-					shallow: true
-				}
-			);
-		}
+		resetField(name, { defaultValue: '' });
+		deleteParam<TSearchFields>(name);
+		navigateTo();
 	};
 
 	return (
@@ -136,7 +122,7 @@ const UsersSearchForm = () => {
 			<FormSelect<TSearchFields>
 				id="startups"
 				name="startups"
-				label="Startup status"
+				label="Number of startups"
 				placeholder="number of startups"
 				options={NUMBER_OF_STARTUPS}
 				register={register}
