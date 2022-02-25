@@ -1,4 +1,4 @@
-import { Form } from '@components/form';
+import { BaseForm } from '@components/form';
 import { FormInput, FormSelect } from '@components/form/inputs/FormField';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
@@ -11,26 +11,11 @@ import {
 	useUpdateUserPersonalDetailsMutation
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
-import { updatePersonalDetails } from '@slices/auth';
+import { updateUserPersonalDetails } from '@slices/auth';
 import { ALL_COUNTRIES, ALL_PRONOUNS } from '@utils/Constants';
 import { redirectTo } from '@utils/validators';
 import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-
-// type TBaseFormProps<TFormValues> = {
-// 	id: string;
-// 	name: string;
-// 	defaultValues?: Record<string, any>;
-// 	onSubmit: SubmitHandler<TFormValues>;
-// 	children: ReactElement<
-// 		{
-// 			control: Control<TFormValues, object>;
-// 			register: UseFormRegister<TFormValues>;
-// 		},
-// 		string | JSXElementConstructor<any>
-// 	>;
-// };
 
 type TPersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
 	Pick<TUser_Address_Set_Input, 'country' | 'location'> &
@@ -40,164 +25,180 @@ const PersonalDetailsForm = () => {
 	const auth = useCurrentUser();
 	const dispatch = useDispatch();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
-	const {
-		handleSubmit,
-		control,
-		getValues,
-		watch,
-		resetField,
-		register,
-		formState: { errors }
-	} = useForm<TPersonalDetailsinput>({
-		mode: 'all',
-		defaultValues: {
-			...auth,
-			...auth?.address,
-			...auth?.profile
-		}
-	});
+	const [updatePersonalDetails] = useUpdateUserPersonalDetailsMutation();
 
-	const watchCountry = watch('country', getValues('country'));
-	const watchCustomPronouns = watch('pronouns', getValues('pronouns'));
+	const defaultValues = { ...auth, ...auth?.address, ...auth?.profile };
 
-	const [updateUserPersonalDetails] = useUpdateUserPersonalDetailsMutation({
-		variables: {
-			id: auth?.id,
-			profileId: auth?.profile?.id,
-			userPersonalDetails: {
-				displayName: getValues('displayName')
+	const onUpdatePersonalDetails = (
+		personalDetails: TPersonalDetailsinput
+	) => {
+		const { displayName, country, location, pronouns, customPronouns } =
+			personalDetails;
+
+		updatePersonalDetails({
+			variables: {
+				id: auth.id,
+				profileId: auth.profile?.id,
+				userPersonalDetails: {
+					displayName
+				},
+				userAddress: {
+					country,
+					location
+				},
+				userProfile: {
+					pronouns,
+					customPronouns:
+						pronouns === 'Custom' ? customPronouns : null
+				}
 			},
-			userAddress: {
-				country: getValues('country'),
-				location: getValues('location')
+			onCompleted: (data) => {
+				const { updateUser, updateUserAddress, updateUserProfile } =
+					data;
+				data;
+
+				dispatch(
+					updateUserPersonalDetails({
+						user: updateUser as TUsers,
+						userAddress: updateUserAddress as TUser_Address,
+						userProfile: updateUserProfile as TUser_Profile
+					})
+				);
+
+				redirectTo(false, 'pd');
+
+				setModalDrawer({
+					isOpen: false
+				});
 			},
-			userProfile: {
-				pronouns: getValues('pronouns'),
-				customPronouns:
-					getValues('pronouns') === 'Custom'
-						? getValues('customPronouns')
-						: null
+			onError: () => {
+				redirectTo(true, 'pd');
 			}
-		},
-		onCompleted: (data) => {
-			const { updateUser, updateUserAddress, updateUserProfile } = data;
-
-			dispatch(
-				updatePersonalDetails({
-					user: updateUser as TUsers,
-					userAddress: updateUserAddress as TUser_Address,
-					userProfile: updateUserProfile as TUser_Profile
-				})
-			);
-
-			redirectTo(false, 'pd');
-
-			setModalDrawer({
-				isOpen: false
-			});
-		},
-		onError: () => {
-			redirectTo(true, 'pd');
-		}
-	});
+		});
+	};
 
 	return (
-		<Form
-			id="editPersonalDetailsForm"
-			name="editPersonalDetailsForm"
-			onSubmit={handleSubmit(updateUserPersonalDetails)}
+		<BaseForm<TPersonalDetailsinput>
+			name="edit-personal-details-form"
+			onSubmit={onUpdatePersonalDetails}
+			defaultValues={defaultValues}
+			stackProps={{
+				alignItems: 'center'
+			}}
 		>
-			<FormInput<TPersonalDetailsinput>
-				id="displayName"
-				name="displayName"
-				label="Display name"
-				register={register}
-				control={control}
-				fieldProps={{
-					placeholder: 'Display name (max. 25 characters)'
-				}}
-				rules={{
-					required: 'You must enter a display name',
-					maxLength: {
-						value: 25,
-						message:
-							'Your display name can not be more than 25 characters'
-					}
-				}}
-				errors={errors}
-				onClear={() => resetField('displayName', { defaultValue: '' })}
-			/>
-
-			<FormSelect<TPersonalDetailsinput>
-				id="pronouns"
-				name="pronouns"
-				label="Pronouns"
-				placeholder="Pronouns"
-				options={ALL_PRONOUNS as any}
-				register={register}
-				control={control}
-				onClear={() => resetField('pronouns', { defaultValue: '' })}
-			/>
-
-			{watchCustomPronouns === 'Custom' && (
-				<FormInput<TPersonalDetailsinput>
-					id="customPronouns"
-					name="customPronouns"
-					label="Custom pronouns"
-					register={register}
-					control={control}
-					fieldProps={{
-						placeholder: 'Custom pronouns (max. 20 characters)'
-					}}
-					rules={{
-						required: 'You must input a custom pronoun',
-						maxLength: {
-							value: 15,
-							message:
-								'Your custom pronouns can not be more than 20 characters'
+			{({
+				register,
+				control,
+				resetField,
+				watch,
+				getValues,
+				formState: { errors }
+			}) => (
+				<>
+					<FormInput<TPersonalDetailsinput>
+						id="displayName"
+						name="displayName"
+						label="Display name"
+						register={register}
+						control={control}
+						fieldProps={{
+							placeholder: 'Display name (max. 25 characters)'
+						}}
+						rules={{
+							required: 'You must enter a display name',
+							maxLength: {
+								value: 25,
+								message:
+									'Your display name can not be more than 25 characters'
+							}
+						}}
+						errors={errors}
+						onClear={() =>
+							resetField('displayName', { defaultValue: '' })
 						}
-					}}
-					errors={errors}
-					onClear={() =>
-						resetField('customPronouns', { defaultValue: '' })
-					}
-				/>
-			)}
+					/>
 
-			<FormSelect<TPersonalDetailsinput>
-				id="country"
-				name="country"
-				label="Country"
-				placeholder="country"
-				options={ALL_COUNTRIES}
-				register={register}
-				control={control}
-				onClear={() => resetField('country', { defaultValue: '' })}
-				selectProps={{
-					menuPlacement: 'top'
-				}}
-			/>
-
-			{watchCountry && (
-				<FormInput<TPersonalDetailsinput>
-					id="location"
-					name="location"
-					label="Location"
-					placeholder="Location"
-					register={register}
-					control={control}
-					rules={{
-						maxLength: {
-							value: 20,
-							message:
-								'Your location can not be more than 20 characters'
+					<FormSelect<TPersonalDetailsinput>
+						id="pronouns"
+						name="pronouns"
+						label="Pronouns"
+						placeholder="Pronouns"
+						options={ALL_PRONOUNS as any}
+						register={register}
+						control={control}
+						onClear={() =>
+							resetField('pronouns', { defaultValue: '' })
 						}
-					}}
-					errors={errors}
-					onClear={() => resetField('location', { defaultValue: '' })}
-				/>
+					/>
+
+					{watch('pronouns', getValues('pronouns')) === 'Custom' && (
+						<FormInput<TPersonalDetailsinput>
+							id="customPronouns"
+							name="customPronouns"
+							label="Custom pronouns"
+							register={register}
+							control={control}
+							fieldProps={{
+								placeholder:
+									'Custom pronouns (max. 20 characters)'
+							}}
+							rules={{
+								required: 'You must input a custom pronoun',
+								maxLength: {
+									value: 15,
+									message:
+										'Your custom pronouns can not be more than 20 characters'
+								}
+							}}
+							errors={errors}
+							onClear={() =>
+								resetField('customPronouns', {
+									defaultValue: ''
+								})
+							}
+						/>
+					)}
+
+					<FormSelect<TPersonalDetailsinput>
+						id="country"
+						name="country"
+						label="Country"
+						placeholder="country"
+						options={ALL_COUNTRIES}
+						register={register}
+						control={control}
+						onClear={() =>
+							resetField('country', { defaultValue: '' })
+						}
+						selectProps={{
+							menuPlacement: 'top'
+						}}
+					/>
+
+					{watch('country', getValues('country')) && (
+						<FormInput<TPersonalDetailsinput>
+							id="location"
+							name="location"
+							label="Location"
+							placeholder="Location"
+							register={register}
+							control={control}
+							rules={{
+								maxLength: {
+									value: 20,
+									message:
+										'Your location can not be more than 20 characters'
+								}
+							}}
+							errors={errors}
+							onClear={() =>
+								resetField('location', { defaultValue: '' })
+							}
+						/>
+					)}
+				</>
 			)}
-		</Form>
+		</BaseForm>
 	);
 };
 

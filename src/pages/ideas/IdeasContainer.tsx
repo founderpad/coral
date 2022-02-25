@@ -54,8 +54,8 @@ const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 
 const orderBuilder = (): TIdea_Preview_Order_By => {
 	const order: TIdea_Preview_Order_By = {};
-	if (Router.query['popularity']) {
-		const popularity = Router.query['popularity'] as string;
+	if (Router.query['popular']) {
+		const popularity = Router.query['popular'] as string;
 		if (popularity === 'Upvotes') {
 			order['votes_aggregate'] = { count: 'desc' };
 		}

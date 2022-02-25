@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/layout';
 import { SearchResultsLabel, StickySubheader } from '@components/shared';
 import React from 'react';
-import IdeasSearchForm from './IdeasSearchForm';
+import IdeasSearchForm from './form/IdeasSearchForm';
 import MobileFilterMenu from './MobileFilterMenu';
 
 const IdeasActions = ({

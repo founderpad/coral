@@ -49,6 +49,7 @@ const deleteParams = <T extends TParam>(values: T) => {
 /** Build parameters for the URL */
 const buildParams = <T extends TParam>(values: T) => {
 	const queryParams = JSON.parse(JSON.stringify(values));
+
 	for (const [key, value] of Object.entries(queryParams)) {
 		if (!value) delete queryParams[key];
 	}

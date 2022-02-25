@@ -52,7 +52,7 @@ const UserPersonalInformation = memo((props: Props) => {
 			action: (
 				<SubmitButton
 					name="open-modal-drawer-personal-details-button"
-					form="editPersonalDetailsForm"
+					form="edit-personal-details-form"
 					label="Save"
 				/>
 			),

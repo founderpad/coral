@@ -131,12 +131,12 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 					)
 				)}
 
-				{rules?.maxLength && !hideLimit && (
+				{/* {rules?.maxLength && !hideLimit && (
 					<FormFieldLimit
 						max={(rules?.maxLength as any).value}
 						value={value as string}
 					/>
-				)}
+				)} */}
 			</FlexLayout>
 		</FlexLayout>
 	);

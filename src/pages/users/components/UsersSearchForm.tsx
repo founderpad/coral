@@ -1,7 +1,7 @@
 import { FormControl, Checkbox, Button } from '@chakra-ui/react';
 import { SubmitButton } from '@components/buttons';
 import { FormLabelText } from '@components/form';
-import Form from '@components/form/Form';
+import { BaseForm } from '@components/form';
 import { FormSelect } from '@components/form/inputs/FormField';
 import BaseHeading from '@components/heading/BaseHeading';
 import { Label } from '@components/labels';

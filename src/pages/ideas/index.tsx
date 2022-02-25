@@ -3,7 +3,7 @@ import { DocumentTitle } from '@components/shared';
 import AuthFilter from '@utils/AuthFilter';
 import Head from 'next/head';
 import React from 'react';
-import IdeasSearchForm from './components/IdeasSearchForm';
+import IdeasSearchForm from './components/form/IdeasSearchForm';
 import IdeasContainer from './IdeasContainer';
 
 const Ideas = () => (
