@@ -6,7 +6,7 @@ import NotificationContext from '@context/NotificationContext';
 import { pageview } from '@lib/ga';
 import { storage } from '@utils/nhost';
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 enum Params {
 	edit
@@ -150,4 +150,47 @@ export const useModalDrawer = () => {
 	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);
 
 	return { modalDrawer, setModalDrawer };
+};
+
+export const useCheckboxToggle = (
+	defaultValues: string[] = [],
+	allValues: string[] = []
+) => {
+	const [values, setSelectedValues] = useState<Array<string>>(
+		defaultValues ?? []
+	);
+
+	const [isAll, setIsAll] = useState(false);
+
+	const toggleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.name;
+		const valuesCopy = [...values];
+
+		const index = valuesCopy.findIndex((v) => v === value);
+		index > -1 ? valuesCopy.splice(index, 1) : valuesCopy.push(value);
+
+		if (valuesCopy.length === allValues.length) setIsAll(true);
+		if (isAll) setIsAll(false);
+
+		setSelectedValues(valuesCopy);
+	};
+
+	const toggleAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.checked;
+
+		if (value && allValues) {
+			setIsAll(true);
+			setSelectedValues(allValues);
+		} else {
+			setIsAll(false);
+			setSelectedValues([]);
+		}
+	};
+
+	const clearValues = () => {
+		setSelectedValues([]);
+		setIsAll(false);
+	};
+
+	return { values, clearValues, toggleValue, isAll, toggleAll };
 };

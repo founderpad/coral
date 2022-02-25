@@ -1,6 +1,6 @@
 import Router from 'next/router';
 
-type TParam = {
+export type TParam = {
 	[key: number]: string | string[] | boolean;
 };
 
@@ -30,17 +30,24 @@ const navigateTo = (
 };
 
 /** Remove a single param */
-const deleteParam = <T extends TParam>(key: keyof T & string) => {
+const deleteParam = <T extends TParam>(
+	key: keyof T & string,
+	navigate = true
+) => {
 	if (Router.query[key]) {
 		delete Router['query'][key];
-		navigateTo();
+		if (navigate) navigateTo();
 	}
 };
 
 /** Remove multiple params */
 const deleteParams = <T extends TParam>(values: T) => {
+	console.log('values: ', values);
 	for (const [key, value] of Object.entries(values)) {
-		if (!value) delete Router['query'][key];
+		if (!value) {
+			console.log('k,v: ', key + ' = ' + value);
+			delete Router['query'][key];
+		}
 	}
 
 	navigateTo();

@@ -71,14 +71,7 @@ const IdeasSearchForm = () => {
 				popular: useQueryParam<string>('popular') || ''
 			}}
 		>
-			{({
-				register,
-				control,
-				resetField,
-				reset,
-				getValues,
-				formState: { errors }
-			}) => (
+			{({ register, control, resetField, reset, getValues }) => (
 				<>
 					<FlexLayout justifyContent="space-between">
 						<BaseHeading
@@ -120,7 +113,6 @@ const IdeasSearchForm = () => {
 						options={ALL_COUNTRIES}
 						register={register}
 						control={control}
-						errors={errors}
 						onClear={() => {
 							resetField('country', { defaultValue: '' });
 							deleteParam<TSearchFields>('country');
