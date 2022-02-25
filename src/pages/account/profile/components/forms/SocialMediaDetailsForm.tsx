@@ -1,4 +1,4 @@
-import Form from '@components/form/Form';
+import Form from '@components/form/BaseForm';
 import { IoLogoLinkedin } from '@components/icons';
 import { InputField } from '@components/input/InputField';
 import ModalDrawerContext from '@context/ModalDrawerContext';

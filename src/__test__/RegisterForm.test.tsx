@@ -118,7 +118,7 @@ describe('Register form', () => {
 		fireEvent.blur(firstNameField);
 
 		registerSetup.getByText(
-			'You first name must be a minimum of 2 characters'
+			'Your first name must be a minimum of 2 characters'
 		);
 	});
 
@@ -138,7 +138,7 @@ describe('Register form', () => {
 		fireEvent.blur(firstNameField);
 
 		registerSetup.getByText(
-			'You first name must be a maximum of 30 characters'
+			'Your first name must be a maximum of 30 characters'
 		);
 	});
 

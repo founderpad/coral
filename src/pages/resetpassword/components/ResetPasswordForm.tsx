@@ -1,6 +1,6 @@
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
-import { Form } from '@components/form';
+import { BaseForm } from '@components/form';
 import { FormInput } from '@components/form/inputs/FormField';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
@@ -9,26 +9,16 @@ import { useResetPassword } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { emailPattern } from '@utils/validators';
 import React, { memo } from 'react';
-import { useForm } from 'react-hook-form';
 
 type TResetPasswordFields = {
 	email: string;
 };
 
-const ResetPasswordForm = () => {
-	const {
-		handleSubmit,
-		control,
-		resetField,
-		register,
-		formState: { errors, isSubmitting }
-	} = useForm<TResetPasswordFields>({
-		mode: 'all',
-		defaultValues: {
-			email: ''
-		}
-	});
+const defaultValues = {
+	email: ''
+};
 
+const ResetPasswordForm = () => {
 	const isResetSuccess = useQueryParam('rp_success');
 	const isResetError = useQueryParam('rp_error');
 
@@ -36,63 +26,74 @@ const ResetPasswordForm = () => {
 
 	return (
 		<React.Fragment>
-			<Form
-				id="reset-password-form"
+			<BaseForm<TResetPasswordFields>
 				name="reset-password-form"
-				onSubmit={handleSubmit(onResetPassword)}
-				actions={
-					!isResetSuccess && (
-						<SubmitButton
-							id="submit-reset-password"
-							name="submit-reset-password"
-							label="Reset password"
-							isLoading={isSubmitting}
-							disabled={isSubmitting}
-							size="md"
-							fontSize="small"
-							w={{ base: 'full', sm: '150px' }}
-						/>
-					)
-				}
+				onSubmit={onResetPassword}
+				defaultValues={defaultValues}
 				stackProps={{
-					alignItems: 'center'
+					alignItems: 'center',
+					spacing: 3
 				}}
 			>
-				<Label fontSize="small">
-					Please enter your email address below and we will send you
-					an email with instructions to reset your password.
-				</Label>
+				{({
+					register,
+					control,
+					resetField,
+					formState: { errors, isSubmitting }
+				}) => (
+					<React.Fragment>
+						<Label fontSize="small">
+							Please enter your email address below and we will
+							send you an email with instructions to reset your
+							password.
+						</Label>
 
-				<FormInput<TResetPasswordFields>
-					id="email"
-					name="email"
-					register={register}
-					control={control}
-					fieldProps={{
-						placeholder: 'Email'
-					}}
-					rules={{
-						required: 'You must enter a valid email address',
-						pattern: emailPattern
-					}}
-					errors={errors}
-					onClear={() => resetField('email')}
-				/>
+						<FormInput<TResetPasswordFields>
+							id="email"
+							name="email"
+							register={register}
+							control={control}
+							fieldProps={{
+								placeholder: 'Email'
+							}}
+							rules={{
+								required:
+									'You must enter a valid email address',
+								pattern: emailPattern
+							}}
+							errors={errors}
+							onClear={() => resetField('email')}
+						/>
 
-				{isResetSuccess && (
-					<AlertFeedback
-						status="success"
-						message="Email sent with instructions to reset your password"
-					/>
+						{isResetSuccess && (
+							<AlertFeedback
+								status="success"
+								message="Email sent with instructions to reset your password"
+							/>
+						)}
+
+						{isResetError && (
+							<AlertFeedback
+								status="error"
+								message="Failed to reset password. Please try again later."
+							/>
+						)}
+
+						{!isResetSuccess && (
+							<SubmitButton
+								id="submit-reset-password"
+								name="submit-reset-password"
+								label="Reset password"
+								isLoading={isSubmitting}
+								disabled={isSubmitting}
+								size="md"
+								fontSize="small"
+								w={{ base: 'full', sm: '150px' }}
+							/>
+						)}
+					</React.Fragment>
 				)}
-
-				{isResetError && (
-					<AlertFeedback
-						status="error"
-						message="Failed to reset password. Please try again later."
-					/>
-				)}
-			</Form>
+			</BaseForm>
 			<ResetPasswordFooter />
 		</React.Fragment>
 	);

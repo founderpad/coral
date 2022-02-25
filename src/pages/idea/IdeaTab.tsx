@@ -35,6 +35,8 @@ const IdeaTab = () => {
 					<AlertFeedback
 						status="success"
 						message="Your idea has been updated successfully"
+						w="auto"
+						ml="auto"
 					/>
 				)}
 
@@ -44,6 +46,8 @@ const IdeaTab = () => {
 						message={
 							'Failed to update idea. Please try again later'
 						}
+						w="auto"
+						ml="auto"
 					/>
 				)}
 

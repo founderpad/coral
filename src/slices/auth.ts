@@ -35,7 +35,7 @@ const authSlice = createSlice({
 					}
 				};
 		},
-		updatePersonalDetails(
+		updateUserPersonalDetails(
 			state,
 			action: PayloadAction<{
 				user: TUsers;
@@ -72,7 +72,7 @@ export const {
 	setUser,
 	clearUser,
 	setProfileComplete,
-	updatePersonalDetails,
+	updateUserPersonalDetails,
 	updateUserImage
 } = authSlice.actions;
 export default authSlice.reducer;

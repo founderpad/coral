@@ -12,16 +12,13 @@ import {
 	TLoginFields
 } from 'src/types/auth';
 import { useErrorNotification } from './toast';
-// import { useNotification } from './util';
 import Router from 'next/router';
 import { useContext, useEffect } from 'react';
 import { encodeString, redirectTo } from '@utils/validators';
 import ModalDrawerContext from '@context/ModalDrawerContext';
-// import { useApolloClient } from '@apollo/client';
 
 export const useRegister = (): any => {
 	const showErrorNotification = useErrorNotification();
-	// const { addNotification, removeNotification } = useNotification();
 
 	return async ({
 		email,
@@ -30,7 +27,6 @@ export const useRegister = (): any => {
 		lastName
 	}: TRegisterFormFields): Promise<void> => {
 		try {
-			// removeNotification();
 			const response = await auth.signUp({
 				email,
 				password,
@@ -42,18 +38,12 @@ export const useRegister = (): any => {
 			});
 
 			if (response.error) {
-				// addNotification(response.error.message, 'error');
 				showErrorNotification({
 					title: 'Failed to create account',
 					description: response.error.message
 				});
 				throw 'Failed to register account';
 			}
-
-			// addNotification(
-			// 	`You have successfully registered an account. `,
-			// 	'success'
-			// );
 
 			event({
 				action: `Register - ${response.error ? 'error' : 'success'}`,
@@ -66,18 +56,10 @@ export const useRegister = (): any => {
 				}
 			});
 
-			// e1=${encodeString(
-			// 	email
-			// )}
 			Router.push(
 				`/register/registersuccess?nm=${encodeString(firstName)}`
 			);
 		} catch (error) {
-			// addNotification(
-			// 	'Failed to create an account. Please try again later.',
-			// 	'error'
-			// );
-
 			showErrorNotification({
 				title: 'Failed to create account',
 				description: 'Please try again later'
@@ -86,36 +68,19 @@ export const useRegister = (): any => {
 	};
 };
 
-export const useLogin = (): (({
-	email,
-	password
-}: {
-	email: string;
-	password: string;
-}) => Promise<void>) => {
-	// const { addNotification, removeNotification } = useNotification();
-	// const showErrorNotification = useErrorNotification();
+export const useLogin = () => {
 	const [getUser] = useGetAuthUser();
 
 	return async ({ email, password }: TLoginFields): Promise<void> => {
 		try {
-			// removeNotification();
 			const response = await auth.signIn({ email, password });
-
 			if (response.error) {
 				redirectTo(true);
-				// addNotification(response.error.message, 'error');
-				// showErrorNotification({
-				// 	title: 'Failed to login',
-				// 	description: response.error.message
-				// });
 				throw new Error('Failed to login');
 			} else {
 				getUser();
 			}
-		} catch (error) {
-			// throw new Error('An error has occurred');
-		}
+		} catch (error) {}
 	};
 };
 
