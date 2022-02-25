@@ -33,9 +33,10 @@ type TSearchFields = {
 
 const UsersSearchForm = () => {
 	const { setModalDrawer } = useModalDrawer();
-	const { values, clearValues, toggleValue } = useCheckboxToggle(
-		useQueryParam<string[]>('skills')
-	);
+	const defaultSkills = useQueryParam<string[]>('skills');
+
+	const { values, clearValues, toggleValue, toggleAll, isAll } =
+		useCheckboxToggle(defaultSkills, EXPERIENCE_SKILLS);
 
 	const defaultValues = {
 		objective: useQueryParam<string>('objective') || '',
@@ -199,6 +200,30 @@ const UsersSearchForm = () => {
 						</FlexLayout>
 
 						<FlexLayout flexDirection="column">
+							<Checkbox
+								name="all-skills"
+								colorScheme="fpPrimary"
+								py={3}
+								mb={3}
+								borderBottomWidth={1}
+								onChange={toggleAll}
+								isChecked={
+									isAll ||
+									defaultSkills?.length ==
+										EXPERIENCE_SKILLS.length
+								}
+							>
+								<Label
+									color="fpGrey.900"
+									fontSize={{
+										base: 'small',
+										sm: 'xs'
+									}}
+								>
+									All
+								</Label>
+							</Checkbox>
+
 							{EXPERIENCE_SKILLS.map((es: string) => (
 								<Controller
 									key={es}
