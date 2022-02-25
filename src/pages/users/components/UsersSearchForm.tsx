@@ -16,13 +16,8 @@ import {
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@utils/Constants';
-import {
-	buildParams,
-	deleteParam,
-	deleteParams,
-	navigateTo
-} from '@utils/routerUtils';
-import Router from 'next/router';
+import { buildParams, deleteParam, deleteParams } from '@utils/routerUtils';
+import { resetSearchField } from '@utils/validators';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -59,11 +54,6 @@ const UsersSearchForm = () => {
 		buildParams<TSearchFields>({ ...searchValues, skills: values });
 	};
 
-	const onResetField = (name: keyof TSearchFields) => {
-		deleteParam<TSearchFields>(name);
-		navigateTo();
-	};
-
 	return (
 		<BaseForm<TSearchFields>
 			name="idea-search-form"
@@ -79,7 +69,6 @@ const UsersSearchForm = () => {
 						>
 							Filters
 						</BaseHeading>
-
 						<Button
 							fontSize="x-small"
 							colorScheme="fpPrimary"
@@ -95,7 +84,8 @@ const UsersSearchForm = () => {
 									field: '',
 									skills: []
 								});
-
+								clearValues();
+								deleteParam<TSearchFields>('skills', false);
 								deleteParams<TSearchFields>(getValues());
 							}}
 							textAlign="left"
@@ -113,7 +103,10 @@ const UsersSearchForm = () => {
 						options={ALL_USER_OBJECTIVES}
 						register={register}
 						control={control}
-						onClear={onResetField}
+						onClear={() => {
+							resetField('objective');
+							resetSearchField<TSearchFields>('objective');
+						}}
 					/>
 
 					<FormSelect<TSearchFields>
@@ -124,7 +117,10 @@ const UsersSearchForm = () => {
 						options={ALL_COUNTRIES}
 						register={register}
 						control={control}
-						onClear={onResetField}
+						onClear={() => {
+							resetField('country');
+							resetSearchField<TSearchFields>('country');
+						}}
 					/>
 
 					<AppDivider />
@@ -137,7 +133,10 @@ const UsersSearchForm = () => {
 						options={STARTUP_STATUS}
 						register={register}
 						control={control}
-						onClear={onResetField}
+						onClear={() => {
+							resetField('status');
+							resetSearchField<TSearchFields>('status');
+						}}
 					/>
 					<FormSelect<TSearchFields>
 						id="startups"
@@ -147,7 +146,10 @@ const UsersSearchForm = () => {
 						options={NUMBER_OF_STARTUPS}
 						register={register}
 						control={control}
-						onClear={onResetField}
+						onClear={() => {
+							resetField('startups');
+							resetSearchField<TSearchFields>('startups');
+						}}
 					/>
 					<FormSelect<TSearchFields>
 						id="availability"
@@ -157,7 +159,10 @@ const UsersSearchForm = () => {
 						options={AVAILABILITY_IN_HOURS}
 						register={register}
 						control={control}
-						onClear={onResetField}
+						onClear={() => {
+							resetField('availability');
+							resetSearchField<TSearchFields>('availability');
+						}}
 					/>
 					<FormSelect<TSearchFields>
 						id="field"
@@ -167,7 +172,10 @@ const UsersSearchForm = () => {
 						options={ALL_IDEA_CATEGORY_FIELDS}
 						register={register}
 						control={control}
-						onClear={onResetField}
+						onClear={() => {
+							resetField('field');
+							resetSearchField<TSearchFields>('field');
+						}}
 					/>
 
 					<AppDivider />
@@ -181,19 +189,9 @@ const UsersSearchForm = () => {
 								variant="link"
 								mb={1}
 								onClick={() => {
-									delete Router.query['skills'];
 									resetField('skills');
 									clearValues();
-									Router.push(
-										{
-											pathname: Router.pathname,
-											query: Router.query
-										},
-										undefined,
-										{
-											shallow: true
-										}
-									);
+									resetSearchField<TSearchFields>('skills');
 								}}
 							>
 								Clear
