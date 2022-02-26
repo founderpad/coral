@@ -70,6 +70,7 @@ const UsersSearchForm = () => {
 						>
 							Filters
 						</BaseHeading>
+
 						<Button
 							fontSize="x-small"
 							colorScheme="fpPrimary"
@@ -208,11 +209,6 @@ const UsersSearchForm = () => {
 								borderBottomWidth={1}
 								onChange={toggleAll}
 								isChecked={isAll}
-								// isChecked={isAll}
-								// defaultChecked={
-								// 	defaultSkills?.length ===
-								// 		EXPERIENCE_SKILLS.length || isAll
-								// }
 							>
 								<Label
 									color="fpGrey.900"

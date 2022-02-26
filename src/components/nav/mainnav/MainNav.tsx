@@ -31,16 +31,11 @@ const MainNav = memo(() => (
 			align="center"
 			justifySelf="center"
 			position="sticky"
-			maxW={{ lg: '95ch' }}
+			maxW={{ base: '100%', xl: '95ch' }}
 			alignItems="center"
 			justifyContent="space-between"
 			flex={1}
 		>
-			{/* <Flex
-				alignItems="center"
-				justifyContent="space-between"
-				flex={1}
-			> */}
 			<Flex alignItems="center">
 				<MobileMenu />
 				<FounderpadLogoWithBadge w={100} />
@@ -50,7 +45,6 @@ const MainNav = memo(() => (
 				{/* <NotificationsPopover /> */}
 				<UserMenu />
 			</FlexLayout>
-			{/* </Flex> */}
 		</Container>
 	</Flex>
 ));

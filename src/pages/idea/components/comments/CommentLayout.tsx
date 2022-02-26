@@ -33,7 +33,7 @@ export const CommentLayout = ({
 }) => {
 	const { user, updatedAt, value } = comment;
 	const { displayName } = user;
-	const anchoredId = useQueryParam('d');
+	const anchoredId = useQueryParam<string>('d');
 
 	const isAuthor = useIdea()?.idea?.userId === comment?.user.id;
 

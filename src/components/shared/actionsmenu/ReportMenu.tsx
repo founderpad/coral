@@ -1,25 +1,22 @@
 import { SubmitButton } from '@components/buttons';
-import { Form } from '@components/form';
+import { BaseForm } from '@components/form';
 import { FormSelect } from '@components/form/inputs/FormField';
 import { IoFlagOutline } from '@components/icons';
 import { Label } from '@components/labels';
 import { BaseMenuItem } from '@components/menu';
 import { TReport_Insert_Input, useCreateReportMutation } from '@generated/api';
 import { useSuccessNotification } from '@hooks/toast';
-import { useMobile, useModalDrawer } from '@hooks/util';
+import { useModalDrawer } from '@hooks/util';
 import { REPORT_REASONS } from '@utils/Constants';
 import React from 'react';
-import { useForm } from 'react-hook-form';
 
-const ReportMenu = ({
-	title,
-	content,
-	report
-}: {
+type TReportProps = {
 	title: string;
-	content: React.ReactNode;
 	report: TReport_Insert_Input;
-}) => {
+	content?: React.ReactNode;
+};
+
+const ReportMenu = ({ title, content, report }: TReportProps) => {
 	const { setModalDrawer } = useModalDrawer();
 
 	const onClick = () => {
@@ -51,73 +48,60 @@ const ReportMenu = ({
 	);
 };
 
-const ReportForm = ({
-	title,
-	content = undefined,
-	report
-}: {
-	title: string;
-	content?: any;
-	report: TReport_Insert_Input;
-}) => {
-	const {
-		handleSubmit,
-		control,
-		register,
-		resetField,
-		getValues,
-		formState: { errors }
-	} = useForm<TReport_Insert_Input>({
-		mode: 'all',
-		defaultValues: {
-			reason: ''
-		}
-	});
-
-	const isMobile = useMobile();
+const ReportForm = ({ title, content = undefined, report }: TReportProps) => {
 	const { setModalDrawer } = useModalDrawer();
 	const showSuccessNotification = useSuccessNotification();
+	const [addReport] = useCreateReportMutation();
 
-	const [addReport] = useCreateReportMutation({
-		variables: {
-			report: { ...report, reason: getValues('reason') } // reason for report
-		},
-		onCompleted: () => {
-			setModalDrawer({
-				isOpen: false
-			});
-			showSuccessNotification({
-				title: `This ${title} has been reported.`
-			});
-		}
-	});
+	const defaultValues: TReport_Insert_Input = { reason: '' };
+
+	const onAddReport = (
+		reportValues: Pick<TReport_Insert_Input, 'reason'>
+	) => {
+		addReport({
+			variables: {
+				report: { ...report, reason: reportValues.reason }
+			},
+			onCompleted: () => {
+				setModalDrawer({
+					isOpen: false
+				});
+				// redirectTo(false, 'rp');
+				showSuccessNotification({
+					title: `This ${title} has been reported.`
+				});
+			}
+		});
+	};
 
 	return (
-		<Form
-			id="report-form"
+		<BaseForm<TReport_Insert_Input>
 			name="report-form"
-			onSubmit={handleSubmit(addReport)}
+			onSubmit={onAddReport}
+			defaultValues={defaultValues}
 		>
-			{content && <Label>{content}</Label>}
-
-			<FormSelect<TReport_Insert_Input>
-				id="reason"
-				name="reason"
-				label={`Why do you want to report this ${title}?`}
-				placeholder="reason"
-				options={REPORT_REASONS}
-				register={register}
-				control={control}
-				rules={{
-					required: 'You must provide your objective on this platform'
-				}}
-				errors={errors}
-				onClear={() => resetField('reason', { defaultValue: '' })}
-				selectProps={{
-					menuPlacement: isMobile ? 'top' : 'bottom'
-				}}
-			/>
-		</Form>
+			{({ register, control, resetField, formState: { errors } }) => (
+				<React.Fragment>
+					{content && <Label>{content}</Label>}
+					<FormSelect<TReport_Insert_Input>
+						id="reason"
+						name="reason"
+						label={`Why do you want to report this ${title}?`}
+						placeholder="reason"
+						options={REPORT_REASONS}
+						register={register}
+						control={control}
+						rules={{
+							required: 'You must provide a reason'
+						}}
+						errors={errors}
+						onClear={() =>
+							resetField('reason', { defaultValue: '' })
+						}
+					/>
+				</React.Fragment>
+			)}
+		</BaseForm>
 	);
 };
 

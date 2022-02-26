@@ -2,18 +2,16 @@ import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
 import { StackLayout } from '@components/layouts';
 import BasePopover from '@components/popover/BasePopover';
-// import useUserProfile from '@hooks/user';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import React, { memo } from 'react';
 import NavItems from './NavItems';
 import { SubNav } from './SubNav';
 
 const DesktopNav = memo(() => {
 	// const isProfileComplete = useUserProfile()?.isComplete;
-	const router = useRouter();
 
 	const getCurrentPath = (href: string) =>
-		href.includes(router.pathname) ?? '';
+		href.includes(Router.pathname) ?? '';
 
 	return (
 		<StackLayout

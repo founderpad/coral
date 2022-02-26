@@ -70,6 +70,9 @@ const orderBuilder = (): TIdea_Preview_Order_By => {
 
 const IdeasContainer = () => {
 	const { onSetCachedIdeaIds } = useContext(IdeaCycleContext);
+	// const isReportSuccess = useQueryParam('rp_success');
+	// const isReportError = useQueryParam('rp_error');
+
 	const { data, loading } = useIdeasQuery({
 		variables: {
 			where: {
@@ -99,6 +102,29 @@ const IdeasContainer = () => {
 			<PageHeader
 				title="All ideas"
 				subtitle="The latest ideas from the community"
+				// action={
+				// 	<>
+				// 		{isReportSuccess && (
+				// 			<AlertFeedback
+				// 				status="success"
+				// 				message="Your idea has been updated successfully"
+				// 				w="auto"
+				// 				ml="auto"
+				// 			/>
+				// 		)}
+
+				// 		{isReportError && (
+				// 			<AlertFeedback
+				// 				status="error"
+				// 				message={
+				// 					'Failed to update idea. Please try again later'
+				// 				}
+				// 				w="auto"
+				// 				ml="auto"
+				// 			/>
+				// 		)}
+				// 	</>
+				// }
 			/>
 			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
 				<IdeasActions
@@ -114,6 +140,7 @@ const IdeasContainer = () => {
 							(idea: TIdeaPreviewFieldsFragment) => (
 								<React.Fragment key={idea.id}>
 									<IdeaCard {...idea} />
+
 									<AppDivider />
 								</React.Fragment>
 							)
