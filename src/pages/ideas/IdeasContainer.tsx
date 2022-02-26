@@ -10,10 +10,12 @@ import { useClaim } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import React, { useContext } from 'react';
 import IdeaCard from './components/ideacard/IdeaCard';
-import IdeasActions from './components/IdeasActions';
 import OffsetPagination from './OffsetPagination';
 import Router from 'next/router';
 import IdeaCycleContext from '@context/IdeaCycleContext';
+import SearchActions from '@components/shared/SearchActions';
+import MobileFilterMenu from './components/MobileFilterMenu';
+import IdeasSearchForm from './components/form/IdeasSearchForm';
 
 const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 	const queryParamName = Router.query['name'] as string;
@@ -70,6 +72,9 @@ const orderBuilder = (): TIdea_Preview_Order_By => {
 
 const IdeasContainer = () => {
 	const { onSetCachedIdeaIds } = useContext(IdeaCycleContext);
+	// const isReportSuccess = useQueryParam('rp_success');
+	// const isReportError = useQueryParam('rp_error');
+
 	const { data, loading } = useIdeasQuery({
 		variables: {
 			where: {
@@ -99,12 +104,39 @@ const IdeasContainer = () => {
 			<PageHeader
 				title="All ideas"
 				subtitle="The latest ideas from the community"
+				// action={
+				// 	<>
+				// 		{isReportSuccess && (
+				// 			<AlertFeedback
+				// 				status="success"
+				// 				message="Your idea has been updated successfully"
+				// 				w="auto"
+				// 				ml="auto"
+				// 			/>
+				// 		)}
+
+				// 		{isReportError && (
+				// 			<AlertFeedback
+				// 				status="error"
+				// 				message={
+				// 					'Failed to update idea. Please try again later'
+				// 				}
+				// 				w="auto"
+				// 				ml="auto"
+				// 			/>
+				// 		)}
+				// 	</>
+				// }
 			/>
 			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
-				<IdeasActions
+				<SearchActions
 					total={data?.idea_preview_aggregate?.aggregate?.count ?? 0}
 					pageSize={data?.idea_preview?.length ?? 0}
-				/>
+				>
+					<MobileFilterMenu title="ideas" form="idea-filter-form">
+						<IdeasSearchForm />
+					</MobileFilterMenu>
+				</SearchActions>
 
 				{!loading && hasResults < 1 ? (
 					<NoResults back />
@@ -114,6 +146,7 @@ const IdeasContainer = () => {
 							(idea: TIdeaPreviewFieldsFragment) => (
 								<React.Fragment key={idea.id}>
 									<IdeaCard {...idea} />
+
 									<AppDivider />
 								</React.Fragment>
 							)

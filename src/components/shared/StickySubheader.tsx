@@ -31,16 +31,6 @@ export const StickySubheader = memo(
 				mb={{ sm: 2 }}
 				zIndex={1}
 			>
-				{/* {fixed && (
-				<Text
-					as="header"
-					mb={1}
-					fontWeight="bold"
-					color="fpGrey.900"
-				>
-					{title}
-				</Text>
-			)} */}
 				{children}
 			</Box>
 		);
