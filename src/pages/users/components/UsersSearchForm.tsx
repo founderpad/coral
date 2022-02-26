@@ -207,11 +207,12 @@ const UsersSearchForm = () => {
 								mb={3}
 								borderBottomWidth={1}
 								onChange={toggleAll}
-								isChecked={
-									isAll ||
-									defaultSkills?.length ==
-										EXPERIENCE_SKILLS.length
-								}
+								isChecked={isAll}
+								// isChecked={isAll}
+								// defaultChecked={
+								// 	defaultSkills?.length ===
+								// 		EXPERIENCE_SKILLS.length || isAll
+								// }
 							>
 								<Label
 									color="fpGrey.900"

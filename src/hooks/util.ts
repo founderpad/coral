@@ -162,6 +162,10 @@ export const useCheckboxToggle = (
 
 	const [isAll, setIsAll] = useState(false);
 
+	useEffect(() => {
+		if (defaultValues.length === allValues.length) setIsAll(true);
+	}, []);
+
 	const toggleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.name;
 		const valuesCopy = [...values];
@@ -170,7 +174,8 @@ export const useCheckboxToggle = (
 		index > -1 ? valuesCopy.splice(index, 1) : valuesCopy.push(value);
 
 		if (valuesCopy.length === allValues.length) setIsAll(true);
-		if (isAll) setIsAll(false);
+		if (isAll && valuesCopy.length !== allValues.length) setIsAll(false);
+		// if (isAll) { setIsAll(false);
 
 		setSelectedValues(valuesCopy);
 	};
@@ -178,7 +183,7 @@ export const useCheckboxToggle = (
 	const toggleAll = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.checked;
 
-		if (value && allValues) {
+		if (value) {
 			setIsAll(true);
 			setSelectedValues(allValues);
 		} else {
