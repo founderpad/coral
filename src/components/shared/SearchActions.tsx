@@ -1,33 +1,33 @@
 import { Flex } from '@chakra-ui/layout';
+import { FlexLayout } from '@components/layouts';
 import { SearchResultsLabel, StickySubheader } from '@components/shared';
-import MobileFilterMenu from '@pages/ideas/components/MobileFilterMenu';
 import React from 'react';
-import FounderSearchForm from './UsersSearchForm';
 
-const UserSearchActions = ({
-	total,
-	pageSize
-}: // hasResults = false
-{
-	total: number;
-	pageSize: number;
-	// hasResults?: boolean;
-}) => (
+type TSearchActions = {
+	total?: number;
+	pageSize?: number;
+	children: React.ReactNode;
+};
+
+const SearchActions = ({
+	total = 0,
+	pageSize = 0,
+	children
+}: TSearchActions) => (
 	<React.Fragment>
-		<Flex
+		<FlexLayout
 			justifyContent="space-between"
 			alignItems="flex-end"
-			display={{ base: 'flex', lg: 'none' }}
+			display={{ base: 'flex', md: 'none' }}
 		>
 			<StickySubheader title="All users">
 				<Flex justifyContent="space-between" alignItems="flex-end">
-					<MobileFilterMenu title="users" form="users-filter-form">
-						<FounderSearchForm />
-					</MobileFilterMenu>
+					{children}
 
 					<SearchResultsLabel
 						labelProps={{
-							display: { base: 'flex', lg: 'none' }
+							display: { base: 'flex', lg: 'none' },
+							px: 2
 						}}
 						pageSize={pageSize}
 						limit={10}
@@ -35,11 +35,11 @@ const UserSearchActions = ({
 					/>
 				</Flex>
 			</StickySubheader>
-		</Flex>
+		</FlexLayout>
 
 		<SearchResultsLabel
 			labelProps={{
-				display: { base: 'none', lg: 'flex' }
+				display: { base: 'none', md: 'flex' }
 			}}
 			pageSize={pageSize}
 			limit={10}
@@ -48,4 +48,4 @@ const UserSearchActions = ({
 	</React.Fragment>
 );
 
-export default UserSearchActions;
+export default SearchActions;

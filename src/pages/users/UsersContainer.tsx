@@ -1,17 +1,19 @@
 import { StackLayout } from '@components/layouts';
 import { Loading, NoResults, PageHeader } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
+import SearchActions from '@components/shared/SearchActions';
 import {
 	TUserSearchFragment,
 	TUser_Profile_Bool_Exp,
 	useUsersQuery
 } from '@generated/api';
 import { useQueryParam } from '@hooks/util';
+import MobileFilterMenu from '@pages/ideas/components/MobileFilterMenu';
 import OffsetPagination from '@pages/ideas/OffsetPagination';
 import Router from 'next/router';
 import React from 'react';
 import UserCard from './components/UserCard';
-import UserSearchActions from './components/UserSearchActions';
+import UsersSearchForm from './components/UsersSearchForm';
 
 // function buildQuery<T>(values: Array<string>): T {
 // 	let where = {} as any;
@@ -75,7 +77,7 @@ const queryBuilder = (): TUser_Profile_Bool_Exp => {
 	return where;
 };
 
-const FoundersContainer = () => {
+const UsersContainer = () => {
 	const { data, loading } = useUsersQuery({
 		variables: {
 			where: queryBuilder(),
@@ -102,10 +104,14 @@ const FoundersContainer = () => {
 		<React.Fragment>
 			<PageHeader title="All users" subtitle="Search all users" />
 			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
-				<UserSearchActions
-					total={data?.user_profile_aggregate?.aggregate?.count || 0}
-					pageSize={data?.user_profile?.length ?? 0}
-				/>
+				<SearchActions
+					total={data?.user_profile_aggregate?.aggregate?.count}
+					pageSize={data?.user_profile?.length}
+				>
+					<MobileFilterMenu title="users" form="users-filter-form">
+						<UsersSearchForm />
+					</MobileFilterMenu>
+				</SearchActions>
 				{!loading && hasResults < 1 ? (
 					<NoResults back />
 				) : (
@@ -135,4 +141,4 @@ const FoundersContainer = () => {
 	);
 };
 
-export default FoundersContainer;
+export default UsersContainer;

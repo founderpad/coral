@@ -10,10 +10,12 @@ import { useClaim } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import React, { useContext } from 'react';
 import IdeaCard from './components/ideacard/IdeaCard';
-import IdeasActions from './components/IdeasActions';
 import OffsetPagination from './OffsetPagination';
 import Router from 'next/router';
 import IdeaCycleContext from '@context/IdeaCycleContext';
+import SearchActions from '@components/shared/SearchActions';
+import MobileFilterMenu from './components/MobileFilterMenu';
+import IdeasSearchForm from './components/form/IdeasSearchForm';
 
 const queryBuilder = (): TIdea_Preview_Bool_Exp => {
 	const queryParamName = Router.query['name'] as string;
@@ -127,10 +129,14 @@ const IdeasContainer = () => {
 				// }
 			/>
 			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
-				<IdeasActions
+				<SearchActions
 					total={data?.idea_preview_aggregate?.aggregate?.count ?? 0}
 					pageSize={data?.idea_preview?.length ?? 0}
-				/>
+				>
+					<MobileFilterMenu title="ideas" form="idea-filter-form">
+						<IdeasSearchForm />
+					</MobileFilterMenu>
+				</SearchActions>
 
 				{!loading && hasResults < 1 ? (
 					<NoResults back />

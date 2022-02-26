@@ -26,7 +26,7 @@ const MainNav = memo(() => (
 			bg={useColorModeValue('white', 'gray.800')}
 			color={useColorModeValue('gray.600', 'white')}
 			py={{ base: 2 }}
-			px={{ base: 4 }}
+			px={{ base: 4, sm: 6, lg: 4 }}
 			display="flex"
 			align="center"
 			justifySelf="center"
