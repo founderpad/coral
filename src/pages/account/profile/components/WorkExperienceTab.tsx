@@ -93,7 +93,7 @@ const WorkExperienceTab = () => {
 				]}
 			/>
 
-			<StackLayout spacing={8}>
+			<StackLayout>
 				<ContentFieldAndValue
 					title="Objective"
 					value={objective || 'Not set'}

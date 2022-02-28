@@ -113,6 +113,7 @@ const PersonalDetailsForm = () => {
 							}
 						}}
 						errors={errors}
+						hideLimit={true}
 						onClear={() =>
 							resetField('displayName', { defaultValue: '' })
 						}
@@ -151,6 +152,7 @@ const PersonalDetailsForm = () => {
 								}
 							}}
 							errors={errors}
+							hideLimit={true}
 							onClear={() =>
 								resetField('customPronouns', {
 									defaultValue: ''
@@ -191,6 +193,7 @@ const PersonalDetailsForm = () => {
 								}
 							}}
 							errors={errors}
+							hideLimit={true}
 							onClear={() =>
 								resetField('location', { defaultValue: '' })
 							}

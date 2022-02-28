@@ -37,14 +37,14 @@ const NavItems: Array<NavItem> = [
 			{
 				label: 'My ideas',
 				subLabel: 'See the ideas you have created',
-				href: '/idea/myideas',
+				href: '/ideas/myideas',
 				icon: IoPersonOutline
 			},
 			{
 				label: 'Create idea',
 				color: 'fpPrimary.500',
 				subLabel: 'Post your new idea to the community',
-				href: '/idea/create',
+				href: '/ideas/create',
 				icon: IoAddOutline,
 				divider: true
 			}
