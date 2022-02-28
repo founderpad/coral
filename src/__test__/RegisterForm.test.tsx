@@ -1,4 +1,4 @@
-import RegisterForm from '@pages/register/components/RegisterForm';
+import RegisterForm from '@pages/auth/register/components/RegisterForm';
 import store from '@utils/store';
 import { Provider } from 'react-redux';
 import { act, fireEvent, render, userEvent, waitFor } from './testUtils';

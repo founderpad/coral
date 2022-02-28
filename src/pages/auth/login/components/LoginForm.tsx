@@ -9,7 +9,7 @@ import { useLogin } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { emailPattern } from '@utils/validators';
 import React, { memo } from 'react';
-import { TLoginFields } from '../../../types/auth';
+import { TLoginFields } from '../../../../types/auth';
 
 const defaultValues = {
 	email: '',
@@ -95,9 +95,9 @@ const LoginForm = () => {
 						)}
 
 						<SubmitButton
-							id="submit-register-account"
-							name="submit-register-account"
-							label="Create account"
+							id="submit-login"
+							name="submit-login"
+							label="Log in"
 							isLoading={isSubmitting}
 							disabled={isSubmitting}
 							size="md"

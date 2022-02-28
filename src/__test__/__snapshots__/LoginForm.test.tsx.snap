@@ -114,12 +114,12 @@ exports[`Login form matches snapshot 1`] = `
         </div>
       </div>
       <button
-        aria-label="submit-register-account"
+        aria-label="submit-login"
         class="chakra-button css-1r0kqo2"
-        id="submit-register-account"
+        id="submit-login"
         type="submit"
       >
-        Create account
+        Log in
       </button>
     </div>
   </form>
