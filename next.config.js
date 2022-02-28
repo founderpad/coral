@@ -73,12 +73,16 @@ module.exports = {
 			},
 			{
 				source: '/idea/:id',
-				destination: '/idea/ideaview/:id'
+				destination: '/ideas/idea/:id'
 			},
 			{
-				source: '/ideas/search',
-				destination: '/idea/search'
+				source: '/user/:id',
+				destination: '/users/user/:id'
 			}
+			// {
+			// 	source: '/ideas/search',
+			// 	destination: '/idea/search'
+			// }
 		];
 		// return {
 		// 	beforeFiles: [

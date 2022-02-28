@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/react';
 import { IoChatbubbleOutline } from '@components/icons';
 import { StackLayout } from '@components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
-import IdeaUpvote from '@pages/idea/ideaview/components/IdeaUpvote';
+import IdeaUpvote from '@pages/ideas/idea/components/IdeaUpvote';
 import React, { memo } from 'react';
 import IdeaMenu from '../IdeaMenu';
 

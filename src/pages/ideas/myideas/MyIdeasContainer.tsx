@@ -6,8 +6,8 @@ import { Loading, NoResults, PointSeparator } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import { useUserIdeasQuery } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
-import InterestedTotal from '@pages/idea/ideaview/components/InterestedTotal';
-import PublishedLabel from '@pages/idea/ideaview/components/PublishedLabel';
+import InterestedTotal from '@pages/ideas/idea/components/InterestedTotal';
+import PublishedLabel from '@pages/ideas/idea/components/PublishedLabel';
 import { formatDate } from '@utils/validators';
 import React from 'react';
 

@@ -9,7 +9,7 @@ import {
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
-import useIdea from '@pages/idea/ideaview/query/ideaQuery';
+import useIdea from '@pages/ideas/idea/query/ideaQuery';
 import React, { useCallback, useState } from 'react';
 import ResizeTextarea from 'react-textarea-autosize';
 import { CurrentUserAvatar } from './UserAvatar';

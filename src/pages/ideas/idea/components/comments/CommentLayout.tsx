@@ -3,7 +3,7 @@ import { FlexLayout, StackLayout } from '@components/layouts';
 import { PointSeparator, UserAvatar } from '@components/shared';
 import BaseTag from '@components/tags/BaseTag';
 import { useQueryParam } from '@hooks/util';
-import useIdea from '@pages/idea/ideaview/query/ideaQuery';
+import useIdea from '@pages/ideas/idea/query/ideaQuery';
 import { formatDate } from '@utils/validators';
 import React, { useEffect } from 'react';
 import CommentActions from './CommentActions';

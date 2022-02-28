@@ -65,12 +65,12 @@ const NavItems: Array<NavItem> = [
 	{
 		label: 'Users',
 
-		href: '/users?page=1',
+		href: '/users/search?page=1',
 		items: [
 			{
 				label: 'Search users',
 				subLabel: 'Search other users',
-				href: '/users?page=1',
+				href: '/users/search?page=1',
 				icon: IoSearchOutline
 			}
 		]
