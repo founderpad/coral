@@ -26,25 +26,25 @@ export interface NavItem {
 const NavItems: Array<NavItem> = [
 	{
 		label: 'Ideas',
-		href: '/ideas?page=1',
+		href: '/ideas/search?page=1',
 		items: [
 			{
 				label: 'Search ideas',
 				subLabel: 'Search all ideas available for feedback',
-				href: '/ideas?page=1',
+				href: '/ideas/search?page=1',
 				icon: IoSearchOutline
 			},
 			{
 				label: 'My ideas',
 				subLabel: 'See the ideas you have created',
-				href: '/ideas/my-ideas',
+				href: '/idea/myideas',
 				icon: IoPersonOutline
 			},
 			{
 				label: 'Create idea',
 				color: 'fpPrimary.500',
 				subLabel: 'Post your new idea to the community',
-				href: '/ideas/create',
+				href: '/idea/create',
 				icon: IoAddOutline,
 				divider: true
 			}

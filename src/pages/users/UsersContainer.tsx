@@ -8,8 +8,8 @@ import {
 	useUsersQuery
 } from '@generated/api';
 import { useQueryParam } from '@hooks/util';
-import MobileFilterMenu from '@pages/ideas/components/MobileFilterMenu';
-import OffsetPagination from '@pages/ideas/OffsetPagination';
+import MobileFilterMenu from '@pages/idea/search/components/MobileFilterMenu';
+import OffsetPagination from '@pages/idea/search/OffsetPagination';
 import Router from 'next/router';
 import React from 'react';
 import UserCard from './components/UserCard';

@@ -66,6 +66,18 @@ module.exports = {
 			{
 				source: '/changepassword',
 				destination: '/auth/changepassword'
+			},
+			{
+				source: '/changepassword',
+				destination: '/idea/changepassword'
+			},
+			{
+				source: '/idea/:id',
+				destination: '/idea/ideaview/:id'
+			},
+			{
+				source: '/ideas/search',
+				destination: '/idea/search'
 			}
 		];
 		// return {
