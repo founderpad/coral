@@ -47,49 +47,66 @@ module.exports = {
 				destination: '/login',
 				permanent: true
 			}
-			// {
-			// 	source: '/login#refreshToken=(/^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi)&type=passwordReset',
-			// 	destination: '/changepassword',
-			// 	permanent: true
-			// }
 		];
 	},
 	async rewrites() {
-		return {
-			beforeFiles: [
-				// {
-				// 	source: '/register/registersuccess',
-				// 	source: '/register/register_success'
-				// }
-				// {
-				// 	source: '/about',
-				// 	destination: '/about-us.html'
-				// },
-				// {
-				// 	source: '/faqs',
-				// 	destination: '/faqs.html'
-				// },
-				// {
-				// 	source: '/contact',
-				// 	destination: '/contact-us.html'
-				// },
-				// {
-				// 	source: '/privacy-policy',
-				// 	destination: '/privacy.html'
-				// },
-				// {
-				// 	source: '/cookie-policy',
-				// 	destination: '/cookie-policy.html'
-				// },
-				// {
-				// 	source: '/acceptable-use-policy',
-				// 	destination: '/acceptable-use-policy.html'
-				// },
-				// {
-				// 	source: '/terms-of-service',
-				// 	destination: '/terms-of-service.html'
-				// }
-			]
-		};
+		return [
+			{
+				source: '/register',
+				destination: '/auth/register'
+			},
+			{
+				source: '/login',
+				destination: '/auth/login'
+			},
+			{
+				source: '/resetpassword',
+				destination: '/auth/resetpassword'
+			},
+			{
+				source: '/changepassword',
+				destination: '/auth/changepassword'
+			}
+		];
+		// return {
+		// 	beforeFiles: [
+		// 		{
+		// 			source: '/auth/register',
+		// 			destination: '/register'
+		// 		}
+		// 		// {
+		// 		// 	source: '/register/registersuccess',
+		// 		// 	source: '/register/register_success'
+		// 		// }
+		// 		// {
+		// 		// 	source: '/about',
+		// 		// 	destination: '/about-us.html'
+		// 		// },
+		// 		// {
+		// 		// 	source: '/faqs',
+		// 		// 	destination: '/faqs.html'
+		// 		// },
+		// 		// {
+		// 		// 	source: '/contact',
+		// 		// 	destination: '/contact-us.html'
+		// 		// },
+		// 		// {
+		// 		// 	source: '/privacy-policy',
+		// 		// 	destination: '/privacy.html'
+		// 		// },
+		// 		// {
+		// 		// 	source: '/cookie-policy',
+		// 		// 	destination: '/cookie-policy.html'
+		// 		// },
+		// 		// {
+		// 		// 	source: '/acceptable-use-policy',
+		// 		// 	destination: '/acceptable-use-policy.html'
+		// 		// },
+		// 		// {
+		// 		// 	source: '/terms-of-service',
+		// 		// 	destination: '/terms-of-service.html'
+		// 		// }
+		// 	]
+		// };
 	}
 };

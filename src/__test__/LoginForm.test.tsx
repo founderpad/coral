@@ -1,4 +1,4 @@
-import LoginForm from '@pages/login/components/LoginForm';
+import LoginForm from '@pages/auth/login/components/LoginForm';
 import userEvent from '@testing-library/user-event';
 import store from '@utils/store';
 import { Provider } from 'react-redux';

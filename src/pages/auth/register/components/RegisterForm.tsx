@@ -4,7 +4,7 @@ import { useRegister } from '@hooks/auth';
 import { emailPattern } from '@utils/validators';
 import React from 'react';
 import LegalFooter from './LegalFooter';
-import { TRegisterFormFields } from '../../../types/auth';
+import { TRegisterFormFields } from '../../../../types/auth';
 import { BaseForm } from '@components/form';
 import { SubmitButton } from '@components/buttons';
 

@@ -1,4 +1,4 @@
-import ResetPasswordFormForm from '@pages/resetpassword/components/ResetPasswordForm';
+import ResetPasswordFormForm from '@pages/auth/resetpassword/components/ResetPasswordForm';
 import userEvent from '@testing-library/user-event';
 import store from '@utils/store';
 import { Provider } from 'react-redux';

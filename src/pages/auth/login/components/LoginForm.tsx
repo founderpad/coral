@@ -9,7 +9,7 @@ import { useLogin } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { emailPattern } from '@utils/validators';
 import React, { memo } from 'react';
-import { TLoginFields } from '../../../types/auth';
+import { TLoginFields } from '../../../../types/auth';
 
 const defaultValues = {
 	email: '',
