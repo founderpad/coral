@@ -1,10 +1,11 @@
 import { PageLayout } from '@components/layouts';
 import { DocumentTitle } from '@components/shared';
 import AuthFilter from '@utils/AuthFilter';
+import { NextPage } from 'next';
 import React from 'react';
 import MyIdeasContainer from './MyIdeasContainer';
 
-const MyIdeas = () => {
+const MyIdeas: NextPage = () => {
 	// const user = useCurrentUser();
 	// const { data } = useGetUserIdeas(user?.id);
 	return (

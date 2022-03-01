@@ -1,6 +1,5 @@
 import { BaseForm } from '@components/form';
 import { FormInput, FormSelect } from '@components/form/inputs/FormField';
-import ModalDrawerContext from '@context/ModalDrawerContext';
 import {
 	TUsers,
 	TUsers_Set_Input,
@@ -11,10 +10,11 @@ import {
 	useUpdateUserPersonalDetailsMutation
 } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
+import { useModalDrawer } from '@hooks/util';
 import { updateUserPersonalDetails } from '@slices/auth';
 import { ALL_COUNTRIES, ALL_PRONOUNS } from '@utils/Constants';
 import { redirectTo } from '@utils/validators';
-import { useContext } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 
 type TPersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
@@ -24,7 +24,7 @@ type TPersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
 const PersonalDetailsForm = () => {
 	const auth = useCurrentUser();
 	const dispatch = useDispatch();
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const { setModalDrawer } = useModalDrawer();
 	const [updatePersonalDetails] = useUpdateUserPersonalDetailsMutation();
 
 	const defaultValues = { ...auth, ...auth?.address, ...auth?.profile };
@@ -94,7 +94,7 @@ const PersonalDetailsForm = () => {
 				getValues,
 				formState: { errors }
 			}) => (
-				<>
+				<React.Fragment>
 					<FormInput<TPersonalDetailsinput>
 						id="displayName"
 						name="displayName"
@@ -199,7 +199,7 @@ const PersonalDetailsForm = () => {
 							}
 						/>
 					)}
-				</>
+				</React.Fragment>
 			)}
 		</BaseForm>
 	);

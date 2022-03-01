@@ -16,10 +16,11 @@ import { useQueryParam } from '@hooks/util';
 import ProfileSectionLabel from '@pages/account/profile/components/ProfileSectionLabel';
 import AuthFilter from '@utils/AuthFilter';
 import { formatDate } from '@utils/validators';
+import { NextPage } from 'next';
 import React from 'react';
 // import AddFollower from './components/AddFollower';
 
-const User = () => {
+const User: NextPage = () => {
 	const { data } = useUserProfileDetailsQuery({
 		variables: {
 			userId: useQueryParam('id')
