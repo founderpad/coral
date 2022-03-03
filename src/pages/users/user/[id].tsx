@@ -18,6 +18,7 @@ import AuthFilter from '@utils/AuthFilter';
 import { formatDate } from '@utils/validators';
 import { NextPage } from 'next';
 import React from 'react';
+import Actions from './components/Actions';
 // import AddFollower from './components/AddFollower';
 
 const User: NextPage = () => {
@@ -54,10 +55,7 @@ const User: NextPage = () => {
 	return (
 		<React.Fragment>
 			<DocumentTitle title="View user" />
-			<PageLayout
-				title={`${displayName}'s profile`}
-				// action={<AddFollower userId={useQueryParam('id')} />}
-			>
+			<PageLayout title={`${displayName}'s profile`} action={<Actions />}>
 				<Grid
 					templateRows="repeat(1, 1fr)"
 					templateColumns="repeat(12, 1fr)"

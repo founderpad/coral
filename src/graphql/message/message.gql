@@ -1,0 +1,51 @@
+#import { MessageUser } from '../fragments/user.gql'
+
+mutation NewMessageThread($targetUserId: uuid!, $currentUserId: uuid!) {
+	insert_message_thread(
+		objects: [
+			{
+				messageThreadUsers: {
+					data: [
+						{ userId: $targetUserId }
+						{ userId: $currentUserId }
+					]
+				}
+			}
+		]
+	) {
+		returning {
+			id
+		}
+	}
+}
+
+mutation NewMessage($messageThreadId: uuid!, $content: String!) {
+	insert_message_one(
+		object: { threadId: $messageThreadId, content: $content }
+	) {
+		id
+	}
+}
+
+query UserMessageThreads($userId: uuid!) {
+	threads: message_thread(
+		order_by: { messages_aggregate: { max: { createdAt: desc } } }
+		where: { messageThreadUsers: { userId: { _eq: $userId } } }
+	) {
+		id
+		name
+		ownerId
+		targetUser: messageThreadUsers(where: { userId: { _neq: $userId } }) {
+			user {
+				...MessageUser
+			}
+		}
+		lastMessage: messages(limit: 1, order_by: { createdAt: desc }) {
+			content
+			createdAt
+			sender {
+				...MessageUser
+			}
+		}
+	}
+}

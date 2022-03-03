@@ -81,7 +81,7 @@ const UserPersonalInformation = memo((props: Props) => {
 	};
 
 	return (
-		<StackLayout p={{ base: 4, sm: 0 }}>
+		<StackLayout p={4} spacing={8}>
 			<UserImageUploader />
 			<StackLayout {...props} spacing={2}>
 				<TitleEditAction

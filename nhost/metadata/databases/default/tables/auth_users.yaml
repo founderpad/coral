@@ -69,6 +69,31 @@ array_relationships:
       table:
         name: ideas
         schema: public
+- name: messageThreadUsers
+  using:
+    manual_configuration:
+      column_mapping:
+        id: user_id
+      insertion_order: null
+      remote_table:
+        name: message_thread_users
+        schema: public
+- name: messageThreads
+  using:
+    foreign_key_constraint_on:
+      column: owner_id
+      table:
+        name: message_thread
+        schema: public
+- name: messages
+  using:
+    manual_configuration:
+      column_mapping:
+        id: sender_user_id
+      insertion_order: null
+      remote_table:
+        name: message
+        schema: public
 - name: refreshTokens
   using:
     foreign_key_constraint_on:

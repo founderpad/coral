@@ -78,6 +78,10 @@ module.exports = {
 			{
 				source: '/user/:id',
 				destination: '/users/user/:id'
+			},
+			{
+				source: '/messages',
+				destination: '/message'
 			}
 			// {
 			// 	source: '/ideas/search',

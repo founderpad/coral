@@ -36,7 +36,7 @@ export const UserAvatar = (props: Props) => {
 export const UserAvatarDetails = ({
 	subtitle,
 	title,
-	src = 'undefined',
+	src,
 	createdAt,
 	size = 'md',
 	direction = 'row',
@@ -44,14 +44,15 @@ export const UserAvatarDetails = ({
 	actions
 }: Props) => {
 	return (
-		<StackLayout align="center" direction={direction} spacing={2}>
+		<StackLayout align="center" direction={direction} spacing={2} w="full">
 			<UserAvatar src={src} size={size} direction={direction} />
 			<StackLayout
 				spacing={0}
 				ml={2}
 				alignItems={direction === 'column' ? 'center' : 'flex-start'}
+				flex={1}
 			>
-				<FlexLayout alignItems="baseline" lineHeight="tall">
+				<FlexLayout alignItems="baseline" lineHeight="tall" w="full">
 					<Label
 						fontWeight="medium"
 						fontSize={fontSize}

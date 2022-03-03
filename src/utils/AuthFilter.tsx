@@ -10,9 +10,7 @@ export default function AuthFilter(Component: any) {
 		const { isAuthenticated, isLoading } = useAuth();
 
 		if (isLoading) return <Loading />;
-		if (!isAuthenticated) {
-			Router.push('/login');
-		}
+		if (!isAuthenticated) Router.push('/login');
 
 		return (
 			<React.Fragment>

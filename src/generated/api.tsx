@@ -2135,6 +2135,571 @@ export type TJsonb_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['jsonb']>>;
 };
 
+/**
+ * All chat messages
+ *
+ *
+ * columns and relationships of "message"
+ *
+ */
+export type TMessage = {
+  __typename?: 'message';
+  content: Scalars['String'];
+  createdAt: Scalars['timestamptz'];
+  id: Scalars['uuid'];
+  /** An object relationship */
+  messageThread: TMessage_Thread;
+  /** An object relationship */
+  sender: TUsers;
+  senderUserId: Scalars['uuid'];
+  threadId: Scalars['uuid'];
+  updatedAt: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "message" */
+export type TMessage_Aggregate = {
+  __typename?: 'message_aggregate';
+  aggregate?: Maybe<TMessage_Aggregate_Fields>;
+  nodes: Array<TMessage>;
+};
+
+/** aggregate fields of "message" */
+export type TMessage_Aggregate_Fields = {
+  __typename?: 'message_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<TMessage_Max_Fields>;
+  min?: Maybe<TMessage_Min_Fields>;
+};
+
+
+/** aggregate fields of "message" */
+export type TMessage_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TMessage_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "message" */
+export type TMessage_Aggregate_Order_By = {
+  count?: InputMaybe<TOrder_By>;
+  max?: InputMaybe<TMessage_Max_Order_By>;
+  min?: InputMaybe<TMessage_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "message" */
+export type TMessage_Arr_Rel_Insert_Input = {
+  data: Array<TMessage_Insert_Input>;
+  /** on conflict condition */
+  on_conflict?: InputMaybe<TMessage_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "message". All fields are combined with a logical 'AND'. */
+export type TMessage_Bool_Exp = {
+  _and?: InputMaybe<Array<TMessage_Bool_Exp>>;
+  _not?: InputMaybe<TMessage_Bool_Exp>;
+  _or?: InputMaybe<Array<TMessage_Bool_Exp>>;
+  content?: InputMaybe<TString_Comparison_Exp>;
+  createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  id?: InputMaybe<TUuid_Comparison_Exp>;
+  messageThread?: InputMaybe<TMessage_Thread_Bool_Exp>;
+  sender?: InputMaybe<TUsers_Bool_Exp>;
+  senderUserId?: InputMaybe<TUuid_Comparison_Exp>;
+  threadId?: InputMaybe<TUuid_Comparison_Exp>;
+  updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "message" */
+export type TMessage_Constraint =
+  /** unique or primary key constraint */
+  | 'message_pkey'
+  /** unique or primary key constraint */
+  | 'message_thread_id_key';
+
+/** input type for inserting data into table "message" */
+export type TMessage_Insert_Input = {
+  content?: InputMaybe<Scalars['String']>;
+  messageThread?: InputMaybe<TMessage_Thread_Obj_Rel_Insert_Input>;
+  threadId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type TMessage_Max_Fields = {
+  __typename?: 'message_max_fields';
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  senderUserId?: Maybe<Scalars['uuid']>;
+  threadId?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "message" */
+export type TMessage_Max_Order_By = {
+  content?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  senderUserId?: InputMaybe<TOrder_By>;
+  threadId?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+};
+
+/** aggregate min on columns */
+export type TMessage_Min_Fields = {
+  __typename?: 'message_min_fields';
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  senderUserId?: Maybe<Scalars['uuid']>;
+  threadId?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "message" */
+export type TMessage_Min_Order_By = {
+  content?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  senderUserId?: InputMaybe<TOrder_By>;
+  threadId?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+};
+
+/** response of any mutation on the table "message" */
+export type TMessage_Mutation_Response = {
+  __typename?: 'message_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<TMessage>;
+};
+
+/** on conflict condition type for table "message" */
+export type TMessage_On_Conflict = {
+  constraint: TMessage_Constraint;
+  update_columns?: Array<TMessage_Update_Column>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "message". */
+export type TMessage_Order_By = {
+  content?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  messageThread?: InputMaybe<TMessage_Thread_Order_By>;
+  sender?: InputMaybe<TUsers_Order_By>;
+  senderUserId?: InputMaybe<TOrder_By>;
+  threadId?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+};
+
+/** primary key columns input for table: message */
+export type TMessage_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "message" */
+export type TMessage_Select_Column =
+  /** column name */
+  | 'content'
+  /** column name */
+  | 'createdAt'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'senderUserId'
+  /** column name */
+  | 'threadId'
+  /** column name */
+  | 'updatedAt';
+
+/** input type for updating data in table "message" */
+export type TMessage_Set_Input = {
+  content?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  threadId?: InputMaybe<Scalars['uuid']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/**
+ * The parent table for all messages for a particular thread between two users
+ *
+ *
+ * columns and relationships of "message_thread"
+ *
+ */
+export type TMessage_Thread = {
+  __typename?: 'message_thread';
+  createdAt: Scalars['timestamptz'];
+  id: Scalars['uuid'];
+  /** An array relationship */
+  messageThreadUsers: Array<TMessage_Thread_Users>;
+  /** An aggregate relationship */
+  messageThreadUsers_aggregate: TMessage_Thread_Users_Aggregate;
+  /** An array relationship */
+  messages: Array<TMessage>;
+  /** An aggregate relationship */
+  messages_aggregate: TMessage_Aggregate;
+  name?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  owner?: Maybe<TUsers>;
+  ownerId?: Maybe<Scalars['uuid']>;
+  updatedAt: Scalars['timestamptz'];
+};
+
+
+/**
+ * The parent table for all messages for a particular thread between two users
+ *
+ *
+ * columns and relationships of "message_thread"
+ *
+ */
+export type TMessage_ThreadMessageThreadUsersArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Users_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+};
+
+
+/**
+ * The parent table for all messages for a particular thread between two users
+ *
+ *
+ * columns and relationships of "message_thread"
+ *
+ */
+export type TMessage_ThreadMessageThreadUsers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Users_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+};
+
+
+/**
+ * The parent table for all messages for a particular thread between two users
+ *
+ *
+ * columns and relationships of "message_thread"
+ *
+ */
+export type TMessage_ThreadMessagesArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Order_By>>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
+
+/**
+ * The parent table for all messages for a particular thread between two users
+ *
+ *
+ * columns and relationships of "message_thread"
+ *
+ */
+export type TMessage_ThreadMessages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Order_By>>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
+/** aggregated selection of "message_thread" */
+export type TMessage_Thread_Aggregate = {
+  __typename?: 'message_thread_aggregate';
+  aggregate?: Maybe<TMessage_Thread_Aggregate_Fields>;
+  nodes: Array<TMessage_Thread>;
+};
+
+/** aggregate fields of "message_thread" */
+export type TMessage_Thread_Aggregate_Fields = {
+  __typename?: 'message_thread_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<TMessage_Thread_Max_Fields>;
+  min?: Maybe<TMessage_Thread_Min_Fields>;
+};
+
+
+/** aggregate fields of "message_thread" */
+export type TMessage_Thread_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TMessage_Thread_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "message_thread" */
+export type TMessage_Thread_Aggregate_Order_By = {
+  count?: InputMaybe<TOrder_By>;
+  max?: InputMaybe<TMessage_Thread_Max_Order_By>;
+  min?: InputMaybe<TMessage_Thread_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "message_thread". All fields are combined with a logical 'AND'. */
+export type TMessage_Thread_Bool_Exp = {
+  _and?: InputMaybe<Array<TMessage_Thread_Bool_Exp>>;
+  _not?: InputMaybe<TMessage_Thread_Bool_Exp>;
+  _or?: InputMaybe<Array<TMessage_Thread_Bool_Exp>>;
+  createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  id?: InputMaybe<TUuid_Comparison_Exp>;
+  messageThreadUsers?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+  messages?: InputMaybe<TMessage_Bool_Exp>;
+  name?: InputMaybe<TString_Comparison_Exp>;
+  owner?: InputMaybe<TUsers_Bool_Exp>;
+  ownerId?: InputMaybe<TUuid_Comparison_Exp>;
+  updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "message_thread" */
+export type TMessage_Thread_Constraint =
+  /** unique or primary key constraint */
+  | 'message_thread_pkey';
+
+/** input type for inserting data into table "message_thread" */
+export type TMessage_Thread_Insert_Input = {
+  messageThreadUsers?: InputMaybe<TMessage_Thread_Users_Arr_Rel_Insert_Input>;
+  messages?: InputMaybe<TMessage_Arr_Rel_Insert_Input>;
+  name?: InputMaybe<Scalars['String']>;
+  ownerId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type TMessage_Thread_Max_Fields = {
+  __typename?: 'message_thread_max_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  ownerId?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "message_thread" */
+export type TMessage_Thread_Max_Order_By = {
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  name?: InputMaybe<TOrder_By>;
+  ownerId?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+};
+
+/** aggregate min on columns */
+export type TMessage_Thread_Min_Fields = {
+  __typename?: 'message_thread_min_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  ownerId?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "message_thread" */
+export type TMessage_Thread_Min_Order_By = {
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  name?: InputMaybe<TOrder_By>;
+  ownerId?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+};
+
+/** response of any mutation on the table "message_thread" */
+export type TMessage_Thread_Mutation_Response = {
+  __typename?: 'message_thread_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<TMessage_Thread>;
+};
+
+/** input type for inserting object relation for remote table "message_thread" */
+export type TMessage_Thread_Obj_Rel_Insert_Input = {
+  data: TMessage_Thread_Insert_Input;
+  /** on conflict condition */
+  on_conflict?: InputMaybe<TMessage_Thread_On_Conflict>;
+};
+
+/** on conflict condition type for table "message_thread" */
+export type TMessage_Thread_On_Conflict = {
+  constraint: TMessage_Thread_Constraint;
+  update_columns?: Array<TMessage_Thread_Update_Column>;
+  where?: InputMaybe<TMessage_Thread_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "message_thread". */
+export type TMessage_Thread_Order_By = {
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  messageThreadUsers_aggregate?: InputMaybe<TMessage_Thread_Users_Aggregate_Order_By>;
+  messages_aggregate?: InputMaybe<TMessage_Aggregate_Order_By>;
+  name?: InputMaybe<TOrder_By>;
+  owner?: InputMaybe<TUsers_Order_By>;
+  ownerId?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+};
+
+/** primary key columns input for table: message_thread */
+export type TMessage_Thread_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "message_thread" */
+export type TMessage_Thread_Select_Column =
+  /** column name */
+  | 'createdAt'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'ownerId'
+  /** column name */
+  | 'updatedAt';
+
+/** input type for updating data in table "message_thread" */
+export type TMessage_Thread_Set_Input = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "message_thread" */
+export type TMessage_Thread_Update_Column =
+  /** column name */
+  | 'name';
+
+/**
+ * All users participating in the message thread
+ *
+ *
+ * columns and relationships of "message_thread_users"
+ *
+ */
+export type TMessage_Thread_Users = {
+  __typename?: 'message_thread_users';
+  /** An object relationship */
+  messageThread: TMessage_Thread;
+  threadId: Scalars['uuid'];
+  /** An object relationship */
+  user: TUsers;
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "message_thread_users" */
+export type TMessage_Thread_Users_Aggregate = {
+  __typename?: 'message_thread_users_aggregate';
+  aggregate?: Maybe<TMessage_Thread_Users_Aggregate_Fields>;
+  nodes: Array<TMessage_Thread_Users>;
+};
+
+/** aggregate fields of "message_thread_users" */
+export type TMessage_Thread_Users_Aggregate_Fields = {
+  __typename?: 'message_thread_users_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<TMessage_Thread_Users_Max_Fields>;
+  min?: Maybe<TMessage_Thread_Users_Min_Fields>;
+};
+
+
+/** aggregate fields of "message_thread_users" */
+export type TMessage_Thread_Users_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "message_thread_users" */
+export type TMessage_Thread_Users_Aggregate_Order_By = {
+  count?: InputMaybe<TOrder_By>;
+  max?: InputMaybe<TMessage_Thread_Users_Max_Order_By>;
+  min?: InputMaybe<TMessage_Thread_Users_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "message_thread_users" */
+export type TMessage_Thread_Users_Arr_Rel_Insert_Input = {
+  data: Array<TMessage_Thread_Users_Insert_Input>;
+};
+
+/** Boolean expression to filter rows from the table "message_thread_users". All fields are combined with a logical 'AND'. */
+export type TMessage_Thread_Users_Bool_Exp = {
+  _and?: InputMaybe<Array<TMessage_Thread_Users_Bool_Exp>>;
+  _not?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+  _or?: InputMaybe<Array<TMessage_Thread_Users_Bool_Exp>>;
+  messageThread?: InputMaybe<TMessage_Thread_Bool_Exp>;
+  threadId?: InputMaybe<TUuid_Comparison_Exp>;
+  user?: InputMaybe<TUsers_Bool_Exp>;
+  userId?: InputMaybe<TUuid_Comparison_Exp>;
+};
+
+/** input type for inserting data into table "message_thread_users" */
+export type TMessage_Thread_Users_Insert_Input = {
+  messageThread?: InputMaybe<TMessage_Thread_Obj_Rel_Insert_Input>;
+  threadId?: InputMaybe<Scalars['uuid']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type TMessage_Thread_Users_Max_Fields = {
+  __typename?: 'message_thread_users_max_fields';
+  threadId?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "message_thread_users" */
+export type TMessage_Thread_Users_Max_Order_By = {
+  threadId?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
+};
+
+/** aggregate min on columns */
+export type TMessage_Thread_Users_Min_Fields = {
+  __typename?: 'message_thread_users_min_fields';
+  threadId?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "message_thread_users" */
+export type TMessage_Thread_Users_Min_Order_By = {
+  threadId?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
+};
+
+/** response of any mutation on the table "message_thread_users" */
+export type TMessage_Thread_Users_Mutation_Response = {
+  __typename?: 'message_thread_users_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<TMessage_Thread_Users>;
+};
+
+/** Ordering options when selecting data from "message_thread_users". */
+export type TMessage_Thread_Users_Order_By = {
+  messageThread?: InputMaybe<TMessage_Thread_Order_By>;
+  threadId?: InputMaybe<TOrder_By>;
+  user?: InputMaybe<TUsers_Order_By>;
+  userId?: InputMaybe<TOrder_By>;
+};
+
+/** select columns of table "message_thread_users" */
+export type TMessage_Thread_Users_Select_Column =
+  /** column name */
+  | 'threadId'
+  /** column name */
+  | 'userId';
+
+/** update columns of table "message" */
+export type TMessage_Update_Column =
+  /** column name */
+  | 'content'
+  /** column name */
+  | 'createdAt'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'threadId'
+  /** column name */
+  | 'updatedAt';
+
 /** mutation root */
 export type TMutation_Root = {
   __typename?: 'mutation_root';
@@ -2158,6 +2723,18 @@ export type TMutation_Root = {
   delete_ideas?: Maybe<TIdeas_Mutation_Response>;
   /** delete single row from the table: "ideas" */
   delete_ideas_by_pk?: Maybe<TIdeas>;
+  /** delete data from the table: "message" */
+  delete_message?: Maybe<TMessage_Mutation_Response>;
+  /** delete single row from the table: "message" */
+  delete_message_by_pk?: Maybe<TMessage>;
+  /** delete data from the table: "message_thread" */
+  delete_message_thread?: Maybe<TMessage_Thread_Mutation_Response>;
+  /** delete single row from the table: "message_thread" */
+  delete_message_thread_by_pk?: Maybe<TMessage_Thread>;
+  /** delete data from the table: "message_thread_users" */
+  delete_message_thread_users?: Maybe<TMessage_Thread_Users_Mutation_Response>;
+  /** delete single row from the table: "message_thread_users" */
+  delete_message_thread_users_by_pk?: Maybe<TMessage_Thread_Users>;
   /** delete data from the table: "user_followers" */
   delete_user_followers?: Maybe<TUser_Followers_Mutation_Response>;
   /** delete single row from the table: "user_followers" */
@@ -2190,6 +2767,18 @@ export type TMutation_Root = {
   insert_interested_ideas?: Maybe<TInterested_Ideas_Mutation_Response>;
   /** insert a single row into the table: "interested_ideas" */
   insert_interested_ideas_one?: Maybe<TInterested_Ideas>;
+  /** insert data into the table: "message" */
+  insert_message?: Maybe<TMessage_Mutation_Response>;
+  /** insert a single row into the table: "message" */
+  insert_message_one?: Maybe<TMessage>;
+  /** insert data into the table: "message_thread" */
+  insert_message_thread?: Maybe<TMessage_Thread_Mutation_Response>;
+  /** insert a single row into the table: "message_thread" */
+  insert_message_thread_one?: Maybe<TMessage_Thread>;
+  /** insert data into the table: "message_thread_users" */
+  insert_message_thread_users?: Maybe<TMessage_Thread_Users_Mutation_Response>;
+  /** insert a single row into the table: "message_thread_users" */
+  insert_message_thread_users_one?: Maybe<TMessage_Thread_Users>;
   /** insert data into the table: "report" */
   insert_report?: Maybe<TReport_Mutation_Response>;
   /** insert a single row into the table: "report" */
@@ -2214,6 +2803,14 @@ export type TMutation_Root = {
   update_ideas?: Maybe<TIdeas_Mutation_Response>;
   /** update single row of the table: "ideas" */
   update_ideas_by_pk?: Maybe<TIdeas>;
+  /** update data of the table: "message" */
+  update_message?: Maybe<TMessage_Mutation_Response>;
+  /** update single row of the table: "message" */
+  update_message_by_pk?: Maybe<TMessage>;
+  /** update data of the table: "message_thread" */
+  update_message_thread?: Maybe<TMessage_Thread_Mutation_Response>;
+  /** update single row of the table: "message_thread" */
+  update_message_thread_by_pk?: Maybe<TMessage_Thread>;
   /** update data of the table: "user_address" */
   update_user_address?: Maybe<TUser_Address_Mutation_Response>;
   /** update single row of the table: "user_address" */
@@ -2283,6 +2880,43 @@ export type TMutation_RootDelete_IdeasArgs = {
 /** mutation root */
 export type TMutation_RootDelete_Ideas_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_MessageArgs = {
+  where: TMessage_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_Message_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_Message_ThreadArgs = {
+  where: TMessage_Thread_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_Message_Thread_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_Message_Thread_UsersArgs = {
+  where: TMessage_Thread_Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_Message_Thread_Users_By_PkArgs = {
+  threadId: Scalars['uuid'];
+  userId: Scalars['uuid'];
 };
 
 
@@ -2390,6 +3024,46 @@ export type TMutation_RootInsert_Interested_Ideas_OneArgs = {
 
 
 /** mutation root */
+export type TMutation_RootInsert_MessageArgs = {
+  objects: Array<TMessage_Insert_Input>;
+  on_conflict?: InputMaybe<TMessage_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Message_OneArgs = {
+  object: TMessage_Insert_Input;
+  on_conflict?: InputMaybe<TMessage_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Message_ThreadArgs = {
+  objects: Array<TMessage_Thread_Insert_Input>;
+  on_conflict?: InputMaybe<TMessage_Thread_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Message_Thread_OneArgs = {
+  object: TMessage_Thread_Insert_Input;
+  on_conflict?: InputMaybe<TMessage_Thread_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Message_Thread_UsersArgs = {
+  objects: Array<TMessage_Thread_Users_Insert_Input>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Message_Thread_Users_OneArgs = {
+  object: TMessage_Thread_Users_Insert_Input;
+};
+
+
+/** mutation root */
 export type TMutation_RootInsert_ReportArgs = {
   objects: Array<TReport_Insert_Input>;
 };
@@ -2470,6 +3144,34 @@ export type TMutation_RootUpdate_Ideas_By_PkArgs = {
   _inc?: InputMaybe<TIdeas_Inc_Input>;
   _set?: InputMaybe<TIdeas_Set_Input>;
   pk_columns: TIdeas_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_MessageArgs = {
+  _set?: InputMaybe<TMessage_Set_Input>;
+  where: TMessage_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_Message_By_PkArgs = {
+  _set?: InputMaybe<TMessage_Set_Input>;
+  pk_columns: TMessage_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_Message_ThreadArgs = {
+  _set?: InputMaybe<TMessage_Thread_Set_Input>;
+  where: TMessage_Thread_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_Message_Thread_By_PkArgs = {
+  _set?: InputMaybe<TMessage_Thread_Set_Input>;
+  pk_columns: TMessage_Thread_Pk_Columns_Input;
 };
 
 
@@ -2575,6 +3277,24 @@ export type TQuery_Root = {
   interested_ideas_aggregate: TInterested_Ideas_Aggregate;
   /** fetch data from the table: "interested_ideas" using primary key columns */
   interested_ideas_by_pk?: Maybe<TInterested_Ideas>;
+  /** fetch data from the table: "message" */
+  message: Array<TMessage>;
+  /** fetch aggregated fields from the table: "message" */
+  message_aggregate: TMessage_Aggregate;
+  /** fetch data from the table: "message" using primary key columns */
+  message_by_pk?: Maybe<TMessage>;
+  /** fetch data from the table: "message_thread" */
+  message_thread: Array<TMessage_Thread>;
+  /** fetch aggregated fields from the table: "message_thread" */
+  message_thread_aggregate: TMessage_Thread_Aggregate;
+  /** fetch data from the table: "message_thread" using primary key columns */
+  message_thread_by_pk?: Maybe<TMessage_Thread>;
+  /** fetch data from the table: "message_thread_users" */
+  message_thread_users: Array<TMessage_Thread_Users>;
+  /** fetch aggregated fields from the table: "message_thread_users" */
+  message_thread_users_aggregate: TMessage_Thread_Users_Aggregate;
+  /** fetch data from the table: "message_thread_users" using primary key columns */
+  message_thread_users_by_pk?: Maybe<TMessage_Thread_Users>;
   /** fetch data from the table: "report" */
   report: Array<TReport>;
   /** fetch data from the table: "report" using primary key columns */
@@ -2790,6 +3510,76 @@ export type TQuery_RootInterested_Ideas_By_PkArgs = {
 };
 
 
+export type TQuery_RootMessageArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Order_By>>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
+
+export type TQuery_RootMessage_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Order_By>>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
+
+export type TQuery_RootMessage_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type TQuery_RootMessage_ThreadArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Bool_Exp>;
+};
+
+
+export type TQuery_RootMessage_Thread_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Bool_Exp>;
+};
+
+
+export type TQuery_RootMessage_Thread_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type TQuery_RootMessage_Thread_UsersArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Users_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+};
+
+
+export type TQuery_RootMessage_Thread_Users_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Users_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+};
+
+
+export type TQuery_RootMessage_Thread_Users_By_PkArgs = {
+  threadId: Scalars['uuid'];
+  userId: Scalars['uuid'];
+};
+
+
 export type TQuery_RootReportArgs = {
   distinct_on?: InputMaybe<Array<TReport_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -2987,6 +3777,24 @@ export type TSubscription_Root = {
   interested_ideas_aggregate: TInterested_Ideas_Aggregate;
   /** fetch data from the table: "interested_ideas" using primary key columns */
   interested_ideas_by_pk?: Maybe<TInterested_Ideas>;
+  /** fetch data from the table: "message" */
+  message: Array<TMessage>;
+  /** fetch aggregated fields from the table: "message" */
+  message_aggregate: TMessage_Aggregate;
+  /** fetch data from the table: "message" using primary key columns */
+  message_by_pk?: Maybe<TMessage>;
+  /** fetch data from the table: "message_thread" */
+  message_thread: Array<TMessage_Thread>;
+  /** fetch aggregated fields from the table: "message_thread" */
+  message_thread_aggregate: TMessage_Thread_Aggregate;
+  /** fetch data from the table: "message_thread" using primary key columns */
+  message_thread_by_pk?: Maybe<TMessage_Thread>;
+  /** fetch data from the table: "message_thread_users" */
+  message_thread_users: Array<TMessage_Thread_Users>;
+  /** fetch aggregated fields from the table: "message_thread_users" */
+  message_thread_users_aggregate: TMessage_Thread_Users_Aggregate;
+  /** fetch data from the table: "message_thread_users" using primary key columns */
+  message_thread_users_by_pk?: Maybe<TMessage_Thread_Users>;
   /** fetch data from the table: "report" */
   report: Array<TReport>;
   /** fetch data from the table: "report" using primary key columns */
@@ -3198,6 +4006,76 @@ export type TSubscription_RootInterested_Ideas_AggregateArgs = {
 
 export type TSubscription_RootInterested_Ideas_By_PkArgs = {
   ideaId: Scalars['uuid'];
+  userId: Scalars['uuid'];
+};
+
+
+export type TSubscription_RootMessageArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Order_By>>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMessage_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Order_By>>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMessage_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type TSubscription_RootMessage_ThreadArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMessage_Thread_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMessage_Thread_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type TSubscription_RootMessage_Thread_UsersArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Users_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMessage_Thread_Users_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Users_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMessage_Thread_Users_By_PkArgs = {
+  threadId: Scalars['uuid'];
   userId: Scalars['uuid'];
 };
 
@@ -3819,6 +4697,18 @@ export type TUsers = {
   isAnonymous: Scalars['Boolean'];
   lastSeen?: Maybe<Scalars['timestamptz']>;
   locale: Scalars['String'];
+  /** An array relationship */
+  messageThreadUsers: Array<TMessage_Thread_Users>;
+  /** An aggregate relationship */
+  messageThreadUsers_aggregate: TMessage_Thread_Users_Aggregate;
+  /** An array relationship */
+  messageThreads: Array<TMessage_Thread>;
+  /** An aggregate relationship */
+  messageThreads_aggregate: TMessage_Thread_Aggregate;
+  /** An array relationship */
+  messages: Array<TMessage>;
+  /** An aggregate relationship */
+  messages_aggregate: TMessage_Aggregate;
   newEmail?: Maybe<Scalars['citext']>;
   otpHash?: Maybe<Scalars['String']>;
   otpHashExpiresAt: Scalars['timestamptz'];
@@ -3882,6 +4772,102 @@ export type TUsersIdeas_AggregateArgs = {
   where?: InputMaybe<TIdeas_Bool_Exp>;
 };
 
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersMessageThreadUsersArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Users_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersMessageThreadUsers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Users_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Users_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersMessageThreadsArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersMessageThreads_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Thread_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Thread_Order_By>>;
+  where?: InputMaybe<TMessage_Thread_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersMessagesArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Order_By>>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersMessages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMessage_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMessage_Order_By>>;
+  where?: InputMaybe<TMessage_Bool_Exp>;
+};
+
 /** aggregated selection of "auth.users" */
 export type TUsers_Aggregate = {
   __typename?: 'users_aggregate';
@@ -3924,6 +4910,9 @@ export type TUsers_Bool_Exp = {
   isAnonymous?: InputMaybe<TBoolean_Comparison_Exp>;
   lastSeen?: InputMaybe<TTimestamptz_Comparison_Exp>;
   locale?: InputMaybe<TString_Comparison_Exp>;
+  messageThreadUsers?: InputMaybe<TMessage_Thread_Users_Bool_Exp>;
+  messageThreads?: InputMaybe<TMessage_Thread_Bool_Exp>;
+  messages?: InputMaybe<TMessage_Bool_Exp>;
   newEmail?: InputMaybe<TCitext_Comparison_Exp>;
   otpHash?: InputMaybe<TString_Comparison_Exp>;
   otpHashExpiresAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
@@ -4012,6 +5001,9 @@ export type TUsers_Order_By = {
   isAnonymous?: InputMaybe<TOrder_By>;
   lastSeen?: InputMaybe<TOrder_By>;
   locale?: InputMaybe<TOrder_By>;
+  messageThreadUsers_aggregate?: InputMaybe<TMessage_Thread_Users_Aggregate_Order_By>;
+  messageThreads_aggregate?: InputMaybe<TMessage_Thread_Aggregate_Order_By>;
+  messages_aggregate?: InputMaybe<TMessage_Aggregate_Order_By>;
   newEmail?: InputMaybe<TOrder_By>;
   otpHash?: InputMaybe<TOrder_By>;
   otpHashExpiresAt?: InputMaybe<TOrder_By>;
@@ -4156,6 +5148,8 @@ export type TUserAddressFragment = { __typename?: 'user_address', location?: str
 
 export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null | undefined, startups?: string | null | undefined, availability?: string | null | undefined, specialistIndustry?: string | null | undefined, status?: string | null | undefined, objective?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
 
+export type TMessageUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined };
+
 export type TCreateIdeaMutationVariables = Exact<{
   idea: TIdeas_Insert_Input;
 }>;
@@ -4239,6 +5233,29 @@ export type TDeleteIdeaUpvoteMutationVariables = Exact<{
 
 
 export type TDeleteIdeaUpvoteMutation = { delete_idea_votes?: { __typename?: 'idea_votes_mutation_response', affected_rows: number } | null | undefined };
+
+export type TNewMessageThreadMutationVariables = Exact<{
+  targetUserId: Scalars['uuid'];
+  currentUserId: Scalars['uuid'];
+}>;
+
+
+export type TNewMessageThreadMutation = { insert_message_thread?: { __typename?: 'message_thread_mutation_response', returning: Array<{ __typename?: 'message_thread', id: any }> } | null | undefined };
+
+export type TNewMessageMutationVariables = Exact<{
+  messageThreadId: Scalars['uuid'];
+  content: Scalars['String'];
+}>;
+
+
+export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any } | null | undefined };
+
+export type TUserMessageThreadsQueryVariables = Exact<{
+  userId: Scalars['uuid'];
+}>;
+
+
+export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null | undefined, ownerId?: any | null | undefined, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }> }> };
 
 export type TCreateReportMutationVariables = Exact<{
   report: TReport_Insert_Input;
@@ -4381,6 +5398,13 @@ export const UserSearchFragmentDoc = gql`
   }
 }
     ${UserFieldsFragmentDoc}`;
+export const MessageUserFragmentDoc = gql`
+    fragment MessageUser on users {
+  id
+  displayName
+  avatarUrl
+}
+    `;
 export const UserFieldsWithEmailFragmentDoc = gql`
     fragment UserFieldsWithEmail on users {
   ...UserFields
@@ -5118,6 +6142,133 @@ export function useDeleteIdeaUpvoteMutation(baseOptions?: ApolloReactHooks.Mutat
 export type DeleteIdeaUpvoteMutationHookResult = ReturnType<typeof useDeleteIdeaUpvoteMutation>;
 export type DeleteIdeaUpvoteMutationResult = Apollo.MutationResult<TDeleteIdeaUpvoteMutation>;
 export type DeleteIdeaUpvoteMutationOptions = Apollo.BaseMutationOptions<TDeleteIdeaUpvoteMutation, TDeleteIdeaUpvoteMutationVariables>;
+export const NewMessageThreadDocument = gql`
+    mutation NewMessageThread($targetUserId: uuid!, $currentUserId: uuid!) {
+  insert_message_thread(
+    objects: [{messageThreadUsers: {data: [{userId: $targetUserId}, {userId: $currentUserId}]}}]
+  ) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+export type TNewMessageThreadMutationFn = Apollo.MutationFunction<TNewMessageThreadMutation, TNewMessageThreadMutationVariables>;
+
+/**
+ * __useNewMessageThreadMutation__
+ *
+ * To run a mutation, you first call `useNewMessageThreadMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useNewMessageThreadMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [newMessageThreadMutation, { data, loading, error }] = useNewMessageThreadMutation({
+ *   variables: {
+ *      targetUserId: // value for 'targetUserId'
+ *      currentUserId: // value for 'currentUserId'
+ *   },
+ * });
+ */
+export function useNewMessageThreadMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TNewMessageThreadMutation, TNewMessageThreadMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<TNewMessageThreadMutation, TNewMessageThreadMutationVariables>(NewMessageThreadDocument, options);
+      }
+export type NewMessageThreadMutationHookResult = ReturnType<typeof useNewMessageThreadMutation>;
+export type NewMessageThreadMutationResult = Apollo.MutationResult<TNewMessageThreadMutation>;
+export type NewMessageThreadMutationOptions = Apollo.BaseMutationOptions<TNewMessageThreadMutation, TNewMessageThreadMutationVariables>;
+export const NewMessageDocument = gql`
+    mutation NewMessage($messageThreadId: uuid!, $content: String!) {
+  insert_message_one(object: {threadId: $messageThreadId, content: $content}) {
+    id
+  }
+}
+    `;
+export type TNewMessageMutationFn = Apollo.MutationFunction<TNewMessageMutation, TNewMessageMutationVariables>;
+
+/**
+ * __useNewMessageMutation__
+ *
+ * To run a mutation, you first call `useNewMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useNewMessageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [newMessageMutation, { data, loading, error }] = useNewMessageMutation({
+ *   variables: {
+ *      messageThreadId: // value for 'messageThreadId'
+ *      content: // value for 'content'
+ *   },
+ * });
+ */
+export function useNewMessageMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TNewMessageMutation, TNewMessageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<TNewMessageMutation, TNewMessageMutationVariables>(NewMessageDocument, options);
+      }
+export type NewMessageMutationHookResult = ReturnType<typeof useNewMessageMutation>;
+export type NewMessageMutationResult = Apollo.MutationResult<TNewMessageMutation>;
+export type NewMessageMutationOptions = Apollo.BaseMutationOptions<TNewMessageMutation, TNewMessageMutationVariables>;
+export const UserMessageThreadsDocument = gql`
+    query UserMessageThreads($userId: uuid!) {
+  threads: message_thread(
+    order_by: {messages_aggregate: {max: {createdAt: desc}}}
+    where: {messageThreadUsers: {userId: {_eq: $userId}}}
+  ) {
+    id
+    name
+    ownerId
+    targetUser: messageThreadUsers(where: {userId: {_neq: $userId}}) {
+      user {
+        ...MessageUser
+      }
+    }
+    lastMessage: messages(limit: 1, order_by: {createdAt: desc}) {
+      content
+      createdAt
+      sender {
+        ...MessageUser
+      }
+    }
+  }
+}
+    ${MessageUserFragmentDoc}`;
+
+/**
+ * __useUserMessageThreadsQuery__
+ *
+ * To run a query within a React component, call `useUserMessageThreadsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserMessageThreadsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserMessageThreadsQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useUserMessageThreadsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TUserMessageThreadsQuery, TUserMessageThreadsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TUserMessageThreadsQuery, TUserMessageThreadsQueryVariables>(UserMessageThreadsDocument, options);
+      }
+export function useUserMessageThreadsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TUserMessageThreadsQuery, TUserMessageThreadsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TUserMessageThreadsQuery, TUserMessageThreadsQueryVariables>(UserMessageThreadsDocument, options);
+        }
+export type UserMessageThreadsQueryHookResult = ReturnType<typeof useUserMessageThreadsQuery>;
+export type UserMessageThreadsLazyQueryHookResult = ReturnType<typeof useUserMessageThreadsLazyQuery>;
+export type UserMessageThreadsQueryResult = Apollo.QueryResult<TUserMessageThreadsQuery, TUserMessageThreadsQueryVariables>;
+export function refetchUserMessageThreadsQuery(variables: TUserMessageThreadsQueryVariables) {
+      return { query: UserMessageThreadsDocument, variables: variables }
+    }
 export const CreateReportDocument = gql`
     mutation CreateReport($report: report_insert_input!) {
   insert_report_one(object: $report) {
@@ -5856,6 +7007,58 @@ export type TResolversTypes = {
   interested_ideas_select_column: TInterested_Ideas_Select_Column;
   jsonb: ResolverTypeWrapper<Scalars['jsonb']>;
   jsonb_comparison_exp: TJsonb_Comparison_Exp;
+  message: ResolverTypeWrapper<TMessage>;
+  message_aggregate: ResolverTypeWrapper<TMessage_Aggregate>;
+  message_aggregate_fields: ResolverTypeWrapper<TMessage_Aggregate_Fields>;
+  message_aggregate_order_by: TMessage_Aggregate_Order_By;
+  message_arr_rel_insert_input: TMessage_Arr_Rel_Insert_Input;
+  message_bool_exp: TMessage_Bool_Exp;
+  message_constraint: TMessage_Constraint;
+  message_insert_input: TMessage_Insert_Input;
+  message_max_fields: ResolverTypeWrapper<TMessage_Max_Fields>;
+  message_max_order_by: TMessage_Max_Order_By;
+  message_min_fields: ResolverTypeWrapper<TMessage_Min_Fields>;
+  message_min_order_by: TMessage_Min_Order_By;
+  message_mutation_response: ResolverTypeWrapper<TMessage_Mutation_Response>;
+  message_on_conflict: TMessage_On_Conflict;
+  message_order_by: TMessage_Order_By;
+  message_pk_columns_input: TMessage_Pk_Columns_Input;
+  message_select_column: TMessage_Select_Column;
+  message_set_input: TMessage_Set_Input;
+  message_thread: ResolverTypeWrapper<TMessage_Thread>;
+  message_thread_aggregate: ResolverTypeWrapper<TMessage_Thread_Aggregate>;
+  message_thread_aggregate_fields: ResolverTypeWrapper<TMessage_Thread_Aggregate_Fields>;
+  message_thread_aggregate_order_by: TMessage_Thread_Aggregate_Order_By;
+  message_thread_bool_exp: TMessage_Thread_Bool_Exp;
+  message_thread_constraint: TMessage_Thread_Constraint;
+  message_thread_insert_input: TMessage_Thread_Insert_Input;
+  message_thread_max_fields: ResolverTypeWrapper<TMessage_Thread_Max_Fields>;
+  message_thread_max_order_by: TMessage_Thread_Max_Order_By;
+  message_thread_min_fields: ResolverTypeWrapper<TMessage_Thread_Min_Fields>;
+  message_thread_min_order_by: TMessage_Thread_Min_Order_By;
+  message_thread_mutation_response: ResolverTypeWrapper<TMessage_Thread_Mutation_Response>;
+  message_thread_obj_rel_insert_input: TMessage_Thread_Obj_Rel_Insert_Input;
+  message_thread_on_conflict: TMessage_Thread_On_Conflict;
+  message_thread_order_by: TMessage_Thread_Order_By;
+  message_thread_pk_columns_input: TMessage_Thread_Pk_Columns_Input;
+  message_thread_select_column: TMessage_Thread_Select_Column;
+  message_thread_set_input: TMessage_Thread_Set_Input;
+  message_thread_update_column: TMessage_Thread_Update_Column;
+  message_thread_users: ResolverTypeWrapper<TMessage_Thread_Users>;
+  message_thread_users_aggregate: ResolverTypeWrapper<TMessage_Thread_Users_Aggregate>;
+  message_thread_users_aggregate_fields: ResolverTypeWrapper<TMessage_Thread_Users_Aggregate_Fields>;
+  message_thread_users_aggregate_order_by: TMessage_Thread_Users_Aggregate_Order_By;
+  message_thread_users_arr_rel_insert_input: TMessage_Thread_Users_Arr_Rel_Insert_Input;
+  message_thread_users_bool_exp: TMessage_Thread_Users_Bool_Exp;
+  message_thread_users_insert_input: TMessage_Thread_Users_Insert_Input;
+  message_thread_users_max_fields: ResolverTypeWrapper<TMessage_Thread_Users_Max_Fields>;
+  message_thread_users_max_order_by: TMessage_Thread_Users_Max_Order_By;
+  message_thread_users_min_fields: ResolverTypeWrapper<TMessage_Thread_Users_Min_Fields>;
+  message_thread_users_min_order_by: TMessage_Thread_Users_Min_Order_By;
+  message_thread_users_mutation_response: ResolverTypeWrapper<TMessage_Thread_Users_Mutation_Response>;
+  message_thread_users_order_by: TMessage_Thread_Users_Order_By;
+  message_thread_users_select_column: TMessage_Thread_Users_Select_Column;
+  message_update_column: TMessage_Update_Column;
   mutation_root: ResolverTypeWrapper<{}>;
   order_by: TOrder_By;
   query_root: ResolverTypeWrapper<{}>;
@@ -6073,6 +7276,51 @@ export type TResolversParentTypes = {
   interested_ideas_order_by: TInterested_Ideas_Order_By;
   jsonb: Scalars['jsonb'];
   jsonb_comparison_exp: TJsonb_Comparison_Exp;
+  message: TMessage;
+  message_aggregate: TMessage_Aggregate;
+  message_aggregate_fields: TMessage_Aggregate_Fields;
+  message_aggregate_order_by: TMessage_Aggregate_Order_By;
+  message_arr_rel_insert_input: TMessage_Arr_Rel_Insert_Input;
+  message_bool_exp: TMessage_Bool_Exp;
+  message_insert_input: TMessage_Insert_Input;
+  message_max_fields: TMessage_Max_Fields;
+  message_max_order_by: TMessage_Max_Order_By;
+  message_min_fields: TMessage_Min_Fields;
+  message_min_order_by: TMessage_Min_Order_By;
+  message_mutation_response: TMessage_Mutation_Response;
+  message_on_conflict: TMessage_On_Conflict;
+  message_order_by: TMessage_Order_By;
+  message_pk_columns_input: TMessage_Pk_Columns_Input;
+  message_set_input: TMessage_Set_Input;
+  message_thread: TMessage_Thread;
+  message_thread_aggregate: TMessage_Thread_Aggregate;
+  message_thread_aggregate_fields: TMessage_Thread_Aggregate_Fields;
+  message_thread_aggregate_order_by: TMessage_Thread_Aggregate_Order_By;
+  message_thread_bool_exp: TMessage_Thread_Bool_Exp;
+  message_thread_insert_input: TMessage_Thread_Insert_Input;
+  message_thread_max_fields: TMessage_Thread_Max_Fields;
+  message_thread_max_order_by: TMessage_Thread_Max_Order_By;
+  message_thread_min_fields: TMessage_Thread_Min_Fields;
+  message_thread_min_order_by: TMessage_Thread_Min_Order_By;
+  message_thread_mutation_response: TMessage_Thread_Mutation_Response;
+  message_thread_obj_rel_insert_input: TMessage_Thread_Obj_Rel_Insert_Input;
+  message_thread_on_conflict: TMessage_Thread_On_Conflict;
+  message_thread_order_by: TMessage_Thread_Order_By;
+  message_thread_pk_columns_input: TMessage_Thread_Pk_Columns_Input;
+  message_thread_set_input: TMessage_Thread_Set_Input;
+  message_thread_users: TMessage_Thread_Users;
+  message_thread_users_aggregate: TMessage_Thread_Users_Aggregate;
+  message_thread_users_aggregate_fields: TMessage_Thread_Users_Aggregate_Fields;
+  message_thread_users_aggregate_order_by: TMessage_Thread_Users_Aggregate_Order_By;
+  message_thread_users_arr_rel_insert_input: TMessage_Thread_Users_Arr_Rel_Insert_Input;
+  message_thread_users_bool_exp: TMessage_Thread_Users_Bool_Exp;
+  message_thread_users_insert_input: TMessage_Thread_Users_Insert_Input;
+  message_thread_users_max_fields: TMessage_Thread_Users_Max_Fields;
+  message_thread_users_max_order_by: TMessage_Thread_Users_Max_Order_By;
+  message_thread_users_min_fields: TMessage_Thread_Users_Min_Fields;
+  message_thread_users_min_order_by: TMessage_Thread_Users_Min_Order_By;
+  message_thread_users_mutation_response: TMessage_Thread_Users_Mutation_Response;
+  message_thread_users_order_by: TMessage_Thread_Users_Order_By;
   mutation_root: {};
   query_root: {};
   report: TReport;
@@ -6697,6 +7945,147 @@ export interface TJsonbScalarConfig extends GraphQLScalarTypeConfig<TResolversTy
   name: 'jsonb';
 }
 
+export type TMessageResolvers<ContextType = any, ParentType extends TResolversParentTypes['message'] = TResolversParentTypes['message']> = {
+  content?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
+  createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  messageThread?: Resolver<TResolversTypes['message_thread'], ParentType, ContextType>;
+  sender?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
+  senderUserId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  threadId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_aggregate'] = TResolversParentTypes['message_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['message_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_aggregate_fields'] = TResolversParentTypes['message_aggregate_fields']> = {
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TMessage_Aggregate_FieldsCountArgs, never>>;
+  max?: Resolver<Maybe<TResolversTypes['message_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['message_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_max_fields'] = TResolversParentTypes['message_max_fields']> = {
+  content?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  senderUserId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  threadId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_min_fields'] = TResolversParentTypes['message_min_fields']> = {
+  content?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  senderUserId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  threadId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_mutation_response'] = TResolversParentTypes['message_mutation_response']> = {
+  affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_ThreadResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread'] = TResolversParentTypes['message_thread']> = {
+  createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  messageThreadUsers?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TMessage_ThreadMessageThreadUsersArgs, never>>;
+  messageThreadUsers_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, RequireFields<TMessage_ThreadMessageThreadUsers_AggregateArgs, never>>;
+  messages?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMessage_ThreadMessagesArgs, never>>;
+  messages_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, RequireFields<TMessage_ThreadMessages_AggregateArgs, never>>;
+  name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  owner?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType>;
+  ownerId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_aggregate'] = TResolversParentTypes['message_thread_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['message_thread_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['message_thread']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_aggregate_fields'] = TResolversParentTypes['message_thread_aggregate_fields']> = {
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TMessage_Thread_Aggregate_FieldsCountArgs, never>>;
+  max?: Resolver<Maybe<TResolversTypes['message_thread_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['message_thread_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_max_fields'] = TResolversParentTypes['message_thread_max_fields']> = {
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  ownerId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_min_fields'] = TResolversParentTypes['message_thread_min_fields']> = {
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  ownerId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_mutation_response'] = TResolversParentTypes['message_thread_mutation_response']> = {
+  affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<TResolversTypes['message_thread']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_UsersResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_users'] = TResolversParentTypes['message_thread_users']> = {
+  messageThread?: Resolver<TResolversTypes['message_thread'], ParentType, ContextType>;
+  threadId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  user?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
+  userId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Users_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_users_aggregate'] = TResolversParentTypes['message_thread_users_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['message_thread_users_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Users_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_users_aggregate_fields'] = TResolversParentTypes['message_thread_users_aggregate_fields']> = {
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TMessage_Thread_Users_Aggregate_FieldsCountArgs, never>>;
+  max?: Resolver<Maybe<TResolversTypes['message_thread_users_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['message_thread_users_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Users_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_users_max_fields'] = TResolversParentTypes['message_thread_users_max_fields']> = {
+  threadId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Users_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_users_min_fields'] = TResolversParentTypes['message_thread_users_min_fields']> = {
+  threadId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMessage_Thread_Users_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_users_mutation_response'] = TResolversParentTypes['message_thread_users_mutation_response']> = {
+  affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TMutation_RootResolvers<ContextType = any, ParentType extends TResolversParentTypes['mutation_root'] = TResolversParentTypes['mutation_root']> = {
   deleteFile?: Resolver<Maybe<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteFileArgs, 'id'>>;
   deleteFiles?: Resolver<Maybe<TResolversTypes['files_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteFilesArgs, 'where'>>;
@@ -6708,6 +8097,12 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   delete_idea_votes_by_pk?: Resolver<Maybe<TResolversTypes['idea_votes']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Idea_Votes_By_PkArgs, 'ideaId' | 'userId'>>;
   delete_ideas?: Resolver<Maybe<TResolversTypes['ideas_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_IdeasArgs, 'where'>>;
   delete_ideas_by_pk?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Ideas_By_PkArgs, 'id'>>;
+  delete_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_MessageArgs, 'where'>>;
+  delete_message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_By_PkArgs, 'id'>>;
+  delete_message_thread?: Resolver<Maybe<TResolversTypes['message_thread_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_ThreadArgs, 'where'>>;
+  delete_message_thread_by_pk?: Resolver<Maybe<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_Thread_By_PkArgs, 'id'>>;
+  delete_message_thread_users?: Resolver<Maybe<TResolversTypes['message_thread_users_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_Thread_UsersArgs, 'where'>>;
+  delete_message_thread_users_by_pk?: Resolver<Maybe<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_Thread_Users_By_PkArgs, 'threadId' | 'userId'>>;
   delete_user_followers?: Resolver<Maybe<TResolversTypes['user_followers_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_User_FollowersArgs, 'where'>>;
   delete_user_followers_by_pk?: Resolver<Maybe<TResolversTypes['user_followers']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_User_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
   insertFile?: Resolver<Maybe<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TMutation_RootInsertFileArgs, 'object'>>;
@@ -6724,6 +8119,12 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   insert_ideas_one?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Ideas_OneArgs, 'object'>>;
   insert_interested_ideas?: Resolver<Maybe<TResolversTypes['interested_ideas_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Interested_IdeasArgs, 'objects'>>;
   insert_interested_ideas_one?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Interested_Ideas_OneArgs, 'object'>>;
+  insert_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_MessageArgs, 'objects'>>;
+  insert_message_one?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_OneArgs, 'object'>>;
+  insert_message_thread?: Resolver<Maybe<TResolversTypes['message_thread_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_ThreadArgs, 'objects'>>;
+  insert_message_thread_one?: Resolver<Maybe<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_Thread_OneArgs, 'object'>>;
+  insert_message_thread_users?: Resolver<Maybe<TResolversTypes['message_thread_users_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_Thread_UsersArgs, 'objects'>>;
+  insert_message_thread_users_one?: Resolver<Maybe<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_Thread_Users_OneArgs, 'object'>>;
   insert_report?: Resolver<Maybe<TResolversTypes['report_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_ReportArgs, 'objects'>>;
   insert_report_one?: Resolver<Maybe<TResolversTypes['report']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Report_OneArgs, 'object'>>;
   insert_user_followers?: Resolver<Maybe<TResolversTypes['user_followers_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_User_FollowersArgs, 'objects'>>;
@@ -6736,6 +8137,10 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   update_idea_comments_by_pk?: Resolver<Maybe<TResolversTypes['idea_comments']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Idea_Comments_By_PkArgs, 'pk_columns'>>;
   update_ideas?: Resolver<Maybe<TResolversTypes['ideas_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_IdeasArgs, 'where'>>;
   update_ideas_by_pk?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Ideas_By_PkArgs, 'pk_columns'>>;
+  update_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_MessageArgs, 'where'>>;
+  update_message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Message_By_PkArgs, 'pk_columns'>>;
+  update_message_thread?: Resolver<Maybe<TResolversTypes['message_thread_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Message_ThreadArgs, 'where'>>;
+  update_message_thread_by_pk?: Resolver<Maybe<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Message_Thread_By_PkArgs, 'pk_columns'>>;
   update_user_address?: Resolver<Maybe<TResolversTypes['user_address_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_User_AddressArgs, 'where'>>;
   update_user_address_by_pk?: Resolver<Maybe<TResolversTypes['user_address']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_User_Address_By_PkArgs, 'pk_columns'>>;
   update_user_profile?: Resolver<Maybe<TResolversTypes['user_profile_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_User_ProfileArgs, 'where'>>;
@@ -6767,6 +8172,15 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   interested_ideas?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TQuery_RootInterested_IdeasArgs, never>>;
   interested_ideas_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootInterested_Ideas_AggregateArgs, never>>;
   interested_ideas_by_pk?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TQuery_RootInterested_Ideas_By_PkArgs, 'ideaId' | 'userId'>>;
+  message?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TQuery_RootMessageArgs, never>>;
+  message_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootMessage_AggregateArgs, never>>;
+  message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_By_PkArgs, 'id'>>;
+  message_thread?: Resolver<Array<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_ThreadArgs, never>>;
+  message_thread_aggregate?: Resolver<TResolversTypes['message_thread_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_AggregateArgs, never>>;
+  message_thread_by_pk?: Resolver<Maybe<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_By_PkArgs, 'id'>>;
+  message_thread_users?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_UsersArgs, never>>;
+  message_thread_users_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_Users_AggregateArgs, never>>;
+  message_thread_users_by_pk?: Resolver<Maybe<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_Users_By_PkArgs, 'threadId' | 'userId'>>;
   report?: Resolver<Array<TResolversTypes['report']>, ParentType, ContextType, RequireFields<TQuery_RootReportArgs, never>>;
   report_by_pk?: Resolver<Maybe<TResolversTypes['report']>, ParentType, ContextType, RequireFields<TQuery_RootReport_By_PkArgs, 'id'>>;
   user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType, RequireFields<TQuery_RootUserArgs, 'id'>>;
@@ -6818,6 +8232,15 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   interested_ideas?: SubscriptionResolver<Array<TResolversTypes['interested_ideas']>, "interested_ideas", ParentType, ContextType, RequireFields<TSubscription_RootInterested_IdeasArgs, never>>;
   interested_ideas_aggregate?: SubscriptionResolver<TResolversTypes['interested_ideas_aggregate'], "interested_ideas_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootInterested_Ideas_AggregateArgs, never>>;
   interested_ideas_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['interested_ideas']>, "interested_ideas_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootInterested_Ideas_By_PkArgs, 'ideaId' | 'userId'>>;
+  message?: SubscriptionResolver<Array<TResolversTypes['message']>, "message", ParentType, ContextType, RequireFields<TSubscription_RootMessageArgs, never>>;
+  message_aggregate?: SubscriptionResolver<TResolversTypes['message_aggregate'], "message_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootMessage_AggregateArgs, never>>;
+  message_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['message']>, "message_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMessage_By_PkArgs, 'id'>>;
+  message_thread?: SubscriptionResolver<Array<TResolversTypes['message_thread']>, "message_thread", ParentType, ContextType, RequireFields<TSubscription_RootMessage_ThreadArgs, never>>;
+  message_thread_aggregate?: SubscriptionResolver<TResolversTypes['message_thread_aggregate'], "message_thread_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_AggregateArgs, never>>;
+  message_thread_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['message_thread']>, "message_thread_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_By_PkArgs, 'id'>>;
+  message_thread_users?: SubscriptionResolver<Array<TResolversTypes['message_thread_users']>, "message_thread_users", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_UsersArgs, never>>;
+  message_thread_users_aggregate?: SubscriptionResolver<TResolversTypes['message_thread_users_aggregate'], "message_thread_users_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_Users_AggregateArgs, never>>;
+  message_thread_users_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['message_thread_users']>, "message_thread_users_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_Users_By_PkArgs, 'threadId' | 'userId'>>;
   report?: SubscriptionResolver<Array<TResolversTypes['report']>, "report", ParentType, ContextType, RequireFields<TSubscription_RootReportArgs, never>>;
   report_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['report']>, "report_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootReport_By_PkArgs, 'id'>>;
   user?: SubscriptionResolver<Maybe<TResolversTypes['users']>, "user", ParentType, ContextType, RequireFields<TSubscription_RootUserArgs, 'id'>>;
@@ -7006,6 +8429,12 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   isAnonymous?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   lastSeen?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   locale?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
+  messageThreadUsers?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TUsersMessageThreadUsersArgs, never>>;
+  messageThreadUsers_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, RequireFields<TUsersMessageThreadUsers_AggregateArgs, never>>;
+  messageThreads?: Resolver<Array<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TUsersMessageThreadsArgs, never>>;
+  messageThreads_aggregate?: Resolver<TResolversTypes['message_thread_aggregate'], ParentType, ContextType, RequireFields<TUsersMessageThreads_AggregateArgs, never>>;
+  messages?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TUsersMessagesArgs, never>>;
+  messages_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, RequireFields<TUsersMessages_AggregateArgs, never>>;
   newEmail?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
   otpHash?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   otpHashExpiresAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -7153,6 +8582,24 @@ export type TResolvers<ContextType = any> = {
   interested_ideas_min_fields?: TInterested_Ideas_Min_FieldsResolvers<ContextType>;
   interested_ideas_mutation_response?: TInterested_Ideas_Mutation_ResponseResolvers<ContextType>;
   jsonb?: GraphQLScalarType;
+  message?: TMessageResolvers<ContextType>;
+  message_aggregate?: TMessage_AggregateResolvers<ContextType>;
+  message_aggregate_fields?: TMessage_Aggregate_FieldsResolvers<ContextType>;
+  message_max_fields?: TMessage_Max_FieldsResolvers<ContextType>;
+  message_min_fields?: TMessage_Min_FieldsResolvers<ContextType>;
+  message_mutation_response?: TMessage_Mutation_ResponseResolvers<ContextType>;
+  message_thread?: TMessage_ThreadResolvers<ContextType>;
+  message_thread_aggregate?: TMessage_Thread_AggregateResolvers<ContextType>;
+  message_thread_aggregate_fields?: TMessage_Thread_Aggregate_FieldsResolvers<ContextType>;
+  message_thread_max_fields?: TMessage_Thread_Max_FieldsResolvers<ContextType>;
+  message_thread_min_fields?: TMessage_Thread_Min_FieldsResolvers<ContextType>;
+  message_thread_mutation_response?: TMessage_Thread_Mutation_ResponseResolvers<ContextType>;
+  message_thread_users?: TMessage_Thread_UsersResolvers<ContextType>;
+  message_thread_users_aggregate?: TMessage_Thread_Users_AggregateResolvers<ContextType>;
+  message_thread_users_aggregate_fields?: TMessage_Thread_Users_Aggregate_FieldsResolvers<ContextType>;
+  message_thread_users_max_fields?: TMessage_Thread_Users_Max_FieldsResolvers<ContextType>;
+  message_thread_users_min_fields?: TMessage_Thread_Users_Min_FieldsResolvers<ContextType>;
+  message_thread_users_mutation_response?: TMessage_Thread_Users_Mutation_ResponseResolvers<ContextType>;
   mutation_root?: TMutation_RootResolvers<ContextType>;
   query_root?: TQuery_RootResolvers<ContextType>;
   report?: TReportResolvers<ContextType>;

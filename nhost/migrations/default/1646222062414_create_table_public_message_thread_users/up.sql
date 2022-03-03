@@ -1,0 +1,1 @@
+CREATE TABLE "public"."message_thread_users" ("thread_id" uuid NOT NULL, "user_id" uuid NOT NULL, PRIMARY KEY ("thread_id","user_id") );COMMENT ON TABLE "public"."message_thread_users" IS E'All users participating in the message thread';

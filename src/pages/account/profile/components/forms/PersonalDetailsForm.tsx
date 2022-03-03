@@ -17,7 +17,7 @@ import { redirectTo } from '@utils/validators';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-type TPersonalDetailsinput = Pick<TUsers_Set_Input, 'displayName'> &
+type TPersonalDetailsInput = Pick<TUsers_Set_Input, 'displayName'> &
 	Pick<TUser_Address_Set_Input, 'country' | 'location'> &
 	Pick<TUser_Profile_Set_Input, 'pronouns' | 'customPronouns'>;
 
@@ -30,7 +30,7 @@ const PersonalDetailsForm = () => {
 	const defaultValues = { ...auth, ...auth?.address, ...auth?.profile };
 
 	const onUpdatePersonalDetails = (
-		personalDetails: TPersonalDetailsinput
+		personalDetails: TPersonalDetailsInput
 	) => {
 		const { displayName, country, location, pronouns, customPronouns } =
 			personalDetails;
@@ -78,7 +78,7 @@ const PersonalDetailsForm = () => {
 	};
 
 	return (
-		<BaseForm<TPersonalDetailsinput>
+		<BaseForm<TPersonalDetailsInput>
 			name="edit-personal-details-form"
 			onSubmit={onUpdatePersonalDetails}
 			defaultValues={defaultValues}
@@ -95,7 +95,7 @@ const PersonalDetailsForm = () => {
 				formState: { errors }
 			}) => (
 				<React.Fragment>
-					<FormInput<TPersonalDetailsinput>
+					<FormInput<TPersonalDetailsInput>
 						id="displayName"
 						name="displayName"
 						label="Display name"
@@ -119,7 +119,7 @@ const PersonalDetailsForm = () => {
 						}
 					/>
 
-					<FormSelect<TPersonalDetailsinput>
+					<FormSelect<TPersonalDetailsInput>
 						id="pronouns"
 						name="pronouns"
 						label="Pronouns"
@@ -133,7 +133,7 @@ const PersonalDetailsForm = () => {
 					/>
 
 					{watch('pronouns', getValues('pronouns')) === 'Custom' && (
-						<FormInput<TPersonalDetailsinput>
+						<FormInput<TPersonalDetailsInput>
 							id="customPronouns"
 							name="customPronouns"
 							label="Custom pronouns"
@@ -161,7 +161,7 @@ const PersonalDetailsForm = () => {
 						/>
 					)}
 
-					<FormSelect<TPersonalDetailsinput>
+					<FormSelect<TPersonalDetailsInput>
 						id="country"
 						name="country"
 						label="Country"
@@ -178,7 +178,7 @@ const PersonalDetailsForm = () => {
 					/>
 
 					{watch('country', getValues('country')) && (
-						<FormInput<TPersonalDetailsinput>
+						<FormInput<TPersonalDetailsInput>
 							id="location"
 							name="location"
 							label="Location"

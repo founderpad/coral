@@ -1,0 +1,72 @@
+table:
+  name: message
+  schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    sender_user_id: senderUserId
+    thread_id: threadId
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+- name: messageThread
+  using:
+    foreign_key_constraint_on: thread_id
+- name: sender
+  using:
+    foreign_key_constraint_on: sender_user_id
+insert_permissions:
+- permission:
+    backend_only: false
+    check:
+      _or:
+      - sender_user_id:
+          _eq: X-Hasura-User-Id
+    columns:
+    - content
+    - thread_id
+    set:
+      sender_user_id: x-hasura-User-Id
+  role: user
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - id
+    - content
+    - sender_user_id
+    - updated_at
+    - created_at
+    - thread_id
+    filter:
+      _or:
+      - sender_user_id:
+          _eq: X-Hasura-User-Id
+      - messageThread:
+          messageThreadUsers:
+            user_id:
+              _eq: X-Hasura-User-Id
+  role: user
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - id
+    - content
+    - sender_user_id
+    - updated_at
+    - created_at
+    - thread_id
+    filter:
+      sender_user_id:
+        _eq: X-Hasura-User-Id
+    set:
+      sender_user_id: x-hasura-User-Id
+  role: user
+delete_permissions:
+- permission:
+    filter:
+      _or:
+      - sender_user_id:
+          _eq: X-Hasura-User-Id
+  role: user
