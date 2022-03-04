@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 const WriteUserMessage = ({ threadId }: { threadId: string }) => {
 	const [value, setValue] = useState('');
 	const [createNewMessage] = useNewMessageMutation({
-		fetchPolicy: 'network-only',
 		variables: {
 			content: value,
 			messageThreadId: threadId
