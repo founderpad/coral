@@ -2210,9 +2210,7 @@ export type TMessage_Bool_Exp = {
 /** unique or primary key constraints on table "message" */
 export type TMessage_Constraint =
   /** unique or primary key constraint */
-  | 'message_pkey'
-  /** unique or primary key constraint */
-  | 'message_thread_id_key';
+  | 'message_pkey';
 
 /** input type for inserting data into table "message" */
 export type TMessage_Insert_Input = {
@@ -5248,14 +5246,21 @@ export type TNewMessageMutationVariables = Exact<{
 }>;
 
 
-export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any } | null | undefined };
+export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } } | null | undefined };
 
 export type TUserMessageThreadsQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null | undefined, ownerId?: any | null | undefined, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }> }> };
+export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null | undefined, ownerId?: any | null | undefined, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }> }>, total: { __typename?: 'message_thread_aggregate', aggregate?: { __typename?: 'message_thread_aggregate_fields', count: number } | null | undefined } };
+
+export type TMessageListSubscriptionVariables = Exact<{
+  messageThreadId: Scalars['uuid'];
+}>;
+
+
+export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }> };
 
 export type TCreateReportMutationVariables = Exact<{
   report: TReport_Insert_Input;
@@ -6184,9 +6189,15 @@ export const NewMessageDocument = gql`
     mutation NewMessage($messageThreadId: uuid!, $content: String!) {
   insert_message_one(object: {threadId: $messageThreadId, content: $content}) {
     id
+    threadId
+    content
+    createdAt
+    sender {
+      ...MessageUser
+    }
   }
 }
-    `;
+    ${MessageUserFragmentDoc}`;
 export type TNewMessageMutationFn = Apollo.MutationFunction<TNewMessageMutation, TNewMessageMutationVariables>;
 
 /**
@@ -6236,6 +6247,13 @@ export const UserMessageThreadsDocument = gql`
       }
     }
   }
+  total: message_thread_aggregate(
+    where: {messageThreadUsers: {userId: {_eq: $userId}}}
+  ) {
+    aggregate {
+      count(columns: id)
+    }
+  }
 }
     ${MessageUserFragmentDoc}`;
 
@@ -6269,6 +6287,42 @@ export type UserMessageThreadsQueryResult = Apollo.QueryResult<TUserMessageThrea
 export function refetchUserMessageThreadsQuery(variables: TUserMessageThreadsQueryVariables) {
       return { query: UserMessageThreadsDocument, variables: variables }
     }
+export const MessageListDocument = gql`
+    subscription MessageList($messageThreadId: uuid!) {
+  message(where: {threadId: {_eq: $messageThreadId}}, order_by: {createdAt: asc}) {
+    id
+    threadId
+    content
+    createdAt
+    sender {
+      ...MessageUser
+    }
+  }
+}
+    ${MessageUserFragmentDoc}`;
+
+/**
+ * __useMessageListSubscription__
+ *
+ * To run a query within a React component, call `useMessageListSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useMessageListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMessageListSubscription({
+ *   variables: {
+ *      messageThreadId: // value for 'messageThreadId'
+ *   },
+ * });
+ */
+export function useMessageListSubscription(baseOptions: ApolloReactHooks.SubscriptionHookOptions<TMessageListSubscription, TMessageListSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useSubscription<TMessageListSubscription, TMessageListSubscriptionVariables>(MessageListDocument, options);
+      }
+export type MessageListSubscriptionHookResult = ReturnType<typeof useMessageListSubscription>;
+export type MessageListSubscriptionResult = Apollo.SubscriptionResult<TMessageListSubscription>;
 export const CreateReportDocument = gql`
     mutation CreateReport($report: report_insert_input!) {
   insert_report_one(object: $report) {

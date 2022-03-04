@@ -1,8 +1,3 @@
-import { IconButton } from '@chakra-ui/button';
-import Icon from '@chakra-ui/icon';
-import { Textarea } from '@chakra-ui/textarea';
-import { IoSendSharp } from '@components/icons';
-import { StackLayout } from '@components/layouts';
 import {
 	CommentsForIdeaDocument,
 	usePostCommentMutation
@@ -11,8 +6,7 @@ import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import useIdea from '@pages/ideas/idea/query/ideaQuery';
 import React, { useCallback, useState } from 'react';
-import ResizeTextarea from 'react-textarea-autosize';
-import { CurrentUserAvatar } from './UserAvatar';
+import WriteInput from './WriteInput';
 
 const PostComment = () => {
 	const [value, setValue] = useState('');
@@ -74,53 +68,11 @@ const PostComment = () => {
 	);
 
 	return (
-		<StackLayout spacing={2} d="flex" flex={1} justifyContent="flex-end">
-			<StackLayout
-				direction="row"
-				spacing={2}
-				w="full"
-				alignItems="center"
-			>
-				<CurrentUserAvatar size="sm" />
-
-				<Textarea
-					name="value"
-					id="value"
-					// minH=""
-					placeholder="Write your comment here"
-					w="full"
-					as={ResizeTextarea}
-					onChange={onValueChange}
-					value={value}
-					borderBottomWidth={2}
-					borderColor="white"
-					maxRows={2}
-					resize="none"
-					minRows={1}
-					minH="fit-content"
-					p={2}
-					title="Write your comment here"
-					_hover={{
-						borderColor: 'transparent'
-					}}
-					_focus={{
-						borderColor: 'transparent'
-					}}
-				/>
-
-				<IconButton
-					aria-label="send-message"
-					variant="ghost"
-					colorScheme="fpPrimary"
-					title="Send message"
-					type="submit"
-					onClick={() => postCommentMutation()}
-					visibility={value.length ? 'visible' : 'hidden'}
-				>
-					<Icon as={IoSendSharp} />
-				</IconButton>
-			</StackLayout>
-		</StackLayout>
+		<WriteInput
+			onChange={onValueChange}
+			value={value}
+			onClick={() => postCommentMutation()}
+		/>
 	);
 };
 

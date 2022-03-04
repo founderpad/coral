@@ -24,6 +24,12 @@ mutation NewMessage($messageThreadId: uuid!, $content: String!) {
 		object: { threadId: $messageThreadId, content: $content }
 	) {
 		id
+		threadId
+		content
+		createdAt
+		sender {
+			...MessageUser
+		}
 	}
 }
 
@@ -46,6 +52,28 @@ query UserMessageThreads($userId: uuid!) {
 			sender {
 				...MessageUser
 			}
+		}
+	}
+	total: message_thread_aggregate(
+		where: { messageThreadUsers: { userId: { _eq: $userId } } }
+	) {
+		aggregate {
+			count(columns: id)
+		}
+	}
+}
+
+subscription MessageList($messageThreadId: uuid!) {
+	message(
+		where: { threadId: { _eq: $messageThreadId } }
+		order_by: { createdAt: asc }
+	) {
+		id
+		threadId
+		content
+		createdAt
+		sender {
+			...MessageUser
 		}
 	}
 }
