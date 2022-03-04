@@ -19,7 +19,7 @@ const UsersSearch: NextPage = () => (
 			/>
 			<meta
 				property="og:url"
-				content="https://app.founderpad.com/ideas?page=1"
+				content="https://app.founderpad.com/ideas/search?page=1"
 			/>
 			<meta
 				property="og:image"

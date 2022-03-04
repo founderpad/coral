@@ -16,7 +16,7 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 			id: ideaId
 		},
 		onCompleted: () => {
-			Router.replace('/ideas?page=1');
+			Router.replace('/ideas/search?page=1');
 			setModalDrawer({
 				isOpen: false
 			});

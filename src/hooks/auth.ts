@@ -167,7 +167,7 @@ const useGetAuthUser = () => {
 		onCompleted: (data) => {
 			const user = data.user as TUsers;
 			dispatch(setUser(user));
-			Router.replace('/ideas?page=1');
+			Router.replace('/ideas/search?page=1');
 		}
 	});
 
@@ -213,7 +213,7 @@ export const useCheckLoggedIn = (): void => {
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			Router.push('/ideas?page=1');
+			Router.push('/ideas/search?page=1');
 			return;
 		}
 	}, [isAuthenticated]);
