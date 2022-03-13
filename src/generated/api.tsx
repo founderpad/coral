@@ -4374,7 +4374,6 @@ export type TUser_Profile = {
   createdAt: Scalars['timestamptz'];
   customPronouns?: Maybe<Scalars['String']>;
   facebook?: Maybe<Scalars['String']>;
-  hideResume?: Maybe<Scalars['Boolean']>;
   id: Scalars['uuid'];
   industries?: Maybe<Scalars['jsonb']>;
   instagram?: Maybe<Scalars['String']>;
@@ -4459,7 +4458,6 @@ export type TUser_Profile_Bool_Exp = {
   createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   customPronouns?: InputMaybe<TString_Comparison_Exp>;
   facebook?: InputMaybe<TString_Comparison_Exp>;
-  hideResume?: InputMaybe<TBoolean_Comparison_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
   industries?: InputMaybe<TJsonb_Comparison_Exp>;
   instagram?: InputMaybe<TString_Comparison_Exp>;
@@ -4565,7 +4563,6 @@ export type TUser_Profile_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
   customPronouns?: InputMaybe<TOrder_By>;
   facebook?: InputMaybe<TOrder_By>;
-  hideResume?: InputMaybe<TOrder_By>;
   id?: InputMaybe<TOrder_By>;
   industries?: InputMaybe<TOrder_By>;
   instagram?: InputMaybe<TOrder_By>;
@@ -4612,8 +4609,6 @@ export type TUser_Profile_Select_Column =
   /** column name */
   | 'facebook'
   /** column name */
-  | 'hideResume'
-  /** column name */
   | 'id'
   /** column name */
   | 'industries'
@@ -4655,7 +4650,6 @@ export type TUser_Profile_Set_Input = {
   businessDescription?: InputMaybe<Scalars['String']>;
   customPronouns?: InputMaybe<Scalars['String']>;
   facebook?: InputMaybe<Scalars['String']>;
-  hideResume?: InputMaybe<Scalars['Boolean']>;
   industries?: InputMaybe<Scalars['jsonb']>;
   instagram?: InputMaybe<Scalars['String']>;
   isComplete?: InputMaybe<Scalars['Boolean']>;
@@ -5336,14 +5330,6 @@ export type TUpdateResumeMutationVariables = Exact<{
 
 
 export type TUpdateResumeMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, resume?: string | null | undefined } | null | undefined };
-
-export type THideResumeMutationVariables = Exact<{
-  id: Scalars['uuid'];
-  hideResume: TUser_Profile_Set_Input;
-}>;
-
-
-export type THideResumeMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, hideResume?: boolean | null | undefined } | null | undefined };
 
 export type TUpdateUserPersonalDetailsMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -6750,41 +6736,6 @@ export function useUpdateResumeMutation(baseOptions?: ApolloReactHooks.MutationH
 export type UpdateResumeMutationHookResult = ReturnType<typeof useUpdateResumeMutation>;
 export type UpdateResumeMutationResult = Apollo.MutationResult<TUpdateResumeMutation>;
 export type UpdateResumeMutationOptions = Apollo.BaseMutationOptions<TUpdateResumeMutation, TUpdateResumeMutationVariables>;
-export const HideResumeDocument = gql`
-    mutation HideResume($id: uuid!, $hideResume: user_profile_set_input!) {
-  update_user_profile_by_pk(pk_columns: {id: $id}, _set: $hideResume) {
-    id
-    hideResume
-  }
-}
-    `;
-export type THideResumeMutationFn = Apollo.MutationFunction<THideResumeMutation, THideResumeMutationVariables>;
-
-/**
- * __useHideResumeMutation__
- *
- * To run a mutation, you first call `useHideResumeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useHideResumeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [hideResumeMutation, { data, loading, error }] = useHideResumeMutation({
- *   variables: {
- *      id: // value for 'id'
- *      hideResume: // value for 'hideResume'
- *   },
- * });
- */
-export function useHideResumeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<THideResumeMutation, THideResumeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<THideResumeMutation, THideResumeMutationVariables>(HideResumeDocument, options);
-      }
-export type HideResumeMutationHookResult = ReturnType<typeof useHideResumeMutation>;
-export type HideResumeMutationResult = Apollo.MutationResult<THideResumeMutation>;
-export type HideResumeMutationOptions = Apollo.BaseMutationOptions<THideResumeMutation, THideResumeMutationVariables>;
 export const UpdateUserPersonalDetailsDocument = gql`
     mutation UpdateUserPersonalDetails($id: uuid!, $profileId: uuid!, $userPersonalDetails: users_set_input!, $userAddress: user_address_set_input!, $userProfile: user_profile_set_input!) {
   updateUser(pk_columns: {id: $id}, _set: $userPersonalDetails) {
@@ -8427,7 +8378,6 @@ export type TUser_ProfileResolvers<ContextType = any, ParentType extends TResolv
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   customPronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   facebook?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  hideResume?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   industries?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, RequireFields<TUser_ProfileIndustriesArgs, never>>;
   instagram?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;

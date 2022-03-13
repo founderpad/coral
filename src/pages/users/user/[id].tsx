@@ -141,19 +141,19 @@ const User: NextPage = () => {
 							tags={[
 								{
 									title: 'Specialist field',
-									value: specialistIndustry
+									value: specialistIndustry || 'Not set'
 								},
 								{
 									title: 'Previous startups',
-									value: `${startups} startups`
+									value: startups || 'Not set'
 								},
 								{
 									title: 'Startup status',
-									value: status
+									value: status || 'Not set'
 								},
 								{
 									title: 'Capacity (Hours per week)',
-									value: availability
+									value: availability || 'Not set'
 								}
 							]}
 						/>
@@ -162,27 +162,26 @@ const User: NextPage = () => {
 							{data?.user?.profile?.objective && (
 								<ContentFieldAndValue
 									title="Looking for"
-									value={objective}
+									value={objective || 'Not set'}
 								/>
 							)}
 							{data?.user?.profile?.background && (
 								<ContentFieldAndValue
 									title="Background"
-									value={background}
+									value={background || 'Not set'}
 								/>
 							)}
-							{data?.user?.profile?.statement && (
-								<ContentFieldAndValue
-									title="Statement"
-									value={statement}
-								/>
-							)}
-							{data?.user?.profile?.businessDescription && (
-								<ContentFieldAndValue
-									title="Overview of businesses"
-									value={businessDescription}
-								/>
-							)}
+
+							<ContentFieldAndValue
+								title="Statement"
+								value={statement || 'Not set'}
+							/>
+
+							<ContentFieldAndValue
+								title="Overview of businesses"
+								value={businessDescription || 'Not set'}
+							/>
+
 							{/* {data?.user?.profile?.skills && (
 								<ContentFieldAndValue
 									title="Skills"
