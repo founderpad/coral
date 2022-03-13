@@ -39,9 +39,6 @@ const TabLayout = (props: Props & TabsProps) => {
 				py={2}
 				borderBottomWidth={1}
 				borderBottomColor="fpLightGrey.900"
-				// d="flex"
-				// w="100vw"
-				// overflowX="auto"
 			>
 				{tabs
 					.filter((tab) => Object.keys(tab).length !== 0)

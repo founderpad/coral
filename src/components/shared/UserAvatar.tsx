@@ -52,7 +52,7 @@ export const UserAvatarDetails = ({
 				alignItems={direction === 'column' ? 'center' : 'flex-start'}
 				flex={1}
 			>
-				<FlexLayout alignItems="baseline" lineHeight="tall" w="full">
+				<FlexLayout alignItems="baseline" lineHeight="tall">
 					<Label
 						fontWeight="medium"
 						fontSize={fontSize}
@@ -62,6 +62,7 @@ export const UserAvatarDetails = ({
 						mr={1}
 						isTruncated
 						flex={1}
+						overflowX="hidden"
 					>
 						{title}
 					</Label>

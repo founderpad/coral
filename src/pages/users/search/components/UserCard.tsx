@@ -46,37 +46,44 @@ const UserProfileAttributes = (userProfileAttrs: TUserSearchFragment) => {
 	);
 };
 
-const UserCard = (userProfile: TUserSearchFragment) => (
-	<LinkCard href={`/user/${userProfile?.user?.id}`}>
-		<UserAvatarDetails
-			src={userProfile?.user?.avatarUrl || undefined}
-			title={userProfile?.user?.displayName}
-			subtitle={
-				<FlexLayout alignItems="center" flexDirection="column">
-					<FlexLayout alignItems="center">
-						{userProfile?.user?.address?.country}
-						<PointSeparator small />
-						<Badge
-							colorScheme="fpPrimary"
-							textTransform="inherit"
-							variant="solid"
-							fontWeight="normal"
-							rounded="md"
-							fontSize="xs"
-						>
-							{userProfile?.objective}
-						</Badge>
+const UserCard = (userProfile: TUserSearchFragment) => {
+	return (
+		<LinkCard href={`/user/${userProfile?.user?.id}`}>
+			<UserAvatarDetails
+				src={userProfile?.user?.avatarUrl || undefined}
+				title={userProfile?.user?.displayName}
+				subtitle={
+					<FlexLayout alignItems="center" flexDirection="column">
+						<FlexLayout alignItems="center">
+							{userProfile?.user?.address?.country && (
+								<>
+									{userProfile?.user?.address?.country}
+									<PointSeparator small />
+								</>
+							)}
 
-						{/* Joined {formatDate(userProfile?.user?.createdAt)} */}
+							<Badge
+								colorScheme="fpPrimary"
+								textTransform="inherit"
+								variant="solid"
+								fontWeight="normal"
+								rounded="md"
+								fontSize="xs"
+							>
+								{userProfile?.objective}
+							</Badge>
+
+							{/* Joined {formatDate(userProfile?.user?.createdAt)} */}
+						</FlexLayout>
 					</FlexLayout>
-				</FlexLayout>
-			}
-			actions={<UserCardHeaderActions {...userProfile} />}
-			size="md"
-		/>
-		<UserProfileAttributes {...userProfile} />
-	</LinkCard>
-);
+				}
+				actions={<UserCardHeaderActions {...userProfile} />}
+				size="md"
+			/>
+			<UserProfileAttributes {...userProfile} />
+		</LinkCard>
+	);
+};
 
 const UserCardHeaderActions = memo(
 	(
