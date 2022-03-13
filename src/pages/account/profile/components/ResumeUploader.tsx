@@ -1,16 +1,12 @@
 import { AlertFeedback } from '@components/alert';
 import { AppDivider, FileUploader } from '@components/shared';
-import {
-	TUser_Profile,
-	useHideResumeMutation,
-	useUpdateResumeMutation
-} from '@generated/api';
+import { TUser_Profile, useUpdateResumeMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { cache } from '@pages/_app';
 import { formatUploadedUrls, redirectTo } from '@utils/validators';
 import gql from 'graphql-tag';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { IUploadedFileProps } from '../../../../types/upload';
 
 const ResumeUploader = () => {
