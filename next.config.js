@@ -56,6 +56,10 @@ module.exports = {
 				destination: '/auth/register'
 			},
 			{
+				source: '/register/registersuccess',
+				destination: '/auth/register/registersuccess'
+			},
+			{
 				source: '/login',
 				destination: '/auth/login'
 			},

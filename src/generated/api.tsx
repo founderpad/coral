@@ -4441,6 +4441,13 @@ export type TUser_Profile_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "user_profile" */
+export type TUser_Profile_Aggregate_Order_By = {
+  count?: InputMaybe<TOrder_By>;
+  max?: InputMaybe<TUser_Profile_Max_Order_By>;
+  min?: InputMaybe<TUser_Profile_Min_Order_By>;
+};
+
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type TUser_Profile_Append_Input = {
   industries?: InputMaybe<Scalars['jsonb']>;
@@ -4521,6 +4528,30 @@ export type TUser_Profile_Max_Fields = {
   website?: Maybe<Scalars['String']>;
 };
 
+/** order by max() on columns of table "user_profile" */
+export type TUser_Profile_Max_Order_By = {
+  availability?: InputMaybe<TOrder_By>;
+  background?: InputMaybe<TOrder_By>;
+  businessDescription?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
+  customPronouns?: InputMaybe<TOrder_By>;
+  facebook?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  instagram?: InputMaybe<TOrder_By>;
+  linkedin?: InputMaybe<TOrder_By>;
+  objective?: InputMaybe<TOrder_By>;
+  pronouns?: InputMaybe<TOrder_By>;
+  resume?: InputMaybe<TOrder_By>;
+  specialistIndustry?: InputMaybe<TOrder_By>;
+  startups?: InputMaybe<TOrder_By>;
+  statement?: InputMaybe<TOrder_By>;
+  status?: InputMaybe<TOrder_By>;
+  twitter?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
+  website?: InputMaybe<TOrder_By>;
+};
+
 /** aggregate min on columns */
 export type TUser_Profile_Min_Fields = {
   __typename?: 'user_profile_min_fields';
@@ -4544,6 +4575,30 @@ export type TUser_Profile_Min_Fields = {
   updatedAt?: Maybe<Scalars['timestamptz']>;
   userId?: Maybe<Scalars['uuid']>;
   website?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "user_profile" */
+export type TUser_Profile_Min_Order_By = {
+  availability?: InputMaybe<TOrder_By>;
+  background?: InputMaybe<TOrder_By>;
+  businessDescription?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
+  customPronouns?: InputMaybe<TOrder_By>;
+  facebook?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  instagram?: InputMaybe<TOrder_By>;
+  linkedin?: InputMaybe<TOrder_By>;
+  objective?: InputMaybe<TOrder_By>;
+  pronouns?: InputMaybe<TOrder_By>;
+  resume?: InputMaybe<TOrder_By>;
+  specialistIndustry?: InputMaybe<TOrder_By>;
+  startups?: InputMaybe<TOrder_By>;
+  statement?: InputMaybe<TOrder_By>;
+  status?: InputMaybe<TOrder_By>;
+  twitter?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
+  website?: InputMaybe<TOrder_By>;
 };
 
 /** response of any mutation on the table "user_profile" */
@@ -4720,6 +4775,10 @@ export type TUsers = {
   ticketExpiresAt: Scalars['timestamptz'];
   totpSecret?: Maybe<Scalars['String']>;
   updatedAt: Scalars['timestamptz'];
+  /** An array relationship */
+  user_profiles: Array<TUser_Profile>;
+  /** An aggregate relationship */
+  user_profiles_aggregate: TUser_Profile_Aggregate;
 };
 
 
@@ -4866,6 +4925,38 @@ export type TUsersMessages_AggregateArgs = {
   where?: InputMaybe<TMessage_Bool_Exp>;
 };
 
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersUser_ProfilesArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Profile_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Profile_Order_By>>;
+  where?: InputMaybe<TUser_Profile_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersUser_Profiles_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Profile_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Profile_Order_By>>;
+  where?: InputMaybe<TUser_Profile_Bool_Exp>;
+};
+
 /** aggregated selection of "auth.users" */
 export type TUsers_Aggregate = {
   __typename?: 'users_aggregate';
@@ -4923,6 +5014,7 @@ export type TUsers_Bool_Exp = {
   ticketExpiresAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   totpSecret?: InputMaybe<TString_Comparison_Exp>;
   updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  user_profiles?: InputMaybe<TUser_Profile_Bool_Exp>;
 };
 
 /** aggregate max on columns */
@@ -5014,6 +5106,7 @@ export type TUsers_Order_By = {
   ticketExpiresAt?: InputMaybe<TOrder_By>;
   totpSecret?: InputMaybe<TOrder_By>;
   updatedAt?: InputMaybe<TOrder_By>;
+  user_profiles_aggregate?: InputMaybe<TUser_Profile_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: users */
@@ -7145,13 +7238,16 @@ export type TResolversTypes = {
   user_profile: ResolverTypeWrapper<TUser_Profile>;
   user_profile_aggregate: ResolverTypeWrapper<TUser_Profile_Aggregate>;
   user_profile_aggregate_fields: ResolverTypeWrapper<TUser_Profile_Aggregate_Fields>;
+  user_profile_aggregate_order_by: TUser_Profile_Aggregate_Order_By;
   user_profile_append_input: TUser_Profile_Append_Input;
   user_profile_bool_exp: TUser_Profile_Bool_Exp;
   user_profile_delete_at_path_input: TUser_Profile_Delete_At_Path_Input;
   user_profile_delete_elem_input: TUser_Profile_Delete_Elem_Input;
   user_profile_delete_key_input: TUser_Profile_Delete_Key_Input;
   user_profile_max_fields: ResolverTypeWrapper<TUser_Profile_Max_Fields>;
+  user_profile_max_order_by: TUser_Profile_Max_Order_By;
   user_profile_min_fields: ResolverTypeWrapper<TUser_Profile_Min_Fields>;
+  user_profile_min_order_by: TUser_Profile_Min_Order_By;
   user_profile_mutation_response: ResolverTypeWrapper<TUser_Profile_Mutation_Response>;
   user_profile_order_by: TUser_Profile_Order_By;
   user_profile_pk_columns_input: TUser_Profile_Pk_Columns_Input;
@@ -7403,13 +7499,16 @@ export type TResolversParentTypes = {
   user_profile: TUser_Profile;
   user_profile_aggregate: TUser_Profile_Aggregate;
   user_profile_aggregate_fields: TUser_Profile_Aggregate_Fields;
+  user_profile_aggregate_order_by: TUser_Profile_Aggregate_Order_By;
   user_profile_append_input: TUser_Profile_Append_Input;
   user_profile_bool_exp: TUser_Profile_Bool_Exp;
   user_profile_delete_at_path_input: TUser_Profile_Delete_At_Path_Input;
   user_profile_delete_elem_input: TUser_Profile_Delete_Elem_Input;
   user_profile_delete_key_input: TUser_Profile_Delete_Key_Input;
   user_profile_max_fields: TUser_Profile_Max_Fields;
+  user_profile_max_order_by: TUser_Profile_Max_Order_By;
   user_profile_min_fields: TUser_Profile_Min_Fields;
+  user_profile_min_order_by: TUser_Profile_Min_Order_By;
   user_profile_mutation_response: TUser_Profile_Mutation_Response;
   user_profile_order_by: TUser_Profile_Order_By;
   user_profile_pk_columns_input: TUser_Profile_Pk_Columns_Input;
@@ -8501,6 +8600,8 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   ticketExpiresAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   totpSecret?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  user_profiles?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, RequireFields<TUsersUser_ProfilesArgs, never>>;
+  user_profiles_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, RequireFields<TUsersUser_Profiles_AggregateArgs, never>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

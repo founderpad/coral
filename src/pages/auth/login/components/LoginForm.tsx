@@ -19,9 +19,14 @@ const defaultValues = {
 const LoginForm = () => {
 	const onLogin = useLogin();
 	const isError = useQueryParam('error');
+	const isVerifiedEmail = useQueryParam('type') === 'emailVerify';
 
 	return (
 		<React.Fragment>
+			{isVerifiedEmail && (
+				<AlertFeedback message="Email address successfully verified" />
+			)}
+
 			<BaseForm<TLoginFields>
 				name="login-form"
 				onSubmit={onLogin}
