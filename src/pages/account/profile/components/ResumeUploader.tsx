@@ -1,11 +1,16 @@
 import { AlertFeedback } from '@components/alert';
-import { FileUploader } from '@components/shared';
-import { TUser_Profile, useUpdateResumeMutation } from '@generated/api';
+import { AppDivider, FileUploader } from '@components/shared';
+import {
+	TUser_Profile,
+	useHideResumeMutation,
+	useUpdateResumeMutation
+} from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { cache } from '@pages/_app';
 import { formatUploadedUrls, redirectTo } from '@utils/validators';
 import gql from 'graphql-tag';
+import React, { useCallback } from 'react';
 import { IUploadedFileProps } from '../../../../types/upload';
 
 const ResumeUploader = () => {
@@ -18,12 +23,15 @@ const ResumeUploader = () => {
 			fragment ResumeFragment on user_profile {
 				id
 				resume
+				hideResume
 			}
 		`
 	}) as TUser_Profile;
 
-	const isChangeSuccess = useQueryParam('ru_success');
-	const isChangeError = useQueryParam('ru_error');
+	const isUploadSuccess = useQueryParam('ru_success');
+	const isUploadError = useQueryParam('ru_error');
+	const isDeleteSuccess = useQueryParam('rd_success');
+	const isDeleteError = useQueryParam('rd_error');
 
 	const onComplete = (uploadedFiles: IUploadedFileProps[]) => {
 		updateResume({
@@ -36,10 +44,18 @@ const ResumeUploader = () => {
 				}
 			},
 			onCompleted: (_data) => {
-				redirectTo(false, 'ru');
+				if (uploadedFiles.length) {
+					redirectTo(false, 'ru');
+				} else {
+					redirectTo(false, 'rd');
+				}
 			},
 			onError: () => {
-				redirectTo(true, 'ru');
+				if (uploadedFiles.length) {
+					redirectTo(true, 'ru');
+				} else {
+					redirectTo(true, 'rd');
+				}
 			}
 		});
 	};
@@ -49,7 +65,7 @@ const ResumeUploader = () => {
 	);
 
 	return (
-		<>
+		<React.Fragment>
 			<FileUploader
 				label="Resume"
 				defaultFiles={defaultFiles}
@@ -57,20 +73,26 @@ const ResumeUploader = () => {
 				showUpload={true}
 				onComplete={onComplete}
 			/>
-			{isChangeSuccess && (
+			<AppDivider />
+
+			{(isUploadSuccess || isDeleteSuccess) && (
 				<AlertFeedback
 					status="success"
-					message="Resume has been added successfully"
+					message={`Resume has been ${
+						isUploadSuccess ? 'added' : 'deleted'
+					} successfully`}
 				/>
 			)}
 
-			{isChangeError && (
+			{(isUploadError || isDeleteError) && (
 				<AlertFeedback
 					status="error"
-					message="Failed to add resume. Please try again later"
+					message={`Failed to ${
+						isUploadError ? 'add' : 'delete'
+					} resume. Please try again later`}
 				/>
 			)}
-		</>
+		</React.Fragment>
 	);
 };
 

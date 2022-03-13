@@ -16,13 +16,17 @@ export const emailPattern = {
 export const formatDate = (
 	dateStr: string,
 	withTime?: boolean,
-	withYear?: boolean
+	withYear?: boolean,
+	capitalise = true
 ): string | undefined => {
 	if (!dateStr) return;
 	const date = new Date(dateStr);
 
 	if (isToday(date))
-		return 'Today' + (withTime ? ` ${format(date, 'HH:mm')}` : '');
+		return (
+			`${capitalise ? 'Today' : 'today'}` +
+			(withTime ? ` ${format(date, 'HH:mm')}` : '')
+		);
 	if (isYesterday(date))
 		return 'Yesterday' + (withTime ? ` ${format(date, 'HH:mm')}` : '');
 	return (

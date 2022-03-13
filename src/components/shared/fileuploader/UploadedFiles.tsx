@@ -4,8 +4,8 @@ import { CaptionLabel } from '@components/labels';
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import { useFileUploader } from '@hooks/util';
-import { formatTimestamp } from '@utils/validators';
-import React, { memo } from 'react';
+import { formatDate } from '@utils/validators';
+import React, { memo, useEffect } from 'react';
 import { IoDocumentSharp } from 'react-icons/io5';
 import { IUploadedFileProps } from '../../../types/upload';
 
@@ -15,13 +15,21 @@ interface Props {
 }
 
 export const UploadedFiles = memo((props: Props) => {
-	const { defaultFiles } = props;
-	const { uploadedFiles, onDelete } = useFileUploader();
+	const { defaultFiles, onComplete } = props;
+	const { uploadedFiles, onDelete, isDeleted } = useFileUploader();
 
 	// useEffect(() => {
 	// 	if (uploadedFiles.length) onComplete?.(uploadedFiles);
 	// 	if (isDeleted) onComplete?.([]);
 	// }, [uploadedFiles, isDeleted, onComplete]);
+
+	useEffect(() => {
+		if (uploadedFiles.length) {
+			onComplete?.(uploadedFiles);
+		} else {
+			if (isDeleted) onComplete?.([]);
+		}
+	}, [uploadedFiles, isDeleted, onComplete]);
 
 	const files = defaultFiles.length ? defaultFiles : uploadedFiles;
 
@@ -57,7 +65,13 @@ export const UploadedFiles = memo((props: Props) => {
 								View
 							</PrimaryLink>
 							<CaptionLabel>
-								Added {formatTimestamp(f.uploadedAt)}
+								Added{' '}
+								{formatDate(
+									new Date(parseInt(f.uploadedAt)).toString(),
+									undefined,
+									undefined,
+									false
+								)}
 							</CaptionLabel>
 						</Flex>
 					</StackLayout>

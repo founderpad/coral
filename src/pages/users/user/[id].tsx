@@ -109,7 +109,20 @@ const User: NextPage = () => {
 								{data?.user?.createdAt && (
 									<ProfileSectionLabel
 										label={
-											`Last seen ` + formatDate(lastSeen)
+											`Last seen ` +
+											(lastSeen
+												? formatDate(
+														lastSeen,
+														undefined,
+														undefined,
+														false
+												  )
+												: formatDate(
+														createdAt,
+														undefined,
+														undefined,
+														false
+												  ))
 										}
 										icon={IoTimeOutline}
 									/>
