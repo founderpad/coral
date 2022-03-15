@@ -56,10 +56,10 @@ const UserCard = (userProfile: TUserSearchFragment) => {
 					<FlexLayout alignItems="center" flexDirection="column">
 						<FlexLayout alignItems="center">
 							{userProfile?.user?.address?.country && (
-								<>
+								<React.Fragment>
 									{userProfile?.user?.address?.country}
 									<PointSeparator small />
-								</>
+								</React.Fragment>
 							)}
 
 							<Badge

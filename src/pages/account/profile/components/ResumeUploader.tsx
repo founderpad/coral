@@ -1,10 +1,10 @@
 import { AlertFeedback } from '@components/alert';
-import { AppDivider, FileUploader } from '@components/shared';
+import { FileUploader } from '@components/shared';
 import { TUser_Profile, useUpdateResumeMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { cache } from '@pages/_app';
-import { formatUploadedUrls, redirectTo } from '@utils/validators';
+import { formatUploadedUrls } from '@utils/validators';
 import gql from 'graphql-tag';
 import React from 'react';
 import { IUploadedFileProps } from '../../../../types/upload';
@@ -19,7 +19,6 @@ const ResumeUploader = () => {
 			fragment ResumeFragment on user_profile {
 				id
 				resume
-				hideResume
 			}
 		`
 	}) as TUser_Profile;
@@ -40,18 +39,10 @@ const ResumeUploader = () => {
 				}
 			},
 			onCompleted: (_data) => {
-				if (uploadedFiles.length) {
-					redirectTo(false, 'ru');
-				} else {
-					redirectTo(false, 'rd');
-				}
+				// redirectTo(false, `${uploadedFiles.length ? 'ru' : 'rd'}`);
 			},
 			onError: () => {
-				if (uploadedFiles.length) {
-					redirectTo(true, 'ru');
-				} else {
-					redirectTo(true, 'rd');
-				}
+				// redirectTo(true, `${uploadedFiles.length ? 'ru' : 'rd'}`);
 			}
 		});
 	};
@@ -69,7 +60,6 @@ const ResumeUploader = () => {
 				showUpload={true}
 				onComplete={onComplete}
 			/>
-			<AppDivider />
 
 			{(isUploadSuccess || isDeleteSuccess) && (
 				<AlertFeedback
