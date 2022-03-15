@@ -55,7 +55,12 @@ const User: NextPage = () => {
 	return (
 		<React.Fragment>
 			<DocumentTitle title="View user" />
-			<PageLayout title={`${displayName}'s profile`} action={<Actions />}>
+			<PageLayout
+				title={`${displayName}'s profile`}
+				action={<Actions />}
+				borderWidth={{ base: 0, lg: 1 }}
+				borderColor="fpLightGrey.900"
+			>
 				<Grid
 					templateRows="repeat(1, 1fr)"
 					templateColumns="repeat(12, 1fr)"

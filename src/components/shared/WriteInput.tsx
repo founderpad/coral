@@ -21,7 +21,13 @@ const WriteInput = (props: Props) => {
 	} = props;
 
 	return (
-		<StackLayout spacing={2} d="flex" p={4} justifyContent="flex-end">
+		<StackLayout
+			spacing={2}
+			d="flex"
+			p={4}
+			justifyContent="flex-end"
+			alignItems="center"
+		>
 			<StackLayout
 				direction="row"
 				spacing={2}
@@ -42,7 +48,7 @@ const WriteInput = (props: Props) => {
 					maxRows={2}
 					resize="none"
 					minRows={1}
-					minH="fit-content"
+					minH="full"
 					p={2}
 					title={placeholder}
 					_hover={{
