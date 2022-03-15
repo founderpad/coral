@@ -45,20 +45,14 @@ export type TFormSelectFieldProps<TFormValues> =
 
 export type TFormTextareaFieldProps<TFormValues> = TFormFieldProps<TFormValues>;
 
-const FormFieldLimit = ({
-	max,
-	value = ''
-}: {
-	max: number;
-	value: string;
-}) => {
+const FormFieldLimit = ({ max, value }: { max: number; value: string }) => {
 	return (
 		<FormHelperText
 			fontSize="x-small"
 			color={value?.length > max ? 'red.500' : 'fpGrey.300'}
 			ml="auto"
 		>
-			{max - value?.length} / {max}
+			{max - (value?.length ?? 0)} / {max}
 		</FormHelperText>
 	);
 };

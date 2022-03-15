@@ -22,6 +22,7 @@ const CreateIdeaForm = () => {
 	const defaultValues = {
 		name: '',
 		summary: '',
+		description: '',
 		status: '',
 		field: '',
 		competitors: '',

@@ -112,7 +112,6 @@ export const useResetPassword = () => {
 			redirectTo(false, 'rp');
 		} catch (error) {
 			redirectTo(true, 'rp');
-			console.error('Error resetting password: ', error);
 			showErrorNotification({
 				title: 'Failed to reset password',
 				description:

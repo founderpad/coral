@@ -110,7 +110,7 @@ const WorkExperienceTab = () => {
 				<ContentFieldAndValue
 					title="Skills"
 					value={
-						skills.length ? (
+						skills?.length ? (
 							<SkillsBadges skills={skills} />
 						) : (
 							'No skills selected'
