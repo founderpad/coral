@@ -45,7 +45,6 @@ const SearchContentGridLayout = ({
 			rounded={{ base: 'none', lg: 'md' }}
 			borderWidth={{ base: 0, lg: 1 }}
 			borderColor="fpLightGrey.900"
-			overflowY="auto"
 		>
 			{children}
 		</GridItem>

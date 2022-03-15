@@ -160,7 +160,7 @@ const IdeasContainer = () => {
 							(data?.idea_preview_aggregate?.aggregate?.count ||
 								0) / 10
 						}
-						pathname="/ideas"
+						pathname="/ideas/search"
 					/>
 				)}
 			</StackLayout>

@@ -12,17 +12,17 @@ import { SubNav } from './SubNav';
 
 const MobileNav = () => {
 	const { isOpen } = useMobileNav();
-
 	const isMobile = useMobile();
 
 	if (!isMobile) return null;
+
 	return (
 		<StackLayout
 			style={{
 				backgroundColor: 'rgba(255,255,255,0.95)'
 			}}
 			display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
-			position="absolute"
+			position="fixed"
 			top={10}
 			zIndex={999}
 			p={4}

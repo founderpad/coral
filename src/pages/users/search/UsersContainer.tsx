@@ -132,7 +132,7 @@ const UsersContainer = () => {
 							(data?.user_profile_aggregate.aggregate?.count ||
 								0) / 10
 						}
-						pathname="/founders"
+						pathname="/users/search"
 					/>
 				)}
 				)
