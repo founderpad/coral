@@ -25,8 +25,6 @@ const Profile: NextPage = () => {
 				title="Your profile"
 				action={updatedAt && <LastUpdatedAt date={updatedAt} />}
 				p={{ base: 0, md: 4 }}
-				borderWidth={{ base: 0, lg: 1 }}
-				borderColor="fpLightGrey.900"
 			>
 				<ProfileLayout />
 			</PageLayout>

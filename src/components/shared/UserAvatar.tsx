@@ -44,7 +44,7 @@ export const UserAvatarDetails = ({
 	actions
 }: Props) => {
 	return (
-		<StackLayout align="center" direction={direction} spacing={2} w="full">
+		<StackLayout align="center" direction={direction} spacing={2}>
 			<UserAvatar src={src} size={size} direction={direction} />
 			<StackLayout
 				spacing={0}
@@ -52,7 +52,7 @@ export const UserAvatarDetails = ({
 				alignItems={direction === 'column' ? 'center' : 'flex-start'}
 				flex={1}
 			>
-				<FlexLayout alignItems="baseline" lineHeight="tall">
+				<FlexLayout alignItems="baseline" lineHeight="tall" flex={1}>
 					<Label
 						fontWeight="medium"
 						fontSize={fontSize}
