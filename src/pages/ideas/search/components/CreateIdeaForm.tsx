@@ -81,7 +81,11 @@ const CreateIdeaForm = () => {
 						control={control}
 						fieldProps={{
 							placeholder:
-								'Write the idea name (max. 75 characters)'
+								'Write the idea name (max. 75 characters)',
+							variant: 'flushed',
+							size: 'lg',
+							fontSize: 'lg',
+							rounded: 'none'
 						}}
 						rules={{
 							required:

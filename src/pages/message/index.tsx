@@ -29,12 +29,7 @@ const Messages: NextPage = () => (
 			/>
 		</Head>
 		<DocumentTitle title="Messages" />
-		<PageLayout
-			title="Your messages"
-			p={4}
-			borderWidth={{ base: 0, lg: 1 }}
-			borderColor="fpLightGrey.900"
-		>
+		<PageLayout title="Your messages" p={4}>
 			<MessagesContainer />
 		</PageLayout>
 	</React.Fragment>

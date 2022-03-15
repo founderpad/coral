@@ -21,18 +21,13 @@ const MessageThread = () => {
 
 	return (
 		<React.Fragment>
-			<PageLayout
-				title="Your chat with Jamie"
-				p={0}
-				borderWidth={{ base: 0, lg: 1 }}
-				borderColor="fpLightGrey.900"
-			>
+			<PageLayout title="Your chat with Jamie" p={0}>
 				<StackLayout p={4} flex={1} borderBottomWidth={1}>
 					{data?.message.map((message) => (
 						<UserAvatarDetails
 							key={message.id}
-							title={message.sender.displayName}
-							src={message.sender.avatarUrl || undefined}
+							title={message.sender?.displayName}
+							src={message.sender?.avatarUrl || undefined}
 							subtitle={message.content}
 							actions={
 								<Label

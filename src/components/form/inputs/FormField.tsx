@@ -167,7 +167,6 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 				{...rest}
 			>
 				<Input
-					{...fieldProps}
 					onChange={onChange}
 					value={value as string}
 					rounded="md"
@@ -183,6 +182,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 					_hover={{
 						borderColor: hasError ? 'red.500' : 'inherit'
 					}}
+					{...fieldProps}
 				/>
 			</FormField>
 		</FormControl>
