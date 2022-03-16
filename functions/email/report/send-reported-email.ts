@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+import { Request, Response } from 'express';
 
 const CONFIG = {
 	apiVersion: '2010-12-01',
@@ -10,7 +11,7 @@ const CONFIG = {
 const AWS_SES = new AWS.SES(CONFIG);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default (req, res) => {
+export default (req: Request, res: Response) => {
 	AWS_SES.sendEmail({
 		Source: 'support@founderpad.com',
 		Destination: {
@@ -28,9 +29,10 @@ export default (req, res) => {
 	                                <p>Hi ${
 										req.body.event.data.new.recipient_name
 									},</p>
-	                                <p>Your ${req.body.event.data.new.type.toLowerCase()} <i>"${
-						req.body.event.data.new.content
-					}"</i> has been reported for the following reason:
+	                                <p>Your ${req.body.event.data.new.type.toLowerCase()} <i>
+										"${
+											req.body.event.data.new.content
+										}"</i> has been reported for the following reason:
 	                                    <strong>${
 											req.body.event.data.new.reason
 										}</strong>
@@ -47,27 +49,6 @@ export default (req, res) => {
 			}
 		}
 	}).promise();
-
-	// await AWS_SES.sendEmail({
-	// 	Source: 'jamie@founderpad.com',
-	// 	Destination: {
-	// 		// ToAddresses: [`${req.body.event.data.new.recipientEmail}`],
-	// 		ToAddresses: ['success@simulator.amazonses.com'],
-	// 		BccAddresses: ['jamie@founderpad.com']
-	// 	},
-	// 	Message: {
-	// 		Subject: {
-	// 			Charset: 'UTF-8',
-	// 			Data: `Your ${req.body.event.data.new.type.toLowerCase()} has been reported`
-	// 		},
-	// 		Body: {
-	// 			Html: {
-	// 				Charset: 'UTF-8',
-	// 				Data: 'Test email'
-	// 			}
-	// 		}
-	// 	}
-	// }).promise();
 
 	res.status(200).send('Email sent successfully');
 };
