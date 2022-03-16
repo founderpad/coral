@@ -340,7 +340,7 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 						valueContainer: (provided) => ({
 							...provided,
 							color: '#718096',
-							padding: '8px'
+							padding: '4px 8px'
 						}),
 						noOptionsMessage: (provided) => ({
 							...provided,

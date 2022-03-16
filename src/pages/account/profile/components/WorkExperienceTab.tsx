@@ -1,6 +1,7 @@
 import { Tag } from '@chakra-ui/react';
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
+import { Label } from '@components/labels';
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { Loading, TitleEditAction } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
@@ -121,7 +122,15 @@ const WorkExperienceTab = () => {
 
 			<AppDivider />
 
-			<TitleEditAction title="Your resume" />
+			<TitleEditAction
+				title="Your resume"
+				subtitle={
+					<Label fontSize="xs" color="fpGrey.500">
+						Users will be able to view your resume by going to your
+						profile
+					</Label>
+				}
+			/>
 			<ResumeUploader />
 		</StackLayout>
 	);
