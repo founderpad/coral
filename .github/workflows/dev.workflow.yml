@@ -33,7 +33,7 @@ jobs:
                   echo "Dependencies installed"
 
             - name: Install functions dependencies
-              working-directory: ./functions
+              working-directory: functions
               run: yarn install
 
             - name: Install Hasura CLI
