@@ -1,5 +1,4 @@
 const AWS = require('aws-sdk');
-import { Request, Response } from 'express';
 
 const CONFIG = {
 	apiVersion: '2010-12-01',
@@ -11,7 +10,7 @@ const CONFIG = {
 const AWS_SES = new AWS.SES(CONFIG);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default (req: Request, res: Response) => {
+export default (req, res) => {
 	AWS_SES.sendEmail({
 		Source: 'support@founderpad.com',
 		Destination: {
