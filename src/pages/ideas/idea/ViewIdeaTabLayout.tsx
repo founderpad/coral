@@ -42,7 +42,7 @@ const ViewIdeaTabLayout = () => {
 			tabs={[
 				{ label: 'Idea' },
 				{
-					label: 'Interest'
+					...(showInterestTab && { label: 'Interest' })
 				}
 			]}
 			overflow="hidden"
