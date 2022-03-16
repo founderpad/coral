@@ -68,7 +68,7 @@ const UserCard = (userProfile: TUserSearchFragment) => {
 								variant="solid"
 								fontWeight="normal"
 								rounded="md"
-								fontSize="xs"
+								fontSize="x-small"
 							>
 								{userProfile?.objective}
 							</Badge>
