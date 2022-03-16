@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../doodles"
+		},
+		{
+			"path": "../email-templates"
 		}
 	],
 	"settings": {

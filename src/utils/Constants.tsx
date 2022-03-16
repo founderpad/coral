@@ -23,7 +23,7 @@ export const ALL_IDEA_CATEGORY_FIELDS: TOption[] = [
 	{ label: 'Agriculture', value: 'Agriculture' },
 	{ label: 'Clothing', value: 'Clothing' },
 	{ label: 'Construction', value: 'Construction' },
-	{ label: 'Crypto', value: 'Crypto' },
+	{ label: 'Cryptocurrency', value: 'Cryptocurrency' },
 	{ label: 'Education', value: 'Education' },
 	{ label: 'Engineering', value: 'Engineering' },
 	{ label: 'Entertainment', value: 'Entertainment' },

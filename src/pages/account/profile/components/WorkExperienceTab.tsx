@@ -7,16 +7,15 @@ import { Loading, TitleEditAction } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
 import OverviewTags from '@components/shared/OverviewTags';
-import ModalDrawerContext from '@context/ModalDrawerContext';
-import { useQueryParam } from '@hooks/util';
-import React, { memo, useContext } from 'react';
+import { useModalDrawer, useQueryParam } from '@hooks/util';
+import React, { memo } from 'react';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
 
 const WorkExperienceTab = () => {
 	const userProfile = useProfileFragment();
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const { setModalDrawer } = useModalDrawer();
 
 	const isChangeSuccess = useQueryParam('exp_success');
 	const isChangeError = useQueryParam('exp_error');
