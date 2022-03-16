@@ -29,7 +29,8 @@ const LogoutModal = () => {
 			name="logout-modal-open-button"
 			variant="ghost"
 			onClick={onClick}
-			ml={1}
+			pl={0}
+			w="full"
 		>
 			Log out
 		</DeleteButton>

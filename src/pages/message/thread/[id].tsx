@@ -1,6 +1,7 @@
 import { Label } from '@components/labels';
 import { PageLayout, StackLayout } from '@components/layouts';
-import { Loading, UserAvatarDetails } from '@components/shared';
+import { Loading, PointSeparator, UserAvatarDetails } from '@components/shared';
+import PronounsLabel from '@components/shared/PronounsLabel';
 import { useMessageListSubscription } from '@generated/api';
 import { useQueryParam } from '@hooks/util';
 import AuthFilter from '@utils/AuthFilter';
@@ -30,13 +31,25 @@ const MessageThread = () => {
 							src={message.sender?.avatarUrl || undefined}
 							subtitle={message.content}
 							actions={
-								<Label
-									d="flex"
-									fontSize="x-small"
-									color="fpGrey.500"
-								>
-									{formatDate(message.createdAt, true)}
-								</Label>
+								<React.Fragment>
+									<PronounsLabel
+										pronouns={
+											message.sender?.profile?.pronouns
+										}
+										customPronouns={
+											message.sender?.profile
+												?.customPronouns
+										}
+									/>
+									<PointSeparator small />
+									<Label
+										d="flex"
+										fontSize="x-small"
+										color="fpGrey.500"
+									>
+										{formatDate(message.createdAt, true)}
+									</Label>
+								</React.Fragment>
 							}
 						/>
 					))}

@@ -10,7 +10,7 @@ const PronounsLabel = memo(({ pronouns, customPronouns }: TPronouns) => {
 	if (!pronouns) return null;
 
 	return (
-		<Label fontSize="xs" color="fpGrey.500">
+		<Label fontSize="x-small" color="fpGrey.500">
 			({customPronouns ? customPronouns : pronouns})
 		</Label>
 	);

@@ -2,7 +2,7 @@ import { StackLayout } from '@components/layouts';
 import { useCurrentUser } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import React from 'react';
-import NewMessage from './NewMessageModal';
+import NewMessageModal from './NewMessageModal';
 
 const Actions = () => {
 	const userId = useQueryParam<string>('id');
@@ -10,7 +10,7 @@ const Actions = () => {
 
 	return (
 		<StackLayout direction="row">
-			{userId !== authUserId && <NewMessage userId={userId} />}
+			{userId !== authUserId && <NewMessageModal userId={userId} />}
 		</StackLayout>
 	);
 };

@@ -24,12 +24,12 @@ export const BaseMenuItem = ({
 		<MenuItem
 			{...rest}
 			alignItems="center"
-			icon={icon && <Icon as={icon} mr={1} />}
+			icon={icon && <Icon as={icon} mr="1px" color="fpGrey.500" />}
 		>
-			<Label fontWeight="medium" fontSize="small" color={color}>
+			<Label fontWeight="medium" fontSize="xs" color={color}>
 				{title}
 			</Label>
-			<Label fontSize="xs" color="gray.400">
+			<Label fontSize="xs" color="fpGrey.300">
 				{subTitle}
 			</Label>
 		</MenuItem>

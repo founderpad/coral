@@ -28,7 +28,7 @@ export const BaseMenu = ({
 				size="sm"
 				alignSelf="normal"
 			>
-				<Icon as={IoEllipsisVerticalOutline} color="gray.500" />
+				<Icon as={IoEllipsisVerticalOutline} color="fpGrey.500" />
 			</MenuButton>
 			<MenuList rounded="md" textAlign="start" minW="auto" p={0}>
 				{children}

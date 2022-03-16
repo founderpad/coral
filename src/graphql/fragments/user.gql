@@ -36,4 +36,8 @@ fragment MessageUser on users {
 	id
 	displayName
 	avatarUrl
+	profile {
+		pronouns
+		customPronouns
+	}
 }

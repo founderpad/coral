@@ -230,6 +230,7 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 					fontSize="smaller"
 					variant="outline"
 					maxH="75px"
+					p="8px"
 					aria-label={name}
 					aria-invalid={hasError}
 					borderColor={hasError ? 'red.500' : 'inherit'}
@@ -338,7 +339,8 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 						}),
 						valueContainer: (provided) => ({
 							...provided,
-							color: '#718096'
+							color: '#718096',
+							padding: '8px'
 						}),
 						noOptionsMessage: (provided) => ({
 							...provided,

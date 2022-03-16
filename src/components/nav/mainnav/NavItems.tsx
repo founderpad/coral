@@ -1,8 +1,5 @@
-import { Flex } from '@chakra-ui/layout';
-import { Icon } from '@chakra-ui/react';
 import {
 	IoAddOutline,
-	IoLockClosedOutline,
 	IoPersonOutline,
 	IoSearchOutline
 } from '@components/icons';
@@ -64,7 +61,6 @@ const NavItems: Array<NavItem> = [
 	// },
 	{
 		label: 'Users',
-
 		href: '/users/search?page=1',
 		items: [
 			{
@@ -76,24 +72,31 @@ const NavItems: Array<NavItem> = [
 		]
 	},
 	{
-		label: (
-			<Flex display="inline-flex" alignItems="center">
-				Messages
-				<Icon as={IoLockClosedOutline} ml={2} color="goldenrod" />
-			</Flex>
-		),
+		label: 'Messages',
 		href: '/messages'
-	},
-	{
-		label: (
-			<Flex display="inline-flex" alignItems="center">
-				Coming soon
-				<Icon as={IoLockClosedOutline} ml={2} color="goldenrod" />
-			</Flex>
-		),
-		href: '/mentor',
-		divider: true
 	}
+	// {
+	// label: (
+	// 	<Flex display="inline-flex" alignItems="center">
+	// 		Mentor
+	// 		<Icon as={IoLockClosedOutline} ml={2} color="goldenrod" />
+	// 	</Flex>
+	// ),
+	// label: (
+	// 	<Button
+	// 		px={2}
+	// 		fontSize="xs"
+	// 		variant="unstyled"
+	// 		rightIcon={<IoLockClosedOutline color="goldenrod" />}
+	// 		isDisabled
+	// 	>
+	// 		Mentor
+	// 	</Button>
+	// ),
+
+	// href: '/mentor',
+	// divider: true
+	// }
 ];
 
 export default NavItems;

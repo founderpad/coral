@@ -1,7 +1,7 @@
+import { ButtonProps, IconButton } from '@chakra-ui/react';
 import { BaseButton, SubmitButton } from '@components/buttons';
 import { BaseForm } from '@components/form';
 import { FormTextarea } from '@components/form/inputs/FormField';
-import { StackLayout } from '@components/layouts';
 import {
 	TMessage,
 	useNewMessageMutation,
@@ -13,7 +13,13 @@ import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
 import { IoChatboxEllipsesSharp } from 'react-icons/io5';
 
-const NewMessageModal = memo(({ userId }: { userId: string }) => {
+interface Props {
+	userId: string;
+	icon?: boolean;
+	buttonProps?: ButtonProps;
+}
+
+const NewMessageModal = memo(({ userId, icon = false, buttonProps }: Props) => {
 	const { setModalDrawer } = useModalDrawer();
 
 	const onNewMessageClick = useCallback(() => {
@@ -31,18 +37,30 @@ const NewMessageModal = memo(({ userId }: { userId: string }) => {
 		});
 	}, [setModalDrawer, userId]);
 
-	return (
-		<StackLayout direction="row">
-			<BaseButton
-				name="message-user"
-				variant="outline"
-				colorScheme="fpPrimary"
-				leftIcon={<IoChatboxEllipsesSharp />}
+	if (icon)
+		return (
+			<IconButton
+				aria-label="message-user"
 				onClick={onNewMessageClick}
+				colorScheme="fpPrimary"
+				variant="outline"
+				size="sm"
 			>
-				Message
-			</BaseButton>
-		</StackLayout>
+				<IoChatboxEllipsesSharp />
+			</IconButton>
+		);
+
+	return (
+		<BaseButton
+			{...buttonProps}
+			name="message-user"
+			variant="outline"
+			colorScheme="fpPrimary"
+			onClick={onNewMessageClick}
+			leftIcon={<IoChatboxEllipsesSharp />}
+		>
+			Message
+		</BaseButton>
 	);
 });
 

@@ -1,9 +1,11 @@
 import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/react';
 import { StackLayout } from '@components/layouts';
 import BasePopover from '@components/popover/BasePopover';
 import Router from 'next/router';
 import React, { memo } from 'react';
+import { IoLockClosedOutline } from 'react-icons/io5';
 import NavItems from './NavItems';
 import { SubNav } from './SubNav';
 
@@ -67,6 +69,15 @@ const DesktopNav = memo(() => {
 					)}
 				</BasePopover>
 			))}
+			<Button
+				px={2}
+				fontSize="xs"
+				variant="unstyled"
+				rightIcon={<IoLockClosedOutline />}
+				isDisabled
+			>
+				Mentor
+			</Button>
 			{/* {!isProfileComplete && <ProfileNotSet />} */}
 		</StackLayout>
 	);

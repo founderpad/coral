@@ -1,10 +1,10 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
-import { Flex, Stack, Text } from '@chakra-ui/layout';
+import { Text } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/react';
 import { IoChevronDownSharp } from '@components/icons';
-import { StackLayout } from '@components/layouts';
+import { FlexLayout, StackLayout } from '@components/layouts';
 import { useMobile, useMobileNav } from '@hooks/util';
 import React, { memo } from 'react';
 import NavItems, { NavItem } from './NavItems';
@@ -19,7 +19,7 @@ const MobileNav = () => {
 	return (
 		<StackLayout
 			style={{
-				backgroundColor: 'rgba(255,255,255,0.95)'
+				backgroundColor: 'rgba(255, 255, 255, 0.97)'
 			}}
 			display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
 			position="fixed"
@@ -45,7 +45,7 @@ const MobileNavItem = (navItem: NavItem) => {
 
 	return (
 		<StackLayout spacing={4} onClick={navItem && onToggle}>
-			<Flex
+			<FlexLayout
 				pb={2}
 				justify="space-between"
 				align="center"
@@ -65,20 +65,20 @@ const MobileNavItem = (navItem: NavItem) => {
 				{navItem.items?.length && (
 					<Icon
 						as={IoChevronDownSharp}
-						transition={'all .25s ease-in-out'}
+						transition="all .25s ease-in-out"
 						transform={isOpen ? 'rotate(180deg)' : ''}
 						w={4}
 						h={4}
 					/>
 				)}
-			</Flex>
+			</FlexLayout>
 
 			<Collapse in={isOpen} animateOpacity>
-				<Stack pl={2} align={'start'}>
+				<StackLayout pl={2} align="start" spacing={2}>
 					{items?.map((item, i) => (
 						<SubNav {...item} key={i} />
 					))}
-				</Stack>
+				</StackLayout>
 			</Collapse>
 		</StackLayout>
 	);

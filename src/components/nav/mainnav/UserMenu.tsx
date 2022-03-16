@@ -9,7 +9,11 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import { IoAlertCircleSharp, IoEllipsisVertical } from '@components/icons';
+import {
+	IoEllipsisVertical,
+	IoLockClosedOutline,
+	IoWarningSharp
+} from '@components/icons';
 import { Label } from '@components/labels';
 import { BaseLink } from '@components/links';
 import LogoutModal from '@components/modal/LogoutModal';
@@ -52,7 +56,13 @@ const UserMenu = () => {
 			</MenuButton>
 			<MenuList rounded="md" textAlign="start" p={4} maxW={200}>
 				<CurrentUserAvatarDetails size="md" direction="column" />
-				{!isProfileComplete && <ProfileNotSet />}
+
+				{!isProfileComplete && (
+					<>
+						<MenuDivider my={4} />
+						<ProfileNotSet />
+					</>
+				)}
 				<MenuDivider my={4} />
 				<MenuGroup>
 					<MenuItem
@@ -64,15 +74,17 @@ const UserMenu = () => {
 					>
 						Profile
 					</MenuItem>
-					{/* <MenuItem
-						as={BaseLink}
-						href="/user/settings"
+					<MenuItem
+						// as={BaseLink}
+						// href="/account/profile"
 						fontSize="small"
-						color="gray.500"
-						_hover={{ color: 'black' }}
+						color="fpGrey.500"
+						_hover={{ color: 'fpGrey.900' }}
+						isDisabled={true}
 					>
 						Settings
-					</MenuItem> */}
+						<IoLockClosedOutline style={{ marginLeft: 4 }} />
+					</MenuItem>
 				</MenuGroup>
 				<MenuDivider my={4} />
 				<LogoutModal />
@@ -83,13 +95,12 @@ const UserMenu = () => {
 
 const ProfileNotSet = memo(() => (
 	<Label
-		py={3}
 		color="red.500"
 		fontSize="xs"
-		icon={IoAlertCircleSharp}
+		icon={IoWarningSharp}
 		iconColor="red.500"
-		alignItems="center"
 		d="flex"
+		alignItems="center"
 	>
 		Profile not set
 	</Label>

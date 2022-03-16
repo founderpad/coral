@@ -66,7 +66,7 @@ export const UserAvatarDetails = ({
 					>
 						{title}
 					</Label>
-					{actions}
+					<FlexLayout alignItems="inherit">{actions}</FlexLayout>
 				</FlexLayout>
 				{subtitle && (
 					<Label color="fpGrey.500" fontSize="xs">

@@ -5239,7 +5239,7 @@ export type TUserAddressFragment = { __typename?: 'user_address', location?: str
 
 export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null | undefined, startups?: string | null | undefined, availability?: string | null | undefined, specialistIndustry?: string | null | undefined, status?: string | null | undefined, objective?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
 
-export type TMessageUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined };
+export type TMessageUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined };
 
 export type TCreateIdeaMutationVariables = Exact<{
   idea: TIdeas_Insert_Input;
@@ -5339,21 +5339,21 @@ export type TNewMessageMutationVariables = Exact<{
 }>;
 
 
-export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } } | null | undefined };
+export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } } | null | undefined };
 
 export type TUserMessageThreadsQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null | undefined, ownerId?: any | null | undefined, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }> }>, total: { __typename?: 'message_thread_aggregate', aggregate?: { __typename?: 'message_thread_aggregate_fields', count: number } | null | undefined } };
+export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null | undefined, ownerId?: any | null | undefined, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } }> }>, total: { __typename?: 'message_thread_aggregate', aggregate?: { __typename?: 'message_thread_aggregate_fields', count: number } | null | undefined } };
 
 export type TMessageListSubscriptionVariables = Exact<{
   messageThreadId: Scalars['uuid'];
 }>;
 
 
-export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined } }> };
+export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } }> };
 
 export type TCreateReportMutationVariables = Exact<{
   report: TReport_Insert_Input;
@@ -5501,6 +5501,10 @@ export const MessageUserFragmentDoc = gql`
   id
   displayName
   avatarUrl
+  profile {
+    pronouns
+    customPronouns
+  }
 }
     `;
 export const UserFieldsWithEmailFragmentDoc = gql`
