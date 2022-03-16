@@ -2,8 +2,8 @@ const AWS = require('aws-sdk');
 
 const CONFIG = {
 	apiVersion: '2010-12-01',
-	accessKeyId: 'AKIAXAVHTNCXREX2LSFD',
-	secretAccessKey: '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',
+	accessKeyId: 'AKIAXAVHTNCXZV7KU356',
+	secretAccessKey: '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',
 	region: 'eu-west-1'
 };
 
@@ -16,11 +16,7 @@ export default (req, res) => {
 		Destination: {
 			ToAddresses: [`${req.body.event.data.new.email}`],
 			// ToAddresses: ['success@simulator.amazonses.com'],
-			BccAddresses: [
-				'jamie@founderpad.com',
-				'toby@founderpad.com',
-				'success@simulator.amazonses.com'
-			]
+			BccAddresses: ['jamie@founderpad.com', 'toby@founderpad.com']
 		},
 		Message: {
 			Body: {
@@ -159,5 +155,5 @@ export default (req, res) => {
 		}
 	}).promise();
 
-	res.send('Email sent successfully');
+	res.status(200).send('Email sent successfully');
 };
