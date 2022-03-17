@@ -116,7 +116,7 @@ export const redirectTo = (error: boolean, param?: string) => {
 
 	Router.replace(
 		{
-			pathname: '/login',
+			pathname: Router.pathname,
 			query: { ...Router.query, ...buildParams() }
 		},
 		undefined,

@@ -17,14 +17,13 @@ type Props = AvatarProps & {
 export const UserAvatar = (props: Props) => {
 	const avatarSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
-	const { size, badge, ...rest } = props;
+	const { size, badge, src, ...rest } = props;
 	return (
 		<Avatar
 			{...rest}
-			name="user-avatar"
 			size={size ?? avatarSize}
 			rounded="full"
-			bg="gray.200"
+			bg="fpGrey.300"
 			color="white"
 			ignoreFallback={false}
 		>
