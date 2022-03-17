@@ -555,7 +555,7 @@ export type TIdea_Comment_Replies_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "idea_comment_replies" */
 export type TIdea_Comment_Replies_Arr_Rel_Insert_Input = {
   data: Array<TIdea_Comment_Replies_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<TIdea_Comment_Replies_On_Conflict>;
 };
 
@@ -649,7 +649,7 @@ export type TIdea_Comment_Replies_Mutation_Response = {
   returning: Array<TIdea_Comment_Replies>;
 };
 
-/** on conflict condition type for table "idea_comment_replies" */
+/** on_conflict condition type for table "idea_comment_replies" */
 export type TIdea_Comment_Replies_On_Conflict = {
   constraint: TIdea_Comment_Replies_Constraint;
   update_columns?: Array<TIdea_Comment_Replies_Update_Column>;
@@ -811,7 +811,7 @@ export type TIdea_Comments_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "idea_comments" */
 export type TIdea_Comments_Arr_Rel_Insert_Input = {
   data: Array<TIdea_Comments_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<TIdea_Comments_On_Conflict>;
 };
 
@@ -925,11 +925,11 @@ export type TIdea_Comments_Mutation_Response = {
 /** input type for inserting object relation for remote table "idea_comments" */
 export type TIdea_Comments_Obj_Rel_Insert_Input = {
   data: TIdea_Comments_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<TIdea_Comments_On_Conflict>;
 };
 
-/** on conflict condition type for table "idea_comments" */
+/** on_conflict condition type for table "idea_comments" */
 export type TIdea_Comments_On_Conflict = {
   constraint: TIdea_Comments_Constraint;
   update_columns?: Array<TIdea_Comments_Update_Column>;
@@ -1751,11 +1751,11 @@ export type TIdeas_Mutation_Response = {
 /** input type for inserting object relation for remote table "ideas" */
 export type TIdeas_Obj_Rel_Insert_Input = {
   data: TIdeas_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<TIdeas_On_Conflict>;
 };
 
-/** on conflict condition type for table "ideas" */
+/** on_conflict condition type for table "ideas" */
 export type TIdeas_On_Conflict = {
   constraint: TIdeas_Constraint;
   update_columns?: Array<TIdeas_Update_Column>;
@@ -2188,7 +2188,7 @@ export type TMessage_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "message" */
 export type TMessage_Arr_Rel_Insert_Input = {
   data: Array<TMessage_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<TMessage_On_Conflict>;
 };
 
@@ -2270,7 +2270,7 @@ export type TMessage_Mutation_Response = {
   returning: Array<TMessage>;
 };
 
-/** on conflict condition type for table "message" */
+/** on_conflict condition type for table "message" */
 export type TMessage_On_Conflict = {
   constraint: TMessage_Constraint;
   update_columns?: Array<TMessage_Update_Column>;
@@ -2515,11 +2515,11 @@ export type TMessage_Thread_Mutation_Response = {
 /** input type for inserting object relation for remote table "message_thread" */
 export type TMessage_Thread_Obj_Rel_Insert_Input = {
   data: TMessage_Thread_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<TMessage_Thread_On_Conflict>;
 };
 
-/** on conflict condition type for table "message_thread" */
+/** on_conflict condition type for table "message_thread" */
 export type TMessage_Thread_On_Conflict = {
   constraint: TMessage_Thread_Constraint;
   update_columns?: Array<TMessage_Thread_Update_Column>;

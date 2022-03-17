@@ -11,10 +11,11 @@ const AWS_SES = new AWS.SES(CONFIG);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default async (req, res) => {
+	console.log(req);
 	await AWS_SES.sendEmail({
 		Source: 'contact@founderpad.com',
 		Destination: {
-			ToAddresses: [`${req.body.event.data.new.email}`],
+			ToAddresses: [`jamie@founderpad.com`],
 			// ToAddresses: ['success@simulator.amazonses.com'],
 			BccAddresses: ['jamie@founderpad.com', 'toby@founderpad.com']
 		},
@@ -88,7 +89,7 @@ export default async (req, res) => {
 										<td>
 											<table id="inner-container">
 												<tr>
-													<td><h2>Hi ${req.body.event.data.new.display_name}, welcome to founderpad!</h2></td>
+													<td><h2>Hi Jamie, welcome to founderpad!</h2></td>
 													<tr>
 														<td>
 															We are excited to have you on board, and we hope that you are just as excited at the prospect of getting valuable feedback on your business idea, 
