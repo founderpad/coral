@@ -70,7 +70,7 @@ export const ImageUploader = (props: Props) => {
 						responsive={true}
 						checkOrientation={false}
 						ref={cropperRef}
-						style={{ position: 'relative' }}
+						style={{ position: 'relative', overflow: 'hidden' }}
 						guides={true}
 					/>
 

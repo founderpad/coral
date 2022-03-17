@@ -17,10 +17,15 @@ type Props = AvatarProps & {
 export const UserAvatar = (props: Props) => {
 	const avatarSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
-	const { size, badge, src, ...rest } = props;
+	const { size, badge, ...rest } = props;
 	return (
 		<Avatar
 			{...rest}
+			src={
+				rest.src?.includes('s.gravatar.com/avatar')
+					? undefined
+					: rest.src
+			}
 			size={size ?? avatarSize}
 			rounded="full"
 			bg="fpGrey.300"
