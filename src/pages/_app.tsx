@@ -83,7 +83,7 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				<PersistGate persistor={persistor}>
 					<NhostAuthProvider nhost={nhost}>
 						<NhostApolloProvider
-							nhost={nhost}
+							nhost={nhost as any} // Fix this when SDK is stable
 							cache={cache}
 							connectToDevTools={true}
 						>

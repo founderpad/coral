@@ -241,7 +241,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 									<Checkbox
 										name={es}
 										rounded="none"
-										focusBorderColor="gray.150"
 										value={es}
 										py={1}
 										pr={2}

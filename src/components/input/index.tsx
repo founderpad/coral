@@ -6,6 +6,5 @@ export {
 	PasswordField
 } from './InputField';
 export { NumberField } from './NumberField';
-export { SelectField } from './SelectField';
 export { SwitchField } from './SwitchField';
 export { TextareaField } from './TextareaField';

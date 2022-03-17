@@ -7,7 +7,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -5197,7 +5197,7 @@ export type TPostCommentMutationVariables = Exact<{
 }>;
 
 
-export type TPostCommentMutation = { addIdeaComment?: { __typename?: 'idea_comments', id: any, ideaId: any, user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined } | null | undefined } | null | undefined, updateIdeaTotalComments?: { __typename?: 'ideas', id: any } | null | undefined };
+export type TPostCommentMutation = { addIdeaComment?: { __typename?: 'idea_comments', id: any, ideaId: any, user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null } | null } | null, updateIdeaTotalComments?: { __typename?: 'ideas', id: any } | null };
 
 export type TPostReplyMutationVariables = Exact<{
   ideaReply: TIdea_Comment_Replies_Insert_Input;
@@ -5205,9 +5205,9 @@ export type TPostReplyMutationVariables = Exact<{
 }>;
 
 
-export type TPostReplyMutation = { addIdeaReply?: { __typename?: 'idea_comment_replies', commentId: any, id: any, value: string } | null | undefined, update_idea_comments_by_pk?: { __typename?: 'idea_comments', id: any } | null | undefined };
+export type TPostReplyMutation = { addIdeaReply?: { __typename?: 'idea_comment_replies', commentId: any, id: any, value: string } | null, update_idea_comments_by_pk?: { __typename?: 'idea_comments', id: any } | null };
 
-export type TCommentFieldsFragment = { __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TCommentFieldsFragment = { __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TCommentsForIdeaQueryVariables = Exact<{
   ideaId: Scalars['uuid'];
@@ -5215,38 +5215,38 @@ export type TCommentsForIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> }>, totalComments: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined } };
+export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null } };
 
 export type TRepliesForCommentQueryVariables = Exact<{
   commentId: Scalars['uuid'];
 }>;
 
 
-export type TRepliesForCommentQuery = { replies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TRepliesForCommentQuery = { replies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TFollowUserMutationVariables = Exact<{
   followingId: Scalars['uuid'];
 }>;
 
 
-export type TFollowUserMutation = { insert_user_followers_one?: { __typename?: 'user_followers', followingId: any, followerId: any } | null | undefined };
+export type TFollowUserMutation = { insert_user_followers_one?: { __typename?: 'user_followers', followingId: any, followerId: any } | null };
 
-export type TUserFieldsFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined };
+export type TUserFieldsFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
 
-export type TUserFieldsWithEmailFragment = { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined };
+export type TUserFieldsWithEmailFragment = { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
 
-export type TUserAddressFragment = { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined };
+export type TUserAddressFragment = { __typename?: 'user_address', location?: string | null, country?: string | null };
 
-export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null | undefined, startups?: string | null | undefined, availability?: string | null | undefined, specialistIndustry?: string | null | undefined, status?: string | null | undefined, objective?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
+export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
-export type TMessageUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined };
+export type TMessageUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null };
 
 export type TCreateIdeaMutationVariables = Exact<{
   idea: TIdeas_Insert_Input;
 }>;
 
 
-export type TCreateIdeaMutation = { idea?: { __typename?: 'ideas', id: any, name: string } | null | undefined };
+export type TCreateIdeaMutation = { idea?: { __typename?: 'ideas', id: any, name: string } | null };
 
 export type TUpdateIdeaMutationVariables = Exact<{
   idea: TIdeas_Set_Input;
@@ -5254,14 +5254,14 @@ export type TUpdateIdeaMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateIdeaMutation = { update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, summary?: string | null | undefined, description?: string | null | undefined, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined } | null | undefined };
+export type TUpdateIdeaMutation = { update_ideas_by_pk?: { __typename?: 'ideas', id: any, name: string, summary?: string | null, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null } | null };
 
 export type TDeleteIdeaMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type TDeleteIdeaMutation = { delete_ideas_by_pk?: { __typename?: 'ideas', id: any } | null | undefined };
+export type TDeleteIdeaMutation = { delete_ideas_by_pk?: { __typename?: 'ideas', id: any } | null };
 
 export type TCreateInterestedIdeaMutationVariables = Exact<{
   ideaId: Scalars['uuid'];
@@ -5269,7 +5269,7 @@ export type TCreateInterestedIdeaMutationVariables = Exact<{
 }>;
 
 
-export type TCreateInterestedIdeaMutation = { addInterestedIdea?: { __typename?: 'interested_ideas', ideaId: any } | null | undefined };
+export type TCreateInterestedIdeaMutation = { addInterestedIdea?: { __typename?: 'interested_ideas', ideaId: any } | null };
 
 export type TIdeasQueryVariables = Exact<{
   where?: InputMaybe<TIdea_Preview_Bool_Exp>;
@@ -5280,9 +5280,9 @@ export type TIdeasQueryVariables = Exact<{
 }>;
 
 
-export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null | undefined }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, createdAt?: any | null | undefined, isNew?: boolean | null | undefined, isPublished?: boolean | null | undefined, summary?: string | null | undefined, userId?: any | null | undefined, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
+export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
 
-export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null | undefined, name?: string | null | undefined, field?: string | null | undefined, status?: string | null | undefined, createdAt?: any | null | undefined, isNew?: boolean | null | undefined, isPublished?: boolean | null | undefined, summary?: string | null | undefined, userId?: any | null | undefined, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null | undefined }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
+export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
 
 export type TUserIdeasQueryVariables = Exact<{
   userId: Scalars['uuid'];
@@ -5291,7 +5291,7 @@ export type TUserIdeasQueryVariables = Exact<{
 
 export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'ideas', id: any, name: string, createdAt: any, isPublished: boolean, totalInterested: number, totalVotes: number, totalComments: number }> };
 
-export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, summary?: string | null | undefined, name: string, description?: string | null | undefined, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
+export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
 
 export type TIdeaQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -5299,7 +5299,7 @@ export type TIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null | undefined, name: string, description?: string | null | undefined, field: string, competitors?: string | null | undefined, team?: string | null | undefined, additionalInformation?: string | null | undefined, isPublished: boolean, userId: any, status?: string | null | undefined, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null | undefined }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null | undefined } } | null | undefined, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null | undefined };
+export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null } } | null, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null };
 
 export type TInterestedIdeaFieldsFragment = { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any };
 
@@ -5308,14 +5308,14 @@ export type TIdeaInterestedUsersQueryVariables = Exact<{
 }>;
 
 
-export type TIdeaInterestedUsersQuery = { interested_users: Array<{ __typename?: 'interested_ideas', id: any, createdAt: any, user?: { __typename?: 'users', email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TIdeaInterestedUsersQuery = { interested_users: Array<{ __typename?: 'interested_ideas', id: any, createdAt: any, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TInsertIdeaUpvoteMutationVariables = Exact<{
   idea_vote: TIdea_Votes_Insert_Input;
 }>;
 
 
-export type TInsertIdeaUpvoteMutation = { insert_idea_votes_one?: { __typename?: 'idea_votes', id: any, ideaId: any } | null | undefined };
+export type TInsertIdeaUpvoteMutation = { insert_idea_votes_one?: { __typename?: 'idea_votes', id: any, ideaId: any } | null };
 
 export type TDeleteIdeaUpvoteMutationVariables = Exact<{
   ideaId: Scalars['uuid'];
@@ -5323,7 +5323,7 @@ export type TDeleteIdeaUpvoteMutationVariables = Exact<{
 }>;
 
 
-export type TDeleteIdeaUpvoteMutation = { delete_idea_votes?: { __typename?: 'idea_votes_mutation_response', affected_rows: number } | null | undefined };
+export type TDeleteIdeaUpvoteMutation = { delete_idea_votes?: { __typename?: 'idea_votes_mutation_response', affected_rows: number } | null };
 
 export type TNewMessageThreadMutationVariables = Exact<{
   targetUserId: Scalars['uuid'];
@@ -5331,7 +5331,7 @@ export type TNewMessageThreadMutationVariables = Exact<{
 }>;
 
 
-export type TNewMessageThreadMutation = { insert_message_thread?: { __typename?: 'message_thread_mutation_response', returning: Array<{ __typename?: 'message_thread', id: any }> } | null | undefined };
+export type TNewMessageThreadMutation = { insert_message_thread?: { __typename?: 'message_thread_mutation_response', returning: Array<{ __typename?: 'message_thread', id: any }> } | null };
 
 export type TNewMessageMutationVariables = Exact<{
   messageThreadId: Scalars['uuid'];
@@ -5339,49 +5339,49 @@ export type TNewMessageMutationVariables = Exact<{
 }>;
 
 
-export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } } | null | undefined };
+export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } } | null };
 
 export type TUserMessageThreadsQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null | undefined, ownerId?: any | null | undefined, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } }> }>, total: { __typename?: 'message_thread_aggregate', aggregate?: { __typename?: 'message_thread_aggregate_fields', count: number } | null | undefined } };
+export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null, ownerId?: any | null, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }> }>, total: { __typename?: 'message_thread_aggregate', aggregate?: { __typename?: 'message_thread_aggregate_fields', count: number } | null } };
 
 export type TMessageListSubscriptionVariables = Exact<{
   messageThreadId: Scalars['uuid'];
 }>;
 
 
-export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } }> };
+export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }> };
 
 export type TCreateReportMutationVariables = Exact<{
   report: TReport_Insert_Input;
 }>;
 
 
-export type TCreateReportMutation = { insert_report_one?: { __typename?: 'report', id: any } | null | undefined };
+export type TCreateReportMutation = { insert_report_one?: { __typename?: 'report', id: any } | null };
 
 export type TUserSocialsQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type TUserSocialsQuery = { profile?: { __typename?: 'user_profile', linkedin?: string | null | undefined, twitter?: string | null | undefined, website?: string | null | undefined } | null | undefined };
+export type TUserSocialsQuery = { profile?: { __typename?: 'user_profile', linkedin?: string | null, twitter?: string | null, website?: string | null } | null };
 
 export type TUserProfileDetailsQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null | undefined, createdAt: any, lastSeen?: any | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined, profile?: { __typename?: 'user_profile', availability?: string | null | undefined, background?: string | null | undefined, status?: string | null | undefined, startups?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, statement?: string | null | undefined, skills?: any | null | undefined, objective?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined } | null | undefined };
+export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl?: string | null, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null, profile?: { __typename?: 'user_profile', availability?: string | null, background?: string | null, status?: string | null, startups?: string | null, businessDescription?: string | null, specialistIndustry?: string | null, statement?: string | null, skills?: any | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null } | null } | null };
 
 export type TUserQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null | undefined, email?: any | null | undefined, displayName: string, id: any, avatarUrl?: string | null | undefined, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, isComplete: boolean } | null | undefined, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined };
+export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
 export type TUsersQueryVariables = Exact<{
   where?: InputMaybe<TUser_Profile_Bool_Exp>;
@@ -5391,7 +5391,7 @@ export type TUsersQueryVariables = Exact<{
 }>;
 
 
-export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null | undefined }, user_profile: Array<{ __typename?: 'user_profile', id: any, objective?: string | null | undefined, skills?: any | null | undefined, startups?: string | null | undefined, availability?: string | null | undefined, specialistIndustry?: string | null | undefined, status?: string | null | undefined, pronouns?: string | null | undefined, customPronouns?: string | null | undefined, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null | undefined, createdAt: any, address?: { __typename?: 'user_address', location?: string | null | undefined, country?: string | null | undefined } | null | undefined } | null | undefined }> };
+export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null }, user_profile: Array<{ __typename?: 'user_profile', id: any, objective?: string | null, skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TUpdateUserProfileMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5399,14 +5399,14 @@ export type TUpdateUserProfileMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserProfileMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: string | null | undefined, objective?: string | null | undefined, background?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, resume?: string | null | undefined, statement?: string | null | undefined, status?: string | null | undefined, businessDescription?: string | null | undefined, startups?: string | null | undefined, website?: string | null | undefined, skills?: any | null | undefined, isComplete: boolean, specialistIndustry?: string | null | undefined, updatedAt: any } | null | undefined };
+export type TUpdateUserProfileMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: string | null, objective?: string | null, background?: string | null, linkedin?: string | null, twitter?: string | null, instagram?: string | null, facebook?: string | null, resume?: string | null, statement?: string | null, status?: string | null, businessDescription?: string | null, startups?: string | null, website?: string | null, skills?: any | null, isComplete: boolean, specialistIndustry?: string | null, updatedAt: any } | null };
 
 export type TUserExperienceQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type TUserExperienceQuery = { profile?: { __typename?: 'user_profile', id: any, userId: any, objective?: string | null | undefined, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, availability?: string | null | undefined, businessDescription?: string | null | undefined, specialistIndustry?: string | null | undefined, skills?: any | null | undefined, resume?: string | null | undefined, linkedin?: string | null | undefined, twitter?: string | null | undefined, instagram?: string | null | undefined, facebook?: string | null | undefined, website?: string | null | undefined, updatedAt: any, isComplete: boolean, pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined };
+export type TUserExperienceQuery = { profile?: { __typename?: 'user_profile', id: any, userId: any, objective?: string | null, background?: string | null, statement?: string | null, startups?: string | null, status?: string | null, availability?: string | null, businessDescription?: string | null, specialistIndustry?: string | null, skills?: any | null, resume?: string | null, linkedin?: string | null, twitter?: string | null, instagram?: string | null, facebook?: string | null, website?: string | null, updatedAt: any, isComplete: boolean, pronouns?: string | null, customPronouns?: string | null } | null };
 
 export type TUpdateUserExperienceMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5414,7 +5414,7 @@ export type TUpdateUserExperienceMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserExperienceMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null | undefined, statement?: string | null | undefined, startups?: string | null | undefined, status?: string | null | undefined, skills?: any | null | undefined, availability?: string | null | undefined, resume?: string | null | undefined, businessDescription?: string | null | undefined, objective?: string | null | undefined } | null | undefined };
+export type TUpdateUserExperienceMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, userId: any, background?: string | null, statement?: string | null, startups?: string | null, status?: string | null, skills?: any | null, availability?: string | null, resume?: string | null, businessDescription?: string | null, objective?: string | null } | null };
 
 export type TUpdateResumeMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5422,7 +5422,7 @@ export type TUpdateResumeMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateResumeMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, resume?: string | null | undefined } | null | undefined };
+export type TUpdateResumeMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, resume?: string | null } | null };
 
 export type TUpdateUserPersonalDetailsMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5433,7 +5433,7 @@ export type TUpdateUserPersonalDetailsMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserPersonalDetailsMutation = { updateUser?: { __typename?: 'users', displayName: string } | null | undefined, updateUserProfile?: { __typename?: 'user_profile', id: any, pronouns?: string | null | undefined, customPronouns?: string | null | undefined } | null | undefined, updateUserAddress?: { __typename?: 'user_address', country?: string | null | undefined, location?: string | null | undefined } | null | undefined };
+export type TUpdateUserPersonalDetailsMutation = { updateUser?: { __typename?: 'users', displayName: string } | null, updateUserProfile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null } | null, updateUserAddress?: { __typename?: 'user_address', country?: string | null, location?: string | null } | null };
 
 export type TUpdateUserAvatarMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5441,7 +5441,7 @@ export type TUpdateUserAvatarMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserAvatarMutation = { user?: { __typename?: 'users', avatarUrl?: string | null | undefined } | null | undefined };
+export type TUpdateUserAvatarMutation = { user?: { __typename?: 'users', avatarUrl?: string | null } | null };
 
 export const UserAddressFragmentDoc = gql`
     fragment UserAddress on user_address {
@@ -7560,7 +7560,7 @@ export type TActivity_AggregateResolvers<ContextType = any, ParentType extends T
 };
 
 export type TActivity_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['activity_aggregate_fields'] = TResolversParentTypes['activity_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TActivity_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TActivity_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['activity_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['activity_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -7602,7 +7602,7 @@ export type TBucketsResolvers<ContextType = any, ParentType extends TResolversPa
   cacheControl?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   downloadExpiration?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
-  files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TBucketsFilesArgs, never>>;
+  files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, Partial<TBucketsFilesArgs>>;
   id?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   maxUploadFileSize?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   minUploadFileSize?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
@@ -7657,7 +7657,7 @@ export type TIdea_Comment_Replies_AggregateResolvers<ContextType = any, ParentTy
 };
 
 export type TIdea_Comment_Replies_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_comment_replies_aggregate_fields'] = TResolversParentTypes['idea_comment_replies_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TIdea_Comment_Replies_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TIdea_Comment_Replies_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['idea_comment_replies_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['idea_comment_replies_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -7698,8 +7698,8 @@ export type TIdea_CommentsResolvers<ContextType = any, ParentType extends TResol
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   idea?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType>;
   ideaId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
-  replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, RequireFields<TIdea_CommentsRepliesArgs, never>>;
-  replies_aggregate?: Resolver<TResolversTypes['idea_comment_replies_aggregate'], ParentType, ContextType, RequireFields<TIdea_CommentsReplies_AggregateArgs, never>>;
+  replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, Partial<TIdea_CommentsRepliesArgs>>;
+  replies_aggregate?: Resolver<TResolversTypes['idea_comment_replies_aggregate'], ParentType, ContextType, Partial<TIdea_CommentsReplies_AggregateArgs>>;
   targetUserId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   totalReplies?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -7717,7 +7717,7 @@ export type TIdea_Comments_AggregateResolvers<ContextType = any, ParentType exte
 
 export type TIdea_Comments_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_comments_aggregate_fields'] = TResolversParentTypes['idea_comments_aggregate_fields']> = {
   avg?: Resolver<Maybe<TResolversTypes['idea_comments_avg_fields']>, ParentType, ContextType>;
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TIdea_Comments_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TIdea_Comments_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['idea_comments_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['idea_comments_min_fields']>, ParentType, ContextType>;
   stddev?: Resolver<Maybe<TResolversTypes['idea_comments_stddev_fields']>, ParentType, ContextType>;
@@ -7801,13 +7801,13 @@ export type TIdea_Comments_Variance_FieldsResolvers<ContextType = any, ParentTyp
 };
 
 export type TIdea_PreviewResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview'] = TResolversParentTypes['idea_preview']> = {
-  comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, RequireFields<TIdea_PreviewCommentsArgs, never>>;
-  comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, RequireFields<TIdea_PreviewComments_AggregateArgs, never>>;
+  comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, Partial<TIdea_PreviewCommentsArgs>>;
+  comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, Partial<TIdea_PreviewComments_AggregateArgs>>;
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   field?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
-  interested?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TIdea_PreviewInterestedArgs, never>>;
-  interested_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, RequireFields<TIdea_PreviewInterested_AggregateArgs, never>>;
+  interested?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, Partial<TIdea_PreviewInterestedArgs>>;
+  interested_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, Partial<TIdea_PreviewInterested_AggregateArgs>>;
   isNew?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
   isPublished?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
   name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7815,8 +7815,8 @@ export type TIdea_PreviewResolvers<ContextType = any, ParentType extends TResolv
   summary?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
-  votes?: Resolver<Array<TResolversTypes['idea_votes']>, ParentType, ContextType, RequireFields<TIdea_PreviewVotesArgs, never>>;
-  votes_aggregate?: Resolver<TResolversTypes['idea_votes_aggregate'], ParentType, ContextType, RequireFields<TIdea_PreviewVotes_AggregateArgs, never>>;
+  votes?: Resolver<Array<TResolversTypes['idea_votes']>, ParentType, ContextType, Partial<TIdea_PreviewVotesArgs>>;
+  votes_aggregate?: Resolver<TResolversTypes['idea_votes_aggregate'], ParentType, ContextType, Partial<TIdea_PreviewVotes_AggregateArgs>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -7827,7 +7827,7 @@ export type TIdea_Preview_AggregateResolvers<ContextType = any, ParentType exten
 };
 
 export type TIdea_Preview_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview_aggregate_fields'] = TResolversParentTypes['idea_preview_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TIdea_Preview_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TIdea_Preview_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['idea_preview_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['idea_preview_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -7873,7 +7873,7 @@ export type TIdea_Votes_AggregateResolvers<ContextType = any, ParentType extends
 };
 
 export type TIdea_Votes_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_votes_aggregate_fields'] = TResolversParentTypes['idea_votes_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TIdea_Votes_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TIdea_Votes_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['idea_votes_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['idea_votes_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -7906,15 +7906,15 @@ export type TIdea_Votes_Mutation_ResponseResolvers<ContextType = any, ParentType
 export type TIdeasResolvers<ContextType = any, ParentType extends TResolversParentTypes['ideas'] = TResolversParentTypes['ideas']> = {
   additionalInformation?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   businessPlan?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, RequireFields<TIdeasCommentsArgs, never>>;
-  comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, RequireFields<TIdeasComments_AggregateArgs, never>>;
+  comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, Partial<TIdeasCommentsArgs>>;
+  comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, Partial<TIdeasComments_AggregateArgs>>;
   competitors?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   description?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   field?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
-  interested?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TIdeasInterestedArgs, never>>;
-  interested_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, RequireFields<TIdeasInterested_AggregateArgs, never>>;
+  interested?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, Partial<TIdeasInterestedArgs>>;
+  interested_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, Partial<TIdeasInterested_AggregateArgs>>;
   isPublished?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   name?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -7926,8 +7926,8 @@ export type TIdeasResolvers<ContextType = any, ParentType extends TResolversPare
   updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType>;
   userId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
-  votes?: Resolver<Array<TResolversTypes['idea_votes']>, ParentType, ContextType, RequireFields<TIdeasVotesArgs, never>>;
-  votes_aggregate?: Resolver<TResolversTypes['idea_votes_aggregate'], ParentType, ContextType, RequireFields<TIdeasVotes_AggregateArgs, never>>;
+  votes?: Resolver<Array<TResolversTypes['idea_votes']>, ParentType, ContextType, Partial<TIdeasVotesArgs>>;
+  votes_aggregate?: Resolver<TResolversTypes['idea_votes_aggregate'], ParentType, ContextType, Partial<TIdeasVotes_AggregateArgs>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -7939,7 +7939,7 @@ export type TIdeas_AggregateResolvers<ContextType = any, ParentType extends TRes
 
 export type TIdeas_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['ideas_aggregate_fields'] = TResolversParentTypes['ideas_aggregate_fields']> = {
   avg?: Resolver<Maybe<TResolversTypes['ideas_avg_fields']>, ParentType, ContextType>;
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TIdeas_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TIdeas_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['ideas_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['ideas_min_fields']>, ParentType, ContextType>;
   stddev?: Resolver<Maybe<TResolversTypes['ideas_stddev_fields']>, ParentType, ContextType>;
@@ -8070,7 +8070,7 @@ export type TInterested_Ideas_AggregateResolvers<ContextType = any, ParentType e
 };
 
 export type TInterested_Ideas_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['interested_ideas_aggregate_fields'] = TResolversParentTypes['interested_ideas_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TInterested_Ideas_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TInterested_Ideas_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['interested_ideas_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['interested_ideas_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -8121,7 +8121,7 @@ export type TMessage_AggregateResolvers<ContextType = any, ParentType extends TR
 };
 
 export type TMessage_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_aggregate_fields'] = TResolversParentTypes['message_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TMessage_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TMessage_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['message_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['message_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -8156,10 +8156,10 @@ export type TMessage_Mutation_ResponseResolvers<ContextType = any, ParentType ex
 export type TMessage_ThreadResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread'] = TResolversParentTypes['message_thread']> = {
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
-  messageThreadUsers?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TMessage_ThreadMessageThreadUsersArgs, never>>;
-  messageThreadUsers_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, RequireFields<TMessage_ThreadMessageThreadUsers_AggregateArgs, never>>;
-  messages?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMessage_ThreadMessagesArgs, never>>;
-  messages_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, RequireFields<TMessage_ThreadMessages_AggregateArgs, never>>;
+  messageThreadUsers?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, Partial<TMessage_ThreadMessageThreadUsersArgs>>;
+  messageThreadUsers_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, Partial<TMessage_ThreadMessageThreadUsers_AggregateArgs>>;
+  messages?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, Partial<TMessage_ThreadMessagesArgs>>;
+  messages_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, Partial<TMessage_ThreadMessages_AggregateArgs>>;
   name?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   owner?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType>;
   ownerId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
@@ -8174,7 +8174,7 @@ export type TMessage_Thread_AggregateResolvers<ContextType = any, ParentType ext
 };
 
 export type TMessage_Thread_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_aggregate_fields'] = TResolversParentTypes['message_thread_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TMessage_Thread_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TMessage_Thread_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['message_thread_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['message_thread_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -8219,7 +8219,7 @@ export type TMessage_Thread_Users_AggregateResolvers<ContextType = any, ParentTy
 };
 
 export type TMessage_Thread_Users_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['message_thread_users_aggregate_fields'] = TResolversParentTypes['message_thread_users_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TMessage_Thread_Users_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TMessage_Thread_Users_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['message_thread_users_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['message_thread_users_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -8305,52 +8305,52 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
 };
 
 export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolversParentTypes['query_root'] = TResolversParentTypes['query_root']> = {
-  activity?: Resolver<Array<TResolversTypes['activity']>, ParentType, ContextType, RequireFields<TQuery_RootActivityArgs, never>>;
-  activity_aggregate?: Resolver<TResolversTypes['activity_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootActivity_AggregateArgs, never>>;
+  activity?: Resolver<Array<TResolversTypes['activity']>, ParentType, ContextType, Partial<TQuery_RootActivityArgs>>;
+  activity_aggregate?: Resolver<TResolversTypes['activity_aggregate'], ParentType, ContextType, Partial<TQuery_RootActivity_AggregateArgs>>;
   activity_by_pk?: Resolver<Maybe<TResolversTypes['activity']>, ParentType, ContextType, RequireFields<TQuery_RootActivity_By_PkArgs, 'id'>>;
   bucket?: Resolver<Maybe<TResolversTypes['buckets']>, ParentType, ContextType, RequireFields<TQuery_RootBucketArgs, 'id'>>;
-  buckets?: Resolver<Array<TResolversTypes['buckets']>, ParentType, ContextType, RequireFields<TQuery_RootBucketsArgs, never>>;
+  buckets?: Resolver<Array<TResolversTypes['buckets']>, ParentType, ContextType, Partial<TQuery_RootBucketsArgs>>;
   file?: Resolver<Maybe<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TQuery_RootFileArgs, 'id'>>;
-  files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TQuery_RootFilesArgs, never>>;
-  idea_comment_replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, RequireFields<TQuery_RootIdea_Comment_RepliesArgs, never>>;
-  idea_comment_replies_aggregate?: Resolver<TResolversTypes['idea_comment_replies_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootIdea_Comment_Replies_AggregateArgs, never>>;
+  files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, Partial<TQuery_RootFilesArgs>>;
+  idea_comment_replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, Partial<TQuery_RootIdea_Comment_RepliesArgs>>;
+  idea_comment_replies_aggregate?: Resolver<TResolversTypes['idea_comment_replies_aggregate'], ParentType, ContextType, Partial<TQuery_RootIdea_Comment_Replies_AggregateArgs>>;
   idea_comment_replies_by_pk?: Resolver<Maybe<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, RequireFields<TQuery_RootIdea_Comment_Replies_By_PkArgs, 'id'>>;
-  idea_comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, RequireFields<TQuery_RootIdea_CommentsArgs, never>>;
-  idea_comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootIdea_Comments_AggregateArgs, never>>;
+  idea_comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, Partial<TQuery_RootIdea_CommentsArgs>>;
+  idea_comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, Partial<TQuery_RootIdea_Comments_AggregateArgs>>;
   idea_comments_by_pk?: Resolver<Maybe<TResolversTypes['idea_comments']>, ParentType, ContextType, RequireFields<TQuery_RootIdea_Comments_By_PkArgs, 'id'>>;
-  idea_preview?: Resolver<Array<TResolversTypes['idea_preview']>, ParentType, ContextType, RequireFields<TQuery_RootIdea_PreviewArgs, never>>;
-  idea_preview_aggregate?: Resolver<TResolversTypes['idea_preview_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootIdea_Preview_AggregateArgs, never>>;
-  idea_votes?: Resolver<Array<TResolversTypes['idea_votes']>, ParentType, ContextType, RequireFields<TQuery_RootIdea_VotesArgs, never>>;
-  idea_votes_aggregate?: Resolver<TResolversTypes['idea_votes_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootIdea_Votes_AggregateArgs, never>>;
+  idea_preview?: Resolver<Array<TResolversTypes['idea_preview']>, ParentType, ContextType, Partial<TQuery_RootIdea_PreviewArgs>>;
+  idea_preview_aggregate?: Resolver<TResolversTypes['idea_preview_aggregate'], ParentType, ContextType, Partial<TQuery_RootIdea_Preview_AggregateArgs>>;
+  idea_votes?: Resolver<Array<TResolversTypes['idea_votes']>, ParentType, ContextType, Partial<TQuery_RootIdea_VotesArgs>>;
+  idea_votes_aggregate?: Resolver<TResolversTypes['idea_votes_aggregate'], ParentType, ContextType, Partial<TQuery_RootIdea_Votes_AggregateArgs>>;
   idea_votes_by_pk?: Resolver<Maybe<TResolversTypes['idea_votes']>, ParentType, ContextType, RequireFields<TQuery_RootIdea_Votes_By_PkArgs, 'ideaId' | 'userId'>>;
-  ideas?: Resolver<Array<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TQuery_RootIdeasArgs, never>>;
-  ideas_aggregate?: Resolver<TResolversTypes['ideas_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootIdeas_AggregateArgs, never>>;
+  ideas?: Resolver<Array<TResolversTypes['ideas']>, ParentType, ContextType, Partial<TQuery_RootIdeasArgs>>;
+  ideas_aggregate?: Resolver<TResolversTypes['ideas_aggregate'], ParentType, ContextType, Partial<TQuery_RootIdeas_AggregateArgs>>;
   ideas_by_pk?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TQuery_RootIdeas_By_PkArgs, 'id'>>;
-  interested_ideas?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TQuery_RootInterested_IdeasArgs, never>>;
-  interested_ideas_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootInterested_Ideas_AggregateArgs, never>>;
+  interested_ideas?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, Partial<TQuery_RootInterested_IdeasArgs>>;
+  interested_ideas_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, Partial<TQuery_RootInterested_Ideas_AggregateArgs>>;
   interested_ideas_by_pk?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TQuery_RootInterested_Ideas_By_PkArgs, 'ideaId' | 'userId'>>;
-  message?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TQuery_RootMessageArgs, never>>;
-  message_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootMessage_AggregateArgs, never>>;
+  message?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, Partial<TQuery_RootMessageArgs>>;
+  message_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, Partial<TQuery_RootMessage_AggregateArgs>>;
   message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_By_PkArgs, 'id'>>;
-  message_thread?: Resolver<Array<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_ThreadArgs, never>>;
-  message_thread_aggregate?: Resolver<TResolversTypes['message_thread_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_AggregateArgs, never>>;
+  message_thread?: Resolver<Array<TResolversTypes['message_thread']>, ParentType, ContextType, Partial<TQuery_RootMessage_ThreadArgs>>;
+  message_thread_aggregate?: Resolver<TResolversTypes['message_thread_aggregate'], ParentType, ContextType, Partial<TQuery_RootMessage_Thread_AggregateArgs>>;
   message_thread_by_pk?: Resolver<Maybe<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_By_PkArgs, 'id'>>;
-  message_thread_users?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_UsersArgs, never>>;
-  message_thread_users_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_Users_AggregateArgs, never>>;
+  message_thread_users?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, Partial<TQuery_RootMessage_Thread_UsersArgs>>;
+  message_thread_users_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, Partial<TQuery_RootMessage_Thread_Users_AggregateArgs>>;
   message_thread_users_by_pk?: Resolver<Maybe<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_Thread_Users_By_PkArgs, 'threadId' | 'userId'>>;
-  report?: Resolver<Array<TResolversTypes['report']>, ParentType, ContextType, RequireFields<TQuery_RootReportArgs, never>>;
+  report?: Resolver<Array<TResolversTypes['report']>, ParentType, ContextType, Partial<TQuery_RootReportArgs>>;
   report_by_pk?: Resolver<Maybe<TResolversTypes['report']>, ParentType, ContextType, RequireFields<TQuery_RootReport_By_PkArgs, 'id'>>;
   user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType, RequireFields<TQuery_RootUserArgs, 'id'>>;
-  userAggregate?: Resolver<TResolversTypes['users_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootUserAggregateArgs, never>>;
-  user_address?: Resolver<Array<TResolversTypes['user_address']>, ParentType, ContextType, RequireFields<TQuery_RootUser_AddressArgs, never>>;
+  userAggregate?: Resolver<TResolversTypes['users_aggregate'], ParentType, ContextType, Partial<TQuery_RootUserAggregateArgs>>;
+  user_address?: Resolver<Array<TResolversTypes['user_address']>, ParentType, ContextType, Partial<TQuery_RootUser_AddressArgs>>;
   user_address_by_pk?: Resolver<Maybe<TResolversTypes['user_address']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Address_By_PkArgs, 'userId'>>;
-  user_followers?: Resolver<Array<TResolversTypes['user_followers']>, ParentType, ContextType, RequireFields<TQuery_RootUser_FollowersArgs, never>>;
-  user_followers_aggregate?: Resolver<TResolversTypes['user_followers_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootUser_Followers_AggregateArgs, never>>;
+  user_followers?: Resolver<Array<TResolversTypes['user_followers']>, ParentType, ContextType, Partial<TQuery_RootUser_FollowersArgs>>;
+  user_followers_aggregate?: Resolver<TResolversTypes['user_followers_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Followers_AggregateArgs>>;
   user_followers_by_pk?: Resolver<Maybe<TResolversTypes['user_followers']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
-  user_profile?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, RequireFields<TQuery_RootUser_ProfileArgs, never>>;
-  user_profile_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, RequireFields<TQuery_RootUser_Profile_AggregateArgs, never>>;
+  user_profile?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, Partial<TQuery_RootUser_ProfileArgs>>;
+  user_profile_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Profile_AggregateArgs>>;
   user_profile_by_pk?: Resolver<Maybe<TResolversTypes['user_profile']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Profile_By_PkArgs, 'id'>>;
-  users?: Resolver<Array<TResolversTypes['users']>, ParentType, ContextType, RequireFields<TQuery_RootUsersArgs, never>>;
+  users?: Resolver<Array<TResolversTypes['users']>, ParentType, ContextType, Partial<TQuery_RootUsersArgs>>;
 };
 
 export type TReportResolvers<ContextType = any, ParentType extends TResolversParentTypes['report'] = TResolversParentTypes['report']> = {
@@ -8365,52 +8365,52 @@ export type TReport_Mutation_ResponseResolvers<ContextType = any, ParentType ext
 };
 
 export type TSubscription_RootResolvers<ContextType = any, ParentType extends TResolversParentTypes['subscription_root'] = TResolversParentTypes['subscription_root']> = {
-  activity?: SubscriptionResolver<Array<TResolversTypes['activity']>, "activity", ParentType, ContextType, RequireFields<TSubscription_RootActivityArgs, never>>;
-  activity_aggregate?: SubscriptionResolver<TResolversTypes['activity_aggregate'], "activity_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootActivity_AggregateArgs, never>>;
+  activity?: SubscriptionResolver<Array<TResolversTypes['activity']>, "activity", ParentType, ContextType, Partial<TSubscription_RootActivityArgs>>;
+  activity_aggregate?: SubscriptionResolver<TResolversTypes['activity_aggregate'], "activity_aggregate", ParentType, ContextType, Partial<TSubscription_RootActivity_AggregateArgs>>;
   activity_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['activity']>, "activity_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootActivity_By_PkArgs, 'id'>>;
   bucket?: SubscriptionResolver<Maybe<TResolversTypes['buckets']>, "bucket", ParentType, ContextType, RequireFields<TSubscription_RootBucketArgs, 'id'>>;
-  buckets?: SubscriptionResolver<Array<TResolversTypes['buckets']>, "buckets", ParentType, ContextType, RequireFields<TSubscription_RootBucketsArgs, never>>;
+  buckets?: SubscriptionResolver<Array<TResolversTypes['buckets']>, "buckets", ParentType, ContextType, Partial<TSubscription_RootBucketsArgs>>;
   file?: SubscriptionResolver<Maybe<TResolversTypes['files']>, "file", ParentType, ContextType, RequireFields<TSubscription_RootFileArgs, 'id'>>;
-  files?: SubscriptionResolver<Array<TResolversTypes['files']>, "files", ParentType, ContextType, RequireFields<TSubscription_RootFilesArgs, never>>;
-  idea_comment_replies?: SubscriptionResolver<Array<TResolversTypes['idea_comment_replies']>, "idea_comment_replies", ParentType, ContextType, RequireFields<TSubscription_RootIdea_Comment_RepliesArgs, never>>;
-  idea_comment_replies_aggregate?: SubscriptionResolver<TResolversTypes['idea_comment_replies_aggregate'], "idea_comment_replies_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootIdea_Comment_Replies_AggregateArgs, never>>;
+  files?: SubscriptionResolver<Array<TResolversTypes['files']>, "files", ParentType, ContextType, Partial<TSubscription_RootFilesArgs>>;
+  idea_comment_replies?: SubscriptionResolver<Array<TResolversTypes['idea_comment_replies']>, "idea_comment_replies", ParentType, ContextType, Partial<TSubscription_RootIdea_Comment_RepliesArgs>>;
+  idea_comment_replies_aggregate?: SubscriptionResolver<TResolversTypes['idea_comment_replies_aggregate'], "idea_comment_replies_aggregate", ParentType, ContextType, Partial<TSubscription_RootIdea_Comment_Replies_AggregateArgs>>;
   idea_comment_replies_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['idea_comment_replies']>, "idea_comment_replies_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootIdea_Comment_Replies_By_PkArgs, 'id'>>;
-  idea_comments?: SubscriptionResolver<Array<TResolversTypes['idea_comments']>, "idea_comments", ParentType, ContextType, RequireFields<TSubscription_RootIdea_CommentsArgs, never>>;
-  idea_comments_aggregate?: SubscriptionResolver<TResolversTypes['idea_comments_aggregate'], "idea_comments_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootIdea_Comments_AggregateArgs, never>>;
+  idea_comments?: SubscriptionResolver<Array<TResolversTypes['idea_comments']>, "idea_comments", ParentType, ContextType, Partial<TSubscription_RootIdea_CommentsArgs>>;
+  idea_comments_aggregate?: SubscriptionResolver<TResolversTypes['idea_comments_aggregate'], "idea_comments_aggregate", ParentType, ContextType, Partial<TSubscription_RootIdea_Comments_AggregateArgs>>;
   idea_comments_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['idea_comments']>, "idea_comments_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootIdea_Comments_By_PkArgs, 'id'>>;
-  idea_preview?: SubscriptionResolver<Array<TResolversTypes['idea_preview']>, "idea_preview", ParentType, ContextType, RequireFields<TSubscription_RootIdea_PreviewArgs, never>>;
-  idea_preview_aggregate?: SubscriptionResolver<TResolversTypes['idea_preview_aggregate'], "idea_preview_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootIdea_Preview_AggregateArgs, never>>;
-  idea_votes?: SubscriptionResolver<Array<TResolversTypes['idea_votes']>, "idea_votes", ParentType, ContextType, RequireFields<TSubscription_RootIdea_VotesArgs, never>>;
-  idea_votes_aggregate?: SubscriptionResolver<TResolversTypes['idea_votes_aggregate'], "idea_votes_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootIdea_Votes_AggregateArgs, never>>;
+  idea_preview?: SubscriptionResolver<Array<TResolversTypes['idea_preview']>, "idea_preview", ParentType, ContextType, Partial<TSubscription_RootIdea_PreviewArgs>>;
+  idea_preview_aggregate?: SubscriptionResolver<TResolversTypes['idea_preview_aggregate'], "idea_preview_aggregate", ParentType, ContextType, Partial<TSubscription_RootIdea_Preview_AggregateArgs>>;
+  idea_votes?: SubscriptionResolver<Array<TResolversTypes['idea_votes']>, "idea_votes", ParentType, ContextType, Partial<TSubscription_RootIdea_VotesArgs>>;
+  idea_votes_aggregate?: SubscriptionResolver<TResolversTypes['idea_votes_aggregate'], "idea_votes_aggregate", ParentType, ContextType, Partial<TSubscription_RootIdea_Votes_AggregateArgs>>;
   idea_votes_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['idea_votes']>, "idea_votes_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootIdea_Votes_By_PkArgs, 'ideaId' | 'userId'>>;
-  ideas?: SubscriptionResolver<Array<TResolversTypes['ideas']>, "ideas", ParentType, ContextType, RequireFields<TSubscription_RootIdeasArgs, never>>;
-  ideas_aggregate?: SubscriptionResolver<TResolversTypes['ideas_aggregate'], "ideas_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootIdeas_AggregateArgs, never>>;
+  ideas?: SubscriptionResolver<Array<TResolversTypes['ideas']>, "ideas", ParentType, ContextType, Partial<TSubscription_RootIdeasArgs>>;
+  ideas_aggregate?: SubscriptionResolver<TResolversTypes['ideas_aggregate'], "ideas_aggregate", ParentType, ContextType, Partial<TSubscription_RootIdeas_AggregateArgs>>;
   ideas_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['ideas']>, "ideas_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootIdeas_By_PkArgs, 'id'>>;
-  interested_ideas?: SubscriptionResolver<Array<TResolversTypes['interested_ideas']>, "interested_ideas", ParentType, ContextType, RequireFields<TSubscription_RootInterested_IdeasArgs, never>>;
-  interested_ideas_aggregate?: SubscriptionResolver<TResolversTypes['interested_ideas_aggregate'], "interested_ideas_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootInterested_Ideas_AggregateArgs, never>>;
+  interested_ideas?: SubscriptionResolver<Array<TResolversTypes['interested_ideas']>, "interested_ideas", ParentType, ContextType, Partial<TSubscription_RootInterested_IdeasArgs>>;
+  interested_ideas_aggregate?: SubscriptionResolver<TResolversTypes['interested_ideas_aggregate'], "interested_ideas_aggregate", ParentType, ContextType, Partial<TSubscription_RootInterested_Ideas_AggregateArgs>>;
   interested_ideas_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['interested_ideas']>, "interested_ideas_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootInterested_Ideas_By_PkArgs, 'ideaId' | 'userId'>>;
-  message?: SubscriptionResolver<Array<TResolversTypes['message']>, "message", ParentType, ContextType, RequireFields<TSubscription_RootMessageArgs, never>>;
-  message_aggregate?: SubscriptionResolver<TResolversTypes['message_aggregate'], "message_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootMessage_AggregateArgs, never>>;
+  message?: SubscriptionResolver<Array<TResolversTypes['message']>, "message", ParentType, ContextType, Partial<TSubscription_RootMessageArgs>>;
+  message_aggregate?: SubscriptionResolver<TResolversTypes['message_aggregate'], "message_aggregate", ParentType, ContextType, Partial<TSubscription_RootMessage_AggregateArgs>>;
   message_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['message']>, "message_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMessage_By_PkArgs, 'id'>>;
-  message_thread?: SubscriptionResolver<Array<TResolversTypes['message_thread']>, "message_thread", ParentType, ContextType, RequireFields<TSubscription_RootMessage_ThreadArgs, never>>;
-  message_thread_aggregate?: SubscriptionResolver<TResolversTypes['message_thread_aggregate'], "message_thread_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_AggregateArgs, never>>;
+  message_thread?: SubscriptionResolver<Array<TResolversTypes['message_thread']>, "message_thread", ParentType, ContextType, Partial<TSubscription_RootMessage_ThreadArgs>>;
+  message_thread_aggregate?: SubscriptionResolver<TResolversTypes['message_thread_aggregate'], "message_thread_aggregate", ParentType, ContextType, Partial<TSubscription_RootMessage_Thread_AggregateArgs>>;
   message_thread_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['message_thread']>, "message_thread_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_By_PkArgs, 'id'>>;
-  message_thread_users?: SubscriptionResolver<Array<TResolversTypes['message_thread_users']>, "message_thread_users", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_UsersArgs, never>>;
-  message_thread_users_aggregate?: SubscriptionResolver<TResolversTypes['message_thread_users_aggregate'], "message_thread_users_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_Users_AggregateArgs, never>>;
+  message_thread_users?: SubscriptionResolver<Array<TResolversTypes['message_thread_users']>, "message_thread_users", ParentType, ContextType, Partial<TSubscription_RootMessage_Thread_UsersArgs>>;
+  message_thread_users_aggregate?: SubscriptionResolver<TResolversTypes['message_thread_users_aggregate'], "message_thread_users_aggregate", ParentType, ContextType, Partial<TSubscription_RootMessage_Thread_Users_AggregateArgs>>;
   message_thread_users_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['message_thread_users']>, "message_thread_users_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMessage_Thread_Users_By_PkArgs, 'threadId' | 'userId'>>;
-  report?: SubscriptionResolver<Array<TResolversTypes['report']>, "report", ParentType, ContextType, RequireFields<TSubscription_RootReportArgs, never>>;
+  report?: SubscriptionResolver<Array<TResolversTypes['report']>, "report", ParentType, ContextType, Partial<TSubscription_RootReportArgs>>;
   report_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['report']>, "report_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootReport_By_PkArgs, 'id'>>;
   user?: SubscriptionResolver<Maybe<TResolversTypes['users']>, "user", ParentType, ContextType, RequireFields<TSubscription_RootUserArgs, 'id'>>;
-  userAggregate?: SubscriptionResolver<TResolversTypes['users_aggregate'], "userAggregate", ParentType, ContextType, RequireFields<TSubscription_RootUserAggregateArgs, never>>;
-  user_address?: SubscriptionResolver<Array<TResolversTypes['user_address']>, "user_address", ParentType, ContextType, RequireFields<TSubscription_RootUser_AddressArgs, never>>;
+  userAggregate?: SubscriptionResolver<TResolversTypes['users_aggregate'], "userAggregate", ParentType, ContextType, Partial<TSubscription_RootUserAggregateArgs>>;
+  user_address?: SubscriptionResolver<Array<TResolversTypes['user_address']>, "user_address", ParentType, ContextType, Partial<TSubscription_RootUser_AddressArgs>>;
   user_address_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_address']>, "user_address_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Address_By_PkArgs, 'userId'>>;
-  user_followers?: SubscriptionResolver<Array<TResolversTypes['user_followers']>, "user_followers", ParentType, ContextType, RequireFields<TSubscription_RootUser_FollowersArgs, never>>;
-  user_followers_aggregate?: SubscriptionResolver<TResolversTypes['user_followers_aggregate'], "user_followers_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootUser_Followers_AggregateArgs, never>>;
+  user_followers?: SubscriptionResolver<Array<TResolversTypes['user_followers']>, "user_followers", ParentType, ContextType, Partial<TSubscription_RootUser_FollowersArgs>>;
+  user_followers_aggregate?: SubscriptionResolver<TResolversTypes['user_followers_aggregate'], "user_followers_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Followers_AggregateArgs>>;
   user_followers_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_followers']>, "user_followers_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
-  user_profile?: SubscriptionResolver<Array<TResolversTypes['user_profile']>, "user_profile", ParentType, ContextType, RequireFields<TSubscription_RootUser_ProfileArgs, never>>;
-  user_profile_aggregate?: SubscriptionResolver<TResolversTypes['user_profile_aggregate'], "user_profile_aggregate", ParentType, ContextType, RequireFields<TSubscription_RootUser_Profile_AggregateArgs, never>>;
+  user_profile?: SubscriptionResolver<Array<TResolversTypes['user_profile']>, "user_profile", ParentType, ContextType, Partial<TSubscription_RootUser_ProfileArgs>>;
+  user_profile_aggregate?: SubscriptionResolver<TResolversTypes['user_profile_aggregate'], "user_profile_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Profile_AggregateArgs>>;
   user_profile_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_profile']>, "user_profile_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Profile_By_PkArgs, 'id'>>;
-  users?: SubscriptionResolver<Array<TResolversTypes['users']>, "users", ParentType, ContextType, RequireFields<TSubscription_RootUsersArgs, never>>;
+  users?: SubscriptionResolver<Array<TResolversTypes['users']>, "users", ParentType, ContextType, Partial<TSubscription_RootUsersArgs>>;
 };
 
 export interface TTimestamptzScalarConfig extends GraphQLScalarTypeConfig<TResolversTypes['timestamptz'], any> {
@@ -8448,7 +8448,7 @@ export type TUser_Followers_AggregateResolvers<ContextType = any, ParentType ext
 };
 
 export type TUser_Followers_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_followers_aggregate_fields'] = TResolversParentTypes['user_followers_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TUser_Followers_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TUser_Followers_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['user_followers_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['user_followers_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -8482,14 +8482,14 @@ export type TUser_ProfileResolvers<ContextType = any, ParentType extends TResolv
   customPronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   facebook?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
-  industries?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, RequireFields<TUser_ProfileIndustriesArgs, never>>;
+  industries?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, Partial<TUser_ProfileIndustriesArgs>>;
   instagram?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   isComplete?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   linkedin?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   objective?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   pronouns?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   resume?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  skills?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, RequireFields<TUser_ProfileSkillsArgs, never>>;
+  skills?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, Partial<TUser_ProfileSkillsArgs>>;
   specialistIndustry?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   startups?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   statement?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
@@ -8509,7 +8509,7 @@ export type TUser_Profile_AggregateResolvers<ContextType = any, ParentType exten
 };
 
 export type TUser_Profile_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_profile_aggregate_fields'] = TResolversParentTypes['user_profile_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TUser_Profile_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TUser_Profile_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['user_profile_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['user_profile_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -8579,19 +8579,19 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   displayName?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
   emailVerified?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
-  files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TUsersFilesArgs, never>>;
+  files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, Partial<TUsersFilesArgs>>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
-  ideas?: Resolver<Array<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TUsersIdeasArgs, never>>;
-  ideas_aggregate?: Resolver<TResolversTypes['ideas_aggregate'], ParentType, ContextType, RequireFields<TUsersIdeas_AggregateArgs, never>>;
+  ideas?: Resolver<Array<TResolversTypes['ideas']>, ParentType, ContextType, Partial<TUsersIdeasArgs>>;
+  ideas_aggregate?: Resolver<TResolversTypes['ideas_aggregate'], ParentType, ContextType, Partial<TUsersIdeas_AggregateArgs>>;
   isAnonymous?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   lastSeen?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   locale?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
-  messageThreadUsers?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, RequireFields<TUsersMessageThreadUsersArgs, never>>;
-  messageThreadUsers_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, RequireFields<TUsersMessageThreadUsers_AggregateArgs, never>>;
-  messageThreads?: Resolver<Array<TResolversTypes['message_thread']>, ParentType, ContextType, RequireFields<TUsersMessageThreadsArgs, never>>;
-  messageThreads_aggregate?: Resolver<TResolversTypes['message_thread_aggregate'], ParentType, ContextType, RequireFields<TUsersMessageThreads_AggregateArgs, never>>;
-  messages?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TUsersMessagesArgs, never>>;
-  messages_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, RequireFields<TUsersMessages_AggregateArgs, never>>;
+  messageThreadUsers?: Resolver<Array<TResolversTypes['message_thread_users']>, ParentType, ContextType, Partial<TUsersMessageThreadUsersArgs>>;
+  messageThreadUsers_aggregate?: Resolver<TResolversTypes['message_thread_users_aggregate'], ParentType, ContextType, Partial<TUsersMessageThreadUsers_AggregateArgs>>;
+  messageThreads?: Resolver<Array<TResolversTypes['message_thread']>, ParentType, ContextType, Partial<TUsersMessageThreadsArgs>>;
+  messageThreads_aggregate?: Resolver<TResolversTypes['message_thread_aggregate'], ParentType, ContextType, Partial<TUsersMessageThreads_AggregateArgs>>;
+  messages?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, Partial<TUsersMessagesArgs>>;
+  messages_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, Partial<TUsersMessages_AggregateArgs>>;
   newEmail?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
   otpHash?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   otpHashExpiresAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -8604,8 +8604,8 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   ticketExpiresAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   totpSecret?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
-  user_profiles?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, RequireFields<TUsersUser_ProfilesArgs, never>>;
-  user_profiles_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, RequireFields<TUsersUser_Profiles_AggregateArgs, never>>;
+  user_profiles?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, Partial<TUsersUser_ProfilesArgs>>;
+  user_profiles_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, Partial<TUsersUser_Profiles_AggregateArgs>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -8616,7 +8616,7 @@ export type TUsers_AggregateResolvers<ContextType = any, ParentType extends TRes
 };
 
 export type TUsers_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['users_aggregate_fields'] = TResolversParentTypes['users_aggregate_fields']> = {
-  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, RequireFields<TUsers_Aggregate_FieldsCountArgs, never>>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TUsers_Aggregate_FieldsCountArgs>>;
   max?: Resolver<Maybe<TResolversTypes['users_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<TResolversTypes['users_min_fields']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;

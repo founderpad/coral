@@ -7,7 +7,6 @@ const ProfileLayout = () => (
 	<Grid
 		templateRows="repeat(1, 1fr)"
 		templateColumns="repeat(12, 1fr)"
-		template
 		w="full"
 		gridGap={6}
 	>

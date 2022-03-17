@@ -191,7 +191,6 @@ const IdeasSearchForm = () => {
 										id="new"
 										name="new"
 										rounded="none"
-										focusBorderColor="fpGrey.150"
 										py={1}
 										onChange={onSetNewIdea}
 										colorScheme="fpPrimary"

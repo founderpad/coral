@@ -14,7 +14,9 @@ export default async (req, res) => {
 	await AWS_SES.sendEmail({
 		Source: 'contact@founderpad.com',
 		Destination: {
-			ToAddresses: [`${req.body.event.data.new.recipient_email}`],
+			// ToAddresses: [`${req.body.event.data.new.recipient_email}`],
+			ToAddresses: [`jamie@founderpad.com`],
+
 			// ToAddresses: ['success@simulator.amazonses.com'],
 			BccAddresses: ['jamie@founderpad.com', 'toby@founderpad.com']
 		},
@@ -25,14 +27,20 @@ export default async (req, res) => {
 					Data: `<html>
 	                            <head></head>
 	                            <body>
-	                                <p>Hi ${req.body.event.data.new.recipient_name},</p>
+	                                <p>Hi Jamie,</p>
+	                                <p>Your idea <i>"New ketchup"</i> has been reported for the following reason:
+	                                    <strong>Hate speech</strong>
+	                                </p>
+	                                <p>This will be carefully monitored and removed if deemed necessary.</p><br/>
+									Many thanks,<br/>
+	                                <strong>The founderpad team</strong>
 	                            </body>
 	                        </html>`
 				}
 			},
 			Subject: {
 				Charset: 'UTF-8',
-				Data: `Your ${req.body.event.data.new.type.toLowerCase()} has been reported`
+				Data: `Your idea has been reported`
 			}
 		}
 	}).promise();

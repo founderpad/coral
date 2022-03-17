@@ -1,9 +1,10 @@
-import { Flex, Text } from '@chakra-ui/layout';
+import { Text } from '@chakra-ui/layout';
+import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import React, { memo } from 'react';
 
 const NoAccountFooter = memo(() => (
-	<Flex spacing={6} justifyContent="center" w="full" mt="auto" mx="auto">
+	<FlexLayout justifyContent="center" w="full" mt="auto" mx="auto">
 		<Text color="gray.500" fontSize="xs">
 			Don&apos;t have an account?
 		</Text>
@@ -15,7 +16,7 @@ const NoAccountFooter = memo(() => (
 		>
 			Create one here
 		</PrimaryLink>
-	</Flex>
+	</FlexLayout>
 ));
 
 export default NoAccountFooter;

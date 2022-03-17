@@ -59,7 +59,6 @@ const User: NextPage = () => {
 				<Grid
 					templateRows="repeat(1, 1fr)"
 					templateColumns="repeat(12, 1fr)"
-					template
 					w="full"
 					gridGap={6}
 				>
@@ -80,11 +79,6 @@ const User: NextPage = () => {
 								}
 							/>
 							<StackLayout spacing={2}>
-								{/* <ProfileSectionLabel
-									label="*****************.com"
-									icon={IoMailOutline}
-								/> */}
-
 								{data?.user?.address && (
 									<ProfileSectionLabel
 										label={

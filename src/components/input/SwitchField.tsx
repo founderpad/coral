@@ -16,7 +16,6 @@ export const SwitchField = forwardRef((props, ref) => {
 						id={id}
 						rounded="none"
 						value={value}
-						focusBorderColor="gray.150"
 						onChange={onChange}
 						defaultChecked={defaultChecked}
 						colorScheme="fpPrimary"

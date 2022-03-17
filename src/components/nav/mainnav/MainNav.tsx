@@ -28,7 +28,7 @@ const MainNav = memo(() => (
 			py={{ base: 2 }}
 			px={{ base: 4, sm: 6, lg: 4 }}
 			display="flex"
-			align="center"
+			// align="center"
 			justifySelf="center"
 			position="sticky"
 			maxW={{ base: '100%', xl: '95ch' }}
