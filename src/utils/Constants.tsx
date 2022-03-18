@@ -1,4 +1,4 @@
-type TOption = {
+export type TOption = {
 	readonly label: string;
 	readonly value: string | number;
 };

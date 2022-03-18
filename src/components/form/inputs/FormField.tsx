@@ -4,7 +4,8 @@ import {
 	Input,
 	InputProps,
 	Textarea,
-	FormHelperText
+	FormHelperText,
+	Select as ChakraSelect
 } from '@chakra-ui/react';
 import { FlexLayout } from '@components/layouts';
 import { ErrorMessage } from '@hookform/error-message';
@@ -23,6 +24,8 @@ import { Props as SelectProps } from 'react-select';
 import Select from 'react-select';
 import FormLabelText from '../FormLabelText';
 import ResizeTextarea from 'react-textarea-autosize';
+import { useMobile } from '@hooks/util';
+import { TOption } from '@utils/Constants';
 
 export type TFormFieldProps<TFormValues> = {
 	name: Path<TFormValues>;
@@ -39,7 +42,7 @@ export type TFormFieldProps<TFormValues> = {
 
 export type TFormSelectFieldProps<TFormValues> =
 	TFormFieldProps<TFormValues> & {
-		options?: any;
+		options?: Array<TOption>;
 		selectProps?: SelectProps;
 	};
 
@@ -60,7 +63,7 @@ const FormFieldLimit = ({ max, value }: { max: number; value: string }) => {
 export const FormField = <TFormValues extends Record<string, unknown>>({
 	name,
 	control,
-	errors,
+	errors = undefined,
 	children,
 	label,
 	helperText,
@@ -252,11 +255,13 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	rules,
 	onClear,
 	placeholder,
-	options,
+	options = [],
 	control,
 	selectProps,
 	...rest
 }: TFormSelectFieldProps<TFormValues>) => {
+	const isMobile = useMobile();
+	const { errors = {} } = rest;
 	const errorMessages = rest.errors?.[name];
 	const hasError = !!(rest.errors && errorMessages);
 
@@ -269,109 +274,129 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	});
 
 	return (
-		<FormControl isInvalid={!!rest.errors} isRequired={!!rules?.required}>
+		<FormControl isInvalid={errors[name]} isRequired={!!rules?.required}>
 			<FormField
 				name={name}
 				onClear={onClear}
 				control={control}
 				{...rest}
 			>
-				<Select
-					{...field}
-					id={name}
-					name={name}
-					aria-label={name}
-					aria-invalid={hasError}
-					menuPortalTarget={document.body}
-					menuPlacement={selectProps?.menuPlacement}
-					options={options}
-					placeholder={`Select ${placeholder ?? 'option'}`}
-					onChange={(e) => onChange(e.value)}
-					value={
-						options.find((opt: any) => opt.value === value) || null
-					}
-					styles={{
-						menuPortal: (provided) => ({
-							...provided,
-							zIndex: 9999
-						}),
-						option: (provided, state) => ({
-							...provided,
-							fontSize: '12px',
-							cursor: 'pointer',
-							':hover': {
-								background: '#F8F8F9'
-							},
-							background: state.isSelected
-								? '#F8F8F9'
-								: 'transparent',
-							color: state.isSelected ? '#1078A9' : '#718096'
-						}),
-						control: (provided) => ({
-							...provided,
-							fontSize: '12px',
-							cursor: 'pointer',
-							color: '#718096',
-							borderColor: hasError ? '#E53E3E' : '#E2E8F0',
-							boxShadow: 'none',
-							borderRadius: '0.375rem',
-							':focus-within': {
-								borderColor: hasError ? '#E53E3E' : '#E2E8F0'
-							},
-							':hover': {
-								borderColor: hasError ? '#E53E3E' : '#E2E8F0'
-							}
-						}),
-						singleValue: (provided) => ({
-							...provided,
-							color: '#425068'
-						}),
-						placeholder: (provided) => ({
-							...provided,
-							fontSize: '12px'
-						}),
-						indicatorSeparator: () => ({
-							width: 0
-						}),
-						container: (provided) => ({
-							...provided,
-							borderRadius: '0.375rem'
-						}),
-						valueContainer: (provided) => ({
-							...provided,
-							color: '#718096',
-							padding: '4px 8px'
-						}),
-						noOptionsMessage: (provided) => ({
-							...provided,
-							fontSize: '12px'
-						}),
-						menuList: (provided) => ({
-							...provided,
-							'::-webkit-scrollbar': {
-								width: '4px',
-								height: '0px'
-							},
-							'::-webkit-scrollbar-track': {
-								background: 'inherit'
-							},
-							'::-webkit-scrollbar-thumb': {
-								background: '#E2E8F0'
-							}
-						}),
-						dropdownIndicator: (provided, state) => ({
-							...provided,
-							svg: {
-								width: '14px',
-								height: '14px',
-								transform: state.isFocused
-									? 'rotate(-180deg)'
-									: 'rotate(0deg)',
-								transition: 'transform .1s linear'
-							}
-						})
-					}}
-				/>
+				{!isMobile ? (
+					<Select
+						{...field}
+						id={name}
+						name={name}
+						aria-label={name}
+						aria-invalid={hasError}
+						menuPortalTarget={document.body}
+						menuPlacement={selectProps?.menuPlacement}
+						options={options}
+						placeholder={`Select ${placeholder ?? 'option'}`}
+						onChange={(e) => onChange(e?.value)}
+						value={
+							options.find((opt: any) => opt.value === value) ||
+							null
+						}
+						styles={{
+							menuPortal: (provided) => ({
+								...provided,
+								zIndex: 9999
+							}),
+							option: (provided, state) => ({
+								...provided,
+								fontSize: '12px',
+								cursor: 'pointer',
+								':hover': {
+									background: '#F8F8F9'
+								},
+								background: state.isSelected
+									? '#F8F8F9'
+									: 'transparent',
+								color: state.isSelected ? '#1078A9' : '#718096'
+							}),
+							control: (provided) => ({
+								...provided,
+								fontSize: '12px',
+								cursor: 'pointer',
+								color: '#718096',
+								borderColor: hasError ? '#E53E3E' : '#E2E8F0',
+								boxShadow: 'none',
+								borderRadius: '0.375rem',
+								':focus-within': {
+									borderColor: hasError
+										? '#E53E3E'
+										: '#E2E8F0'
+								},
+								':hover': {
+									borderColor: hasError
+										? '#E53E3E'
+										: '#E2E8F0'
+								}
+							}),
+							singleValue: (provided) => ({
+								...provided,
+								color: '#425068'
+							}),
+							placeholder: (provided) => ({
+								...provided,
+								fontSize: '12px'
+							}),
+							indicatorSeparator: () => ({
+								width: 0
+							}),
+							container: (provided) => ({
+								...provided,
+								borderRadius: '0.375rem'
+							}),
+							valueContainer: (provided) => ({
+								...provided,
+								color: '#718096',
+								padding: '4px 8px'
+							}),
+							noOptionsMessage: (provided) => ({
+								...provided,
+								fontSize: '12px'
+							}),
+							menuList: (provided) => ({
+								...provided,
+								'::-webkit-scrollbar': {
+									width: '4px',
+									height: '0px'
+								},
+								'::-webkit-scrollbar-track': {
+									background: 'inherit'
+								},
+								'::-webkit-scrollbar-thumb': {
+									background: '#E2E8F0'
+								}
+							}),
+							dropdownIndicator: (provided, state) => ({
+								...provided,
+								svg: {
+									width: '14px',
+									height: '14px',
+									transform: state.isFocused
+										? 'rotate(-180deg)'
+										: 'rotate(0deg)',
+									transition: 'transform .1s linear'
+								}
+							})
+						}}
+					/>
+				) : (
+					<ChakraSelect
+						fontSize="xs"
+						rounded="md"
+						onChange={onChange}
+						// onChange={(e) => onChange(e?.value)}
+						value={value}
+						placeholder={`Select ${placeholder ?? 'option'}`}
+					>
+						{options.map((option) => (
+							<option value={option.value}>{option.value}</option>
+						))}
+					</ChakraSelect>
+				)}
 			</FormField>
 		</FormControl>
 	);
