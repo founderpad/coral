@@ -1,3 +1,3 @@
-export default (req, res) => {
-	res.send('Report email sent successfully');
+module.exports = (req, res) => {
+	res.status(200).send('Report email sent successfully');
 };
