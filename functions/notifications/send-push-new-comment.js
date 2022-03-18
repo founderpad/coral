@@ -31,7 +31,7 @@
 // };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default async (req, res) => {
+export default (req, res) => {
 	// const fromUserId = req.body.event.data.new.user_id;
 	// const targetUserId = req.body.event.data.new.target_user_id;
 	// const ideaId = req.body.event.data.new.idea_id;
