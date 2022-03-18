@@ -13,7 +13,7 @@ import React, { useEffect } from 'react';
 import useIdea from '../query/ideaQuery';
 
 export const InterestedUsersTab = () => {
-	const idea = useIdea()['idea'];
+	const idea = useIdea()?.idea;
 	const totalInterested =
 		useIdea()?.idea?.interested_aggregate.aggregate?.count ?? 0;
 
