@@ -29,36 +29,13 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-.env.production
 
 # vercel
 .vercel
 
 # /src/generated/
+.vercel
 .nhost
-api/node_modules
-.nhost
-api/node_modules
-.env.development
-.nhost
-api/node_modules
-.nhost
-api/node_modules
-.env.development
-.nhost
-api/node_modules
-.env.development
-.nhost
-api/node_modules
-.env.development
-.nhost
-api/node_modules.nhost
-web/node_modules
-node_modules
-functions/node_modules.nhost
-web/node_modules
-node_modules
-functions/node_modules.nhost
 web/node_modules
 node_modules
 functions/node_modules
