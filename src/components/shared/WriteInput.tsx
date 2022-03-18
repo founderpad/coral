@@ -24,7 +24,7 @@ const WriteInput = (props: Props) => {
 		<StackLayout
 			spacing={2}
 			d="flex"
-			p={4}
+			// p={4}
 			justifyContent="flex-end"
 			alignItems="center"
 		>

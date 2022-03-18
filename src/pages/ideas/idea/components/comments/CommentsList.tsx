@@ -10,6 +10,7 @@ import {
 	useRepliesForCommentQuery
 } from '@generated/api';
 import { useQueryParam } from '@hooks/util';
+import { cache } from '@pages/_app';
 import React, { useEffect } from 'react';
 import CommentLayout from './CommentLayout';
 
@@ -55,16 +56,20 @@ export const CommentsList = ({
 }: {
 	display?: StackProps['display'];
 }) => {
+	const id = useQueryParam('id');
 	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
-			ideaId: useQueryParam('id'),
+			ideaId: id,
 			offset: 0
-		}
+		},
+		// fetchPolicy: 'network-only'
 		// notifyOnNetworkStatusChange: true,
-		// fetchPolicy: 'no-cache'
+		fetchPolicy: 'cache-and-network'
 		// nextFetchPolicy: 'cache-first'
 		// nextFetchPolicy: 'cache-and-network'
 	});
+
+	console.log('data: ', cache);
 
 	useEffect(() => {
 		window.addEventListener('scroll', onScrollToBottom);
@@ -108,13 +113,14 @@ export const CommentsList = ({
 				fontSize="sm"
 				as="h4"
 				flexShrink={0}
-				p={4}
+				py={4}
+				px={{ base: 4, md: 0 }}
 				borderTopWidth={{ base: 0, md: 1 }}
 				borderBottomWidth={{ base: 1, md: 0 }}
 			>
 				{data?.totalComments?.aggregate?.count} Comments
 			</BaseHeading>
-			<Box flexShrink={0} px={2} py={6}>
+			<Box flexShrink={0} px={{ base: 4, md: 0 }} py={6}>
 				<PostComment />
 			</Box>
 			{hasComments < 1 ? (
@@ -135,7 +141,7 @@ const RepliesList = ({ commentId }: { commentId: string }) => {
 		variables: {
 			commentId
 		},
-		fetchPolicy: 'cache-and-network'
+		fetchPolicy: 'network-only'
 	});
 
 	if (data?.replies?.length)

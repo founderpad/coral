@@ -54,6 +54,8 @@ const TabLayout = (props: Props & TabsProps) => {
 							fontWeight="normal"
 							mr={2}
 							rounded="md"
+							borderWidth={1}
+							borderColor="fpLightGrey.900"
 						>
 							{tab?.icon && (
 								<Icon
