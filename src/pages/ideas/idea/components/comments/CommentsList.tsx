@@ -62,11 +62,8 @@ export const CommentsList = ({
 			ideaId: id,
 			offset: 0
 		},
-		// fetchPolicy: 'network-only'
-		// notifyOnNetworkStatusChange: true,
-		fetchPolicy: 'cache-and-network'
-		// nextFetchPolicy: 'cache-first'
-		// nextFetchPolicy: 'cache-and-network'
+		fetchPolicy: 'network-only',
+		nextFetchPolicy: 'network-only'
 	});
 
 	console.log('data: ', cache);
@@ -107,7 +104,6 @@ export const CommentsList = ({
 			p={0}
 			justifyContent="center"
 			display={display}
-			id="idea-comments"
 		>
 			<BaseHeading
 				fontSize="sm"
@@ -127,9 +123,10 @@ export const CommentsList = ({
 				<NoResults label="comments yet" back={false} />
 			) : (
 				<StackLayout flexGrow={1} overflowY="auto" minHeight="2em">
-					{data?.comments.map((comment, _index) => (
-						<Comment key={comment.id} {...comment} />
-					))}
+					{data?.comments.map((comment, _index) => {
+						if (comment.ideaId === id)
+							return <Comment key={comment.id} {...comment} />;
+					})}
 				</StackLayout>
 			)}
 		</BoxLayout>

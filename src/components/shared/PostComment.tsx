@@ -23,6 +23,18 @@ const PostComment = () => {
 			},
 			ideaId: idea?.id
 		},
+		update(cache, mutationResult) {
+			cache.modify({
+				fields: {
+					idea_comments: (previous, { toReference }) => {
+						return [
+							...previous,
+							toReference(mutationResult.data?.addIdeaComment!)
+						];
+					}
+				}
+			});
+		},
 		// update(cache, mutationResult) {
 		// 	cache.modify({
 		// 		fields: {

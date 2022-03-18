@@ -117,7 +117,7 @@ const cache = new InMemoryCache({
 		// 	keyFields: ['ideaId']
 		// },
 		// idea_comments: {
-		// 	keyFields: ['ideaId']
+		// 	keyFields: ['ideaId', 'id']
 		// },
 		Query: {
 			fields: {
@@ -146,7 +146,14 @@ const cache = new InMemoryCache({
 				// 	}
 				// 	// offsetLimitPagination()
 				// }
-				// idea_comments: offsetLimitPagination(),
+
+				idea_comments: offsetLimitPagination(),
+				// idea_comments: {
+				// 	...offsetLimitPagination(),
+				// 	merge(existing = [], incoming) {
+				// 		return [...existing, ...incoming];
+				// 	}
+				// },
 
 				// idea_comments: {
 				// 	keyArgs: ['ideaId'],
