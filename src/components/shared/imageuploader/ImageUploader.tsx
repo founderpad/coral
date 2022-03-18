@@ -79,7 +79,7 @@ export const ImageUploader = (props: Props) => {
 						bottom={0}
 						right={0}
 						boxSize="60px"
-						bg="rgba(0, 0, 0, 0.4)"
+						bg="rgba(0, 0, 0,0.4)"
 						overflow="hidden"
 						className="img-preview"
 						style={{
