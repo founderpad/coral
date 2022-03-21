@@ -46,44 +46,42 @@ export const UserAvatarDetails = ({
 	direction = 'row',
 	fontSize = 'small',
 	actions
-}: Props) => {
-	return (
-		<StackLayout align="center" direction={direction} spacing={2}>
-			<UserAvatar src={src} size={size} direction={direction} />
-			<StackLayout
-				spacing={0}
-				ml={2}
-				alignItems={direction === 'column' ? 'center' : 'flex-start'}
-				flex={1}
-			>
-				<FlexLayout alignItems="baseline" lineHeight="tall" flex={1}>
-					<Label
-						fontWeight="medium"
-						fontSize={fontSize}
-						css={{ whiteSpace: 'normal' }}
-						wordBreak="break-all"
-						noOfLines={1}
-						mr={1}
-						isTruncated
-						flex={1}
-						overflowX="hidden"
-					>
-						{title}
-					</Label>
-					<FlexLayout alignItems="inherit">{actions}</FlexLayout>
-				</FlexLayout>
-				{subtitle && (
-					<Label color="fpGrey.500" fontSize="xs">
-						{subtitle}
-					</Label>
-				)}
-				{createdAt && (
-					<CaptionLabel color="fpGrey.400">{createdAt}</CaptionLabel>
-				)}
-			</StackLayout>
+}: Props) => (
+	<StackLayout align="center" direction={direction} spacing={2}>
+		<UserAvatar src={src} size={size} direction={direction} />
+		<StackLayout
+			spacing={0}
+			pl={1}
+			alignItems={direction === 'column' ? 'center' : 'flex-start'}
+			flex={1}
+		>
+			<FlexLayout alignItems="baseline" lineHeight="tall" flex={1}>
+				<Label
+					fontWeight="medium"
+					fontSize={fontSize}
+					css={{ whiteSpace: 'normal' }}
+					wordBreak="break-all"
+					noOfLines={1}
+					mr={1}
+					isTruncated
+					flex={1}
+					overflowX="hidden"
+				>
+					{title}
+				</Label>
+				<FlexLayout alignItems="inherit">{actions}</FlexLayout>
+			</FlexLayout>
+			{subtitle && (
+				<Label color="fpGrey.500" fontSize="xs">
+					{subtitle}
+				</Label>
+			)}
+			{createdAt && (
+				<CaptionLabel color="fpGrey.400">{createdAt}</CaptionLabel>
+			)}
 		</StackLayout>
-	);
-};
+	</StackLayout>
+);
 
 export const CurrentUserAvatarDetails = memo(
 	({
