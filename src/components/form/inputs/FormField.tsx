@@ -388,12 +388,13 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 						fontSize="xs"
 						rounded="md"
 						onChange={onChange}
-						// onChange={(e) => onChange(e?.value)}
 						value={value}
 						placeholder={`Select ${placeholder ?? 'option'}`}
 					>
 						{options.map((option) => (
-							<option value={option.value}>{option.value}</option>
+							<option key={option.value} value={option.value}>
+								{option.value}
+							</option>
 						))}
 					</ChakraSelect>
 				)}
