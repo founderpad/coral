@@ -1,4 +1,5 @@
 import AuthLayout from '@components/layouts/AuthLayout';
+import { useCheckLoggedIn } from '@hooks/auth';
 import { NextPage } from 'next';
 import Router from 'next/router';
 import React, { useEffect } from 'react';
@@ -6,6 +7,8 @@ import LoginForm from './components/LoginForm';
 
 const Login: NextPage = () => {
 	const changePasswordHash = Router.asPath.split('#')[1] ?? '';
+
+	useCheckLoggedIn();
 
 	useEffect(() => {
 		if (changePasswordHash.search('type=passwordReset') !== -1) {

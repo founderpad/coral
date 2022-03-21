@@ -2,10 +2,12 @@ import { Label } from '@components/labels';
 import AuthLayout from '@components/layouts/AuthLayout';
 import { PrimaryLink } from '@components/links';
 import ChangePasswordForm from '@components/shared/ChangePasswordForm';
+import { useCheckLoggedIn } from '@hooks/auth';
 import { NextPage } from 'next';
 import React from 'react';
 
 const ChangePassword: NextPage = () => {
+	useCheckLoggedIn();
 	return (
 		<AuthLayout title="Change password" header="Change your password">
 			<Label fontSize="small">

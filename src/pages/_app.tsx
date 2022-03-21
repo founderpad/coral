@@ -5,7 +5,7 @@ import BaseModal from '@components/modal/BaseModal';
 import BaseModalDrawer from '@components/modal/BaseModalDrawer';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
-import { useCheckLoggedIn } from '@hooks/auth';
+import { useAuth, useCheckLoggedIn, useCurrentUser } from '@hooks/auth';
 import { useTrackAnalytics } from '@hooks/util';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
@@ -20,8 +20,9 @@ import store from '@utils/store';
 import 'focus-visible/dist/focus-visible';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import Router from 'next/router';
 import Script from 'next/script';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -40,7 +41,20 @@ const persistor = persistStore(store);
  */
 const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	useTrackAnalytics();
-	useCheckLoggedIn();
+
+	// const value
+
+	// console.log('auth: ', useAuth());
+
+	// useEffect(() => {
+	// 	// if (!user) {
+	// 	// 	Router.replace('/login');
+	// 	// }
+
+	// 	if (!isAuthenticated) {
+	// 		Router.replace('/login');
+	// 	}
+	// }, []);
 
 	return (
 		<React.Fragment>

@@ -208,12 +208,21 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useCheckLoggedIn = (): void => {
+	// const { isAuthenticated } = useAuth() ?? false;
+
+	// useEffect(() => {
+	// 	if (isAuthenticated) {
+	// 		Router.push('/ideas/search?page=1');
+	// 		return;
+	// 	}
+	// }, [isAuthenticated]);
+
 	const { isAuthenticated } = useAuth() ?? false;
+	console.log('is authenticated: ', isAuthenticated);
 
 	useEffect(() => {
 		if (isAuthenticated) {
 			Router.push('/ideas/search?page=1');
-			return;
 		}
 	}, [isAuthenticated]);
 };
