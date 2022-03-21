@@ -18,6 +18,8 @@ const MessageThreadsContainer = () => {
 	if (loading) return <Loading />;
 	if (!loading && hasResults < 1) return <NoResults back />;
 
+	console.log('data thread: ', data);
+
 	return (
 		<React.Fragment>
 			<StackLayout w="full" spacing={0}>

@@ -9,7 +9,7 @@ import React from 'react';
 const MessageThreadCard = (thread: any) => {
 	const authUserId = useCurrentUser().id;
 	return (
-		<LinkCard href={`/message/thread/${thread.id}`}>
+		<LinkCard href={`/message/thread/${thread.id}?mn=dsgdfghg`}>
 			<UserAvatarDetails
 				src={thread.targetUser?.[0].user?.avatarUrl || undefined}
 				actions={
