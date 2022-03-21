@@ -5,7 +5,6 @@ import PronounsLabel from '@components/shared/PronounsLabel';
 import { useMessageListSubscription } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
-import { cache } from '@pages/_app';
 import AuthFilter from '@utils/AuthFilter';
 import { formatDate } from '@utils/validators';
 import React from 'react';

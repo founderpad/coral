@@ -261,7 +261,7 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	...rest
 }: TFormSelectFieldProps<TFormValues>) => {
 	const isMobile = useMobile();
-	const { errors = {} } = rest;
+	// const errors = rest.errors;
 	const errorMessages = rest.errors?.[name];
 	const hasError = !!(rest.errors && errorMessages);
 
@@ -274,7 +274,10 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	});
 
 	return (
-		<FormControl isInvalid={errors[name]} isRequired={!!rules?.required}>
+		<FormControl
+			isInvalid={!!rest.errors?.[name]}
+			isRequired={!!rules?.required}
+		>
 			<FormField
 				name={name}
 				onClear={onClear}
@@ -388,7 +391,7 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 						fontSize="xs"
 						rounded="md"
 						onChange={onChange}
-						value={value}
+						value={value as string}
 						placeholder={`Select ${placeholder ?? 'option'}`}
 					>
 						{options.map((option) => (
