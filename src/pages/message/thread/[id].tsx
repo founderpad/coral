@@ -8,7 +8,6 @@ import { useQueryParam } from '@hooks/util';
 import { cache } from '@pages/_app';
 import AuthFilter from '@utils/AuthFilter';
 import { formatDate } from '@utils/validators';
-import gql from 'graphql-tag';
 import React from 'react';
 import WriteUserMessage from '../components/WriteUserMessage';
 
