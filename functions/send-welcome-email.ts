@@ -101,7 +101,7 @@ export default async (req: Request, res: Response) => {
 																Getting started
 															</h3>
 															<p>
-																Click <a href="http://www.founderpad.com/login" target="_blank" style="text-decoration: none;">here</a>
+																Click <a href="http://app.founderpad.com/login" target="_blank" style="text-decoration: none;">here</a>
 																to login, get started, and post your first idea!
 															</p>
 														</td>
