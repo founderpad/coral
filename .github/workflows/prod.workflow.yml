@@ -37,6 +37,10 @@ jobs:
                   yarn install --frozen-lockfile --ignore-engines
                   echo "Dependencies installed"
 
+            - name: Install all modules for Lambda functions
+              working-directory: functions
+              run: yarn install
+
             - name: Install Hasura CLI
               run: |
                   curl -L https://github.com/hasura/graphql-engine/raw/master/cli/get.sh | bash
