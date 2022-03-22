@@ -12,6 +12,7 @@
 		"express": "^4.17.3"
 	},
 	"devDependencies": {
+		"@aws-sdk/types": "^3.55.0",
 		"@types/express": "^4.17.13",
 		"@types/node": "^17.0.21",
 		"dotenv": "^16.0.0",

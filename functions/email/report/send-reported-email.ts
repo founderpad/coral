@@ -1,4 +1,4 @@
-import AWS from 'aws-sdk';
+const AWS = require('aws-sdk');
 import { Request, Response } from 'express';
 
 const CONFIG = {
