@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"allowJs": false,
+		"noEmit": true, // Do not compile the JS (or TS) files in this project on build
+		"strict": true,
+		"esModuleInterop": true,
+		"inlineSourceMap": true,
+		"noImplicitAny": false,
+		"composite": true,
+		"forceConsistentCasingInFileNames": true,
+		"module": "ESNext",
+		"target": "ES6",
+		"moduleResolution": "node"
+	},
+	"exclude": ["node_modules"],
+	"include": [
+		"**/*.ts",
+		"notifications/send-push-interested-idea.js",
+		"notifications/send-push-new-comment.js"
+	]
+}
