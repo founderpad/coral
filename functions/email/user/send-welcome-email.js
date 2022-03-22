@@ -14,7 +14,7 @@ export default async (req, res) => {
 	await AWS_SES.sendEmail({
 		Source: 'contact@founderpad.com',
 		Destination: {
-			ToAddresses: [`${req.body.event.data.new.recipientEmail}`],
+			ToAddresses: [`${req.body.event.data.new.email}`],
 			// ToAddresses: ['success@simulator.amazonses.com'],
 			BccAddresses: ['jamie@founderpad.com', 'toby@founderpad.com']
 		},
