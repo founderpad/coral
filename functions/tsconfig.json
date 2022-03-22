@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"allowJs": false,
+		"allowJs": true,
 		"noEmit": true, // Do not compile the JS (or TS) files in this project on build
 		"strict": true,
 		"esModuleInterop": true,
@@ -10,7 +10,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"module": "ESNext",
 		"target": "ES6",
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"lib": ["dom", "dom.iterable", "esnext"]
 	},
 	"exclude": ["node_modules"],
 	"include": [
