@@ -1,3 +1,3 @@
 export default (req, res) => {
-	res.send('hello.js1');
+	res.send('hello.js');
 };
