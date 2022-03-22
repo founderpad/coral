@@ -134,7 +134,7 @@ export default async (req: Request, res: Response) => {
 													</tr>
 													<tr>
 														<td>
-															Many thanks,<br/><br/>
+															Many thanks,<br/>
 															<strong>The founderpad team</strong>
 														</td>
 													</tr>
@@ -155,5 +155,5 @@ export default async (req: Request, res: Response) => {
 		}
 	}).promise();
 
-	res.status(200).send('Email sent successfully');
+	res.status(200).send('Welcome email sent successfully');
 };
