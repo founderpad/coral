@@ -10,7 +10,7 @@ const CONFIG = {
 
 const AWS_SES = new AWS.SES(CONFIG);
 
-export default async (req: Request, res: Response) => {
+export default async (req, res) => {
 	await AWS_SES.sendEmail({
 		Source: 'contact@founderpad.com',
 		Destination: {
