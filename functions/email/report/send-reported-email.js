@@ -12,10 +12,9 @@ const AWS_SES = new AWS.SES(CONFIG);
 
 export default async (req, res) => {
 	await AWS_SES.sendEmail({
-		Source: 'contact@founderpad.com',
+		Source: 'report@founderpad.com',
 		Destination: {
 			ToAddresses: [`${req.body.event.data.new.recipient_email}`],
-			// ToAddresses: ['success@simulator.amazonses.com'],
 			BccAddresses: ['jamie@founderpad.com', 'toby@founderpad.com']
 		},
 		Message: {

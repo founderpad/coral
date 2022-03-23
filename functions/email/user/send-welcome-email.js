@@ -3,9 +3,9 @@ import { Request, Response } from 'express';
 
 const CONFIG = {
 	apiVersion: '2010-12-01',
-	accessKeyId: 'AKIAXAVHTNCXXFIDEJVC',
-	secretAccessKey: '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',
-	region: 'eu-west-1'
+	accessKeyId: process.env.AWS_SDK_ACCESS_KEY,
+	secretAccessKey: process.env.AWS_SDK_SECRET_ACCESS_KEY,
+	region: process.env.AWS_SDK_REGION
 };
 
 const AWS_SES = new AWS.SES(CONFIG);
@@ -14,15 +14,11 @@ export default async (req, res) => {
 	await AWS_SES.sendEmail({
 		Source: 'welcome@founderpad.com',
 		Destination: {
-			ToAddresses: [`jamie@founderpad.com`],
+			ToAddresses: [`${req.body.event.data.new.email}`],
 			// ToAddresses: ['success@simulator.amazonses.com'],
 			BccAddresses: ['jamie@founderpad.com', 'toby@founderpad.com']
 		},
 		Message: {
-			Subject: {
-				Charset: 'UTF-8',
-				Data: 'Welcome to founderpad'
-			},
 			Body: {
 				Html: {
 					Charset: 'UTF-8',
@@ -121,7 +117,7 @@ export default async (req, res) => {
 											<table id="inner-container">
 												<tr>
 													<td align="center" style="padding-bottom: 32px;">
-														<h1>Welcome, Jamie Lee!</h1>
+														<h1>Welcome, ${req.body.event.data.new.display_name}!</h1>
 														<h3 style="font-weight: normal; font-size: 1.125rem; margin-top: 8px;">We're delighted to have you on board</h3>
 													</td>
 													<tr>
