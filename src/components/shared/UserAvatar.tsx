@@ -2,7 +2,7 @@ import { Avatar } from '@chakra-ui/avatar';
 import { AvatarProps, StackProps, useBreakpointValue } from '@chakra-ui/react';
 import { CaptionLabel, Label } from '@components/labels';
 import { FlexLayout, StackLayout } from '@components/layouts';
-import { useCurrentUser } from '@hooks/auth';
+import { useAuth, useCurrentUser } from '@hooks/auth';
 import React, { memo } from 'react';
 
 type Props = AvatarProps & {
@@ -91,13 +91,11 @@ export const CurrentUserAvatarDetails = memo(
 		size?: Props['size'];
 		direction?: StackProps['direction'];
 	}) => {
-		const user = useCurrentUser();
-		// const { displayName, lastName, avatarUrl, email } = user;
+		const user = useAuth().user;
 
 		if (user)
 			return (
 				<UserAvatarDetails
-					// name={`${user?.displayName} ${user?.lastName}`}
 					title={user?.displayName}
 					subtitle={user?.email}
 					src={user?.avatarUrl || undefined}

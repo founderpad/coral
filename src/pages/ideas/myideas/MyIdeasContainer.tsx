@@ -5,17 +5,16 @@ import { BaseLink } from '@components/links';
 import { Loading, NoResults, PointSeparator } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import { useUserIdeasQuery } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useClaim } from '@hooks/auth';
 import InterestedTotal from '@pages/ideas/idea/components/InterestedTotal';
 import PublishedLabel from '@pages/ideas/idea/components/PublishedLabel';
 import { formatDate } from '@utils/validators';
 import React from 'react';
 
 const MyIdeasContainer = () => {
-	const user = useCurrentUser();
 	const { data, loading } = useUserIdeasQuery({
 		variables: {
-			userId: user?.id
+			userId: useClaim()
 		},
 		fetchPolicy: 'cache-and-network'
 	});

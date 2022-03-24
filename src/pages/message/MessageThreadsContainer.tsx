@@ -1,14 +1,16 @@
 import { StackLayout } from '@components/layouts';
 import { AppDivider, Loading, NoResults } from '@components/shared';
 import { useUserMessageThreadsQuery } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useAuth } from '@hooks/auth';
 import React from 'react';
 import MessageThreadCard from './components/MessageThreadCard';
 
 const MessageThreadsContainer = () => {
+	const userId = useAuth().user?.id;
+
 	const { data, loading } = useUserMessageThreadsQuery({
 		variables: {
-			userId: useCurrentUser().id
+			userId
 		}
 	});
 
@@ -17,8 +19,6 @@ const MessageThreadsContainer = () => {
 
 	if (loading) return <Loading />;
 	if (!loading && hasResults < 1) return <NoResults back />;
-
-	console.log('data thread: ', data);
 
 	return (
 		<React.Fragment>

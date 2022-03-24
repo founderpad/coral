@@ -1,4 +1,3 @@
-import { logout } from './../slices/auth';
 import { TUsers, useUserLazyQuery } from '@generated/api';
 import { event } from '@lib/ga';
 import { useNhostAuth } from '@nhost/react-auth';
@@ -149,15 +148,13 @@ export const useChangePassword = () => {
 	return onChangePassword;
 };
 
-const useGetAuthUser = () => {
-	// const { addNotification } = useNotification();
-	// const showErrorNotification = useErrorNotification();
-
+export const useGetAuthUser = () => {
+	// const auth = useAuth();
 	const dispatch = useDispatch();
 
 	const getUser = useUserLazyQuery({
 		variables: {
-			userId: auth.getUser()?.id
+			userId: useClaim()
 		},
 		onError: () => {
 			redirectTo(true);
@@ -165,6 +162,7 @@ const useGetAuthUser = () => {
 		},
 		onCompleted: (data) => {
 			const user = data.user as TUsers;
+			console.log('get auth user: ', user);
 			dispatch(setUser(user));
 			Router.replace('/ideas/search?page=1');
 		}
@@ -175,11 +173,6 @@ const useGetAuthUser = () => {
 
 export const useLogout = (): (() => Promise<void>) => {
 	const showErrorNotification = useErrorNotification();
-	const dispatch = useDispatch();
-	const { setModalDrawer } = useContext(ModalDrawerContext);
-	// const client = useApolloClient();
-	// const client = usePushClient();
-
 	return async (): Promise<void> => {
 		try {
 			await auth.signOut();
@@ -187,10 +180,6 @@ export const useLogout = (): (() => Promise<void>) => {
 			// 	client.removeExternalUserId();
 			// });
 			// await client.clearStore();
-			dispatch(logout());
-			setModalDrawer({
-				isOpen: false
-			});
 		} catch (error) {
 			showErrorNotification({
 				title: 'Failed to logout',
@@ -218,7 +207,6 @@ export const useCheckLoggedIn = (): void => {
 	// }, [isAuthenticated]);
 
 	const { isAuthenticated } = useAuth() ?? false;
-	console.log('is authenticated: ', isAuthenticated);
 
 	useEffect(() => {
 		if (isAuthenticated) {

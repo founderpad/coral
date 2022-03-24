@@ -2,12 +2,12 @@ import LinkCard from '@components/cards/LinkCard';
 import { Label } from '@components/labels';
 import { PointSeparator, UserAvatarDetails } from '@components/shared';
 import PronounsLabel from '@components/shared/PronounsLabel';
-import { useCurrentUser } from '@hooks/auth';
+import { useAuth } from '@hooks/auth';
 import { formatDate } from '@utils/validators';
 import React from 'react';
 
 const MessageThreadCard = (thread: any) => {
-	const authUserId = useCurrentUser().id;
+	const authUserId = useAuth().user?.id;
 	return (
 		<LinkCard href={`/message/thread/${thread.id}?mn=dsgdfghg`}>
 			<UserAvatarDetails

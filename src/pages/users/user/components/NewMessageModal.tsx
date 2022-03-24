@@ -7,7 +7,7 @@ import {
 	useNewMessageMutation,
 	useNewMessageThreadMutation
 } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useAuth } from '@hooks/auth';
 import { useModalDrawer } from '@hooks/util';
 import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
@@ -69,7 +69,7 @@ export default NewMessageModal;
 type TMessageInput = Pick<TMessage, 'content'>;
 
 const NewMessageForm = ({ userId }: { userId: string }) => {
-	const authUserId = useCurrentUser().id;
+	const authUserId = useAuth().user?.id;
 	const { setModalDrawer } = useModalDrawer();
 	const [createNewMessageThread] = useNewMessageThreadMutation();
 	const [createNewMessage] = useNewMessageMutation();

@@ -6,7 +6,7 @@ import {
 	RepliesForCommentDocument,
 	usePostReplyMutation
 } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useAuth } from '@hooks/auth';
 import { event } from '@lib/ga';
 import useIdea from '@pages/ideas/idea/query/ideaQuery';
 import React, { useCallback, useState } from 'react';
@@ -21,7 +21,7 @@ const PostReplyComment = ({
 }) => {
 	const [showReplyField, setShowReplyField] = useState(false);
 	const [value, setValue] = useState('');
-	const user = useCurrentUser();
+	const user = useAuth().user;
 	const { idea } = useIdea() ?? {};
 
 	const [postReplyMutation] = usePostReplyMutation({
@@ -51,9 +51,9 @@ const PostReplyComment = ({
 					idea_id: idea?.id,
 					comment_id: commentId,
 					to_user_id: commentUserId,
-					from_user_id: user.id,
-					from_user_display_name: user.displayName,
-					from_user_email: user.email
+					from_user_id: user?.id,
+					from_user_display_name: user?.displayName,
+					from_user_email: user?.email
 				}
 			});
 		}

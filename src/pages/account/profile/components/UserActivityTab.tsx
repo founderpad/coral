@@ -4,16 +4,14 @@ import { CaptionLabel, Label } from '@components/labels';
 import { PrimaryLink } from '@components/links';
 import { NoResults } from '@components/shared';
 import { TActivity, useUserActivityQuery } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useClaim } from '@hooks/auth';
 import { formatDate } from '@utils/validators';
 import React from 'react';
 
 const UserActivityTab = () => {
-	const user = useCurrentUser();
-
 	const { data, loading } = useUserActivityQuery({
 		variables: {
-			userId: user?.id
+			userId: useClaim()
 		}
 	});
 

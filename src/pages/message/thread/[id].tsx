@@ -3,7 +3,7 @@ import { PageLayout, StackLayout } from '@components/layouts';
 import { Loading, PointSeparator, UserAvatarDetails } from '@components/shared';
 import PronounsLabel from '@components/shared/PronounsLabel';
 import { useMessageListSubscription } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useAuth } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import AuthFilter from '@utils/AuthFilter';
 import { formatDate } from '@utils/validators';
@@ -12,7 +12,7 @@ import WriteUserMessage from '../components/WriteUserMessage';
 
 const MessageThread = () => {
 	const threadId = useQueryParam<string>('id');
-	const user = useCurrentUser();
+	const user = useAuth().user;
 
 	const { data, loading } = useMessageListSubscription({
 		variables: {
@@ -20,7 +20,7 @@ const MessageThread = () => {
 		}
 	});
 
-	const toUser = data?.message.find((m) => m.sender.id !== user.id);
+	const toUser = data?.message.find((m) => m.sender.id !== user?.id);
 
 	// const result = cache.readFragment({
 	// 	id: `message_thread:${threadId}`, // The value of the profile's cache id

@@ -2462,7 +2462,6 @@ export type TMessage_Thread_Insert_Input = {
   messageThreadUsers?: InputMaybe<TMessage_Thread_Users_Arr_Rel_Insert_Input>;
   messages?: InputMaybe<TMessage_Arr_Rel_Insert_Input>;
   name?: InputMaybe<Scalars['String']>;
-  ownerId?: InputMaybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */

@@ -43,6 +43,8 @@ insert_permissions:
     columns:
     - name
     - owner_id
+    set:
+      owner_id: x-hasura-User-Id
   role: user
 select_permissions:
 - permission:

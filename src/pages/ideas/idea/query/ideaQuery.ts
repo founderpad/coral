@@ -1,5 +1,5 @@
 import { IdeaDocument, TIdeaQuery, TIdeas } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useClaim } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { cache } from '@pages/_app';
 import gql from 'graphql-tag';
@@ -64,13 +64,12 @@ const useIdea = (id?: string) => {
 
 	const paramIdeaId = useQueryParam('id');
 	const ideaId = id ?? paramIdeaId;
-	const user = useCurrentUser();
 
 	const data = cache.readQuery({
 		query: IdeaDocument,
 		variables: {
 			id: ideaId,
-			userId: user.id
+			userId: useClaim()
 		}
 	}) as TIdeaQuery;
 

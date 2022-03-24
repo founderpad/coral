@@ -7,6 +7,16 @@ import { BoxLayout } from './BoxLayout';
 
 export const MainLayout = ({ children }: { children: JSX.Element }) => {
 	usePushNotifications();
+	// const [getUser] = useGetAuthUser();
+
+	// useEffect(() => {
+	// 	nhost.auth.onAuthStateChanged((event) => {
+	// 		if (event === 'SIGNED_IN') {
+	// 			console.log('signned in...');
+	// 			getUser();
+	// 		}
+	// 	});
+	// }, []);
 
 	return (
 		<MobileNavigationProvider>

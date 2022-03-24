@@ -40,20 +40,6 @@ const persistor = persistStore(store);
 const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 	useTrackAnalytics();
 
-	// const value
-
-	// console.log('auth: ', useAuth());
-
-	// useEffect(() => {
-	// 	// if (!user) {
-	// 	// 	Router.replace('/login');
-	// 	// }
-
-	// 	if (!isAuthenticated) {
-	// 		Router.replace('/login');
-	// 	}
-	// }, []);
-
 	return (
 		<React.Fragment>
 			<Head>
