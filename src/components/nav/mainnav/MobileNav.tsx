@@ -1,11 +1,12 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
-import { Text } from '@chakra-ui/layout';
+import { Link, Text } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/react';
 import { IoChevronDownSharp } from '@components/icons';
 import { FlexLayout, StackLayout } from '@components/layouts';
 import { useMobile, useMobileNav } from '@hooks/util';
+import Router from 'next/router';
 import React, { memo } from 'react';
 import NavItems, { NavItem } from './NavItems';
 import { SubNav } from './SubNav';
@@ -40,8 +41,12 @@ const MobileNav = () => {
 };
 
 const MobileNavItem = (navItem: NavItem) => {
-	const { items, label } = navItem;
+	const { items, label, isLink } = navItem;
 	const { isOpen, onToggle } = useDisclosure();
+	const colorModeValue = useColorModeValue('fpGrey.900', 'white');
+
+	const getCurrentPath = (href: string) =>
+		href.includes(Router.pathname) ?? '';
 
 	return (
 		<StackLayout spacing={4} onClick={navItem && onToggle}>
@@ -51,17 +56,49 @@ const MobileNavItem = (navItem: NavItem) => {
 				align="center"
 				_hover={{ textDecoration: 'none' }}
 			>
-				<Text
-					py={2}
-					fontSize="sm"
-					fontWeight={500}
-					_hover={{
-						textDecoration: 'none',
-						color: useColorModeValue('fpGrey.900', 'white')
-					}}
-				>
-					{label}
-				</Text>
+				{isLink ? (
+					<Link
+						d="flex"
+						href={navItem.href ?? '#'}
+						fontSize="sm"
+						fontWeight={
+							getCurrentPath(navItem.href ?? '')
+								? 'medium'
+								: 'normal'
+						}
+						alignItems="center"
+						color={
+							getCurrentPath(navItem.href ?? '')
+								? 'fpGrey.900'
+								: 'fpGrey.500'
+						}
+						_hover={{
+							textDecoration: 'none',
+							color: colorModeValue
+						}}
+					>
+						{navItem.label}
+						{navItem.rightIcon && (
+							<Icon
+								color="inherit"
+								ml={1}
+								as={navItem.rightIcon}
+							/>
+						)}
+					</Link>
+				) : (
+					<Text
+						py={2}
+						fontSize="sm"
+						fontWeight={500}
+						_hover={{
+							textDecoration: 'none',
+							color: colorModeValue
+						}}
+					>
+						{label}
+					</Text>
+				)}
 				{navItem.items?.length && (
 					<Icon
 						as={IoChevronDownSharp}

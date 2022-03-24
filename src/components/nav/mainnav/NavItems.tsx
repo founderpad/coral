@@ -14,6 +14,7 @@ export interface NavItem {
 		'label' | 'subLabel' | 'href' | 'icon' | 'color' | 'divider'
 	>[];
 	href?: string;
+	isLink?: boolean;
 	icon?: IconType;
 	rightIcon?: IconType;
 	divider?: boolean;
@@ -73,7 +74,8 @@ const NavItems: Array<NavItem> = [
 	},
 	{
 		label: 'Messages',
-		href: '/messages'
+		href: '/messages',
+		isLink: true
 	}
 	// {
 	// label: (
