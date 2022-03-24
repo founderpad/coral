@@ -10,7 +10,6 @@ import {
 	useRepliesForCommentQuery
 } from '@generated/api';
 import { useQueryParam } from '@hooks/util';
-import { cache } from '@pages/_app';
 import React, { useEffect } from 'react';
 import CommentLayout from './CommentLayout';
 
@@ -65,8 +64,6 @@ export const CommentsList = ({
 		fetchPolicy: 'network-only',
 		nextFetchPolicy: 'network-only'
 	});
-
-	console.log('data: ', cache);
 
 	useEffect(() => {
 		window.addEventListener('scroll', onScrollToBottom);

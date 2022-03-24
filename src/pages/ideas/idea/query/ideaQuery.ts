@@ -64,13 +64,13 @@ const useIdea = (id?: string) => {
 
 	const paramIdeaId = useQueryParam('id');
 	const ideaId = id ?? paramIdeaId;
-	const userId = useCurrentUser().id;
+	const user = useCurrentUser();
 
 	const data = cache.readQuery({
 		query: IdeaDocument,
 		variables: {
 			id: ideaId,
-			userId
+			userId: user.id
 		}
 	}) as TIdeaQuery;
 

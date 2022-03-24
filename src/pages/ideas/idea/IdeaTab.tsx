@@ -13,7 +13,6 @@ import InterestedIdea from './components/InterestedIdea';
 import useIdea from './query/ideaQuery';
 
 const IdeaTab = () => {
-	// const auth = useCurrentUser();
 	const data = useIdea();
 	const isChangeSuccess = useQueryParam('exp_success');
 	const isChangeError = useQueryParam('exp_error');
