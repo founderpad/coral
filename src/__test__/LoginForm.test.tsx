@@ -94,58 +94,6 @@ describe('Login form', () => {
 	// 	loginSetup.getByText('You must enter a valid email address');
 	// });
 
-	it('should display clear value button when email field has a value', async () => {
-		const { emailField, loginSetup } = setup();
-		expect(emailField).toBeInTheDocument();
-		userEvent.type(emailField, 'jamie@gmail.com');
-		await waitFor(() => expect(emailField).toHaveValue('jamie@gmail.com'));
-
-		const clearButton = loginSetup.getByRole('button', {
-			name: /clear-value-button/i
-		});
-
-		expect(clearButton).toBeInTheDocument();
-	});
-
-	it('should clear the value of the field when clicked', async () => {
-		const { emailField, loginSetup } = setup();
-		expect(emailField).toBeInTheDocument();
-		userEvent.type(emailField, 'jamie@gmail.com');
-		await waitFor(() => expect(emailField).toHaveValue('jamie@gmail.com'));
-
-		const clearButton = loginSetup.getByRole('button', {
-			name: /clear-value-button/i
-		});
-
-		expect(clearButton).toBeInTheDocument();
-
-		await act(async () => {
-			fireEvent.click(clearButton);
-		});
-
-		expect(emailField).toHaveValue('');
-	});
-
-	it('should hide the clear value button if the value is cleared on click', async () => {
-		const { emailField, loginSetup } = setup();
-		expect(emailField).toBeInTheDocument();
-		userEvent.type(emailField, 'jamie@gmail.com');
-		await waitFor(() => expect(emailField).toHaveValue('jamie@gmail.com'));
-
-		const clearButton = loginSetup.getByRole('button', {
-			name: /clear-value-button/i
-		});
-
-		expect(clearButton).toBeInTheDocument();
-
-		await act(async () => {
-			fireEvent.click(clearButton);
-		});
-
-		expect(emailField).toHaveValue('');
-		expect(clearButton).not.toBeVisible();
-	});
-
 	it('should error if invalid email on blur', async () => {
 		const { loginSetup, emailField } = setup();
 
