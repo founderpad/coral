@@ -30,7 +30,6 @@ const RegisterForm = () => {
 				{({
 					register,
 					control,
-					resetField,
 					formState: { errors, isSubmitting }
 				}) => (
 					<>
@@ -58,7 +57,7 @@ const RegisterForm = () => {
 								}
 							}}
 							hideLimit={true}
-							onClear={() => resetField('firstName')}
+							hideClear
 						/>
 
 						<FormInput<TRegisterFormFields>
@@ -79,7 +78,7 @@ const RegisterForm = () => {
 							}}
 							hideLimit={true}
 							errors={errors}
-							onClear={() => resetField('lastName')}
+							hideClear
 						/>
 						<FormInput<TRegisterFormFields>
 							id="email"
@@ -97,7 +96,7 @@ const RegisterForm = () => {
 							}}
 							hideLimit={true}
 							errors={errors}
-							onClear={() => resetField('email')}
+							hideClear
 						/>
 
 						<FormInput<TRegisterFormFields>
@@ -125,7 +124,7 @@ const RegisterForm = () => {
 							}}
 							hideLimit={true}
 							errors={errors}
-							onClear={() => resetField('password')}
+							hideClear
 						/>
 
 						<SubmitButton

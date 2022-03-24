@@ -33,13 +33,12 @@ const LoginForm = () => {
 				defaultValues={defaultValues}
 				stackProps={{
 					alignItems: 'center',
-					spacing: 2
+					spacing: 3
 				}}
 			>
 				{({
 					register,
 					control,
-					resetField,
 					formState: { errors, isSubmitting }
 				}) => (
 					<React.Fragment>
@@ -58,8 +57,8 @@ const LoginForm = () => {
 								pattern: emailPattern
 							}}
 							hideLimit={true}
+							hideClear
 							errors={errors}
-							onClear={() => resetField('email')}
 						/>
 
 						<FormInput<TLoginFields>
@@ -86,8 +85,8 @@ const LoginForm = () => {
 								}
 							}}
 							hideLimit={true}
+							hideClear
 							errors={errors}
-							onClear={() => resetField('password')}
 						/>
 
 						{isError && (

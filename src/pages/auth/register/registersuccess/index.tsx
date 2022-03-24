@@ -1,6 +1,7 @@
 import { Icon } from '@chakra-ui/react';
+import BaseHeading from '@components/heading/BaseHeading';
 import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
+import { FlexLayout, StackLayout } from '@components/layouts';
 import AuthLayout from '@components/layouts/AuthLayout';
 import { PrimaryLink } from '@components/links';
 import { decodeString } from '@utils/validators';
@@ -11,7 +12,6 @@ import { IoRocketSharp } from 'react-icons/io5';
 
 const RegisterSuccess: NextPage = () => {
 	const encodedFirstName = (useRouter().query.nm as string) ?? '';
-
 	const firstName = decodeString(encodedFirstName) ?? '';
 
 	return (
@@ -20,18 +20,24 @@ const RegisterSuccess: NextPage = () => {
 			subheader="Get started by creating an account below"
 			title="Register"
 		>
-			<StackLayout py={4}>
+			<StackLayout>
 				<Icon
 					as={IoRocketSharp}
-					fontSize="75px"
+					fontSize="100px"
 					mx="auto"
 					color="green.500"
+					pb={8}
 				/>
-				<Label fontSize="small" pt={8}>
-					Hi {firstName},<br />
-					Thanks for signing up to founderpad!
-					<br />
-					<br />
+				<FlexLayout flexDirection="column">
+					<BaseHeading size="sm" pb={0}>
+						Hey {firstName},
+					</BaseHeading>
+					<Label fontSize="small">
+						Thanks for signing up to founderpad
+					</Label>
+				</FlexLayout>
+
+				<Label fontSize="small">
 					We have sent you an email with instructions for you to
 					confirm your email address. If it is not in your inbox,
 					please check your spam folder.

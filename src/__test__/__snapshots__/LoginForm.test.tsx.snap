@@ -10,7 +10,7 @@ exports[`Login form matches snapshot 1`] = `
     novalidate=""
   >
     <div
-      class="chakra-stack css-nbm2t4"
+      class="chakra-stack css-ew27cg"
     >
       <div
         class="chakra-form-control css-0"
@@ -23,17 +23,7 @@ exports[`Login form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          >
-            <button
-              aria-label="clear-value-button"
-              class="chakra-button css-pm1p4k"
-              id="clear-value-button"
-              name="clear-value-button"
-              type="button"
-            >
-              Clear
-            </button>
-          </div>
+          />
           <input
             aria-label="email"
             aria-required="true"
@@ -59,17 +49,7 @@ exports[`Login form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          >
-            <button
-              aria-label="clear-value-button"
-              class="chakra-button css-pm1p4k"
-              id="clear-value-button"
-              name="clear-value-button"
-              type="button"
-            >
-              Clear
-            </button>
-          </div>
+          />
           <input
             aria-label="password"
             aria-required="true"

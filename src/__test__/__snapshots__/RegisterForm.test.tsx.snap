@@ -23,17 +23,7 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          >
-            <button
-              aria-label="clear-value-button"
-              class="chakra-button css-pm1p4k"
-              id="clear-value-button"
-              name="clear-value-button"
-              type="button"
-            >
-              Clear
-            </button>
-          </div>
+          />
           <input
             aria-label="firstName"
             aria-required="true"
@@ -59,17 +49,7 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          >
-            <button
-              aria-label="clear-value-button"
-              class="chakra-button css-pm1p4k"
-              id="clear-value-button"
-              name="clear-value-button"
-              type="button"
-            >
-              Clear
-            </button>
-          </div>
+          />
           <input
             aria-label="lastName"
             class="chakra-input css-gr2y0"
@@ -93,17 +73,7 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          >
-            <button
-              aria-label="clear-value-button"
-              class="chakra-button css-pm1p4k"
-              id="clear-value-button"
-              name="clear-value-button"
-              type="button"
-            >
-              Clear
-            </button>
-          </div>
+          />
           <input
             aria-label="email"
             aria-required="true"
@@ -129,17 +99,7 @@ exports[`Register form matches snapshot 1`] = `
         >
           <div
             class="css-qnoc8j"
-          >
-            <button
-              aria-label="clear-value-button"
-              class="chakra-button css-pm1p4k"
-              id="clear-value-button"
-              name="clear-value-button"
-              type="button"
-            >
-              Clear
-            </button>
-          </div>
+          />
           <input
             aria-label="password"
             aria-required="true"

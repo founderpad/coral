@@ -105,6 +105,12 @@ export default async (req, res) => {
 									.socials a {
 										margin-right: 8px;
 									}
+									.get-started { 
+										background-color: #2BA4C9;
+										border-radius: 8px;
+										color: white;
+										padding: 8px 32px;
+									}
 								</style>
 							</head>
 							<body>
@@ -141,9 +147,7 @@ export default async (req, res) => {
 													</tr>
 													<tr>
 														<td align="center" style="padding-bottom: 32px;">
-															<form>
-																<button formaction="https://app.founderpad.com/login">Get started</button>
-															</form>
+															<a class="get-started" href="https://app.founderpad.com/login">Get started</a>
 														</td>
 													</tr>
 													<tr>

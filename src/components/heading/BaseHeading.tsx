@@ -8,12 +8,12 @@ type BaseHeadingProps = HeadingProps & {
 };
 
 const BaseHeading = (props: BaseHeadingProps) => {
-	const { children, color, size, icon } = props;
+	const { children, color, size = 'md', icon } = props;
 
 	return (
 		<Heading
 			{...props}
-			size={size ?? 'md'}
+			size={size}
 			color={color ?? 'black'}
 			alignItems="center"
 			mb={1}

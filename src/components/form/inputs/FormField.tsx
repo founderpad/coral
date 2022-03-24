@@ -33,10 +33,11 @@ export type TFormFieldProps<TFormValues> = {
 	rules?: RegisterOptions;
 	register?: UseFormRegister<TFormValues>;
 	errors?: Partial<DeepMap<TFormValues, FieldError>>;
-	onClear: (name: keyof TFormValues) => void;
+	onClear?: (name: keyof TFormValues) => void;
 	label?: string;
 	helperText?: string;
 	hideLimit?: boolean;
+	hideClear?: boolean;
 	fieldProps?: Omit<InputProps, 'name'>;
 } & Omit<InputProps, 'name'>;
 
@@ -69,6 +70,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 	helperText,
 	onClear,
 	hideLimit,
+	hideClear = false,
 	value,
 	rules
 }: TFormFieldProps<TFormValues>) => {
@@ -87,20 +89,22 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 			<FlexLayout justifyContent="space-between" flex={1}>
 				{label && <FormLabelText label={label} />}
 
-				<Button
-					id="clear-value-button"
-					name="clear-value-button"
-					aria-label="clear-value-button"
-					fontSize="x-small"
-					colorScheme="fpPrimary"
-					variant="link"
-					mb={1}
-					ml="auto"
-					onClick={() => onClear(name)}
-					visibility={watchValue ? 'visible' : 'hidden'}
-				>
-					Clear
-				</Button>
+				{!hideClear && (
+					<Button
+						id="clear-value-button"
+						name="clear-value-button"
+						aria-label="clear-value-button"
+						fontSize="x-small"
+						colorScheme="fpPrimary"
+						variant="link"
+						mb={1}
+						ml="auto"
+						onClick={() => onClear?.(name)}
+						visibility={watchValue ? 'visible' : 'hidden'}
+					>
+						Clear
+					</Button>
+				)}
 			</FlexLayout>
 
 			{children}
@@ -115,6 +119,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 								color="red.500"
 								fontSize="x-small"
 								textAlign="start"
+								mb={2}
 							>
 								{message}
 							</FormHelperText>

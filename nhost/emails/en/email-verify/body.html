@@ -78,10 +78,15 @@
                     font-size: 0.9375rem;
                     background-color: #2BA4C9;
                     border-radius: 8px;
-                    width: 200px;
                 }
                 .socials a {
                     margin-right: 8px;
+                }
+                .verify-email {
+                    background-color: #2BA4C9;
+                    border-radius: 8px;
+                    color: white;
+                    padding: 8px 32px;
                 }
             </style>
         </head>
@@ -96,20 +101,18 @@
 					<table id="inner-container">
 						<tr>
 							<td style="padding-bottom: 32px;">
-                                <h1>Please verify your email</h1>
-                                <h3 style="font-weight: normal; font-size: 1.125rem; margin-top: 8px;">We're delighted to have you on board</h3>
+                                <h2>Please verify your email</h2>
+                                <h3 style="font-weight: normal; font-size: 1.125rem; margin-top: 8px;">To get started, please verify your email by clicking the button below</h3>
                             </td>
                             <tr></tr>
 							<tr>
-								<td>
-                                    <form>
-                                        <button formaction="${serverUrl}/verify?&ticket=${ticket}&type=emailVerify&redirectTo=${redirectTo}">Verify email</button>
-                                    </form>
+								<td align="center">
+                                    <a class="verify-email" href="${serverUrl}/verify?&ticket=${ticket}&type=emailVerify&redirectTo=${redirectTo}">Verify email</a>
 								</td>
 							</tr>
                             <tr></tr>
 							<tr>
-                                <td style="padding-top: 48px; padding-bottom: 0px">
+                                <td style="padding-top:16px; padding-bottom: 0px">
                                     <h2 style="padding-bottom: 16px;"><strong>The founderpad team</strong></h2>
                                 </td>
                             </tr>
