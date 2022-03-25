@@ -2,9 +2,7 @@ import { Heading } from '@chakra-ui/layout';
 import { Tag } from '@chakra-ui/tag';
 import { DocumentTitle } from '@components/shared';
 import FounderpadLogo from '@components/shared/FounderpadLogo';
-import { useGetAuthUser } from '@hooks/auth';
-import { nhost } from '@utils/nhost';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FlexLayout } from './FlexLayout';
 import { StackLayout } from './StackLayout';
 
@@ -16,19 +14,6 @@ interface Props {
 }
 
 const AuthLayout = ({ header, children, title }: Props) => {
-	// const [getUser] = useGetAuthUser();
-	// useEffect(() => {
-	// 	nhost.auth.onAuthStateChanged((event) => {
-	// 		if (event === 'SIGNED_IN') {
-	// 			getUser();
-	// 			// dispatch(logout());
-	// 			// setModalDrawer({
-	// 			// 	isOpen: false
-	// 			// });
-	// 		}
-	// 	});
-	// }, [nhost.auth.onAuthStateChanged]);
-
 	return (
 		<React.Fragment>
 			<DocumentTitle title={title} />

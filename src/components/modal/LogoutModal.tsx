@@ -1,11 +1,11 @@
 import { DeleteButton } from '@components/buttons';
 import ModalDrawerContext from '@context/ModalDrawerContext';
-import { useLogout } from '@hooks/auth';
+// import { useLogout } from '@hooks/auth';
 import Router from 'next/router';
 import React, { useContext } from 'react';
 
 const LogoutModal = () => {
-	const logout = useLogout();
+	// const logout = useLogout();
 	const { setModalDrawer } = useContext(ModalDrawerContext);
 
 	const onClick = () => {

@@ -28,7 +28,7 @@ const Login: NextPage = () => {
 				});
 			}
 		});
-	}, []);
+	}, [fetchAuthUser, dispatch]);
 
 	useEffect(() => {
 		if (changePasswordHash.search('type=passwordReset') !== -1) {
