@@ -16,18 +16,18 @@ interface Props {
 }
 
 const AuthLayout = ({ header, children, title }: Props) => {
-	const [getUser] = useGetAuthUser();
-	useEffect(() => {
-		nhost.auth.onAuthStateChanged((event) => {
-			if (event === 'SIGNED_IN') {
-				getUser();
-				// dispatch(logout());
-				// setModalDrawer({
-				// 	isOpen: false
-				// });
-			}
-		});
-	}, [nhost.auth.onAuthStateChanged]);
+	// const [getUser] = useGetAuthUser();
+	// useEffect(() => {
+	// 	nhost.auth.onAuthStateChanged((event) => {
+	// 		if (event === 'SIGNED_IN') {
+	// 			getUser();
+	// 			// dispatch(logout());
+	// 			// setModalDrawer({
+	// 			// 	isOpen: false
+	// 			// });
+	// 		}
+	// 	});
+	// }, [nhost.auth.onAuthStateChanged]);
 
 	return (
 		<React.Fragment>

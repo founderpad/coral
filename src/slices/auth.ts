@@ -1,8 +1,7 @@
 import { TUsers, TUser_Address, TUser_Profile } from '@generated/api';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
 
-export const logout = createAction('auth/logout');
+export const logout = createAction('authSlice/logout');
 
 const initialState = {
 	user: undefined as TUsers | undefined
@@ -17,13 +16,14 @@ const authSlice = createSlice({
 		});
 	},
 	reducers: {
-		setUser(state, action: PayloadAction<TUsers>) {
-			state.user = action.payload;
-		},
-		clearUser(state) {
-			state.user = undefined;
-			storage.removeItem('persist:root');
-		},
+		setUser: (state, action: PayloadAction<TUsers>) => ({
+			...state,
+			user: action.payload
+		}),
+		// clearUser(state) {
+		// 	state.user = undefined;
+		// 	storage.removeItem('persist:root');
+		// },
 		setProfileComplete(state) {
 			// Ugly. Remove Redux asap
 			if (state.user?.profile)
@@ -70,7 +70,7 @@ const authSlice = createSlice({
 
 export const {
 	setUser,
-	clearUser,
+	// clearUser,
 	setProfileComplete,
 	updateUserPersonalDetails,
 	updateUserImage

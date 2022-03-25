@@ -68,7 +68,7 @@ export const useRegister = (): any => {
 };
 
 export const useLogin = () => {
-	const [getUser] = useGetAuthUser();
+	// const [getUser] = useGetAuthUser();
 
 	return async ({ email, password }: TLoginFields): Promise<void> => {
 		try {
@@ -76,8 +76,6 @@ export const useLogin = () => {
 			if (response.error) {
 				redirectTo(true);
 				throw new Error('Failed to login');
-			} else {
-				getUser();
 			}
 		} catch (error) {}
 	};
@@ -162,7 +160,6 @@ export const useGetAuthUser = () => {
 		},
 		onCompleted: (data) => {
 			const user = data.user as TUsers;
-			console.log('get auth user: ', user);
 			dispatch(setUser(user));
 			Router.replace('/ideas/search?page=1');
 		}
@@ -197,16 +194,7 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useCheckLoggedIn = (): void => {
-	// const { isAuthenticated } = useAuth() ?? false;
-
-	// useEffect(() => {
-	// 	if (isAuthenticated) {
-	// 		Router.push('/ideas/search?page=1');
-	// 		return;
-	// 	}
-	// }, [isAuthenticated]);
-
-	const { isAuthenticated } = useAuth() ?? false;
+	const { isAuthenticated } = useAuth();
 
 	useEffect(() => {
 		if (isAuthenticated) {

@@ -94,7 +94,6 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 												<BaseModal />
 												<BaseModalDrawer />
 												<Component {...pageProps} />
-												{/* </IdeaCycleProvider> */}
 											</ModalDrawerProvider>
 										</DrawerProvider>
 									</ModalProvider>

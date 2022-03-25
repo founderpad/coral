@@ -64,6 +64,10 @@ module.exports = {
 				destination: '/auth/login'
 			},
 			{
+				source: '/loggedout',
+				destination: '/auth/loggedout'
+			},
+			{
 				source: '/resetpassword',
 				destination: '/auth/resetpassword'
 			},

@@ -1,6 +1,7 @@
 import { DeleteButton } from '@components/buttons';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useLogout } from '@hooks/auth';
+import Router from 'next/router';
 import React, { useContext } from 'react';
 
 const LogoutModal = () => {
@@ -15,7 +16,7 @@ const LogoutModal = () => {
 			action: (
 				<DeleteButton
 					name="logout-confirm-button"
-					onClick={logout}
+					onClick={() => Router.push('/loggedout')}
 					variant="outline"
 				>
 					Log out
