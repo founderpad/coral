@@ -6,7 +6,6 @@ import { useCreateInterestedIdeaMutation } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import React, { useContext, useState } from 'react';
-import { IoStarSharp } from 'react-icons/io5';
 import useIdea from '../query/ideaQuery';
 
 export const InterestedIdea = () => {
@@ -65,11 +64,12 @@ export const InterestedIdea = () => {
 				<PrimaryButton
 					name="show-interest"
 					w="125px"
-					leftIcon={<IoStarSharp />}
+					// leftIcon={<IoStarSharp />}
 					fontSize="xs"
 					onClick={onClick}
+					variant="outline"
 				>
-					Show interest
+					Express interest
 				</PrimaryButton>
 			)}
 		</>
