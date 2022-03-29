@@ -112,8 +112,6 @@ export const redirectTo = (error: boolean, param?: string) => {
 		};
 	};
 
-	console.log('router path name: ', Router.pathname);
-
 	Router.replace(
 		{
 			pathname: Router.pathname,

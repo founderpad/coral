@@ -68,8 +68,6 @@ export const useRegister = (): any => {
 };
 
 export const useLogin = () => {
-	// const [getUser] = useGetAuthUser();
-
 	return async ({ email, password }: TLoginFields): Promise<void> => {
 		try {
 			const response = await auth.signIn({ email, password });
@@ -195,10 +193,11 @@ export const useCurrentUser = (): TUsers => {
 
 export const useCheckLoggedIn = (): void => {
 	const { isAuthenticated } = useAuth();
+	const changePasswordHash = Router.asPath.split('#')[1] ?? '';
 
 	useEffect(() => {
-		if (isAuthenticated) {
-			Router.push('/ideas/search?page=1');
+		if (isAuthenticated && !changePasswordHash) {
+			Router.replace('/ideas/search?page=1');
 		}
 	}, [isAuthenticated]);
 };

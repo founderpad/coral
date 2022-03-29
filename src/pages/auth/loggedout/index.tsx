@@ -25,7 +25,7 @@ const LoggedOut: NextPage = () => {
 		}
 
 		if (userId) signOut();
-	}, [setModalDrawer]);
+	}, [setModalDrawer, userId]);
 
 	useEffect(() => {
 		nhost.auth.onAuthStateChanged((event) => {
@@ -35,7 +35,7 @@ const LoggedOut: NextPage = () => {
 				client.resetStore();
 			}
 		});
-	}, [client]);
+	}, [client, dispatch]);
 
 	return (
 		<AuthLayout
