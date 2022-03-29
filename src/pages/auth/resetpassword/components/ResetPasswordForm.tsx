@@ -42,7 +42,7 @@ const ResetPasswordForm = () => {
 					formState: { errors, isSubmitting }
 				}) => (
 					<React.Fragment>
-						<Label fontSize="small">
+						<Label fontSize="small" mb={4}>
 							Please enter your email address below and we will
 							send you an email with instructions to reset your
 							password.
@@ -62,6 +62,7 @@ const ResetPasswordForm = () => {
 								pattern: emailPattern
 							}}
 							errors={errors}
+							hideClear
 							onClear={() => resetField('email')}
 						/>
 
