@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { OneSignalWindow } from '../types/window';
-import { useCurrentUser } from './auth';
+import { useAuth, useCurrentUser } from './auth';
 
 declare let window: OneSignalWindow;
 
 export const usePushNotifications = () => {
-	const user = useCurrentUser();
+	const userId = useAuth().user?.id;
 
 	useEffect(() => {
 		// if (window.OneSignal !== undefined) {
@@ -32,7 +32,7 @@ export const usePushNotifications = () => {
 		window.OneSignal = window.OneSignal || [];
 		if (window.OneSignal) {
 			window.OneSignal.push(function () {
-				window.OneSignal.setExternalUserId(user?.id);
+				window.OneSignal.setExternalUserId(userId);
 				window.OneSignal.init({
 					appId: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
 					safari_web_id:
@@ -52,12 +52,12 @@ export const usePushNotifications = () => {
 	}, []);
 
 	useEffect(() => {
-		if (!user) {
+		if (!userId) {
 			const OneSignal = window.OneSignal;
 			OneSignal.push(function () {
 				OneSignal.removeExternalUserId();
 			});
 			window.OneSignal = undefined;
 		}
-	}, [user]);
+	}, [userId]);
 };

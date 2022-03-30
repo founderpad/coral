@@ -144,7 +144,7 @@ const cache = new InMemoryCache({
 				// 	// offsetLimitPagination()
 				// }
 
-				idea_comments: offsetLimitPagination(),
+				idea_comments: offsetLimitPagination()
 				// idea_comments: {
 				// 	...offsetLimitPagination(),
 				// 	merge(existing = [], incoming) {
@@ -172,12 +172,12 @@ const cache = new InMemoryCache({
 				// 	// }
 				// 	// merge: true
 				// },
-				message: {
-					merge(existing = [], incoming) {
-						console.log('existing: ', existing);
-						console.log('incoming: ', incoming);
-					}
-				}
+				// message: {
+				// 	merge(existing = [], incoming) {
+				// 		// console.log('existing: ', existing);
+				// 		// console.log('incoming: ', incoming);
+				// 	}
+				// }
 			}
 		}
 	}

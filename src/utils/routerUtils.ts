@@ -42,10 +42,8 @@ const deleteParam = <T extends TParam>(
 
 /** Remove multiple params */
 const deleteParams = <T extends TParam>(values: T) => {
-	console.log('values: ', values);
 	for (const [key, value] of Object.entries(values)) {
 		if (!value) {
-			console.log('k,v: ', key + ' = ' + value);
 			delete Router['query'][key];
 		}
 	}
