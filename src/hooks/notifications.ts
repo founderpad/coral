@@ -13,7 +13,7 @@ export const usePushNotifications = () => {
 			window.OneSignal.push(function () {
 				window.OneSignal.setExternalUserId(userId);
 				window.OneSignal.init({
-					allowLocalhostAsSecureOrigin: true,
+					// allowLocalhostAsSecureOrigin: true,
 					appId: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID,
 					safari_web_id:
 						process.env.NEXT_PUBLIC_ONESIGNAL_SAFARI_WEB_ID,
