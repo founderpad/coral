@@ -1,8 +1,8 @@
 import MainLayout from '@components/layouts/MainLayout';
 import { Loading } from '@components/shared';
 import { useAuth } from '@hooks/auth';
-import Head from 'next/head';
 import Router from 'next/router';
+import Script from 'next/script';
 import React from 'react';
 
 export default function AuthFilter(Component: any) {
@@ -13,9 +13,7 @@ export default function AuthFilter(Component: any) {
 
 		return (
 			<React.Fragment>
-				<Head>
-					<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
-				</Head>
+				<Script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></Script>
 				<MainLayout>
 					<Component {...arguments} />
 				</MainLayout>
