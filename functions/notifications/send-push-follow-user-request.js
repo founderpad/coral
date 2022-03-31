@@ -38,7 +38,7 @@ export default (req, res) => {
 		app_id: process.env.ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
-			en: 'You have received a new follow request. Click here to view it.'
+			en: 'You have received a new follow request! 🚀   Click here to view it'
 		},
 		url: `https://app.founderpad.com/notifications`,
 		include_external_user_ids: [followingId]

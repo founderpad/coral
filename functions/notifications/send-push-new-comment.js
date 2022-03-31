@@ -43,7 +43,7 @@ export default async (req, res) => {
 		app_id: process.env.ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
-			en: 'You have received a new comment on your idea. Click here to view it.'
+			en: 'You have received a new comment on your idea! 🚀   Click here to view it'
 		},
 		url: `https://app.founderpad.com/idea/${ideaId}?d=${id}`,
 		include_external_user_ids: [targetUserId]

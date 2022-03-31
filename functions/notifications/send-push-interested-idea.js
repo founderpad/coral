@@ -23,14 +23,13 @@ var sendNotification = function (message) {
 	req.on('error', function (e) {
 		console.log('ERROR:');
 		console.log(e);
-		// throw new Error(`Failed to send push notification: ${e}`);
 	});
 
 	req.write(JSON.stringify(message));
 	req.end();
 };
 
-export default async (req, res) => {
+export default (req, res) => {
 	const fromUserId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
@@ -41,7 +40,7 @@ export default async (req, res) => {
 		app_id: process.env.ONESIGNAL_APP_ID,
 		en: 'text',
 		contents: {
-			en: 'Somebody is interested in your idea! 🚀  Click here to see who they are.'
+			en: 'Somebody is interested in your idea! 🚀   Click here to see who they are'
 		},
 		url: `https://app.founderpad.com/idea/${ideaId}`,
 		include_external_user_ids: [targetUserId]
