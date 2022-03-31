@@ -1,4 +1,6 @@
-var sendNotification = function (message) {
+import { Request, Response } from 'express';
+
+var sendNotification = async function (message: any) {
 	var headers = {
 		'Content-Type': 'application/json; charset=utf-8',
 		Authorization: 'Basic ' + process.env.ONESIGNAL_REST_API_KEY
@@ -13,14 +15,14 @@ var sendNotification = function (message) {
 	};
 
 	var https = require('https');
-	var req = https.request(options, function (res) {
-		res.on('data', function (data) {
+	var req = https.request(options, function (res: any) {
+		res.on('data', function (data: any) {
 			console.log('Response:');
 			console.log(JSON.parse(data));
 		});
 	});
 
-	req.on('error', function (e) {
+	req.on('error', function (e: any) {
 		console.log('ERROR:');
 		console.log(e);
 	});
@@ -29,7 +31,7 @@ var sendNotification = function (message) {
 	req.end();
 };
 
-export default (req, res) => {
+export default (req: Request, _res: Response) => {
 	const fromUserId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
