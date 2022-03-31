@@ -24,7 +24,7 @@ export default async (req, res) => {
 	};
 
 	try {
-		const response = await client.createNotification(notification);
+		const response = await client.createNotification(message);
 		// console.log(response.body.id);
 	} catch (e) {
 		if (e instanceof OneSignal.HTTPError) {
