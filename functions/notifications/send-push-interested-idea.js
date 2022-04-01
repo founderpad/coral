@@ -13,7 +13,7 @@ export default async (req, res) => {
 	if (fromUserId === targetUserId) return null;
 
 	const message = {
-		app_id: 'a890c1f8-d682-4225-ae11-01f7cd717b84',
+		app_id: process.env.ONESIGNAL_APP_ID,
 		contents: {
 			en: 'Somebody is interested in your idea! 🚀   Click here to see who they are'
 		},
@@ -26,7 +26,7 @@ export default async (req, res) => {
 		const response = await client.createNotification(message);
 		// console.log(response.body.id);
 		res.status(200).send(
-			'Push notification interested idea sent successfully'
+			'Push notification (interested idea) sent successfully'
 		);
 	} catch (e) {
 		if (e instanceof OneSignal.HTTPError) {
@@ -36,7 +36,7 @@ export default async (req, res) => {
 		}
 
 		res.status(200).send(
-			'Push notification interested idea sent successfully'
+			'Failed to send push notification (interested idea)'
 		);
 	}
 };

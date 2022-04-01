@@ -1,34 +1,9 @@
-var sendNotification = function (message) {
-	var headers = {
-		'Content-Type': 'application/json; charset=utf-8',
-		Authorization: 'Basic ' + process.env.ONESIGNAL_REST_API_KEY
-	};
+const OneSignal = require('onesignal-node');
 
-	var options = {
-		host: 'onesignal.com',
-		port: 443,
-		path: '/api/v1/notifications',
-		method: 'POST',
-		headers: headers
-	};
-
-	var https = require('https');
-	var req = https.request(options, function (res) {
-		res.on('data', function (data) {
-			console.log('Response:');
-			console.log(JSON.parse(data));
-		});
-	});
-
-	req.on('error', function (e) {
-		console.log('ERROR:');
-		console.log(e);
-		// throw new Error(`Failed to send push notification: ${e}`);
-	});
-
-	req.write(JSON.stringify(message));
-	req.end();
-};
+const client = new OneSignal.Client(
+	'a890c1f8-d682-4225-ae11-01f7cd717b84',
+	'Yjg0ODY2NmQtMjZmYS00ZmRiLWIzMTUtOWY1ZGJiOTc2YjY1'
+);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default async (req, res) => {
@@ -46,8 +21,22 @@ export default async (req, res) => {
 			en: 'You have received a new comment on your idea! 🚀   Click here to view it'
 		},
 		url: `https://app.founderpad.com/idea/${ideaId}?d=${id}`,
+		channel_for_external_user_ids: 'push',
 		include_external_user_ids: [targetUserId]
 	};
 
-	sendNotification(message);
+	try {
+		const response = await client.createNotification(message);
+		res.status(200).send(
+			'Push notification (new comment) sent successfully'
+		);
+	} catch (e) {
+		if (e instanceof OneSignal.HTTPError) {
+			// When status code of HTTP response is not 2xx, HTTPError is thrown.
+			console.log(e.statusCode);
+			console.log(e.body);
+		}
+
+		res.status(200).send('Failed to send push notification (new comment)');
+	}
 };
