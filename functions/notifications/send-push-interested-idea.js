@@ -1,8 +1,8 @@
 const OneSignal = require('onesignal-node');
 
 const client = new OneSignal.Client(
-	'a890c1f8-d682-4225-ae11-01f7cd717b84',
-	'Yjg0ODY2NmQtMjZmYS00ZmRiLWIzMTUtOWY1ZGJiOTc2YjY1'
+	process.env.ONESIGNAL_APP_ID,
+	process.env.ONESIGNAL_REST_API_KEY
 );
 
 export default async (req, res) => {
