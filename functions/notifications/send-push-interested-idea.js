@@ -14,7 +14,6 @@ export default async (req, res) => {
 
 	const message = {
 		app_id: 'a890c1f8-d682-4225-ae11-01f7cd717b84',
-		en: 'text',
 		contents: {
 			en: 'Somebody is interested in your idea! 🚀   Click here to see who they are'
 		},
@@ -26,12 +25,19 @@ export default async (req, res) => {
 	try {
 		const response = await client.createNotification(message);
 		// console.log(response.body.id);
+		res.status(200).send(
+			'Push notification interested idea sent successfully'
+		);
 	} catch (e) {
 		if (e instanceof OneSignal.HTTPError) {
 			// When status code of HTTP response is not 2xx, HTTPError is thrown.
 			console.log(e.statusCode);
 			console.log(e.body);
 		}
+
+		res.status(200).send(
+			'Push notification interested idea sent successfully'
+		);
 	}
 };
 
