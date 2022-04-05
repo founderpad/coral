@@ -6,10 +6,12 @@ import React, { memo, useCallback, useContext } from 'react';
 export const ModalDrawerFooterActions = memo(
 	({
 		children,
-		noBtnLabel = 'Cancel'
+		noBtnLabel = 'Cancel',
+		showCancel = true
 	}: {
 		children: React.ReactNode;
 		noBtnLabel?: string;
+		showCancel?: boolean;
 	}) => {
 		const { setModalDrawer } = useContext(ModalDrawerContext);
 
@@ -27,11 +29,13 @@ export const ModalDrawerFooterActions = memo(
 				display="flex"
 				spacing={4}
 			>
-				<CancelButton
-					label={noBtnLabel ?? 'Clear'}
-					onClick={onClose}
-					title="Reset search"
-				/>
+				{showCancel && (
+					<CancelButton
+						label={noBtnLabel ?? 'Clear'}
+						onClick={onClose}
+						title="Reset search"
+					/>
+				)}
 				{children}
 			</ButtonGroup>
 		);

@@ -18,12 +18,12 @@ export const UpvoteButton = ({
 		pl={0}
 		size="sm"
 		variant="unstyled"
-		leftIcon={<Icon as={IoArrowUpSharp} />}
+		leftIcon={<Icon as={IoArrowUpSharp} fontSize="lg" />}
 		_selected={{ background: 'transparent' }}
 		onClick={onClick}
 		d="flex"
 		alignItems="center"
-		color={hasUserUpvoted ? 'green.300' : 'fpGrey.400'}
+		color={hasUserUpvoted ? 'green.300' : 'fpGrey.300'}
 		_hover={{ color: 'green.300' }}
 	>
 		{votesTotal}

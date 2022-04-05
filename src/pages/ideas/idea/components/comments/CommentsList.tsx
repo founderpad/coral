@@ -110,10 +110,16 @@ export const CommentsList = ({
 				px={{ base: 4, md: 0 }}
 				borderTopWidth={{ base: 0, md: 1 }}
 				borderBottomWidth={{ base: 1, md: 0 }}
+				display={{ base: 'none', md: 'flex' }}
 			>
 				{data?.totalComments?.aggregate?.count} Comments
 			</BaseHeading>
-			<Box flexShrink={0} px={{ base: 4, md: 0 }} py={6}>
+			<Box
+				flexShrink={0}
+				px={{ base: 4, md: 0 }}
+				display={{ base: 'none', md: 'flex' }}
+				py={6}
+			>
 				<PostComment />
 			</Box>
 			{hasComments < 1 ? (

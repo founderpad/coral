@@ -21,13 +21,13 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => (
 			<IdeaUpvote {...idea} />
 			<Button
 				as="div"
-				name={`update-${name}-button`}
+				name="comments-number-button"
 				pl={0}
 				size="sm"
 				variant="unstyled"
-				leftIcon={<Icon as={IoChatbubbleOutline} />}
+				leftIcon={<Icon as={IoChatbubbleOutline} fontSize="lg" />}
 				_selected={{ background: 'transparent' }}
-				color={'fpGrey.400'}
+				color="fpGrey.300"
 				d="flex"
 				alignItems="center"
 			>

@@ -1,7 +1,6 @@
 import TabLayout from '@components/layouts/TabLayout';
 import { useCurrentUser } from '@hooks/auth';
 import React from 'react';
-import CommentsList from './components/comments/CommentsList';
 import InterestedUsersTab from './components/InterestedUsersTab';
 import useIdea from './query/ideaQuery';
 import IdeaTab from './IdeaTab';
@@ -18,9 +17,7 @@ const ViewIdeaTabLayout = () => {
 			<TabLayout
 				tabs={[
 					{ label: 'Idea' },
-					{
-						label: 'Comments'
-					},
+
 					{
 						...(showInterestTab && { label: 'Interest' })
 					}
@@ -30,7 +27,6 @@ const ViewIdeaTabLayout = () => {
 				flex={1}
 			>
 				<IdeaTab />
-				<CommentsList />
 				{showInterestTab ? <InterestedUsersTab /> : <></>}
 				<InterestedUsersTab />
 			</TabLayout>
