@@ -3,9 +3,11 @@ import {
 	DrawerBody,
 	DrawerCloseButton,
 	DrawerContent,
+	DrawerContentProps,
 	DrawerFooter,
 	DrawerHeader,
 	DrawerOverlay,
+	ModalBodyProps,
 	ModalProps
 } from '@chakra-ui/react';
 import { BaseButton } from '@components/buttons';
@@ -21,6 +23,8 @@ type IModalProps = Omit<ModalProps, 'children'> & {
 	action?: typeof BaseButton;
 	showFooter?: boolean;
 	showCancel?: boolean;
+	bodyProps?: ModalBodyProps;
+	contentHeight?: DrawerContentProps['h'];
 };
 
 export const Drawer = ({
@@ -32,7 +36,8 @@ export const Drawer = ({
 	removePadding,
 	action,
 	showFooter = true,
-	showCancel = true
+	showCancel = true,
+	contentHeight
 }: IModalProps) => {
 	return (
 		<ChakraDrawer
@@ -45,7 +50,12 @@ export const Drawer = ({
 			useInert={true}
 		>
 			<DrawerOverlay />
-			<DrawerContent borderTopWidth={1} maxH="99.1%" borderTopRadius="xl">
+			<DrawerContent
+				borderTopWidth={1}
+				maxH="99.1%"
+				h={contentHeight}
+				borderTopRadius="xl"
+			>
 				<DrawerHeader
 					borderBottomWidth={1}
 					fontSize="md"
@@ -65,6 +75,7 @@ export const Drawer = ({
 					p={removePadding ? 0 : 4}
 					maxH="100%"
 					borderRadius="md"
+					id="drawer-content"
 				>
 					{body}
 				</DrawerBody>

@@ -1,4 +1,4 @@
-import { Box, Collapse, StackProps, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Collapse, Icon, useDisclosure } from '@chakra-ui/react';
 import { PrimaryButton } from '@components/buttons';
 import BaseHeading from '@components/heading/BaseHeading';
 import { BoxLayout, StackLayout } from '@components/layouts';
@@ -9,8 +9,10 @@ import {
 	useCommentsForIdeaQuery,
 	useRepliesForCommentQuery
 } from '@generated/api';
-import { useQueryParam } from '@hooks/util';
+import { useModalDrawer, useQueryParam } from '@hooks/util';
 import React, { useEffect } from 'react';
+import { IoChatboxOutline } from 'react-icons/io5';
+import { useIdeaFragment } from '../../query/ideaQuery';
 import CommentLayout from './CommentLayout';
 
 export const Comment = (comment: TCommentFieldsFragment) => {
@@ -50,11 +52,7 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 	);
 };
 
-export const CommentsList = ({
-	display = 'flex'
-}: {
-	display?: StackProps['display'];
-}) => {
+export const MobileComments = () => {
 	const id = useQueryParam('id');
 	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
 		variables: {
@@ -65,9 +63,100 @@ export const CommentsList = ({
 		nextFetchPolicy: 'network-only'
 	});
 
+	const drawerBody = document.getElementById('drawer-content');
+
 	useEffect(() => {
-		window.addEventListener('scroll', onScrollToBottom);
-		return () => window.removeEventListener('scroll', onScrollToBottom);
+		if (drawerBody) drawerBody.addEventListener('scroll', onScrollToBottom);
+	}, [drawerBody]);
+
+	const hasComments = data?.comments?.length ?? 0;
+	const hasMoreComments =
+		data?.totalComments?.aggregate?.count! > hasComments;
+
+	const onScrollToBottom = (e: any) => {
+		if (
+			e.target.scrollHeight - e.target.scrollTop ===
+				e.target.clientHeight &&
+			hasMoreComments
+		) {
+			fetchMore({
+				variables: {
+					offset: data?.comments.length
+				}
+			});
+		}
+	};
+
+	return (
+		<>
+			{loading ? (
+				<Loading small />
+			) : hasComments < 1 ? (
+				<NoResults label="comments yet" back={false} />
+			) : (
+				<StackLayout flexGrow={1} overflowY="auto">
+					{data?.comments?.map((comment, _index) => {
+						// Annoying caching issue...
+						if (comment.ideaId === id)
+							return <Comment key={comment.id} {...comment} />;
+					})}
+				</StackLayout>
+			)}
+		</>
+	);
+};
+
+export const MobileCommentsList = () => {
+	const { setModalDrawer } = useModalDrawer();
+	const { totalComments } = useIdeaFragment() ?? {};
+
+	const onShowCommentsMobile = () => {
+		setModalDrawer({
+			title: `${totalComments} Comments`,
+			isOpen: true,
+			showCancel: false,
+			action: <PostComment />,
+			body: <MobileComments />,
+			size: '2xl'
+		});
+	};
+
+	return (
+		<Button
+			name="view-comments-mobile"
+			size="sm"
+			variant="unstyled"
+			onClick={onShowCommentsMobile}
+			leftIcon={<Icon as={IoChatboxOutline} fontSize="lg" />}
+			_selected={{ background: 'transparent' }}
+			d="flex"
+			alignItems="center"
+			color="fpGrey.300"
+		>
+			{totalComments}
+		</Button>
+	);
+};
+
+export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
+	const id = useQueryParam('id');
+
+	const { data, loading, fetchMore } = useCommentsForIdeaQuery({
+		variables: {
+			ideaId: id,
+			offset: 0
+		},
+		fetchPolicy: 'network-only',
+		nextFetchPolicy: 'network-only'
+	});
+
+	useEffect(() => {
+		if (onScroll) {
+			onScroll();
+		} else {
+			window.addEventListener('scroll', onScrollToBottom);
+			return () => window.removeEventListener('scroll', onScrollToBottom);
+		}
 	});
 
 	const hasComments = data?.comments?.length ?? 0;
@@ -87,6 +176,14 @@ export const CommentsList = ({
 		}
 	};
 
+	// const onShowCommentsClick = useCallback(() => {
+	// 	setShowComments(!showComments);
+
+	// 	document.getElementById('idea-comments')?.scrollIntoView({
+	// 		behavior: 'smooth'
+	// 	});
+	// }, [showComments]);
+
 	if (loading) return <Loading small />;
 
 	return (
@@ -100,7 +197,6 @@ export const CommentsList = ({
 			transitionDelay="1s"
 			p={0}
 			justifyContent="center"
-			display={display}
 		>
 			<BaseHeading
 				fontSize="sm"

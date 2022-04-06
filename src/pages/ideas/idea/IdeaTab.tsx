@@ -2,7 +2,7 @@ import { AlertFeedback } from '@components/alert';
 import { StackLayout } from '@components/layouts';
 import { Loading } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
-import { useQueryParam } from '@hooks/util';
+import { useMobile, useQueryParam } from '@hooks/util';
 import React from 'react';
 import CommentsList from './components/comments/CommentsList';
 import IdeaDetails from './components/IdeaDetails';
@@ -16,6 +16,7 @@ const IdeaTab = () => {
 	const data = useIdea();
 	const isChangeSuccess = useQueryParam('exp_success');
 	const isChangeError = useQueryParam('exp_error');
+	const isMobile = useMobile();
 
 	if (!data) return <Loading small />;
 	// if (!idea.isPublished && auth.id !== idea.userId) Router.replace('/404');
@@ -57,7 +58,7 @@ const IdeaTab = () => {
 				<IdeaOverview />
 				<AppDivider />
 				<IdeaDetails />
-				<CommentsList display={{ base: 'none', md: 'flex' }} />
+				{!isMobile && <CommentsList />}
 			</StackLayout>
 		</StackLayout>
 	);
