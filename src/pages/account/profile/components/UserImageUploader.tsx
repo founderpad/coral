@@ -1,19 +1,19 @@
 import { UserAvatar } from '@components/shared';
 import ImageUploader from '@components/shared/imageuploader/ImageUploader';
-import ModalDrawerContext from '@context/ModalDrawerContext';
 import { useUpdateUserAvatarMutation } from '@generated/api';
-import { useAuth } from '@hooks/auth';
+import { useAuth, useCurrentUser } from '@hooks/auth';
 import { useSuccessNotification } from '@hooks/toast';
-import { useFileUpload } from '@hooks/util';
+import { useFileUpload, useModalDrawer } from '@hooks/util';
 import { updateUserImage } from '@slices/auth';
-import React, { useContext } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 
 const UserImageUploader = () => {
 	const dispatch = useDispatch();
-	const { avatarUrl, id } = useAuth().user ?? {};
+	const { id } = useAuth().user ?? {};
+	const avatarUrl = useCurrentUser().avatarUrl;
 
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const { setModalDrawer } = useModalDrawer();
 	// const { addNotification } = useNotification();
 	const showSuccessNotification = useSuccessNotification();
 

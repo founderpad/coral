@@ -18,12 +18,12 @@ import { Label } from '@components/labels';
 import { BaseLink } from '@components/links';
 import LogoutModal from '@components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from '@components/shared';
-import { useAuth } from '@hooks/auth';
+import { useCurrentUser } from '@hooks/auth';
 import useUserProfile from '@hooks/user';
 import React, { memo } from 'react';
 
 const UserMenu = () => {
-	const avatarUrl = useAuth().user?.avatarUrl;
+	const avatarUrl = useCurrentUser().avatarUrl;
 	const isProfileComplete = useUserProfile()?.isComplete;
 
 	return (

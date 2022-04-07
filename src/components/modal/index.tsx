@@ -71,7 +71,7 @@ export const Modal = (props: IModalProps) => {
 					flex={1}
 					p={removePadding ? 0 : 4}
 					maxH="100%"
-					borderRadius="md"
+					// borderRadius="md"
 				>
 					{body}
 				</ModalBody>
