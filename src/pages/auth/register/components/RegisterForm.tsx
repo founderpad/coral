@@ -7,9 +7,12 @@ import LegalFooter from './LegalFooter';
 import { TRegisterFormFields } from '../../../../types/auth';
 import { BaseForm } from '@components/form';
 import { SubmitButton } from '@components/buttons';
+import { AlertFeedback } from '@components/alert';
+import { useQueryParam } from '@hooks/util';
 
 const RegisterForm = () => {
 	const onRegister = useRegister();
+	const isError = useQueryParam('error');
 
 	return (
 		<React.Fragment>
@@ -126,6 +129,15 @@ const RegisterForm = () => {
 							errors={errors}
 							hideClear
 						/>
+
+						{isError && (
+							<AlertFeedback
+								status="error"
+								message={
+									'Failed to create account. Please try again later.'
+								}
+							/>
+						)}
 
 						<SubmitButton
 							id="submit-register-account"

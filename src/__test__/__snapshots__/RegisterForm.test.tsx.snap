@@ -115,6 +115,16 @@ exports[`Register form matches snapshot 1`] = `
           />
         </div>
       </div>
+      <div
+        class="chakra-alert css-glexlw"
+        role="alert"
+      >
+        <div
+          class="chakra-alert__desc css-1g4x3gd"
+        >
+          Failed to create account. Please try again later.
+        </div>
+      </div>
       <button
         aria-label="submit-register-account"
         class="chakra-button css-1hm0q50"

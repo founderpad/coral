@@ -65,14 +65,6 @@ export const MobileComments = () => {
 
 	const drawerBody = document.getElementById('drawer-content');
 
-	useEffect(() => {
-		if (drawerBody) drawerBody.addEventListener('scroll', onScrollToBottom);
-	}, [drawerBody]);
-
-	const hasComments = data?.comments?.length ?? 0;
-	const hasMoreComments =
-		data?.totalComments?.aggregate?.count! > hasComments;
-
 	const onScrollToBottom = (e: any) => {
 		if (
 			e.target.scrollHeight - e.target.scrollTop ===
@@ -86,6 +78,14 @@ export const MobileComments = () => {
 			});
 		}
 	};
+
+	useEffect(() => {
+		if (drawerBody) drawerBody.addEventListener('scroll', onScrollToBottom);
+	}, [drawerBody, onScrollToBottom]);
+
+	const hasComments = data?.comments?.length ?? 0;
+	const hasMoreComments =
+		data?.totalComments?.aggregate?.count! > hasComments;
 
 	return (
 		<>

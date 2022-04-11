@@ -16,9 +16,7 @@ import { useContext, useEffect } from 'react';
 import { encodeString, redirectTo } from '@utils/validators';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 
-export const useRegister = (): any => {
-	const showErrorNotification = useErrorNotification();
-
+export const useRegister = () => {
 	return async ({
 		email,
 		password,
@@ -37,10 +35,7 @@ export const useRegister = (): any => {
 			});
 
 			if (response.error) {
-				showErrorNotification({
-					title: 'Failed to create account',
-					description: response.error.message
-				});
+				redirectTo(true, undefined, '/register');
 				throw 'Failed to register account';
 			}
 
@@ -59,10 +54,8 @@ export const useRegister = (): any => {
 				`/register/registersuccess?nm=${encodeString(firstName)}`
 			);
 		} catch (error) {
-			showErrorNotification({
-				title: 'Failed to create account',
-				description: 'Please try again later'
-			});
+			redirectTo(true, undefined, '/register');
+			throw 'Failed to register account';
 		}
 	};
 };
@@ -72,7 +65,7 @@ export const useLogin = () => {
 		try {
 			const response = await auth.signIn({ email, password });
 			if (response.error) {
-				redirectTo(true);
+				redirectTo(true, undefined, '/login');
 				throw new Error('Failed to login');
 			}
 		} catch (error) {}
@@ -99,19 +92,12 @@ export const useSocialLogin = () => {
 };
 
 export const useResetPassword = () => {
-	const showErrorNotification = useErrorNotification();
-
 	const resetPassword = async ({ email }: { email: string }) => {
 		try {
 			await auth.resetPassword({ email });
-			redirectTo(false, 'rp');
+			redirectTo(false, 'rp', '/resetpassword');
 		} catch (error) {
-			redirectTo(true, 'rp');
-			showErrorNotification({
-				title: 'Failed to reset password',
-				description:
-					'Please try again later, otherwise contact support@founderpad.com'
-			});
+			redirectTo(true, 'rp', '/resetpassword');
 		}
 	};
 
@@ -145,7 +131,6 @@ export const useChangePassword = () => {
 };
 
 export const useGetAuthUser = () => {
-	// const auth = useAuth();
 	const dispatch = useDispatch();
 
 	const getUser = useUserLazyQuery({

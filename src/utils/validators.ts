@@ -94,7 +94,7 @@ export const encodeString = (value: string) =>
 export const decodeString = (value: string) =>
 	Buffer.from(value, 'base64').toString('ascii');
 
-export const redirectTo = (error: boolean, param?: string) => {
+export const redirectTo = (error: boolean, param?: string, path?: string) => {
 	for (const [k, _v] of Object.entries(Router.query)) {
 		if (k.includes('success') || k.includes('error'))
 			delete Router.query[k];
@@ -114,7 +114,7 @@ export const redirectTo = (error: boolean, param?: string) => {
 
 	Router.replace(
 		{
-			pathname: Router.pathname,
+			pathname: path ?? Router.pathname,
 			query: { ...Router.query, ...buildParams() }
 		},
 		undefined,

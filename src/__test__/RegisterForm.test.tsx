@@ -1,7 +1,14 @@
 import RegisterForm from '@pages/auth/register/components/RegisterForm';
 import store from '@utils/store';
 import { Provider } from 'react-redux';
-import { act, fireEvent, render, userEvent, waitFor } from './testUtils';
+import {
+	act,
+	cleanup,
+	fireEvent,
+	render,
+	userEvent,
+	waitFor
+} from './testUtils';
 
 const setup = () => {
 	const registerSetup = render(
@@ -39,6 +46,7 @@ const setup = () => {
 };
 
 const mockRegister = jest.fn();
+const mockQueryParams = jest.fn();
 // const mockSocialRegister = jest.fn();
 
 jest.mock('@hooks/auth', () => ({
@@ -46,7 +54,12 @@ jest.mock('@hooks/auth', () => ({
 	// useSocialLogin: (): any => mockSocialRegister
 }));
 
+jest.mock('@hooks/util', () => ({
+	useQueryParam: (): any => mockQueryParams
+}));
+
 describe('Register form', () => {
+	afterEach(cleanup);
 	it('matches snapshot', async () => {
 		const { asFragment } = setup();
 		await waitFor(() => asFragment());

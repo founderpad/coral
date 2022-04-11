@@ -4,7 +4,7 @@ import {
 	AlertIcon,
 	AlertProps
 } from '@chakra-ui/react';
-import { IoCheckmarkSharp, IoCloseOutline } from 'react-icons/io5';
+import { IoCheckmarkSharp } from 'react-icons/io5';
 
 type Props = AlertProps & {
 	message: string;
@@ -21,15 +21,15 @@ function getStatusIcon(status: Props['status']) {
 					color="green.500"
 				/>
 			);
-		case 'error':
-			return (
-				<AlertIcon
-					as={IoCloseOutline}
-					boxSize="16px"
-					mr={1}
-					color="red.500"
-				/>
-			);
+		// case 'error':
+		// 	return (
+		// 		<AlertIcon
+		// 			as={IoCloseOutline}
+		// 			boxSize="16px"
+		// 			mr={1}
+		// 			color="red.500"
+		// 		/>
+		// 	);
 		default:
 			break;
 	}
