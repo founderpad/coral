@@ -5,6 +5,7 @@ import { FormInput } from '@components/form/inputs/FormField';
 import { Label } from '@components/labels';
 import { FlexLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
+import SocialLogins from '@components/shared/SocialLogins';
 import { useLogin } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { emailPattern } from '@utils/validators';
@@ -106,12 +107,12 @@ const LoginForm = () => {
 							disabled={isSubmitting}
 							size="md"
 							fontSize="small"
-							w={{ base: 'full', sm: '150px' }}
+							w={{ base: 'full', sm: '200px' }}
 						/>
 					</React.Fragment>
 				)}
 			</BaseForm>
-			{/* <SocialLogins /> */}
+			<SocialLogins />
 			<LoginFooter />
 		</React.Fragment>
 	);

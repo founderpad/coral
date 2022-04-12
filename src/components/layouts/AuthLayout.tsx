@@ -17,6 +17,8 @@ const AuthLayout = ({ header, children, title }: Props) => {
 	return (
 		<React.Fragment>
 			<DocumentTitle title={title} />
+			<div id="fb-root"></div>
+
 			<StackLayout
 				w={{ base: 'full', sm: '425px' }}
 				minH={{ sm: '400px' }}

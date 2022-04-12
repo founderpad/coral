@@ -76,6 +76,10 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				src="https://apis.google.com/js/platform.js"
 				strategy="lazyOnload"
 			/>
+			<Script
+				src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0&appId=1343110259464334&autoLogAppEvents=1"
+				nonce="085tr8cs"
+			></Script>
 
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>

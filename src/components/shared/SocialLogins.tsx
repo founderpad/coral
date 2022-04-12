@@ -1,8 +1,10 @@
 // import { PrimaryButton } from '@components/buttons';
+import { Button, Icon } from '@chakra-ui/react';
 import { Label } from '@components/labels';
 import { BoxLayout, StackLayout } from '@components/layouts';
 import { useSocialLogin } from '@hooks/auth';
 import React, { memo, useCallback } from 'react';
+import { IoLogoGithub } from 'react-icons/io5';
 import { TAuthProvider } from '../../types/auth';
 
 // const SocialLogins = memo(({ isSignup }: { isSignup: boolean }) => {
@@ -22,10 +24,15 @@ const SocialLogins = memo(() => {
 		<StackLayout
 			d="flex"
 			justifyContent="center"
-			spacing={0}
+			spacing={4}
 			w={{ base: 'full', sm: '175px' }}
 			alignItems="center"
 			alignSelf="center"
+			// css={{
+			// 	'> *': {
+			// 		width: 200
+			// 	}
+			// }}
 		>
 			<Label textAlign="center" fontSize="xs" color="gray.400">
 				Or
@@ -37,9 +44,15 @@ const SocialLogins = memo(() => {
 				alignSelf="center"
 				onClick={() => onSocialLogin('google')}
 				cursor="pointer"
+				width={'200px'}
+				p={0}
+				title="Sign in with Google"
 				css={{
 					'> *:active': {
 						pointerEvents: 'none'
+					},
+					'> *': {
+						width: 200
 					}
 				}}
 			>
@@ -48,8 +61,34 @@ const SocialLogins = memo(() => {
 					data-onsuccess="onSocialLogin"
 					data-theme="light"
 					data-longtitle="true"
+					data-width="200"
 				></div>
 			</BoxLayout>
+			<Button
+				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
+				rounded="none"
+				width={'200px'}
+				height="36px"
+				bg="black"
+				color="white"
+				fontSize="13px"
+				justifyContent="flex-start"
+				_hover={{ bg: 'black' }}
+				title="Sign in with GitHub"
+				onClick={() => onSocialLogin('github')}
+			>
+				Sign in with GitHub
+			</Button>
+			{/* <div
+				className="fb-login-button"
+				data-width=""
+				data-size="medium"
+				data-button-type="login_with"
+				data-layout="default"
+				data-auto-logout-link="false"
+				data-use-continue-as="true"
+				onClick={() => onSocialLogin('facebook')}
+			></div> */}
 		</StackLayout>
 	);
 });

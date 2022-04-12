@@ -81,7 +81,7 @@ export const MobileComments = () => {
 
 	useEffect(() => {
 		if (drawerBody) drawerBody.addEventListener('scroll', onScrollToBottom);
-	}, [drawerBody, onScrollToBottom]);
+	});
 
 	const hasComments = data?.comments?.length ?? 0;
 	const hasMoreComments =

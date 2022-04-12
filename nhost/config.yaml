@@ -58,7 +58,7 @@ auth:
             scope: email,photos,displayName
         github:
             client_id: 'fd67e92b136cff188b60'
-            client_secret: '0866a2deb3dc53639222a3255c87944310fbbe51'
+            client_secret: 'ee6971d6d87a6277e6f641900b6ccdbb54314de5'
             enabled: true
             scope: user:email
             token_url: ''
