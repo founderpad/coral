@@ -47,11 +47,11 @@ const setup = () => {
 
 const mockRegister = jest.fn();
 const mockQueryParams = jest.fn();
-const mockSocialRegister = jest.fn();
+// const mockSocialRegister = jest.fn();
 
 jest.mock('@hooks/auth', () => ({
-	useRegister: (): any => mockRegister,
-	useSocialLogin: (): any => mockSocialRegister
+	useRegister: (): any => mockRegister
+	// useSocialLogin: (): any => mockSocialRegister
 }));
 
 jest.mock('@hooks/util', () => ({

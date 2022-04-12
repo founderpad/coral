@@ -9,7 +9,7 @@ import { BaseForm } from '@components/form';
 import { SubmitButton } from '@components/buttons';
 import { AlertFeedback } from '@components/alert';
 import { useQueryParam } from '@hooks/util';
-import SocialLogins from '@components/shared/SocialLogins';
+// import SocialLogins from '@components/shared/SocialLogins';
 
 const RegisterForm = () => {
 	const onRegister = useRegister();
@@ -153,7 +153,7 @@ const RegisterForm = () => {
 					</>
 				)}
 			</BaseForm>
-			<SocialLogins />
+			{/* <SocialLogins /> */}
 			<LegalFooter />
 		</React.Fragment>
 	);
