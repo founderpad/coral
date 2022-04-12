@@ -1,11 +1,12 @@
 // import { PrimaryButton } from '@components/buttons';
 import { Button, Icon } from '@chakra-ui/react';
 import { Label } from '@components/labels';
-import { BoxLayout, StackLayout } from '@components/layouts';
+import { BoxLayout, FlexLayout, StackLayout } from '@components/layouts';
 import { useSocialLogin } from '@hooks/auth';
 import React, { memo, useCallback } from 'react';
 import { IoLogoGithub } from 'react-icons/io5';
 import { TAuthProvider } from '../../types/auth';
+import AppDivider from './AppDivider';
 
 // const SocialLogins = memo(({ isSignup }: { isSignup: boolean }) => {
 const SocialLogins = memo(() => {
@@ -28,15 +29,28 @@ const SocialLogins = memo(() => {
 			w={{ base: 'full', sm: '175px' }}
 			alignItems="center"
 			alignSelf="center"
-			// css={{
-			// 	'> *': {
-			// 		width: 200
-			// 	}
-			// }}
 		>
-			<Label textAlign="center" fontSize="xs" color="gray.400">
+			<Label
+				display="flex"
+				alignItems="center"
+				fontSize="xs"
+				color="fpGrey.200"
+				py={2}
+				css={{
+					'&:before, &:after': {
+						content: "'----------'",
+						height: '1px',
+						backgroundColor: '#B8C0CB',
+						flexGrow: 4,
+						color: 'transparent',
+						margin: '0px 16px'
+					}
+				}}
+			>
 				Or
 			</Label>
+
+			{/* <div className="text-divider">Or</div> */}
 
 			<BoxLayout
 				id="socialLogin"
