@@ -136,40 +136,44 @@ exports[`Register form matches snapshot 1`] = `
     </div>
   </form>
   <div
-    class="chakra-text css-av3fgh"
+    class="chakra-stack css-p0ia60"
   >
-    By continuing, you agree to founderpad's 
-    <span
-      class="chakra-link css-ntv2za"
-      href="/terms-of-conditions"
-      rel="noopener noreferrer"
-      target="_blank"
-      title="Link to Terms of Service"
+    <div
+      class="chakra-text css-i2jbli"
     >
-      Terms of Service 
-    </span>
-    and acknowledge that you've read our 
-    <span
-      class="chakra-link css-ntv2za"
-      href="/privacy-policy"
-      rel="noopener noreferrer"
-      target="_blank"
-      title="Link to Privacy Policy"
+      By continuing, you agree to founderpad's 
+      <span
+        class="chakra-link css-ntv2za"
+        href="/terms-of-conditions"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Link to Terms of Service"
+      >
+        Terms of Service 
+      </span>
+      and acknowledge that you've read our 
+      <span
+        class="chakra-link css-ntv2za"
+        href="/privacy-policy"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Link to Privacy Policy"
+      >
+        Privacy Policy.
+      </span>
+    </div>
+    <div
+      class="chakra-text css-1gx0chr"
     >
-      Privacy Policy.
-    </span>
-  </div>
-  <div
-    class="chakra-text css-1fihqrz"
-  >
-    Already have an account? 
-    <span
-      class="chakra-link css-ntv2za"
-      href="/login"
-      title="Link to login"
-    >
-      Login here
-    </span>
+      Already have an account? 
+      <span
+        class="chakra-link css-ntv2za"
+        href="/login"
+        title="Link to login"
+      >
+        Login here
+      </span>
+    </div>
   </div>
 </DocumentFragment>
 `;

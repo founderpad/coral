@@ -86,10 +86,10 @@ exports[`Login form matches snapshot 1`] = `
     </div>
   </form>
   <div
-    class="css-18voih5"
+    class="chakra-stack css-1qhqpem"
   >
     <p
-      class="chakra-text css-1fihqrz"
+      class="chakra-text css-135297o"
     >
       No account? 
       <span
@@ -101,7 +101,7 @@ exports[`Login form matches snapshot 1`] = `
       </span>
     </p>
     <span
-      class="chakra-link css-pkysmm"
+      class="chakra-link css-1nbxiji"
       href="/resetpassword"
       title="Link to register an account"
     >

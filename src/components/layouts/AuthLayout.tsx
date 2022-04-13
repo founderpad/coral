@@ -17,7 +17,7 @@ const AuthLayout = ({ header, children, title }: Props) => {
 	return (
 		<React.Fragment>
 			<DocumentTitle title={title} />
-			<div id="fb-root"></div>
+			{/* <div id="fb-root"></div> */}
 
 			<StackLayout
 				w={{ base: 'full', sm: '425px' }}
@@ -37,14 +37,14 @@ const AuthLayout = ({ header, children, title }: Props) => {
 				<FlexLayout mx="auto" alignItems="center">
 					<FounderpadLogo />
 					<Tag
-						bg="fpPrimary.700"
-						color="white"
 						textTransform="capitalize"
 						fontWeight="medium"
 						textAlign="center"
 						verticalAlign="center"
 						fontSize="sm"
-						rounded="sm"
+						rounded="md"
+						variant="outline"
+						colorScheme="fpPrimary"
 					>
 						0.1.0
 					</Tag>

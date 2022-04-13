@@ -40,10 +40,12 @@ const ReportMenu = ({ title, content, report }: TReportProps) => {
 
 	return (
 		<BaseMenuItem
+			name="report-button"
 			title="Report"
 			// subTitle={`Report this ${title.toLowerCase()}`}
 			icon={IoFlagOutline}
 			onClick={onClick}
+			aria-label="report-button"
 		/>
 	);
 };

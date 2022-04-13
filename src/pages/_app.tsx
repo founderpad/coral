@@ -45,6 +45,10 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 			<Head>
 				<link rel="shortcut icon" href="/favicon.svg" />
 				<meta
+					name="description"
+					content="The exclusive platform to create, collaborate and innovate on business ideas by finding other co-founders to help bring your business idea to life; and seek our mentors and investors for their support and expertise."
+				></meta>
+				<meta
 					name="google-signin-client_id"
 					content="570489210751-cplv3bacb2vvkfml9ie337u9m1f3p2cv.apps.googleusercontent.com"
 				></meta>

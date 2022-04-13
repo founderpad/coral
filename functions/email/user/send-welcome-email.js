@@ -23,7 +23,7 @@ export default async (req, res) => {
 				Html: {
 					Charset: 'UTF-8',
 					Data: `
-						<html>
+						<html lang="en">
 							<head>
 								<style>
 									@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500&display=swap');

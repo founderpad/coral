@@ -1,10 +1,11 @@
 import { Label } from '@components/labels';
+import { StackLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import React, { memo } from 'react';
 
 const LegalFooter = memo(() => (
-	<React.Fragment>
-		<Label as="div" color="gray.500" fontSize="x-small" pt={6}>
+	<StackLayout pt={6} alignItems="center" d="flex" w="full">
+		<Label as="div" color="gray.500" fontSize="xs" pt={6}>
 			By continuing, you agree to founderpad&apos;s{' '}
 			<PrimaryLink
 				href="/terms-of-conditions"
@@ -22,13 +23,13 @@ const LegalFooter = memo(() => (
 				Privacy Policy.
 			</PrimaryLink>
 		</Label>
-		<Label as="div" color="gray.500" fontSize="x-small" alignSelf="center">
+		<Label as="div" color="gray.500" fontSize="xs" alignSelf="center">
 			Already have an account?{' '}
 			<PrimaryLink href="/login" title="Link to login">
 				Login here
 			</PrimaryLink>
 		</Label>
-	</React.Fragment>
+	</StackLayout>
 ));
 
 export default LegalFooter;

@@ -3,7 +3,7 @@ import { SubmitButton } from '@components/buttons';
 import { BaseForm } from '@components/form';
 import { FormInput } from '@components/form/inputs/FormField';
 import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
+import { StackLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 // import SocialLogins from '@components/shared/SocialLogins';
 import { useLogin } from '@hooks/auth';
@@ -119,8 +119,16 @@ const LoginForm = () => {
 };
 
 const LoginFooter = memo(() => (
-	<FlexLayout justifyContent="space-between" alignItems="center" pt={8}>
-		<Label color="gray.500" fontSize="x-small" alignSelf="center">
+	<StackLayout
+		spacing={2}
+		pt={8}
+		alignItems="center"
+		direction={{ base: 'column-reverse', sm: 'row' }}
+		justifyContent={{ sm: 'space-between' }}
+		d="flex"
+		w="full"
+	>
+		<Label color="gray.500" fontSize="xs">
 			No account?{' '}
 			<PrimaryLink href="/register" title="Link to register an account">
 				Register now
@@ -129,11 +137,11 @@ const LoginFooter = memo(() => (
 		<PrimaryLink
 			href="/resetpassword"
 			title="Link to register an account"
-			fontSize="x-small"
+			fontSize="xs"
 		>
 			Forgotten password?
 		</PrimaryLink>
-	</FlexLayout>
+	</StackLayout>
 ));
 
 export default LoginForm;

@@ -30,6 +30,7 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => (
 				color="fpGrey.300"
 				d="flex"
 				alignItems="center"
+				aria-label="comments-number-button"
 			>
 				{idea?.comments_aggregate?.aggregate?.count}
 			</Button>

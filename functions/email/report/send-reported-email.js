@@ -21,7 +21,7 @@ export default async (req, res) => {
 			Body: {
 				Html: {
 					Charset: 'UTF-8',
-					Data: `<html>
+					Data: `<html lang="en">
 	                            <head></head>
 	                            <body>
 	                                <p>Hi ${

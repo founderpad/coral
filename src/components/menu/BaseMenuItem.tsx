@@ -5,7 +5,10 @@ import { Label } from '@components/labels';
 import React from 'react';
 import { IconType } from 'react-icons';
 
-export type BaseMenuItemProps = Pick<MenuItemProps, 'color' | 'onClick'> & {
+export type BaseMenuItemProps = Pick<
+	MenuItemProps,
+	'name' | 'color' | 'onClick'
+> & {
 	title: string;
 	subTitle?: string;
 	divider?: boolean;

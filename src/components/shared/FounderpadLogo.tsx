@@ -19,14 +19,14 @@ const FounderpadLogoWithBadge = ({ w }: { w: number }) => (
 	<FlexLayout mx="auto" alignItems="center">
 		<FounderpadLogo w={w} />
 		<Tag
-			bg="fpPrimary.700"
-			color="white"
 			textTransform="capitalize"
 			fontWeight="medium"
 			textAlign="center"
 			verticalAlign="center"
-			fontSize="x-small"
+			fontSize="sm"
 			rounded="md"
+			variant="outline"
+			colorScheme="fpPrimary"
 			ml={2}
 		>
 			0.1.0

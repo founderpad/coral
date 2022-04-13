@@ -3,7 +3,7 @@ import { SubmitButton } from '@components/buttons';
 import { BaseForm } from '@components/form';
 import { FormInput } from '@components/form/inputs/FormField';
 import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
+import { StackLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
 import { useResetPassword } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
@@ -101,8 +101,16 @@ const ResetPasswordForm = () => {
 };
 
 const ResetPasswordFooter = memo(() => (
-	<FlexLayout justifyContent="space-between" alignItems="center" pt={8}>
-		<Label color="fpGrey.500" fontSize="x-small" alignSelf="center">
+	<StackLayout
+		spacing={2}
+		pt={8}
+		alignItems="center"
+		direction={{ base: 'column-reverse', sm: 'row' }}
+		justifyContent={{ sm: 'space-between' }}
+		d="flex"
+		w="full"
+	>
+		<Label color="fpGrey.500" fontSize="xs" alignSelf="center">
 			No account?{' '}
 			<PrimaryLink href="/register" title="Link to register an account">
 				Register now
@@ -111,11 +119,11 @@ const ResetPasswordFooter = memo(() => (
 		<PrimaryLink
 			href="/login"
 			title="Link to register an account"
-			fontSize="x-small"
+			fontSize="xs"
 		>
 			Go to login
 		</PrimaryLink>
-	</FlexLayout>
+	</StackLayout>
 ));
 
 export default ResetPasswordForm;
