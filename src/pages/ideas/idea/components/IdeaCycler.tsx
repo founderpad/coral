@@ -42,9 +42,9 @@ const IdeaCycler = () => {
 	if (cachedIdeaIds.length > 1) {
 		return (
 			<FlexLayout
-				borderBottomWidth={1}
-				py={1}
-				px={4}
+				// borderBottomWidth={1}
+				// py={1}
+				// px={4}
 				rounded="none"
 				justifyContent="flex-end"
 			>

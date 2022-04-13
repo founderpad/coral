@@ -10,10 +10,13 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { IconType } from 'react-icons/lib';
+import { FlexLayout } from './FlexLayout';
+// import { BoxLayout } from './BoxLayout';
 
 type Props = Omit<TabsProps, 'children'> & {
 	tabs: TabProps[];
 	children: JSX.Element[];
+	actions?: React.ReactNode;
 };
 
 interface TabProps {
@@ -22,7 +25,9 @@ interface TabProps {
 }
 
 const TabLayout = (props: Props & TabsProps) => {
-	const { tabs, children, ...rest } = props;
+	const { tabs, children, actions, ...rest } = props;
+
+	console.log('actions: ', actions);
 
 	return (
 		<Tabs
@@ -46,7 +51,10 @@ const TabLayout = (props: Props & TabsProps) => {
 						<Tab
 							key={key}
 							fontSize="xs"
-							_hover={{ color: 'black', bg: 'fpLightGrey.300' }}
+							_hover={{
+								color: 'black',
+								bg: 'fpLightGrey.300'
+							}}
 							_selected={{
 								bg: 'fpLightGrey.700',
 								color: 'black'
@@ -68,7 +76,12 @@ const TabLayout = (props: Props & TabsProps) => {
 							{tab.label}
 						</Tab>
 					))}
+
+				{/* {actions && <BoxLayout ml="auto">{actions}</BoxLayout>} */}
+				{actions && <FlexLayout ml="auto">{actions}</FlexLayout>}
 			</TabList>
+
+			{/* {actions} */}
 			<TabPanels d="flex" flex={1} overflowY="hidden">
 				{children?.map((tp: TabPanelProps, key) => {
 					return (
