@@ -3,6 +3,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 module.exports = withBundleAnalyzer({
+	i18n: {
+		locales: ['en'],
+		defaultLocale: 'en'
+	},
 	async redirects() {
 		return [
 			{

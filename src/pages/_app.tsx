@@ -44,6 +44,12 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 		<React.Fragment>
 			<Head>
 				<link rel="shortcut icon" href="/favicon.svg" />
+				<link
+					rel="dns-prefetch"
+					href="https://www.googletagmanager.com"
+				/>
+				<link rel="dns-prefetch" href="https://www.facebook.com" />
+				<link rel="dns-prefetch" href="https://connect.facebook.net" />
 				<meta
 					name="description"
 					content="The exclusive platform to create, collaborate and innovate on business ideas by finding other co-founders to help bring your business idea to life; and seek our mentors and investors for their support and expertise."
