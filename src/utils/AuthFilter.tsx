@@ -13,7 +13,10 @@ export default function AuthFilter(Component: any) {
 
 		return (
 			<React.Fragment>
-				<Script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></Script>
+				<Script
+					src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+					strategy="lazyOnload"
+				></Script>
 				<MainLayout>
 					<Component {...arguments} />
 				</MainLayout>
