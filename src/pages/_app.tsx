@@ -50,6 +50,9 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				/>
 				<link rel="preconnect" href="https://www.facebook.com" />
 				<link rel="preconnect" href="https://connect.facebook.net" />
+				<link rel="manifest" href="/manifest.json" />
+				<link rel="apple-touch-icon" href="/apple-icon.png"></link>
+				<meta name="theme-color" content="#fff" />
 				<meta
 					name="description"
 					content="The exclusive platform to create, collaborate and innovate on business ideas by finding other co-founders to help bring your business idea to life; and seek our mentors and investors for their support and expertise."
