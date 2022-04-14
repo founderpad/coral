@@ -6,7 +6,7 @@ import Image from 'next/image';
 const FounderpadLogo = (props: BoxProps) => (
 	<BoxLayout position="relative" w="180px" {...props}>
 		<Image
-			src="https://founderpad-file-uploads.s3.eu-west-1.amazonaws.com/founderpad-logo.svg"
+			src="/founderpad-logo.svg"
 			alt="logo"
 			layout="fill"
 			objectFit="contain"
