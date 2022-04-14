@@ -72,9 +72,9 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 			</Head>
 			<Script
 				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-				strategy="afterInteractive"
+				strategy="beforeInteractive"
 			/>
-			<Script id="google-analytics" strategy="afterInteractive">
+			<Script id="google-analytics" strategy="beforeInteractive">
 				{`
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){window.dataLayer.push(arguments);}
@@ -85,12 +85,12 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 			</Script>
 			<Script
 				src="https://apis.google.com/js/platform.js"
-				strategy="afterInteractive"
+				strategy="beforeInteractive"
 			/>
 			<Script
 				src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0&appId=1343110259464334&autoLogAppEvents=1"
 				nonce="085tr8cs"
-				strategy="afterInteractive"
+				strategy="beforeInteractive"
 			></Script>
 
 			<Provider store={store}>
