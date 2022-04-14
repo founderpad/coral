@@ -7,6 +7,9 @@ module.exports = withBundleAnalyzer({
 		locales: ['en'],
 		defaultLocale: 'en'
 	},
+	images: {
+		domains: ['founderpad-file-uploads.s3.eu-west-1.amazonaws.com']
+	},
 	async redirects() {
 		return [
 			{
