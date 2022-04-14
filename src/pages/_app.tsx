@@ -72,6 +72,7 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 			</Head>
 			<Script
 				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+				strategy="lazyOnload"
 			/>
 			<Script id="google-analytics" strategy="afterInteractive">
 				{`
@@ -84,12 +85,12 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 			</Script>
 			<Script
 				src="https://apis.google.com/js/platform.js"
-				strategy="beforeInteractive"
+				strategy="lazyOnload"
 			/>
 			<Script
 				src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0&appId=1343110259464334&autoLogAppEvents=1"
 				nonce="085tr8cs"
-				strategy="beforeInteractive"
+				strategy="lazyOnload"
 			></Script>
 
 			<Provider store={store}>

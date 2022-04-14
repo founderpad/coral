@@ -43,7 +43,7 @@ const AuthLayout = ({ header, children, title }: Props) => {
 						verticalAlign="center"
 						fontSize="sm"
 						rounded="md"
-						variant="outline"
+						variant="solid"
 						colorScheme="fpPrimary"
 					>
 						0.1.0

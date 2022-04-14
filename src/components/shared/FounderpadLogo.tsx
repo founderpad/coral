@@ -10,7 +10,7 @@ const FounderpadLogo = (props: BoxProps) => (
 			alt="logo"
 			layout="fill"
 			objectFit="contain"
-			priority
+			priority={true}
 		/>
 	</BoxLayout>
 );
@@ -25,7 +25,7 @@ const FounderpadLogoWithBadge = ({ w }: { w: number }) => (
 			verticalAlign="center"
 			fontSize="sm"
 			rounded="md"
-			variant="outline"
+			variant="solid"
 			colorScheme="fpPrimary"
 			ml={2}
 		>
