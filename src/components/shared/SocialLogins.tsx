@@ -74,7 +74,7 @@ const SocialLogins = memo(() => {
 					data-width="200"
 				></div>
 			</BoxLayout>
-			<Button
+			{/* <Button
 				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
 				rounded="none"
 				width={'200px'}
@@ -88,7 +88,7 @@ const SocialLogins = memo(() => {
 				onClick={() => onSocialLogin('github')}
 			>
 				Sign in with GitHub
-			</Button>
+			</Button> */}
 			{/* <div
 				className="fb-login-button"
 				data-width=""

@@ -136,6 +136,29 @@ exports[`Register form matches snapshot 1`] = `
     </div>
   </form>
   <div
+    class="chakra-stack css-1c76lkj"
+  >
+    <p
+      class="chakra-text css-u4f156"
+    >
+      Or
+    </p>
+    <div
+      class="css-1n6ftar"
+      data-testid="socialLogin"
+      id="socialLogin"
+      title="Sign in with Google"
+    >
+      <div
+        class="g-signin2"
+        data-longtitle="true"
+        data-onsuccess="onSocialLogin"
+        data-theme="light"
+        data-width="200"
+      />
+    </div>
+  </div>
+  <div
     class="chakra-stack css-p0ia60"
   >
     <div

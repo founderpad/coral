@@ -5,7 +5,7 @@ import { FormInput } from '@components/form/inputs/FormField';
 import { Label } from '@components/labels';
 import { StackLayout } from '@components/layouts';
 import { PrimaryLink } from '@components/links';
-// import SocialLogins from '@components/shared/SocialLogins';
+import SocialLogins from '@components/shared/SocialLogins';
 import { useLogin } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import { emailPattern } from '@utils/validators';
@@ -112,7 +112,7 @@ const LoginForm = () => {
 					</React.Fragment>
 				)}
 			</BaseForm>
-			{/* <SocialLogins /> */}
+			<SocialLogins />
 			<LoginFooter />
 		</React.Fragment>
 	);
