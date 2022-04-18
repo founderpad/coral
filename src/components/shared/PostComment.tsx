@@ -5,7 +5,6 @@ import {
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import useIdea from '@pages/ideas/idea/query/ideaQuery';
-import { cache } from '@pages/_app';
 import React, { useCallback, useState } from 'react';
 import WriteInput from './WriteInput';
 
@@ -64,7 +63,6 @@ const PostComment = () => {
 			}
 		],
 		onCompleted: () => {
-			console.log('cache: ', cache);
 			event({
 				action: 'Post comment',
 				params: {

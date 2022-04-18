@@ -114,8 +114,8 @@ export const ImageUploader = (props: Props) => {
 				checkValidation(reader.result as any, files[0]);
 			};
 
-			reader.onerror = (err) => {
-				console.log(err);
+			reader.onerror = (_err) => {
+				// console.log(err);
 			};
 
 			if (files[0]?.type.includes('image'))

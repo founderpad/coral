@@ -27,8 +27,6 @@ interface TabProps {
 const TabLayout = (props: Props & TabsProps) => {
 	const { tabs, children, actions, ...rest } = props;
 
-	console.log('actions: ', actions);
-
 	return (
 		<Tabs
 			{...rest}
