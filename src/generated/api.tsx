@@ -5238,7 +5238,9 @@ export type TUserAddressFragment = { __typename?: 'user_address', location?: str
 
 export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
-export type TMessageUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null };
+export type TMessageUserFragment = { __typename?: 'users', avatarUrl?: string | null, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null };
+
+export type TThreadUserFragment = { __typename?: 'users', id: any, displayName: string };
 
 export type TCreateIdeaMutationVariables = Exact<{
   idea: TIdeas_Insert_Input;
@@ -5338,21 +5340,28 @@ export type TNewMessageMutationVariables = Exact<{
 }>;
 
 
-export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } } | null };
+export type TNewMessageMutation = { insert_message_one?: { __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', avatarUrl?: string | null, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } } | null };
 
 export type TUserMessageThreadsQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null, ownerId?: any | null, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }> }>, total: { __typename?: 'message_thread_aggregate', aggregate?: { __typename?: 'message_thread_aggregate_fields', count: number } | null } };
+export type TUserMessageThreadsQuery = { threads: Array<{ __typename?: 'message_thread', id: any, name?: string | null, ownerId?: any | null, targetUser: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', avatarUrl?: string | null, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }>, lastMessage: Array<{ __typename?: 'message', content: string, createdAt: any, sender: { __typename?: 'users', avatarUrl?: string | null, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }> }>, total: { __typename?: 'message_thread_aggregate', aggregate?: { __typename?: 'message_thread_aggregate_fields', count: number } | null } };
+
+export type TGetThreadUsersQueryVariables = Exact<{
+  messageThreadId: Scalars['uuid'];
+}>;
+
+
+export type TGetThreadUsersQuery = { users: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', displayName: string, id: any } }> };
 
 export type TMessageListSubscriptionVariables = Exact<{
   messageThreadId: Scalars['uuid'];
 }>;
 
 
-export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }> };
+export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', avatarUrl?: string | null, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }> };
 
 export type TCreateReportMutationVariables = Exact<{
   report: TReport_Insert_Input;
@@ -5495,17 +5504,22 @@ export const UserSearchFragmentDoc = gql`
   }
 }
     ${UserFieldsFragmentDoc}`;
-export const MessageUserFragmentDoc = gql`
-    fragment MessageUser on users {
+export const ThreadUserFragmentDoc = gql`
+    fragment ThreadUser on users {
   id
   displayName
+}
+    `;
+export const MessageUserFragmentDoc = gql`
+    fragment MessageUser on users {
+  ...ThreadUser
   avatarUrl
   profile {
     pronouns
     customPronouns
   }
 }
-    `;
+    ${ThreadUserFragmentDoc}`;
 export const UserFieldsWithEmailFragmentDoc = gql`
     fragment UserFieldsWithEmail on users {
   ...UserFields
@@ -6382,6 +6396,47 @@ export type UserMessageThreadsLazyQueryHookResult = ReturnType<typeof useUserMes
 export type UserMessageThreadsQueryResult = Apollo.QueryResult<TUserMessageThreadsQuery, TUserMessageThreadsQueryVariables>;
 export function refetchUserMessageThreadsQuery(variables: TUserMessageThreadsQueryVariables) {
       return { query: UserMessageThreadsDocument, variables: variables }
+    }
+export const GetThreadUsersDocument = gql`
+    query GetThreadUsers($messageThreadId: uuid!) {
+  users: message_thread_users(where: {threadId: {_eq: $messageThreadId}}) {
+    user {
+      displayName
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetThreadUsersQuery__
+ *
+ * To run a query within a React component, call `useGetThreadUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetThreadUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetThreadUsersQuery({
+ *   variables: {
+ *      messageThreadId: // value for 'messageThreadId'
+ *   },
+ * });
+ */
+export function useGetThreadUsersQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetThreadUsersQuery, TGetThreadUsersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TGetThreadUsersQuery, TGetThreadUsersQueryVariables>(GetThreadUsersDocument, options);
+      }
+export function useGetThreadUsersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetThreadUsersQuery, TGetThreadUsersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TGetThreadUsersQuery, TGetThreadUsersQueryVariables>(GetThreadUsersDocument, options);
+        }
+export type GetThreadUsersQueryHookResult = ReturnType<typeof useGetThreadUsersQuery>;
+export type GetThreadUsersLazyQueryHookResult = ReturnType<typeof useGetThreadUsersLazyQuery>;
+export type GetThreadUsersQueryResult = Apollo.QueryResult<TGetThreadUsersQuery, TGetThreadUsersQueryVariables>;
+export function refetchGetThreadUsersQuery(variables: TGetThreadUsersQueryVariables) {
+      return { query: GetThreadUsersDocument, variables: variables }
     }
 export const MessageListDocument = gql`
     subscription MessageList($messageThreadId: uuid!) {

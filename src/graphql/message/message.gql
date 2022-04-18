@@ -63,6 +63,17 @@ query UserMessageThreads($userId: uuid!) {
 	}
 }
 
+query GetThreadUsers($messageThreadId: uuid!) {
+	users: message_thread_users(
+		where: { threadId: { _eq: $messageThreadId } }
+	) {
+		user {
+			displayName
+			id
+		}
+	}
+}
+
 subscription MessageList($messageThreadId: uuid!) {
 	message(
 		where: { threadId: { _eq: $messageThreadId } }

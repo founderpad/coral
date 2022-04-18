@@ -25,6 +25,9 @@ const WriteUserMessage = ({ threadId }: { threadId: string }) => {
 			value={value}
 			onChange={onChange}
 			onClick={() => createNewMessage()}
+			stackProps={{
+				padding: 4
+			}}
 		/>
 	);
 };

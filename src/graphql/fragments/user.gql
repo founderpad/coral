@@ -33,11 +33,15 @@ fragment UserSearch on user_profile {
 }
 
 fragment MessageUser on users {
-	id
-	displayName
+	...ThreadUser
 	avatarUrl
 	profile {
 		pronouns
 		customPronouns
 	}
+}
+
+fragment ThreadUser on users {
+	id
+	displayName
 }

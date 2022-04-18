@@ -1,4 +1,4 @@
-import { Textarea, IconButton, Icon } from '@chakra-ui/react';
+import { Textarea, IconButton, Icon, StackProps } from '@chakra-ui/react';
 import { StackLayout } from '@components/layouts';
 import React from 'react';
 import { IoSendSharp } from 'react-icons/io5';
@@ -10,6 +10,7 @@ type Props = {
 	value: string;
 	onClick: (value: React.MouseEvent) => void;
 	placeholder?: string;
+	stackProps?: StackProps;
 };
 
 const WriteInput = (props: Props) => {
@@ -17,7 +18,8 @@ const WriteInput = (props: Props) => {
 		onChange,
 		onClick,
 		value,
-		placeholder = 'Write your comment here'
+		placeholder = 'Write your comment here',
+		stackProps
 	} = props;
 
 	return (
@@ -27,6 +29,7 @@ const WriteInput = (props: Props) => {
 			justifyContent="flex-end"
 			alignItems="center"
 			w="full"
+			{...stackProps}
 		>
 			<StackLayout
 				direction="row"

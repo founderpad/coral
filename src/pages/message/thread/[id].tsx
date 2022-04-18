@@ -2,7 +2,10 @@ import { Label } from '@components/labels';
 import { PageLayout, StackLayout } from '@components/layouts';
 import { Loading, PointSeparator, UserAvatarDetails } from '@components/shared';
 import PronounsLabel from '@components/shared/PronounsLabel';
-import { useMessageListSubscription } from '@generated/api';
+import {
+	useGetThreadUsersQuery,
+	useMessageListSubscription
+} from '@generated/api';
 import { useAuth } from '@hooks/auth';
 import { useQueryParam } from '@hooks/util';
 import AuthFilter from '@utils/AuthFilter';
@@ -14,13 +17,21 @@ const MessageThread = () => {
 	const threadId = useQueryParam<string>('id');
 	const user = useAuth().user;
 
-	const { data, loading } = useMessageListSubscription({
+	const { data: messageList, loading } = useMessageListSubscription({
 		variables: {
 			messageThreadId: threadId
 		}
 	});
 
-	const toUser = data?.message.find((m) => m.sender.id !== user?.id);
+	const { data: threadUsers } = useGetThreadUsersQuery({
+		variables: {
+			messageThreadId: threadId
+		}
+	});
+
+	const recipientUser = threadUsers?.users.find(
+		(tu) => tu.user.id !== user?.id
+	);
 
 	// const result = cache.readFragment({
 	// 	id: `message_thread:${threadId}`, // The value of the profile's cache id
@@ -36,11 +47,11 @@ const MessageThread = () => {
 	return (
 		<React.Fragment>
 			<PageLayout
-				title={`Your chat with ${toUser?.sender.displayName}`}
+				title={`Your chat with ${recipientUser?.user.displayName}`}
 				p={0}
 			>
 				<StackLayout p={4} flex={1} borderBottomWidth={1}>
-					{data?.message.map((message) => (
+					{messageList?.message.map((message) => (
 						<UserAvatarDetails
 							key={message.id}
 							title={message.sender?.displayName}
