@@ -28,15 +28,15 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 			{!isOpen &&
 				comment.firstReplies?.map((reply) => (
 					<CommentLayout
-						key={reply.id}
+						key={reply?.id}
 						actions={false}
 						comment={reply}
 					/>
 				))}
-			{comment?.totalReplies > 2 && (
+			{/* {comment?.totalReplies > 2 && (
 				<React.Fragment>
 					<Collapse in={isOpen}>
-						<RepliesList commentId={comment.id} />
+						<RepliesList commentId={comment?.id} />
 					</Collapse>
 					<PrimaryButton
 						name="show-replies"
@@ -47,7 +47,7 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 						{isOpen ? 'Hide replies' : 'Show more replies'}
 					</PrimaryButton>
 				</React.Fragment>
-			)}
+			)} */}
 		</CommentLayout>
 	);
 };
@@ -218,7 +218,7 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 			>
 				<PostComment />
 			</Box>
-			{/* {hasComments < 1 ? (
+			{hasComments < 1 ? (
 				<NoResults label="comments yet" back={false} />
 			) : (
 				<StackLayout flexGrow={1} overflowY="auto" minHeight="2em">
@@ -227,7 +227,7 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 							return <Comment key={comment.id} {...comment} />;
 					})}
 				</StackLayout>
-			)} */}
+			)}
 		</BoxLayout>
 	);
 };
