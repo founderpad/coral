@@ -150,11 +150,8 @@ exports[`Register form matches snapshot 1`] = `
       title="Sign in with Google"
     >
       <div
-        class="g-signin2"
-        data-longtitle="true"
-        data-onsuccess="onSocialLogin"
-        data-theme="light"
-        data-width="200"
+        class="g_id_signin"
+        data-type="standard"
       />
     </div>
   </div>

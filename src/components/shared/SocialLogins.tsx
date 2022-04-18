@@ -64,13 +64,14 @@ const SocialLogins = memo(() => {
 					}
 				}}
 			>
-				<div
+				{/* <div
 					className="g-signin2"
 					data-onsuccess="onSocialLogin"
 					data-theme="light"
 					data-longtitle="true"
 					data-width="200"
-				></div>
+				></div> */}
+				<div className="g_id_signin" data-type="standard"></div>
 			</BoxLayout>
 			{/* <Button
 				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
