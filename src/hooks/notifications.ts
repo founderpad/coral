@@ -20,6 +20,7 @@ export const usePushNotifications = () => {
 					notifyButton: {
 						enable: true,
 						size: 'small',
+						position: 'bottom-left',
 						colors: {
 							'circle.background': '#2BA4C9',
 							'dialog.button.background': '#2BA4C9'
