@@ -6,8 +6,8 @@ import { Loading, NoResults } from '@components/shared';
 import PostComment from '@components/shared/PostComment';
 import {
 	TCommentFieldsFragment,
-	useCommentsForIdeaQuery,
-	useRepliesForCommentQuery
+	useCommentsForIdeaQuery
+	// useRepliesForCommentQuery
 } from '@generated/api';
 import { useModalDrawer, useQueryParam } from '@hooks/util';
 import React, { useEffect } from 'react';
@@ -232,30 +232,30 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 	);
 };
 
-const RepliesList = ({ commentId }: { commentId: string }) => {
-	const { data } = useRepliesForCommentQuery({
-		variables: {
-			commentId
-		},
-		fetchPolicy: 'network-only'
-	});
+// const RepliesList = ({ commentId }: { commentId: string }) => {
+// 	const { data } = useRepliesForCommentQuery({
+// 		variables: {
+// 			commentId
+// 		},
+// 		fetchPolicy: 'network-only'
+// 	});
 
-	if (data?.replies?.length)
-		return (
-			<StackLayout spacing={0} pt={4} rounded="none" pl={2}>
-				{data?.replies?.map((reply, _index) => {
-					return (
-						<CommentLayout
-							key={_index}
-							actions={false}
-							comment={reply}
-						/>
-					);
-				})}
-			</StackLayout>
-		);
+// 	if (data?.replies?.length)
+// 		return (
+// 			<StackLayout spacing={0} pt={4} rounded="none" pl={2}>
+// 				{data?.replies?.map((reply, _index) => {
+// 					return (
+// 						<CommentLayout
+// 							key={_index}
+// 							actions={false}
+// 							comment={reply}
+// 						/>
+// 					);
+// 				})}
+// 			</StackLayout>
+// 		);
 
-	return null;
-};
+// 	return null;
+// };
 
 export default CommentsList;
