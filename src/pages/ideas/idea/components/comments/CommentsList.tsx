@@ -1,13 +1,13 @@
-import { Box, Button, Icon, useDisclosure } from '@chakra-ui/react';
-// import { PrimaryButton } from '@components/buttons';
+import { Box, Button, Collapse, Icon, useDisclosure } from '@chakra-ui/react';
+import { PrimaryButton } from '@components/buttons';
 import BaseHeading from '@components/heading/BaseHeading';
 import { BoxLayout, StackLayout } from '@components/layouts';
 import { Loading, NoResults } from '@components/shared';
 import PostComment from '@components/shared/PostComment';
 import {
 	TCommentFieldsFragment,
-	useCommentsForIdeaQuery
-	// useRepliesForCommentQuery
+	useCommentsForIdeaQuery,
+	useRepliesForCommentQuery
 } from '@generated/api';
 import { useModalDrawer, useQueryParam } from '@hooks/util';
 import React, { useEffect } from 'react';
@@ -17,7 +17,7 @@ import CommentLayout from './CommentLayout';
 
 export const Comment = (comment: TCommentFieldsFragment) => {
 	// const [showReplies, setShowReplies] = useState(false);
-	const { isOpen } = useDisclosure();
+	const { isOpen, onToggle } = useDisclosure();
 
 	// const onShowRepliesClick = useCallback(() => {
 	// 	setShowReplies(!showReplies);
@@ -28,12 +28,12 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 			{!isOpen &&
 				comment.firstReplies?.map((reply) => (
 					<CommentLayout
-						key={reply?.id}
+						key={reply.id}
 						actions={false}
 						comment={reply}
 					/>
 				))}
-			{/* {comment?.totalReplies > 2 && (
+			{comment?.totalReplies > 2 && (
 				<React.Fragment>
 					<Collapse in={isOpen}>
 						<RepliesList commentId={comment?.id} />
@@ -47,7 +47,7 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 						{isOpen ? 'Hide replies' : 'Show more replies'}
 					</PrimaryButton>
 				</React.Fragment>
-			)} */}
+			)}
 		</CommentLayout>
 	);
 };
@@ -232,30 +232,30 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 	);
 };
 
-// const RepliesList = ({ commentId }: { commentId: string }) => {
-// 	const { data } = useRepliesForCommentQuery({
-// 		variables: {
-// 			commentId
-// 		},
-// 		fetchPolicy: 'network-only'
-// 	});
+const RepliesList = ({ commentId }: { commentId: string }) => {
+	const { data } = useRepliesForCommentQuery({
+		variables: {
+			commentId
+		},
+		fetchPolicy: 'network-only'
+	});
 
-// 	if (data?.replies?.length)
-// 		return (
-// 			<StackLayout spacing={0} pt={4} rounded="none" pl={2}>
-// 				{data?.replies?.map((reply, _index) => {
-// 					return (
-// 						<CommentLayout
-// 							key={_index}
-// 							actions={false}
-// 							comment={reply}
-// 						/>
-// 					);
-// 				})}
-// 			</StackLayout>
-// 		);
+	if (data?.replies?.length)
+		return (
+			<StackLayout spacing={0} pt={4} rounded="none" pl={2}>
+				{data?.replies?.map((reply, _index) => {
+					return (
+						<CommentLayout
+							key={_index}
+							actions={false}
+							comment={reply}
+						/>
+					);
+				})}
+			</StackLayout>
+		);
 
-// 	return null;
-// };
+	return null;
+};
 
 export default CommentsList;

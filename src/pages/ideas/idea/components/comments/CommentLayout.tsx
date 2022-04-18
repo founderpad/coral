@@ -6,7 +6,8 @@ import { useQueryParam } from '@hooks/util';
 import useIdea from '@pages/ideas/idea/query/ideaQuery';
 import { formatDate } from '@utils/validators';
 import React, { useEffect } from 'react';
-import CommentActions from './CommentActions';
+import { CommentActions } from './CommentActions';
+// import CommentActions from './CommentActions';
 
 const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 	<StackLayout
@@ -36,7 +37,10 @@ export const CommentLayout = ({
 	const anchoredId = useQueryParam<string>('d');
 	const { idea } = useIdea() ?? {};
 
-	const isAuthor = idea?.userId === comment?.user?.id;
+	const isAuthor = idea?.userId === comment.user?.id;
+
+	const backgroundColor =
+		!!anchoredId && anchoredId === comment.id ? 'gray.50' : 'inherit';
 
 	useEffect(() => {
 		if (anchoredId) {
@@ -52,16 +56,12 @@ export const CommentLayout = ({
 				direction="row"
 				spacing={2}
 				w="full"
-				id={comment?.id}
+				id={comment.id ?? ''}
 				p={2}
-				bg={
-					!!anchoredId && anchoredId === comment?.id
-						? 'gray.50'
-						: 'inherit'
-				}
+				bg={backgroundColor}
 				borderLeftWidth={actions ? 4 : 3}
 			>
-				<UserAvatar size="sm" src={comment?.user?.avatarUrl} />
+				<UserAvatar size="sm" src={comment.user?.avatarUrl} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
 					<ChatContainer>
 						<FlexLayout
