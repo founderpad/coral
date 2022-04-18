@@ -44,4 +44,5 @@ fragment MessageUser on users {
 fragment ThreadUser on users {
 	id
 	displayName
+	avatarUrl
 }

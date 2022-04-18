@@ -1,4 +1,4 @@
-#import { MessageUser } from '../fragments/user.gql'
+#import { MessageUser, ThreadUser } from '../fragments/user.gql'
 
 mutation NewMessageThread($targetUserId: uuid!, $currentUserId: uuid!) {
 	insert_message_thread(
@@ -68,8 +68,7 @@ query GetThreadUsers($messageThreadId: uuid!) {
 		where: { threadId: { _eq: $messageThreadId } }
 	) {
 		user {
-			displayName
-			id
+			...ThreadUser
 		}
 	}
 }

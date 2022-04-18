@@ -40,7 +40,7 @@ export const UserAvatar = (props: Props) => {
 export const UserAvatarDetails = ({
 	subtitle,
 	title,
-	src,
+	src = '',
 	createdAt,
 	size = 'md',
 	direction = 'row',

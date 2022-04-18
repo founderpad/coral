@@ -5240,7 +5240,7 @@ export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | 
 
 export type TMessageUserFragment = { __typename?: 'users', avatarUrl?: string | null, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null };
 
-export type TThreadUserFragment = { __typename?: 'users', id: any, displayName: string };
+export type TThreadUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null };
 
 export type TCreateIdeaMutationVariables = Exact<{
   idea: TIdeas_Insert_Input;
@@ -5354,7 +5354,7 @@ export type TGetThreadUsersQueryVariables = Exact<{
 }>;
 
 
-export type TGetThreadUsersQuery = { users: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', displayName: string, id: any } }> };
+export type TGetThreadUsersQuery = { users: Array<{ __typename?: 'message_thread_users', user: { __typename?: 'users', id: any, displayName: string, avatarUrl?: string | null } }> };
 
 export type TMessageListSubscriptionVariables = Exact<{
   messageThreadId: Scalars['uuid'];
@@ -5508,6 +5508,7 @@ export const ThreadUserFragmentDoc = gql`
     fragment ThreadUser on users {
   id
   displayName
+  avatarUrl
 }
     `;
 export const MessageUserFragmentDoc = gql`
@@ -6401,12 +6402,11 @@ export const GetThreadUsersDocument = gql`
     query GetThreadUsers($messageThreadId: uuid!) {
   users: message_thread_users(where: {threadId: {_eq: $messageThreadId}}) {
     user {
-      displayName
-      id
+      ...ThreadUser
     }
   }
 }
-    `;
+    ${ThreadUserFragmentDoc}`;
 
 /**
  * __useGetThreadUsersQuery__
