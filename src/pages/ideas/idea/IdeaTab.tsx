@@ -1,15 +1,20 @@
 import { AlertFeedback } from '@components/alert';
 import { StackLayout } from '@components/layouts';
-import { Loading } from '@components/shared';
+import { AppDivider, Loading } from '@components/shared';
 // import AppDivider from '@components/shared/AppDivider';
 import { useQueryParam } from '@hooks/util';
 import React from 'react';
+import { isMobile } from 'react-device-detect';
+import CommentsList from './components/comments/CommentsList';
+import IdeaDetails from './components/IdeaDetails';
+import IdeaOverview from './components/IdeaOverview';
 import IdeaTitleHeader from './components/IdeaTitleHeader';
 // import CommentsList from './components/comments/CommentsList';
 // import IdeaDetails from './components/IdeaDetails';
 // import { IdeaOverview } from './components/IdeaOverview';
 // import IdeaTitleHeader from './components/IdeaTitleHeader';
 import { IdeaUserActions } from './components/IdeaUserActions';
+import InterestedIdea from './components/InterestedIdea';
 // import InterestedIdea from './components/InterestedIdea';
 import useIdea from './query/ideaQuery';
 
@@ -54,12 +59,12 @@ const IdeaTab = () => {
 
 				<IdeaUserActions />
 				<IdeaTitleHeader />
-				{/* <InterestedIdea />
+				<InterestedIdea />
 				<AppDivider />
 				<IdeaOverview />
 				<AppDivider />
 				<IdeaDetails />
-				{!isMobile && <CommentsList />} */}
+				{!isMobile && <CommentsList />}
 			</StackLayout>
 		</StackLayout>
 	);

@@ -10,8 +10,8 @@ import IdeaCycler from './components/IdeaCycler';
 const ViewIdeaTabLayout = () => {
 	const user = useCurrentUser();
 	const isMobile = useMobile();
-	const data = useIdea();
-	const showInterestTab = data?.idea?.userId === user?.id;
+	const { idea } = useIdea() ?? {};
+	const showInterestTab = idea?.userId === user?.id;
 
 	if (isMobile) {
 		return (

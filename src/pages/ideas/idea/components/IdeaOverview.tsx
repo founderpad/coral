@@ -4,7 +4,7 @@ import React from 'react';
 import useIdea from '../query/ideaQuery';
 
 export const IdeaOverview = () => {
-	const { idea } = useIdea();
+	const { idea } = useIdea() ?? {};
 
 	const { status, field, user } = idea ?? {};
 	const { address } = user ?? {};
