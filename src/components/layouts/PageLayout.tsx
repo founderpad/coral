@@ -1,5 +1,5 @@
 import { BoxProps } from '@chakra-ui/layout';
-import { Box } from '@chakra-ui/react';
+import { Box, StackProps } from '@chakra-ui/react';
 import { PageHeader } from '@components/shared';
 import React from 'react';
 import { StackLayout } from './StackLayout';
@@ -11,6 +11,7 @@ type Props = Omit<BoxProps, 'border'> & {
 	action?: React.ReactNode;
 	back?: boolean;
 	border?: boolean;
+	position?: StackProps['position'];
 };
 
 export const PageLayout = (props: Props) => {
@@ -23,9 +24,17 @@ export const PageLayout = (props: Props) => {
 		p = 6,
 		back = false,
 		border = true,
+		position,
 		...rest
 	} = props;
-	const headerProps = { fixedHeader, title, subtitle, action, back };
+	const headerProps = {
+		fixedHeader,
+		title,
+		subtitle,
+		action,
+		back,
+		position
+	};
 
 	return (
 		<StackLayout

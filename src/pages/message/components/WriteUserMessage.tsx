@@ -1,8 +1,15 @@
+import { StackProps } from '@chakra-ui/react';
 import WriteInput from '@components/shared/WriteInput';
 import { useNewMessageMutation } from '@generated/api';
 import React, { useState } from 'react';
 
-const WriteUserMessage = ({ threadId }: { threadId: string }) => {
+const WriteUserMessage = ({
+	threadId,
+	stackProps
+}: {
+	threadId: string;
+	stackProps?: StackProps;
+}) => {
 	const [value, setValue] = useState('');
 	const [createNewMessage] = useNewMessageMutation({
 		variables: {
@@ -26,7 +33,8 @@ const WriteUserMessage = ({ threadId }: { threadId: string }) => {
 			onChange={onChange}
 			onClick={() => createNewMessage()}
 			stackProps={{
-				padding: 4
+				padding: 4,
+				...stackProps
 			}}
 		/>
 	);

@@ -8,8 +8,9 @@ import React from 'react';
 
 const MessageThreadCard = (thread: any) => {
 	const authUserId = useAuth().user?.id;
+
 	return (
-		<LinkCard href={`/message/thread/${thread.id}?mn=dsgdfghg`}>
+		<LinkCard href={`/message/thread/${thread.id}`}>
 			<UserAvatarDetails
 				src={thread.targetUser?.[0].user?.avatarUrl || undefined}
 				actions={
@@ -34,12 +35,12 @@ const MessageThreadCard = (thread: any) => {
 				}
 				title={thread.targetUser?.[0].user?.displayName}
 				subtitle={
-					<>
+					<React.Fragment>
 						{authUserId === thread.lastMessage?.[0].sender?.id && (
 							<b>You:</b>
 						)}{' '}
 						{thread.lastMessage?.[0].content}
-					</>
+					</React.Fragment>
 				}
 			/>
 		</LinkCard>

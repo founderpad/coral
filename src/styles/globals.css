@@ -19,7 +19,9 @@ html,
 body,
 #__next {
 	min-height: 100vh;
+	/* max-height: 100vh; */
 	overflow-y: auto;
+	/* overflow-y: hidden; */
 	overflow-x: hidden;
 	width: 100%;
 	display: flex;

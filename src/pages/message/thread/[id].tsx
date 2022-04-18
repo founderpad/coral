@@ -1,6 +1,18 @@
+import { GoBackButton } from '@components/buttons';
+import { SubheadingText } from '@components/heading';
 import { Label } from '@components/labels';
-import { PageLayout, StackLayout } from '@components/layouts';
-import { Loading, PointSeparator, UserAvatarDetails } from '@components/shared';
+import {
+	BoxLayout,
+	FlexLayout,
+	PageLayout,
+	StackLayout
+} from '@components/layouts';
+import {
+	Loading,
+	PageHeader,
+	PointSeparator,
+	UserAvatarDetails
+} from '@components/shared';
 import PronounsLabel from '@components/shared/PronounsLabel';
 import {
 	useGetThreadUsersQuery,
@@ -46,11 +58,29 @@ const MessageThread = () => {
 
 	return (
 		<React.Fragment>
-			<PageLayout
-				title={`Your chat with ${recipientUser?.user.displayName}`}
-				p={0}
+			<StackLayout
+				h={'calc(100% - 40px)'}
+				flex={1}
+				w={{ base: 'full', xl: '95ch' }}
+				overflow="hidden"
+				spacing={0}
+				position="fixed"
 			>
-				<StackLayout p={4} flex={1} borderBottomWidth={1}>
+				<StackLayout
+					spacing={0}
+					p={{ base: 4, sm: 6 }}
+					borderBottomWidth={1}
+				>
+					<SubheadingText>
+						Your chat with {recipientUser?.user.displayName}
+					</SubheadingText>
+				</StackLayout>
+				<StackLayout
+					flex={1}
+					borderBottomWidth={1}
+					p={{ base: 4, sm: 6 }}
+					overflowY="auto"
+				>
 					{messageList?.message.map((message) => (
 						<UserAvatarDetails
 							key={message.id}
@@ -81,8 +111,11 @@ const MessageThread = () => {
 						/>
 					))}
 				</StackLayout>
-				<WriteUserMessage threadId={threadId} />
-			</PageLayout>
+				<WriteUserMessage
+					threadId={threadId}
+					// stackProps={{ height: '48px' }}
+				/>
+			</StackLayout>
 		</React.Fragment>
 	);
 };
