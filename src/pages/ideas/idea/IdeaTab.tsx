@@ -52,13 +52,13 @@ const IdeaTab = () => {
 				)}
 
 				<IdeaUserActions />
-				<IdeaTitleHeader />
+				{/* <IdeaTitleHeader />
 				<InterestedIdea />
 				<AppDivider />
 				<IdeaOverview />
 				<AppDivider />
 				<IdeaDetails />
-				{!isMobile && <CommentsList />}
+				{!isMobile && <CommentsList />} */}
 			</StackLayout>
 		</StackLayout>
 	);

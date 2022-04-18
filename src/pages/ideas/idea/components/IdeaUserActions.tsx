@@ -8,7 +8,7 @@ import useIdea from '../query/ideaQuery';
 import IdeaActions from './IdeaMenu';
 
 export const IdeaUserActions = () => {
-	const { idea } = useIdea();
+	const { idea } = useIdea() ?? {};
 	const auth = useCurrentUser();
 
 	let publishedName = '';
