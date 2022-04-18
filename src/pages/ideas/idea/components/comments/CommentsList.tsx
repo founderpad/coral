@@ -218,7 +218,7 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 			>
 				<PostComment />
 			</Box>
-			{hasComments < 1 ? (
+			{/* {hasComments < 1 ? (
 				<NoResults label="comments yet" back={false} />
 			) : (
 				<StackLayout flexGrow={1} overflowY="auto" minHeight="2em">
@@ -227,7 +227,7 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 							return <Comment key={comment.id} {...comment} />;
 					})}
 				</StackLayout>
-			)}
+			)} */}
 		</BoxLayout>
 	);
 };
