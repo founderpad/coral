@@ -1,29 +1,21 @@
 import { AlertFeedback } from '@components/alert';
 import { StackLayout } from '@components/layouts';
 import { AppDivider, Loading } from '@components/shared';
-// import AppDivider from '@components/shared/AppDivider';
-import { useQueryParam } from '@hooks/util';
+import { useMobile, useQueryParam } from '@hooks/util';
 import React from 'react';
 import IdeaDetails from './components/IdeaDetails';
-// import { isMobile } from 'react-device-detect';
-// import CommentsList from './components/comments/CommentsList';
-// import IdeaDetails from './components/IdeaDetails';
-import IdeaOverview from './components/IdeaOverview';
+import CommentsList from './components/comments/CommentsList';
 import IdeaTitleHeader from './components/IdeaTitleHeader';
-// import CommentsList from './components/comments/CommentsList';
-// import IdeaDetails from './components/IdeaDetails';
-// import { IdeaOverview } from './components/IdeaOverview';
-// import IdeaTitleHeader from './components/IdeaTitleHeader';
+import { IdeaOverview } from './components/IdeaOverview';
 import { IdeaUserActions } from './components/IdeaUserActions';
 import InterestedIdea from './components/InterestedIdea';
-// import InterestedIdea from './components/InterestedIdea';
 import useIdea from './query/ideaQuery';
 
 const IdeaTab = () => {
 	const data = useIdea();
 	const isChangeSuccess = useQueryParam('exp_success');
 	const isChangeError = useQueryParam('exp_error');
-	// const isMobile = useMobile();
+	const isMobile = useMobile();
 
 	if (!data) return <Loading small />;
 	// if (!idea.isPublished && auth.id !== idea.userId) Router.replace('/404');
@@ -36,7 +28,6 @@ const IdeaTab = () => {
 			overflowY="hidden"
 			spacing={0}
 		>
-			{/* <IdeaCycler /> */}
 			<StackLayout p={4} flex={1} d="flex" overflowY="auto">
 				{isChangeSuccess && (
 					<AlertFeedback
@@ -65,7 +56,7 @@ const IdeaTab = () => {
 				<IdeaOverview />
 				<AppDivider />
 				<IdeaDetails />
-				{/* {!isMobile && <CommentsList />} */}
+				{!isMobile && <CommentsList />}
 			</StackLayout>
 		</StackLayout>
 	);
