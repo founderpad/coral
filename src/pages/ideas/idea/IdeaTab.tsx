@@ -63,8 +63,8 @@ const IdeaTab = () => {
 				<AppDivider />
 				<IdeaOverview />
 				<AppDivider />
-				<IdeaDetails />
-				{!isMobile && <CommentsList />}
+				{/* <IdeaDetails />
+				{!isMobile && <CommentsList />} */}
 			</StackLayout>
 		</StackLayout>
 	);
