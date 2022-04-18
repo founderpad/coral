@@ -1,6 +1,6 @@
 import { Button, Icon } from '@chakra-ui/react';
 import { Label } from '@components/labels';
-import { BoxLayout, StackLayout } from '@components/layouts';
+import { StackLayout } from '@components/layouts';
 import { useSocialLogin } from '@hooks/auth';
 import React, { memo, useCallback } from 'react';
 import { IoLogoGithub } from 'react-icons/io5';
