@@ -4,6 +4,7 @@ import { Loading } from '@components/shared';
 // import AppDivider from '@components/shared/AppDivider';
 import { useQueryParam } from '@hooks/util';
 import React from 'react';
+import IdeaTitleHeader from './components/IdeaTitleHeader';
 // import CommentsList from './components/comments/CommentsList';
 // import IdeaDetails from './components/IdeaDetails';
 // import { IdeaOverview } from './components/IdeaOverview';
@@ -52,8 +53,8 @@ const IdeaTab = () => {
 				)}
 
 				<IdeaUserActions />
-				{/* <IdeaTitleHeader />
-				<InterestedIdea />
+				<IdeaTitleHeader />
+				{/* <InterestedIdea />
 				<AppDivider />
 				<IdeaOverview />
 				<AppDivider />
