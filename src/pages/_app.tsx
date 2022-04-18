@@ -54,6 +54,10 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				<link rel="apple-touch-icon" href="/apple-icon.png"></link>
 				<meta name="theme-color" content="#fff" />
 				<meta
+					name="viewport"
+					content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+				></meta>
+				<meta
 					name="description"
 					content="The exclusive platform to create, collaborate and innovate on business ideas by finding other co-founders to help bring your business idea to life; and seek our mentors and investors for their support and expertise."
 				></meta>
