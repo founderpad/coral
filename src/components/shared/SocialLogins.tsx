@@ -1,9 +1,11 @@
-import { Button, Icon } from '@chakra-ui/react';
+// import { Button, Icon } from '@chakra-ui/react';
 import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
+import { BoxLayout, StackLayout } from '@components/layouts';
 import { useSocialLogin } from '@hooks/auth';
+import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
-import { IoLogoGithub } from 'react-icons/io5';
+import { isIOS } from 'react-device-detect';
+// import { IoLogoGithub } from 'react-icons/io5';
 import { TAuthProvider } from '../../types/auth';
 
 const SocialLogins = memo(() => {
@@ -16,7 +18,11 @@ const SocialLogins = memo(() => {
 		[onLogin]
 	);
 
-	document.getElementsByClassName('');
+	const checkIosRedirect = () => {
+		if (isIOS) {
+			Router.push('/ideas/search?page=1');
+		}
+	};
 
 	return (
 		<StackLayout
@@ -48,7 +54,7 @@ const SocialLogins = memo(() => {
 				Or
 			</Label>
 
-			{/* <BoxLayout
+			<BoxLayout
 				id="socialLogin"
 				data-testid="socialLogin"
 				alignSelf="center"
@@ -68,13 +74,13 @@ const SocialLogins = memo(() => {
 			>
 				<div
 					className="g-signin2"
-					data-onsuccess="onSocialLogin"
+					data-onsuccess={checkIosRedirect}
 					data-theme="light"
 					data-longtitle="true"
 					data-width="200"
 				></div>
-			</BoxLayout> */}
-			<Button
+			</BoxLayout>
+			{/* <Button
 				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
 				rounded="none"
 				width={'200px'}
@@ -88,7 +94,7 @@ const SocialLogins = memo(() => {
 				onClick={() => onSocialLogin('github')}
 			>
 				Sign in with GitHub
-			</Button>
+			</Button> */}
 			{/* <div
 				className="fb-login-button"
 				data-width=""
