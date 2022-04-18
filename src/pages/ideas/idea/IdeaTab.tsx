@@ -4,6 +4,7 @@ import { AppDivider, Loading } from '@components/shared';
 // import AppDivider from '@components/shared/AppDivider';
 import { useQueryParam } from '@hooks/util';
 import React from 'react';
+import IdeaDetails from './components/IdeaDetails';
 // import { isMobile } from 'react-device-detect';
 // import CommentsList from './components/comments/CommentsList';
 // import IdeaDetails from './components/IdeaDetails';
@@ -63,8 +64,8 @@ const IdeaTab = () => {
 				<AppDivider />
 				<IdeaOverview />
 				<AppDivider />
-				{/* <IdeaDetails />
-				{!isMobile && <CommentsList />} */}
+				<IdeaDetails />
+				{/* {!isMobile && <CommentsList />} */}
 			</StackLayout>
 		</StackLayout>
 	);
