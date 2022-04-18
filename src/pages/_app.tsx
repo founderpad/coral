@@ -57,17 +57,10 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 					name="description"
 					content="The exclusive platform to create, collaborate and innovate on business ideas by finding other co-founders to help bring your business idea to life; and seek our mentors and investors for their support and expertise."
 				></meta>
-				{/* <meta
+				<meta
 					name="google-signin-client_id"
 					content="570489210751-cplv3bacb2vvkfml9ie337u9m1f3p2cv.apps.googleusercontent.com"
-				></meta> */}
-
-				<div
-					id="g_id_onload"
-					data-client_id="570489210751-cplv3bacb2vvkfml9ie337u9m1f3p2cv.apps.googleusercontent.com"
-					data-ux_mode="redirect"
-					data-login_uri="https://app.founderpad.com/login"
-				></div>
+				></meta>
 				<meta property="og:title" content="Founderpad" key="title" />
 				<meta property="og:url" content="https://app.founderpad.com" />
 				<meta
@@ -93,12 +86,8 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 					gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
 				`}
 			</Script>
-			{/* <Script
-				src="https://apis.google.com/js/platform.js"
-				strategy="lazyOnload"
-			/> */}
 			<Script
-				src="https://accounts.google.com/gsi/client"
+				src="https://apis.google.com/js/platform.js"
 				strategy="lazyOnload"
 			/>
 			<Script
