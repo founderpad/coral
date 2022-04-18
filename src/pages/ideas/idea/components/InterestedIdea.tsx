@@ -51,7 +51,7 @@ export const InterestedIdea = () => {
 		});
 	};
 
-	// if (auth?.id === userId) return null;
+	if (auth?.id === userId) return null;
 
 	return (
 		<>
