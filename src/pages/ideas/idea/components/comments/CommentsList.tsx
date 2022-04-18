@@ -108,7 +108,7 @@ export const MobileComments = () => {
 
 export const MobileCommentsList = () => {
 	const { setModalDrawer } = useModalDrawer();
-	const { totalComments } = useIdeaFragment() ?? {};
+	const { totalComments } = useIdeaFragment() ?? 0;
 
 	const onShowCommentsMobile = () => {
 		setModalDrawer({
