@@ -20,7 +20,7 @@ const SocialLogins = memo(() => {
 
 	const checkIosRedirect = () => {
 		if (isIOS) {
-			Router.push('/ideas/search?page=1');
+			Router.replace('/ideas/search?page=1');
 		}
 	};
 
