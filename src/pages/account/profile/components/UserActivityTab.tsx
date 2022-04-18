@@ -19,7 +19,7 @@ const UserActivityTab = () => {
 	const hasResults = activities?.length > 0;
 
 	if (loading) return <Spinner display="flex" m="auto" />;
-	if (!hasResults) return <NoResults label="activity" />;
+	if (!hasResults) return <NoResults label="activity" back={false} />;
 
 	return (
 		<Stack p={4}>
