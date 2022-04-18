@@ -1,5 +1,5 @@
-import { Box, Button, Collapse, Icon, useDisclosure } from '@chakra-ui/react';
-import { PrimaryButton } from '@components/buttons';
+import { Box, Button, Icon, useDisclosure } from '@chakra-ui/react';
+// import { PrimaryButton } from '@components/buttons';
 import BaseHeading from '@components/heading/BaseHeading';
 import { BoxLayout, StackLayout } from '@components/layouts';
 import { Loading, NoResults } from '@components/shared';
@@ -17,7 +17,7 @@ import CommentLayout from './CommentLayout';
 
 export const Comment = (comment: TCommentFieldsFragment) => {
 	// const [showReplies, setShowReplies] = useState(false);
-	const { isOpen, onToggle } = useDisclosure();
+	const { isOpen } = useDisclosure();
 
 	// const onShowRepliesClick = useCallback(() => {
 	// 	setShowReplies(!showReplies);
