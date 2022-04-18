@@ -31,11 +31,11 @@ export const CommentLayout = ({
 	actions?: boolean;
 	divider?: boolean;
 }) => {
-	const { user, updatedAt, value } = comment;
+	const { user, updatedAt, value } = comment ?? {};
 	const { displayName } = user ?? '';
 	const anchoredId = useQueryParam<string>('d');
 
-	const isAuthor = useIdea()?.idea?.userId === comment?.user.id;
+	const isAuthor = useIdea()?.idea?.userId === comment?.user?.id;
 
 	useEffect(() => {
 		if (anchoredId) {
@@ -51,16 +51,16 @@ export const CommentLayout = ({
 				direction="row"
 				spacing={2}
 				w="full"
-				id={comment.id}
+				id={comment?.id}
 				p={2}
 				bg={
-					!!anchoredId && anchoredId === comment.id
+					!!anchoredId && anchoredId === comment?.id
 						? 'gray.50'
 						: 'inherit'
 				}
 				borderLeftWidth={actions ? 4 : 3}
 			>
-				<UserAvatar size="sm" src={comment.user.avatarUrl} />
+				<UserAvatar size="sm" src={comment?.user?.avatarUrl} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
 					<ChatContainer>
 						<FlexLayout
