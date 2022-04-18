@@ -1,5 +1,5 @@
-import { Box, Button, Icon, useDisclosure } from '@chakra-ui/react';
-// import { PrimaryButton } from '@components/buttons';
+import { Box, Button, Collapse, Icon, useDisclosure } from '@chakra-ui/react';
+import { PrimaryButton } from '@components/buttons';
 import BaseHeading from '@components/heading/BaseHeading';
 import { BoxLayout, StackLayout } from '@components/layouts';
 import { Loading, NoResults } from '@components/shared';
@@ -17,7 +17,7 @@ import CommentLayout from './CommentLayout';
 
 export const Comment = (comment: TCommentFieldsFragment) => {
 	// const [showReplies, setShowReplies] = useState(false);
-	const { isOpen } = useDisclosure();
+	const { isOpen, onToggle } = useDisclosure();
 
 	// const onShowRepliesClick = useCallback(() => {
 	// 	setShowReplies(!showReplies);
@@ -33,7 +33,7 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 						comment={reply}
 					/>
 				))}
-			{/* {comment.totalReplies > 2 && (
+			{comment.totalReplies > 2 && (
 				<React.Fragment>
 					<Collapse in={isOpen}>
 						<RepliesList commentId={comment?.id} />
@@ -47,7 +47,7 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 						{isOpen ? 'Hide replies' : 'Show more replies'}
 					</PrimaryButton>
 				</React.Fragment>
-			)} */}
+			)}
 		</CommentLayout>
 	);
 };
