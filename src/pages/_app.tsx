@@ -50,9 +50,9 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				/>
 				<link rel="preconnect" href="https://www.facebook.com" />
 				<link rel="preconnect" href="https://connect.facebook.net" />
-				<link rel="manifest" href="/manifest.json" />
+				{/* <link rel="manifest" href="/manifest.json" />
 				<link rel="apple-touch-icon" href="/apple-icon.png"></link>
-				<meta name="theme-color" content="#fff" />
+				<meta name="theme-color" content="#fff" /> */}
 				<meta
 					name="viewport"
 					content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
