@@ -289,7 +289,19 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 				control={control}
 				{...rest}
 			>
-				{!isMobile ? (
+				{isMobile ? (
+					<ChakraSelect
+						fontSize="xs"
+						rounded="md"
+						onChange={onChange}
+						value={value as string}
+						placeholder={`Select ${placeholder ?? 'option'}`}
+					>
+						{options.map((option) => (
+							<option value={option.value}>{option.value}</option>
+						))}
+					</ChakraSelect>
+				) : (
 					<Select
 						{...field}
 						id={name}
@@ -391,20 +403,6 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 							})
 						}}
 					/>
-				) : (
-					<ChakraSelect
-						fontSize="xs"
-						rounded="md"
-						onChange={onChange}
-						value={value as string}
-						placeholder={`Select ${placeholder ?? 'option'}`}
-					>
-						{options.map((option) => (
-							<option key={option.value} value={option.value}>
-								{option.value}
-							</option>
-						))}
-					</ChakraSelect>
 				)}
 			</FormField>
 		</FormControl>

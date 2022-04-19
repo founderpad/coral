@@ -304,11 +304,11 @@ export const REPORT_REASONS: TOption[] = [
 		value: 'Abusive or harmful content'
 	},
 	{ label: 'Sexualised content', value: 'Sexualised content' },
-	{ label: 'Discrimination', value: 'Sexualised content' },
+	{ label: 'Discrimination', value: 'Discrimination' },
 	{ label: 'Hate speech', value: 'Hate speech' },
-	{ label: 'Terrorism', value: 'Hate speech' },
-	{ label: 'Spam', value: 'Hate speech' },
-	{ label: 'Harrassment', value: 'Hate speech' }
+	{ label: 'Terrorism', value: 'Terrorism' },
+	{ label: 'Spam', value: 'Spam' },
+	{ label: 'Harrassment', value: 'Harrassment' }
 ];
 
 export const ALL_IDEA_STATUSES: TOption[] = [
