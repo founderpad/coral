@@ -1,6 +1,7 @@
 import { ButtonGroup } from '@chakra-ui/react';
 import { CancelButton } from '@components/buttons';
 import { IoChevronBackSharp, IoChevronForwardSharp } from '@components/icons';
+import { StackLayout } from '@components/layouts';
 import { useQueryParam } from '@hooks/util';
 import { useRouter } from 'next/router';
 
@@ -22,12 +23,7 @@ export const Pagination = (props: Props) => {
 	);
 
 	return (
-		<ButtonGroup
-			justifyContent="space-between"
-			w="full"
-			pt={4}
-			// px={{ base: 0, sm: 6 }}
-		>
+		<StackLayout direction="row" pt={4} justifyContent="space-between">
 			<CancelButton
 				label="Previous"
 				onClick={() => onPageChange((page - 1).toString())}
@@ -37,7 +33,11 @@ export const Pagination = (props: Props) => {
 				aria-label="Previous page of results"
 				title="Previous page of results"
 			/>
-			<ButtonGroup display={{ base: 'none', sm: 'flex' }}>
+			<ButtonGroup
+				display={{ base: 'none', sm: 'flex' }}
+				flex={1}
+				overflowX="auto"
+			>
 				{pagesArray.map((p) => (
 					<CancelButton
 						label={p.toString()}
@@ -70,6 +70,6 @@ export const Pagination = (props: Props) => {
 				aria-label="Next page of results"
 				title="Next page of results"
 			/>
-		</ButtonGroup>
+		</StackLayout>
 	);
 };
