@@ -89,11 +89,12 @@ const UsersContainer = () => {
 			// 	'country'
 			// ]),
 			limit: 10,
-			offset: (parseInt(useQueryParam('id')) - 1) * 10,
+			offset: (parseInt(useQueryParam('page')) - 1) * 10,
 			orderBy: {
 				createdAt: 'desc'
 			}
-		}
+		},
+		fetchPolicy: 'network-only'
 	});
 
 	const hasResults = data?.user_profile?.length ?? 0;
@@ -106,7 +107,7 @@ const UsersContainer = () => {
 			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
 				<SearchActions
 					total={data?.user_profile_aggregate?.aggregate?.count}
-					pageSize={data?.user_profile?.length}
+					pageSize={data?.user_profile?.length ?? 0}
 				>
 					<MobileFilterMenu title="users" form="users-filter-form">
 						<UsersSearchForm />
@@ -129,7 +130,7 @@ const UsersContainer = () => {
 				{hasResults && (
 					<OffsetPagination
 						pagesCount={
-							(data?.user_profile_aggregate.aggregate?.count ||
+							(data?.user_profile_aggregate?.aggregate?.count ||
 								0) / 10
 						}
 						pathname="/users/search"
