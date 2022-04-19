@@ -63,7 +63,7 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				></meta>
 				<meta
 					name="google-signin-client_id"
-					content="570489210751-ab2o6uppkgskr6o3uo98m8k06754065r.apps.googleusercontent.com"
+					content={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
 				></meta>
 				<meta property="og:title" content="Founderpad" key="title" />
 				<meta property="og:url" content="https://app.founderpad.com" />
