@@ -74,7 +74,7 @@ const SocialLogins = memo(() => {
 			>
 				<div
 					className="g-signin2"
-					data-onsuccess={checkIosRedirect}
+					data-onsuccess={() => checkIosRedirect()}
 					data-theme="light"
 					data-longtitle="true"
 					data-width="200"

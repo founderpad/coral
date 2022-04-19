@@ -148,7 +148,7 @@ const RegisterForm = () => {
 							disabled={isSubmitting}
 							size="md"
 							fontSize="small"
-							w={{ base: 'full', sm: '150px' }}
+							w={{ base: 'full', sm: '200px' }}
 						/>
 					</>
 				)}
