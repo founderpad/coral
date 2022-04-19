@@ -5,6 +5,7 @@ import { useSocialLogin } from '@hooks/auth';
 import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
 import { isIOS } from 'react-device-detect';
+import GoogleLogin from 'react-google-login';
 // import { IoLogoGithub } from 'react-icons/io5';
 import { TAuthProvider } from '../../types/auth';
 
@@ -72,13 +73,23 @@ const SocialLogins = memo(() => {
 					}
 				}}
 			>
-				<div
+				{/* <div
 					className="g-signin2"
 					data-onsuccess={() => checkIosRedirect()}
 					data-theme="light"
 					data-longtitle="true"
 					data-width="200"
-				></div>
+				></div> */}
+
+				<GoogleLogin
+					clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+					onSuccess={checkIosRedirect}
+					// onFailure={responseGoogle}
+					cookiePolicy={'single_host_origin'}
+					style={{ width: '200px' }}
+					isSignedIn={true}
+					// style
+				/>
 			</BoxLayout>
 			{/* <Button
 				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
