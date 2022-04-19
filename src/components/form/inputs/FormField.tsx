@@ -298,7 +298,9 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 						placeholder={`Select ${placeholder ?? 'option'}`}
 					>
 						{options.map((option) => (
-							<option value={option.value}>{option.value}</option>
+							<option key={option.value} value={option.value}>
+								{option.value}
+							</option>
 						))}
 					</ChakraSelect>
 				) : (
