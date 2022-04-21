@@ -241,14 +241,15 @@ const CreateIdeaForm = () => {
 					/>
 
 					<SubmitButton
+						id="create-idea"
 						name="create-idea-button"
 						label="Create your idea"
 						alignSelf="center"
 						isLoading={isSubmitting}
 						disabled={isSubmitting}
-						mt="auto"
-						w={{ base: 'full', sm: '200px' }}
 						size="md"
+						fontSize="small"
+						w={{ base: 'full', sm: '200px' }}
 					/>
 				</React.Fragment>
 			)}

@@ -50,11 +50,27 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 			justifyContent="space-between"
 			w="full"
 		>
-			<StackLayout spacing={1} direction="row">
-				<Tag fontSize="xs" size="sm">
+			<StackLayout spacing={2} direction="row">
+				<Tag
+					fontSize="11px"
+					size="sm"
+					bg="transparent"
+					borderWidth={1}
+					px={3}
+					py={1}
+					color="fpGrey.700"
+				>
 					{status}
 				</Tag>
-				<Tag fontSize="xs" size="sm">
+				<Tag
+					fontSize="11px"
+					size="sm"
+					bg="transparent"
+					borderWidth={1}
+					px={3}
+					py={1}
+					color="fpGrey.700"
+				>
 					{field}
 				</Tag>
 			</StackLayout>

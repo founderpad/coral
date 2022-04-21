@@ -7,11 +7,11 @@ export const InterestedTotal = ({ total = 0 }: { total?: number }) => {
 		return (
 			<Tag
 				variant="solid"
-				fontSize="xs"
 				colorScheme="yellow"
 				alignItems="center"
+				fontSize="11px"
 			>
-				<Icon as={IoStarSharp} fontSize="0.875rem" mr={1} />
+				<Icon as={IoStarSharp} fontSize="0.8125rem" mr={1} />
 				{total} interested
 			</Tag>
 		);
