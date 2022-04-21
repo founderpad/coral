@@ -30,13 +30,35 @@ const OverviewTags = memo(
 				}}
 			>
 				{tags?.map(({ title, value = 'Not selected' }) => (
+					// <BaseTag
+					// 	key={title}
+					// 	p={2}
+					// 	d="flex"
+					// 	flexDirection="column"
+					// 	bg="fpPrimary.50"
+					// 	borderWidth={0}
+					// 	justifyContent="flex-start"
+					// >
+					// 	<Label
+					// 		fontSize="xs"
+					// 		alignItems="center"
+					// 		mb={1}
+					// 		display="flex"
+					// 		color="fpPrimary.700"
+					// 	>
+					// 		{value}
+					// 	</Label>
+					// 	<Label color="gray.400" fontSize="xs">
+					// 		{title}
+					// 	</Label>
+					// </BaseTag>
 					<BaseTag
 						key={title}
-						p={2}
+						p={3}
 						d="flex"
 						flexDirection="column"
-						bg="fpPrimary.50"
-						borderWidth={0}
+						// bg="fpPrimary.50"
+						borderWidth={1}
 						justifyContent="flex-start"
 					>
 						<Label
@@ -44,11 +66,12 @@ const OverviewTags = memo(
 							alignItems="center"
 							mb={1}
 							display="flex"
-							color="fpPrimary.700"
+							// color="fpPrimary.700"
+							color="black"
 						>
 							{value}
 						</Label>
-						<Label color="gray.400" fontSize="xs">
+						<Label color="fpGrey.300" fontSize="xs">
 							{title}
 						</Label>
 					</BaseTag>

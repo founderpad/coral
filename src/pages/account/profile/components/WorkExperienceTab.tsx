@@ -7,6 +7,7 @@ import { Loading, TitleEditAction } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
 import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
 import OverviewTags from '@components/shared/OverviewTags';
+import useUserProfile from '@hooks/user';
 import { useModalDrawer, useQueryParam } from '@hooks/util';
 import React, { memo } from 'react';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
@@ -16,6 +17,7 @@ import ResumeUploader from './ResumeUploader';
 const WorkExperienceTab = () => {
 	const userProfile = useProfileFragment();
 	const { setModalDrawer } = useModalDrawer();
+	const isProfileComplete = useUserProfile()?.isComplete;
 
 	const isChangeSuccess = useQueryParam('exp_success');
 	const isChangeError = useQueryParam('exp_error');
@@ -52,7 +54,23 @@ const WorkExperienceTab = () => {
 	return (
 		<StackLayout p={4} spacing={8}>
 			<StackLayout spacing={0} mb={6}>
-				<TitleEditAction title="Your experience" onClick={onClick} />
+				<TitleEditAction
+					title="Your experience"
+					subtitle={
+						!isProfileComplete && (
+							<Label
+								color="red.500"
+								fontSize="x-small"
+								textAlign="start"
+								pt={1}
+							>
+								Provide your experience so users can easily find
+								you
+							</Label>
+						)
+					}
+					onClick={onClick}
+				/>
 
 				{isChangeSuccess && (
 					<AlertFeedback

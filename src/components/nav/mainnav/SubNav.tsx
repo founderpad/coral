@@ -17,8 +17,11 @@ export const SubNav = memo(
 				display="block"
 				rounded="md"
 				_hover={{
-					bg: '#F7FBFD'
+					bg: 'fpLightGrey.100'
 				}}
+				// _hover={{
+				// 	bg: '#F7FBFD'
+				// }}
 			>
 				<StackLayout
 					direction="row"

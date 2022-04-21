@@ -49,7 +49,11 @@ const RegisterSuccess: NextPage = () => {
 					fontSize="x-small"
 					alignSelf="center"
 				>
-					<PrimaryLink href="/login" title="Link to login">
+					<PrimaryLink
+						href="/login"
+						title="Link to login"
+						fontSize="xs"
+					>
 						Go to login
 					</PrimaryLink>
 				</Label>
