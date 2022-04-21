@@ -36,7 +36,7 @@ const AuthLayout = ({ header, children, title }: Props) => {
 			>
 				<FlexLayout mx="auto" alignItems="center">
 					<FounderpadLogo />
-					<Tag
+					{/* <Tag
 						textTransform="capitalize"
 						fontWeight="medium"
 						textAlign="center"
@@ -47,7 +47,7 @@ const AuthLayout = ({ header, children, title }: Props) => {
 						colorScheme="fpPrimary"
 					>
 						0.1.0
-					</Tag>
+					</Tag> */}
 				</FlexLayout>
 				<Heading
 					textAlign="center"

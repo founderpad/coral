@@ -1,5 +1,5 @@
 import { BoxProps } from '@chakra-ui/layout';
-import { Tag } from '@chakra-ui/tag';
+// import { Tag } from '@chakra-ui/tag';
 import { BoxLayout, FlexLayout } from '@components/layouts';
 import Image from 'next/image';
 
@@ -18,7 +18,7 @@ const FounderpadLogo = (props: BoxProps) => (
 const FounderpadLogoWithBadge = ({ w }: { w: number }) => (
 	<FlexLayout mx="auto" alignItems="center">
 		<FounderpadLogo w={w} />
-		<Tag
+		{/* <Tag
 			textTransform="capitalize"
 			fontWeight="medium"
 			textAlign="center"
@@ -30,7 +30,7 @@ const FounderpadLogoWithBadge = ({ w }: { w: number }) => (
 			ml={2}
 		>
 			0.1.0
-		</Tag>
+		</Tag> */}
 	</FlexLayout>
 );
 
