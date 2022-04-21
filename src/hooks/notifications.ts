@@ -7,8 +7,6 @@ declare let window: OneSignalWindow;
 export const usePushNotifications = () => {
 	const userId = useAuth().user?.id;
 
-	console.log('auth: ', useAuth());
-
 	useEffect(() => {
 		window.OneSignal = window.OneSignal || [];
 		if (window.OneSignal) {
