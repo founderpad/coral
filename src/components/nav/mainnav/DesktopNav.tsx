@@ -23,7 +23,7 @@ const DesktopNav = memo(() => {
 		<>
 			<PrimaryButton
 				name="create-idea"
-				variant="outline"
+				// variant="outline"
 				as={BaseLink}
 				href="/ideas/create"
 				height="30px"
