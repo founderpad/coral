@@ -1,7 +1,7 @@
 import { BaseButton } from '.';
-import { BaseButtonProps } from './types/buttons';
+import { BaseButtonProps, LinkButtonProps } from './types/buttons';
 
-export const PrimaryButton = (props: BaseButtonProps) => {
+export const PrimaryButton = (props: BaseButtonProps | LinkButtonProps) => {
 	const { children, size = 'sm', variant = 'solid' } = props;
 
 	return (

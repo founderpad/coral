@@ -1,7 +1,6 @@
 import { Button } from '@chakra-ui/button';
 import {
 	AvatarBadge,
-	Icon,
 	Menu,
 	MenuButton,
 	MenuDivider,
@@ -9,11 +8,7 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import {
-	IoEllipsisVertical,
-	IoLockClosedOutline,
-	IoWarningSharp
-} from '@components/icons';
+import { IoLockClosedOutline, IoWarningSharp } from '@components/icons';
 import { Label } from '@components/labels';
 import { BaseLink } from '@components/links';
 import LogoutModal from '@components/modal/LogoutModal';
@@ -29,12 +24,12 @@ const UserMenu = () => {
 	return (
 		<Menu>
 			<MenuButton
-				p={1}
 				as={Button}
+				pr={0}
 				rounded="full"
 				cursor="pointer"
 				bg="transparent"
-				_hover={{ bg: 'gray.100' }}
+				_hover={{ bg: 'transparent' }}
 				_active={{ bg: 'transparent' }}
 				css={{
 					'> *': {
@@ -52,7 +47,6 @@ const UserMenu = () => {
 						)
 					}
 				/>
-				<Icon as={IoEllipsisVertical} ml={1} color="gray.500" />
 			</MenuButton>
 			<MenuList rounded="md" textAlign="start" p={4} maxW={200}>
 				<CurrentUserAvatarDetails size="md" direction="column" />

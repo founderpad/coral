@@ -26,9 +26,8 @@ const MainNav = memo(() => (
 			bg={useColorModeValue('white', 'gray.800')}
 			color={useColorModeValue('gray.600', 'white')}
 			py={{ base: 2 }}
-			px={{ base: 4, sm: 6, lg: 4 }}
+			px={{ base: 4, sm: 6, lg: 0 }}
 			display="flex"
-			// align="center"
 			justifySelf="center"
 			position="sticky"
 			maxW={{ base: '100%', xl: '95ch' }}
@@ -36,12 +35,13 @@ const MainNav = memo(() => (
 			justifyContent="space-between"
 			flex={1}
 		>
-			<Flex alignItems="center">
+			<FlexLayout alignItems="center">
 				<MobileMenu />
 				<FounderpadLogoWithBadge w={100} />
-			</Flex>
+			</FlexLayout>
+
 			<DesktopNav />
-			<FlexLayout alignItems="center" ml={8}>
+			<FlexLayout alignItems="center" ml={{ base: 0, md: 8 }}>
 				{/* <NotificationsPopover /> */}
 				<UserMenu />
 			</FlexLayout>
