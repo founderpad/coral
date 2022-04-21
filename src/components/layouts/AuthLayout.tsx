@@ -1,5 +1,5 @@
 import { Heading } from '@chakra-ui/layout';
-import { Tag } from '@chakra-ui/tag';
+// import { Tag } from '@chakra-ui/tag';
 import { DocumentTitle } from '@components/shared';
 import FounderpadLogo from '@components/shared/FounderpadLogo';
 import React from 'react';
