@@ -5,12 +5,13 @@ import {
 	PopoverProps,
 	PopoverTrigger
 } from '@chakra-ui/react';
+import BaseHeading from '@components/heading/BaseHeading';
 import React from 'react';
 
-type Props = PopoverProps & { triggerEl: React.ReactNode };
+type Props = PopoverProps & { triggerEl: React.ReactNode; title?: string };
 
 export const BasePopover = (props: Props) => {
-	const { children, trigger, triggerEl } = props;
+	const { children, trigger, triggerEl, title } = props;
 	const bg = useColorModeValue('white', 'gray.500');
 
 	return (
@@ -22,21 +23,23 @@ export const BasePopover = (props: Props) => {
 			<PopoverTrigger>{triggerEl}</PopoverTrigger>
 
 			{children && (
-				// <Portal>
 				<PopoverContent
 					border={0}
 					borderWidth={1}
 					boxShadow="xl"
 					bg={bg}
-					p={6}
+					p={2}
 					mt={2}
 					rounded="md"
-					minWidth="400px"
+					w={{ base: '100vw', sm: '375px' }}
 				>
-					{/* <PopoverBody rounded="lg">{children}</PopoverBody> */}
+					{title && (
+						<BaseHeading fontSize="sm" p={4} color="fpGrey.900">
+							{title}
+						</BaseHeading>
+					)}
 					{children}
 				</PopoverContent>
-				// </Portal>
 			)}
 		</Popover>
 	);

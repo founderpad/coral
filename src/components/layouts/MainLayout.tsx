@@ -11,9 +11,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 	return (
 		<MobileNavigationProvider>
 			<MainNav />
-			{/* <BoxLayout bg="red.500" rounded="none">
-				Woo
-			</BoxLayout> */}
+			{/* <BoxLayout>test</BoxLayout> */}
 			<BoxLayout
 				p={0}
 				as="main"

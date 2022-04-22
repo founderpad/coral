@@ -1,6 +1,5 @@
 import { Button } from '@chakra-ui/button';
 import {
-	AvatarBadge,
 	Menu,
 	MenuButton,
 	MenuDivider,
@@ -8,18 +7,15 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import { IoLockClosedOutline, IoWarningSharp } from '@components/icons';
-import { Label } from '@components/labels';
+import { IoLockClosedOutline } from '@components/icons';
 import { BaseLink } from '@components/links';
 import LogoutModal from '@components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from '@components/shared';
 import { useCurrentUser } from '@hooks/auth';
-import useUserProfile from '@hooks/user';
-import React, { memo } from 'react';
+import React from 'react';
 
 const UserMenu = () => {
 	const avatarUrl = useCurrentUser().avatarUrl;
-	const isProfileComplete = useUserProfile()?.isComplete;
 
 	return (
 		<Menu>
@@ -41,22 +37,16 @@ const UserMenu = () => {
 				<UserAvatar
 					size="xs"
 					src={avatarUrl || undefined}
-					badge={
-						!isProfileComplete && (
-							<AvatarBadge bg="red.500" boxSize="1em" />
-						)
-					}
+					// badge={
+					// 	!isProfileComplete && (
+					// 		<AvatarBadge bg="red.500" boxSize="1em" />
+					// 	)
+					// }
 				/>
 			</MenuButton>
 			<MenuList rounded="md" textAlign="start" p={4} maxW={200}>
 				<CurrentUserAvatarDetails size="md" direction="column" />
 
-				{!isProfileComplete && (
-					<>
-						<MenuDivider my={4} />
-						<ProfileNotSet />
-					</>
-				)}
 				<MenuDivider my={4} />
 				<MenuGroup>
 					<MenuItem
@@ -86,18 +76,5 @@ const UserMenu = () => {
 		</Menu>
 	);
 };
-
-const ProfileNotSet = memo(() => (
-	<Label
-		color="red.500"
-		fontSize="xs"
-		icon={IoWarningSharp}
-		iconColor="red.500"
-		d="flex"
-		alignItems="center"
-	>
-		Profile not set
-	</Label>
-));
 
 export default UserMenu;

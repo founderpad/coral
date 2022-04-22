@@ -1,4 +1,4 @@
-import { Tag } from '@chakra-ui/react';
+import { Icon, Tag } from '@chakra-ui/react';
 import { AlertFeedback } from '@components/alert';
 import { SubmitButton } from '@components/buttons';
 import { Label } from '@components/labels';
@@ -10,6 +10,7 @@ import OverviewTags from '@components/shared/OverviewTags';
 import useUserProfile from '@hooks/user';
 import { useModalDrawer, useQueryParam } from '@hooks/util';
 import React, { memo } from 'react';
+import { IoWarningSharp } from 'react-icons/io5';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
@@ -55,6 +56,15 @@ const WorkExperienceTab = () => {
 		<StackLayout p={4} spacing={8}>
 			<StackLayout spacing={0} mb={6}>
 				<TitleEditAction
+					icon={
+						!isProfileComplete ? (
+							<Icon
+								as={IoWarningSharp}
+								color="red.500"
+								fontSize="lg"
+							/>
+						) : undefined
+					}
 					title="Your experience"
 					subtitle={
 						!isProfileComplete && (
@@ -64,7 +74,7 @@ const WorkExperienceTab = () => {
 								textAlign="start"
 								pt={1}
 							>
-								Provide your experience so users can easily find
+								Provide your profile so users can easily find
 								you
 							</Label>
 						)
