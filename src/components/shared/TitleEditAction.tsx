@@ -28,7 +28,7 @@ export const TitleEditAction = memo(
 					d="flex"
 					flex={1}
 					css={{ whiteSpace: 'normal' }}
-					wordBreak="break-all"
+					wordBreak="break-word"
 					noOfLines={1}
 					isTruncated
 					size="h6"

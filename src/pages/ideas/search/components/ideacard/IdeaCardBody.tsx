@@ -23,7 +23,7 @@ const IdeaCardBody = (idea: TIdeaCardBody) => {
 				whiteSpace="normal"
 				fontSize="xs"
 				css={{ whiteSpace: 'normal' }}
-				wordBreak="break-all"
+				wordBreak="break-word"
 				noOfLines={2}
 				isTruncated
 			>

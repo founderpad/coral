@@ -8,7 +8,7 @@ interface Props {
 }
 
 const ContentFieldAndValue = ({ title, value }: Props) => (
-	<StackLayout spacing={1} wordBreak="break-all">
+	<StackLayout spacing={1} wordBreak="break-word">
 		{title && (
 			<Label fontSize="small" as="h4" color="black" fontWeight="medium">
 				{title}

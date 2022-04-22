@@ -25,7 +25,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 						fontWeight="medium"
 						fontSize="sm"
 						css={{ whiteSpace: 'normal' }}
-						wordBreak="break-all"
+						wordBreak="break-word"
 						noOfLines={1}
 						isTruncated
 					>

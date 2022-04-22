@@ -17,7 +17,7 @@ const NotificationsPopover = () => {
 				</IconButton>
 			}
 		>
-			<NoResults label="notifications" fontSize="xs" />
+			<NoResults label="notifications" fontSize="xs" back={false} />
 		</BasePopover>
 	);
 };

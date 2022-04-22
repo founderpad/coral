@@ -15,7 +15,7 @@ const ProfileSectionLabel = memo(
 		icon?: IconType;
 		children?: React.ReactNode;
 	}) => (
-		<FlexLayout alignItems="center" wordBreak="break-all">
+		<FlexLayout alignItems="center" wordBreak="break-word">
 			{icon && <Icon as={icon} color="gray.500" mr={2} />}
 			{children ?? (
 				<BaseLabel

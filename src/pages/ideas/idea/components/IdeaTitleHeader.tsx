@@ -34,7 +34,7 @@ export const IdeaTitleHeader = () => {
 	}, [showComments]);
 
 	return (
-		<FlexLayout wordBreak="break-all" flexDirection="column">
+		<FlexLayout wordBreak="break-word" flexDirection="column">
 			<IdeaName />
 			<FlexLayout justifyContent="space-between" alignItems="flex-end">
 				<IdeaActions />

@@ -60,7 +60,7 @@ export const UserAvatarDetails = ({
 					fontWeight="medium"
 					fontSize={fontSize}
 					css={{ whiteSpace: 'normal' }}
-					wordBreak="break-all"
+					wordBreak="break-word"
 					noOfLines={1}
 					mr={1}
 					isTruncated

@@ -74,7 +74,7 @@ export const CommentLayout = ({
 									fontWeight="medium"
 									fontSize="small"
 									css={{ whiteSpace: 'normal' }}
-									wordBreak="break-all"
+									wordBreak="break-word"
 									noOfLines={1}
 									isTruncated
 									flex={1}

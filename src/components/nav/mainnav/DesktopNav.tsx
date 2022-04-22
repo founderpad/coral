@@ -5,6 +5,7 @@ import { PrimaryButton } from '@components/buttons';
 import { StackLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import BasePopover from '@components/popover/BasePopover';
+import { AppDivider } from '@components/shared';
 import { useMobile } from '@hooks/util';
 import Router from 'next/router';
 import React, { memo } from 'react';
@@ -23,28 +24,41 @@ const DesktopNav = memo(() => {
 		<>
 			<PrimaryButton
 				name="create-idea"
-				// variant="outline"
 				as={BaseLink}
 				href="/ideas/create"
-				height="30px"
 				mx="auto"
-				fontSize="xs"
+				d={{ base: 'flex', md: 'none' }}
+				variant="outline"
 			>
-				<Icon
-					as={IoAdd}
-					fontSize={{ base: 'xl', md: 'lg' }}
-					mr={!isMobile ? 2 : 0}
-				/>
-				{!isMobile && <>Create idea</>}
+				<Icon as={IoAdd} fontSize={{ base: 'xl', md: 'lg' }} mr={2} />
+				New
 			</PrimaryButton>
 			<StackLayout
 				direction="row"
 				alignItems="center"
 				spacing={4}
-				// ml="auto"
+				ml="auto"
 				display={{ base: 'none', md: 'flex' }}
 				position="relative"
 			>
+				<PrimaryButton
+					name="create-idea"
+					as={BaseLink}
+					href="/ideas/create"
+					mx="auto"
+					fontSize="xs"
+					minW="90px"
+					variant="outline"
+					d={{ base: 'none', md: 'flex' }}
+				>
+					<Icon
+						as={IoAdd}
+						fontSize={{ base: 'xl', md: 'lg' }}
+						mr={2}
+					/>
+					New idea
+				</PrimaryButton>
+				<AppDivider orientation="vertical" />
 				{NavItems.map((navItem, key) => (
 					<BasePopover
 						key={key}
