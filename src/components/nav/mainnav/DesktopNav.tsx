@@ -6,7 +6,6 @@ import { StackLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import BasePopover from '@components/popover/BasePopover';
 import { AppDivider } from '@components/shared';
-import { useMobile } from '@hooks/util';
 import Router from 'next/router';
 import React, { memo } from 'react';
 import { IoAdd, IoLockClosedOutline } from 'react-icons/io5';
@@ -15,7 +14,6 @@ import { SubNav } from './SubNav';
 
 const DesktopNav = memo(() => {
 	// const isProfileComplete = useUserProfile()?.isComplete;
-	const isMobile = useMobile();
 
 	const getCurrentPath = (href: string) =>
 		href.includes(Router.pathname) ?? '';
