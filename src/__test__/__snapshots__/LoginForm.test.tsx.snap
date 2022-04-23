@@ -93,12 +93,7 @@ exports[`Login form matches snapshot 1`] = `
     >
       Or
     </p>
-    <div
-      class="css-1n6ftar"
-      data-testid="socialLogin"
-      id="socialLogin"
-      title="Sign in with Google"
-    >
+    <div>
       <button
         disabled=""
         style="background-color: rgb(255, 255, 255); display: inline-flex; align-items: center; color: rgba(0, 0, 0, 0.54); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24); padding: 0px; border-radius: 2px; border: 1px solid transparent; font-size: 14px; font-weight: 500; font-family: Roboto, sans-serif; opacity: 0.6;"

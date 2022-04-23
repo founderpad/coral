@@ -1,6 +1,5 @@
-// import { Button, Icon } from '@chakra-ui/react';
 import { Label } from '@components/labels';
-import { BoxLayout, StackLayout } from '@components/layouts';
+import { StackLayout } from '@components/layouts';
 import { useSocialLogin } from '@hooks/auth';
 import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
@@ -55,32 +54,7 @@ const SocialLogins = memo(() => {
 				Or
 			</Label>
 
-			<BoxLayout
-				id="socialLogin"
-				data-testid="socialLogin"
-				alignSelf="center"
-				onClick={() => onSocialLogin('google')}
-				cursor="pointer"
-				width={'200px'}
-				p={0}
-				title="Sign in with Google"
-				css={{
-					'> *:active': {
-						pointerEvents: 'none'
-					},
-					'> *': {
-						width: 200
-					}
-				}}
-			>
-				{/* <div
-					className="g-signin2"
-					data-onsuccess={() => checkIosRedirect()}
-					data-theme="light"
-					data-longtitle="true"
-					data-width="200"
-				></div> */}
-
+			<div onClick={() => onSocialLogin('google')}>
 				<GoogleLogin
 					clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
 					onSuccess={checkIosRedirect}
@@ -88,9 +62,10 @@ const SocialLogins = memo(() => {
 					cookiePolicy={'single_host_origin'}
 					style={{ width: '200px' }}
 					isSignedIn={true}
-					// style
+					uxMode="redirect"
 				/>
-			</BoxLayout>
+			</div>
+			{/* </BoxLayout> */}
 			{/* <Button
 				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
 				rounded="none"
