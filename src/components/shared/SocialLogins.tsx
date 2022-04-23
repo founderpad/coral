@@ -19,7 +19,7 @@ const SocialLogins = memo(() => {
 	);
 
 	const checkIosRedirect = (_response: any) => {
-		if (isIOS || isSafari) {
+		if (isIOS) {
 			Router.replace('/ideas/search?page=1');
 		}
 	};
