@@ -18,7 +18,7 @@ const SocialLogins = memo(() => {
 		[onLogin]
 	);
 
-	const checkIosRedirect = (_response: any) => {
+	const checkIosRedirect = () => {
 		if (isIOS) {
 			Router.replace('/ideas/search?page=1');
 		}
