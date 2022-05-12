@@ -64,6 +64,17 @@ const authSlice = createSlice({
 					...state.user,
 					avatarUrl: action.payload
 				};
+		},
+		addEsteemPoints(state, action: PayloadAction<number>) {
+			if (state.user) {
+				const currentPoints = state.user.esteemPoints?.points ?? 0;
+				state.user = {
+					...state.user,
+					esteemPoints: {
+						points: currentPoints + action.payload
+					}
+				};
+			}
 		}
 	}
 });
@@ -73,6 +84,7 @@ export const {
 	// clearUser,
 	setProfileComplete,
 	updateUserPersonalDetails,
-	updateUserImage
+	updateUserImage,
+	addEsteemPoints
 } = authSlice.actions;
 export default authSlice.reducer;

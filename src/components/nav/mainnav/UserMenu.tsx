@@ -8,6 +8,7 @@ import {
 	MenuList
 } from '@chakra-ui/react';
 import { IoLockClosedOutline } from '@components/icons';
+import { Label } from '@components/labels';
 import { BaseLink } from '@components/links';
 import LogoutModal from '@components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from '@components/shared';
@@ -16,6 +17,7 @@ import React from 'react';
 
 const UserMenu = () => {
 	const avatarUrl = useCurrentUser().avatarUrl;
+	const esteemPoints = useCurrentUser().esteemPoints?.points;
 
 	return (
 		<Menu>
@@ -34,18 +36,19 @@ const UserMenu = () => {
 					}
 				}}
 			>
-				<UserAvatar
-					size="xs"
-					src={avatarUrl || undefined}
-					// badge={
-					// 	!isProfileComplete && (
-					// 		<AvatarBadge bg="red.500" boxSize="1em" />
-					// 	)
-					// }
-				/>
+				<UserAvatar size="xs" src={avatarUrl || undefined} />
 			</MenuButton>
 			<MenuList rounded="md" textAlign="start" p={4} maxW={200}>
 				<CurrentUserAvatarDetails size="md" direction="column" />
+
+				<Label
+					fontSize="xs"
+					textAlign="center"
+					color="yellow.500"
+					mt={4}
+				>
+					Esteem Points: {esteemPoints}
+				</Label>
 
 				<MenuDivider my={4} />
 				<MenuGroup>

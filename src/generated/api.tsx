@@ -329,6 +329,36 @@ export type TCitext_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['citext']>;
 };
 
+/**
+ * Esteem points for all users
+ *
+ *
+ * columns and relationships of "esteem_points"
+ *
+ */
+export type TEsteem_Points = {
+  __typename?: 'esteem_points';
+  points: Scalars['Int'];
+};
+
+/** Boolean expression to filter rows from the table "esteem_points". All fields are combined with a logical 'AND'. */
+export type TEsteem_Points_Bool_Exp = {
+  _and?: InputMaybe<Array<TEsteem_Points_Bool_Exp>>;
+  _not?: InputMaybe<TEsteem_Points_Bool_Exp>;
+  _or?: InputMaybe<Array<TEsteem_Points_Bool_Exp>>;
+  points?: InputMaybe<TInt_Comparison_Exp>;
+};
+
+/** Ordering options when selecting data from "esteem_points". */
+export type TEsteem_Points_Order_By = {
+  points?: InputMaybe<TOrder_By>;
+};
+
+/** select columns of table "esteem_points" */
+export type TEsteem_Points_Select_Column =
+  /** column name */
+  | 'points';
+
 /** columns and relationships of "storage.files" */
 export type TFiles = {
   __typename?: 'files';
@@ -3236,6 +3266,8 @@ export type TQuery_Root = {
   bucket?: Maybe<TBuckets>;
   /** fetch data from the table: "storage.buckets" */
   buckets: Array<TBuckets>;
+  /** fetch data from the table: "esteem_points" */
+  esteem_points: Array<TEsteem_Points>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<TFiles>;
   /** An array relationship */
@@ -3355,6 +3387,15 @@ export type TQuery_RootBucketsArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<TBuckets_Order_By>>;
   where?: InputMaybe<TBuckets_Bool_Exp>;
+};
+
+
+export type TQuery_RootEsteem_PointsArgs = {
+  distinct_on?: InputMaybe<Array<TEsteem_Points_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TEsteem_Points_Order_By>>;
+  where?: InputMaybe<TEsteem_Points_Bool_Exp>;
 };
 
 
@@ -3736,6 +3777,8 @@ export type TSubscription_Root = {
   bucket?: Maybe<TBuckets>;
   /** fetch data from the table: "storage.buckets" */
   buckets: Array<TBuckets>;
+  /** fetch data from the table: "esteem_points" */
+  esteem_points: Array<TEsteem_Points>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<TFiles>;
   /** An array relationship */
@@ -3855,6 +3898,15 @@ export type TSubscription_RootBucketsArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<TBuckets_Order_By>>;
   where?: InputMaybe<TBuckets_Bool_Exp>;
+};
+
+
+export type TSubscription_RootEsteem_PointsArgs = {
+  distinct_on?: InputMaybe<Array<TEsteem_Points_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TEsteem_Points_Order_By>>;
+  where?: InputMaybe<TEsteem_Points_Bool_Exp>;
 };
 
 
@@ -4739,6 +4791,8 @@ export type TUsers = {
   displayName: Scalars['String'];
   email?: Maybe<Scalars['citext']>;
   emailVerified: Scalars['Boolean'];
+  /** An object relationship */
+  esteemPoints?: Maybe<TEsteem_Points>;
   /** An array relationship */
   files: Array<TFiles>;
   id: Scalars['uuid'];
@@ -4992,6 +5046,7 @@ export type TUsers_Bool_Exp = {
   displayName?: InputMaybe<TString_Comparison_Exp>;
   email?: InputMaybe<TCitext_Comparison_Exp>;
   emailVerified?: InputMaybe<TBoolean_Comparison_Exp>;
+  esteemPoints?: InputMaybe<TEsteem_Points_Bool_Exp>;
   files?: InputMaybe<TFiles_Bool_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
   ideas?: InputMaybe<TIdeas_Bool_Exp>;
@@ -5084,6 +5139,7 @@ export type TUsers_Order_By = {
   displayName?: InputMaybe<TOrder_By>;
   email?: InputMaybe<TOrder_By>;
   emailVerified?: InputMaybe<TOrder_By>;
+  esteemPoints?: InputMaybe<TEsteem_Points_Order_By>;
   files_aggregate?: InputMaybe<TFiles_Aggregate_Order_By>;
   id?: InputMaybe<TOrder_By>;
   ideas_aggregate?: InputMaybe<TIdeas_Aggregate_Order_By>;
@@ -5389,7 +5445,7 @@ export type TUserQueryVariables = Exact<{
 }>;
 
 
-export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
+export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean } | null, esteemPoints?: { __typename?: 'esteem_points', points: number } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
 export type TUsersQueryVariables = Exact<{
   where?: InputMaybe<TUser_Profile_Bool_Exp>;
@@ -6617,6 +6673,9 @@ export const UserDocument = gql`
       customPronouns
       isComplete
     }
+    esteemPoints {
+      points
+    }
   }
 }
     ${UserFieldsWithEmailFragmentDoc}`;
@@ -7065,6 +7124,10 @@ export type TResolversTypes = {
   buckets_select_column: TBuckets_Select_Column;
   citext: ResolverTypeWrapper<Scalars['citext']>;
   citext_comparison_exp: TCitext_Comparison_Exp;
+  esteem_points: ResolverTypeWrapper<TEsteem_Points>;
+  esteem_points_bool_exp: TEsteem_Points_Bool_Exp;
+  esteem_points_order_by: TEsteem_Points_Order_By;
+  esteem_points_select_column: TEsteem_Points_Select_Column;
   files: ResolverTypeWrapper<TFiles>;
   files_aggregate_order_by: TFiles_Aggregate_Order_By;
   files_avg_order_by: TFiles_Avg_Order_By;
@@ -7350,6 +7413,9 @@ export type TResolversParentTypes = {
   buckets_order_by: TBuckets_Order_By;
   citext: Scalars['citext'];
   citext_comparison_exp: TCitext_Comparison_Exp;
+  esteem_points: TEsteem_Points;
+  esteem_points_bool_exp: TEsteem_Points_Bool_Exp;
+  esteem_points_order_by: TEsteem_Points_Order_By;
   files: TFiles;
   files_aggregate_order_by: TFiles_Aggregate_Order_By;
   files_avg_order_by: TFiles_Avg_Order_By;
@@ -7668,6 +7734,11 @@ export type TBucketsResolvers<ContextType = any, ParentType extends TResolversPa
 export interface TCitextScalarConfig extends GraphQLScalarTypeConfig<TResolversTypes['citext'], any> {
   name: 'citext';
 }
+
+export type TEsteem_PointsResolvers<ContextType = any, ParentType extends TResolversParentTypes['esteem_points'] = TResolversParentTypes['esteem_points']> = {
+  points?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
 
 export type TFilesResolvers<ContextType = any, ParentType extends TResolversParentTypes['files'] = TResolversParentTypes['files']> = {
   bucket?: Resolver<TResolversTypes['buckets'], ParentType, ContextType>;
@@ -8364,6 +8435,7 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   activity_by_pk?: Resolver<Maybe<TResolversTypes['activity']>, ParentType, ContextType, RequireFields<TQuery_RootActivity_By_PkArgs, 'id'>>;
   bucket?: Resolver<Maybe<TResolversTypes['buckets']>, ParentType, ContextType, RequireFields<TQuery_RootBucketArgs, 'id'>>;
   buckets?: Resolver<Array<TResolversTypes['buckets']>, ParentType, ContextType, Partial<TQuery_RootBucketsArgs>>;
+  esteem_points?: Resolver<Array<TResolversTypes['esteem_points']>, ParentType, ContextType, Partial<TQuery_RootEsteem_PointsArgs>>;
   file?: Resolver<Maybe<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TQuery_RootFileArgs, 'id'>>;
   files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, Partial<TQuery_RootFilesArgs>>;
   idea_comment_replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, Partial<TQuery_RootIdea_Comment_RepliesArgs>>;
@@ -8424,6 +8496,7 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   activity_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['activity']>, "activity_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootActivity_By_PkArgs, 'id'>>;
   bucket?: SubscriptionResolver<Maybe<TResolversTypes['buckets']>, "bucket", ParentType, ContextType, RequireFields<TSubscription_RootBucketArgs, 'id'>>;
   buckets?: SubscriptionResolver<Array<TResolversTypes['buckets']>, "buckets", ParentType, ContextType, Partial<TSubscription_RootBucketsArgs>>;
+  esteem_points?: SubscriptionResolver<Array<TResolversTypes['esteem_points']>, "esteem_points", ParentType, ContextType, Partial<TSubscription_RootEsteem_PointsArgs>>;
   file?: SubscriptionResolver<Maybe<TResolversTypes['files']>, "file", ParentType, ContextType, RequireFields<TSubscription_RootFileArgs, 'id'>>;
   files?: SubscriptionResolver<Array<TResolversTypes['files']>, "files", ParentType, ContextType, Partial<TSubscription_RootFilesArgs>>;
   idea_comment_replies?: SubscriptionResolver<Array<TResolversTypes['idea_comment_replies']>, "idea_comment_replies", ParentType, ContextType, Partial<TSubscription_RootIdea_Comment_RepliesArgs>>;
@@ -8633,6 +8706,7 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   displayName?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
   emailVerified?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
+  esteemPoints?: Resolver<Maybe<TResolversTypes['esteem_points']>, ParentType, ContextType>;
   files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, Partial<TUsersFilesArgs>>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   ideas?: Resolver<Array<TResolversTypes['ideas']>, ParentType, ContextType, Partial<TUsersIdeasArgs>>;
@@ -8741,6 +8815,7 @@ export type TResolvers<ContextType = any> = {
   activity_mutation_response?: TActivity_Mutation_ResponseResolvers<ContextType>;
   buckets?: TBucketsResolvers<ContextType>;
   citext?: GraphQLScalarType;
+  esteem_points?: TEsteem_PointsResolvers<ContextType>;
   files?: TFilesResolvers<ContextType>;
   files_mutation_response?: TFiles_Mutation_ResponseResolvers<ContextType>;
   idea_comment_replies?: TIdea_Comment_RepliesResolvers<ContextType>;

@@ -45,6 +45,15 @@ object_relationships:
 - name: defaultRoleByRole
   using:
     foreign_key_constraint_on: default_role
+- name: esteemPoints
+  using:
+    manual_configuration:
+      column_mapping:
+        id: user_id
+      insertion_order: null
+      remote_table:
+        name: esteem_points
+        schema: public
 - name: profile
   using:
     manual_configuration:
@@ -166,6 +175,16 @@ update_permissions:
       id: x-hasura-User-Id
   role: user
 event_triggers:
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  name: create-user-esteem-points
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points/create-user-esteem-points"
 - definition:
     enable_manual: false
     update:

@@ -5,14 +5,21 @@ import {
 import { useCurrentUser } from '@hooks/auth';
 import { event } from '@lib/ga';
 import useIdea from '@pages/ideas/idea/query/ideaQuery';
+import { cache } from '@pages/_app';
+import { addEsteemPoints } from '@slices/auth';
+import gql from 'graphql-tag';
 import React, { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import WriteInput from './WriteInput';
 
 const PostComment = () => {
 	const [value, setValue] = useState('');
 	const user = useCurrentUser();
+	const dispatch = useDispatch();
 
 	const { idea } = useIdea() ?? {};
+
+	console.log('cache: ', cache);
 
 	const [postCommentMutation] = usePostCommentMutation({
 		variables: {
@@ -32,6 +39,7 @@ const PostComment = () => {
 							toReference(mutationResult.data?.addIdeaComment!)
 						];
 					}
+					// users
 					// ideas: (previous) => {
 					// 	console.log('previous: ', previous);
 					// 	return {
@@ -76,6 +84,24 @@ const PostComment = () => {
 			});
 
 			setValue('');
+
+			cache.writeFragment({
+				id: `users:${user.id}`,
+				fragment: gql`
+					fragment AddPoints on users {
+						esteemPoints {
+							points
+						}
+					}
+				`,
+				data: {
+					esteemPoints: {
+						points: user.esteemPoints?.points! + 10
+					}
+				}
+			});
+
+			dispatch(addEsteemPoints(10));
 		}
 	});
 

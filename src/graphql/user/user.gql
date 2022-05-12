@@ -45,6 +45,9 @@ query User($userId: uuid!) {
 			customPronouns
 			isComplete
 		}
+		esteemPoints {
+			points
+		}
 	}
 }
 

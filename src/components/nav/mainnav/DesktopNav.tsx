@@ -10,23 +10,20 @@ import Router from 'next/router';
 import React, { memo } from 'react';
 import { IoAdd, IoLockClosedOutline } from 'react-icons/io5';
 import NavItems from './NavItems';
-import { SubNav } from './SubNav';
+import SubNavMenu from './SubNavMenu';
 
 const DesktopNav = memo(() => {
-	// const isProfileComplete = useUserProfile()?.isComplete;
-
 	const getCurrentPath = (href: string) =>
 		href.includes(Router.pathname) ?? '';
 
 	return (
-		<>
+		<React.Fragment>
 			<PrimaryButton
 				name="create-idea"
 				as={BaseLink}
 				href="/ideas/create"
 				mx="auto"
 				d={{ base: 'flex', md: 'none' }}
-				variant="outline"
 			>
 				<Icon as={IoAdd} fontSize={{ base: 'xl', md: 'lg' }} mr={2} />
 				New
@@ -46,8 +43,8 @@ const DesktopNav = memo(() => {
 					mx="auto"
 					fontSize="xs"
 					minW="90px"
-					variant="outline"
 					d={{ base: 'none', md: 'flex' }}
+					title="Create a new idea"
 				>
 					<Icon
 						as={IoAdd}
@@ -94,10 +91,12 @@ const DesktopNav = memo(() => {
 						}
 					>
 						{navItem.items && (
-							<StackLayout spacing={2}>
-								{navItem.items.map((item, key) => (
-									<SubNav {...item} key={key} />
-								))}
+							<StackLayout
+								direction={{ base: 'column', md: 'row' }}
+								p={2}
+								d="flex"
+							>
+								<SubNavMenu {...navItem} />
 							</StackLayout>
 						)}
 					</BasePopover>
@@ -111,9 +110,8 @@ const DesktopNav = memo(() => {
 				>
 					Mentor
 				</Button>
-				{/* {!isProfileComplete && <ProfileNotSet />} */}
 			</StackLayout>
-		</>
+		</React.Fragment>
 	);
 });
 

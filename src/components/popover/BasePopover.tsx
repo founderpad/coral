@@ -11,15 +11,11 @@ import React from 'react';
 type Props = PopoverProps & { triggerEl: React.ReactNode; title?: string };
 
 export const BasePopover = (props: Props) => {
-	const { children, trigger, triggerEl, title } = props;
+	const { children, trigger = 'hover', triggerEl, title } = props;
 	const bg = useColorModeValue('white', 'gray.500');
 
 	return (
-		<Popover
-			trigger={trigger ?? 'hover'}
-			placement="bottom"
-			strategy="fixed"
-		>
+		<Popover trigger={trigger} placement="bottom" strategy="fixed">
 			<PopoverTrigger>{triggerEl}</PopoverTrigger>
 
 			{children && (
@@ -31,7 +27,8 @@ export const BasePopover = (props: Props) => {
 					p={2}
 					mt={2}
 					rounded="md"
-					w={{ base: '100vw', sm: '375px' }}
+					w={{ base: '100vw', sm: 'auto' }}
+					d="flex"
 				>
 					{title && (
 						<BaseHeading fontSize="sm" p={4} color="fpGrey.900">

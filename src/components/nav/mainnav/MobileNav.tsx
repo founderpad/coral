@@ -9,7 +9,7 @@ import { useMobile, useMobileNav } from '@hooks/util';
 import Router from 'next/router';
 import React, { memo } from 'react';
 import NavItems, { NavItem } from './NavItems';
-import { SubNav } from './SubNav';
+import SubNavMenu from './SubNavMenu';
 
 const MobileNav = () => {
 	const { isOpen } = useMobileNav();
@@ -41,7 +41,7 @@ const MobileNav = () => {
 };
 
 const MobileNavItem = (navItem: NavItem) => {
-	const { items, label, isLink } = navItem;
+	const { label, isLink } = navItem;
 	const { isOpen, onToggle } = useDisclosure();
 	const colorModeValue = useColorModeValue('fpGrey.900', 'white');
 
@@ -112,9 +112,7 @@ const MobileNavItem = (navItem: NavItem) => {
 
 			<Collapse in={isOpen} animateOpacity>
 				<StackLayout pl={2} align="start" spacing={2}>
-					{items?.map((item, i) => (
-						<SubNav {...item} key={i} />
-					))}
+					<SubNavMenu {...navItem} />
 				</StackLayout>
 			</Collapse>
 		</StackLayout>

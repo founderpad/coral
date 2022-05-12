@@ -59,8 +59,7 @@ const SocialLogins = memo(() => {
 					clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
 					onSuccess={checkIosRedirect}
 					// onFailure={responseGoogle}
-					cookiePolicy={'single_host_origin'}
-					style={{ width: '200px' }}
+					cookiePolicy="single_host_origin"
 					isSignedIn={true}
 					uxMode="redirect"
 				/>

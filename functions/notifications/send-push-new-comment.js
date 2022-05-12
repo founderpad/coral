@@ -1,3 +1,5 @@
+import { addEsteemPoints } from 'functions';
+
 const OneSignal = require('onesignal-node');
 
 const client = new OneSignal.Client(
@@ -13,6 +15,8 @@ export default async (req, res) => {
 	const id = req.body.event.data.new.id;
 
 	if (fromUserId === targetUserId) return null;
+
+	addEsteemPoints(fromUserId, 10);
 
 	const message = {
 		app_id: process.env.ONESIGNAL_APP_ID,

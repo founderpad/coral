@@ -1,0 +1,1 @@
+CREATE TABLE "public"."esteem_points" ("user_id" uuid NOT NULL, "points" integer NOT NULL DEFAULT 50, PRIMARY KEY ("user_id") , FOREIGN KEY ("user_id") REFERENCES "auth"."users"("id") ON UPDATE restrict ON DELETE cascade, UNIQUE ("user_id"));COMMENT ON TABLE "public"."esteem_points" IS E'The table to record all esteem points for users';

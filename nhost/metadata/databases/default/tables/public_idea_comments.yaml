@@ -89,6 +89,16 @@ event_triggers:
     enable_manual: false
     insert:
       columns: "*"
+  name: add-esteem-points-for-comment
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points/add/comments"
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
   name: send-push-new-comment
   retry_conf:
     interval_sec: 10

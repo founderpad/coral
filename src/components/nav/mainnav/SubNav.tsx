@@ -8,27 +8,38 @@ import NavLink from '../components/NavLink';
 import { NavItem } from './NavItems';
 
 export const SubNav = memo(
-	({ label, subLabel, href, icon, divider, color }: NavItem) => (
+	({
+		label,
+		subLabel,
+		href,
+		icon,
+		divider,
+		color = 'fpPrimary.700'
+	}: NavItem) => (
 		<React.Fragment>
-			{divider && <AppDivider display={{ base: 'none', md: 'block' }} />}
+			{divider && (
+				<FlexLayout alignSelf="center" py={4}>
+					<AppDivider width="150px" alignSelf="center" />
+				</FlexLayout>
+			)}
 			<NavLink
 				href={href}
 				role="group"
 				display="block"
 				rounded="md"
-				_hover={{
-					bg: 'fpLightGrey.100'
-				}}
+				// _hover={{
+				// 	bg: 'fpLightGrey.100'
+				// }}
 				// _hover={{
 				// 	bg: '#F7FBFD'
 				// }}
 			>
 				<StackLayout
 					direction="row"
-					spacing={2}
 					alignItems="center"
 					justifyContent="space-between"
-					p={2}
+					py={2}
+					pr={2}
 				>
 					<BoxLayout
 						d="flex"
@@ -46,24 +57,32 @@ export const SubNav = memo(
 							>
 								<Icon
 									as={icon}
-									fontSize="md"
-									color="fpPrimary.500"
+									fontSize="xl"
+									color={color}
+									transition="all .3s ease"
+									// transform="translateX(-10px)"
+									// opacity={0}
+									_groupHover={{
+										// opacity: '100%',
+										// transform: 'translate(3px, -3px)'
+										transform: 'scale(1.2)'
+									}}
 								/>
 							</BoxLayout>
 						)}
 						<FlexLayout flexDirection="column">
 							<BaseLabel
 								transition="all .3s ease"
-								color={color ?? 'gray.900'}
+								color="black"
 								fontSize="small"
 								fontWeight="medium"
 							>
 								{label}
 							</BaseLabel>
 							<BaseLabel
-								color="fpGrey.500"
-								fontWeight="light"
-								fontSize="smaller"
+								color="fpGrey.300"
+								fontWeight="thin"
+								fontSize="xs"
 							>
 								{subLabel}
 							</BaseLabel>
