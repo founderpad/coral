@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/button';
 import {
+	Icon,
 	Menu,
 	MenuButton,
 	MenuDivider,
@@ -7,8 +8,9 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import { IoLockClosedOutline } from '@components/icons';
+import { BiCoinStack, IoLockClosedOutline } from '@components/icons';
 import { Label } from '@components/labels';
+import { FlexLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import LogoutModal from '@components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from '@components/shared';
@@ -41,14 +43,34 @@ const UserMenu = () => {
 			<MenuList rounded="md" textAlign="start" p={4} maxW={200}>
 				<CurrentUserAvatarDetails size="md" direction="column" />
 
-				<Label
+				{/* <Label
 					fontSize="xs"
 					textAlign="center"
 					color="yellow.500"
 					mt={4}
 				>
 					Esteem Points: {esteemPoints}
-				</Label>
+				</Label> */}
+
+				<FlexLayout justifyContent="center" mt={4}>
+					{/* <Label fontSize="xs" textAlign="center" color="yellow.500">
+						Esteem Points:
+					</Label>
+					{esteemPoints} */}
+
+					{/* <Label
+						fontSize="xs"
+						textAlign="center"
+						color="yellow.500"
+						mr={2}
+					>
+						Esteem Points:
+					</Label> */}
+					<Icon as={BiCoinStack} color="yellow.500" mr={1} />
+					<Label fontSize="xs" textAlign="center" color="yellow.500">
+						{esteemPoints}
+					</Label>
+				</FlexLayout>
 
 				<MenuDivider my={4} />
 				<MenuGroup>
