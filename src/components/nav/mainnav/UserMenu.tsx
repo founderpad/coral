@@ -1,6 +1,5 @@
 import { Button } from '@chakra-ui/button';
 import {
-	flexbox,
 	Icon,
 	Menu,
 	MenuButton,
