@@ -3,10 +3,10 @@ import { addEsteemPoints, getClient, isValidSecret } from 'functions';
 const { graphqlClient, gql } = getClient();
 
 const ADD_ESTEEM_POINTS = gql`
-	mutation ($userId: uuid!, $points: number!) {
+	mutation ($userId: uuid!) {
 		update_esteem_points_by_pk(
 			pk_columns: { userId: $userId }
-			_inc: { points: $points }
+			_inc: { points: 50 }
 		) {
 			userId
 			points
@@ -21,25 +21,14 @@ export default async (req, res) => {
 	if (!userId) throw 'No user id found';
 
 	try {
-		await addEsteemPoints(userId, 20);
+		const response = await graphqlClient.request(ADD_ESTEEM_POINTS, {
+			userId
+		});
 		res.status(200).send(`Esteem points added for ${userId}`);
 	} catch (error) {
-		throw 'idea/new.js: Failed to add esteem points';
+		res.status(500).send(
+			error.message +
+				` --- Failed to add esteem points for idea created by user id: ${userId}`
+		);
 	}
-
-	res.status(200).send('OK');
-
-	// try {
-	// 	await graphqlClient.request(ADD_ESTEEM_POINTS, {
-	// 		userId,
-	// 		points
-	// 	});
-
-	// 	res.status(200).send(`Esteem points added for ${userId}`);
-	// } catch (error) {
-	// 	res.status(500).send(
-	// 		`Failed to add esteem points for new idea from user: ${userId}`
-	// 	);
-	// 	throw `Failed to add esteem points for new idea from user: ${userId}}`;
-	// }
 };

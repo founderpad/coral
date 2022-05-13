@@ -101,7 +101,7 @@ const PostComment = () => {
 				}
 			});
 
-			dispatch(addEsteemPoints(10));
+			if (user.id !== idea?.userId) dispatch(addEsteemPoints(10));
 		}
 	});
 

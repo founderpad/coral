@@ -15,9 +15,12 @@ import React from 'react';
 import { SwitchField } from '@components/input';
 import { StackLayout } from '@components/layouts';
 import { AppDivider } from '@components/shared';
+import { useDispatch } from 'react-redux';
+import { addEsteemPoints } from '@slices/auth';
 
 const CreateIdeaForm = () => {
 	const user = useCurrentUser();
+	const dispatch = useDispatch();
 
 	const defaultValues = {
 		name: '',
@@ -49,6 +52,7 @@ const CreateIdeaForm = () => {
 					}
 				});
 
+				dispatch(addEsteemPoints(50));
 				Router.push(`/idea/${idea?.id}`);
 			}
 		});
