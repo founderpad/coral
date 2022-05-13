@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/button';
 import {
+	flexbox,
 	Icon,
 	Menu,
 	MenuButton,
@@ -43,33 +44,29 @@ const UserMenu = () => {
 			<MenuList rounded="md" textAlign="start" p={4} maxW={200}>
 				<CurrentUserAvatarDetails size="md" direction="column" />
 
-				{/* <Label
-					fontSize="xs"
-					textAlign="center"
-					color="yellow.500"
+				<FlexLayout
+					justifyContent="space-between"
+					alignItems="center"
 					mt={4}
 				>
-					Esteem Points: {esteemPoints}
-				</Label> */}
-
-				<FlexLayout justifyContent="center" mt={4}>
-					{/* <Label fontSize="xs" textAlign="center" color="yellow.500">
-						Esteem Points:
-					</Label>
-					{esteemPoints} */}
-
-					{/* <Label
+					<Label
 						fontSize="xs"
 						textAlign="center"
 						color="yellow.500"
 						mr={2}
 					>
-						Esteem Points:
-					</Label> */}
-					<Icon as={BiCoinStack} color="yellow.500" mr={1} />
-					<Label fontSize="xs" textAlign="center" color="yellow.500">
-						{esteemPoints}
+						Esteem Points
 					</Label>
+					<FlexLayout>
+						<Icon as={BiCoinStack} color="yellow.500" mr={1} />
+						<Label
+							fontSize="xs"
+							textAlign="center"
+							color="yellow.500"
+						>
+							{esteemPoints}
+						</Label>
+					</FlexLayout>
 				</FlexLayout>
 
 				<MenuDivider my={4} />
