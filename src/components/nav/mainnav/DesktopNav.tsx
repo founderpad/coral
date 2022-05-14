@@ -8,7 +8,11 @@ import BasePopover from '@components/popover/BasePopover';
 import { AppDivider } from '@components/shared';
 import Router from 'next/router';
 import React, { memo } from 'react';
-import { IoAdd, IoLockClosedOutline } from 'react-icons/io5';
+import {
+	IoAdd,
+	IoChevronDownSharp,
+	IoLockClosedOutline
+} from 'react-icons/io5';
 import NavItems from './NavItems';
 import SubNavMenu from './SubNavMenu';
 
@@ -61,7 +65,7 @@ const DesktopNav = memo(() => {
 							<Link
 								px={2}
 								d="flex"
-								href={navItem.href ?? '#'}
+								href={navItem.href}
 								fontSize="xs"
 								fontWeight={
 									getCurrentPath(navItem.href ?? '')
@@ -80,14 +84,28 @@ const DesktopNav = memo(() => {
 								}}
 							>
 								{navItem.label}
-								{navItem.rightIcon && (
+								{/* {navItem.rightIcon && (
 									<Icon
 										color="inherit"
 										ml={1}
 										as={navItem.rightIcon}
 									/>
+								)} */}
+								{navItem.items?.length && (
+									<Icon
+										color="inherit"
+										ml={1}
+										as={IoChevronDownSharp}
+										// _hover={{
+										// 	transform: 'rotate(-180deg)'
+										// }}
+										// transform="rotate(0deg)"
+										// transition={'transform .1s linear'}
+										// transition='transform .1s linear'
+									/>
 								)}
 							</Link>
+							// <Button>{navItem.label}</Button>
 						}
 					>
 						{navItem.items && (

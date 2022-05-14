@@ -25,8 +25,10 @@ export const BasePopover = (props: Props) => {
 					boxShadow="xl"
 					bg={bg}
 					p={2}
-					mt={2}
-					rounded="md"
+					// mt={2}
+					mt="4px"
+					// rounded="md"
+					rounded="none"
 					w={{ base: '100vw', sm: 'auto' }}
 					d="flex"
 				>

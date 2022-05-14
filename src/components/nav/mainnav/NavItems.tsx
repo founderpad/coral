@@ -40,7 +40,7 @@ export interface NavItem {
 const NavItems: Array<NavItem> = [
 	{
 		label: 'Ideas',
-		href: '/ideas/search?page=1',
+		// href: '/ideas/search?page=1',
 		items: [
 			{
 				title: 'All ideas',
@@ -103,7 +103,7 @@ const NavItems: Array<NavItem> = [
 	// },
 	{
 		label: 'Users',
-		href: '/users/search?page=1',
+		// href: '/users/search?page=1',
 		items: [
 			{
 				items: [
