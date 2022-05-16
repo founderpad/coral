@@ -7,7 +7,7 @@ import {
 } from '@components/form/inputs/FormField';
 import { TIdeas_Set_Input } from '@generated/api';
 import { TCreateIdeaMutation, useCreateIdeaMutation } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useAuth } from '@hooks/auth';
 import { event } from '@lib/ga';
 import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@utils/Constants';
 import Router from 'next/router';
@@ -17,10 +17,12 @@ import { StackLayout } from '@components/layouts';
 import { AppDivider } from '@components/shared';
 import { useDispatch } from 'react-redux';
 import { addEsteemPoints } from '@slices/auth';
+import { useSuccessNotification } from '@hooks/toast';
 
 const CreateIdeaForm = () => {
-	const user = useCurrentUser();
+	const user = useAuth().user;
 	const dispatch = useDispatch();
+	const showNotification = useSuccessNotification();
 
 	const defaultValues = {
 		name: '',
@@ -53,6 +55,10 @@ const CreateIdeaForm = () => {
 				});
 
 				dispatch(addEsteemPoints(50));
+				showNotification({
+					title: '+10 Esteem Points',
+					description: 'You have earned 10 Esteem Points'
+				});
 				Router.push(`/idea/${idea?.id}`);
 			}
 		});
