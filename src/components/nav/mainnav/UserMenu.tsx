@@ -47,6 +47,7 @@ const UserMenu = () => {
 					justifyContent="space-between"
 					alignItems="center"
 					mt={4}
+					px="0.8rem"
 				>
 					<Label
 						fontSize="xs"

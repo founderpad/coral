@@ -70,12 +70,12 @@ const WorkExperienceTab = () => {
 						!isProfileComplete && (
 							<Label
 								color="red.500"
-								fontSize="x-small"
+								fontSize="xs"
 								textAlign="start"
 								pt={1}
 							>
-								Provide your profile so users can easily find
-								you
+								Provide some more details and showcase your
+								experience
 							</Label>
 						)
 					}

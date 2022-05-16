@@ -6,6 +6,7 @@ const Input = {
 				borderColor: 'gray.200',
 				borderRadius: 'sm',
 				color: '#425068',
+				padding: '0px 8px',
 				_focus: {
 					borderColor: 'gray.400',
 					boxShadow: 'none'
