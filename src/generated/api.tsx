@@ -5346,7 +5346,7 @@ export type TUserIdeasQueryVariables = Exact<{
 }>;
 
 
-export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'ideas', id: any, name: string, createdAt: any, isPublished: boolean, totalInterested: number, totalVotes: number, totalComments: number }> };
+export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
 
 export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
 
@@ -6099,17 +6099,14 @@ export function refetchIdeasQuery(variables: TIdeasQueryVariables) {
     }
 export const UserIdeasDocument = gql`
     query UserIdeas($userId: uuid!) {
-  user_ideas: ideas(where: {userId: {_eq: $userId}}, order_by: {createdAt: desc}) {
-    id
-    name
-    createdAt
-    isPublished
-    totalInterested
-    totalVotes
-    totalComments
+  user_ideas: idea_preview(
+    where: {userId: {_eq: $userId}}
+    order_by: {createdAt: desc}
+  ) {
+    ...IdeaPreviewFields
   }
 }
-    `;
+    ${IdeaPreviewFieldsFragmentDoc}`;
 
 /**
  * __useUserIdeasQuery__

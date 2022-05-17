@@ -4,12 +4,13 @@ import { FlexLayout, StackLayout } from '@components/layouts';
 import { BaseLink } from '@components/links';
 import { Loading, NoResults, PointSeparator } from '@components/shared';
 import AppDivider from '@components/shared/AppDivider';
-import { useUserIdeasQuery } from '@generated/api';
+import { TIdeaPreviewFieldsFragment, useUserIdeasQuery } from '@generated/api';
 import { useClaim } from '@hooks/auth';
 import InterestedTotal from '@pages/ideas/idea/components/InterestedTotal';
 import PublishedLabel from '@pages/ideas/idea/components/PublishedLabel';
 import { formatDate } from '@utils/validators';
 import React from 'react';
+import BoostIdea from '../idea/components/BoostIdea';
 
 const MyIdeasContainer = () => {
 	const { data, loading } = useUserIdeasQuery({
@@ -26,42 +27,43 @@ const MyIdeasContainer = () => {
 
 	return (
 		<StackLayout>
-			{/* {data?.user_ideas?.map((idea: TIdeas, key: number) => ( */}
-			{data?.user_ideas?.map((idea: any, key: number) => (
-				<>
-					<StackLayout spacing={4}>
-						<FlexLayout
-							flexDirection="column"
-							as={BaseLink}
-							href={`/idea/${idea?.id}`}
-							alignItems="flex-start"
-							_hover={{
-								borderColor: 'gray.50',
-								transition: 'ease-in .3s',
-								bg: 'gray.50'
-							}}
-							p={2}
-							mb={2}
-							flex={1}
-							rounded="sm"
-						>
-							<Label
-								d="flex"
-								w="full"
-								overflow="hidden"
-								fontWeight="medium"
-								fontSize={{ base: 'smaller', sm: 'md' }}
-								css={{ whiteSpace: 'normal' }}
-								wordBreak="break-word"
-								noOfLines={2}
-								isTruncated
+			{data?.user_ideas?.map(
+				(idea: TIdeaPreviewFieldsFragment, key: number) => (
+					<React.Fragment key={idea.id}>
+						<StackLayout spacing={4}>
+							<FlexLayout
+								flexDirection="column"
+								as={BaseLink}
+								href={`/idea/${idea?.id}`}
+								alignItems="flex-start"
+								_hover={{
+									borderColor: 'gray.50',
+									transition: 'ease-in .3s',
+									bg: 'gray.50'
+								}}
+								p={2}
+								py={4}
+								mb={2}
+								flex={1}
+								rounded="sm"
 							>
-								{idea?.name}
-							</Label>
-							<CaptionLabel>
-								{formatDate(idea?.createdAt, true)}
-							</CaptionLabel>
-							<StackLayout
+								<Label
+									d="flex"
+									w="full"
+									overflow="hidden"
+									fontWeight="medium"
+									fontSize={{ base: 'smaller', sm: 'md' }}
+									css={{ whiteSpace: 'normal' }}
+									wordBreak="break-word"
+									noOfLines={2}
+									isTruncated
+								>
+									{idea?.name}
+								</Label>
+								<CaptionLabel>
+									{formatDate(idea?.createdAt, true)}
+								</CaptionLabel>
+								{/* <StackLayout
 								direction="row"
 								spacing={2}
 								pt={4}
@@ -78,12 +80,37 @@ const MyIdeasContainer = () => {
 										/>
 									</React.Fragment>
 								)}
+								<BoostButton />
+							</StackLayout> */}
+							</FlexLayout>
+							<StackLayout
+								direction="row"
+								spacing={2}
+								alignItems="center"
+								justifyContent="space-between"
+							>
+								<PublishedLabel
+									isPublished={idea?.isPublished!}
+								/>
+								{idea?.interested_aggregate.aggregate?.count! >
+									0 && (
+									<React.Fragment>
+										<PointSeparator small />
+										<InterestedTotal
+											total={
+												idea?.interested_aggregate
+													.aggregate?.count!
+											}
+										/>
+									</React.Fragment>
+								)}
+								<BoostIdea {...idea} />
 							</StackLayout>
-						</FlexLayout>
-						{data?.user_ideas?.length !== key && <AppDivider />}
-					</StackLayout>
-				</>
-			))}
+							{data?.user_ideas?.length !== key && <AppDivider />}
+						</StackLayout>
+					</React.Fragment>
+				)
+			)}
 		</StackLayout>
 	);
 };

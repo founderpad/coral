@@ -15,7 +15,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 
 	return (
 		<React.Fragment>
-			<FlexLayout>
+			<FlexLayout w="full">
 				{isNew && <NewIdeaBadge />}
 				<FlexLayout direction="column" flex={1}>
 					<Label

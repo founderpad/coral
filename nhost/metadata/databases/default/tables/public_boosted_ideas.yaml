@@ -1,0 +1,11 @@
+table:
+  name: boosted_ideas
+  schema: public
+configuration:
+  custom_column_names:
+    currency_amount_increment: currencyAmountIncrement
+    idea_id: ideaId
+    points_increment: pointsIncrement
+    remaining_currency_amount: remainingCurrencyAmount
+    remaining_points: remainingPoints
+  custom_root_fields: {}

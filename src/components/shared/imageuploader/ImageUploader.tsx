@@ -2,15 +2,9 @@ import { Box, BoxProps } from '@chakra-ui/react';
 import { EditButton } from '@components/buttons';
 import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { FlexLayout } from '@components/layouts';
-import ModalDrawerContext from '@context/ModalDrawerContext';
+import { useModalDrawer } from '@hooks/util';
 import 'cropperjs/dist/cropper.css';
-import React, {
-	useCallback,
-	useContext,
-	useEffect,
-	useRef,
-	useState
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Cropper from 'react-cropper';
 
 type Props = BoxProps & {
@@ -26,7 +20,7 @@ export const ImageUploader = (props: Props) => {
 	const [file, setFile] = useState<File | undefined>(undefined);
 	// const [uploading, setUploading] = useState(false);
 
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const { setModalDrawer } = useModalDrawer();
 	const cropperRef = useRef<HTMLImageElement>(null);
 
 	const MAX_SIZE = 3145728;

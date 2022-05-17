@@ -2,7 +2,7 @@ import { Icon, Tag } from '@chakra-ui/react';
 import React from 'react';
 import { IoCheckmarkSharp, IoCloseOutline } from 'react-icons/io5';
 
-export const PublishedLabel = ({ isPublished }: { isPublished: boolean }) => {
+export const PublishedLabel = ({ isPublished = true }) => {
 	if (isPublished) {
 		return (
 			<Tag variant="solid" fontSize="xs" bg="green.300">

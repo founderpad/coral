@@ -6,6 +6,7 @@
 - "!include auth_user_roles.yaml"
 - "!include auth_users.yaml"
 - "!include public_activity.yaml"
+- "!include public_boosted_ideas.yaml"
 - "!include public_esteem_points.yaml"
 - "!include public_idea_comment_replies.yaml"
 - "!include public_idea_comments.yaml"

@@ -74,6 +74,18 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 					{field}
 				</Tag>
 			</StackLayout>
+			{/* <Tag
+				h="fit-content"
+				ml="auto"
+				fontSize={{ base: 'xx-small', sm: 'x-small' }}
+				colorScheme="fpPrimary"
+				variant="outline"
+				px={3}
+				py={1}
+			>
+				Your idea
+			</Tag> */}
+			{/* </StackLayout> */}
 			{totalInterested ? (
 				<InterestedTotal total={totalInterested} />
 			) : null}

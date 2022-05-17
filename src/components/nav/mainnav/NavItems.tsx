@@ -1,4 +1,5 @@
 import {
+	AiTwotoneThunderbolt,
 	// AiTwotoneThunderbolt,
 	IoAdd,
 	IoPersonSharp,
@@ -66,27 +67,27 @@ const NavItems: Array<NavItem> = [
 						divider: true
 					}
 				]
+			},
+			{
+				title: 'Boost',
+				items: [
+					{
+						label: 'All Boosted ideas',
+						subLabel: 'See all currently boosted ideas',
+						href: '/ideas/boost?page=1',
+						icon: AiTwotoneThunderbolt,
+						color: 'purple.500'
+					}
+					// {
+					// 	label: 'Boost your idea',
+					// 	subLabel: 'Boost your idea to get more feedback',
+					// 	href: '/ideas/boosted?page=1',
+					// 	icon: IoRocketSharp,
+					// 	color: 'purple.500',
+					// 	divider: true
+					// }
+				]
 			}
-			// {
-			// 	title: 'Boost',
-			// 	items: [
-			// 		{
-			// 			label: 'All Boosted ideas',
-			// 			subLabel: 'See all currently boosted ideas',
-			// 			href: '/ideas/boosted?page=1',
-			// 			icon: AiTwotoneThunderbolt,
-			// 			color: 'purple.500'
-			// 		},
-			// 		{
-			// 			label: 'Boost your idea',
-			// 			subLabel: 'Boost your idea to get more feedback',
-			// 			href: '/ideas/boosted?page=1',
-			// 			icon: IoRocketSharp,
-			// 			color: 'purple.500',
-			// 			divider: true
-			// 		}
-			// 	]
-			// }
 		]
 	},
 	// {

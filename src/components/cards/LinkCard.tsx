@@ -14,7 +14,7 @@ const LinkCard = (props: Props) => {
 	const { href, children, footer } = props;
 
 	return (
-		<StackLayout flex={1} spacing={0} w="full">
+		<StackLayout flex={1} spacing={4} w="full">
 			<FlexLayout
 				flexDirection="column"
 				as={BaseLink}

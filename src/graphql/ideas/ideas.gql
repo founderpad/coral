@@ -99,17 +99,24 @@ fragment IdeaPreviewFields on idea_preview {
 }
 
 query UserIdeas($userId: uuid!) {
-	user_ideas: ideas(
+	# user_ideas: ideas(
+	# 	where: { userId: { _eq: $userId } }
+	# 	order_by: { createdAt: desc }
+	# ) {
+	# 	id
+	# 	name
+	# 	createdAt
+	# 	isPublished
+	# 	totalInterested
+	# 	totalVotes
+	# 	totalComments
+	# }
+
+	user_ideas: idea_preview(
 		where: { userId: { _eq: $userId } }
 		order_by: { createdAt: desc }
 	) {
-		id
-		name
-		createdAt
-		isPublished
-		totalInterested
-		totalVotes
-		totalComments
+		...IdeaPreviewFields
 	}
 }
 

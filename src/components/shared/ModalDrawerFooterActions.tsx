@@ -1,7 +1,7 @@
 import { ButtonGroup } from '@chakra-ui/react';
 import { CancelButton } from '@components/buttons';
-import ModalDrawerContext from '@context/ModalDrawerContext';
-import React, { memo, useCallback, useContext } from 'react';
+import { useModalDrawer } from '@hooks/util';
+import React, { memo, useCallback } from 'react';
 
 export const ModalDrawerFooterActions = memo(
 	({
@@ -13,7 +13,7 @@ export const ModalDrawerFooterActions = memo(
 		noBtnLabel?: string;
 		showCancel?: boolean;
 	}) => {
-		const { setModalDrawer } = useContext(ModalDrawerContext);
+		const { setModalDrawer } = useModalDrawer();
 
 		const onClose = useCallback(() => {
 			setModalDrawer({
@@ -33,7 +33,7 @@ export const ModalDrawerFooterActions = memo(
 					<CancelButton
 						label={noBtnLabel ?? 'Clear'}
 						onClick={onClose}
-						title="Reset search"
+						title="Close"
 					/>
 				)}
 				{children}
