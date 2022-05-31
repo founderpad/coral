@@ -1955,15 +1955,6 @@
   resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.1.0.tgz#d27e7e76c87a460a4da99c5bfdb1618dcd6cd064"
   integrity sha512-aBvcbMwuanDH4EMrL2TthNJy+4nP59Bimn8egqv6GHMVj0a44cU6Au4PjOhLNqEh9l+IpRGBqMTzec94UdC5xg==
 
-"@nhost/hasura-auth-js@0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@nhost/hasura-auth-js/-/hasura-auth-js-0.1.14.tgz#98d19772a266766d5ced9fa59e39b57a14968576"
-  integrity sha512-QXPxpPIeqYDUTFmNpzSXyIyzVqc8JzNZiDuD2Uc6JHnEfz7othQQPzQXO6B0BaJAr+0BPhQXerUoDwLOUgG2ag==
-  dependencies:
-    axios "^0.25.0"
-    jwt-decode "^3.1.2"
-    query-string "^7.1.0"
-
 "@nhost/hasura-auth-js@0.1.15":
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/@nhost/hasura-auth-js/-/hasura-auth-js-0.1.15.tgz#a481a2d21e6315b1ad59d5eec8ada77d6f784bb1"
@@ -1973,56 +1964,38 @@
     jwt-decode "^3.1.2"
     query-string "^7.1.0"
 
-"@nhost/hasura-storage-js@0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@nhost/hasura-storage-js/-/hasura-storage-js-0.0.11.tgz#b913553f19f5c67656dab2c3ff7737394aae6d31"
-  integrity sha512-EY0xbQNg/j45bLyJ+awnjXvyTBNTS668S+OqFnzHjKznSqOhHCLpyh2k0cI3vWTDHyuAbweP4ScvSipCJ0t9uA==
+"@nhost/hasura-storage-js@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@nhost/hasura-storage-js/-/hasura-storage-js-0.1.0.tgz#26da62b2c8ba8bb8d512bbf91c2cb52ee9e15f3c"
+  integrity sha512-XkmU8N3lvw9hm2o4NbXqjRc+X07TAicw3qlmoTQ+QFSLLzDUfr2L2u7j4UYsj5i8Nxxl+EaB/7hYOIH/+d+fzA==
   dependencies:
     axios "^0.21.1"
 
-"@nhost/hasura-storage-js@0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@nhost/hasura-storage-js/-/hasura-storage-js-0.0.12.tgz#ae01a7f69049fe0ee4ab746e3d567f369737b4b5"
-  integrity sha512-52SnmQkMqyTSdJlke/v3tysO4B6o8KVCDw5zz4BGz5CqCaS3yLPZolLr0788+HV5gQ2hzkU34KyhXrs4Sm5Yjw==
-  dependencies:
-    axios "^0.21.1"
-
-"@nhost/nhost-js@0.3.11":
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/@nhost/nhost-js/-/nhost-js-0.3.11.tgz#efa4eaa42bbc6f5587276d264b27ce8b8aae7f7f"
-  integrity sha512-D4pvXHlYW+fxwGxAyQGBWenuXAOpZI2ccErhBU9GaGgHXTxJoRKOhc29YJaZjCe1UdJhBTvJRBw5tZ19do3hZw==
-  dependencies:
-    "@nhost/hasura-auth-js" "0.1.14"
-    "@nhost/hasura-storage-js" "0.0.11"
-    axios "^0.23.0"
-    jwt-decode "^3.1.2"
-    query-string "^7.0.1"
-
-"@nhost/nhost-js@0.3.12", "@nhost/nhost-js@^0.3.4":
-  version "0.3.12"
-  resolved "https://registry.yarnpkg.com/@nhost/nhost-js/-/nhost-js-0.3.12.tgz#319b03a8835d1a2f6cf47f74f1e06fab7bd7b421"
-  integrity sha512-Rv3WIXg/fuGuk29FVufl1jdIR8mMtU51ZJ4bb5j4sJyjQRZrPpwvHD7YlwrV8WMkB2NQC1kNjL7spXhNXw9yHw==
+"@nhost/nhost-js@0.3.13", "@nhost/nhost-js@^0.3.13", "@nhost/nhost-js@^0.3.4":
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/@nhost/nhost-js/-/nhost-js-0.3.13.tgz#d5e96a63052b53f92cba33602c5709ca302c1217"
+  integrity sha512-kg85sZjWmsvW3Se7MfJAEUkurN4dWb+b5f54EFMSIJ/62x8Rj3whoBzpjgN/CXtv1QTt3I+YqT9RNpEP/Z+jBQ==
   dependencies:
     "@nhost/hasura-auth-js" "0.1.15"
-    "@nhost/hasura-storage-js" "0.0.12"
+    "@nhost/hasura-storage-js" "0.1.0"
     axios "^0.23.0"
     jwt-decode "^3.1.2"
     query-string "^7.0.1"
 
 "@nhost/react-apollo@^2.0.7-0":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@nhost/react-apollo/-/react-apollo-2.1.5.tgz#9a361af759985e33b4d1f807b523dc3376b4d059"
-  integrity sha512-1KBBewufyV8n40tWyN3e2/W+77Zz/XWxhWAZmMZ2QENFwJrODzjG1zsfqaqpqh/s1ii3GO4RdWLtm9R1fVqXnw==
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@nhost/react-apollo/-/react-apollo-2.1.6.tgz#adfab2934f83b3a3a2bf64377f72f516fbdbef1c"
+  integrity sha512-Bvd/Cu5oJO8H8YxwMei8XAcq1UfoSeiNq1TvDr7J8VaOlRaCNY8s3l0GYyE/VLmzj4IAkKmVd8YRn2ucl9WRaw==
   dependencies:
-    "@nhost/nhost-js" "0.3.11"
+    "@nhost/nhost-js" "^0.3.13"
     subscriptions-transport-ws "^0.11.0"
 
 "@nhost/react-auth@^2.0.3":
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/@nhost/react-auth/-/react-auth-2.0.10.tgz#9aef4a48471acc294651905b41bc780a4eadb2e3"
-  integrity sha512-mv215vutLs2cV2twIhwln06Ivq9YN+pp0RbYtOYzMCZJKZjw273/Doti8Hb2EG1IfcqzIgaQNjiA1gb86647uw==
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/@nhost/react-auth/-/react-auth-2.0.11.tgz#bb1a7fbe6d798bac2c3380a93764d7f56e780f8e"
+  integrity sha512-E4wvFkg+Nwg06PR7n/E1joGZchSLIh/kEcLo+ePOnCYJPrjP0+ita6HC+OHsGNWtVWL1OU+jHlUNKIpCWUqgyQ==
   dependencies:
-    "@nhost/nhost-js" "0.3.12"
+    "@nhost/nhost-js" "0.3.13"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -2044,6 +2017,28 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@paypal/paypal-js@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-5.0.6.tgz#92f260b54a72e2f914afb0aaac2d7124ad686117"
+  integrity sha512-q40h/Rc2Dus5p7Ctgq8EQyyqWGVCdfaezi4D5eWSIl2+p0FHL1mBA4XnXYgv9FPYejrVUmnIATdbqBdEYwasYg==
+  dependencies:
+    promise-polyfill "^8.2.3"
+
+"@paypal/react-paypal-js@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-7.8.0.tgz#480c7a2391246d30b75e9f69e1525f7de0dc0f25"
+  integrity sha512-4WEhrqi5KP3c/kSaY6cAbEbsQo2zCJFbLZYwU+OqCyD258IZn0xNyLBuVAY5snrnvafgdyir7+5DY3rp8ezAKA==
+  dependencies:
+    "@paypal/paypal-js" "^5.0.6"
+    "@paypal/sdk-constants" "^1.0.116"
+
+"@paypal/sdk-constants@^1.0.116":
+  version "1.0.122"
+  resolved "https://registry.yarnpkg.com/@paypal/sdk-constants/-/sdk-constants-1.0.122.tgz#f3cd4fc67407ba5291b0f1d70693230da80feea9"
+  integrity sha512-bxML2CX9acBGuigb5aCz1E8wcxtRpuXuY2hvfQKAG9fB0zG9d8nEcRiSYavbx4n2UM5TqwEcFo/roPD3aqykOg==
+  dependencies:
+    hi-base32 "^0.5.0"
 
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
@@ -4301,10 +4296,15 @@ focus-visible@^5.2.0:
   resolved "https://registry.yarnpkg.com/focus-visible/-/focus-visible-5.2.0.tgz#3a9e41fccf587bd25dcc2ef045508284f0a4d6b3"
   integrity sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==
 
-follow-redirects@^1.14.0, follow-redirects@^1.14.4, follow-redirects@^1.14.7:
+follow-redirects@^1.14.0:
   version "1.14.9"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.9.tgz#dd4ea157de7bfaf9ea9b3fbd85aa16951f78d8d7"
   integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
+
+follow-redirects@^1.14.4, follow-redirects@^1.14.7:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
+  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
 
 form-data-encoder@^1.7.1:
   version "1.7.1"
@@ -4643,6 +4643,11 @@ hey-listen@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/hey-listen/-/hey-listen-1.0.8.tgz#8e59561ff724908de1aa924ed6ecc84a56a9aa68"
   integrity sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==
+
+hi-base32@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.5.1.tgz#1279f2ddae2673219ea5870c2121d2a33132857e"
+  integrity sha512-EmBBpvdYh/4XxsnUybsPag6VikPYnN30td+vQk+GI3qpahVEG9+gTkG0aXVxTjBqQ5T6ijbWIu77O+C5WFWsnA==
 
 hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
@@ -6603,6 +6608,11 @@ pretty-format@^27.0.0, pretty-format@^27.0.2, pretty-format@^27.5.1:
     ansi-regex "^5.0.1"
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
+
+promise-polyfill@^8.2.3:
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.2.3.tgz#2edc7e4b81aff781c88a0d577e5fe9da822107c6"
+  integrity sha512-Og0+jCRQetV84U8wVjMNccfGCnMQ9mGs9Hv78QFe+pSDD3gWTpz0y+1QCuxy5d/vBFuZ3iwP2eycAkvqIMPmWg==
 
 promise@^7.1.1:
   version "7.3.1"

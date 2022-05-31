@@ -229,7 +229,7 @@ export type TBuckets = {
   cacheControl?: Maybe<Scalars['String']>;
   createdAt: Scalars['timestamptz'];
   downloadExpiration: Scalars['Int'];
-  /** An array relationship */
+  /** fetch data from the table: "storage.files" */
   files: Array<TFiles>;
   id: Scalars['String'];
   maxUploadFileSize: Scalars['Int'];
@@ -3270,7 +3270,7 @@ export type TQuery_Root = {
   esteem_points: Array<TEsteem_Points>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<TFiles>;
-  /** An array relationship */
+  /** fetch data from the table: "storage.files" */
   files: Array<TFiles>;
   /** fetch data from the table: "idea_comment_replies" */
   idea_comment_replies: Array<TIdea_Comment_Replies>;
@@ -3330,8 +3330,6 @@ export type TQuery_Root = {
   report_by_pk?: Maybe<TReport>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<TUsers>;
-  /** fetch aggregated fields from the table: "auth.users" */
-  userAggregate: TUsers_Aggregate;
   /** fetch data from the table: "user_address" */
   user_address: Array<TUser_Address>;
   /** fetch data from the table: "user_address" using primary key columns */
@@ -3350,6 +3348,8 @@ export type TQuery_Root = {
   user_profile_by_pk?: Maybe<TUser_Profile>;
   /** fetch data from the table: "auth.users" */
   users: Array<TUsers>;
+  /** fetch aggregated fields from the table: "auth.users" */
+  usersAggregate: TUsers_Aggregate;
 };
 
 
@@ -3637,15 +3637,6 @@ export type TQuery_RootUserArgs = {
 };
 
 
-export type TQuery_RootUserAggregateArgs = {
-  distinct_on?: InputMaybe<Array<TUsers_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<TUsers_Order_By>>;
-  where?: InputMaybe<TUsers_Bool_Exp>;
-};
-
-
 export type TQuery_RootUser_AddressArgs = {
   distinct_on?: InputMaybe<Array<TUser_Address_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3708,6 +3699,15 @@ export type TQuery_RootUser_Profile_By_PkArgs = {
 
 
 export type TQuery_RootUsersArgs = {
+  distinct_on?: InputMaybe<Array<TUsers_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUsers_Order_By>>;
+  where?: InputMaybe<TUsers_Bool_Exp>;
+};
+
+
+export type TQuery_RootUsersAggregateArgs = {
   distinct_on?: InputMaybe<Array<TUsers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
@@ -3781,7 +3781,7 @@ export type TSubscription_Root = {
   esteem_points: Array<TEsteem_Points>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<TFiles>;
-  /** An array relationship */
+  /** fetch data from the table: "storage.files" */
   files: Array<TFiles>;
   /** fetch data from the table: "idea_comment_replies" */
   idea_comment_replies: Array<TIdea_Comment_Replies>;
@@ -3841,8 +3841,6 @@ export type TSubscription_Root = {
   report_by_pk?: Maybe<TReport>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<TUsers>;
-  /** fetch aggregated fields from the table: "auth.users" */
-  userAggregate: TUsers_Aggregate;
   /** fetch data from the table: "user_address" */
   user_address: Array<TUser_Address>;
   /** fetch data from the table: "user_address" using primary key columns */
@@ -3861,6 +3859,8 @@ export type TSubscription_Root = {
   user_profile_by_pk?: Maybe<TUser_Profile>;
   /** fetch data from the table: "auth.users" */
   users: Array<TUsers>;
+  /** fetch aggregated fields from the table: "auth.users" */
+  usersAggregate: TUsers_Aggregate;
 };
 
 
@@ -4148,15 +4148,6 @@ export type TSubscription_RootUserArgs = {
 };
 
 
-export type TSubscription_RootUserAggregateArgs = {
-  distinct_on?: InputMaybe<Array<TUsers_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<TUsers_Order_By>>;
-  where?: InputMaybe<TUsers_Bool_Exp>;
-};
-
-
 export type TSubscription_RootUser_AddressArgs = {
   distinct_on?: InputMaybe<Array<TUser_Address_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4219,6 +4210,15 @@ export type TSubscription_RootUser_Profile_By_PkArgs = {
 
 
 export type TSubscription_RootUsersArgs = {
+  distinct_on?: InputMaybe<Array<TUsers_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUsers_Order_By>>;
+  where?: InputMaybe<TUsers_Bool_Exp>;
+};
+
+
+export type TSubscription_RootUsersAggregateArgs = {
   distinct_on?: InputMaybe<Array<TUsers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
@@ -4793,8 +4793,6 @@ export type TUsers = {
   emailVerified: Scalars['Boolean'];
   /** An object relationship */
   esteemPoints?: Maybe<TEsteem_Points>;
-  /** An array relationship */
-  files: Array<TFiles>;
   id: Scalars['uuid'];
   /** An array relationship */
   ideas: Array<TIdeas>;
@@ -4832,22 +4830,6 @@ export type TUsers = {
   user_profiles: Array<TUser_Profile>;
   /** An aggregate relationship */
   user_profiles_aggregate: TUser_Profile_Aggregate;
-};
-
-
-/**
- * The table to store all users
- *
- *
- * columns and relationships of "auth.users"
- *
- */
-export type TUsersFilesArgs = {
-  distinct_on?: InputMaybe<Array<TFiles_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<TFiles_Order_By>>;
-  where?: InputMaybe<TFiles_Bool_Exp>;
 };
 
 
@@ -5047,7 +5029,6 @@ export type TUsers_Bool_Exp = {
   email?: InputMaybe<TCitext_Comparison_Exp>;
   emailVerified?: InputMaybe<TBoolean_Comparison_Exp>;
   esteemPoints?: InputMaybe<TEsteem_Points_Bool_Exp>;
-  files?: InputMaybe<TFiles_Bool_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
   ideas?: InputMaybe<TIdeas_Bool_Exp>;
   isAnonymous?: InputMaybe<TBoolean_Comparison_Exp>;
@@ -5140,7 +5121,6 @@ export type TUsers_Order_By = {
   email?: InputMaybe<TOrder_By>;
   emailVerified?: InputMaybe<TOrder_By>;
   esteemPoints?: InputMaybe<TEsteem_Points_Order_By>;
-  files_aggregate?: InputMaybe<TFiles_Aggregate_Order_By>;
   id?: InputMaybe<TOrder_By>;
   ideas_aggregate?: InputMaybe<TIdeas_Aggregate_Order_By>;
   isAnonymous?: InputMaybe<TOrder_By>;
@@ -8464,7 +8444,6 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   report?: Resolver<Array<TResolversTypes['report']>, ParentType, ContextType, Partial<TQuery_RootReportArgs>>;
   report_by_pk?: Resolver<Maybe<TResolversTypes['report']>, ParentType, ContextType, RequireFields<TQuery_RootReport_By_PkArgs, 'id'>>;
   user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType, RequireFields<TQuery_RootUserArgs, 'id'>>;
-  userAggregate?: Resolver<TResolversTypes['users_aggregate'], ParentType, ContextType, Partial<TQuery_RootUserAggregateArgs>>;
   user_address?: Resolver<Array<TResolversTypes['user_address']>, ParentType, ContextType, Partial<TQuery_RootUser_AddressArgs>>;
   user_address_by_pk?: Resolver<Maybe<TResolversTypes['user_address']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Address_By_PkArgs, 'userId'>>;
   user_followers?: Resolver<Array<TResolversTypes['user_followers']>, ParentType, ContextType, Partial<TQuery_RootUser_FollowersArgs>>;
@@ -8474,6 +8453,7 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   user_profile_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Profile_AggregateArgs>>;
   user_profile_by_pk?: Resolver<Maybe<TResolversTypes['user_profile']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Profile_By_PkArgs, 'id'>>;
   users?: Resolver<Array<TResolversTypes['users']>, ParentType, ContextType, Partial<TQuery_RootUsersArgs>>;
+  usersAggregate?: Resolver<TResolversTypes['users_aggregate'], ParentType, ContextType, Partial<TQuery_RootUsersAggregateArgs>>;
 };
 
 export type TReportResolvers<ContextType = any, ParentType extends TResolversParentTypes['report'] = TResolversParentTypes['report']> = {
@@ -8525,7 +8505,6 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   report?: SubscriptionResolver<Array<TResolversTypes['report']>, "report", ParentType, ContextType, Partial<TSubscription_RootReportArgs>>;
   report_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['report']>, "report_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootReport_By_PkArgs, 'id'>>;
   user?: SubscriptionResolver<Maybe<TResolversTypes['users']>, "user", ParentType, ContextType, RequireFields<TSubscription_RootUserArgs, 'id'>>;
-  userAggregate?: SubscriptionResolver<TResolversTypes['users_aggregate'], "userAggregate", ParentType, ContextType, Partial<TSubscription_RootUserAggregateArgs>>;
   user_address?: SubscriptionResolver<Array<TResolversTypes['user_address']>, "user_address", ParentType, ContextType, Partial<TSubscription_RootUser_AddressArgs>>;
   user_address_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_address']>, "user_address_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Address_By_PkArgs, 'userId'>>;
   user_followers?: SubscriptionResolver<Array<TResolversTypes['user_followers']>, "user_followers", ParentType, ContextType, Partial<TSubscription_RootUser_FollowersArgs>>;
@@ -8535,6 +8514,7 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   user_profile_aggregate?: SubscriptionResolver<TResolversTypes['user_profile_aggregate'], "user_profile_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Profile_AggregateArgs>>;
   user_profile_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_profile']>, "user_profile_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Profile_By_PkArgs, 'id'>>;
   users?: SubscriptionResolver<Array<TResolversTypes['users']>, "users", ParentType, ContextType, Partial<TSubscription_RootUsersArgs>>;
+  usersAggregate?: SubscriptionResolver<TResolversTypes['users_aggregate'], "usersAggregate", ParentType, ContextType, Partial<TSubscription_RootUsersAggregateArgs>>;
 };
 
 export interface TTimestamptzScalarConfig extends GraphQLScalarTypeConfig<TResolversTypes['timestamptz'], any> {
@@ -8704,7 +8684,6 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   email?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
   emailVerified?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   esteemPoints?: Resolver<Maybe<TResolversTypes['esteem_points']>, ParentType, ContextType>;
-  files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, Partial<TUsersFilesArgs>>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   ideas?: Resolver<Array<TResolversTypes['ideas']>, ParentType, ContextType, Partial<TUsersIdeasArgs>>;
   ideas_aggregate?: Resolver<TResolversTypes['ideas_aggregate'], ParentType, ContextType, Partial<TUsersIdeas_AggregateArgs>>;

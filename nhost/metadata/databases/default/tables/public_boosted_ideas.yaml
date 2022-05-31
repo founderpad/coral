@@ -8,4 +8,6 @@ configuration:
     points_increment: pointsIncrement
     remaining_currency_amount: remainingCurrencyAmount
     remaining_points: remainingPoints
+    total_currency_amount: totalCurrencyAmount
+    total_points: totalPoints
   custom_root_fields: {}

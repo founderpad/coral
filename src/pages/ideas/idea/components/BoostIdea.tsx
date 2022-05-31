@@ -7,7 +7,8 @@ import { AppDivider } from '@components/shared';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
 import { useCurrentUser } from '@hooks/auth';
 import { useModalDrawer } from '@hooks/util';
-import React, { useCallback } from 'react';
+import { PayPalButtons } from '@paypal/react-paypal-js';
+import React, { useCallback, useState } from 'react';
 import { BiCoinStack, BiDollar } from 'react-icons/bi';
 import { IoRocketSharp } from 'react-icons/io5';
 
@@ -20,7 +21,7 @@ const BoostIdea = (idea: TIdeaPreviewFieldsFragment) => {
 			hideYesLabel: true,
 			body: <BoostIdeaForm {...idea} />
 		});
-	}, [setModalDrawer]);
+	}, [setModalDrawer, idea]);
 
 	return (
 		<Button
@@ -37,28 +38,71 @@ const BoostIdea = (idea: TIdeaPreviewFieldsFragment) => {
 };
 
 const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
+	const { setModalDrawer } = useModalDrawer();
 	const esteemPoints = useCurrentUser().esteemPoints?.points ?? 0;
-	const neededPoints = esteemPoints >= 500 ? 0 : 500 - esteemPoints;
-	return (
-		<>
-			<BaseHeading fontSize="md" pb={6}>
-				{idea.name}
-			</BaseHeading>
-			<Label fontSize="sm" pb={8}>
-				Boost your idea below to receive more feedback and engagement on
-				your idea. Users will earn a portion of the esteem points or
-				money you spend on the boost to ensure you receive the highest
-				quality feedback possible.
-			</Label>
+	const neededPoints = esteemPoints >= 1000 ? 0 : 1000 - esteemPoints;
 
-			<Label
-				textAlign="center"
-				fontSize="sm"
-				fontWeight="semibold"
-				pb={12}
-			>
-				Boost using the following options
-			</Label>
+	const [succeeded, setSucceeded] = useState(false);
+	const [paypalErrorMessage, setPaypalErrorMessage] = useState('');
+	const [orderID, setOrderID] = useState(false);
+	const [billingDetails, setBillingDetails] = useState('');
+
+	const AMOUNT = 10;
+
+	// creates a paypal order
+	const createOrder = (data, actions) => {
+		return actions.order
+			.create({
+				purchase_units: [
+					{
+						description: 'Boost idea',
+						amount: {
+							// charge users $499 per order
+							value: AMOUNT
+						}
+					}
+				],
+				// remove the applicaiton_context object if you need your users to add a shipping address
+				application_context: {
+					shipping_preference: 'NO_SHIPPING'
+				}
+			})
+			.then((orderID) => {
+				setOrderID(orderID);
+				return orderID;
+			});
+	};
+
+	const onApprove = (data, actions) => {
+		return actions.order
+			.capture()
+			.then(function (details) {
+				const { payer } = details;
+				setBillingDetails(payer);
+				setSucceeded(true);
+			})
+			.catch((err) => setPaypalErrorMessage('Something went wrong.'));
+	};
+
+	if (succeeded) {
+		return (
+			<StackLayout spacing={12}>
+				<BaseHeading>Payment complete</BaseHeading>
+			</StackLayout>
+		);
+	}
+
+	return (
+		<StackLayout spacing={12}>
+			<StackLayout spacing={2}>
+				<Label fontSize="sm" color="gray.500" textAlign="center">
+					Idea
+				</Label>
+				<BaseHeading fontSize="md" textAlign="center">
+					{idea.name}
+				</BaseHeading>
+			</StackLayout>
+
 			<StackLayout>
 				<FlexLayout flex={1}>
 					<StackLayout
@@ -80,13 +124,15 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 								color="yellow.500"
 								mr={4}
 							>
-								{esteemPoints}
+								1000
 							</Label>
 						</FlexLayout>
 						{neededPoints > 0 && (
 							<Label fontSize="xs" color="gray.500">
-								Earn another <strong>{neededPoints}</strong>{' '}
-								esteem points to be able to boost
+								You have {esteemPoints} esteem points.
+								<br /> Earn another{' '}
+								<strong>{neededPoints}</strong> to be able to
+								boost (500 for boost, and 500 to users on ).
 							</Label>
 						)}
 					</StackLayout>
@@ -119,13 +165,24 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 							</Label>
 						</FlexLayout>
 						<Label fontSize="xs" color="gray.500">
-							Payment is made using Stripe
+							Total (incl. fees): ${10 + 0.3 + 0.29}
 						</Label>
 					</StackLayout>
-					<PrimaryButton name="boost">Boost for $10</PrimaryButton>
+					<PayPalButtons
+						style={{
+							color: 'silver',
+							shape: 'pill',
+							label: 'pay',
+							tagline: false
+						}}
+						createOrder={createOrder}
+						// fundingSource={FUNDING.PAYPAL}
+						// createOrder={createPayPalOrder}
+						onApprove={onApprove}
+					/>
 				</FlexLayout>
 			</StackLayout>
-		</>
+		</StackLayout>
 	);
 };
 

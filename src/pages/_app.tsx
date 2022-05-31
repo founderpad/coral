@@ -8,6 +8,7 @@ import '@fontsource/inter/700.css';
 import { useTrackAnalytics } from '@hooks/util';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { NhostAuthProvider } from '@nhost/react-auth';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import DrawerProvider from '@provider/DrawerProvider';
 import IdeaCycleProvider from '@provider/IdeaCycleProvider';
 import ModalDrawerProvider from '@provider/ModalDrawerProvider';
@@ -92,29 +93,39 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
-					<NhostAuthProvider nhost={nhost}>
-						<NhostApolloProvider
-							nhost={nhost as any} // Fix this when SDK is stable
-							cache={cache}
-							connectToDevTools={true}
-						>
-							<ChakraProvider theme={theme} resetCSS>
-								<NotificationProvider>
-									<ModalProvider>
-										<DrawerProvider>
-											<ModalDrawerProvider>
-												<IdeaCycleProvider>
-													<BaseModal />
-													<BaseModalDrawer />
-													<Component {...pageProps} />
-												</IdeaCycleProvider>
-											</ModalDrawerProvider>
-										</DrawerProvider>
-									</ModalProvider>
-								</NotificationProvider>
-							</ChakraProvider>
-						</NhostApolloProvider>
-					</NhostAuthProvider>
+					<PayPalScriptProvider
+						options={{
+							'client-id':
+								process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+							currency: 'USD'
+						}}
+					>
+						<NhostAuthProvider nhost={nhost}>
+							<NhostApolloProvider
+								nhost={nhost as any} // Fix this when SDK is stable
+								cache={cache}
+								connectToDevTools={true}
+							>
+								<ChakraProvider theme={theme} resetCSS>
+									<NotificationProvider>
+										<ModalProvider>
+											<DrawerProvider>
+												<ModalDrawerProvider>
+													<IdeaCycleProvider>
+														<BaseModal />
+														<BaseModalDrawer />
+														<Component
+															{...pageProps}
+														/>
+													</IdeaCycleProvider>
+												</ModalDrawerProvider>
+											</DrawerProvider>
+										</ModalProvider>
+									</NotificationProvider>
+								</ChakraProvider>
+							</NhostApolloProvider>
+						</NhostAuthProvider>
+					</PayPalScriptProvider>
 				</PersistGate>
 			</Provider>
 		</React.Fragment>

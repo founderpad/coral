@@ -16,6 +16,7 @@ const BoostedIdeasGridLayout = () => {
 		>
 			{arr.map((a) => (
 				<GridItem
+					key={a}
 					borderWidth={1}
 					p={4}
 					rounded={{ base: 'none', lg: 'md' }}
