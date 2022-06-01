@@ -124,6 +124,20 @@ array_relationships:
       table:
         name: user_providers
         schema: auth
+- name: user_followers
+  using:
+    foreign_key_constraint_on:
+      column: follower_id
+      table:
+        name: user_followers
+        schema: public
+- name: user_notifications
+  using:
+    foreign_key_constraint_on:
+      column: user_id
+      table:
+        name: user_notifications
+        schema: public
 - name: user_profiles
   using:
     foreign_key_constraint_on:

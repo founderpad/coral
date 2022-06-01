@@ -3334,9 +3334,9 @@ export type TQuery_Root = {
   user_address: Array<TUser_Address>;
   /** fetch data from the table: "user_address" using primary key columns */
   user_address_by_pk?: Maybe<TUser_Address>;
-  /** fetch data from the table: "user_followers" */
+  /** An array relationship */
   user_followers: Array<TUser_Followers>;
-  /** fetch aggregated fields from the table: "user_followers" */
+  /** An aggregate relationship */
   user_followers_aggregate: TUser_Followers_Aggregate;
   /** fetch data from the table: "user_followers" using primary key columns */
   user_followers_by_pk?: Maybe<TUser_Followers>;
@@ -3845,9 +3845,9 @@ export type TSubscription_Root = {
   user_address: Array<TUser_Address>;
   /** fetch data from the table: "user_address" using primary key columns */
   user_address_by_pk?: Maybe<TUser_Address>;
-  /** fetch data from the table: "user_followers" */
+  /** An array relationship */
   user_followers: Array<TUser_Followers>;
-  /** fetch aggregated fields from the table: "user_followers" */
+  /** An aggregate relationship */
   user_followers_aggregate: TUser_Followers_Aggregate;
   /** fetch data from the table: "user_followers" using primary key columns */
   user_followers_by_pk?: Maybe<TUser_Followers>;
@@ -4351,6 +4351,13 @@ export type TUser_Followers_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "user_followers" */
+export type TUser_Followers_Aggregate_Order_By = {
+  count?: InputMaybe<TOrder_By>;
+  max?: InputMaybe<TUser_Followers_Max_Order_By>;
+  min?: InputMaybe<TUser_Followers_Min_Order_By>;
+};
+
 /** Boolean expression to filter rows from the table "user_followers". All fields are combined with a logical 'AND'. */
 export type TUser_Followers_Bool_Exp = {
   _and?: InputMaybe<Array<TUser_Followers_Bool_Exp>>;
@@ -4376,12 +4383,26 @@ export type TUser_Followers_Max_Fields = {
   status?: Maybe<Scalars['String']>;
 };
 
+/** order by max() on columns of table "user_followers" */
+export type TUser_Followers_Max_Order_By = {
+  followerId?: InputMaybe<TOrder_By>;
+  followingId?: InputMaybe<TOrder_By>;
+  status?: InputMaybe<TOrder_By>;
+};
+
 /** aggregate min on columns */
 export type TUser_Followers_Min_Fields = {
   __typename?: 'user_followers_min_fields';
   followerId?: Maybe<Scalars['uuid']>;
   followingId?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "user_followers" */
+export type TUser_Followers_Min_Order_By = {
+  followerId?: InputMaybe<TOrder_By>;
+  followingId?: InputMaybe<TOrder_By>;
+  status?: InputMaybe<TOrder_By>;
 };
 
 /** response of any mutation on the table "user_followers" */
@@ -4827,6 +4848,10 @@ export type TUsers = {
   totpSecret?: Maybe<Scalars['String']>;
   updatedAt: Scalars['timestamptz'];
   /** An array relationship */
+  user_followers: Array<TUser_Followers>;
+  /** An aggregate relationship */
+  user_followers_aggregate: TUser_Followers_Aggregate;
+  /** An array relationship */
   user_profiles: Array<TUser_Profile>;
   /** An aggregate relationship */
   user_profiles_aggregate: TUser_Profile_Aggregate;
@@ -4968,6 +4993,38 @@ export type TUsersMessages_AggregateArgs = {
  * columns and relationships of "auth.users"
  *
  */
+export type TUsersUser_FollowersArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Followers_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Followers_Order_By>>;
+  where?: InputMaybe<TUser_Followers_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersUser_Followers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Followers_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Followers_Order_By>>;
+  where?: InputMaybe<TUser_Followers_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
 export type TUsersUser_ProfilesArgs = {
   distinct_on?: InputMaybe<Array<TUser_Profile_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -5049,6 +5106,7 @@ export type TUsers_Bool_Exp = {
   ticketExpiresAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   totpSecret?: InputMaybe<TString_Comparison_Exp>;
   updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  user_followers?: InputMaybe<TUser_Followers_Bool_Exp>;
   user_profiles?: InputMaybe<TUser_Profile_Bool_Exp>;
 };
 
@@ -5141,6 +5199,7 @@ export type TUsers_Order_By = {
   ticketExpiresAt?: InputMaybe<TOrder_By>;
   totpSecret?: InputMaybe<TOrder_By>;
   updatedAt?: InputMaybe<TOrder_By>;
+  user_followers_aggregate?: InputMaybe<TUser_Followers_Aggregate_Order_By>;
   user_profiles_aggregate?: InputMaybe<TUser_Profile_Aggregate_Order_By>;
 };
 
@@ -7326,10 +7385,13 @@ export type TResolversTypes = {
   user_followers: ResolverTypeWrapper<TUser_Followers>;
   user_followers_aggregate: ResolverTypeWrapper<TUser_Followers_Aggregate>;
   user_followers_aggregate_fields: ResolverTypeWrapper<TUser_Followers_Aggregate_Fields>;
+  user_followers_aggregate_order_by: TUser_Followers_Aggregate_Order_By;
   user_followers_bool_exp: TUser_Followers_Bool_Exp;
   user_followers_insert_input: TUser_Followers_Insert_Input;
   user_followers_max_fields: ResolverTypeWrapper<TUser_Followers_Max_Fields>;
+  user_followers_max_order_by: TUser_Followers_Max_Order_By;
   user_followers_min_fields: ResolverTypeWrapper<TUser_Followers_Min_Fields>;
+  user_followers_min_order_by: TUser_Followers_Min_Order_By;
   user_followers_mutation_response: ResolverTypeWrapper<TUser_Followers_Mutation_Response>;
   user_followers_order_by: TUser_Followers_Order_By;
   user_followers_select_column: TUser_Followers_Select_Column;
@@ -7591,10 +7653,13 @@ export type TResolversParentTypes = {
   user_followers: TUser_Followers;
   user_followers_aggregate: TUser_Followers_Aggregate;
   user_followers_aggregate_fields: TUser_Followers_Aggregate_Fields;
+  user_followers_aggregate_order_by: TUser_Followers_Aggregate_Order_By;
   user_followers_bool_exp: TUser_Followers_Bool_Exp;
   user_followers_insert_input: TUser_Followers_Insert_Input;
   user_followers_max_fields: TUser_Followers_Max_Fields;
+  user_followers_max_order_by: TUser_Followers_Max_Order_By;
   user_followers_min_fields: TUser_Followers_Min_Fields;
+  user_followers_min_order_by: TUser_Followers_Min_Order_By;
   user_followers_mutation_response: TUser_Followers_Mutation_Response;
   user_followers_order_by: TUser_Followers_Order_By;
   user_profile: TUser_Profile;
@@ -8708,6 +8773,8 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   ticketExpiresAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   totpSecret?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  user_followers?: Resolver<Array<TResolversTypes['user_followers']>, ParentType, ContextType, Partial<TUsersUser_FollowersArgs>>;
+  user_followers_aggregate?: Resolver<TResolversTypes['user_followers_aggregate'], ParentType, ContextType, Partial<TUsersUser_Followers_AggregateArgs>>;
   user_profiles?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, Partial<TUsersUser_ProfilesArgs>>;
   user_profiles_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, Partial<TUsersUser_Profiles_AggregateArgs>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
