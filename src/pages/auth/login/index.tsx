@@ -1,8 +1,8 @@
 import AuthLayout from '@components/layouts/AuthLayout';
 import { TUsers, useUserLazyQuery } from '@generated/api';
 import { useCheckLoggedIn } from '@hooks/auth';
+import { nhost } from '@pages/_app';
 import { setUser } from '@slices/auth';
-import { nhost } from '@utils/nhost';
 import { NextPage } from 'next';
 import Router from 'next/router';
 import React, { useEffect } from 'react';

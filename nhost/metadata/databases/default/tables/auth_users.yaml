@@ -64,13 +64,6 @@ object_relationships:
         name: user_profile
         schema: public
 array_relationships:
-- name: files
-  using:
-    foreign_key_constraint_on:
-      column: uploaded_by_user_id
-      table:
-        name: files
-        schema: storage
 - name: ideas
   using:
     foreign_key_constraint_on:

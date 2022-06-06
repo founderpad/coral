@@ -6,8 +6,8 @@ import BaseModalDrawer from '@components/modal/BaseModalDrawer';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
 import { useTrackAnalytics } from '@hooks/util';
+import { NhostNextProvider, NhostClient } from '@nhost/nextjs';
 import { NhostApolloProvider } from '@nhost/react-apollo';
-import { NhostAuthProvider } from '@nhost/react-auth';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import DrawerProvider from '@provider/DrawerProvider';
 import IdeaCycleProvider from '@provider/IdeaCycleProvider';
@@ -15,7 +15,6 @@ import ModalDrawerProvider from '@provider/ModalDrawerProvider';
 import ModalProvider from '@provider/ModalProvider';
 import NotificationProvider from '@provider/NotificationProvider';
 import theme from '@theme/index';
-import { nhost } from '@utils/nhost';
 import store from '@utils/store';
 import 'focus-visible/dist/focus-visible';
 import { AppProps } from 'next/app';
@@ -28,6 +27,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 import '../styles/globals.css';
 
 const persistor = persistStore(store);
+
+const nhost = new NhostClient({
+	backendUrl: process.env.NEXT_PUBLIC_BACKEND!
+});
+
+const auth = nhost.auth;
+const storage = nhost.storage;
+const functions = nhost.functions;
 
 /**
  * The @App component is the entry point into the application. It wraps the application with the @see ChakraProvider which is a TailwindCSS inspired utility-first
@@ -91,21 +98,28 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				strategy="lazyOnload"
 			/>
 
-			<Provider store={store}>
-				<PersistGate persistor={persistor}>
-					<PayPalScriptProvider
-						options={{
-							'client-id':
-								process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
-							currency: 'USD'
-						}}
-					>
-						<NhostAuthProvider nhost={nhost}>
+			<NhostNextProvider nhost={nhost} initial={pageProps.nhostSession}>
+				<NhostApolloProvider
+					nhost={nhost as any}
+					cache={cache}
+					connectToDevTools={true}
+				>
+					<Provider store={store}>
+						<PersistGate persistor={persistor}>
+							<PayPalScriptProvider
+								options={{
+									'client-id':
+										process.env
+											.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+									currency: 'USD'
+								}}
+							>
+								{/* <NhostAuthProvider nhost={nhost}>
 							<NhostApolloProvider
 								nhost={nhost as any} // Fix this when SDK is stable
 								cache={cache}
 								connectToDevTools={true}
-							>
+							> */}
 								<ChakraProvider theme={theme} resetCSS>
 									<NotificationProvider>
 										<ModalProvider>
@@ -123,11 +137,13 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 										</ModalProvider>
 									</NotificationProvider>
 								</ChakraProvider>
-							</NhostApolloProvider>
-						</NhostAuthProvider>
-					</PayPalScriptProvider>
-				</PersistGate>
-			</Provider>
+								{/* </NhostApolloProvider>
+						</NhostAuthProvider> */}
+							</PayPalScriptProvider>
+						</PersistGate>
+					</Provider>
+				</NhostApolloProvider>
+			</NhostNextProvider>
 		</React.Fragment>
 	);
 };
@@ -208,6 +224,6 @@ const cache = new InMemoryCache({
 	}
 });
 
-export { cache };
+export { cache, nhost, auth, storage, functions };
 
 export default App;

@@ -4,7 +4,7 @@ import MobileNavigationContext from '@context/MobileNavigationContext';
 import ModalDrawerContext from '@context/ModalDrawerContext';
 import NotificationContext from '@context/NotificationContext';
 import { pageview } from '@lib/ga';
-import { storage } from '@utils/nhost';
+import { storage } from '@pages/_app';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef, useState } from 'react';
 

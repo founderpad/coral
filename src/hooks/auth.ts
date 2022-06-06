@@ -2,7 +2,6 @@ import { TUsers, useUserLazyQuery } from '@generated/api';
 import { event } from '@lib/ga';
 import { useNhostAuth } from '@nhost/react-auth';
 import { setUser } from '@slices/auth';
-import { auth } from '@utils/nhost';
 import { RootState } from '@utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -15,6 +14,7 @@ import Router from 'next/router';
 import { useContext, useEffect } from 'react';
 import { encodeString, redirectTo } from '@utils/validators';
 import ModalDrawerContext from '@context/ModalDrawerContext';
+import { auth } from '@pages/_app';
 
 export const useRegister = () => {
 	return async ({

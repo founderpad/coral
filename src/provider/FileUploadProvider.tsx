@@ -1,5 +1,6 @@
 import FileUploadContext from '@context/FileUploadContext';
-import { storage } from '@utils/nhost';
+import { storage } from '@pages/_app';
+
 import React, { useCallback, useState } from 'react';
 import {
 	IFileUploadProps,
