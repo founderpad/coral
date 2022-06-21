@@ -10,7 +10,7 @@ import { useAuth } from '@/hooks/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 import { event } from '@/lib/ga';
 import useIdea from '@/pages/ideas/idea/query/ideaQuery';
-import { addEsteemPoints } from '@slices/auth';
+import { addEsteemPoints } from '@/slices/auth';
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ResizeTextarea from 'react-textarea-autosize';

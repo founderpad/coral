@@ -1,5 +1,5 @@
 // import { AnyAction } from '@reduxjs/toolkit';
-import AuthSlice from '@slices/auth';
+import AuthSlice from '@/slices/auth';
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
 

@@ -9,7 +9,7 @@ import {
 	useUpdateUserProfileMutation
 } from '@generated/api';
 import { useCurrentUser } from '@/hooks/auth';
-import { setProfileComplete } from '@slices/auth';
+import { setProfileComplete } from '@/slices/auth';
 import {
 	ALL_IDEA_CATEGORY_FIELDS,
 	ALL_USER_OBJECTIVES,

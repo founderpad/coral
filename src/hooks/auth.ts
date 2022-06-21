@@ -1,6 +1,6 @@
 import { TUsers, useUserLazyQuery } from '@generated/api';
 import { event } from '@/lib/ga';
-import { setUser } from '@slices/auth';
+import { setUser } from '@/slices/auth';
 import { RootState } from '@/utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import {

@@ -2,7 +2,7 @@ import { useApolloClient } from '@apollo/client';
 import { DeleteButton } from '@/components/buttons';
 import { useModalDrawer } from '@/hooks/util';
 import { auth, nhost } from '@/pages/_app';
-import { logout } from '@slices/auth';
+import { logout } from '@/slices/auth';
 // import { useLogout } from '@/hooks/auth';
 // import Router from 'next/router';
 import React, { useEffect } from 'react';

@@ -11,7 +11,7 @@ import {
 } from '@generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
-import { updateUserPersonalDetails } from '@slices/auth';
+import { updateUserPersonalDetails } from '@/slices/auth';
 import { ALL_COUNTRIES, ALL_PRONOUNS } from '@/utils/Constants';
 import { redirectTo } from '@/utils/validators';
 import React from 'react';

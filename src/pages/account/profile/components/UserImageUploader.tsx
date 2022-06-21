@@ -4,7 +4,7 @@ import { useUpdateUserAvatarMutation } from '@generated/api';
 import { useAuth, useCurrentUser } from '@/hooks/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 import { useFileUpload, useModalDrawer } from '@/hooks/util';
-import { updateUserImage } from '@slices/auth';
+import { updateUserImage } from '@/slices/auth';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 

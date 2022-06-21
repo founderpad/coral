@@ -16,7 +16,7 @@ import { SwitchField } from '@/components/input';
 import { StackLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
 import { useDispatch } from 'react-redux';
-import { addEsteemPoints } from '@slices/auth';
+import { addEsteemPoints } from '@/slices/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 
 const CreateIdeaForm = () => {
