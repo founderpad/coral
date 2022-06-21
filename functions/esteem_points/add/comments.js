@@ -18,6 +18,7 @@ export default async (req, res) => {
 	// isValidSecret(req);
 	const userId = req.body.event.data.new.user_id;
 	const targetUserId = req.body.event.data.new.target_user_id;
+	let isSuccess = false;
 
 	if (!userId) throw 'No user id found';
 	if (targetUserId === userId) return null;
@@ -26,11 +27,17 @@ export default async (req, res) => {
 		const response = await graphqlClient.request(ADD_ESTEEM_POINTS, {
 			userId
 		});
-		res.status(200).send('Esteem points added for user');
 	} catch (error) {
-		// throw `Failed to insert esteem points for user with id: ${userId}`;
 		res.status(500).send(
-			error.message + ' --- Failed to add esteem points for user'
+			`Caught exception when trying to add esteem points for user with id ${userId} --- message: ${error.message}`
 		);
 	}
+
+	if (isSuccess) {
+		res.status(200).send('Esteem points added for user');
+	}
+
+	res.status(500).send(
+		error.message + ` --- Failed to add esteem points for user: ${userId}`
+	);
 };
