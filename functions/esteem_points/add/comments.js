@@ -27,6 +27,7 @@ export default async (req, res) => {
 		const response = await graphqlClient.request(ADD_ESTEEM_POINTS, {
 			userId
 		});
+		res.status(200).send(`Esteem points added for user with id: ${userId}`);
 	} catch (error) {
 		res.status(500).send(
 			`Caught exception when trying to add esteem points for user with id ${userId} --- message: ${error.message}`
