@@ -42,7 +42,7 @@ export default async (req, res) => {
 			console.log(e.body);
 		}
 
-		res.status(200).send('Failed to send push notification (new comment)');
+		res.status(200).send('Failed to send push notification (new comment) ');
 	}
 
 	if (isSuccess) {
