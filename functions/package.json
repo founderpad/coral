@@ -8,9 +8,9 @@
 	"author": "founderpad",
 	"license": "ISC",
 	"dependencies": {
-		"aws-sdk": "^2.1094.0",
-		"express": "^4.17.3",
-		"graphql-request": "^4.2.0",
+		"aws-sdk": "^2.1158.0",
+		"express": "^4.18.1",
+		"graphql-request": "^4.3.0",
 		"onesignal-node": "^3.3.0"
 	},
 	"devDependencies": {
