@@ -1,4 +1,4 @@
-import { getClient, isValidSecret } from 'functions';
+import { isValidSecret } from 'functions';
 
 // const { graphqlClient, gql } = getClient();
 const { GraphQLClient, gql } = require('graphql-request');
