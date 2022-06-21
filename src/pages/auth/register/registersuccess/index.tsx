@@ -1,10 +1,10 @@
 import { Icon } from '@chakra-ui/react';
-import BaseHeading from '@components/heading/BaseHeading';
-import { Label } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import AuthLayout from '@components/layouts/AuthLayout';
-import { PrimaryLink } from '@components/links';
-import { decodeString } from '@utils/validators';
+import BaseHeading from '@/components/heading/BaseHeading';
+import { Label } from '@/components/labels';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import AuthLayout from '@/components/layouts/AuthLayout';
+import { PrimaryLink } from '@/components/links';
+import { decodeString } from '@/utils/validators';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';

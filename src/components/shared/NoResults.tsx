@@ -1,9 +1,9 @@
 import Icon from '@chakra-ui/icon';
 import { HeadingProps } from '@chakra-ui/layout';
-import { GoBackButton } from '@components/buttons';
-import { SubheadingText } from '@components/heading';
-import { VscSearchStop } from '@components/icons';
-import { BoxLayout } from '@components/layouts';
+import { GoBackButton } from '@/components/buttons';
+import { SubheadingText } from '@/components/heading';
+import { VscSearchStop } from '@/components/icons';
+import { BoxLayout } from '@/components/layouts';
 import React from 'react';
 
 type Props = {
@@ -24,6 +24,7 @@ export const NoResults = ({ label, back = true, fontSize = 'sm' }: Props) => (
 		flexDirection="column"
 		justifyContent="center"
 		alignItems="center"
+		display="flex"
 	>
 		<Icon as={VscSearchStop} color="fpGrey.700" fontSize="x-large" mb={2} />
 		<SubheadingText fontSize={fontSize} color="fpGrey.700">

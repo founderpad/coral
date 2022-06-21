@@ -1,9 +1,9 @@
-import { AlertFeedback } from '@components/alert';
-import { SubmitButton } from '@components/buttons';
-import BaseForm from '@components/form/BaseForm';
-import { FormInput } from '@components/form/inputs/FormField';
-import { useChangePassword } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
+import { AlertFeedback } from '@/components/alert';
+import { SubmitButton } from '@/components/buttons';
+import BaseForm from '@/components/form/BaseForm';
+import { FormInput } from '@/components/form/inputs/FormField';
+import { useChangePassword } from '@/hooks/auth';
+import { useQueryParam } from '@/hooks/util';
 import React from 'react';
 
 type TChangePasswordFields = {

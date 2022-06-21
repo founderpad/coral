@@ -1,8 +1,7 @@
 import { TUsers, useUserLazyQuery } from '@generated/api';
-import { event } from '@lib/ga';
-import { useNhostAuth } from '@nhost/react-auth';
+import { event } from '@/lib/ga';
 import { setUser } from '@slices/auth';
-import { RootState } from '@utils/reducer';
+import { RootState } from '@/utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	TRegisterFormFields,
@@ -12,9 +11,10 @@ import {
 import { useErrorNotification } from './toast';
 import Router from 'next/router';
 import { useContext, useEffect } from 'react';
-import { encodeString, redirectTo } from '@utils/validators';
-import ModalDrawerContext from '@context/ModalDrawerContext';
-import { auth } from '@pages/_app';
+import { encodeString, redirectTo } from '@/utils/validators';
+import ModalDrawerContext from '@/context/ModalDrawerContext';
+import { auth } from '@/pages/_app';
+import { useAuthenticationStatus } from '@nhost/react';
 
 export const useRegister = () => {
 	return async ({
@@ -68,17 +68,19 @@ export const useLogin = () => {
 				redirectTo(true, undefined, '/login');
 				throw new Error('Failed to login');
 			}
-		} catch (error) {}
+		} catch (error) {
+			console.error('Failed to login');
+		}
 	};
 };
 
 export const useSocialLogin = () => {
 	const [getUser] = useGetAuthUser();
 
-	const { isAuthenticated } = useAuth();
+	const { isAuthenticated } = useAuthenticationStatus();
 	useEffect(() => {
 		if (isAuthenticated) getUser();
-	}, [isAuthenticated]);
+	}, [isAuthenticated, getUser]);
 
 	return async (authProvider: TAuthProvider) => {
 		try {
@@ -105,7 +107,7 @@ export const useResetPassword = () => {
 };
 
 export const useChangePassword = () => {
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const { closeModalDrawer } = useContext(ModalDrawerContext);
 
 	const onChangePassword = async ({
 		newPassword
@@ -121,10 +123,7 @@ export const useChangePassword = () => {
 		}
 
 		redirectTo(false, 'cp');
-
-		setModalDrawer({
-			isOpen: false
-		});
+		closeModalDrawer();
 	};
 
 	return onChangePassword;
@@ -177,15 +176,15 @@ export const useCurrentUser = (): TUsers => {
 };
 
 export const useCheckLoggedIn = (): void => {
-	const { isAuthenticated } = useAuth();
+	const { isAuthenticated } = useAuthenticationStatus();
 	const changePasswordHash = Router.asPath.split('#')[1] ?? '';
 
 	useEffect(() => {
 		if (isAuthenticated && !changePasswordHash) {
 			Router.replace('/ideas/search?page=1');
 		}
-	}, [isAuthenticated]);
+	}, [isAuthenticated, changePasswordHash]);
 };
 
 export const useClaim = (): string | undefined => auth.getUser()?.id;
-export const useAuth = () => useNhostAuth();
+export const useAuth = () => auth;

@@ -9,8 +9,8 @@ import {
 	NumberInputField,
 	NumberInputStepper
 } from '@chakra-ui/react';
-import { FormErrorText, FormLabelText } from '@components/form';
-import { FlexLayout } from '@components/layouts';
+import { FormErrorText, FormLabelText } from '@/components/form';
+import { FlexLayout } from '@/components/layouts';
 import { Controller } from 'react-hook-form';
 import { IInputFieldProps } from 'src/types/fields';
 

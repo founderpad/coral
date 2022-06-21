@@ -1,8 +1,8 @@
-import { FlexLayout } from '@components/layouts';
-import { BaseLink } from '@components/links';
-import { PointSeparator, UserAvatarDetails } from '@components/shared';
-import { useCurrentUser } from '@hooks/auth';
-import { formatDate } from '@utils/validators';
+import { FlexLayout } from '@/components/layouts';
+import { BaseLink } from '@/components/links';
+import { PointSeparator, UserAvatarDetails } from '@/components/shared';
+import { useCurrentUser } from '@/hooks/auth';
+import { formatDate } from '@/utils/validators';
 import React from 'react';
 import useIdea from '../query/ideaQuery';
 import IdeaActions from './IdeaMenu';

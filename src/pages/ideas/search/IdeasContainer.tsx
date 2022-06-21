@@ -1,19 +1,24 @@
-import { StackLayout } from '@components/layouts';
-import { AppDivider, Loading, NoResults, PageHeader } from '@components/shared';
+import { StackLayout } from '@/components/layouts';
+import {
+	AppDivider,
+	Loading,
+	NoResults,
+	PageHeader
+} from '@/components/shared';
 import {
 	TIdeaPreviewFieldsFragment,
 	TIdea_Preview_Bool_Exp,
 	TIdea_Preview_Order_By,
 	useIdeasQuery
 } from '@generated/api';
-import { useClaim } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
+import { useClaim } from '@/hooks/auth';
+import { useQueryParam } from '@/hooks/util';
 import React, { useContext } from 'react';
 import IdeaCard from './components/ideacard/IdeaCard';
 import OffsetPagination from './OffsetPagination';
 import Router from 'next/router';
-import IdeaCycleContext from '@context/IdeaCycleContext';
-import SearchActions from '@components/shared/SearchActions';
+import IdeaCycleContext from '@/context/IdeaCycleContext';
+import SearchActions from '@/components/shared/SearchActions';
 import MobileFilterMenu from './components/MobileFilterMenu';
 import IdeasSearchForm from './components/form/IdeasSearchForm';
 

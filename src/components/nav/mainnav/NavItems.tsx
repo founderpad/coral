@@ -5,7 +5,7 @@ import {
 	IoPersonSharp,
 	// IoRocketSharp,
 	IoSearchSharp
-} from '@components/icons';
+} from '@/components/icons';
 import { IconType } from 'react-icons/lib';
 import React from 'react';
 import { ColorProps } from '@chakra-ui/react';

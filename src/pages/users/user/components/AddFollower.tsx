@@ -1,5 +1,5 @@
-import { PrimaryButton } from '@components/buttons';
-import { Label } from '@components/labels';
+import { PrimaryButton } from '@/components/buttons';
+import { Label } from '@/components/labels';
 import { useFollowUserMutation } from '@generated/api';
 import React, { useCallback, useState } from 'react';
 

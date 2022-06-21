@@ -1,6 +1,6 @@
-import { PageLayout } from '@components/layouts';
-import { DocumentTitle } from '@components/shared';
-import AuthFilter from '@utils/AuthFilter';
+import { PageLayout } from '@/components/layouts';
+import { DocumentTitle } from '@/components/shared';
+import AuthFilter from '@/utils/AuthFilter';
 import Head from 'next/head';
 import React from 'react';
 import BoostedIdeasGridLayout from './BoostedIdeasGridLayout';

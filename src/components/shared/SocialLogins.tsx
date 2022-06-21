@@ -1,6 +1,6 @@
-import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
-import { useSocialLogin } from '@hooks/auth';
+import { Label } from '@/components/labels';
+import { StackLayout } from '@/components/layouts';
+import { useSocialLogin } from '@/hooks/auth';
 import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
 import { isIOS } from 'react-device-detect';
@@ -26,7 +26,7 @@ const SocialLogins = memo(() => {
 
 	return (
 		<StackLayout
-			d="flex"
+			display="flex"
 			justifyContent="center"
 			spacing={4}
 			w="full"

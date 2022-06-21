@@ -1,5 +1,5 @@
-import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
+import { Label } from '@/components/labels';
+import { StackLayout } from '@/components/layouts';
 import React from 'react';
 
 interface Props {

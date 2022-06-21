@@ -1,22 +1,22 @@
 import Icon from '@chakra-ui/icon';
 import { Box, Heading } from '@chakra-ui/layout';
-import { IoLockClosedSharp } from '@components/icons';
-import MainMentorLayout from '@components/layouts/MainMentorLayout';
-import AuthFilter from '@utils/AuthFilter';
+import { IoLockClosedSharp } from '@/components/icons';
+import MainMentorLayout from '@/components/layouts/MainMentorLayout';
+import AuthFilter from '@/utils/AuthFilter';
 import React from 'react';
 
 const Investor = () => {
 	return (
 		<MainMentorLayout>
 			<Box
-				d="flex"
+				display="flex"
 				flex={1}
 				justifyContent="center"
 				alignItems="center"
 				flexDirection="column"
 			>
 				<Box
-					d="flex"
+					display="flex"
 					flex={1}
 					justifyContent="center"
 					alignItems="center"

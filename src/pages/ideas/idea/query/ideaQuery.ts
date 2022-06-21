@@ -1,7 +1,7 @@
 import { IdeaDocument, TIdeaQuery, TIdeas } from '@generated/api';
-import { useClaim } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
-import { cache } from '@pages/_app';
+import { useClaim } from '@/hooks/auth';
+import { useQueryParam } from '@/hooks/util';
+import { cache } from '@/pages/_app';
 import gql from 'graphql-tag';
 
 export const useIdeaFragment = (id?: string) => {

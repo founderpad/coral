@@ -1,5 +1,5 @@
 import { Textarea, IconButton, Icon, StackProps } from '@chakra-ui/react';
-import { StackLayout } from '@components/layouts';
+import { StackLayout } from '@/components/layouts';
 import React from 'react';
 import { IoSendSharp } from 'react-icons/io5';
 import { CurrentUserAvatar } from './UserAvatar';
@@ -25,7 +25,7 @@ const WriteInput = (props: Props) => {
 	return (
 		<StackLayout
 			spacing={2}
-			d="flex"
+			display="flex"
 			justifyContent="flex-end"
 			alignItems="center"
 			w="full"

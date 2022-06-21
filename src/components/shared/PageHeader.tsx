@@ -1,7 +1,7 @@
-import { GoBackButton } from '@components/buttons';
-import { SubheadingText } from '@components/heading';
-import { Label } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
+import { GoBackButton } from '@/components/buttons';
+import { SubheadingText } from '@/components/heading';
+import { Label } from '@/components/labels';
+import { FlexLayout, StackLayout } from '@/components/layouts';
 import React, { memo } from 'react';
 
 export const PageHeader = memo(

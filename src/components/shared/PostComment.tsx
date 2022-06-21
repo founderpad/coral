@@ -2,10 +2,10 @@ import {
 	CommentsForIdeaDocument,
 	usePostCommentMutation
 } from '@generated/api';
-import { useAuth } from '@hooks/auth';
-import { useSuccessNotification } from '@hooks/toast';
-import { event } from '@lib/ga';
-import useIdea from '@pages/ideas/idea/query/ideaQuery';
+import { useAuth } from '@/hooks/auth';
+import { useSuccessNotification } from '@/hooks/toast';
+import { event } from '@/lib/ga';
+import useIdea from '@/pages/ideas/idea/query/ideaQuery';
 import { addEsteemPoints } from '@slices/auth';
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,7 +13,7 @@ import WriteInput from './WriteInput';
 
 const PostComment = () => {
 	const [value, setValue] = useState('');
-	const user = useAuth().user;
+	const user = useAuth().getUser();
 	const dispatch = useDispatch();
 	const showNotification = useSuccessNotification();
 

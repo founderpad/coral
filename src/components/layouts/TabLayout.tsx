@@ -31,7 +31,7 @@ const TabLayout = (props: Props & TabsProps) => {
 		<Tabs
 			{...rest}
 			overflow="hidden"
-			d="flex"
+			display="flex"
 			flexDirection="column"
 			variant="soft-rounded"
 			size="sm"
@@ -80,7 +80,7 @@ const TabLayout = (props: Props & TabsProps) => {
 			</TabList>
 
 			{/* {actions} */}
-			<TabPanels d="flex" flex={1} overflowY="hidden">
+			<TabPanels display="flex" flex={1} overflowY="hidden">
 				{children?.map((tp: TabPanelProps, key) => {
 					return (
 						<TabPanel

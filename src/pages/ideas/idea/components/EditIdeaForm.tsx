@@ -1,22 +1,22 @@
-import BaseForm from '@components/form/BaseForm';
+import BaseForm from '@/components/form/BaseForm';
 import {
 	FormInput,
 	FormSelect,
 	FormTextarea
-} from '@components/form/inputs/FormField';
-import { SwitchField } from '@components/input';
-import { StackLayout } from '@components/layouts';
-import { AppDivider } from '@components/shared';
+} from '@/components/form/inputs/FormField';
+import { SwitchField } from '@/components/input';
+import { StackLayout } from '@/components/layouts';
+import { AppDivider } from '@/components/shared';
 import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@generated/api';
-import { useModalDrawer } from '@hooks/util';
-import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@utils/Constants';
-import { redirectTo } from '@utils/validators';
+import { useModalDrawer } from '@/hooks/util';
+import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@/utils/Constants';
+import { redirectTo } from '@/utils/validators';
 import React from 'react';
 import { useIdeaFragment } from '../query/ideaQuery';
 
 export const EditIdeaForm = () => {
 	const idea = useIdeaFragment();
-	const { setModalDrawer } = useModalDrawer();
+	const { closeModalDrawer } = useModalDrawer();
 	const { __typename, id, ...rest } = idea;
 	const defaultValues = { ...rest };
 
@@ -29,16 +29,11 @@ export const EditIdeaForm = () => {
 				idea: updatedIdea
 			},
 			onCompleted: (_data) => {
-				setModalDrawer({
-					isOpen: false
-				});
-
+				closeModalDrawer();
 				redirectTo(false, 'exp');
 			},
 			onError: (_data) => {
-				setModalDrawer({
-					isOpen: false
-				});
+				closeModalDrawer();
 				redirectTo(true, 'exp');
 			}
 		});

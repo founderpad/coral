@@ -1,15 +1,15 @@
-import { DocumentTitle } from '@components/shared';
+import { DocumentTitle } from '@/components/shared';
 import { useIdeaQuery } from '@generated/api';
-import { useAuth } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
-import AuthFilter from '@utils/AuthFilter';
+import { useAuth } from '@/hooks/auth';
+import { useQueryParam } from '@/hooks/util';
+import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import ViewIdeaTabLayout from './ViewIdeaTabLayout';
 
 const ViewIdea: NextPage = () => {
-	const userId = useAuth().user?.id;
+	const userId = useAuth().getUser()?.id;
 	const ideaId = useQueryParam('id');
 
 	useIdeaQuery({

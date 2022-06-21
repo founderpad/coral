@@ -1,6 +1,6 @@
 import { FlexProps } from '@chakra-ui/react';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { BaseLink } from '@components/links';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { BaseLink } from '@/components/links';
 import React from 'react';
 
 interface Props {

@@ -1,7 +1,7 @@
 import { Heading } from '@chakra-ui/layout';
 import { HeadingProps, IconProps } from '@chakra-ui/react';
-import { EditButton } from '@components/buttons';
-import { FlexLayout } from '@components/layouts';
+import { EditButton } from '@/components/buttons';
+import { FlexLayout } from '@/components/layouts';
 import React, { memo } from 'react';
 
 export const TitleEditAction = memo(
@@ -25,17 +25,16 @@ export const TitleEditAction = memo(
 			flex={1}
 			mb={2}
 		>
-			<FlexLayout flexDirection="column">
+			<FlexLayout flex={1} flexDirection="column">
 				{icon ? (
 					<FlexLayout alignItems="center">
 						{icon}
 						<Heading
-							d="flex"
+							display="flex"
 							flex={1}
 							css={{ whiteSpace: 'normal' }}
 							wordBreak="break-word"
 							noOfLines={1}
-							isTruncated
 							size="h6"
 							fontSize="sm"
 							color="black"
@@ -46,12 +45,11 @@ export const TitleEditAction = memo(
 					</FlexLayout>
 				) : (
 					<Heading
-						d="flex"
+						display="flex"
 						flex={1}
 						css={{ whiteSpace: 'normal' }}
 						wordBreak="break-word"
 						noOfLines={1}
-						isTruncated
 						size="h6"
 						fontSize="sm"
 						color="black"

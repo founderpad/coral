@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/layout';
-import { FlexLayout } from '@components/layouts';
-import { SearchResultsLabel, StickySubheader } from '@components/shared';
+import { FlexLayout } from '@/components/layouts';
+import { SearchResultsLabel, StickySubheader } from '@/components/shared';
 import React from 'react';
 
 type TSearchActions = {

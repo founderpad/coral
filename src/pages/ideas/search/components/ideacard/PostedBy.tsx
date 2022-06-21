@@ -1,9 +1,9 @@
-import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
-import { BaseLink } from '@components/links';
-import { PointSeparator } from '@components/shared';
+import { Label } from '@/components/labels';
+import { FlexLayout } from '@/components/layouts';
+import { BaseLink } from '@/components/links';
+import { PointSeparator } from '@/components/shared';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
-import { formatDate } from '@utils/validators';
+import { formatDate } from '@/utils/validators';
 import React, { memo } from 'react';
 
 type TProps = Pick<TIdeaPreviewFieldsFragment, 'user' | 'createdAt'>;
@@ -24,7 +24,7 @@ export const PostedBy = memo(({ user, createdAt }: TProps) => (
 		>
 			{user?.displayName}
 		</BaseLink>
-		<Label d="flex" fontSize="x-small" color="fpGrey.500">
+		<Label display="flex" fontSize="x-small" color="fpGrey.500">
 			{user?.address?.country && (
 				<>
 					<PointSeparator small /> {user?.address?.country}

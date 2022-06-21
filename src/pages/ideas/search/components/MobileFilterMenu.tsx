@@ -1,8 +1,8 @@
 import { Button } from '@chakra-ui/react';
-import { SubmitButton } from '@components/buttons';
-import { IoFilterOutline } from '@components/icons';
-import ModalDrawerContext from '@context/ModalDrawerContext';
-import React, { useCallback, useContext } from 'react';
+import { SubmitButton } from '@/components/buttons';
+import { IoFilterOutline } from '@/components/icons';
+import { useModalDrawer } from '@/hooks/util';
+import React, { useCallback } from 'react';
 
 const MobileFilterMenu = ({
 	title,
@@ -13,12 +13,11 @@ const MobileFilterMenu = ({
 	children: React.ReactNode;
 	form: string;
 }) => {
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const { openModalDrawer } = useModalDrawer();
 
 	const onClick = useCallback(() => {
-		setModalDrawer({
+		openModalDrawer({
 			title: `Filter ${title}`,
-			isOpen: true,
 			action: (
 				<SubmitButton
 					name="filter-search-button"
@@ -30,7 +29,7 @@ const MobileFilterMenu = ({
 			body: children,
 			showFooter: false
 		});
-	}, [setModalDrawer, children, form, title]);
+	}, [openModalDrawer, children, form, title]);
 
 	return (
 		<Button

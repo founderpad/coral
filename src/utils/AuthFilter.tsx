@@ -1,15 +1,19 @@
-import MainLayout from '@components/layouts/MainLayout';
-import { Loading } from '@components/shared';
-import { useAuth } from '@hooks/auth';
+import MainLayout from '@/components/layouts/MainLayout';
+import { Loading } from '@/components/shared';
+import { useAuthenticationStatus } from '@nhost/react';
 import Router from 'next/router';
 import Script from 'next/script';
 import React from 'react';
 
 export default function AuthFilter(Component: any) {
-	return () => {
-		const { isAuthenticated, isLoading } = useAuth();
+	return function AuthProtected(props: any) {
+		const { isLoading, isAuthenticated } = useAuthenticationStatus();
+
 		if (isLoading) return <Loading />;
-		if (!isAuthenticated) Router.push('/login');
+		if (!isAuthenticated) {
+			Router.push('/login');
+			return null;
+		}
 
 		return (
 			<React.Fragment>
@@ -18,7 +22,7 @@ export default function AuthFilter(Component: any) {
 					strategy="lazyOnload"
 				></Script>
 				<MainLayout>
-					<Component {...arguments} />
+					<Component {...props} />
 				</MainLayout>
 			</React.Fragment>
 		);

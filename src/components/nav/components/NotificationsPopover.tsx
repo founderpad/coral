@@ -1,11 +1,11 @@
 import { BoxProps, Icon, IconButton } from '@chakra-ui/react';
-import { IoNotificationsSharp, IoWarningSharp } from '@components/icons';
-import { Label } from '@components/labels';
-import { BoxLayout, StackLayout } from '@components/layouts';
-import BasePopover from '@components/popover/BasePopover';
-import { AppDivider, NoResults } from '@components/shared';
+import { IoNotificationsSharp, IoWarningSharp } from '@/components/icons';
+import { Label } from '@/components/labels';
+import { BoxLayout, StackLayout } from '@/components/layouts';
+import BasePopover from '@/components/popover/BasePopover';
+import { AppDivider, NoResults } from '@/components/shared';
 import { css } from '@emotion/react';
-import useUserProfile from '@hooks/user';
+import useUserProfile from '@/hooks/user';
 import React, { useEffect, useState } from 'react';
 import NavLink from './NavLink';
 

@@ -1,15 +1,15 @@
 import { Box, Button, Collapse, Icon, useDisclosure } from '@chakra-ui/react';
-import { PrimaryButton } from '@components/buttons';
-import BaseHeading from '@components/heading/BaseHeading';
-import { BoxLayout, StackLayout } from '@components/layouts';
-import { Loading, NoResults } from '@components/shared';
-import PostComment from '@components/shared/PostComment';
+import { PrimaryButton } from '@/components/buttons';
+import BaseHeading from '@/components/heading/BaseHeading';
+import { BoxLayout, StackLayout } from '@/components/layouts';
+import { Loading, NoResults } from '@/components/shared';
+import PostComment from '@/components/shared/PostComment';
 import {
 	TCommentFieldsFragment,
 	useCommentsForIdeaQuery,
 	useRepliesForCommentQuery
 } from '@generated/api';
-import { useModalDrawer, useQueryParam } from '@hooks/util';
+import { useModalDrawer, useQueryParam } from '@/hooks/util';
 import React, { useEffect } from 'react';
 import { IoChatboxOutline } from 'react-icons/io5';
 import { useIdeaFragment } from '../../query/ideaQuery';
@@ -107,13 +107,12 @@ export const MobileComments = () => {
 };
 
 export const MobileCommentsList = () => {
-	const { setModalDrawer } = useModalDrawer();
+	const { openModalDrawer } = useModalDrawer();
 	const { totalComments } = useIdeaFragment() ?? 0;
 
 	const onShowCommentsMobile = () => {
-		setModalDrawer({
+		openModalDrawer({
 			title: `${totalComments} Comments`,
-			isOpen: true,
 			showCancel: false,
 			action: <PostComment />,
 			body: <MobileComments />,
@@ -129,7 +128,7 @@ export const MobileCommentsList = () => {
 			onClick={onShowCommentsMobile}
 			leftIcon={<Icon as={IoChatboxOutline} fontSize="lg" />}
 			_selected={{ background: 'transparent' }}
-			d="flex"
+			display="flex"
 			alignItems="center"
 			color="fpGrey.300"
 		>
@@ -190,7 +189,7 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 		<BoxLayout
 			w="full"
 			h="full"
-			d="flex"
+			display="flex"
 			flexDirection="column"
 			flexWrap="nowrap"
 			transition="ease-in-out"

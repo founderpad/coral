@@ -4,18 +4,22 @@ import {
 	IoCalendarOutline,
 	IoLocationOutline,
 	IoTimeOutline
-} from '@components/icons';
-import { FlexLayout, PageLayout, StackLayout } from '@components/layouts';
-import { DocumentTitle, TitleEditAction, UserAvatar } from '@components/shared';
-import AppDivider from '@components/shared/AppDivider';
-import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
-import OverviewTags from '@components/shared/OverviewTags';
-import PronounsLabel from '@components/shared/PronounsLabel';
+} from '@/components/icons';
+import { FlexLayout, PageLayout, StackLayout } from '@/components/layouts';
+import {
+	DocumentTitle,
+	TitleEditAction,
+	UserAvatar
+} from '@/components/shared';
+import AppDivider from '@/components/shared/AppDivider';
+import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
+import OverviewTags from '@/components/shared/OverviewTags';
+import PronounsLabel from '@/components/shared/PronounsLabel';
 import { useUserProfileDetailsQuery } from '@generated/api';
-import { useQueryParam } from '@hooks/util';
-import ProfileSectionLabel from '@pages/account/profile/components/ProfileSectionLabel';
-import AuthFilter from '@utils/AuthFilter';
-import { formatDate } from '@utils/validators';
+import { useQueryParam } from '@/hooks/util';
+import ProfileSectionLabel from '@/pages/account/profile/components/ProfileSectionLabel';
+import AuthFilter from '@/utils/AuthFilter';
+import { formatDate } from '@/utils/validators';
 import { NextPage } from 'next';
 import React from 'react';
 import Actions from './components/Actions';

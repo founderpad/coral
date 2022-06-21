@@ -1,6 +1,6 @@
 import { BoxProps } from '@chakra-ui/layout';
 import { Box, StackProps } from '@chakra-ui/react';
-import { PageHeader } from '@components/shared';
+import { PageHeader } from '@/components/shared';
 import React from 'react';
 import { StackLayout } from './StackLayout';
 
@@ -49,7 +49,7 @@ export const PageLayout = (props: Props) => {
 			<PageHeader {...headerProps} />
 			<Box
 				as="main"
-				d="flex"
+				display="flex"
 				flex={1}
 				w="full"
 				flexDirection="column"

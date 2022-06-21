@@ -1,8 +1,8 @@
 import { Box, BoxProps } from '@chakra-ui/react';
-import { EditButton } from '@components/buttons';
-import { PrimaryButton } from '@components/buttons/PrimaryButton';
-import { FlexLayout } from '@components/layouts';
-import { useModalDrawer } from '@hooks/util';
+import { EditButton } from '@/components/buttons';
+import { PrimaryButton } from '@/components/buttons/PrimaryButton';
+import { FlexLayout } from '@/components/layouts';
+import { useModalDrawer } from '@/hooks/util';
 import 'cropperjs/dist/cropper.css';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Cropper from 'react-cropper';
@@ -20,7 +20,7 @@ export const ImageUploader = (props: Props) => {
 	const [file, setFile] = useState<File | undefined>(undefined);
 	// const [uploading, setUploading] = useState(false);
 
-	const { setModalDrawer } = useModalDrawer();
+	const { openModalDrawer } = useModalDrawer();
 	const cropperRef = useRef<HTMLImageElement>(null);
 
 	const MAX_SIZE = 3145728;
@@ -39,8 +39,7 @@ export const ImageUploader = (props: Props) => {
 	}, [file, onUpload]);
 
 	const onOpenCropperModal = useCallback(() => {
-		setModalDrawer({
-			isOpen: true,
+		openModalDrawer({
 			title,
 			action: (
 				<PrimaryButton
@@ -83,10 +82,9 @@ export const ImageUploader = (props: Props) => {
 					/>
 				</Box>
 			),
-			hideFooter: true,
 			removePadding: true
 		});
-	}, [setModalDrawer, image, getCropData, title]);
+	}, [openModalDrawer, image, getCropData, title]);
 
 	useEffect(() => {
 		if (file) onOpenCropperModal();

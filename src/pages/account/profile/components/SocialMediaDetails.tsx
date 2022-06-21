@@ -4,12 +4,12 @@ import {
 	IoLogoInstagram,
 	IoLogoLinkedin,
 	IoLogoTwitter
-} from '@components/icons';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { IconLink } from '@components/links';
+} from '@/components/icons';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { IconLink } from '@/components/links';
 import { TUser_Profile } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
-import { cache } from '@pages/_app';
+import { useCurrentUser } from '@/hooks/auth';
+import { cache } from '@/pages/_app';
 import gql from 'graphql-tag';
 import React from 'react';
 

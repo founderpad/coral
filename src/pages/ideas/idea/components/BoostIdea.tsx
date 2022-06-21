@@ -1,27 +1,41 @@
 import { Button, Icon } from '@chakra-ui/react';
-import { PrimaryButton } from '@components/buttons';
-import BaseHeading from '@components/heading/BaseHeading';
-import { Label } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { AppDivider } from '@components/shared';
+import { AlertFeedback } from '@/components/alert';
+import { PrimaryButton } from '@/components/buttons';
+import BaseHeading from '@/components/heading/BaseHeading';
+import { Label } from '@/components/labels';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { AppDivider } from '@/components/shared';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
-import { useModalDrawer } from '@hooks/util';
+import { useCurrentUser } from '@/hooks/auth';
+import { useModalDrawer } from '@/hooks/util';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import React, { useCallback } from 'react';
-import { BiCoinStack, BiDollar } from 'react-icons/bi';
-import { IoRocketSharp } from 'react-icons/io5';
+import { BiCoinStack, BiPound } from 'react-icons/bi';
+import { IoCheckmarkCircleSharp, IoRocketSharp } from 'react-icons/io5';
+
+const PaymentSuccessful = () => (
+	<StackLayout alignItems="center">
+		<AlertFeedback status="success" message="Payment successful" px={2} />
+		<Icon
+			as={IoCheckmarkCircleSharp}
+			fontSize="100px"
+			mx="auto"
+			color="green.500"
+			pb={4}
+		/>
+		<BaseHeading>Your idea is now in boost</BaseHeading>
+	</StackLayout>
+);
 
 const BoostIdea = (idea: TIdeaPreviewFieldsFragment) => {
-	const { setModalDrawer } = useModalDrawer();
+	const { openModalDrawer } = useModalDrawer();
+
 	const onClick = useCallback(() => {
-		setModalDrawer({
+		openModalDrawer({
 			title: 'Boost idea',
-			isOpen: true,
-			hideYesLabel: true,
 			body: <BoostIdeaForm {...idea} />
 		});
-	}, [setModalDrawer, idea]);
+	}, [openModalDrawer, idea]);
 
 	return (
 		<Button
@@ -38,7 +52,7 @@ const BoostIdea = (idea: TIdeaPreviewFieldsFragment) => {
 };
 
 const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
-	// const { setModalDrawer } = useModalDrawer();
+	const { updateModalDrawer } = useModalDrawer();
 	const esteemPoints = useCurrentUser().esteemPoints?.points ?? 0;
 	const neededPoints = esteemPoints >= 1000 ? 0 : 1000 - esteemPoints;
 
@@ -47,50 +61,44 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 	// const [orderID, setOrderID] = useState(false);
 	// const [billingDetails, setBillingDetails] = useState('');
 
-	// const AMOUNT = 10;
+	// const FEES = 4.89 / 10;
+	// const TOTAL = FEES + 10 + 0.3 + 0.5;
 
-	// creates a paypal order
-	// const createOrder = (data, actions) => {
-	// 	return actions.order
-	// 		.create({
-	// 			purchase_units: [
-	// 				{
-	// 					description: 'Boost idea',
-	// 					amount: {
-	// 						// charge users $499 per order
-	// 						value: AMOUNT
-	// 					}
-	// 				}
-	// 			],
-	// 			// remove the applicaiton_context object if you need your users to add a shipping address
-	// 			application_context: {
-	// 				shipping_preference: 'NO_SHIPPING'
-	// 			}
-	// 		})
-	// 		.then((orderID) => {
-	// 			setOrderID(orderID);
-	// 			return orderID;
-	// 		});
-	// };
+	// Creates a paypal order
+	const createOrder = (_data: any, actions: any) => {
+		return actions.order
+			.create({
+				purchase_units: [
+					{
+						description: 'Boost idea',
+						amount: {
+							value: 11.5
+						}
+					}
+				],
+				// Remove the application_context object if you need your users to add a shipping address
+				application_context: {
+					shipping_preference: 'NO_SHIPPING'
+				}
+			})
+			.then((orderID: any) => {
+				// setOrderID(orderID);
+				return orderID;
+			});
+	};
 
-	// const onApprove = (data, actions) => {
-	// 	return actions.order
-	// 		.capture()
-	// 		.then(function (details) {
-	// 			const { payer } = details;
-	// 			setBillingDetails(payer);
-	// 			setSucceeded(true);
-	// 		})
-	// 		.catch((err) => setPaypalErrorMessage('Something went wrong.'));
-	// };
-
-	// if (succeeded) {
-	// 	return (
-	// 		<StackLayout spacing={12}>
-	// 			<BaseHeading>Payment complete</BaseHeading>
-	// 		</StackLayout>
-	// 	);
-	// }
+	const onApprove = (_data: any, actions: any) => {
+		return actions.order.capture().then(function (_details: any) {
+			// const { payer } = details;
+			// setBillingDetails(payer);
+			// setSucceeded(true);
+			updateModalDrawer({
+				body: <PaymentSuccessful />,
+				showHeader: false
+			});
+		});
+		// .catch((err) => setPaypalErrorMessage('Something went wrong.'));
+	};
 
 	return (
 		<StackLayout spacing={12}>
@@ -115,14 +123,13 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 							<Icon
 								as={BiCoinStack}
 								color="yellow.500"
-								fontSize="2xl"
+								fontSize="xl"
 								size="md"
 							/>
 							<Label
 								fontSize="md"
 								textAlign="center"
 								color="yellow.500"
-								mr={4}
 							>
 								1000
 							</Label>
@@ -132,7 +139,8 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 								You have {esteemPoints} esteem points.
 								<br /> Earn another{' '}
 								<strong>{neededPoints}</strong> to be able to
-								boost (500 for boost, and 500 to users on ).
+								boost (500 for boost, and 500 to distribute to
+								users on feedback).
 							</Label>
 						)}
 					</StackLayout>
@@ -150,22 +158,21 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 					>
 						<FlexLayout>
 							<Icon
-								as={BiDollar}
-								fontSize="2xl"
-								size="md"
+								as={BiPound}
 								color="green.600"
+								fontSize="xl"
+								size="md"
 							/>
 							<Label
 								fontSize="md"
 								textAlign="center"
 								color="green.600"
-								mr={4}
 							>
 								10
 							</Label>
 						</FlexLayout>
 						<Label fontSize="xs" color="gray.500">
-							Total (incl. fees): ${10 + 0.3 + 0.29}
+							Total (incl. fees): £11.50
 						</Label>
 					</StackLayout>
 					<PayPalButtons
@@ -175,10 +182,10 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 							label: 'pay',
 							tagline: false
 						}}
-						// createOrder={createOrder}
+						createOrder={createOrder}
 						// // fundingSource={FUNDING.PAYPAL}
 						// // createOrder={createPayPalOrder}
-						// onApprove={onApprove}
+						onApprove={onApprove}
 					/>
 				</FlexLayout>
 			</StackLayout>

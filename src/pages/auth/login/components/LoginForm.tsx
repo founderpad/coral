@@ -1,14 +1,14 @@
-import { AlertFeedback } from '@components/alert';
-import { SubmitButton } from '@components/buttons';
-import { BaseForm } from '@components/form';
-import { FormInput } from '@components/form/inputs/FormField';
-import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
-import { PrimaryLink } from '@components/links';
-import SocialLogins from '@components/shared/SocialLogins';
-import { useLogin } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
-import { emailPattern } from '@utils/validators';
+import { AlertFeedback } from '@/components/alert';
+import { SubmitButton } from '@/components/buttons';
+import { BaseForm } from '@/components/form';
+import { FormInput } from '@/components/form/inputs/FormField';
+import { Label } from '@/components/labels';
+import { StackLayout } from '@/components/layouts';
+import { PrimaryLink } from '@/components/links';
+import SocialLogins from '@/components/shared/SocialLogins';
+import { useLogin } from '@/hooks/auth';
+import { useQueryParam } from '@/hooks/util';
+import { emailPattern } from '@/utils/validators';
 import React, { memo } from 'react';
 import { TLoginFields } from '../../../../types/auth';
 
@@ -125,7 +125,7 @@ const LoginFooter = memo(() => (
 		alignItems="center"
 		direction={{ base: 'column-reverse', sm: 'row' }}
 		justifyContent={{ sm: 'space-between' }}
-		d="flex"
+		display="flex"
 		w="full"
 	>
 		<Label color="gray.500" fontSize="xs">

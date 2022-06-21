@@ -1,5 +1,5 @@
 import { StackProps } from '@chakra-ui/layout';
-import { StackLayout } from '@components/layouts';
+import { StackLayout } from '@/components/layouts';
 import React from 'react';
 import {
 	SubmitHandler,

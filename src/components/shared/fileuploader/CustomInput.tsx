@@ -1,7 +1,7 @@
 import { Flex, Icon } from '@chakra-ui/react';
-import { CaptionLabel, Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
-import { useFileUploader } from '@hooks/util';
+import { CaptionLabel, Label } from '@/components/labels';
+import { FlexLayout } from '@/components/layouts';
+import { useFileUploader } from '@/hooks/util';
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { IoCloudUploadOutline } from 'react-icons/io5';
@@ -60,7 +60,7 @@ export const CustomInput = (props: Props) => {
 	return (
 		<React.Fragment>
 			<FlexLayout
-				d="flex"
+				display="flex"
 				justifyContent="center"
 				alignItems="center"
 				boxSize="100px"

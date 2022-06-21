@@ -1,10 +1,10 @@
 import { Flex, Icon } from '@chakra-ui/react';
-import { DeleteButton } from '@components/buttons';
-import { CaptionLabel } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { PrimaryLink } from '@components/links';
-import { useFileUploader } from '@hooks/util';
-import { formatDate } from '@utils/validators';
+import { DeleteButton } from '@/components/buttons';
+import { CaptionLabel } from '@/components/labels';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { PrimaryLink } from '@/components/links';
+import { useFileUploader } from '@/hooks/util';
+import { formatDate } from '@/utils/validators';
 import React, { memo, useEffect } from 'react';
 import { IoDocumentSharp } from 'react-icons/io5';
 import { IUploadedFileProps } from '../../../types/upload';

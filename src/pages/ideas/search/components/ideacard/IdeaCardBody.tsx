@@ -1,8 +1,8 @@
 import { Tag } from '@chakra-ui/react';
-import { Label } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
+import { Label } from '@/components/labels';
+import { FlexLayout, StackLayout } from '@/components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
-import InterestedTotal from '@pages/ideas/idea/components/InterestedTotal';
+import InterestedTotal from '@/pages/ideas/idea/components/InterestedTotal';
 import React from 'react';
 
 type TIdeaCardBody = Pick<
@@ -17,7 +17,7 @@ const IdeaCardBody = (idea: TIdeaCardBody) => {
 		<React.Fragment>
 			<Label
 				my={6}
-				d="flex"
+				display="flex"
 				color="fpGrey.500"
 				overflow="hidden"
 				whiteSpace="normal"
@@ -25,7 +25,7 @@ const IdeaCardBody = (idea: TIdeaCardBody) => {
 				css={{ whiteSpace: 'normal' }}
 				wordBreak="break-word"
 				noOfLines={2}
-				isTruncated
+				// isTruncated
 			>
 				{/* {preview?.length && preview?.length <= 25
 					? preview

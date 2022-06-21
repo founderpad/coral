@@ -1,5 +1,5 @@
-import Drawer from '@components/drawer';
-import { useMobile, useModalDrawer } from '@hooks/util';
+import Drawer from '@/components/drawer';
+import { useMobile, useModalDrawer } from '@/hooks/util';
 import React, { useCallback } from 'react';
 import Modal from '.';
 
@@ -13,14 +13,11 @@ import Modal from '.';
  */
 const BaseModalDrawer = () => {
 	const isMobile = useMobile();
-
-	const { modalDrawer, setModalDrawer } = useModalDrawer();
+	const { modalDrawer, closeModalDrawer } = useModalDrawer();
 
 	const closeDialog = useCallback(() => {
-		setModalDrawer({
-			isOpen: false
-		});
-	}, [setModalDrawer]);
+		closeModalDrawer();
+	}, [closeModalDrawer]);
 
 	const onCloseClick = () => closeDialog();
 

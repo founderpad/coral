@@ -1,10 +1,10 @@
 import { useBreakpointValue } from '@chakra-ui/react';
-import FileUploadContext from '@context/FileUploadContext';
-import MobileNavigationContext from '@context/MobileNavigationContext';
-import ModalDrawerContext from '@context/ModalDrawerContext';
-import NotificationContext from '@context/NotificationContext';
-import { pageview } from '@lib/ga';
-import { storage } from '@pages/_app';
+import FileUploadContext from '@/context/FileUploadContext';
+import MobileNavigationContext from '@/context/MobileNavigationContext';
+import ModalDrawerContext from '@/context/ModalDrawerContext';
+import NotificationContext from '@/context/NotificationContext';
+import { pageview } from '@/lib/ga';
+import { storage } from '@/pages/_app';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef, useState } from 'react';
 
@@ -147,9 +147,19 @@ export const useFileUploader = () => {
 };
 
 export const useModalDrawer = () => {
-	const { modalDrawer, setModalDrawer } = useContext(ModalDrawerContext);
+	const {
+		modalDrawer,
+		openModalDrawer,
+		updateModalDrawer,
+		closeModalDrawer
+	} = useContext(ModalDrawerContext);
 
-	return { modalDrawer, setModalDrawer };
+	return {
+		modalDrawer,
+		openModalDrawer,
+		updateModalDrawer,
+		closeModalDrawer
+	};
 };
 
 export const useCheckboxToggle = (
@@ -164,7 +174,7 @@ export const useCheckboxToggle = (
 
 	useEffect(() => {
 		if (defaultValues.length === allValues.length) setIsAll(true);
-	}, []);
+	}, [allValues, defaultValues]);
 
 	const toggleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.name;

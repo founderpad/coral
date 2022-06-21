@@ -1,15 +1,15 @@
-import { StackLayout } from '@components/layouts';
-import { Loading, NoResults, PageHeader } from '@components/shared';
-import AppDivider from '@components/shared/AppDivider';
-import SearchActions from '@components/shared/SearchActions';
+import { StackLayout } from '@/components/layouts';
+import { Loading, NoResults, PageHeader } from '@/components/shared';
+import AppDivider from '@/components/shared/AppDivider';
+import SearchActions from '@/components/shared/SearchActions';
 import {
 	TUserSearchFragment,
 	TUser_Profile_Bool_Exp,
 	useUsersQuery
 } from '@generated/api';
-import { useQueryParam } from '@hooks/util';
-import MobileFilterMenu from '@pages/ideas/search/components/MobileFilterMenu';
-import OffsetPagination from '@pages/ideas/search/OffsetPagination';
+import { useQueryParam } from '@/hooks/util';
+import MobileFilterMenu from '@/pages/ideas/search/components/MobileFilterMenu';
+import OffsetPagination from '@/pages/ideas/search/OffsetPagination';
 import Router from 'next/router';
 import React from 'react';
 import UserCard from './components/UserCard';

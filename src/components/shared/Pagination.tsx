@@ -1,8 +1,8 @@
 import { ButtonGroup } from '@chakra-ui/react';
-import { CancelButton } from '@components/buttons';
-import { IoChevronBackSharp, IoChevronForwardSharp } from '@components/icons';
-import { StackLayout } from '@components/layouts';
-import { useQueryParam } from '@hooks/util';
+import { CancelButton } from '@/components/buttons';
+import { IoChevronBackSharp, IoChevronForwardSharp } from '@/components/icons';
+import { StackLayout } from '@/components/layouts';
+import { useQueryParam } from '@/hooks/util';
 import { useRouter } from 'next/router';
 
 type Props = {

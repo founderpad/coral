@@ -1,15 +1,15 @@
 import { ButtonGroup } from '@chakra-ui/button';
 import { Textarea } from '@chakra-ui/textarea';
-import { CancelButton, PrimaryButton } from '@components/buttons';
-import { FlexLayout, StackLayout } from '@components/layouts';
+import { CancelButton, PrimaryButton } from '@/components/buttons';
+import { FlexLayout, StackLayout } from '@/components/layouts';
 import {
 	RepliesForCommentDocument,
 	usePostReplyMutation
 } from '@generated/api';
-import { useAuth } from '@hooks/auth';
-import { useSuccessNotification } from '@hooks/toast';
-import { event } from '@lib/ga';
-import useIdea from '@pages/ideas/idea/query/ideaQuery';
+import { useAuth } from '@/hooks/auth';
+import { useSuccessNotification } from '@/hooks/toast';
+import { event } from '@/lib/ga';
+import useIdea from '@/pages/ideas/idea/query/ideaQuery';
 import { addEsteemPoints } from '@slices/auth';
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -24,7 +24,7 @@ const PostReplyComment = ({
 }) => {
 	const [showReplyField, setShowReplyField] = useState(false);
 	const [value, setValue] = useState('');
-	const user = useAuth().user;
+	const user = useAuth().getUser();
 	const { idea } = useIdea() ?? {};
 	const dispatch = useDispatch();
 	const showNotification = useSuccessNotification();

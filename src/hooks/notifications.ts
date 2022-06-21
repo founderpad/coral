@@ -5,7 +5,7 @@ import { useAuth } from './auth';
 declare let window: OneSignalWindow;
 
 export const usePushNotifications = () => {
-	const userId = useAuth().user?.id;
+	const userId = useAuth().getUser()?.id;
 
 	useEffect(() => {
 		window.OneSignal = window.OneSignal || [];
@@ -29,7 +29,7 @@ export const usePushNotifications = () => {
 				});
 			});
 		}
-	}, []);
+	}, [userId]);
 
 	useEffect(() => {
 		if (!userId) {

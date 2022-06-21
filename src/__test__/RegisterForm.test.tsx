@@ -1,5 +1,5 @@
-import RegisterForm from '@pages/auth/register/components/RegisterForm';
-import store from '@utils/store';
+import RegisterForm from '@/pages/auth/register/components/RegisterForm';
+import store from '@/utils/store';
 import { Provider } from 'react-redux';
 import {
 	act,
@@ -49,12 +49,12 @@ const mockRegister = jest.fn();
 const mockQueryParams = jest.fn();
 const mockSocialRegister = jest.fn();
 
-jest.mock('@hooks/auth', () => ({
+jest.mock('@/hooks/auth', () => ({
 	useRegister: (): any => mockRegister,
 	useSocialLogin: (): any => mockSocialRegister
 }));
 
-jest.mock('@hooks/util', () => ({
+jest.mock('@/hooks/util', () => ({
 	useQueryParam: (): any => mockQueryParams
 }));
 

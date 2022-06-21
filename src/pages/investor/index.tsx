@@ -1,15 +1,15 @@
 import Icon from '@chakra-ui/icon';
 import { Box, Heading } from '@chakra-ui/layout';
-import { IoLockClosedSharp } from '@components/icons';
-import AuthFilter from '@utils/AuthFilter';
-// import MainInvestorLayout from '@components/layouts/MainInvestorLayout';
+import { IoLockClosedSharp } from '@/components/icons';
+import AuthFilter from '@/utils/AuthFilter';
+// import MainInvestorLayout from '@/components/layouts/MainInvestorLayout';
 import React from 'react';
 
 const Investor = () => {
 	return (
 		// <MainInvestorLayout>
 		<Box
-			d="flex"
+			display="flex"
 			flex={1}
 			justifyContent="center"
 			alignItems="center"

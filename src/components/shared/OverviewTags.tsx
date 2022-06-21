@@ -1,8 +1,8 @@
 import { StackProps } from '@chakra-ui/layout';
 // import { Icon } from '@chakra-ui/react';
-import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
-import BaseTag from '@components/tags/BaseTag';
+import { Label } from '@/components/labels';
+import { FlexLayout } from '@/components/layouts';
+import BaseTag from '@/components/tags/BaseTag';
 import React, { memo } from 'react';
 import { IconType } from 'react-icons/lib';
 
@@ -33,7 +33,7 @@ const OverviewTags = memo(
 					// <BaseTag
 					// 	key={title}
 					// 	p={2}
-					// 	d="flex"
+					// 	display="flex""
 					// 	flexDirection="column"
 					// 	bg="fpPrimary.50"
 					// 	borderWidth={0}
@@ -55,7 +55,7 @@ const OverviewTags = memo(
 					<BaseTag
 						key={title}
 						p={3}
-						d="flex"
+						display="flex"
 						flexDirection="column"
 						// bg="fpPrimary.50"
 						borderWidth={1}

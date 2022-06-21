@@ -1,13 +1,13 @@
-import { SubmitButton } from '@components/buttons';
-import { BaseForm } from '@components/form';
-import { FormSelect } from '@components/form/inputs/FormField';
-import { IoFlagOutline } from '@components/icons';
-import { Label } from '@components/labels';
-import { BaseMenuItem } from '@components/menu';
+import { SubmitButton } from '@/components/buttons';
+import { BaseForm } from '@/components/form';
+import { FormSelect } from '@/components/form/inputs/FormField';
+import { IoFlagOutline } from '@/components/icons';
+import { Label } from '@/components/labels';
+import { BaseMenuItem } from '@/components/menu';
 import { TReport_Insert_Input, useCreateReportMutation } from '@generated/api';
-import { useSuccessNotification } from '@hooks/toast';
-import { useModalDrawer } from '@hooks/util';
-import { REPORT_REASONS } from '@utils/Constants';
+import { useSuccessNotification } from '@/hooks/toast';
+import { useModalDrawer } from '@/hooks/util';
+import { REPORT_REASONS } from '@/utils/Constants';
 import React from 'react';
 
 type TReportProps = {
@@ -17,12 +17,11 @@ type TReportProps = {
 };
 
 const ReportMenu = ({ title, content, report }: TReportProps) => {
-	const { setModalDrawer } = useModalDrawer();
+	const { openModalDrawer } = useModalDrawer();
 
 	const onClick = () => {
-		setModalDrawer({
+		openModalDrawer({
 			title: `Report ${title}`,
-			isOpen: true,
 			body: (
 				<ReportForm title={title} report={report} content={content} />
 			),
@@ -51,7 +50,7 @@ const ReportMenu = ({ title, content, report }: TReportProps) => {
 };
 
 const ReportForm = ({ title, content = undefined, report }: TReportProps) => {
-	const { setModalDrawer } = useModalDrawer();
+	const { closeModalDrawer } = useModalDrawer();
 	const showSuccessNotification = useSuccessNotification();
 	const [addReport] = useCreateReportMutation();
 
@@ -65,9 +64,7 @@ const ReportForm = ({ title, content = undefined, report }: TReportProps) => {
 				report: { ...report, reason: reportValues.reason }
 			},
 			onCompleted: () => {
-				setModalDrawer({
-					isOpen: false
-				});
+				closeModalDrawer();
 				// redirectTo(false, 'rp');
 				showSuccessNotification({
 					title: `This ${title} has been reported.`

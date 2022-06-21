@@ -1,6 +1,6 @@
-import SearchContentGridLayout from '@components/layouts/SearchContentGridLayout';
-import { DocumentTitle } from '@components/shared';
-import AuthFilter from '@utils/AuthFilter';
+import SearchContentGridLayout from '@/components/layouts/SearchContentGridLayout';
+import { DocumentTitle } from '@/components/shared';
+import AuthFilter from '@/utils/AuthFilter';
 import Head from 'next/head';
 import React from 'react';
 import IdeasSearchForm from './components/form/IdeasSearchForm';

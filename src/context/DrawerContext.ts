@@ -2,7 +2,7 @@ import { createContext } from 'react';
 const DrawerContext = createContext({
 	drawer: {
 		isOpen: false,
-		title: null,
+		title: undefined,
 		body: null,
 		handler: () => null,
 		noBtnLabel: '',

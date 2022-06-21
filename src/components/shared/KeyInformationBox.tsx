@@ -1,6 +1,6 @@
 import Icon from '@chakra-ui/icon';
-import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
+import { Label } from '@/components/labels';
+import { StackLayout } from '@/components/layouts';
 import React from 'react';
 import { IconType } from 'react-icons/lib';
 

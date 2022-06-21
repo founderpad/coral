@@ -1,13 +1,13 @@
-import LinkCard from '@components/cards/LinkCard';
-import { Label } from '@components/labels';
-import { PointSeparator, UserAvatarDetails } from '@components/shared';
-import PronounsLabel from '@components/shared/PronounsLabel';
-import { useAuth } from '@hooks/auth';
-import { formatDate } from '@utils/validators';
+import LinkCard from '@/components/cards/LinkCard';
+import { Label } from '@/components/labels';
+import { PointSeparator, UserAvatarDetails } from '@/components/shared';
+import PronounsLabel from '@/components/shared/PronounsLabel';
+import { useAuth } from '@/hooks/auth';
+import { formatDate } from '@/utils/validators';
 import React from 'react';
 
 const MessageThreadCard = (thread: any) => {
-	const authUserId = useAuth().user?.id;
+	const authUserId = useAuth().getUser()?.id;
 
 	return (
 		<LinkCard href={`/message/thread/${thread.id}`}>
@@ -25,7 +25,11 @@ const MessageThreadCard = (thread: any) => {
 							}
 						/>
 						<PointSeparator small />
-						<Label d="flex" fontSize="x-small" color="fpGrey.500">
+						<Label
+							display="flex"
+							fontSize="x-small"
+							color="fpGrey.500"
+						>
 							{formatDate(
 								thread.lastMessage?.[0].createdAt,
 								true

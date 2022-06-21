@@ -1,28 +1,28 @@
 import { Button, Checkbox, FormControl } from '@chakra-ui/react';
-import { SubmitButton } from '@components/buttons';
-import { FormInput, FormSelect } from '@components/form/inputs/FormField';
-import BaseHeading from '@components/heading/BaseHeading';
-import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
-import { AppDivider } from '@components/shared';
-import { useModalDrawer } from '@hooks/util';
+import { SubmitButton } from '@/components/buttons';
+import { FormInput, FormSelect } from '@/components/form/inputs/FormField';
+import BaseHeading from '@/components/heading/BaseHeading';
+import { Label } from '@/components/labels';
+import { FlexLayout } from '@/components/layouts';
+import { AppDivider } from '@/components/shared';
+import { useModalDrawer } from '@/hooks/util';
 import {
 	ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
 	ALL_IDEA_STATUSES,
 	BY_IDEA_POPULARITY
-} from '@utils/Constants';
+} from '@/utils/Constants';
 import {
 	buildParams,
 	deleteParam,
 	deleteParams,
 	navigateTo
-} from '@utils/routerUtils';
+} from '@/utils/routerUtils';
 import React, { useCallback, useState } from 'react';
 import { Controller } from 'react-hook-form';
-import { useQueryParam } from '@hooks/util';
+import { useQueryParam } from '@/hooks/util';
 import Router from 'next/router';
-import { BaseForm } from '@components/form';
+import { BaseForm } from '@/components/form';
 
 type TSearchFields = {
 	field?: string;
@@ -34,15 +34,12 @@ type TSearchFields = {
 };
 
 const IdeasSearchForm = () => {
-	const { setModalDrawer } = useModalDrawer();
+	const { closeModalDrawer } = useModalDrawer();
 	const [isNewIdea, setIsNewIdea] = useState<boolean | undefined>(undefined);
 	const [showClear, setShowClear] = useState(false);
 
 	const onClick = (values: TSearchFields) => {
-		setModalDrawer({
-			isOpen: false
-		});
-
+		closeModalDrawer();
 		buildParams<TSearchFields>({ ...values, new: isNewIdea });
 	};
 

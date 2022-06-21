@@ -1,19 +1,19 @@
-import { UserAvatar } from '@components/shared';
-import ImageUploader from '@components/shared/imageuploader/ImageUploader';
+import { UserAvatar } from '@/components/shared';
+import ImageUploader from '@/components/shared/imageuploader/ImageUploader';
 import { useUpdateUserAvatarMutation } from '@generated/api';
-import { useAuth, useCurrentUser } from '@hooks/auth';
-import { useSuccessNotification } from '@hooks/toast';
-import { useFileUpload, useModalDrawer } from '@hooks/util';
+import { useAuth, useCurrentUser } from '@/hooks/auth';
+import { useSuccessNotification } from '@/hooks/toast';
+import { useFileUpload, useModalDrawer } from '@/hooks/util';
 import { updateUserImage } from '@slices/auth';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
 const UserImageUploader = () => {
 	const dispatch = useDispatch();
-	const { id } = useAuth().user ?? {};
+	const userId = useAuth().getUser()?.id;
 	const avatarUrl = useCurrentUser().avatarUrl;
 
-	const { setModalDrawer } = useModalDrawer();
+	const { closeModalDrawer } = useModalDrawer();
 	// const { addNotification } = useNotification();
 	const showSuccessNotification = useSuccessNotification();
 
@@ -45,7 +45,7 @@ const UserImageUploader = () => {
 
 		await updateAvatar({
 			variables: {
-				id,
+				id: userId,
 				userDetails: {
 					avatarUrl
 				}
@@ -58,7 +58,7 @@ const UserImageUploader = () => {
 						title: 'Avatar updated successfully'
 					});
 				}
-				setModalDrawer({ isOpen: false });
+				closeModalDrawer();
 			}
 		});
 	};

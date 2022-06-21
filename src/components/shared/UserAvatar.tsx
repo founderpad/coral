@@ -1,8 +1,8 @@
 import { Avatar } from '@chakra-ui/avatar';
 import { AvatarProps, StackProps, useBreakpointValue } from '@chakra-ui/react';
-import { CaptionLabel, Label } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { useAuth, useCurrentUser } from '@hooks/auth';
+import { CaptionLabel, Label } from '@/components/labels';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { useCurrentUser } from '@/hooks/auth';
 import React, { memo } from 'react';
 
 type Props = AvatarProps & {
@@ -63,7 +63,7 @@ export const UserAvatarDetails = ({
 					wordBreak="break-word"
 					noOfLines={1}
 					mr={1}
-					isTruncated
+					// isTruncated={true}
 					flex={1}
 					overflowX="hidden"
 				>
@@ -91,7 +91,7 @@ export const CurrentUserAvatarDetails = memo(
 		size?: Props['size'];
 		direction?: StackProps['direction'];
 	}) => {
-		const user = useAuth().user;
+		const user = useCurrentUser();
 
 		if (user)
 			return (

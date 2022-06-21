@@ -1,7 +1,7 @@
-import { Label } from '@components/labels';
-import AuthLayout from '@components/layouts/AuthLayout';
-import { PrimaryLink } from '@components/links';
-import ChangePasswordForm from '@components/shared/ChangePasswordForm';
+import { Label } from '@/components/labels';
+import AuthLayout from '@/components/layouts/AuthLayout';
+import { PrimaryLink } from '@/components/links';
+import ChangePasswordForm from '@/components/shared/ChangePasswordForm';
 import { NextPage } from 'next';
 import React from 'react';
 

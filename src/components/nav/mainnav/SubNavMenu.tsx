@@ -1,12 +1,16 @@
-import BaseHeading from '@components/heading/BaseHeading';
-import { StackLayout } from '@components/layouts';
+import BaseHeading from '@/components/heading/BaseHeading';
+import { StackLayout } from '@/components/layouts';
 import React from 'react';
 import { NavItem } from './NavItems';
 import { SubNav } from './SubNav';
 
 const SubNavMenu = (navItem: NavItem) => {
 	return (
-		<StackLayout direction={{ base: 'column', md: 'row' }} p={4} d="flex">
+		<StackLayout
+			direction={{ base: 'column', md: 'row' }}
+			p={4}
+			display="flex"
+		>
 			{navItem.items?.map((parentNavItem, key) => (
 				<StackLayout key={key}>
 					{parentNavItem.title && (
@@ -14,7 +18,11 @@ const SubNavMenu = (navItem: NavItem) => {
 							{parentNavItem.title}
 						</BaseHeading>
 					)}
-					<StackLayout spacing={{ base: 1, sm: 3 }} d="flex" flex={1}>
+					<StackLayout
+						spacing={{ base: 1, sm: 3 }}
+						display="flex"
+						flex={1}
+					>
 						{parentNavItem.items?.map((childNavItem, key) => (
 							<SubNav {...childNavItem} key={key} />
 						))}

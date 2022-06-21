@@ -1,20 +1,20 @@
 import { FlexProps } from '@chakra-ui/react';
-import { AlertFeedback } from '@components/alert';
-import { SubmitButton } from '@components/buttons';
+import { AlertFeedback } from '@/components/alert';
+import { SubmitButton } from '@/components/buttons';
 import {
 	IoLocationOutline,
 	IoLockClosedOutline,
 	IoMailOutline,
 	IoTimeOutline
-} from '@components/icons';
-import { StackLayout } from '@components/layouts';
-import { TitleEditAction } from '@components/shared';
-import ChangePasswordForm from '@components/shared/ChangePasswordForm';
-import PronounsLabel from '@components/shared/PronounsLabel';
-import ModalDrawerContext from '@context/ModalDrawerContext';
-import { useCurrentUser } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
-import { formatDate } from '@utils/validators';
+} from '@/components/icons';
+import { StackLayout } from '@/components/layouts';
+import { TitleEditAction } from '@/components/shared';
+import ChangePasswordForm from '@/components/shared/ChangePasswordForm';
+import PronounsLabel from '@/components/shared/PronounsLabel';
+import ModalDrawerContext from '@/context/ModalDrawerContext';
+import { useCurrentUser } from '@/hooks/auth';
+import { useQueryParam } from '@/hooks/util';
+import { formatDate } from '@/utils/validators';
 import React, { memo, useContext } from 'react';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';
@@ -24,7 +24,7 @@ type Props = Pick<FlexProps, 'display' | 'mb'>;
 
 const UserPersonalInformation = memo((props: Props) => {
 	const user = useCurrentUser();
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const { openModalDrawer } = useContext(ModalDrawerContext);
 	const {
 		createdAt = '',
 		displayName = '',
@@ -46,9 +46,8 @@ const UserPersonalInformation = memo((props: Props) => {
 	const isPwdChangeError = useQueryParam('cp_error');
 
 	const onPersonalDetailsClick = () => {
-		setModalDrawer({
+		openModalDrawer({
 			title: 'Your details',
-			isOpen: true,
 			action: (
 				<SubmitButton
 					name="open-modal-drawer-personal-details-button"
@@ -61,9 +60,8 @@ const UserPersonalInformation = memo((props: Props) => {
 	};
 
 	const onPasswordClick = () => {
-		setModalDrawer({
+		openModalDrawer({
 			title: 'Your new password',
-			isOpen: true,
 			action: (
 				<SubmitButton
 					name="open-modal-drawer-change-password-button"

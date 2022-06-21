@@ -1,6 +1,6 @@
-import ResetPasswordFormForm from '@pages/auth/resetpassword/components/ResetPasswordForm';
+import ResetPasswordFormForm from '@/pages/auth/resetpassword/components/ResetPasswordForm';
 import userEvent from '@testing-library/user-event';
-import store from '@utils/store';
+import store from '@/utils/store';
 import { Provider } from 'react-redux';
 import { act, cleanup, fireEvent, render, waitFor } from './testUtils';
 
@@ -32,7 +32,7 @@ const setup = () => {
 
 const mockResetPassword = jest.fn();
 
-jest.mock('@hooks/auth', () => ({
+jest.mock('@/hooks/auth', () => ({
 	useResetPassword: (): any => mockResetPassword
 }));
 

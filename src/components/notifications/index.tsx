@@ -1,5 +1,5 @@
 import { Alert, AlertDescription } from '@chakra-ui/react';
-import { useNotification } from '@hooks/util';
+import { useNotification } from '@/hooks/util';
 import React from 'react';
 
 const Notification = () => {

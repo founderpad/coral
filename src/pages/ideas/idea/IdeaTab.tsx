@@ -1,7 +1,7 @@
-import { AlertFeedback } from '@components/alert';
-import { StackLayout } from '@components/layouts';
-import { AppDivider, Loading } from '@components/shared';
-import { useMobile, useQueryParam } from '@hooks/util';
+import { AlertFeedback } from '@/components/alert';
+import { StackLayout } from '@/components/layouts';
+import { AppDivider, Loading } from '@/components/shared';
+import { useMobile, useQueryParam } from '@/hooks/util';
 import React from 'react';
 import IdeaDetails from './components/IdeaDetails';
 import CommentsList from './components/comments/CommentsList';
@@ -28,7 +28,7 @@ const IdeaTab = () => {
 			overflowY="hidden"
 			spacing={0}
 		>
-			<StackLayout p={4} flex={1} d="flex" overflowY="auto">
+			<StackLayout p={4} flex={1} display="flex" overflowY="auto">
 				{isChangeSuccess && (
 					<AlertFeedback
 						status="success"

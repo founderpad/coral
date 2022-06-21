@@ -1,5 +1,5 @@
 import { Icon, Text } from '@chakra-ui/react';
-import { StackLayout } from '@components/layouts';
+import { StackLayout } from '@/components/layouts';
 import { IoCheckmarkCircleSharp } from 'react-icons/io5';
 import { PointSeparator } from '..';
 

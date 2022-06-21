@@ -1,14 +1,14 @@
-import { Label } from '@components/labels';
-import { CaptionLabel } from '@components/labels/Label';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { BaseLink } from '@components/links';
-import { Loading, NoResults, PointSeparator } from '@components/shared';
-import AppDivider from '@components/shared/AppDivider';
+import { Label } from '@/components/labels';
+import { CaptionLabel } from '@/components/labels/Label';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { BaseLink } from '@/components/links';
+import { Loading, NoResults, PointSeparator } from '@/components/shared';
+import AppDivider from '@/components/shared/AppDivider';
 import { TIdeaPreviewFieldsFragment, useUserIdeasQuery } from '@generated/api';
-import { useClaim } from '@hooks/auth';
-import InterestedTotal from '@pages/ideas/idea/components/InterestedTotal';
-import PublishedLabel from '@pages/ideas/idea/components/PublishedLabel';
-import { formatDate } from '@utils/validators';
+import { useClaim } from '@/hooks/auth';
+import InterestedTotal from '@/pages/ideas/idea/components/InterestedTotal';
+import PublishedLabel from '@/pages/ideas/idea/components/PublishedLabel';
+import { formatDate } from '@/utils/validators';
 import React from 'react';
 import BoostIdea from '../idea/components/BoostIdea';
 
@@ -48,7 +48,7 @@ const MyIdeasContainer = () => {
 								rounded="sm"
 							>
 								<Label
-									d="flex"
+									display="flex"
 									w="full"
 									overflow="hidden"
 									fontWeight="medium"
@@ -56,7 +56,7 @@ const MyIdeasContainer = () => {
 									css={{ whiteSpace: 'normal' }}
 									wordBreak="break-word"
 									noOfLines={2}
-									isTruncated
+									// isTruncated
 								>
 									{idea?.name}
 								</Label>

@@ -1,100 +1,148 @@
-module.exports = {
-	setupFilesAfterEnv: ['./jest.setup.js'],
-	testEnvironment: 'jsdom',
-	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
-	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
-	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+const nextJest = require('next/jest');
+const createJestConfig = nextJest({
+	dir: './'
+});
+const customJestConfig = {
+	moduleDirectories: ['node_modules', '<rootDir>/'],
+	testEnvironment: 'jest-environment-jsdom',
+	setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+	// preset: 'ts-jest',
+	// testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
+	// transform: {
+	// 	'^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
+	// },
+	// transform: {
+	// 	'^.+\\.ts?$': 'ts-jest'
+	// },
 	moduleNameMapper: {
-		'^@components(.*)$': '<rootDir>/src/components$1',
-		'^@pages(.*)$': '<rootDir>/src/pages$1',
-		'^@hooks(.*)$': '<rootDir>/src/hooks$1',
-		'^@utils(.*)$': '<rootDir>/src/utils$1',
-		'^@context(.*)$': '<rootDir>/src/context$1',
-		'^@lib(.*)$': '<rootDir>/src/lib$1',
-		'^@slices(.*)$': '<rootDir>/src/slices$1',
-		'^@provider(.*)$': '<rootDir>/src/provider$1'
-	},
-	transform: {
-		'^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
+		'^@/components(.*)$': '<rootDir>/src/components$1',
+		'^@/pages(.*)$': '<rootDir>/src/pages$1',
+		'^@/hooks(.*)$': '<rootDir>/src/hooks$1',
+		'^@/utils(.*)$': '<rootDir>/src/utils$1',
+		'^@/context(.*)$': '<rootDir>/src/context$1',
+		'^@/lib(.*)$': '<rootDir>/src/lib$1',
+		'^@/slices(.*)$': '<rootDir>/src/slices$1',
+		'^@/provider(.*)$': '<rootDir>/src/provider$1'
+		// '^@/nhost(.*)$': '<rootDir>/node_modules/@nhost$1' // Add this otherwise tests will fail. This didn't need to be added before(?)
 	}
 };
-
-// Load environment variables so that we can access them in our tests
-const { loadEnvConfig } = require('@next/env');
-loadEnvConfig(process.env.PWD);
+module.exports = createJestConfig(customJestConfig);
 
 // module.exports = {
-// 	roots: ['<rootDir>'],
-// 	testEnvironment: 'jsdom',
-// 	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
-// 	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
-// 	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
-// 	transform: {
-// 		'^.+\\.(ts|tsx)$': 'babel-jest'
-// 	},
-// 	watchPlugins: [
-// 		'jest-watch-typeahead/filename',
-// 		'jest-watch-typeahead/testname'
-// 	],
-// 	moduleNameMapper: {
-// 		'\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-// 		'\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js'
-// 	},
-// 	modulePaths: ['src', 'test'],
-// 	setupFilesAfterEnv: ['<rootDir>/src/__test__/setupTests.ts']
-// };
-
-// const nextJest = require('next/jest');
-// // import nextJest from 'next/jest';
-
-// const createJestConfig = nextJest({
-// 	// Provide the path to your Next.js app to load next.config.js and .env files in your test environment
-// 	dir: './'
-// });
-
-// // Add any custom config to be passed to Jest
-// const customJestConfig = {
-// 	setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-// 	moduleNameMapper: {
-// 		// Handle module aliases (this will be automatically configured for you soon)
-// 		// '^@/components/(.*)$': '<rootDir>/components/$1',
-
-// 		// '^@/src/pages/(.*)$': '<rootDir>/src/pages/$1'
-// 		'^@src/(.*)': '<rootDir>/src/$1',
-// 		'^@components/(.*)': '<rootDir>/src/components/$1',
-// 		'^@pages/(.*)$': '<rootDir>/src/pages/$1'
-// 	},
-// 	testEnvironment: 'jest-environment-jsdom'
-// };
-
-// // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-// module.exports = createJestConfig(customJestConfig);
-
-// const nextJest = require('next/jest');
-// const createJestConfig = nextJest({
-// 	// Provide the path to your Next.js app to load next.config.js and .env files in your test environment
-// 	dir: './'
-// });
-
-// const customJestConfig = {
 // 	setupFilesAfterEnv: ['./jest.setup.js'],
-// 	// testEnvironment: 'jsdom',
 // 	testEnvironment: 'jest-environment-jsdom',
 // 	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
 // 	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
 // 	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
 // 	moduleNameMapper: {
-// 		'^@components(.*)$': '<rootDir>/src/components$1',
-// 		'^@pages(.*)$': '<rootDir>/src/pages$1',
-// 		'^@hooks(.*)$': '<rootDir>/src/hooks$1',
-// 		'^@utils(.*)$': '<rootDir>/src/utils$1',
-// 		'^@context(.*)$': '<rootDir>/src/context$1',
-// 		'^@lib(.*)$': '<rootDir>/src/lib$1',
+// 		'^@/components(.*)$': '<rootDir>/src/components$1',
+// 		'^@/pages(.*)$': '<rootDir>/src/pages$1',
+// 		'^@/hooks(.*)$': '<rootDir>/src/hooks$1',
+// 		'^@/utils(.*)$': '<rootDir>/src/utils$1',
+// 		'^@/context(.*)$': '<rootDir>/src/context$1',
+// 		'^@/lib(.*)$': '<rootDir>/src/lib$1',
 // 		'^@slices(.*)$': '<rootDir>/src/slices$1',
-// 		'^@provider(.*)$': '<rootDir>/src/provider$1',
-// 		'^@types(.*)$': '<rootDir>/src/types$1',
-// 		'^@generated(.*)$': '<rootDir>/src/generated$1'
+// 		'^@/provider(.*)$': '<rootDir>/src/provider$1'
+// 	},
+// 	transform: {
+// 		'^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
 // 	}
 // };
 
+// // Load environment variables so that we can access them in our tests
+// const { loadEnvConfig } = require('@next/env');
+// loadEnvConfig(process.env.PWD);
+
+// import type { Config } from '@jest/types';
+
+// const jestConfig = async (): Promise<Config.InitialOptions> => {
+// 	return {
+// 		verbose: true,
+// 		// preset: 'ts-jest',
+// 		testEnvironment: 'jest-environment-jsdom',
+// 		// moduleDirectories: ['node_modules', '<rootDir>/'],
+// 		moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+// 		setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+// 		moduleNameMapper: {
+// 			'^@/components(.*)$': '<rootDir>/src/components$1',
+// 			'^@/pages(.*)$': '<rootDir>/src/pages$1',
+// 			'^@/hooks(.*)$': '<rootDir>/src/hooks$1',
+// 			'^@/utils(.*)$': '<rootDir>/src/utils$1',
+// 			'^@/context(.*)$': '<rootDir>/src/context$1',
+// 			'^@/lib(.*)$': '<rootDir>/src/lib$1',
+// 			'^@slices(.*)$': '<rootDir>/src/slices$1',
+// 			'^@/provider(.*)$': '<rootDir>/src/provider$1'
+// 		}
+// 	};
+// };
+
+// export default jestConfig;
+
+// export default async (): Promise<Config.InitialOptions> => {
+// 	return {
+// 		verbose: true,
+// 		preset: 'ts-jest',
+// 		moduleDirectories: ['node_modules', '<rootDir>/'],
+// 		moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+// 		testEnvironment: 'jest-environment-jsdom',
+// 		setupFilesAfterEnv: ['./jest.setup.js'],
+// 		moduleNameMapper: {
+// 			'^@/components(.*)$': '<rootDir>/src/components$1',
+// 			'^@/pages(.*)$': '<rootDir>/src/pages$1',
+// 			'^@/hooks(.*)$': '<rootDir>/src/hooks$1',
+// 			'^@/utils(.*)$': '<rootDir>/src/utils$1',
+// 			'^@/context(.*)$': '<rootDir>/src/context$1',
+// 			'^@/lib(.*)$': '<rootDir>/src/lib$1',
+// 			'^@slices(.*)$': '<rootDir>/src/slices$1',
+// 			'^@/provider(.*)$': '<rootDir>/src/provider$1'
+// 		}
+// 	};
+// };
+
+// module.exports = {
+// 	setupFilesAfterEnv: ['./jest.setup.js'],
+// 	testEnvironment: 'jest-environment-jsdom',
+// 	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+// 	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
+// 	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+// 	moduleNameMapper: {
+// 		'^@/components(.*)$': '<rootDir>/src/components$1',
+// 		'^@/pages(.*)$': '<rootDir>/src/pages$1',
+// 		'^@/hooks(.*)$': '<rootDir>/src/hooks$1',
+// 		'^@/utils(.*)$': '<rootDir>/src/utils$1',
+// 		'^@/context(.*)$': '<rootDir>/src/context$1',
+// 		'^@/lib(.*)$': '<rootDir>/src/lib$1',
+// 		'^@slices(.*)$': '<rootDir>/src/slices$1',
+// 		'^@/provider(.*)$': '<rootDir>/src/provider$1'
+// 	},
+// 	transform: {
+// 		'^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
+// 	}
+// };
+
+// const nextJest = require('next/jest');
+// const createJestConfig = nextJest({});
+// const customJestConfig = {
+// 	verbose: true,
+// 	moduleDirectories: ['node_modules', '<rootDir>/'],
+// 	testEnvironment: 'jest-environment-jsdom',
+// 	setupFilesAfterEnv: ['./jest.setup.js'],
+// 	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+// 	testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
+// 	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+// 	moduleNameMapper: {
+// 		'^@/components(.*)$': '<rootDir>/src/components$1',
+// 		'^@/pages(.*)$': '<rootDir>/src/pages$1',
+// 		'^@/hooks(.*)$': '<rootDir>/src/hooks$1',
+// 		'^@/utils(.*)$': '<rootDir>/src/utils$1',
+// 		'^@/context(.*)$': '<rootDir>/src/context$1',
+// 		'^@/lib(.*)$': '<rootDir>/src/lib$1',
+// 		'^@slices(.*)$': '<rootDir>/src/slices$1',
+// 		'^@/provider(.*)$': '<rootDir>/src/provider$1'
+// 	}
+// };
 // module.exports = createJestConfig(customJestConfig);
+
+// Load environment variables so that we can access them in our tests
+// const { loadEnvConfig } = require('@next/env');
+// loadEnvConfig(process.env.PWD);

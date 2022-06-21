@@ -1,14 +1,14 @@
 import { FormControl } from '@chakra-ui/form-control';
 import { Button, Checkbox } from '@chakra-ui/react';
-import { FormLabelText } from '@components/form';
-import { BaseForm } from '@components/form';
-import { Label } from '@components/labels';
+import { FormLabelText } from '@/components/form';
+import { BaseForm } from '@/components/form';
+import { Label } from '@/components/labels';
 import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
 } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
+import { useCurrentUser } from '@/hooks/auth';
 import { setProfileComplete } from '@slices/auth';
 import {
 	ALL_IDEA_CATEGORY_FIELDS,
@@ -17,15 +17,15 @@ import {
 	EXPERIENCE_SKILLS,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
-} from '@utils/Constants';
+} from '@/utils/Constants';
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import React from 'react';
-import { redirectTo } from '@utils/validators';
-import { FormSelect, FormTextarea } from '@components/form/inputs/FormField';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { useModalDrawer } from '@hooks/util';
+import { redirectTo } from '@/utils/validators';
+import { FormSelect, FormTextarea } from '@/components/form/inputs/FormField';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { useModalDrawer } from '@/hooks/util';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 	const defaultValues = { ...rest };
 
-	const { setModalDrawer } = useModalDrawer();
+	const { closeModalDrawer } = useModalDrawer();
 	const [updateUserProfileMutation] = useUpdateUserProfileMutation();
 
 	const onSkillsToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,17 +66,13 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				}
 			},
 			onCompleted: (_data) => {
-				setModalDrawer({
-					isOpen: false
-				});
+				closeModalDrawer();
 
 				redirectTo(false, 'exp');
 				if (!isProfileComplete) dispatch(setProfileComplete());
 			},
 			onError: (_data) => {
-				setModalDrawer({
-					isOpen: false
-				});
+				closeModalDrawer();
 				redirectTo(true, 'exp');
 			}
 		});

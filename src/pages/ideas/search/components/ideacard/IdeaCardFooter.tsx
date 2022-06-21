@@ -1,16 +1,17 @@
 import Icon from '@chakra-ui/icon';
 import { Button } from '@chakra-ui/react';
-import { IoChatbubbleOutline } from '@components/icons';
-import { StackLayout } from '@components/layouts';
+import { IoChatbubbleOutline } from '@/components/icons';
+import { StackLayout } from '@/components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
-import { useAuth } from '@hooks/auth';
-import BoostIdea from '@pages/ideas/idea/components/BoostIdea';
-import IdeaUpvote from '@pages/ideas/idea/components/IdeaUpvote';
+import { useAuth } from '@/hooks/auth';
+import BoostIdea from '@/pages/ideas/idea/components/BoostIdea';
+import IdeaUpvote from '@/pages/ideas/idea/components/IdeaUpvote';
 import React, { memo } from 'react';
 import IdeaMenu from '../IdeaMenu';
 
 const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
-	const user = useAuth().user;
+	const user = useAuth().getUser();
+
 	return (
 		<StackLayout
 			direction="row"
@@ -32,14 +33,14 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 					leftIcon={<Icon as={IoChatbubbleOutline} fontSize="lg" />}
 					_selected={{ background: 'transparent' }}
 					color="fpGrey.300"
-					d="flex"
+					display="flex"
 					alignItems="center"
 					aria-label="comments-number-button"
 				>
 					{idea?.comments_aggregate?.aggregate?.count}
 				</Button>
-				{user?.id === idea.userId && <BoostIdea {...idea} />}
 			</StackLayout>
+			{user?.id === idea.userId && <BoostIdea {...idea} />}
 
 			<IdeaMenu {...idea} />
 		</StackLayout>

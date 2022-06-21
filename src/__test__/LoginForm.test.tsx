@@ -1,6 +1,6 @@
-import LoginForm from '@pages/auth/login/components/LoginForm';
+import LoginForm from '@/pages/auth/login/components/LoginForm';
 import userEvent from '@testing-library/user-event';
-import store from '@utils/store';
+import store from '@/utils/store';
 import { Provider } from 'react-redux';
 import { act, cleanup, fireEvent, render, waitFor } from './testUtils';
 
@@ -33,12 +33,12 @@ const mockLogin = jest.fn();
 const mockQueryParams = jest.fn();
 const mockSocialLogin = jest.fn();
 
-jest.mock('@hooks/auth', () => ({
+jest.mock('@/hooks/auth', () => ({
 	useLogin: (): any => mockLogin,
 	useSocialLogin: (): any => mockSocialLogin
 }));
 
-jest.mock('@hooks/util', () => ({
+jest.mock('@/hooks/util', () => ({
 	useQueryParam: (): any => mockQueryParams
 }));
 

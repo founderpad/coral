@@ -1,7 +1,7 @@
-import FileUploadContext from '@context/FileUploadContext';
-import { storage } from '@pages/_app';
+import FileUploadContext from '@/context/FileUploadContext';
+import { storage } from '@/pages/_app';
 
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import {
 	IFileUploadProps,
 	IStorageBucket,
@@ -75,19 +75,14 @@ const FileUploadProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const value = {
 		attachedFiles,
-		addAttachedFile: useCallback(
-			(attachedFile: IFileUploadProps) => addAttachedFile(attachedFile),
-			[]
-		),
-		addAttachedFiles: useCallback(
-			(attachedFiles: Array<IFileUploadProps>) =>
-				addAttachedFiles(attachedFiles),
-			[]
-		),
-		removeAttachedFile: useCallback(
-			(removeFile: IFileUploadProps) => removeAttachedFile(removeFile),
-			[]
-		),
+		addAttachedFile: (attachedFile: IFileUploadProps) =>
+			addAttachedFile(attachedFile),
+
+		addAttachedFiles: (attachedFiles: Array<IFileUploadProps>) =>
+			addAttachedFiles(attachedFiles),
+
+		removeAttachedFile: (removeFile: IFileUploadProps) =>
+			removeAttachedFile(removeFile),
 		onUpload,
 		onDelete,
 		isDeleted,

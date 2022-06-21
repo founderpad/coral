@@ -1,13 +1,12 @@
-import { StackLayout } from '@components/layouts';
-import { AppDivider, Loading, NoResults } from '@components/shared';
+import { StackLayout } from '@/components/layouts';
+import { AppDivider, Loading, NoResults } from '@/components/shared';
 import { useUserMessageThreadsQuery } from '@generated/api';
-import { useAuth } from '@hooks/auth';
+import { useAuth } from '@/hooks/auth';
 import React from 'react';
 import MessageThreadCard from './components/MessageThreadCard';
 
 const MessageThreadsContainer = () => {
-	const userId = useAuth().user?.id;
-
+	const userId = useAuth().getUser()?.id;
 	const { data, loading } = useUserMessageThreadsQuery({
 		variables: {
 			userId

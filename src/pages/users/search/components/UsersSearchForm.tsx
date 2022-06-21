@@ -1,12 +1,12 @@
 import { FormControl, Checkbox, Button } from '@chakra-ui/react';
-import { SubmitButton } from '@components/buttons';
-import { BaseForm, FormLabelText } from '@components/form';
-import { FormSelect } from '@components/form/inputs/FormField';
-import BaseHeading from '@components/heading/BaseHeading';
-import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
-import { AppDivider } from '@components/shared';
-import { useCheckboxToggle, useModalDrawer, useQueryParam } from '@hooks/util';
+import { SubmitButton } from '@/components/buttons';
+import { BaseForm, FormLabelText } from '@/components/form';
+import { FormSelect } from '@/components/form/inputs/FormField';
+import BaseHeading from '@/components/heading/BaseHeading';
+import { Label } from '@/components/labels';
+import { FlexLayout } from '@/components/layouts';
+import { AppDivider } from '@/components/shared';
+import { useCheckboxToggle, useModalDrawer, useQueryParam } from '@/hooks/util';
 import {
 	ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
@@ -15,9 +15,9 @@ import {
 	EXPERIENCE_SKILLS,
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
-} from '@utils/Constants';
-import { buildParams, deleteParam, deleteParams } from '@utils/routerUtils';
-import { resetSearchField } from '@utils/validators';
+} from '@/utils/Constants';
+import { buildParams, deleteParam, deleteParams } from '@/utils/routerUtils';
+import { resetSearchField } from '@/utils/validators';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -32,7 +32,7 @@ type TSearchFields = {
 };
 
 const UsersSearchForm = () => {
-	const { setModalDrawer } = useModalDrawer();
+	const { closeModalDrawer } = useModalDrawer();
 	const defaultSkills = useQueryParam<string[]>('skills');
 
 	const { values, clearValues, toggleValue, toggleAll, isAll } =
@@ -49,9 +49,7 @@ const UsersSearchForm = () => {
 	};
 
 	const onClick = (searchValues: TSearchFields) => {
-		setModalDrawer({
-			isOpen: false
-		});
+		closeModalDrawer();
 		buildParams<TSearchFields>({ ...searchValues, skills: values });
 	};
 

@@ -1,5 +1,5 @@
-import { BaseForm } from '@components/form';
-import { FormInput, FormSelect } from '@components/form/inputs/FormField';
+import { BaseForm } from '@/components/form';
+import { FormInput, FormSelect } from '@/components/form/inputs/FormField';
 import {
 	TUsers,
 	TUsers_Set_Input,
@@ -9,11 +9,11 @@ import {
 	TUser_Profile_Set_Input,
 	useUpdateUserPersonalDetailsMutation
 } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
-import { useModalDrawer } from '@hooks/util';
+import { useCurrentUser } from '@/hooks/auth';
+import { useModalDrawer } from '@/hooks/util';
 import { updateUserPersonalDetails } from '@slices/auth';
-import { ALL_COUNTRIES, ALL_PRONOUNS } from '@utils/Constants';
-import { redirectTo } from '@utils/validators';
+import { ALL_COUNTRIES, ALL_PRONOUNS } from '@/utils/Constants';
+import { redirectTo } from '@/utils/validators';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -24,7 +24,7 @@ type TPersonalDetailsInput = Pick<TUsers_Set_Input, 'displayName'> &
 const PersonalDetailsForm = () => {
 	const auth = useCurrentUser();
 	const dispatch = useDispatch();
-	const { setModalDrawer } = useModalDrawer();
+	const { closeModalDrawer } = useModalDrawer();
 	const [updatePersonalDetails] = useUpdateUserPersonalDetailsMutation();
 
 	const defaultValues = { ...auth, ...auth?.address, ...auth?.profile };
@@ -66,10 +66,7 @@ const PersonalDetailsForm = () => {
 				);
 
 				redirectTo(false, 'pd');
-
-				setModalDrawer({
-					isOpen: false
-				});
+				closeModalDrawer();
 			},
 			onError: () => {
 				redirectTo(true, 'pd');

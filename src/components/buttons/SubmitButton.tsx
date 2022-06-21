@@ -1,4 +1,4 @@
-import { BaseButton } from '@components/buttons';
+import { BaseButton } from '@/components/buttons';
 import React from 'react';
 import { BaseButtonProps } from './types/buttons';
 
@@ -15,7 +15,7 @@ export const SubmitButton = ({
 	return (
 		<BaseButton
 			{...props}
-			isFullWidth={full}
+			full={full}
 			colorScheme={colorScheme}
 			isLoading={isLoading}
 			type="submit"

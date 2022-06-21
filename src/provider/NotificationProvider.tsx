@@ -1,5 +1,5 @@
 import { AlertProps } from '@chakra-ui/react';
-import NotificationContext from '@context/NotificationContext';
+import NotificationContext from '@/context/NotificationContext';
 import React, { useCallback, useState } from 'react';
 
 const NotificationProvider = ({ children }: { children: React.ReactNode }) => {

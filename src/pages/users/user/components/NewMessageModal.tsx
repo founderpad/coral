@@ -1,14 +1,14 @@
 import { ButtonProps, IconButton } from '@chakra-ui/react';
-import { BaseButton, SubmitButton } from '@components/buttons';
-import { BaseForm } from '@components/form';
-import { FormTextarea } from '@components/form/inputs/FormField';
+import { BaseButton, SubmitButton } from '@/components/buttons';
+import { BaseForm } from '@/components/form';
+import { FormTextarea } from '@/components/form/inputs/FormField';
 import {
 	TMessage,
 	useNewMessageMutation,
 	useNewMessageThreadMutation
 } from '@generated/api';
-import { useAuth } from '@hooks/auth';
-import { useModalDrawer } from '@hooks/util';
+import { useAuth } from '@/hooks/auth';
+import { useModalDrawer } from '@/hooks/util';
 import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
 import { IoChatboxEllipsesSharp } from 'react-icons/io5';
@@ -20,12 +20,11 @@ interface Props {
 }
 
 const NewMessageModal = memo(({ userId, icon = false, buttonProps }: Props) => {
-	const { setModalDrawer } = useModalDrawer();
+	const { openModalDrawer } = useModalDrawer();
 
 	const onNewMessageClick = useCallback(() => {
-		setModalDrawer({
+		openModalDrawer({
 			title: 'New message',
-			isOpen: true,
 			action: (
 				<SubmitButton
 					name="open-modal-drawer-new-message"
@@ -35,7 +34,7 @@ const NewMessageModal = memo(({ userId, icon = false, buttonProps }: Props) => {
 			),
 			body: <NewMessageForm userId={userId} />
 		});
-	}, [setModalDrawer, userId]);
+	}, [openModalDrawer, userId]);
 
 	if (icon)
 		return (
@@ -69,8 +68,8 @@ export default NewMessageModal;
 type TMessageInput = Pick<TMessage, 'content'>;
 
 const NewMessageForm = ({ userId }: { userId: string }) => {
-	const authUserId = useAuth().user?.id;
-	const { setModalDrawer } = useModalDrawer();
+	const authUserId = useAuth().getUser()?.id;
+	const { closeModalDrawer } = useModalDrawer();
 	const [createNewMessageThread] = useNewMessageThreadMutation();
 	const [createNewMessage] = useNewMessageMutation();
 
@@ -92,9 +91,7 @@ const NewMessageForm = ({ userId }: { userId: string }) => {
 						content
 					},
 					onCompleted: () => {
-						setModalDrawer({
-							isOpen: false
-						});
+						closeModalDrawer();
 						Router.push(`/message/thread/${messageThreadId}`);
 					}
 				});

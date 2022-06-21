@@ -2,9 +2,9 @@ import {
 	IoBulbSharp,
 	IoBusinessSharp,
 	IoDocumentsSharp
-} from '@components/icons';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import KeyInformationBox from '@components/shared/KeyInformationBox';
+} from '@/components/icons';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import KeyInformationBox from '@/components/shared/KeyInformationBox';
 import { TIdeas } from '@generated/api';
 import React, { memo } from 'react';
 import HighlightTag from './IdeaHighlightTag';

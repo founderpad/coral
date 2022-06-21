@@ -1,41 +1,14 @@
-import { useApolloClient } from '@apollo/client';
-import AuthLayout from '@components/layouts/AuthLayout';
-import { BaseLink } from '@components/links';
-import { useAuth } from '@hooks/auth';
-import { useModalDrawer } from '@hooks/util';
-import { logout } from '@slices/auth';
-import { auth, nhost } from '@utils/nhost';
+import AuthLayout from '@/components/layouts/AuthLayout';
+import { BaseLink } from '@/components/links';
+import { useAuth } from '@/hooks/auth';
+import NotFound from '@/pages/404';
 import { NextPage } from 'next';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
 const LoggedOut: NextPage = () => {
-	const dispatch = useDispatch();
-	const client = useApolloClient();
-	const { setModalDrawer } = useModalDrawer();
-	const userId = useAuth().user?.id;
-	// if (userId) return <NotFound />;
+	const userId = useAuth().getUser()?.id;
 
-	useEffect(() => {
-		function signOut() {
-			setModalDrawer({
-				isOpen: false
-			});
-			auth.signOut();
-		}
-
-		if (userId) signOut();
-	}, [setModalDrawer, userId]);
-
-	useEffect(() => {
-		nhost.auth.onAuthStateChanged((event) => {
-			if (event === 'SIGNED_OUT') {
-				dispatch(logout());
-				// dispatch(clearUser());
-				client.resetStore();
-			}
-		});
-	}, [client, dispatch]);
+	if (userId) return <NotFound />;
 
 	return (
 		<AuthLayout

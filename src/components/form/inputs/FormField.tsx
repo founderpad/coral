@@ -7,7 +7,7 @@ import {
 	FormHelperText,
 	Select as ChakraSelect
 } from '@chakra-ui/react';
-import { FlexLayout } from '@components/layouts';
+import { FlexLayout } from '@/components/layouts';
 import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import {
@@ -24,8 +24,8 @@ import { Props as SelectProps } from 'react-select';
 import Select from 'react-select';
 import FormLabelText from '../FormLabelText';
 import ResizeTextarea from 'react-textarea-autosize';
-import { useMobile } from '@hooks/util';
-import { TOption } from '@utils/Constants';
+import { useMobile } from '@/hooks/util';
+import { TOption } from '@/utils/Constants';
 
 export type TFormFieldProps<TFormValues> = {
 	name: Path<TFormValues>;
@@ -117,7 +117,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 						render={({ message }) => (
 							<FormHelperText
 								color="red.500"
-								fontSize="x-small"
+								fontSize="0.6875rem"
 								textAlign="start"
 								mb={2}
 							>

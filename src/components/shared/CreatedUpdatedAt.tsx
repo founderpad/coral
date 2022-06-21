@@ -1,5 +1,5 @@
-import { CaptionLabel, SubLabel } from '@components/labels';
-import { formatDate } from '@utils/validators';
+import { CaptionLabel, SubLabel } from '@/components/labels';
+import { formatDate } from '@/utils/validators';
 import React from 'react';
 
 // const LastUpdatedAt = ({ date }: { date: string }):  => <Text fontSize="xs" color="fpGrey.300">Updated {formatDate(date, false)}</Text>

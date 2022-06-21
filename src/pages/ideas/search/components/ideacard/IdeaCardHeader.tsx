@@ -1,5 +1,5 @@
-import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
+import { Label } from '@/components/labels';
+import { FlexLayout } from '@/components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@generated/api';
 import React, { memo } from 'react';
 import NewIdeaBadge from '../NewIdeaBadge';
@@ -19,7 +19,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 				{isNew && <NewIdeaBadge />}
 				<FlexLayout direction="column" flex={1}>
 					<Label
-						d="flex"
+						display="flex"
 						w="full"
 						overflow="hidden"
 						fontWeight="medium"
@@ -27,7 +27,7 @@ const IdeaCardHeader = (idea: TIdeaCardHeader) => {
 						css={{ whiteSpace: 'normal' }}
 						wordBreak="break-word"
 						noOfLines={1}
-						isTruncated
+						// isTruncated
 					>
 						{name}
 					</Label>

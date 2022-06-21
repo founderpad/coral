@@ -3,24 +3,27 @@ import {
 	ModalBody,
 	ModalCloseButton,
 	ModalContent,
+	ModalContentProps,
 	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
 	ModalProps
 } from '@chakra-ui/react';
-import { BaseButton } from '@components/buttons';
-import { ModalDrawerFooterActions } from '@components/shared';
+import { ModalDrawerFooterActions } from '@/components/shared';
 import React from 'react';
 
 type IModalProps = Omit<ModalProps, 'children'> & {
-	title?: React.ReactNode;
-	isOpen: boolean;
+	isOpen?: boolean;
+	title?: string;
 	body?: React.ReactNode;
 	noBtnLabel?: string | 'Cancel';
-	width?: number | string;
-	maxW?: number | string;
 	removePadding?: boolean;
-	action?: typeof BaseButton;
+	width?: ModalContentProps['width'];
+	size?: string | undefined;
+	action?: React.ReactNode | undefined;
+	showHeader?: boolean;
+	showFooter?: boolean;
+	// action?: typeof BaseButton;
 };
 
 export const Modal = (props: IModalProps) => {
@@ -32,7 +35,9 @@ export const Modal = (props: IModalProps) => {
 		noBtnLabel,
 		size,
 		action,
-		removePadding
+		removePadding,
+		showHeader = true,
+		showFooter = true
 	} = props;
 
 	return (
@@ -50,19 +55,21 @@ export const Modal = (props: IModalProps) => {
 				position="relative"
 				maxH="95vh"
 				my={0}
-				d="flex"
+				display="flex"
 			>
-				<ModalHeader
-					borderBottomWidth={1}
-					fontSize="md"
-					p={4}
-					display="flex"
-					justifyContent="center"
-					fontWeight="semibold"
-				>
-					<ModalCloseButton color="black" left={2} top={3} />
-					{title}
-				</ModalHeader>
+				{showHeader && (
+					<ModalHeader
+						borderBottomWidth={1}
+						fontSize="md"
+						p={4}
+						display="flex"
+						justifyContent="center"
+						fontWeight="semibold"
+					>
+						<ModalCloseButton color="black" left={2} top={3} />
+						{title}
+					</ModalHeader>
+				)}
 
 				<ModalBody
 					fontWeight="normal"
@@ -76,11 +83,18 @@ export const Modal = (props: IModalProps) => {
 					{body}
 				</ModalBody>
 
-				<ModalFooter d="flex" w="full" p={4} borderTopWidth={1}>
-					<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
-						{action}
-					</ModalDrawerFooterActions>
-				</ModalFooter>
+				{showFooter && (
+					<ModalFooter
+						display="flex"
+						w="full"
+						p={4}
+						borderTopWidth={1}
+					>
+						<ModalDrawerFooterActions noBtnLabel={noBtnLabel}>
+							{action}
+						</ModalDrawerFooterActions>
+					</ModalFooter>
+				)}
 			</ModalContent>
 		</ChakraModal>
 	);

@@ -21,7 +21,7 @@ export const BaseTag = ({
 		color={color}
 		rounded="md"
 		alignItems="center"
-		d="flex"
+		display="flex"
 		{...rest}
 	>
 		{icon && (
@@ -31,7 +31,7 @@ export const BaseTag = ({
 		)}
 
 		<TagLabel
-			d="flex"
+			display="flex"
 			flexDirection={flexDirection}
 			fontSize={fontSize ?? { base: 'x-small', sm: 'xs' }}
 			alignItems="center"

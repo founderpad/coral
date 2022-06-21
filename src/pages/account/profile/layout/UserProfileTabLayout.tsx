@@ -1,5 +1,5 @@
 import { useBreakpointValue } from '@chakra-ui/react';
-import TabLayout from '@components/layouts/TabLayout';
+import TabLayout from '@/components/layouts/TabLayout';
 import React from 'react';
 import UserActivityTab from '../components/UserActivityTab';
 import UserPersonalDetails from '../components/UserPersonalDetails';

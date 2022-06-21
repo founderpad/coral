@@ -1,4 +1,4 @@
-import IdeaCycleContext from '@context/IdeaCycleContext';
+import IdeaCycleContext from '@/context/IdeaCycleContext';
 import React, { useState } from 'react';
 
 const IdeaCycleProvider = ({

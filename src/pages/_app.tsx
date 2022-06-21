@@ -1,21 +1,21 @@
 import { InMemoryCache } from '@apollo/client';
 import { offsetLimitPagination } from '@apollo/client/utilities';
 import { ChakraProvider } from '@chakra-ui/react';
-import BaseModal from '@components/modal/BaseModal';
-import BaseModalDrawer from '@components/modal/BaseModalDrawer';
+import BaseModal from '@/components/modal/BaseModal';
+import BaseModalDrawer from '@/components/modal/BaseModalDrawer';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
-import { useTrackAnalytics } from '@hooks/util';
+import { useTrackAnalytics } from '@/hooks/util';
 import { NhostNextProvider, NhostClient } from '@nhost/nextjs';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import DrawerProvider from '@provider/DrawerProvider';
-import IdeaCycleProvider from '@provider/IdeaCycleProvider';
-import ModalDrawerProvider from '@provider/ModalDrawerProvider';
-import ModalProvider from '@provider/ModalProvider';
-import NotificationProvider from '@provider/NotificationProvider';
-import theme from '@theme/index';
-import store from '@utils/store';
+import DrawerProvider from '@/provider/DrawerProvider';
+import IdeaCycleProvider from '@/provider/IdeaCycleProvider';
+import ModalDrawerProvider from '@/provider/ModalDrawerProvider';
+import ModalProvider from '@/provider/ModalProvider';
+import NotificationProvider from '@/provider/NotificationProvider';
+import theme from '@/theme/index';
+import store from '@/utils/store';
 import 'focus-visible/dist/focus-visible';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -35,6 +35,12 @@ const nhost = new NhostClient({
 const auth = nhost.auth;
 const storage = nhost.storage;
 const functions = nhost.functions;
+
+const paypalOptions = {
+	'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+	currency: 'GBP',
+	intent: 'capture'
+};
 
 /**
  * The @App component is the entry point into the application. It wraps the application with the @see ChakraProvider which is a TailwindCSS inspired utility-first
@@ -106,14 +112,7 @@ const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
 				>
 					<Provider store={store}>
 						<PersistGate persistor={persistor}>
-							<PayPalScriptProvider
-								options={{
-									'client-id':
-										process.env
-											.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
-									currency: 'USD'
-								}}
-							>
+							<PayPalScriptProvider options={paypalOptions}>
 								{/* <NhostAuthProvider nhost={nhost}>
 							<NhostApolloProvider
 								nhost={nhost as any} // Fix this when SDK is stable

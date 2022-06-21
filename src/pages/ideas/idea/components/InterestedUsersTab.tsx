@@ -1,14 +1,14 @@
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { PrimaryLink } from '@components/links';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { PrimaryLink } from '@/components/links';
 import {
 	AppDivider,
 	Loading,
 	NoResults,
 	UserAvatarDetails
-} from '@components/shared';
+} from '@/components/shared';
 import { useIdeaInterestedUsersLazyQuery } from '@generated/api';
-import NewMessageModal from '@pages/users/user/components/NewMessageModal';
-import { formatDate } from '@utils/validators';
+import NewMessageModal from '@/pages/users/user/components/NewMessageModal';
+import { formatDate } from '@/utils/validators';
 import React, { useEffect } from 'react';
 import useIdea from '../query/ideaQuery';
 

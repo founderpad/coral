@@ -1,13 +1,13 @@
-import { AlertFeedback } from '@components/alert';
-import { SubmitButton } from '@components/buttons';
-import { BaseForm } from '@components/form';
-import { FormInput } from '@components/form/inputs/FormField';
-import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
-import { PrimaryLink } from '@components/links';
-import { useResetPassword } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
-import { emailPattern } from '@utils/validators';
+import { AlertFeedback } from '@/components/alert';
+import { SubmitButton } from '@/components/buttons';
+import { BaseForm } from '@/components/form';
+import { FormInput } from '@/components/form/inputs/FormField';
+import { Label } from '@/components/labels';
+import { StackLayout } from '@/components/layouts';
+import { PrimaryLink } from '@/components/links';
+import { useResetPassword } from '@/hooks/auth';
+import { useQueryParam } from '@/hooks/util';
+import { emailPattern } from '@/utils/validators';
 import React, { memo } from 'react';
 
 type TResetPasswordFields = {
@@ -107,7 +107,7 @@ const ResetPasswordFooter = memo(() => (
 		alignItems="center"
 		direction={{ base: 'column-reverse', sm: 'row' }}
 		justifyContent={{ sm: 'space-between' }}
-		d="flex"
+		display="flex"
 		w="full"
 	>
 		<Label color="fpGrey.500" fontSize="xs" alignSelf="center">

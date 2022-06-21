@@ -1,15 +1,15 @@
-import { FormInput } from '@components/form/inputs/FormField';
-// import SocialLogins from '@components/shared/SocialLogins';
-import { useRegister } from '@hooks/auth';
-import { emailPattern } from '@utils/validators';
+import { FormInput } from '@/components/form/inputs/FormField';
+// import SocialLogins from '@/components/shared/SocialLogins';
+import { useRegister } from '@/hooks/auth';
+import { emailPattern } from '@/utils/validators';
 import React from 'react';
 import LegalFooter from './LegalFooter';
 import { TRegisterFormFields } from '../../../../types/auth';
-import { BaseForm } from '@components/form';
-import { SubmitButton } from '@components/buttons';
-import { AlertFeedback } from '@components/alert';
-import { useQueryParam } from '@hooks/util';
-import SocialLogins from '@components/shared/SocialLogins';
+import { BaseForm } from '@/components/form';
+import { SubmitButton } from '@/components/buttons';
+import { AlertFeedback } from '@/components/alert';
+import { useQueryParam } from '@/hooks/util';
+import SocialLogins from '@/components/shared/SocialLogins';
 
 const RegisterForm = () => {
 	const onRegister = useRegister();

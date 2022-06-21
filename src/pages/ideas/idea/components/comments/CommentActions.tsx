@@ -1,5 +1,5 @@
-import { StackLayout } from '@components/layouts';
-import PostReplyComment from '@components/shared/PostReplyComment';
+import { StackLayout } from '@/components/layouts';
+import PostReplyComment from '@/components/shared/PostReplyComment';
 import React from 'react';
 import CommentMenu from './CommentMenu';
 
@@ -22,7 +22,7 @@ export const CommentActions = ({
 			{/* <BaseButton
 				name="upvote-idea-button"
 				variant="unstyled"
-				d="flex"
+				display="flex""
 			>
 				<Icon
 					as={IoArrowUpSharp}

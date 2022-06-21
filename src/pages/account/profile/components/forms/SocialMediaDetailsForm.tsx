@@ -1,19 +1,19 @@
-import BaseForm from '@components/form/BaseForm';
-import { FormInput } from '@components/form/inputs/FormField';
+import BaseForm from '@/components/form/BaseForm';
+import { FormInput } from '@/components/form/inputs/FormField';
 import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
 } from '@generated/api';
 import React from 'react';
-import { useModalDrawer } from '@hooks/util';
-import { redirectTo } from '@utils/validators';
+import { useModalDrawer } from '@/hooks/util';
+import { redirectTo } from '@/utils/validators';
 
 const SocialMediaDetailsForm = (socials: TUser_Profile) => {
 	const { __typename, userId, ...rest } = socials;
 	const defaultValues = { ...rest };
 
-	const { setModalDrawer } = useModalDrawer();
+	const { closeModalDrawer } = useModalDrawer();
 	const [updateUserProfileMutation] = useUpdateUserProfileMutation();
 
 	const onUpdateUserProfile = (values: TUser_Profile_Set_Input) => {
@@ -23,10 +23,7 @@ const SocialMediaDetailsForm = (socials: TUser_Profile) => {
 				user_profile: values
 			},
 			onCompleted: () => {
-				setModalDrawer({
-					isOpen: false
-				});
-
+				closeModalDrawer();
 				redirectTo(false, 'soc');
 			}
 		});

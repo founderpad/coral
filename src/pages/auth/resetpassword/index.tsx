@@ -1,5 +1,5 @@
-import AuthLayout from '@components/layouts/AuthLayout';
-import { useCheckLoggedIn } from '@hooks/auth';
+import AuthLayout from '@/components/layouts/AuthLayout';
+import { useCheckLoggedIn } from '@/hooks/auth';
 import { NextPage } from 'next';
 import React from 'react';
 import ResetPasswordForm from './components/ResetPasswordForm';

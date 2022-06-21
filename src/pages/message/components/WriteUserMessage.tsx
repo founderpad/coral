@@ -1,5 +1,5 @@
 import { StackProps } from '@chakra-ui/react';
-import WriteInput from '@components/shared/WriteInput';
+import WriteInput from '@/components/shared/WriteInput';
 import { useNewMessageMutation } from '@generated/api';
 import React, { useState } from 'react';
 

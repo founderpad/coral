@@ -1,7 +1,7 @@
 import { FormControl } from '@chakra-ui/form-control';
 import { Button, FormHelperText, forwardRef, Textarea } from '@chakra-ui/react';
-import { FormErrorText, FormLabelText } from '@components/form';
-import { FlexLayout } from '@components/layouts';
+import { FormErrorText, FormLabelText } from '@/components/form';
+import { FlexLayout } from '@/components/layouts';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import ResizeTextarea from 'react-textarea-autosize';

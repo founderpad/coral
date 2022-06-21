@@ -1,5 +1,5 @@
-import { StackLayout } from '@components/layouts';
-import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
+import { StackLayout } from '@/components/layouts';
+import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
 import React from 'react';
 import useIdea from '../query/ideaQuery';
 

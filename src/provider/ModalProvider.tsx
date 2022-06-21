@@ -1,4 +1,4 @@
-import ModalContext from '@context/ModalContext';
+import ModalContext from '@/context/ModalContext';
 import React, { useState } from 'react';
 
 const ModalProvider = ({

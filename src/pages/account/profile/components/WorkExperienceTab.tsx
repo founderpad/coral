@@ -1,14 +1,14 @@
 import { Icon, Tag } from '@chakra-ui/react';
-import { AlertFeedback } from '@components/alert';
-import { SubmitButton } from '@components/buttons';
-import { Label } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { Loading, TitleEditAction } from '@components/shared';
-import AppDivider from '@components/shared/AppDivider';
-import ContentFieldAndValue from '@components/shared/ContentFieldAndValue';
-import OverviewTags from '@components/shared/OverviewTags';
-import useUserProfile from '@hooks/user';
-import { useModalDrawer, useQueryParam } from '@hooks/util';
+import { AlertFeedback } from '@/components/alert';
+import { SubmitButton } from '@/components/buttons';
+import { Label } from '@/components/labels';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { Loading, TitleEditAction } from '@/components/shared';
+import AppDivider from '@/components/shared/AppDivider';
+import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
+import OverviewTags from '@/components/shared/OverviewTags';
+import useUserProfile from '@/hooks/user';
+import { useModalDrawer, useQueryParam } from '@/hooks/util';
 import React, { memo } from 'react';
 import { IoWarningSharp } from 'react-icons/io5';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
@@ -17,7 +17,7 @@ import ResumeUploader from './ResumeUploader';
 
 const WorkExperienceTab = () => {
 	const userProfile = useProfileFragment();
-	const { setModalDrawer } = useModalDrawer();
+	const { openModalDrawer } = useModalDrawer();
 	const isProfileComplete = useUserProfile()?.isComplete;
 
 	const isChangeSuccess = useQueryParam('exp_success');
@@ -35,9 +35,8 @@ const WorkExperienceTab = () => {
 	} = userProfile ?? {};
 
 	const onClick = () => {
-		setModalDrawer({
+		openModalDrawer({
 			title: 'Your experience',
-			isOpen: true,
 			action: (
 				<SubmitButton
 					name="open-modal-drawer-experience-button"

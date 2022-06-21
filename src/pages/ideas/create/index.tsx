@@ -1,7 +1,7 @@
-import { Label } from '@components/labels';
-import { PageLayout } from '@components/layouts';
-import { DocumentTitle } from '@components/shared';
-import AuthFilter from '@utils/AuthFilter';
+import { Label } from '@/components/labels';
+import { PageLayout } from '@/components/layouts';
+import { DocumentTitle } from '@/components/shared';
+import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
 import CreateIdeaForm from '../search/components/CreateIdeaForm';

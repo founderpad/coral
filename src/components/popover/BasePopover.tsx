@@ -5,7 +5,7 @@ import {
 	PopoverProps,
 	PopoverTrigger
 } from '@chakra-ui/react';
-import BaseHeading from '@components/heading/BaseHeading';
+import BaseHeading from '@/components/heading/BaseHeading';
 import React from 'react';
 
 type Props = PopoverProps & { triggerEl: React.ReactNode; title?: string };
@@ -30,7 +30,7 @@ export const BasePopover = (props: Props) => {
 					// rounded="md"
 					rounded="none"
 					w={{ base: '100vw', sm: 'auto' }}
-					d="flex"
+					display="flex"
 				>
 					{title && (
 						<BaseHeading fontSize="sm" p={4} color="fpGrey.900">

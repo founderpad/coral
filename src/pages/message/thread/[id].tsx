@@ -1,22 +1,26 @@
-import { GoBackButton } from '@components/buttons';
-import { Label } from '@components/labels';
-import { StackLayout } from '@components/layouts';
-import { Loading, PointSeparator, UserAvatarDetails } from '@components/shared';
-import PronounsLabel from '@components/shared/PronounsLabel';
+import { GoBackButton } from '@/components/buttons';
+import { Label } from '@/components/labels';
+import { StackLayout } from '@/components/layouts';
+import {
+	Loading,
+	PointSeparator,
+	UserAvatarDetails
+} from '@/components/shared';
+import PronounsLabel from '@/components/shared/PronounsLabel';
 import {
 	useGetThreadUsersQuery,
 	useMessageListSubscription
 } from '@generated/api';
-import { useAuth } from '@hooks/auth';
-import { useQueryParam } from '@hooks/util';
-import AuthFilter from '@utils/AuthFilter';
-import { formatDate } from '@utils/validators';
+import { useAuth } from '@/hooks/auth';
+import { useQueryParam } from '@/hooks/util';
+import AuthFilter from '@/utils/AuthFilter';
+import { formatDate } from '@/utils/validators';
 import React from 'react';
 import WriteUserMessage from '../components/WriteUserMessage';
 
 const MessageThread = () => {
 	const threadId = useQueryParam<string>('id');
-	const user = useAuth().user;
+	const user = useAuth().getUser();
 
 	const { data: messageList, loading } = useMessageListSubscription({
 		variables: {
@@ -99,7 +103,7 @@ const MessageThread = () => {
 									/>
 									<PointSeparator small />
 									<Label
-										d="flex"
+										display="flex"
 										fontSize="x-small"
 										color="fpGrey.500"
 									>

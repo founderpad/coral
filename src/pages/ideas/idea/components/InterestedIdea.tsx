@@ -1,11 +1,11 @@
-import { PrimaryButton } from '@components/buttons';
-import { Label } from '@components/labels';
-import { AppDivider } from '@components/shared';
-import ModalDrawerContext from '@context/ModalDrawerContext';
+import { PrimaryButton } from '@/components/buttons';
+import { Label } from '@/components/labels';
+import { AppDivider } from '@/components/shared';
 import { useCreateInterestedIdeaMutation } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
-import { event } from '@lib/ga';
-import React, { useContext, useState } from 'react';
+import { useCurrentUser } from '@/hooks/auth';
+import { useModalDrawer } from '@/hooks/util';
+import { event } from '@/lib/ga';
+import React, { useState } from 'react';
 import useIdea from '../query/ideaQuery';
 
 export const InterestedIdea = () => {
@@ -13,7 +13,7 @@ export const InterestedIdea = () => {
 	const { idea, hasInterest } = useIdea();
 	const { id, userId } = idea ?? {};
 	const [interested, setInterested] = useState(!!hasInterest?.id);
-	const { setModalDrawer } = useContext(ModalDrawerContext);
+	const { closeModalDrawer, openModalDrawer } = useModalDrawer();
 
 	const [createInterestedIdeaMutation] = useCreateInterestedIdeaMutation({
 		variables: {
@@ -21,7 +21,7 @@ export const InterestedIdea = () => {
 			targetUserId: userId
 		},
 		onCompleted: () => {
-			setModalDrawer(false);
+			closeModalDrawer();
 			setInterested(true);
 			event({
 				action: 'User is interested in idea',
@@ -36,9 +36,8 @@ export const InterestedIdea = () => {
 	});
 
 	const onClick = () => {
-		setModalDrawer({
+		openModalDrawer({
 			title: 'Confirm interest in idea',
-			isOpen: true,
 			action: (
 				<PrimaryButton
 					name="confirm-idea-interest"

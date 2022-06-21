@@ -1,7 +1,7 @@
 import { Heading } from '@chakra-ui/layout';
 // import { Tag } from '@chakra-ui/tag';
-import { DocumentTitle } from '@components/shared';
-import FounderpadLogo from '@components/shared/FounderpadLogo';
+import { DocumentTitle } from '@/components/shared';
+import FounderpadLogo from '@/components/shared/FounderpadLogo';
 import React from 'react';
 import { FlexLayout } from './FlexLayout';
 import { StackLayout } from './StackLayout';
@@ -28,7 +28,7 @@ const AuthLayout = ({ header, children, title }: Props) => {
 				borderWidth={{ sm: '1px' }}
 				style={{ margin: 'auto' }}
 				bg="white"
-				d="flex"
+				display="flex"
 				flex={{ base: 1, sm: 'none' }}
 				justifyContent="center"
 				id="auth-container"

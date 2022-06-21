@@ -1,6 +1,6 @@
 import { Icon } from '@chakra-ui/react';
-import { Label } from '@components/labels';
-import BaseTag from '@components/tags/BaseTag';
+import { Label } from '@/components/labels';
+import BaseTag from '@/components/tags/BaseTag';
 import React from 'react';
 import { IconType } from 'react-icons/lib';
 
@@ -14,7 +14,7 @@ interface IOverviewTag {
 export const OverviewTag = ({ title, value, icon }: IOverviewTag) => (
 	// <BaseTag
 	// 	p={2}
-	// 	d="flex"
+	// 	display="flex""
 	// 	alignItems="center"
 	// 	flexDirection="column"
 	// 	bg="fpPrimary.50"
@@ -35,7 +35,7 @@ export const OverviewTag = ({ title, value, icon }: IOverviewTag) => (
 	<BaseTag
 		key={title}
 		p={3}
-		d="flex"
+		display="flex"
 		flexDirection="column"
 		// bg="fpPrimary.50"
 		borderWidth={1}
@@ -52,7 +52,7 @@ export const OverviewTag = ({ title, value, icon }: IOverviewTag) => (
 			{icon && <Icon as={icon} fontSize="sm" mr={1} />}
 			{value}
 		</Label>
-		<Label color="fpGrey.300" fontSize="xs">
+		<Label color="fpGrey.300" fontSize="xs" textAlign="center">
 			{title}
 		</Label>
 	</BaseTag>

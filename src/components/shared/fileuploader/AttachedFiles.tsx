@@ -1,7 +1,7 @@
 import { ButtonGroup } from '@chakra-ui/react';
-import { DeleteButton, PrimaryButton } from '@components/buttons';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { useFileUploader } from '@hooks/util';
+import { DeleteButton, PrimaryButton } from '@/components/buttons';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { useFileUploader } from '@/hooks/util';
 import React, { memo } from 'react';
 import AttachedFile from './AttachedFile';
 

@@ -7,9 +7,9 @@ import {
 	InputGroup,
 	InputLeftAddon
 } from '@chakra-ui/react';
-import { FormErrorText, FormLabelText } from '@components/form';
-import { FlexLayout } from '@components/layouts';
-import { emailPattern } from '@utils/validators';
+import { FormErrorText, FormLabelText } from '@/components/form';
+import { FlexLayout } from '@/components/layouts';
+import { emailPattern } from '@/utils/validators';
 import Router from 'next/router';
 import React, { useCallback, useState } from 'react';
 import { Controller } from 'react-hook-form';

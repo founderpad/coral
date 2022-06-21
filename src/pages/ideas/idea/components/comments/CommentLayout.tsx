@@ -1,10 +1,10 @@
-import { CaptionLabel, Label } from '@components/labels';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { PointSeparator, UserAvatar } from '@components/shared';
-import BaseTag from '@components/tags/BaseTag';
-import { useQueryParam } from '@hooks/util';
-import useIdea from '@pages/ideas/idea/query/ideaQuery';
-import { formatDate } from '@utils/validators';
+import { CaptionLabel, Label } from '@/components/labels';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { PointSeparator, UserAvatar } from '@/components/shared';
+import BaseTag from '@/components/tags/BaseTag';
+import { useQueryParam } from '@/hooks/util';
+import useIdea from '@/pages/ideas/idea/query/ideaQuery';
+import { formatDate } from '@/utils/validators';
 import React, { useEffect } from 'react';
 import { CommentActions } from './CommentActions';
 // import CommentActions from './CommentActions';
@@ -76,7 +76,7 @@ export const CommentLayout = ({
 									css={{ whiteSpace: 'normal' }}
 									wordBreak="break-word"
 									noOfLines={1}
-									isTruncated
+									// isTruncated
 									flex={1}
 								>
 									{displayName}

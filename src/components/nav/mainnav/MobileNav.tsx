@@ -3,9 +3,9 @@ import { useDisclosure } from '@chakra-ui/hooks';
 import Icon from '@chakra-ui/icon';
 import { Link, Text } from '@chakra-ui/layout';
 import { Collapse } from '@chakra-ui/react';
-import { IoChevronDownSharp } from '@components/icons';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { useMobile, useMobileNav } from '@hooks/util';
+import { IoChevronDownSharp } from '@/components/icons';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { useMobile, useMobileNav } from '@/hooks/util';
 import Router from 'next/router';
 import React, { memo } from 'react';
 import NavItems, { NavItem } from './NavItems';
@@ -58,7 +58,7 @@ const MobileNavItem = (navItem: NavItem) => {
 			>
 				{isLink ? (
 					<Link
-						d="flex"
+						display="flex"
 						href={navItem.href ?? '#'}
 						fontSize="sm"
 						fontWeight={

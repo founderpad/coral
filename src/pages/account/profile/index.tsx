@@ -1,8 +1,8 @@
-import { PageLayout } from '@components/layouts';
-import { DocumentTitle, LastUpdatedAt } from '@components/shared';
+import { PageLayout } from '@/components/layouts';
+import { DocumentTitle, LastUpdatedAt } from '@/components/shared';
 import { useUserExperienceQuery } from '@generated/api';
-import { useCurrentUser } from '@hooks/auth';
-import AuthFilter from '@utils/AuthFilter';
+import { useCurrentUser } from '@/hooks/auth';
+import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
 import ProfileLayout from './layout/ProfileLayout';

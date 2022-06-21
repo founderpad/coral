@@ -1,7 +1,7 @@
 import Icon from '@chakra-ui/icon';
 import { Divider } from '@chakra-ui/layout';
 import { MenuItem, MenuItemProps } from '@chakra-ui/react';
-import { Label } from '@components/labels';
+import { Label } from '@/components/labels';
 import React from 'react';
 import { IconType } from 'react-icons';
 

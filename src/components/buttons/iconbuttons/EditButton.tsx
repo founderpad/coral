@@ -1,5 +1,5 @@
 import { Icon, IconButton, IconButtonProps } from '@chakra-ui/react';
-import { IoPencilSharp } from '@components/icons';
+import { IoPencilSharp } from '@/components/icons';
 import React from 'react';
 
 type Props = IconButtonProps & { htmlFor?: string };

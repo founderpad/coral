@@ -1,12 +1,12 @@
-import { UpvoteButton } from '@components/shared/UpvoteButton';
+import { UpvoteButton } from '@/components/shared/UpvoteButton';
 import {
 	TIdeaPreviewFieldsFragment,
 	TIdeas,
 	useDeleteIdeaUpvoteMutation,
 	useInsertIdeaUpvoteMutation
 } from '@generated/api';
-import { useClaim, useCurrentUser } from '@hooks/auth';
-import { event } from '@lib/ga';
+import { useClaim, useCurrentUser } from '@/hooks/auth';
+import { event } from '@/lib/ga';
 import React, { useCallback, useState } from 'react';
 
 type TIdeaUpvote = Pick<

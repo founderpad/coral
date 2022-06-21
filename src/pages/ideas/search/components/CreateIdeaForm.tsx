@@ -1,26 +1,26 @@
-import { SubmitButton } from '@components/buttons';
-import { BaseForm } from '@components/form';
+import { SubmitButton } from '@/components/buttons';
+import { BaseForm } from '@/components/form';
 import {
 	FormInput,
 	FormSelect,
 	FormTextarea
-} from '@components/form/inputs/FormField';
+} from '@/components/form/inputs/FormField';
 import { TIdeas_Set_Input } from '@generated/api';
 import { TCreateIdeaMutation, useCreateIdeaMutation } from '@generated/api';
-import { useAuth } from '@hooks/auth';
-import { event } from '@lib/ga';
-import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@utils/Constants';
+import { useAuth } from '@/hooks/auth';
+import { event } from '@/lib/ga';
+import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@/utils/Constants';
 import Router from 'next/router';
 import React from 'react';
-import { SwitchField } from '@components/input';
-import { StackLayout } from '@components/layouts';
-import { AppDivider } from '@components/shared';
+import { SwitchField } from '@/components/input';
+import { StackLayout } from '@/components/layouts';
+import { AppDivider } from '@/components/shared';
 import { useDispatch } from 'react-redux';
 import { addEsteemPoints } from '@slices/auth';
-import { useSuccessNotification } from '@hooks/toast';
+import { useSuccessNotification } from '@/hooks/toast';
 
 const CreateIdeaForm = () => {
-	const user = useAuth().user;
+	const user = useAuth().getUser();
 	const dispatch = useDispatch();
 	const showNotification = useSuccessNotification();
 
@@ -56,8 +56,8 @@ const CreateIdeaForm = () => {
 
 				dispatch(addEsteemPoints(50));
 				showNotification({
-					title: '+10 Esteem Points',
-					description: 'You have earned 10 Esteem Points'
+					title: '+50 Esteem Points',
+					description: 'You have earned 50 Esteem Points'
 				});
 				Router.push(`/idea/${idea?.id}`);
 			}

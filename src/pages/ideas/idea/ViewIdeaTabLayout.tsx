@@ -1,10 +1,10 @@
-import TabLayout from '@components/layouts/TabLayout';
-import { useCurrentUser } from '@hooks/auth';
+import TabLayout from '@/components/layouts/TabLayout';
+import { useCurrentUser } from '@/hooks/auth';
 import React from 'react';
 import InterestedUsersTab from './components/InterestedUsersTab';
 import useIdea from './query/ideaQuery';
 import IdeaTab from './IdeaTab';
-import { useMobile } from '@hooks/util';
+import { useMobile } from '@/hooks/util';
 import IdeaCycler from './components/IdeaCycler';
 
 const ViewIdeaTabLayout = () => {

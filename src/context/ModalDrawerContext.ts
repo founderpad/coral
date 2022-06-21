@@ -1,16 +1,26 @@
+// import { ModalContentProps } from '@chakra-ui/react';
+import { ModalContentProps } from '@chakra-ui/react';
 import { createContext } from 'react';
+
+interface ModalDrawerProps {
+	isOpen: boolean;
+	title?: string;
+	body: React.ReactNode;
+	noBtnLabel?: string;
+	removePadding?: boolean;
+	width?: ModalContentProps['width'];
+	size?: string | undefined;
+	action?: React.ReactNode | undefined;
+	showFooter?: boolean;
+	showHeader?: boolean;
+	showCancel?: boolean;
+}
+
 const ModalDrawerContext = createContext({
-	modalDrawer: {
-		isOpen: false,
-		title: '',
-		body: '',
-		noBtnLabel: '',
-		removePadding: false,
-		width: undefined,
-		size: undefined,
-		action: undefined,
-		showFooter: false
-	},
-	setModalDrawer: {} as any
+	modalDrawer: {} as ModalDrawerProps,
+	openModalDrawer: (_props: Omit<ModalDrawerProps, 'isOpen'>) => {},
+	updateModalDrawer: (_props: Partial<ModalDrawerProps>) => {},
+	closeModalDrawer: () => {}
 });
+
 export default ModalDrawerContext;

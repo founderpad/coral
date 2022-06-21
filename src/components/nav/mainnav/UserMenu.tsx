@@ -8,13 +8,13 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import { BiCoinStack, IoLockClosedOutline } from '@components/icons';
-import { Label } from '@components/labels';
-import { FlexLayout } from '@components/layouts';
-import { BaseLink } from '@components/links';
-import LogoutModal from '@components/modal/LogoutModal';
-import { CurrentUserAvatarDetails, UserAvatar } from '@components/shared';
-import { useCurrentUser } from '@hooks/auth';
+import { BiCoinStack, IoLockClosedOutline } from '@/components/icons';
+import { Label } from '@/components/labels';
+import { FlexLayout } from '@/components/layouts';
+import { BaseLink } from '@/components/links';
+import LogoutModal from '@/components/modal/LogoutModal';
+import { CurrentUserAvatarDetails, UserAvatar } from '@/components/shared';
+import { useCurrentUser } from '@/hooks/auth';
 import React from 'react';
 
 const UserMenu = () => {

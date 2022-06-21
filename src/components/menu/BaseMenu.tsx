@@ -2,8 +2,8 @@ import { Button } from '@chakra-ui/button';
 import Icon from '@chakra-ui/icon';
 import { BoxProps } from '@chakra-ui/layout';
 import { Menu, MenuButton, MenuList } from '@chakra-ui/react';
-import { IoEllipsisVerticalOutline } from '@components/icons';
-import { BoxLayout } from '@components/layouts';
+import { IoEllipsisVerticalOutline } from '@/components/icons';
+import { BoxLayout } from '@/components/layouts';
 import React from 'react';
 import { BaseMenuItemProps } from './BaseMenuItem';
 

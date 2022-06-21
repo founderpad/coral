@@ -1,11 +1,11 @@
 import Icon from '@chakra-ui/icon';
 import { Link } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/react';
-import { PrimaryButton } from '@components/buttons';
-import { StackLayout } from '@components/layouts';
-import { BaseLink } from '@components/links';
-import BasePopover from '@components/popover/BasePopover';
-import { AppDivider } from '@components/shared';
+import { PrimaryButton } from '@/components/buttons';
+import { StackLayout } from '@/components/layouts';
+import { BaseLink } from '@/components/links';
+import BasePopover from '@/components/popover/BasePopover';
+import { AppDivider } from '@/components/shared';
 import Router from 'next/router';
 import React, { memo } from 'react';
 import {
@@ -27,7 +27,7 @@ const DesktopNav = memo(() => {
 				as={BaseLink}
 				href="/ideas/create"
 				mx="auto"
-				d={{ base: 'flex', md: 'none' }}
+				display={{ base: 'flex', md: 'none' }}
 			>
 				<Icon as={IoAdd} fontSize={{ base: 'xl', md: 'lg' }} mr={2} />
 				New
@@ -47,7 +47,7 @@ const DesktopNav = memo(() => {
 					mx="auto"
 					fontSize="xs"
 					minW="90px"
-					d={{ base: 'none', md: 'flex' }}
+					display={{ base: 'none', md: 'flex' }}
 					title="Create a new idea"
 				>
 					<Icon
@@ -64,7 +64,7 @@ const DesktopNav = memo(() => {
 						triggerEl={
 							<Link
 								px={2}
-								d="flex"
+								display="flex"
 								href={navItem.href}
 								fontSize="xs"
 								fontWeight={
@@ -112,7 +112,7 @@ const DesktopNav = memo(() => {
 							<StackLayout
 								direction={{ base: 'column', md: 'row' }}
 								p={2}
-								d="flex"
+								display="flex"
 							>
 								<SubNavMenu {...navItem} />
 							</StackLayout>

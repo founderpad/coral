@@ -1,14 +1,14 @@
-import { PrimaryButton } from '@components/buttons';
-import { SubheadingText } from '@components/heading';
-import { FlexLayout, StackLayout } from '@components/layouts';
-import { PointSeparator } from '@components/shared';
+import { PrimaryButton } from '@/components/buttons';
+import { SubheadingText } from '@/components/heading';
+import { FlexLayout, StackLayout } from '@/components/layouts';
+import { PointSeparator } from '@/components/shared';
 import {
 	TIdeas,
 	TIdea_Preview,
 	TIdea_Votes,
 	TIdea_Votes_Aggregate
 } from '@generated/api';
-import { useMobile } from '@hooks/util';
+import { useMobile } from '@/hooks/util';
 import React, { useCallback, useState } from 'react';
 import useIdea, { useIdeaFragment } from '../query/ideaQuery';
 import { MobileCommentsList } from './comments/CommentsList';

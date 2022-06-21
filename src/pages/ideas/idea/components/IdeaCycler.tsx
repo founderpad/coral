@@ -1,8 +1,8 @@
 import { ButtonGroup, Icon } from '@chakra-ui/react';
-import { PrimaryButton } from '@components/buttons';
-import { FlexLayout } from '@components/layouts';
-import IdeaCycleContext from '@context/IdeaCycleContext';
-import { useQueryParam } from '@hooks/util';
+import { PrimaryButton } from '@/components/buttons';
+import { FlexLayout } from '@/components/layouts';
+import IdeaCycleContext from '@/context/IdeaCycleContext';
+import { useQueryParam } from '@/hooks/util';
 import Router from 'next/router';
 import React, { useContext } from 'react';
 import { IoChevronBackSharp, IoChevronForwardSharp } from 'react-icons/io5';

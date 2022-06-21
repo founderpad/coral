@@ -1,5 +1,5 @@
 import { LinkProps, useColorModeValue } from '@chakra-ui/react';
-import { BaseLink } from '@components/links';
+import { BaseLink } from '@/components/links';
 import React from 'react';
 
 const NavLink = (props: LinkProps) => {

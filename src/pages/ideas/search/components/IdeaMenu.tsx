@@ -1,5 +1,5 @@
-import { BaseMenu } from '@components/menu';
-import ReportMenu from '@components/shared/actionsmenu/ReportMenu';
+import { BaseMenu } from '@/components/menu';
+import ReportMenu from '@/components/shared/actionsmenu/ReportMenu';
 import {
 	TIdeaPreviewFieldsFragment,
 	TReport_Insert_Input

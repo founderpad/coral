@@ -1,5 +1,5 @@
-import { FlexLayout } from '@components/layouts';
-import { OverviewTag } from '@components/shared';
+import { FlexLayout } from '@/components/layouts';
+import { OverviewTag } from '@/components/shared';
 import React from 'react';
 import useIdea from '../query/ideaQuery';
 

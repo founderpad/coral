@@ -1,5 +1,5 @@
 import { Icon, IconButton, MenuButton } from '@chakra-ui/react';
-import { IoTrashSharp } from '@components/icons';
+import { IoTrashSharp } from '@/components/icons';
 import { BaseButton } from '.';
 import { BaseButtonProps } from './types/buttons';
 

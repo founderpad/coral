@@ -7,24 +7,25 @@ import {
 	DrawerFooter,
 	DrawerHeader,
 	DrawerOverlay,
-	ModalBodyProps,
+	ModalContentProps,
 	ModalProps
 } from '@chakra-ui/react';
-import { BaseButton } from '@components/buttons';
-import { ModalDrawerFooterActions } from '@components/shared';
+import { ModalDrawerFooterActions } from '@/components/shared';
 import React from 'react';
 
 type IModalProps = Omit<ModalProps, 'children'> & {
-	title: React.ReactNode;
 	isOpen: boolean;
-	body?: React.ReactNode;
-	noBtnLabel?: string | 'Cancel';
+	title?: string;
+	body: React.ReactNode;
+	noBtnLabel?: string;
 	removePadding?: boolean;
-	action?: typeof BaseButton;
-	showFooter?: boolean;
-	showCancel?: boolean;
-	bodyProps?: ModalBodyProps;
+	width?: ModalContentProps['width'];
+	size?: string | undefined;
 	contentHeight?: DrawerContentProps['h'];
+	action?: React.ReactNode | undefined;
+	showFooter?: boolean;
+	showHeader?: boolean;
+	showCancel?: boolean;
 };
 
 export const Drawer = ({
@@ -35,8 +36,9 @@ export const Drawer = ({
 	noBtnLabel,
 	removePadding,
 	action,
-	showFooter = true,
 	showCancel = true,
+	showHeader = true,
+	showFooter = true,
 	contentHeight
 }: IModalProps) => {
 	return (
@@ -56,17 +58,19 @@ export const Drawer = ({
 				h={contentHeight}
 				borderTopRadius="xl"
 			>
-				<DrawerHeader
-					borderBottomWidth={1}
-					fontSize="md"
-					p={4}
-					display="flex"
-					justifyContent="center"
-					fontWeight="semibold"
-				>
-					<DrawerCloseButton color="black" left={2} top={3} />
-					{title}
-				</DrawerHeader>
+				{showHeader && (
+					<DrawerHeader
+						borderBottomWidth={1}
+						fontSize="md"
+						p={4}
+						display="flex"
+						justifyContent="center"
+						fontWeight="semibold"
+					>
+						<DrawerCloseButton color="black" left={2} top={3} />
+						{title}
+					</DrawerHeader>
+				)}
 				<DrawerBody
 					fontWeight="normal"
 					fontSize="sm"
@@ -80,7 +84,12 @@ export const Drawer = ({
 					{body}
 				</DrawerBody>
 				{showFooter && (
-					<DrawerFooter d="flex" w="full" p={4} borderTopWidth={1}>
+					<DrawerFooter
+						display="flex"
+						w="full"
+						p={4}
+						borderTopWidth={1}
+					>
 						<ModalDrawerFooterActions
 							noBtnLabel={noBtnLabel}
 							showCancel={showCancel}

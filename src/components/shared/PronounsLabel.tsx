@@ -1,4 +1,4 @@
-import { Label } from '@components/labels';
+import { Label } from '@/components/labels';
 import React, { memo } from 'react';
 
 interface TPronouns {

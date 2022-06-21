@@ -1,4 +1,4 @@
-import FileUploadProvider from '@provider/FileUploadProvider';
+import FileUploadProvider from '@/provider/FileUploadProvider';
 import React from 'react';
 import { IStorageBucket, IUploadedFileProps } from '../../../types/upload';
 import AttachedFiles from './AttachedFiles';

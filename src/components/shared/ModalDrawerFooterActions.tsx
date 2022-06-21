@@ -1,6 +1,6 @@
 import { ButtonGroup } from '@chakra-ui/react';
-import { CancelButton } from '@components/buttons';
-import { useModalDrawer } from '@hooks/util';
+import { CancelButton } from '@/components/buttons';
+import { useModalDrawer } from '@/hooks/util';
 import React, { memo, useCallback } from 'react';
 
 export const ModalDrawerFooterActions = memo(
@@ -13,13 +13,11 @@ export const ModalDrawerFooterActions = memo(
 		noBtnLabel?: string;
 		showCancel?: boolean;
 	}) => {
-		const { setModalDrawer } = useModalDrawer();
+		const { closeModalDrawer } = useModalDrawer();
 
 		const onClose = useCallback(() => {
-			setModalDrawer({
-				isOpen: false
-			});
-		}, [setModalDrawer]);
+			closeModalDrawer();
+		}, [closeModalDrawer]);
 
 		return (
 			<ButtonGroup
