@@ -5,7 +5,7 @@
 	"license": "private",
 	"scripts": {
 		"dev": "next dev",
-		"build": "ANALYZE=false yarn test && next build",
+		"build": "ANALYZE=false && next build",
 		"build:analyze": "ANALYZE=true next build",
 		"start": "next start",
 		"storybook": "start-storybook -p 6006",
