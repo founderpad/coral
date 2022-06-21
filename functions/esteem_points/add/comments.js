@@ -38,9 +38,12 @@ export default async (req, res) => {
 	if (targetUserId === userId) return null;
 
 	try {
-		const response = await graphqlClient.request(ADD_ESTEEM_POINTS, {
-			userId
-		});
+		const response = await getClient().graphqlClient.request(
+			ADD_ESTEEM_POINTS,
+			{
+				userId
+			}
+		);
 		res.status(200).send(`Esteem points added for user with id: ${userId}`);
 	} catch (error) {
 		res.status(500).send(
