@@ -33,11 +33,11 @@ export default async (req, res) => {
 		);
 	}
 
-	if (isSuccess) {
-		res.status(200).send('Esteem points added for user');
-	}
+	// if (isSuccess) {
+	// 	res.status(200).send('Esteem points added for user');
+	// }
 
-	res.status(500).send(
-		error.message + ` --- Failed to add esteem points for user: ${userId}`
-	);
+	// res.status(500).send(
+	// 	error.message + ` --- Failed to add esteem points for user: ${userId}`
+	// );
 };

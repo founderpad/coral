@@ -13,6 +13,7 @@ export default async (req, res) => {
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
 	const id = req.body.event.data.new.id;
+	let isSuccess = false;
 
 	if (fromUserId === targetUserId) return null;
 
@@ -43,4 +44,14 @@ export default async (req, res) => {
 
 		res.status(200).send('Failed to send push notification (new comment)');
 	}
+
+	if (isSuccess) {
+		res.status(200).send(
+			'Push notification (new comment) sent successfully'
+		);
+	}
+
+	res.status(500).send(
+		error.message + ` --- Failed to send push notification (new comment)`
+	);
 };
