@@ -29,12 +29,12 @@ jobs:
 
             - name: Install project dependencies
               run: |
-                  yarn install --frozen-lockfile
+                  yarn install --frozen-lockfile --ignore-engines
                   echo "Dependencies installed"
 
             - name: Install all modules for Lambda functions
               working-directory: functions
-              run: yarn install
+              run: yarn install --ignore-engines
 
             - name: Install Hasura CLI
               run: |
