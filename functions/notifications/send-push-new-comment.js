@@ -16,7 +16,7 @@ export default async (req, res) => {
 
 	if (fromUserId === targetUserId) return null;
 
-	addEsteemPoints(fromUserId, 10);
+	// addEsteemPoints(fromUserId, 10);
 
 	const message = {
 		app_id: process.env.ONESIGNAL_APP_ID,
