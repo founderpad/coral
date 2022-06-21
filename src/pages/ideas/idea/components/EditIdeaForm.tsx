@@ -7,7 +7,7 @@ import {
 import { SwitchField } from '@/components/input';
 import { StackLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
-import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@generated/api';
+import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@/generated/api';
 import { useModalDrawer } from '@/hooks/util';
 import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@/utils/Constants';
 import { redirectTo } from '@/utils/validators';

@@ -1,6 +1,6 @@
 import { Label } from '@/components/labels';
 import { FlexLayout } from '@/components/layouts';
-import { TIdeaPreviewFieldsFragment } from '@generated/api';
+import { TIdeaPreviewFieldsFragment } from '@/generated/api';
 import React, { memo } from 'react';
 import NewIdeaBadge from '../NewIdeaBadge';
 import PostedBy from './PostedBy';

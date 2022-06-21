@@ -7,7 +7,7 @@ import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
-} from '@generated/api';
+} from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { setProfileComplete } from '@/slices/auth';
 import {

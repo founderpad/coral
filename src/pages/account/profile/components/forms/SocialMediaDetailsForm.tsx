@@ -4,7 +4,7 @@ import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
-} from '@generated/api';
+} from '@/generated/api';
 import React from 'react';
 import { useModalDrawer } from '@/hooks/util';
 import { redirectTo } from '@/utils/validators';

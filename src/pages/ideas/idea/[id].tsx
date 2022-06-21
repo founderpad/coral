@@ -1,5 +1,5 @@
 import { DocumentTitle } from '@/components/shared';
-import { useIdeaQuery } from '@generated/api';
+import { useIdeaQuery } from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import { useQueryParam } from '@/hooks/util';
 import AuthFilter from '@/utils/AuthFilter';

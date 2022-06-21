@@ -2,7 +2,7 @@ import Icon from '@chakra-ui/icon';
 import { Button } from '@chakra-ui/react';
 import { IoChatbubbleOutline } from '@/components/icons';
 import { StackLayout } from '@/components/layouts';
-import { TIdeaPreviewFieldsFragment } from '@generated/api';
+import { TIdeaPreviewFieldsFragment } from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import BoostIdea from '@/pages/ideas/idea/components/BoostIdea';
 import IdeaUpvote from '@/pages/ideas/idea/components/IdeaUpvote';

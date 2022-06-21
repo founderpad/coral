@@ -1,5 +1,5 @@
 import LinkCard from '@/components/cards/LinkCard';
-import { TIdeaPreviewFieldsFragment } from '@generated/api';
+import { TIdeaPreviewFieldsFragment } from '@/generated/api';
 import React from 'react';
 import IdeaCardBody from './IdeaCardBody';
 import IdeaCardFooter from './IdeaCardFooter';

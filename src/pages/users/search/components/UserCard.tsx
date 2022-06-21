@@ -3,7 +3,7 @@ import LinkCard from '@/components/cards/LinkCard';
 import { FlexLayout } from '@/components/layouts';
 import { PointSeparator, UserAvatarDetails } from '@/components/shared';
 import PronounsLabel from '@/components/shared/PronounsLabel';
-import { TUserSearchFragment } from '@generated/api';
+import { TUserSearchFragment } from '@/generated/api';
 import React, { memo } from 'react';
 
 const userAttrs = (userProfileAttrs: TUserSearchFragment): Array<string> => {

@@ -1,7 +1,7 @@
 import { PrimaryButton } from '@/components/buttons';
 import { Label } from '@/components/labels';
 import { AppDivider } from '@/components/shared';
-import { useCreateInterestedIdeaMutation } from '@generated/api';
+import { useCreateInterestedIdeaMutation } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
 import { event } from '@/lib/ga';

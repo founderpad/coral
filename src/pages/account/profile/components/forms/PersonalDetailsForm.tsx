@@ -8,7 +8,7 @@ import {
 	TUser_Profile,
 	TUser_Profile_Set_Input,
 	useUpdateUserPersonalDetailsMutation
-} from '@generated/api';
+} from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
 import { updateUserPersonalDetails } from '@/slices/auth';

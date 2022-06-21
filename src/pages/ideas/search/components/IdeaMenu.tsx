@@ -3,7 +3,7 @@ import ReportMenu from '@/components/shared/actionsmenu/ReportMenu';
 import {
 	TIdeaPreviewFieldsFragment,
 	TReport_Insert_Input
-} from '@generated/api';
+} from '@/generated/api';
 import React from 'react';
 
 // enum ACTION_TYPE {

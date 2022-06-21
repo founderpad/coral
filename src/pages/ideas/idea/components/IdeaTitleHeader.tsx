@@ -7,7 +7,7 @@ import {
 	TIdea_Preview,
 	TIdea_Votes,
 	TIdea_Votes_Aggregate
-} from '@generated/api';
+} from '@/generated/api';
 import { useMobile } from '@/hooks/util';
 import React, { useCallback, useState } from 'react';
 import useIdea, { useIdeaFragment } from '../query/ideaQuery';

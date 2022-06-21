@@ -1,6 +1,6 @@
 import { StackLayout } from '@/components/layouts';
 import { AppDivider, Loading, NoResults } from '@/components/shared';
-import { useUserMessageThreadsQuery } from '@generated/api';
+import { useUserMessageThreadsQuery } from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import React from 'react';
 import MessageThreadCard from './components/MessageThreadCard';

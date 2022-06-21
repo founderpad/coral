@@ -2,7 +2,7 @@ import { Label } from '@/components/labels';
 import { FlexLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
 import { PointSeparator } from '@/components/shared';
-import { TIdeaPreviewFieldsFragment } from '@generated/api';
+import { TIdeaPreviewFieldsFragment } from '@/generated/api';
 import { formatDate } from '@/utils/validators';
 import React, { memo } from 'react';
 

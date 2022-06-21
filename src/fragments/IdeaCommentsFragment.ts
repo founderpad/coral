@@ -1,4 +1,4 @@
-import { TIdea_Comments } from '@generated/api';
+import { TIdea_Comments } from '@/generated/api';
 
 const useIdeaCommentsQuery = (_ideaId: string): TIdea_Comments[] | null => {
 	// const result = cache.readQuery({

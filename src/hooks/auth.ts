@@ -1,4 +1,4 @@
-import { TUsers, useUserLazyQuery } from '@generated/api';
+import { TUsers, useUserLazyQuery } from '@/generated/api';
 import { event } from '@/lib/ga';
 import { setUser } from '@/slices/auth';
 import { RootState } from '@/utils/reducer';

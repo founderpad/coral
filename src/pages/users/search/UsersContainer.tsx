@@ -6,7 +6,7 @@ import {
 	TUserSearchFragment,
 	TUser_Profile_Bool_Exp,
 	useUsersQuery
-} from '@generated/api';
+} from '@/generated/api';
 import { useQueryParam } from '@/hooks/util';
 import MobileFilterMenu from '@/pages/ideas/search/components/MobileFilterMenu';
 import OffsetPagination from '@/pages/ideas/search/OffsetPagination';

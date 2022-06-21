@@ -29,7 +29,7 @@ import '../styles/globals.css';
 const persistor = persistStore(store);
 
 const nhost = new NhostClient({
-	backendUrl: process.env.NEXT_PUBLIC_BACKEND!
+	backendUrl: process.env.NEXT_PUBLIC_BACKEND ?? ''
 });
 
 const auth = nhost.auth;
@@ -37,7 +37,7 @@ const storage = nhost.storage;
 const functions = nhost.functions;
 
 const paypalOptions = {
-	'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+	'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ?? '',
 	currency: 'GBP',
 	intent: 'capture'
 };
@@ -51,7 +51,7 @@ const paypalOptions = {
  * @returns
  * @author jlee
  */
-const App = ({ Component, pageProps }: AppProps): React.ReactFragment => {
+const App = ({ Component, pageProps }: AppProps) => {
 	useTrackAnalytics();
 
 	return (

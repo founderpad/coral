@@ -3,7 +3,7 @@ import { IoPencilOutline, IoTrashBinOutline } from '@/components/icons';
 import { BaseMenuItem } from '@/components/menu';
 import { BaseMenu } from '@/components/menu/BaseMenu';
 import ModalDrawerContext from '@/context/ModalDrawerContext';
-import { useDeleteIdeaMutation } from '@generated/api';
+import { useDeleteIdeaMutation } from '@/generated/api';
 import Router from 'next/router';
 import React, { memo, useCallback, useContext } from 'react';
 import EditIdeaForm from './EditIdeaForm';

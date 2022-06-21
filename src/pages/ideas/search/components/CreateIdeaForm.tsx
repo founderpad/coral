@@ -5,8 +5,8 @@ import {
 	FormSelect,
 	FormTextarea
 } from '@/components/form/inputs/FormField';
-import { TIdeas_Set_Input } from '@generated/api';
-import { TCreateIdeaMutation, useCreateIdeaMutation } from '@generated/api';
+import { TIdeas_Set_Input } from '@/generated/api';
+import { TCreateIdeaMutation, useCreateIdeaMutation } from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import { event } from '@/lib/ga';
 import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@/utils/Constants';

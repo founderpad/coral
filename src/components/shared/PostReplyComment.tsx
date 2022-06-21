@@ -5,7 +5,7 @@ import { FlexLayout, StackLayout } from '@/components/layouts';
 import {
 	RepliesForCommentDocument,
 	usePostReplyMutation
-} from '@generated/api';
+} from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 import { event } from '@/lib/ga';

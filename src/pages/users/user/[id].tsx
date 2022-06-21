@@ -15,7 +15,7 @@ import AppDivider from '@/components/shared/AppDivider';
 import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
 import OverviewTags from '@/components/shared/OverviewTags';
 import PronounsLabel from '@/components/shared/PronounsLabel';
-import { useUserProfileDetailsQuery } from '@generated/api';
+import { useUserProfileDetailsQuery } from '@/generated/api';
 import { useQueryParam } from '@/hooks/util';
 import ProfileSectionLabel from '@/pages/account/profile/components/ProfileSectionLabel';
 import AuthFilter from '@/utils/AuthFilter';

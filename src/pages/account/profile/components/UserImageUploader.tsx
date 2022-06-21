@@ -1,6 +1,6 @@
 import { UserAvatar } from '@/components/shared';
 import ImageUploader from '@/components/shared/imageuploader/ImageUploader';
-import { useUpdateUserAvatarMutation } from '@generated/api';
+import { useUpdateUserAvatarMutation } from '@/generated/api';
 import { useAuth, useCurrentUser } from '@/hooks/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 import { useFileUpload, useModalDrawer } from '@/hooks/util';

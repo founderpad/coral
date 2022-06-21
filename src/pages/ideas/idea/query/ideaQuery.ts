@@ -1,4 +1,4 @@
-import { IdeaDocument, TIdeaQuery, TIdeas } from '@generated/api';
+import { IdeaDocument, TIdeaQuery, TIdeas } from '@/generated/api';
 import { useClaim } from '@/hooks/auth';
 import { useQueryParam } from '@/hooks/util';
 import { cache } from '@/pages/_app';

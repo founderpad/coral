@@ -1,4 +1,4 @@
-import { TUsers, TUser_Address, TUser_Profile } from '@generated/api';
+import { TUsers, TUser_Address, TUser_Profile } from '@/generated/api';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const logout = createAction('authSlice/logout');

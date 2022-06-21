@@ -1,6 +1,6 @@
 import { AlertFeedback } from '@/components/alert';
 import { FileUploader } from '@/components/shared';
-import { TUser_Profile, useUpdateResumeMutation } from '@generated/api';
+import { TUser_Profile, useUpdateResumeMutation } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useQueryParam } from '@/hooks/util';
 import { cache } from '@/pages/_app';

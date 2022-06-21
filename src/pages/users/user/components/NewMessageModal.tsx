@@ -6,7 +6,7 @@ import {
 	TMessage,
 	useNewMessageMutation,
 	useNewMessageThreadMutation
-} from '@generated/api';
+} from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
 import Router from 'next/router';

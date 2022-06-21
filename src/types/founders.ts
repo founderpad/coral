@@ -1,4 +1,4 @@
-import { TUsers, TUser_Profile } from '@generated/api';
+import { TUsers, TUser_Profile } from '@/generated/api';
 
 export type TFounderUsers = Pick<
 	TUser_Profile,

@@ -1,6 +1,6 @@
 import { PrimaryButton } from '@/components/buttons';
 import { Label } from '@/components/labels';
-import { useFollowUserMutation } from '@generated/api';
+import { useFollowUserMutation } from '@/generated/api';
 import React, { useCallback, useState } from 'react';
 
 const AddFollower = ({ userId }: { userId: string }) => {

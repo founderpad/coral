@@ -4,7 +4,7 @@ import { FormSelect } from '@/components/form/inputs/FormField';
 import { IoFlagOutline } from '@/components/icons';
 import { Label } from '@/components/labels';
 import { BaseMenuItem } from '@/components/menu';
-import { TReport_Insert_Input, useCreateReportMutation } from '@generated/api';
+import { TReport_Insert_Input, useCreateReportMutation } from '@/generated/api';
 import { useSuccessNotification } from '@/hooks/toast';
 import { useModalDrawer } from '@/hooks/util';
 import { REPORT_REASONS } from '@/utils/Constants';

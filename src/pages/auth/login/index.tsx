@@ -1,5 +1,5 @@
 import AuthLayout from '@/components/layouts/AuthLayout';
-import { TUsers, useUserLazyQuery } from '@generated/api';
+import { TUsers, useUserLazyQuery } from '@/generated/api';
 import { useCheckLoggedIn } from '@/hooks/auth';
 import { nhost } from '@/pages/_app';
 import { setUser } from '@/slices/auth';

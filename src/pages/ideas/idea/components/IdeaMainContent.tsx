@@ -1,6 +1,6 @@
 import { StackLayout } from '@/components/layouts';
 import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
-import { TIdeas } from '@generated/api';
+import { TIdeas } from '@/generated/api';
 import React from 'react';
 
 type Props = Pick<

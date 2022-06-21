@@ -10,7 +10,7 @@ import PronounsLabel from '@/components/shared/PronounsLabel';
 import {
 	useGetThreadUsersQuery,
 	useMessageListSubscription
-} from '@generated/api';
+} from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import { useQueryParam } from '@/hooks/util';
 import AuthFilter from '@/utils/AuthFilter';

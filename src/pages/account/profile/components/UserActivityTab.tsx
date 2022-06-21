@@ -3,7 +3,7 @@ import { Divider, Flex, Spinner } from '@chakra-ui/react';
 import { CaptionLabel, Label } from '@/components/labels';
 import { PrimaryLink } from '@/components/links';
 import { NoResults } from '@/components/shared';
-import { TActivity, useUserActivityQuery } from '@generated/api';
+import { TActivity, useUserActivityQuery } from '@/generated/api';
 import { useClaim } from '@/hooks/auth';
 import { formatDate } from '@/utils/validators';
 import React from 'react';

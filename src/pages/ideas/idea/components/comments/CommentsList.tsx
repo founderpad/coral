@@ -8,7 +8,7 @@ import {
 	TCommentFieldsFragment,
 	useCommentsForIdeaQuery,
 	useRepliesForCommentQuery
-} from '@generated/api';
+} from '@/generated/api';
 import { useModalDrawer, useQueryParam } from '@/hooks/util';
 import React, { useEffect } from 'react';
 import { IoChatboxOutline } from 'react-icons/io5';

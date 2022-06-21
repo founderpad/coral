@@ -10,7 +10,7 @@ import {
 	TIdea_Preview_Bool_Exp,
 	TIdea_Preview_Order_By,
 	useIdeasQuery
-} from '@generated/api';
+} from '@/generated/api';
 import { useClaim } from '@/hooks/auth';
 import { useQueryParam } from '@/hooks/util';
 import React, { useContext } from 'react';

@@ -1,4 +1,4 @@
-import { TUser_Profile } from '@generated/api';
+import { TUser_Profile } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { cache } from '@/pages/_app';
 import gql from 'graphql-tag';

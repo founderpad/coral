@@ -6,7 +6,7 @@ import {
 	NoResults,
 	UserAvatarDetails
 } from '@/components/shared';
-import { useIdeaInterestedUsersLazyQuery } from '@generated/api';
+import { useIdeaInterestedUsersLazyQuery } from '@/generated/api';
 import NewMessageModal from '@/pages/users/user/components/NewMessageModal';
 import { formatDate } from '@/utils/validators';
 import React, { useEffect } from 'react';

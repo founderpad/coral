@@ -5,7 +5,7 @@ import BaseHeading from '@/components/heading/BaseHeading';
 import { Label } from '@/components/labels';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
-import { TIdeaPreviewFieldsFragment } from '@generated/api';
+import { TIdeaPreviewFieldsFragment } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
 import { PayPalButtons } from '@paypal/react-paypal-js';
