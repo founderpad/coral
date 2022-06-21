@@ -1,20 +1,20 @@
-import { isValidSecret } from 'functions';
+import { getClient, isValidSecret } from 'functions';
 
-// const { graphqlClient, gql } = getClient();
-const { GraphQLClient, gql } = require('graphql-request');
+const { graphqlClient, gql } = getClient();
+// const { GraphQLClient, gql } = require('graphql-request');
 
-export function getClient() {
-	const graphqlClient = new GraphQLClient(
-		process.env.NHOST_BACKEND_URL + '/v1/graphql',
-		{
-			headers: {
-				['x-hasura-admin-secret']: process.env.NHOST_ADMIN_SECRET
-			}
-		}
-	);
+// export function getClient() {
+// 	const graphqlClient = new GraphQLClient(
+// 		process.env.NHOST_BACKEND_URL + '/v1/graphql',
+// 		{
+// 			headers: {
+// 				['x-hasura-admin-secret']: process.env.NHOST_ADMIN_SECRET
+// 			}
+// 		}
+// 	);
 
-	return { graphqlClient, gql };
-}
+// 	return { graphqlClient, gql };
+// }
 
 const ADD_ESTEEM_POINTS = gql`
 	mutation ($userId: uuid!) {
@@ -38,12 +38,9 @@ export default async (req, res) => {
 	if (targetUserId === userId) return null;
 
 	try {
-		const response = await getClient().graphqlClient.request(
-			ADD_ESTEEM_POINTS,
-			{
-				userId
-			}
-		);
+		const response = await graphqlClient.request(ADD_ESTEEM_POINTS, {
+			userId
+		});
 		res.status(200).send(`Esteem points added for user with id: ${userId}`);
 	} catch (error) {
 		res.status(500).send(
