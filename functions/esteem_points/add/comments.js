@@ -1,6 +1,6 @@
 // import { getClient, isValidSecret } from 'functions';
 const { GraphQLClient, gql } = require('graphql-request');
-const { graphqlClient, gql } = getClient();
+const { graphqlClient } = getClient();
 
 export function getClient() {
 	const graphqlClient = new GraphQLClient(
