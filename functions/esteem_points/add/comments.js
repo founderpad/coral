@@ -1,19 +1,6 @@
-// import { getClient, isValidSecret } from 'functions';
-const { GraphQLClient, gql } = require('graphql-request');
-const { graphqlClient } = getClient();
+import { getClient, isValidSecret } from 'functions';
 
-export function getClient() {
-	const graphqlClient = new GraphQLClient(
-		process.env.NHOST_BACKEND_URL + '/v1/graphql',
-		{
-			headers: {
-				['x-hasura-admin-secret']: process.env.NHOST_ADMIN_SECRET
-			}
-		}
-	);
-
-	return { graphqlClient, gql };
-}
+const { graphqlClient, gql } = getClient();
 
 const ADD_ESTEEM_POINTS = gql`
 	mutation ($userId: uuid!) {
