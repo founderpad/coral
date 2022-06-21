@@ -14,7 +14,7 @@ export default async (req, res) => {
 	// isValidSecret(req);
 	const userId = req.body.event.data.new.id;
 
-	if (!userId) throw 'No user id found';
+	if (!userId) throw 'No user id found ';
 
 	try {
 		const response = await graphqlClient.request(CREATE_ESTEEM_POINTS, {
