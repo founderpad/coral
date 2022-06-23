@@ -149,20 +149,16 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 					</PrimaryButton>
 				</FlexLayout>
 				<AppDivider />
-				<FlexLayout flex={1}>
-					<StackLayout
-						justifyContent="center"
-						flexDirection="column"
-						spacing={2}
-						flex={1}
-					>
-						<FlexLayout>
-							<Icon
-								as={BiPound}
-								color="green.600"
-								fontSize="xl"
-								size="md"
-							/>
+
+				<StackLayout>
+					<FlexLayout>
+						<Icon
+							as={BiPound}
+							color="green.600"
+							fontSize="xl"
+							size="md"
+						/>
+						<>
 							<Label
 								fontSize="md"
 								textAlign="center"
@@ -170,11 +166,18 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 							>
 								10
 							</Label>
-						</FlexLayout>
-						<Label fontSize="xs" color="gray.500">
-							Total (incl. fees): £11.50
-						</Label>
-					</StackLayout>
+							<Label
+								fontSize="xs"
+								color="gray.500"
+								alignSelf="center"
+								ml={4}
+							>
+								(Total incl. fees: £11.50)
+							</Label>
+						</>
+					</FlexLayout>
+
+					{/* <FlexLayout maxHeight="800px"> */}
 					<PayPalButtons
 						style={{
 							color: 'silver',
@@ -183,11 +186,10 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 							tagline: false
 						}}
 						createOrder={createOrder}
-						// // fundingSource={FUNDING.PAYPAL}
-						// // createOrder={createPayPalOrder}
 						onApprove={onApprove}
 					/>
-				</FlexLayout>
+					{/* </FlexLayout> */}
+				</StackLayout>
 			</StackLayout>
 		</StackLayout>
 	);

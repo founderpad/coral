@@ -61,3 +61,9 @@ body,
 		transform: rotate(0);
 	}
 }
+
+.paypal-buttons {
+	/* height: 100% !important; */
+	/* min-height: 142px !important; */
+	/* height: 800px !important; */
+}
