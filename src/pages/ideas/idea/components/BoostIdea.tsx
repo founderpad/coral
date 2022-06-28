@@ -39,18 +39,16 @@ const BoostIdea = (idea: TIdeaPreviewFieldsFragment) => {
 	}, [openModalDrawer, idea]);
 
 	return (
-		// <Button
-		// 	colorScheme="purple"
-		// 	leftIcon={<Icon as={IoRocketSharp} />}
-		// 	fontSize="xs"
-		// 	size="xs"
-		// 	ml="auto"
-		// 	onClick={onClick}
-		// 	disabled
-		// >
-		// 	Boost
-		// </Button>
-		<></>
+		<Button
+			colorScheme="purple"
+			leftIcon={<Icon as={IoRocketSharp} />}
+			fontSize="xs"
+			size="xs"
+			ml="auto"
+			onClick={onClick}
+		>
+			Boost
+		</Button>
 	);
 };
 
