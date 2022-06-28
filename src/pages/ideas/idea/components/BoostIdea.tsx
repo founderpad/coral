@@ -33,7 +33,8 @@ const BoostIdea = (idea: TIdeaPreviewFieldsFragment) => {
 	const onClick = useCallback(() => {
 		openModalDrawer({
 			title: 'Boost idea',
-			body: <BoostIdeaForm {...idea} />
+			body: <BoostIdeaForm {...idea} />,
+			contentHeight: '99.1%'
 		});
 	}, [openModalDrawer, idea]);
 
@@ -72,7 +73,7 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 					{
 						description: 'Boost idea',
 						amount: {
-							value: 11.5
+							value: 1
 						}
 					}
 				],
@@ -177,7 +178,6 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 						</>
 					</FlexLayout>
 
-					{/* <FlexLayout maxHeight="800px"> */}
 					<PayPalButtons
 						style={{
 							color: 'silver',
@@ -185,10 +185,10 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 							label: 'pay',
 							tagline: false
 						}}
+						className="paypal-component"
 						createOrder={createOrder}
 						onApprove={onApprove}
 					/>
-					{/* </FlexLayout> */}
 				</StackLayout>
 			</StackLayout>
 		</StackLayout>

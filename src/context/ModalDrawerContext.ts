@@ -1,5 +1,5 @@
 // import { ModalContentProps } from '@chakra-ui/react';
-import { ModalContentProps } from '@chakra-ui/react';
+import { BoxProps, ModalContentProps } from '@chakra-ui/react';
 import { createContext } from 'react';
 
 interface ModalDrawerProps {
@@ -14,6 +14,7 @@ interface ModalDrawerProps {
 	showFooter?: boolean;
 	showHeader?: boolean;
 	showCancel?: boolean;
+	contentHeight?: BoxProps['height'];
 }
 
 const ModalDrawerContext = createContext({
