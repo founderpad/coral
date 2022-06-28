@@ -62,8 +62,15 @@ body,
 	}
 }
 
-.paypal-buttons {
-	/* height: 100% !important; */
-	/* min-height: 142px !important; */
-	/* height: 800px !important; */
-}
+/* .paypal-buttons,
+.paypal-buttons-context-iframe,
+.paypal-buttons-label-pay,
+.paypal-buttons-layout-vertical {
+	height: auto !important;
+	min-height: 142px !important;
+	max-height: 950px !important;
+} */
+
+/* .paypal-component > div {
+	height: 725px !important;
+} */
