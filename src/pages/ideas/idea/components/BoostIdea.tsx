@@ -73,7 +73,7 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 					{
 						description: 'Boost idea',
 						amount: {
-							value: 11.5
+							value: 0.25
 						}
 					}
 				],
