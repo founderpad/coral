@@ -71,6 +71,7 @@ const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
 			.create({
 				purchase_units: [
 					{
+						custom_id: idea?.id,
 						description: 'Boost idea',
 						amount: {
 							value: 0.25
