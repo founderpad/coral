@@ -11,8 +11,6 @@ type TIdeaCardBody = Pick<
 >;
 
 const IdeaCardBody = (idea: TIdeaCardBody) => {
-	const { summary } = idea;
-
 	return (
 		<React.Fragment>
 			<Label
@@ -30,7 +28,7 @@ const IdeaCardBody = (idea: TIdeaCardBody) => {
 				{/* {preview?.length && preview?.length <= 25
 					? preview
 					: `${preview}...`} */}
-				{summary}
+				{idea?.summary}
 			</Label>
 			<IdeaCardBodyBadges {...idea} />
 		</React.Fragment>

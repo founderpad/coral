@@ -27,7 +27,7 @@ const PaymentSuccessful = () => (
 	</StackLayout>
 );
 
-const BoostIdea = (idea: TIdeaPreviewFieldsFragment) => {
+const BoostIdea = (idea: Partial<TIdeaPreviewFieldsFragment>) => {
 	const { openModalDrawer } = useModalDrawer();
 
 	const onClick = useCallback(() => {
@@ -52,7 +52,7 @@ const BoostIdea = (idea: TIdeaPreviewFieldsFragment) => {
 	);
 };
 
-const BoostIdeaForm = (idea: TIdeaPreviewFieldsFragment) => {
+const BoostIdeaForm = (idea: Partial<TIdeaPreviewFieldsFragment>) => {
 	const { updateModalDrawer } = useModalDrawer();
 	const esteemPoints = useCurrentUser().esteemPoints?.points ?? 0;
 	const neededPoints = esteemPoints >= 1000 ? 0 : 1000 - esteemPoints;

@@ -18,6 +18,7 @@ export type Scalars = {
   Float: number;
   citext: any;
   jsonb: any;
+  money: any;
   timestamptz: any;
   uuid: any;
 };
@@ -222,6 +223,166 @@ export type TActivity_Select_Column =
   | 'url'
   /** column name */
   | 'userId';
+
+/**
+ * All ideas that are currently boosted
+ *
+ *
+ * columns and relationships of "boosted_ideas"
+ *
+ */
+export type TBoosted_Ideas = {
+  __typename?: 'boosted_ideas';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  /** An object relationship */
+  idea?: Maybe<TIdeas>;
+  ideaId: Scalars['uuid'];
+  remainingCurrencyAmount?: Maybe<Scalars['money']>;
+  totalCurrencyAmount?: Maybe<Scalars['money']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregated selection of "boosted_ideas" */
+export type TBoosted_Ideas_Aggregate = {
+  __typename?: 'boosted_ideas_aggregate';
+  aggregate?: Maybe<TBoosted_Ideas_Aggregate_Fields>;
+  nodes: Array<TBoosted_Ideas>;
+};
+
+/** aggregate fields of "boosted_ideas" */
+export type TBoosted_Ideas_Aggregate_Fields = {
+  __typename?: 'boosted_ideas_aggregate_fields';
+  avg?: Maybe<TBoosted_Ideas_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<TBoosted_Ideas_Max_Fields>;
+  min?: Maybe<TBoosted_Ideas_Min_Fields>;
+  stddev?: Maybe<TBoosted_Ideas_Stddev_Fields>;
+  stddev_pop?: Maybe<TBoosted_Ideas_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<TBoosted_Ideas_Stddev_Samp_Fields>;
+  sum?: Maybe<TBoosted_Ideas_Sum_Fields>;
+  var_pop?: Maybe<TBoosted_Ideas_Var_Pop_Fields>;
+  var_samp?: Maybe<TBoosted_Ideas_Var_Samp_Fields>;
+  variance?: Maybe<TBoosted_Ideas_Variance_Fields>;
+};
+
+
+/** aggregate fields of "boosted_ideas" */
+export type TBoosted_Ideas_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TBoosted_Ideas_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type TBoosted_Ideas_Avg_Fields = {
+  __typename?: 'boosted_ideas_avg_fields';
+  remainingCurrencyAmount?: Maybe<Scalars['Float']>;
+  totalCurrencyAmount?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "boosted_ideas". All fields are combined with a logical 'AND'. */
+export type TBoosted_Ideas_Bool_Exp = {
+  _and?: InputMaybe<Array<TBoosted_Ideas_Bool_Exp>>;
+  _not?: InputMaybe<TBoosted_Ideas_Bool_Exp>;
+  _or?: InputMaybe<Array<TBoosted_Ideas_Bool_Exp>>;
+  createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  idea?: InputMaybe<TIdeas_Bool_Exp>;
+  ideaId?: InputMaybe<TUuid_Comparison_Exp>;
+  remainingCurrencyAmount?: InputMaybe<TMoney_Comparison_Exp>;
+  totalCurrencyAmount?: InputMaybe<TMoney_Comparison_Exp>;
+  updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type TBoosted_Ideas_Max_Fields = {
+  __typename?: 'boosted_ideas_max_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  ideaId?: Maybe<Scalars['uuid']>;
+  remainingCurrencyAmount?: Maybe<Scalars['money']>;
+  totalCurrencyAmount?: Maybe<Scalars['money']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type TBoosted_Ideas_Min_Fields = {
+  __typename?: 'boosted_ideas_min_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  ideaId?: Maybe<Scalars['uuid']>;
+  remainingCurrencyAmount?: Maybe<Scalars['money']>;
+  totalCurrencyAmount?: Maybe<Scalars['money']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** Ordering options when selecting data from "boosted_ideas". */
+export type TBoosted_Ideas_Order_By = {
+  createdAt?: InputMaybe<TOrder_By>;
+  idea?: InputMaybe<TIdeas_Order_By>;
+  ideaId?: InputMaybe<TOrder_By>;
+  remainingCurrencyAmount?: InputMaybe<TOrder_By>;
+  totalCurrencyAmount?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+};
+
+/** select columns of table "boosted_ideas" */
+export type TBoosted_Ideas_Select_Column =
+  /** column name */
+  | 'createdAt'
+  /** column name */
+  | 'ideaId'
+  /** column name */
+  | 'remainingCurrencyAmount'
+  /** column name */
+  | 'totalCurrencyAmount'
+  /** column name */
+  | 'updatedAt';
+
+/** aggregate stddev on columns */
+export type TBoosted_Ideas_Stddev_Fields = {
+  __typename?: 'boosted_ideas_stddev_fields';
+  remainingCurrencyAmount?: Maybe<Scalars['Float']>;
+  totalCurrencyAmount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type TBoosted_Ideas_Stddev_Pop_Fields = {
+  __typename?: 'boosted_ideas_stddev_pop_fields';
+  remainingCurrencyAmount?: Maybe<Scalars['Float']>;
+  totalCurrencyAmount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type TBoosted_Ideas_Stddev_Samp_Fields = {
+  __typename?: 'boosted_ideas_stddev_samp_fields';
+  remainingCurrencyAmount?: Maybe<Scalars['Float']>;
+  totalCurrencyAmount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type TBoosted_Ideas_Sum_Fields = {
+  __typename?: 'boosted_ideas_sum_fields';
+  remainingCurrencyAmount?: Maybe<Scalars['money']>;
+  totalCurrencyAmount?: Maybe<Scalars['money']>;
+};
+
+/** aggregate var_pop on columns */
+export type TBoosted_Ideas_Var_Pop_Fields = {
+  __typename?: 'boosted_ideas_var_pop_fields';
+  remainingCurrencyAmount?: Maybe<Scalars['Float']>;
+  totalCurrencyAmount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type TBoosted_Ideas_Var_Samp_Fields = {
+  __typename?: 'boosted_ideas_var_samp_fields';
+  remainingCurrencyAmount?: Maybe<Scalars['Float']>;
+  totalCurrencyAmount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type TBoosted_Ideas_Variance_Fields = {
+  __typename?: 'boosted_ideas_variance_fields';
+  remainingCurrencyAmount?: Maybe<Scalars['Float']>;
+  totalCurrencyAmount?: Maybe<Scalars['Float']>;
+};
 
 /** columns and relationships of "storage.buckets" */
 export type TBuckets = {
@@ -2727,6 +2888,19 @@ export type TMessage_Update_Column =
   /** column name */
   | 'updatedAt';
 
+/** Boolean expression to compare columns of type "money". All fields are combined with logical 'AND'. */
+export type TMoney_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['money']>;
+  _gt?: InputMaybe<Scalars['money']>;
+  _gte?: InputMaybe<Scalars['money']>;
+  _in?: InputMaybe<Array<Scalars['money']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['money']>;
+  _lte?: InputMaybe<Scalars['money']>;
+  _neq?: InputMaybe<Scalars['money']>;
+  _nin?: InputMaybe<Array<Scalars['money']>>;
+};
+
 /** mutation root */
 export type TMutation_Root = {
   __typename?: 'mutation_root';
@@ -3262,6 +3436,12 @@ export type TQuery_Root = {
   activity_aggregate: TActivity_Aggregate;
   /** fetch data from the table: "activity" using primary key columns */
   activity_by_pk?: Maybe<TActivity>;
+  /** fetch data from the table: "boosted_ideas" */
+  boosted_ideas: Array<TBoosted_Ideas>;
+  /** fetch aggregated fields from the table: "boosted_ideas" */
+  boosted_ideas_aggregate: TBoosted_Ideas_Aggregate;
+  /** fetch data from the table: "boosted_ideas" using primary key columns */
+  boosted_ideas_by_pk?: Maybe<TBoosted_Ideas>;
   /** fetch data from the table: "storage.buckets" using primary key columns */
   bucket?: Maybe<TBuckets>;
   /** fetch data from the table: "storage.buckets" */
@@ -3373,6 +3553,29 @@ export type TQuery_RootActivity_AggregateArgs = {
 
 export type TQuery_RootActivity_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type TQuery_RootBoosted_IdeasArgs = {
+  distinct_on?: InputMaybe<Array<TBoosted_Ideas_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TBoosted_Ideas_Order_By>>;
+  where?: InputMaybe<TBoosted_Ideas_Bool_Exp>;
+};
+
+
+export type TQuery_RootBoosted_Ideas_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TBoosted_Ideas_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TBoosted_Ideas_Order_By>>;
+  where?: InputMaybe<TBoosted_Ideas_Bool_Exp>;
+};
+
+
+export type TQuery_RootBoosted_Ideas_By_PkArgs = {
+  ideaId: Scalars['uuid'];
 };
 
 
@@ -3773,6 +3976,12 @@ export type TSubscription_Root = {
   activity_aggregate: TActivity_Aggregate;
   /** fetch data from the table: "activity" using primary key columns */
   activity_by_pk?: Maybe<TActivity>;
+  /** fetch data from the table: "boosted_ideas" */
+  boosted_ideas: Array<TBoosted_Ideas>;
+  /** fetch aggregated fields from the table: "boosted_ideas" */
+  boosted_ideas_aggregate: TBoosted_Ideas_Aggregate;
+  /** fetch data from the table: "boosted_ideas" using primary key columns */
+  boosted_ideas_by_pk?: Maybe<TBoosted_Ideas>;
   /** fetch data from the table: "storage.buckets" using primary key columns */
   bucket?: Maybe<TBuckets>;
   /** fetch data from the table: "storage.buckets" */
@@ -3884,6 +4093,29 @@ export type TSubscription_RootActivity_AggregateArgs = {
 
 export type TSubscription_RootActivity_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type TSubscription_RootBoosted_IdeasArgs = {
+  distinct_on?: InputMaybe<Array<TBoosted_Ideas_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TBoosted_Ideas_Order_By>>;
+  where?: InputMaybe<TBoosted_Ideas_Bool_Exp>;
+};
+
+
+export type TSubscription_RootBoosted_Ideas_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TBoosted_Ideas_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TBoosted_Ideas_Order_By>>;
+  where?: InputMaybe<TBoosted_Ideas_Bool_Exp>;
+};
+
+
+export type TSubscription_RootBoosted_Ideas_By_PkArgs = {
+  ideaId: Scalars['uuid'];
 };
 
 
@@ -5378,6 +5610,8 @@ export type TIdeasQueryVariables = Exact<{
 
 export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
 
+export type TBoostedIdeaFieldsFragment = { __typename?: 'boosted_ideas', ideaId: any, totalCurrencyAmount?: any | null, remainingCurrencyAmount?: any | null, createdAt?: any | null, idea?: { __typename?: 'ideas', name: string, summary?: string | null, status?: string | null, field: string } | null };
+
 export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
 
 export type TUserIdeasQueryVariables = Exact<{
@@ -5420,6 +5654,14 @@ export type TDeleteIdeaUpvoteMutationVariables = Exact<{
 
 
 export type TDeleteIdeaUpvoteMutation = { delete_idea_votes?: { __typename?: 'idea_votes_mutation_response', affected_rows: number } | null };
+
+export type TBoostedIdeasQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+}>;
+
+
+export type TBoostedIdeasQuery = { boosted_ideas: Array<{ __typename?: 'boosted_ideas', ideaId: any, totalCurrencyAmount?: any | null, remainingCurrencyAmount?: any | null, createdAt?: any | null, idea?: { __typename?: 'ideas', name: string, summary?: string | null, status?: string | null, field: string } | null }> };
 
 export type TNewMessageThreadMutationVariables = Exact<{
   targetUserId: Scalars['uuid'];
@@ -5616,6 +5858,20 @@ export const MessageUserFragmentDoc = gql`
   }
 }
     ${ThreadUserFragmentDoc}`;
+export const BoostedIdeaFieldsFragmentDoc = gql`
+    fragment BoostedIdeaFields on boosted_ideas {
+  ideaId
+  totalCurrencyAmount
+  remainingCurrencyAmount
+  createdAt
+  idea {
+    name
+    summary
+    status
+    field
+  }
+}
+    `;
 export const UserFieldsWithEmailFragmentDoc = gql`
     fragment UserFieldsWithEmail on users {
   ...UserFields
@@ -6350,6 +6606,45 @@ export function useDeleteIdeaUpvoteMutation(baseOptions?: ApolloReactHooks.Mutat
 export type DeleteIdeaUpvoteMutationHookResult = ReturnType<typeof useDeleteIdeaUpvoteMutation>;
 export type DeleteIdeaUpvoteMutationResult = Apollo.MutationResult<TDeleteIdeaUpvoteMutation>;
 export type DeleteIdeaUpvoteMutationOptions = Apollo.BaseMutationOptions<TDeleteIdeaUpvoteMutation, TDeleteIdeaUpvoteMutationVariables>;
+export const BoostedIdeasDocument = gql`
+    query BoostedIdeas($limit: Int, $offset: Int) {
+  boosted_ideas(limit: 10, offset: 0) {
+    ...BoostedIdeaFields
+  }
+}
+    ${BoostedIdeaFieldsFragmentDoc}`;
+
+/**
+ * __useBoostedIdeasQuery__
+ *
+ * To run a query within a React component, call `useBoostedIdeasQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBoostedIdeasQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBoostedIdeasQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useBoostedIdeasQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TBoostedIdeasQuery, TBoostedIdeasQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TBoostedIdeasQuery, TBoostedIdeasQueryVariables>(BoostedIdeasDocument, options);
+      }
+export function useBoostedIdeasLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TBoostedIdeasQuery, TBoostedIdeasQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TBoostedIdeasQuery, TBoostedIdeasQueryVariables>(BoostedIdeasDocument, options);
+        }
+export type BoostedIdeasQueryHookResult = ReturnType<typeof useBoostedIdeasQuery>;
+export type BoostedIdeasLazyQueryHookResult = ReturnType<typeof useBoostedIdeasLazyQuery>;
+export type BoostedIdeasQueryResult = Apollo.QueryResult<TBoostedIdeasQuery, TBoostedIdeasQueryVariables>;
+export function refetchBoostedIdeasQuery(variables?: TBoostedIdeasQueryVariables) {
+      return { query: BoostedIdeasDocument, variables: variables }
+    }
 export const NewMessageThreadDocument = gql`
     mutation NewMessageThread($targetUserId: uuid!, $currentUserId: uuid!) {
   insert_message_thread(
@@ -7154,6 +7449,22 @@ export type TResolversTypes = {
   activity_mutation_response: ResolverTypeWrapper<TActivity_Mutation_Response>;
   activity_order_by: TActivity_Order_By;
   activity_select_column: TActivity_Select_Column;
+  boosted_ideas: ResolverTypeWrapper<TBoosted_Ideas>;
+  boosted_ideas_aggregate: ResolverTypeWrapper<TBoosted_Ideas_Aggregate>;
+  boosted_ideas_aggregate_fields: ResolverTypeWrapper<TBoosted_Ideas_Aggregate_Fields>;
+  boosted_ideas_avg_fields: ResolverTypeWrapper<TBoosted_Ideas_Avg_Fields>;
+  boosted_ideas_bool_exp: TBoosted_Ideas_Bool_Exp;
+  boosted_ideas_max_fields: ResolverTypeWrapper<TBoosted_Ideas_Max_Fields>;
+  boosted_ideas_min_fields: ResolverTypeWrapper<TBoosted_Ideas_Min_Fields>;
+  boosted_ideas_order_by: TBoosted_Ideas_Order_By;
+  boosted_ideas_select_column: TBoosted_Ideas_Select_Column;
+  boosted_ideas_stddev_fields: ResolverTypeWrapper<TBoosted_Ideas_Stddev_Fields>;
+  boosted_ideas_stddev_pop_fields: ResolverTypeWrapper<TBoosted_Ideas_Stddev_Pop_Fields>;
+  boosted_ideas_stddev_samp_fields: ResolverTypeWrapper<TBoosted_Ideas_Stddev_Samp_Fields>;
+  boosted_ideas_sum_fields: ResolverTypeWrapper<TBoosted_Ideas_Sum_Fields>;
+  boosted_ideas_var_pop_fields: ResolverTypeWrapper<TBoosted_Ideas_Var_Pop_Fields>;
+  boosted_ideas_var_samp_fields: ResolverTypeWrapper<TBoosted_Ideas_Var_Samp_Fields>;
+  boosted_ideas_variance_fields: ResolverTypeWrapper<TBoosted_Ideas_Variance_Fields>;
   buckets: ResolverTypeWrapper<TBuckets>;
   buckets_bool_exp: TBuckets_Bool_Exp;
   buckets_order_by: TBuckets_Order_By;
@@ -7363,6 +7674,8 @@ export type TResolversTypes = {
   message_thread_users_order_by: TMessage_Thread_Users_Order_By;
   message_thread_users_select_column: TMessage_Thread_Users_Select_Column;
   message_update_column: TMessage_Update_Column;
+  money: ResolverTypeWrapper<Scalars['money']>;
+  money_comparison_exp: TMoney_Comparison_Exp;
   mutation_root: ResolverTypeWrapper<{}>;
   order_by: TOrder_By;
   query_root: ResolverTypeWrapper<{}>;
@@ -7447,6 +7760,21 @@ export type TResolversParentTypes = {
   activity_min_fields: TActivity_Min_Fields;
   activity_mutation_response: TActivity_Mutation_Response;
   activity_order_by: TActivity_Order_By;
+  boosted_ideas: TBoosted_Ideas;
+  boosted_ideas_aggregate: TBoosted_Ideas_Aggregate;
+  boosted_ideas_aggregate_fields: TBoosted_Ideas_Aggregate_Fields;
+  boosted_ideas_avg_fields: TBoosted_Ideas_Avg_Fields;
+  boosted_ideas_bool_exp: TBoosted_Ideas_Bool_Exp;
+  boosted_ideas_max_fields: TBoosted_Ideas_Max_Fields;
+  boosted_ideas_min_fields: TBoosted_Ideas_Min_Fields;
+  boosted_ideas_order_by: TBoosted_Ideas_Order_By;
+  boosted_ideas_stddev_fields: TBoosted_Ideas_Stddev_Fields;
+  boosted_ideas_stddev_pop_fields: TBoosted_Ideas_Stddev_Pop_Fields;
+  boosted_ideas_stddev_samp_fields: TBoosted_Ideas_Stddev_Samp_Fields;
+  boosted_ideas_sum_fields: TBoosted_Ideas_Sum_Fields;
+  boosted_ideas_var_pop_fields: TBoosted_Ideas_Var_Pop_Fields;
+  boosted_ideas_var_samp_fields: TBoosted_Ideas_Var_Samp_Fields;
+  boosted_ideas_variance_fields: TBoosted_Ideas_Variance_Fields;
   buckets: TBuckets;
   buckets_bool_exp: TBuckets_Bool_Exp;
   buckets_order_by: TBuckets_Order_By;
@@ -7634,6 +7962,8 @@ export type TResolversParentTypes = {
   message_thread_users_min_order_by: TMessage_Thread_Users_Min_Order_By;
   message_thread_users_mutation_response: TMessage_Thread_Users_Mutation_Response;
   message_thread_users_order_by: TMessage_Thread_Users_Order_By;
+  money: Scalars['money'];
+  money_comparison_exp: TMoney_Comparison_Exp;
   mutation_root: {};
   query_root: {};
   report: TReport;
@@ -7757,6 +8087,103 @@ export type TActivity_Min_FieldsResolvers<ContextType = any, ParentType extends 
 export type TActivity_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['activity_mutation_response'] = TResolversParentTypes['activity_mutation_response']> = {
   affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   returning?: Resolver<Array<TResolversTypes['activity']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_IdeasResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas'] = TResolversParentTypes['boosted_ideas']> = {
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  idea?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType>;
+  ideaId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_aggregate'] = TResolversParentTypes['boosted_ideas_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['boosted_ideas_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['boosted_ideas']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_aggregate_fields'] = TResolversParentTypes['boosted_ideas_aggregate_fields']> = {
+  avg?: Resolver<Maybe<TResolversTypes['boosted_ideas_avg_fields']>, ParentType, ContextType>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TBoosted_Ideas_Aggregate_FieldsCountArgs>>;
+  max?: Resolver<Maybe<TResolversTypes['boosted_ideas_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['boosted_ideas_min_fields']>, ParentType, ContextType>;
+  stddev?: Resolver<Maybe<TResolversTypes['boosted_ideas_stddev_fields']>, ParentType, ContextType>;
+  stddev_pop?: Resolver<Maybe<TResolversTypes['boosted_ideas_stddev_pop_fields']>, ParentType, ContextType>;
+  stddev_samp?: Resolver<Maybe<TResolversTypes['boosted_ideas_stddev_samp_fields']>, ParentType, ContextType>;
+  sum?: Resolver<Maybe<TResolversTypes['boosted_ideas_sum_fields']>, ParentType, ContextType>;
+  var_pop?: Resolver<Maybe<TResolversTypes['boosted_ideas_var_pop_fields']>, ParentType, ContextType>;
+  var_samp?: Resolver<Maybe<TResolversTypes['boosted_ideas_var_samp_fields']>, ParentType, ContextType>;
+  variance?: Resolver<Maybe<TResolversTypes['boosted_ideas_variance_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Avg_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_avg_fields'] = TResolversParentTypes['boosted_ideas_avg_fields']> = {
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_max_fields'] = TResolversParentTypes['boosted_ideas_max_fields']> = {
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  ideaId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_min_fields'] = TResolversParentTypes['boosted_ideas_min_fields']> = {
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  ideaId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Stddev_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_stddev_fields'] = TResolversParentTypes['boosted_ideas_stddev_fields']> = {
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Stddev_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_stddev_pop_fields'] = TResolversParentTypes['boosted_ideas_stddev_pop_fields']> = {
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Stddev_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_stddev_samp_fields'] = TResolversParentTypes['boosted_ideas_stddev_samp_fields']> = {
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Sum_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_sum_fields'] = TResolversParentTypes['boosted_ideas_sum_fields']> = {
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Var_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_var_pop_fields'] = TResolversParentTypes['boosted_ideas_var_pop_fields']> = {
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Var_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_var_samp_fields'] = TResolversParentTypes['boosted_ideas_var_samp_fields']> = {
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TBoosted_Ideas_Variance_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_variance_fields'] = TResolversParentTypes['boosted_ideas_variance_fields']> = {
+  remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -8410,6 +8837,10 @@ export type TMessage_Thread_Users_Mutation_ResponseResolvers<ContextType = any, 
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export interface TMoneyScalarConfig extends GraphQLScalarTypeConfig<TResolversTypes['money'], any> {
+  name: 'money';
+}
+
 export type TMutation_RootResolvers<ContextType = any, ParentType extends TResolversParentTypes['mutation_root'] = TResolversParentTypes['mutation_root']> = {
   deleteFile?: Resolver<Maybe<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteFileArgs, 'id'>>;
   deleteFiles?: Resolver<Maybe<TResolversTypes['files_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteFilesArgs, 'where'>>;
@@ -8475,6 +8906,9 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   activity?: Resolver<Array<TResolversTypes['activity']>, ParentType, ContextType, Partial<TQuery_RootActivityArgs>>;
   activity_aggregate?: Resolver<TResolversTypes['activity_aggregate'], ParentType, ContextType, Partial<TQuery_RootActivity_AggregateArgs>>;
   activity_by_pk?: Resolver<Maybe<TResolversTypes['activity']>, ParentType, ContextType, RequireFields<TQuery_RootActivity_By_PkArgs, 'id'>>;
+  boosted_ideas?: Resolver<Array<TResolversTypes['boosted_ideas']>, ParentType, ContextType, Partial<TQuery_RootBoosted_IdeasArgs>>;
+  boosted_ideas_aggregate?: Resolver<TResolversTypes['boosted_ideas_aggregate'], ParentType, ContextType, Partial<TQuery_RootBoosted_Ideas_AggregateArgs>>;
+  boosted_ideas_by_pk?: Resolver<Maybe<TResolversTypes['boosted_ideas']>, ParentType, ContextType, RequireFields<TQuery_RootBoosted_Ideas_By_PkArgs, 'ideaId'>>;
   bucket?: Resolver<Maybe<TResolversTypes['buckets']>, ParentType, ContextType, RequireFields<TQuery_RootBucketArgs, 'id'>>;
   buckets?: Resolver<Array<TResolversTypes['buckets']>, ParentType, ContextType, Partial<TQuery_RootBucketsArgs>>;
   esteem_points?: Resolver<Array<TResolversTypes['esteem_points']>, ParentType, ContextType, Partial<TQuery_RootEsteem_PointsArgs>>;
@@ -8536,6 +8970,9 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   activity?: SubscriptionResolver<Array<TResolversTypes['activity']>, "activity", ParentType, ContextType, Partial<TSubscription_RootActivityArgs>>;
   activity_aggregate?: SubscriptionResolver<TResolversTypes['activity_aggregate'], "activity_aggregate", ParentType, ContextType, Partial<TSubscription_RootActivity_AggregateArgs>>;
   activity_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['activity']>, "activity_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootActivity_By_PkArgs, 'id'>>;
+  boosted_ideas?: SubscriptionResolver<Array<TResolversTypes['boosted_ideas']>, "boosted_ideas", ParentType, ContextType, Partial<TSubscription_RootBoosted_IdeasArgs>>;
+  boosted_ideas_aggregate?: SubscriptionResolver<TResolversTypes['boosted_ideas_aggregate'], "boosted_ideas_aggregate", ParentType, ContextType, Partial<TSubscription_RootBoosted_Ideas_AggregateArgs>>;
+  boosted_ideas_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['boosted_ideas']>, "boosted_ideas_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootBoosted_Ideas_By_PkArgs, 'ideaId'>>;
   bucket?: SubscriptionResolver<Maybe<TResolversTypes['buckets']>, "bucket", ParentType, ContextType, RequireFields<TSubscription_RootBucketArgs, 'id'>>;
   buckets?: SubscriptionResolver<Array<TResolversTypes['buckets']>, "buckets", ParentType, ContextType, Partial<TSubscription_RootBucketsArgs>>;
   esteem_points?: SubscriptionResolver<Array<TResolversTypes['esteem_points']>, "esteem_points", ParentType, ContextType, Partial<TSubscription_RootEsteem_PointsArgs>>;
@@ -8856,6 +9293,19 @@ export type TResolvers<ContextType = any> = {
   activity_max_fields?: TActivity_Max_FieldsResolvers<ContextType>;
   activity_min_fields?: TActivity_Min_FieldsResolvers<ContextType>;
   activity_mutation_response?: TActivity_Mutation_ResponseResolvers<ContextType>;
+  boosted_ideas?: TBoosted_IdeasResolvers<ContextType>;
+  boosted_ideas_aggregate?: TBoosted_Ideas_AggregateResolvers<ContextType>;
+  boosted_ideas_aggregate_fields?: TBoosted_Ideas_Aggregate_FieldsResolvers<ContextType>;
+  boosted_ideas_avg_fields?: TBoosted_Ideas_Avg_FieldsResolvers<ContextType>;
+  boosted_ideas_max_fields?: TBoosted_Ideas_Max_FieldsResolvers<ContextType>;
+  boosted_ideas_min_fields?: TBoosted_Ideas_Min_FieldsResolvers<ContextType>;
+  boosted_ideas_stddev_fields?: TBoosted_Ideas_Stddev_FieldsResolvers<ContextType>;
+  boosted_ideas_stddev_pop_fields?: TBoosted_Ideas_Stddev_Pop_FieldsResolvers<ContextType>;
+  boosted_ideas_stddev_samp_fields?: TBoosted_Ideas_Stddev_Samp_FieldsResolvers<ContextType>;
+  boosted_ideas_sum_fields?: TBoosted_Ideas_Sum_FieldsResolvers<ContextType>;
+  boosted_ideas_var_pop_fields?: TBoosted_Ideas_Var_Pop_FieldsResolvers<ContextType>;
+  boosted_ideas_var_samp_fields?: TBoosted_Ideas_Var_Samp_FieldsResolvers<ContextType>;
+  boosted_ideas_variance_fields?: TBoosted_Ideas_Variance_FieldsResolvers<ContextType>;
   buckets?: TBucketsResolvers<ContextType>;
   citext?: GraphQLScalarType;
   esteem_points?: TEsteem_PointsResolvers<ContextType>;
@@ -8931,6 +9381,7 @@ export type TResolvers<ContextType = any> = {
   message_thread_users_max_fields?: TMessage_Thread_Users_Max_FieldsResolvers<ContextType>;
   message_thread_users_min_fields?: TMessage_Thread_Users_Min_FieldsResolvers<ContextType>;
   message_thread_users_mutation_response?: TMessage_Thread_Users_Mutation_ResponseResolvers<ContextType>;
+  money?: GraphQLScalarType;
   mutation_root?: TMutation_RootResolvers<ContextType>;
   query_root?: TQuery_RootResolvers<ContextType>;
   report?: TReportResolvers<ContextType>;

@@ -65,6 +65,19 @@ query Ideas(
 	}
 }
 
+fragment BoostedIdeaFields on boosted_ideas {
+	ideaId
+	totalCurrencyAmount
+	remainingCurrencyAmount
+	createdAt
+	idea {
+		name
+		summary
+		status
+		field
+	}
+}
+
 fragment IdeaPreviewFields on idea_preview {
 	id
 	name
@@ -200,5 +213,11 @@ mutation DeleteIdeaUpvote($ideaId: uuid!, $userId: uuid!) {
 		where: { userId: { _eq: $userId }, ideaId: { _eq: $ideaId } }
 	) {
 		affected_rows
+	}
+}
+
+query BoostedIdeas($limit: Int, $offset: Int) {
+	boosted_ideas(limit: 10, offset: 0) {
+		...BoostedIdeaFields
 	}
 }

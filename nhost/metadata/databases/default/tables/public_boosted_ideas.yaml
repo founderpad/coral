@@ -3,6 +3,7 @@ table:
   schema: public
 configuration:
   custom_column_names:
+    created_at: createdAt
     currency_amount_increment: currencyAmountIncrement
     idea_id: ideaId
     points_increment: pointsIncrement
@@ -10,4 +11,26 @@ configuration:
     remaining_points: remainingPoints
     total_currency_amount: totalCurrencyAmount
     total_points: totalPoints
+    updated_at: updatedAt
   custom_root_fields: {}
+object_relationships:
+- name: idea
+  using:
+    manual_configuration:
+      column_mapping:
+        idea_id: id
+      insertion_order: null
+      remote_table:
+        name: ideas
+        schema: public
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - created_at
+    - idea_id
+    - remaining_currency_amount
+    - total_currency_amount
+    - updated_at
+    filter: {}
+  role: user

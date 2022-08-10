@@ -19,7 +19,7 @@ export default async (req, res) => {
 
 	// const ideaId = req.body.event
 
-	res.status(200).send('val: ', res);
+	// res.status(200).send('ok');
 
 	try {
 		const response = await graphqlClient.request(INSERT_BOOSTED_IDEA, {
