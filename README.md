@@ -81,7 +81,7 @@ It is specific to Nhost and is deployed to AWS Lambda. In the future, if/when we
 
 It is a rather vanilla Node API, and we use it mainly in an event-driven way that responds to Hasura events. E.g., when a record is inserted into the report table we act on this by firing the `/functions/email/send-reported-email.js`.
 
-Future changes will include an endpoint to faciliate Stripe customer sign ups so that the application will able to accept Stripe payments.
+Future changes will include an endpoint to faciliate PayPal customer sign ups so that the application will able to accept PayPal payments.
 
 ## Testing build locally
 
