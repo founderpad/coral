@@ -14,15 +14,13 @@ export default async (req, res) => {
 	// isValidSecret(req);
 	// const ideaId = req.body.event.data.new.custom_id;
 	// const ideaId = '3cb8f33e-af2b-4325-a452-0a830fcc4e30';
-	const ideaId = res?.resource?.custom_id;
+	const ideaId = res.body?.resource?.custom_id;
 
 	// if (!userId) throw 'No user id found';
 
 	// const ideaId = req.body.event
 
-	console.debug('idea id debug: ', res);
-	console.log('idea id log: ', res);
-	console.error('idea id error: ', res);
+	console.log('idea id log: ', ideaId);
 	res.status(200).send(ideaId);
 
 	// try {
