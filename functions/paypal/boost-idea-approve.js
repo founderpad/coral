@@ -20,9 +20,9 @@ export default async (req, res) => {
 
 	// const ideaId = req.body.event
 
-	console.debug('idea id debug: ', ideaId);
-	console.log('idea id log: ', ideaId);
-	console.error('idea id error: ', ideaId);
+	console.debug('idea id debug: ', res);
+	console.log('idea id log: ', res);
+	console.error('idea id error: ', res);
 	res.status(200).send(ideaId);
 
 	// try {
