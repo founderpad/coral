@@ -13,7 +13,8 @@ const INSERT_BOOSTED_IDEA = gql`
 export default async (req, res) => {
 	// isValidSecret(req);
 	// const ideaId = req.body.event.data.new.custom_id;
-	const ideaId = '3cb8f33e-af2b-4325-a452-0a830fcc4e30';
+	// const ideaId = '3cb8f33e-af2b-4325-a452-0a830fcc4e30';
+	const ideaId = res.custom_id;
 
 	// if (!userId) throw 'No user id found';
 
