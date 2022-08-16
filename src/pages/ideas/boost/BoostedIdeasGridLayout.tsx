@@ -23,7 +23,7 @@ const BoostedIdeasGridLayout = () => {
 
 	return (
 		<SimpleGrid
-			columns={{ base: 1, md: 2 }}
+			columns={{ base: 1, md: 4 }}
 			minH="full"
 			rowGap={6}
 			columnGap={6}
@@ -33,8 +33,8 @@ const BoostedIdeasGridLayout = () => {
 		>
 			{data?.boosted_ideas?.map((bi) => (
 				<GridItem
-					borderWidth={1}
-					rounded={{ base: 'none', lg: 'md' }}
+					borderRightWidth={{ base: 0, md: 1 }}
+					borderBottomWidth={{ base: 1, md: 0 }}
 					key={bi.ideaId}
 				>
 					<BoostedIdeaCard {...bi}></BoostedIdeaCard>
