@@ -1,13 +1,20 @@
-import { Tag } from '@chakra-ui/react';
+import { Tag, TagLeftIcon } from '@chakra-ui/react';
 import { Label } from '@/components/labels';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@/generated/api';
 import InterestedTotal from '@/pages/ideas/idea/components/InterestedTotal';
 import React from 'react';
+import { percentageBoosted } from '@/utils/validators';
+import { AiTwotoneThunderbolt } from 'react-icons/ai';
 
 type TIdeaCardBody = Pick<
 	TIdeaPreviewFieldsFragment,
-	'field' | 'user' | 'status' | 'summary' | 'interested_aggregate'
+	| 'field'
+	| 'user'
+	| 'status'
+	| 'summary'
+	| 'interested_aggregate'
+	| 'boosted_idea'
 >;
 
 const IdeaCardBody = (idea: TIdeaCardBody) => {
@@ -36,7 +43,8 @@ const IdeaCardBody = (idea: TIdeaCardBody) => {
 };
 
 export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
-	const { field, status, interested_aggregate } = idea;
+	const { field, status, interested_aggregate, boosted_idea } = idea;
+	const isBoosted = !!boosted_idea?.ideaId;
 
 	const totalInterested = interested_aggregate.aggregate?.count;
 
@@ -71,6 +79,22 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 				>
 					{field}
 				</Tag>
+				{isBoosted && (
+					<Tag
+						fontSize="11px"
+						size="sm"
+						px={3}
+						py={1}
+						bg="purple.500"
+						color="white"
+					>
+						<TagLeftIcon as={AiTwotoneThunderbolt} mr={1} />
+						{percentageBoosted(
+							boosted_idea?.remainingCurrencyAmount
+						)}
+						% boosted
+					</Tag>
+				)}
 			</StackLayout>
 			{/* <Tag
 				h="fit-content"

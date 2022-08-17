@@ -1259,6 +1259,8 @@ export type TIdea_Comments_Variance_Order_By = {
 /** columns and relationships of "idea_preview" */
 export type TIdea_Preview = {
   __typename?: 'idea_preview';
+  /** An object relationship */
+  boosted_idea?: Maybe<TBoosted_Ideas>;
   /** An array relationship */
   comments: Array<TIdea_Comments>;
   /** An aggregate relationship */
@@ -1371,6 +1373,7 @@ export type TIdea_Preview_Bool_Exp = {
   _and?: InputMaybe<Array<TIdea_Preview_Bool_Exp>>;
   _not?: InputMaybe<TIdea_Preview_Bool_Exp>;
   _or?: InputMaybe<Array<TIdea_Preview_Bool_Exp>>;
+  boosted_idea?: InputMaybe<TBoosted_Ideas_Bool_Exp>;
   comments?: InputMaybe<TIdea_Comments_Bool_Exp>;
   createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   field?: InputMaybe<TString_Comparison_Exp>;
@@ -1412,6 +1415,7 @@ export type TIdea_Preview_Min_Fields = {
 
 /** Ordering options when selecting data from "idea_preview". */
 export type TIdea_Preview_Order_By = {
+  boosted_idea?: InputMaybe<TBoosted_Ideas_Order_By>;
   comments_aggregate?: InputMaybe<TIdea_Comments_Aggregate_Order_By>;
   createdAt?: InputMaybe<TOrder_By>;
   field?: InputMaybe<TOrder_By>;
@@ -1603,6 +1607,8 @@ export type TIdea_Votes_Select_Column =
 export type TIdeas = {
   __typename?: 'ideas';
   additionalInformation?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  boosted_idea?: Maybe<TBoosted_Ideas>;
   businessPlan?: Maybe<Scalars['String']>;
   /** An array relationship */
   comments: Array<TIdea_Comments>;
@@ -1797,6 +1803,7 @@ export type TIdeas_Bool_Exp = {
   _not?: InputMaybe<TIdeas_Bool_Exp>;
   _or?: InputMaybe<Array<TIdeas_Bool_Exp>>;
   additionalInformation?: InputMaybe<TString_Comparison_Exp>;
+  boosted_idea?: InputMaybe<TBoosted_Ideas_Bool_Exp>;
   businessPlan?: InputMaybe<TString_Comparison_Exp>;
   comments?: InputMaybe<TIdea_Comments_Bool_Exp>;
   competitors?: InputMaybe<TString_Comparison_Exp>;
@@ -1956,6 +1963,7 @@ export type TIdeas_On_Conflict = {
 /** Ordering options when selecting data from "ideas". */
 export type TIdeas_Order_By = {
   additionalInformation?: InputMaybe<TOrder_By>;
+  boosted_idea?: InputMaybe<TBoosted_Ideas_Order_By>;
   businessPlan?: InputMaybe<TOrder_By>;
   comments_aggregate?: InputMaybe<TIdea_Comments_Aggregate_Order_By>;
   competitors?: InputMaybe<TOrder_By>;
@@ -5608,18 +5616,18 @@ export type TIdeasQueryVariables = Exact<{
 }>;
 
 
-export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
+export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null }> };
 
 export type TBoostedIdeaFieldsFragment = { __typename?: 'boosted_ideas', ideaId: any, totalCurrencyAmount?: any | null, remainingCurrencyAmount?: any | null, createdAt?: any | null, idea?: { __typename?: 'ideas', name: string, summary?: string | null, status?: string | null, field: string } | null };
 
-export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }> };
+export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null };
 
 export type TUserIdeasQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }> }> };
+export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null }> };
 
 export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
 
@@ -5909,6 +5917,10 @@ export const IdeaPreviewFieldsFragmentDoc = gql`
   }
   votes(where: {userId: {_eq: $userId}}) {
     id
+  }
+  boosted_idea {
+    ideaId
+    remainingCurrencyAmount
   }
 }
     ${UserFieldsWithEmailFragmentDoc}`;
@@ -8400,6 +8412,7 @@ export type TIdea_Comments_Variance_FieldsResolvers<ContextType = any, ParentTyp
 };
 
 export type TIdea_PreviewResolvers<ContextType = any, ParentType extends TResolversParentTypes['idea_preview'] = TResolversParentTypes['idea_preview']> = {
+  boosted_idea?: Resolver<Maybe<TResolversTypes['boosted_ideas']>, ParentType, ContextType>;
   comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, Partial<TIdea_PreviewCommentsArgs>>;
   comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, Partial<TIdea_PreviewComments_AggregateArgs>>;
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
@@ -8504,6 +8517,7 @@ export type TIdea_Votes_Mutation_ResponseResolvers<ContextType = any, ParentType
 
 export type TIdeasResolvers<ContextType = any, ParentType extends TResolversParentTypes['ideas'] = TResolversParentTypes['ideas']> = {
   additionalInformation?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  boosted_idea?: Resolver<Maybe<TResolversTypes['boosted_ideas']>, ParentType, ContextType>;
   businessPlan?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   comments?: Resolver<Array<TResolversTypes['idea_comments']>, ParentType, ContextType, Partial<TIdeasCommentsArgs>>;
   comments_aggregate?: Resolver<TResolversTypes['idea_comments_aggregate'], ParentType, ContextType, Partial<TIdeasComments_AggregateArgs>>;

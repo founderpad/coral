@@ -109,6 +109,10 @@ fragment IdeaPreviewFields on idea_preview {
 	votes(where: { userId: { _eq: $userId } }) {
 		id
 	}
+	boosted_idea {
+		ideaId
+		remainingCurrencyAmount
+	}
 }
 
 query UserIdeas($userId: uuid!) {
