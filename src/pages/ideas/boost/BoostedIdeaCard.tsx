@@ -73,7 +73,8 @@ const BoostedIdeaCard = (boostedIdea: TBoostedIdeaFieldsFragment) => {
 					{boostedIdea.idea?.name}
 				</BaseHeading>
 				<CaptionLabel mx="auto">
-					Boosted {formatDate(boostedIdea.createdAt)}
+					Boosted{' '}
+					{formatDate(boostedIdea.createdAt, false, false, false)}
 				</CaptionLabel>
 			</FlexLayout>
 			<BoostedIdeaCardFooter {...boostedIdea} />

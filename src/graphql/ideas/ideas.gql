@@ -217,7 +217,11 @@ mutation DeleteIdeaUpvote($ideaId: uuid!, $userId: uuid!) {
 }
 
 query BoostedIdeas($limit: Int, $offset: Int) {
-	boosted_ideas(limit: 10, offset: 0) {
+	boosted_ideas(
+		limit: 10
+		offset: 0
+		order_by: { remainingCurrencyAmount: asc }
+	) {
 		...BoostedIdeaFields
 	}
 }

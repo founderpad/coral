@@ -6608,7 +6608,7 @@ export type DeleteIdeaUpvoteMutationResult = Apollo.MutationResult<TDeleteIdeaUp
 export type DeleteIdeaUpvoteMutationOptions = Apollo.BaseMutationOptions<TDeleteIdeaUpvoteMutation, TDeleteIdeaUpvoteMutationVariables>;
 export const BoostedIdeasDocument = gql`
     query BoostedIdeas($limit: Int, $offset: Int) {
-  boosted_ideas(limit: 10, offset: 0) {
+  boosted_ideas(limit: 10, offset: 0, order_by: {remainingCurrencyAmount: asc}) {
     ...BoostedIdeaFields
   }
 }
