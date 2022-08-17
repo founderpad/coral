@@ -6,7 +6,7 @@ import React, { forwardRef } from 'react';
 // );
 
 export const BoxLayout = forwardRef<HTMLDivElement, BoxProps>(
-	({ rounded = 'md', p = 4, ...rest }: BoxProps, ref) => (
-		<Box {...rest} ref={ref} display="flex" p={p} rounded={rounded} />
+	({ rounded = 'md', display = 'block', p = 4, ...rest }: BoxProps, ref) => (
+		<Box {...rest} ref={ref} display={display} p={p} rounded={rounded} />
 	)
 );

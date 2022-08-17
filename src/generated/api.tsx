@@ -5637,7 +5637,7 @@ export type TIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null } } | null, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null };
+export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null, createdAt?: any | null } | null } | null, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null };
 
 export type TInterestedIdeaFieldsFragment = { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any };
 
@@ -6464,6 +6464,11 @@ export const IdeaDocument = gql`
       aggregate {
         count(columns: id)
       }
+    }
+    boosted_idea {
+      ideaId
+      remainingCurrencyAmount
+      createdAt
     }
   }
   hasInterest: interested_ideas_by_pk(ideaId: $id, userId: $userId) {

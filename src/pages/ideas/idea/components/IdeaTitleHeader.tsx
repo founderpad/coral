@@ -9,7 +9,10 @@ import {
 	TIdea_Votes_Aggregate
 } from '@/generated/api';
 import { useMobile } from '@/hooks/util';
+import { percentageBoosted } from '@/utils/validators';
+import { Tag, TagLeftIcon } from '@chakra-ui/react';
 import React, { useCallback, useState } from 'react';
+import { AiTwotoneThunderbolt } from 'react-icons/ai';
 import useIdea, { useIdeaFragment } from '../query/ideaQuery';
 import { MobileCommentsList } from './comments/CommentsList';
 import IdeaUpvote from './IdeaUpvote';
@@ -85,6 +88,22 @@ const IdeaActions = () => {
 			<PublishedLabel isPublished={isPublished} />
 
 			{totalInterested > 0 && <InterestedTotal total={totalInterested} />}
+			{idea?.boosted_idea?.ideaId && (
+				<Tag
+					fontSize="11px"
+					size="sm"
+					px={3}
+					py={1}
+					bg="purple.500"
+					color="white"
+				>
+					<TagLeftIcon as={AiTwotoneThunderbolt} mr={1} />
+					{percentageBoosted(
+						idea.boosted_idea?.remainingCurrencyAmount
+					)}
+					% boosted
+				</Tag>
+			)}
 			<PointSeparator small />
 			<IdeaUpvote {...ideaUpvote} />
 		</StackLayout>

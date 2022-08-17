@@ -17,6 +17,7 @@ const BoostProgress = ({
 					: 'purple.500'
 			}
 			mx="auto"
+			width="fit-content"
 		>
 			<CircularProgressLabel
 				fontSize="md"
