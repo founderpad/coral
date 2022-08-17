@@ -14,6 +14,13 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
+- name: boosted_idea
+  using:
+    foreign_key_constraint_on:
+      column: idea_id
+      table:
+        name: boosted_ideas
+        schema: public
 - name: user
   using:
     manual_configuration:

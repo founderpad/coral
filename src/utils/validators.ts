@@ -126,3 +126,15 @@ export const resetSearchField = <T extends TParam>(key: keyof T & string) => {
 	deleteParam<T>(key);
 	navigateTo();
 };
+
+export const percentageBoosted = (remainingCurrencyAmount: string) => {
+	const percentage = (
+		(parseFloat(
+			remainingCurrencyAmount.substring(1, remainingCurrencyAmount.length)
+		) /
+			10) *
+		100
+	).toFixed(1);
+
+	return Math.floor(100 - parseFloat(percentage));
+};
