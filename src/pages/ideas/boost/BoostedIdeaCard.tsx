@@ -68,8 +68,17 @@ const BoostedIdeaCard = (boostedIdea: TBoostedIdeaFieldsFragment) => {
 			py={4}
 			px={{ base: 0, md: 4 }}
 		>
-			<FlexLayout flexDirection="column">
-				<BaseHeading fontSize="md" mx="auto">
+			<FlexLayout flexDirection="column" flex={1}>
+				<BaseHeading
+					fontSize="md"
+					mx="auto"
+					w="full"
+					overflow="hidden"
+					css={{ whiteSpace: 'normal' }}
+					wordBreak="break-word"
+					noOfLines={1}
+					title={boostedIdea.idea?.name}
+				>
 					{boostedIdea.idea?.name}
 				</BaseHeading>
 				<CaptionLabel mx="auto">

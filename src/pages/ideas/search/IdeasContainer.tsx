@@ -151,7 +151,6 @@ const IdeasContainer = () => {
 							(idea: TIdeaPreviewFieldsFragment) => (
 								<React.Fragment key={idea.id}>
 									<IdeaCard {...idea} />
-
 									<AppDivider />
 								</React.Fragment>
 							)

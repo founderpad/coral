@@ -5661,7 +5661,7 @@ export type TBoostedIdeasQueryVariables = Exact<{
 }>;
 
 
-export type TBoostedIdeasQuery = { boosted_ideas: Array<{ __typename?: 'boosted_ideas', ideaId: any, totalCurrencyAmount?: any | null, remainingCurrencyAmount?: any | null, createdAt?: any | null, idea?: { __typename?: 'ideas', name: string, summary?: string | null, status?: string | null, field: string } | null }> };
+export type TBoostedIdeasQuery = { boosted_ideas: Array<{ __typename?: 'boosted_ideas', ideaId: any, totalCurrencyAmount?: any | null, remainingCurrencyAmount?: any | null, createdAt?: any | null, idea?: { __typename?: 'ideas', name: string, summary?: string | null, status?: string | null, field: string } | null }>, boosted_ideas_aggregate: { __typename?: 'boosted_ideas_aggregate', aggregate?: { __typename?: 'boosted_ideas_aggregate_fields', count: number } | null } };
 
 export type TNewMessageThreadMutationVariables = Exact<{
   targetUserId: Scalars['uuid'];
@@ -6610,6 +6610,11 @@ export const BoostedIdeasDocument = gql`
     query BoostedIdeas($limit: Int, $offset: Int) {
   boosted_ideas(limit: 10, offset: 0, order_by: {remainingCurrencyAmount: asc}) {
     ...BoostedIdeaFields
+  }
+  boosted_ideas_aggregate {
+    aggregate {
+      count
+    }
   }
 }
     ${BoostedIdeaFieldsFragmentDoc}`;

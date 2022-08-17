@@ -3,11 +3,10 @@ import { useBoostedIdeasQuery } from '@/generated/api';
 import { useQueryParam } from '@/hooks/util';
 import { GridItem, SimpleGrid } from '@chakra-ui/react';
 import React from 'react';
+import OffsetPagination from '../search/OffsetPagination';
 import BoostedIdeaCard from './BoostedIdeaCard';
 
 const BoostedIdeasGridLayout = () => {
-	// const arr = [...Array(20).keys()];
-
 	const { data, loading } = useBoostedIdeasQuery({
 		variables: {
 			limit: 10,
@@ -22,25 +21,35 @@ const BoostedIdeasGridLayout = () => {
 	if (!loading && hasResults < 1) return <NoResults back />;
 
 	return (
-		<SimpleGrid
-			columns={{ base: 1, md: 4 }}
-			minH="full"
-			rowGap={6}
-			columnGap={6}
-			position="relative"
-			bg="white"
-			p={{ base: 4, md: 0 }}
-		>
-			{data?.boosted_ideas?.map((bi) => (
-				<GridItem
-					borderRightWidth={{ base: 0, md: 1 }}
-					borderBottomWidth={{ base: 1, md: 0 }}
-					key={bi.ideaId}
-				>
-					<BoostedIdeaCard {...bi}></BoostedIdeaCard>
-				</GridItem>
-			))}
-		</SimpleGrid>
+		<>
+			<SimpleGrid
+				columns={{ base: 1, md: 4 }}
+				minH="full"
+				position="relative"
+				bg="white"
+				p={{ base: 4, md: 0 }}
+				flex={{ md: 1 }}
+			>
+				{data?.boosted_ideas?.map((bi) => (
+					<GridItem
+						key={bi.ideaId}
+						borderBottomWidth={{ base: 1, md: 0 }}
+						display="block"
+					>
+						<BoostedIdeaCard {...bi}></BoostedIdeaCard>
+					</GridItem>
+				))}
+			</SimpleGrid>
+			{hasResults && (
+				<OffsetPagination
+					pagesCount={
+						(data?.boosted_ideas_aggregate?.aggregate?.count || 0) /
+						10
+					}
+					pathname="/ideas/boost"
+				/>
+			)}
+		</>
 	);
 };
 

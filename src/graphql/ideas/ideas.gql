@@ -224,4 +224,9 @@ query BoostedIdeas($limit: Int, $offset: Int) {
 	) {
 		...BoostedIdeaFields
 	}
+	boosted_ideas_aggregate {
+		aggregate {
+			count
+		}
+	}
 }
