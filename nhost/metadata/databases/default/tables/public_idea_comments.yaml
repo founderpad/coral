@@ -5,6 +5,7 @@ configuration:
   custom_column_names:
     created_at: createdAt
     idea_id: ideaId
+    is_boost: isBoost
     target_user_id: targetUserId
     total_replies: totalReplies
     updated_at: updatedAt
@@ -47,6 +48,7 @@ insert_permissions:
         _eq: X-Hasura-User-Id
     columns:
     - idea_id
+    - is_boost
     - target_user_id
     - value
     set:

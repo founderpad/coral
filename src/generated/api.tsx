@@ -1049,6 +1049,7 @@ export type TIdea_Comments_Inc_Input = {
 export type TIdea_Comments_Insert_Input = {
   idea?: InputMaybe<TIdeas_Obj_Rel_Insert_Input>;
   ideaId?: InputMaybe<Scalars['uuid']>;
+  isBoost?: InputMaybe<Scalars['Boolean']>;
   replies?: InputMaybe<TIdea_Comment_Replies_Arr_Rel_Insert_Input>;
   targetUserId?: InputMaybe<Scalars['uuid']>;
   value?: InputMaybe<Scalars['String']>;

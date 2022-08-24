@@ -4,7 +4,14 @@ import React from 'react';
 import { BaseButtonProps, LinkButtonProps } from './types/buttons';
 
 export const BaseButton = (props: BaseButtonProps) => {
-	const { children, size = 'sm', fontSize = 'small', name, ...rest } = props;
+	const {
+		children,
+		size = 'sm',
+		fontSize = 'small',
+		name,
+		p = 2,
+		...rest
+	} = props;
 
 	return (
 		<Button
@@ -13,7 +20,7 @@ export const BaseButton = (props: BaseButtonProps) => {
 			aria-label={name}
 			rounded="md"
 			fontSize={fontSize}
-			p={2}
+			p={p}
 			// minW="75px"
 		>
 			{children}
