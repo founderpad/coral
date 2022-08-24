@@ -67,11 +67,13 @@ const authSlice = createSlice({
 		},
 		addEsteemPoints(state, action: PayloadAction<number>) {
 			if (state.user) {
-				const currentPoints = state.user.esteemPoints?.points ?? 0;
+				const currentPoints =
+					state.user.esteemPointsCurrency?.points ?? 0;
 				state.user = {
 					...state.user,
-					esteemPoints: {
-						points: currentPoints + action.payload
+					esteemPointsCurrency: {
+						points: currentPoints + action.payload,
+						currency: state.user.esteemPointsCurrency?.currency
 					}
 				};
 			}

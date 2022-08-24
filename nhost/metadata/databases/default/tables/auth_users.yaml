@@ -45,14 +45,14 @@ object_relationships:
 - name: defaultRoleByRole
   using:
     foreign_key_constraint_on: default_role
-- name: esteemPoints
+- name: esteemPointsCurrency
   using:
     manual_configuration:
       column_mapping:
         id: user_id
       insertion_order: null
       remote_table:
-        name: esteem_points
+        name: user_esteem_points_currency
         schema: public
 - name: profile
   using:
@@ -186,12 +186,12 @@ event_triggers:
     enable_manual: false
     insert:
       columns: "*"
-  name: create-user-esteem-points
+  name: create-user-esteem-points-currency
   retry_conf:
     interval_sec: 10
     num_retries: 0
     timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points/create-user-esteem-points"
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points_currency/create-user-esteem-points-currency"
 - definition:
     enable_manual: false
     update:
