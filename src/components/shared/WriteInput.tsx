@@ -1,9 +1,16 @@
-import { Textarea, IconButton, Icon, StackProps } from '@chakra-ui/react';
+import {
+	Textarea,
+	IconButton,
+	Icon,
+	StackProps,
+	IconButtonProps
+} from '@chakra-ui/react';
 import { StackLayout } from '@/components/layouts';
 import React from 'react';
 import { IoSendSharp } from 'react-icons/io5';
 import { CurrentUserAvatar } from './UserAvatar';
 import ResizeTextarea from 'react-textarea-autosize';
+import { IconType } from 'react-icons/lib';
 
 type Props = {
 	onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void | undefined;
@@ -11,6 +18,10 @@ type Props = {
 	onClick: (value: React.MouseEvent) => void;
 	placeholder?: string;
 	stackProps?: StackProps;
+	buttons?: {
+		colorScheme?: IconButtonProps['colorScheme'] | 'fpPrimary';
+		icon: IconType | typeof IoSendSharp;
+	};
 };
 
 const WriteInput = (props: Props) => {

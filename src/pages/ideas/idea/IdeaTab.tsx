@@ -10,18 +10,13 @@ import { IdeaOverview } from './components/IdeaOverview';
 import { IdeaUserActions } from './components/IdeaUserActions';
 import InterestedIdea from './components/InterestedIdea';
 import useIdea from './query/ideaQuery';
-import BoostProgress from '../boost/BoostProgress';
-import { CaptionLabel, Label } from '@/components/labels/Label';
-import { formatDate, percentageBoosted } from '@/utils/validators';
+import BoostEarnButton from './components/comments/BoostEarnButton';
 
 const IdeaTab = () => {
 	const data = useIdea();
 	const isChangeSuccess = useQueryParam('exp_success');
 	const isChangeError = useQueryParam('exp_error');
 	const isMobile = useMobile();
-
-	const remainingCurrencyAmount =
-		data?.idea?.boosted_idea?.remainingCurrencyAmount;
 
 	if (!data) return <Loading small />;
 	// if (!idea.isPublished && auth.id !== idea.userId) Router.replace('/404');
@@ -47,67 +42,21 @@ const IdeaTab = () => {
 				{isChangeError && (
 					<AlertFeedback
 						status="error"
-						message={
-							'Failed to update idea. Please try again later'
-						}
+						message="Failed to update idea. Please try again later"
 						w="auto"
 						ml="auto"
 					/>
 				)}
-
 				<IdeaUserActions />
 				<IdeaTitleHeader />
-				{data.idea?.boosted_idea?.ideaId && (
-					<>
-						<AppDivider />
-						<StackLayout direction="row">
-							<StackLayout display="inline-block" direction="row">
-								<BoostProgress
-									remainingCurrencyAmount={
-										remainingCurrencyAmount
-									}
-								/>
-							</StackLayout>
-							<StackLayout
-								justifyContent="flex-start"
-								spacing={2}
-							>
-								<CaptionLabel>
-									Boosted{' '}
-									{formatDate(
-										data.idea?.boosted_idea?.createdAt,
-										false,
-										false,
-										false
-									)}
-								</CaptionLabel>
-								<Label
-									color={
-										percentageBoosted(
-											remainingCurrencyAmount
-										) === 100
-											? 'green.300'
-											: 'purple.500'
-									}
-									fontSize="small"
-									textAlign="center"
-									fontWeight="medium"
-								>
-									{percentageBoosted(
-										remainingCurrencyAmount
-									) === 100
-										? 'Boost complete'
-										: `${remainingCurrencyAmount} remaining`}
-								</Label>
-							</StackLayout>
-						</StackLayout>
-					</>
-				)}
+
+				<BoostEarnButton {...data} />
 				<InterestedIdea />
 				<AppDivider />
 				<IdeaOverview />
 				<AppDivider />
 				<IdeaDetails />
+				<AppDivider />
 				{!isMobile && <CommentsList />}
 			</StackLayout>
 		</StackLayout>

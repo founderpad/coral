@@ -203,7 +203,6 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 				flexShrink={0}
 				py={4}
 				px={{ base: 4, md: 0 }}
-				borderTopWidth={{ base: 0, md: 1 }}
 				borderBottomWidth={{ base: 1, md: 0 }}
 				display={{ base: 'none', md: 'flex' }}
 			>
@@ -214,6 +213,7 @@ export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {
 				px={{ base: 4, md: 0 }}
 				display={{ base: 'none', md: 'flex' }}
 				py={6}
+				alignItems="center"
 			>
 				<PostComment />
 			</Box>

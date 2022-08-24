@@ -1,0 +1,26 @@
+table:
+  name: boosted_idea_comments
+  schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    idea_id: ideaId
+    updated_at: updatedAt
+    user_id: userId
+  custom_root_fields: {}
+object_relationships:
+- name: comment_status_type
+  using:
+    foreign_key_constraint_on: status
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - created_at
+    - id
+    - idea_id
+    - status
+    - user_id
+    - value
+    filter: {}
+  role: user

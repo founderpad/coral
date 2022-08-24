@@ -12,14 +12,7 @@ export const BaseLabel = ({
 	...rest
 }: TLabelProps) => (
 	<Text {...rest} color={color} fontSize={fontSize}>
-		{icon && (
-			<Icon
-				as={icon}
-				mr={2}
-				fontSize="md"
-				color={iconColor ?? 'gray.900'}
-			/>
-		)}
+		{icon && <Icon as={icon} mr={2} color={iconColor ?? 'gray.900'} />}
 		{children}
 	</Text>
 );

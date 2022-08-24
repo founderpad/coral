@@ -1,0 +1,4 @@
+table:
+  name: comment_status_types
+  schema: public
+is_enum: true

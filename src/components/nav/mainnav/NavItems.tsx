@@ -1,9 +1,7 @@
 import {
 	AiTwotoneThunderbolt,
-	// AiTwotoneThunderbolt,
 	IoAdd,
 	IoPersonSharp,
-	// IoRocketSharp,
 	IoSearchSharp
 } from '@/components/icons';
 import { IconType } from 'react-icons/lib';
