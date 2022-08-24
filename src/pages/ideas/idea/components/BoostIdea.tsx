@@ -54,7 +54,7 @@ const BoostIdea = (idea: Partial<TIdeaPreviewFieldsFragment>) => {
 
 const BoostIdeaForm = (idea: Partial<TIdeaPreviewFieldsFragment>) => {
 	const { updateModalDrawer } = useModalDrawer();
-	const esteemPoints = useCurrentUser().esteemPoints?.points ?? 0;
+	const esteemPoints = useCurrentUser().esteemPointsCurrency?.points ?? 0;
 	const neededPoints = esteemPoints >= 1000 ? 0 : 1000 - esteemPoints;
 
 	// const [succeeded, setSucceeded] = useState(false);

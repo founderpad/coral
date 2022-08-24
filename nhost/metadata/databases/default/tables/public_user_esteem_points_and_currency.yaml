@@ -1,0 +1,13 @@
+table:
+  name: user_esteem_points_and_currency
+  schema: public
+configuration:
+  custom_column_names:
+    user_id: userId
+  custom_root_fields: {}
+select_permissions:
+- permission:
+    columns:
+    - points
+    filter: {}
+  role: user

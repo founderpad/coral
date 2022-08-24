@@ -490,36 +490,6 @@ export type TCitext_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['citext']>;
 };
 
-/**
- * Esteem points for all users
- *
- *
- * columns and relationships of "esteem_points"
- *
- */
-export type TEsteem_Points = {
-  __typename?: 'esteem_points';
-  points: Scalars['Int'];
-};
-
-/** Boolean expression to filter rows from the table "esteem_points". All fields are combined with a logical 'AND'. */
-export type TEsteem_Points_Bool_Exp = {
-  _and?: InputMaybe<Array<TEsteem_Points_Bool_Exp>>;
-  _not?: InputMaybe<TEsteem_Points_Bool_Exp>;
-  _or?: InputMaybe<Array<TEsteem_Points_Bool_Exp>>;
-  points?: InputMaybe<TInt_Comparison_Exp>;
-};
-
-/** Ordering options when selecting data from "esteem_points". */
-export type TEsteem_Points_Order_By = {
-  points?: InputMaybe<TOrder_By>;
-};
-
-/** select columns of table "esteem_points" */
-export type TEsteem_Points_Select_Column =
-  /** column name */
-  | 'points';
-
 /** columns and relationships of "storage.files" */
 export type TFiles = {
   __typename?: 'files';
@@ -3455,8 +3425,6 @@ export type TQuery_Root = {
   bucket?: Maybe<TBuckets>;
   /** fetch data from the table: "storage.buckets" */
   buckets: Array<TBuckets>;
-  /** fetch data from the table: "esteem_points" */
-  esteem_points: Array<TEsteem_Points>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<TFiles>;
   /** fetch data from the table: "storage.files" */
@@ -3523,6 +3491,8 @@ export type TQuery_Root = {
   user_address: Array<TUser_Address>;
   /** fetch data from the table: "user_address" using primary key columns */
   user_address_by_pk?: Maybe<TUser_Address>;
+  /** fetch data from the table: "user_esteem_points_currency" */
+  user_esteem_points_currency: Array<TUser_Esteem_Points_Currency>;
   /** An array relationship */
   user_followers: Array<TUser_Followers>;
   /** An aggregate relationship */
@@ -3599,15 +3569,6 @@ export type TQuery_RootBucketsArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<TBuckets_Order_By>>;
   where?: InputMaybe<TBuckets_Bool_Exp>;
-};
-
-
-export type TQuery_RootEsteem_PointsArgs = {
-  distinct_on?: InputMaybe<Array<TEsteem_Points_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<TEsteem_Points_Order_By>>;
-  where?: InputMaybe<TEsteem_Points_Bool_Exp>;
 };
 
 
@@ -3863,6 +3824,15 @@ export type TQuery_RootUser_Address_By_PkArgs = {
 };
 
 
+export type TQuery_RootUser_Esteem_Points_CurrencyArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Esteem_Points_Currency_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Esteem_Points_Currency_Order_By>>;
+  where?: InputMaybe<TUser_Esteem_Points_Currency_Bool_Exp>;
+};
+
+
 export type TQuery_RootUser_FollowersArgs = {
   distinct_on?: InputMaybe<Array<TUser_Followers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3995,8 +3965,6 @@ export type TSubscription_Root = {
   bucket?: Maybe<TBuckets>;
   /** fetch data from the table: "storage.buckets" */
   buckets: Array<TBuckets>;
-  /** fetch data from the table: "esteem_points" */
-  esteem_points: Array<TEsteem_Points>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<TFiles>;
   /** fetch data from the table: "storage.files" */
@@ -4063,6 +4031,8 @@ export type TSubscription_Root = {
   user_address: Array<TUser_Address>;
   /** fetch data from the table: "user_address" using primary key columns */
   user_address_by_pk?: Maybe<TUser_Address>;
+  /** fetch data from the table: "user_esteem_points_currency" */
+  user_esteem_points_currency: Array<TUser_Esteem_Points_Currency>;
   /** An array relationship */
   user_followers: Array<TUser_Followers>;
   /** An aggregate relationship */
@@ -4139,15 +4109,6 @@ export type TSubscription_RootBucketsArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<TBuckets_Order_By>>;
   where?: InputMaybe<TBuckets_Bool_Exp>;
-};
-
-
-export type TSubscription_RootEsteem_PointsArgs = {
-  distinct_on?: InputMaybe<Array<TEsteem_Points_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<TEsteem_Points_Order_By>>;
-  where?: InputMaybe<TEsteem_Points_Bool_Exp>;
 };
 
 
@@ -4403,6 +4364,15 @@ export type TSubscription_RootUser_Address_By_PkArgs = {
 };
 
 
+export type TSubscription_RootUser_Esteem_Points_CurrencyArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Esteem_Points_Currency_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Esteem_Points_Currency_Order_By>>;
+  where?: InputMaybe<TUser_Esteem_Points_Currency_Bool_Exp>;
+};
+
+
 export type TSubscription_RootUser_FollowersArgs = {
   distinct_on?: InputMaybe<Array<TUser_Followers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4553,6 +4523,41 @@ export type TUser_Address_Set_Input = {
   country?: InputMaybe<Scalars['String']>;
   location?: InputMaybe<Scalars['String']>;
 };
+
+/**
+ * Esteem points for all users
+ *
+ *
+ * columns and relationships of "user_esteem_points_currency"
+ *
+ */
+export type TUser_Esteem_Points_Currency = {
+  __typename?: 'user_esteem_points_currency';
+  currency: Scalars['money'];
+  points: Scalars['Int'];
+};
+
+/** Boolean expression to filter rows from the table "user_esteem_points_currency". All fields are combined with a logical 'AND'. */
+export type TUser_Esteem_Points_Currency_Bool_Exp = {
+  _and?: InputMaybe<Array<TUser_Esteem_Points_Currency_Bool_Exp>>;
+  _not?: InputMaybe<TUser_Esteem_Points_Currency_Bool_Exp>;
+  _or?: InputMaybe<Array<TUser_Esteem_Points_Currency_Bool_Exp>>;
+  currency?: InputMaybe<TMoney_Comparison_Exp>;
+  points?: InputMaybe<TInt_Comparison_Exp>;
+};
+
+/** Ordering options when selecting data from "user_esteem_points_currency". */
+export type TUser_Esteem_Points_Currency_Order_By = {
+  currency?: InputMaybe<TOrder_By>;
+  points?: InputMaybe<TOrder_By>;
+};
+
+/** select columns of table "user_esteem_points_currency" */
+export type TUser_Esteem_Points_Currency_Select_Column =
+  /** column name */
+  | 'currency'
+  /** column name */
+  | 'points';
 
 /**
  * The table to store all user followers
@@ -5054,7 +5059,7 @@ export type TUsers = {
   email?: Maybe<Scalars['citext']>;
   emailVerified: Scalars['Boolean'];
   /** An object relationship */
-  esteemPoints?: Maybe<TEsteem_Points>;
+  esteemPointsCurrency?: Maybe<TUser_Esteem_Points_Currency>;
   id: Scalars['uuid'];
   /** An array relationship */
   ideas: Array<TIdeas>;
@@ -5326,7 +5331,7 @@ export type TUsers_Bool_Exp = {
   displayName?: InputMaybe<TString_Comparison_Exp>;
   email?: InputMaybe<TCitext_Comparison_Exp>;
   emailVerified?: InputMaybe<TBoolean_Comparison_Exp>;
-  esteemPoints?: InputMaybe<TEsteem_Points_Bool_Exp>;
+  esteemPointsCurrency?: InputMaybe<TUser_Esteem_Points_Currency_Bool_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
   ideas?: InputMaybe<TIdeas_Bool_Exp>;
   isAnonymous?: InputMaybe<TBoolean_Comparison_Exp>;
@@ -5419,7 +5424,7 @@ export type TUsers_Order_By = {
   displayName?: InputMaybe<TOrder_By>;
   email?: InputMaybe<TOrder_By>;
   emailVerified?: InputMaybe<TOrder_By>;
-  esteemPoints?: InputMaybe<TEsteem_Points_Order_By>;
+  esteemPointsCurrency?: InputMaybe<TUser_Esteem_Points_Currency_Order_By>;
   id?: InputMaybe<TOrder_By>;
   ideas_aggregate?: InputMaybe<TIdeas_Aggregate_Order_By>;
   isAnonymous?: InputMaybe<TOrder_By>;
@@ -5735,7 +5740,7 @@ export type TUserQueryVariables = Exact<{
 }>;
 
 
-export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean } | null, esteemPoints?: { __typename?: 'esteem_points', points: number } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
+export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl?: string | null, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean } | null, esteemPointsCurrency?: { __typename?: 'user_esteem_points_currency', points: number, currency: any } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
 export type TUsersQueryVariables = Exact<{
   where?: InputMaybe<TUser_Profile_Bool_Exp>;
@@ -7027,8 +7032,9 @@ export const UserDocument = gql`
       customPronouns
       isComplete
     }
-    esteemPoints {
+    esteemPointsCurrency {
       points
+      currency
     }
   }
 }
@@ -7494,10 +7500,6 @@ export type TResolversTypes = {
   buckets_select_column: TBuckets_Select_Column;
   citext: ResolverTypeWrapper<Scalars['citext']>;
   citext_comparison_exp: TCitext_Comparison_Exp;
-  esteem_points: ResolverTypeWrapper<TEsteem_Points>;
-  esteem_points_bool_exp: TEsteem_Points_Bool_Exp;
-  esteem_points_order_by: TEsteem_Points_Order_By;
-  esteem_points_select_column: TEsteem_Points_Select_Column;
   files: ResolverTypeWrapper<TFiles>;
   files_aggregate_order_by: TFiles_Aggregate_Order_By;
   files_avg_order_by: TFiles_Avg_Order_By;
@@ -7718,6 +7720,10 @@ export type TResolversTypes = {
   user_address_pk_columns_input: TUser_Address_Pk_Columns_Input;
   user_address_select_column: TUser_Address_Select_Column;
   user_address_set_input: TUser_Address_Set_Input;
+  user_esteem_points_currency: ResolverTypeWrapper<TUser_Esteem_Points_Currency>;
+  user_esteem_points_currency_bool_exp: TUser_Esteem_Points_Currency_Bool_Exp;
+  user_esteem_points_currency_order_by: TUser_Esteem_Points_Currency_Order_By;
+  user_esteem_points_currency_select_column: TUser_Esteem_Points_Currency_Select_Column;
   user_followers: ResolverTypeWrapper<TUser_Followers>;
   user_followers_aggregate: ResolverTypeWrapper<TUser_Followers_Aggregate>;
   user_followers_aggregate_fields: ResolverTypeWrapper<TUser_Followers_Aggregate_Fields>;
@@ -7803,9 +7809,6 @@ export type TResolversParentTypes = {
   buckets_order_by: TBuckets_Order_By;
   citext: Scalars['citext'];
   citext_comparison_exp: TCitext_Comparison_Exp;
-  esteem_points: TEsteem_Points;
-  esteem_points_bool_exp: TEsteem_Points_Bool_Exp;
-  esteem_points_order_by: TEsteem_Points_Order_By;
   files: TFiles;
   files_aggregate_order_by: TFiles_Aggregate_Order_By;
   files_avg_order_by: TFiles_Avg_Order_By;
@@ -8003,6 +8006,9 @@ export type TResolversParentTypes = {
   user_address_order_by: TUser_Address_Order_By;
   user_address_pk_columns_input: TUser_Address_Pk_Columns_Input;
   user_address_set_input: TUser_Address_Set_Input;
+  user_esteem_points_currency: TUser_Esteem_Points_Currency;
+  user_esteem_points_currency_bool_exp: TUser_Esteem_Points_Currency_Bool_Exp;
+  user_esteem_points_currency_order_by: TUser_Esteem_Points_Currency_Order_By;
   user_followers: TUser_Followers;
   user_followers_aggregate: TUser_Followers_Aggregate;
   user_followers_aggregate_fields: TUser_Followers_Aggregate_Fields;
@@ -8226,11 +8232,6 @@ export type TBucketsResolvers<ContextType = any, ParentType extends TResolversPa
 export interface TCitextScalarConfig extends GraphQLScalarTypeConfig<TResolversTypes['citext'], any> {
   name: 'citext';
 }
-
-export type TEsteem_PointsResolvers<ContextType = any, ParentType extends TResolversParentTypes['esteem_points'] = TResolversParentTypes['esteem_points']> = {
-  points?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
 
 export type TFilesResolvers<ContextType = any, ParentType extends TResolversParentTypes['files'] = TResolversParentTypes['files']> = {
   bucket?: Resolver<TResolversTypes['buckets'], ParentType, ContextType>;
@@ -8936,7 +8937,6 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   boosted_ideas_by_pk?: Resolver<Maybe<TResolversTypes['boosted_ideas']>, ParentType, ContextType, RequireFields<TQuery_RootBoosted_Ideas_By_PkArgs, 'ideaId'>>;
   bucket?: Resolver<Maybe<TResolversTypes['buckets']>, ParentType, ContextType, RequireFields<TQuery_RootBucketArgs, 'id'>>;
   buckets?: Resolver<Array<TResolversTypes['buckets']>, ParentType, ContextType, Partial<TQuery_RootBucketsArgs>>;
-  esteem_points?: Resolver<Array<TResolversTypes['esteem_points']>, ParentType, ContextType, Partial<TQuery_RootEsteem_PointsArgs>>;
   file?: Resolver<Maybe<TResolversTypes['files']>, ParentType, ContextType, RequireFields<TQuery_RootFileArgs, 'id'>>;
   files?: Resolver<Array<TResolversTypes['files']>, ParentType, ContextType, Partial<TQuery_RootFilesArgs>>;
   idea_comment_replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, Partial<TQuery_RootIdea_Comment_RepliesArgs>>;
@@ -8970,6 +8970,7 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType, RequireFields<TQuery_RootUserArgs, 'id'>>;
   user_address?: Resolver<Array<TResolversTypes['user_address']>, ParentType, ContextType, Partial<TQuery_RootUser_AddressArgs>>;
   user_address_by_pk?: Resolver<Maybe<TResolversTypes['user_address']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Address_By_PkArgs, 'userId'>>;
+  user_esteem_points_currency?: Resolver<Array<TResolversTypes['user_esteem_points_currency']>, ParentType, ContextType, Partial<TQuery_RootUser_Esteem_Points_CurrencyArgs>>;
   user_followers?: Resolver<Array<TResolversTypes['user_followers']>, ParentType, ContextType, Partial<TQuery_RootUser_FollowersArgs>>;
   user_followers_aggregate?: Resolver<TResolversTypes['user_followers_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Followers_AggregateArgs>>;
   user_followers_by_pk?: Resolver<Maybe<TResolversTypes['user_followers']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
@@ -9000,7 +9001,6 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   boosted_ideas_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['boosted_ideas']>, "boosted_ideas_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootBoosted_Ideas_By_PkArgs, 'ideaId'>>;
   bucket?: SubscriptionResolver<Maybe<TResolversTypes['buckets']>, "bucket", ParentType, ContextType, RequireFields<TSubscription_RootBucketArgs, 'id'>>;
   buckets?: SubscriptionResolver<Array<TResolversTypes['buckets']>, "buckets", ParentType, ContextType, Partial<TSubscription_RootBucketsArgs>>;
-  esteem_points?: SubscriptionResolver<Array<TResolversTypes['esteem_points']>, "esteem_points", ParentType, ContextType, Partial<TSubscription_RootEsteem_PointsArgs>>;
   file?: SubscriptionResolver<Maybe<TResolversTypes['files']>, "file", ParentType, ContextType, RequireFields<TSubscription_RootFileArgs, 'id'>>;
   files?: SubscriptionResolver<Array<TResolversTypes['files']>, "files", ParentType, ContextType, Partial<TSubscription_RootFilesArgs>>;
   idea_comment_replies?: SubscriptionResolver<Array<TResolversTypes['idea_comment_replies']>, "idea_comment_replies", ParentType, ContextType, Partial<TSubscription_RootIdea_Comment_RepliesArgs>>;
@@ -9034,6 +9034,7 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   user?: SubscriptionResolver<Maybe<TResolversTypes['users']>, "user", ParentType, ContextType, RequireFields<TSubscription_RootUserArgs, 'id'>>;
   user_address?: SubscriptionResolver<Array<TResolversTypes['user_address']>, "user_address", ParentType, ContextType, Partial<TSubscription_RootUser_AddressArgs>>;
   user_address_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_address']>, "user_address_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Address_By_PkArgs, 'userId'>>;
+  user_esteem_points_currency?: SubscriptionResolver<Array<TResolversTypes['user_esteem_points_currency']>, "user_esteem_points_currency", ParentType, ContextType, Partial<TSubscription_RootUser_Esteem_Points_CurrencyArgs>>;
   user_followers?: SubscriptionResolver<Array<TResolversTypes['user_followers']>, "user_followers", ParentType, ContextType, Partial<TSubscription_RootUser_FollowersArgs>>;
   user_followers_aggregate?: SubscriptionResolver<TResolversTypes['user_followers_aggregate'], "user_followers_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Followers_AggregateArgs>>;
   user_followers_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_followers']>, "user_followers_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
@@ -9061,6 +9062,12 @@ export type TUser_AddressResolvers<ContextType = any, ParentType extends TResolv
 export type TUser_Address_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_address_mutation_response'] = TResolversParentTypes['user_address_mutation_response']> = {
   affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   returning?: Resolver<Array<TResolversTypes['user_address']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TUser_Esteem_Points_CurrencyResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_esteem_points_currency'] = TResolversParentTypes['user_esteem_points_currency']> = {
+  currency?: Resolver<TResolversTypes['money'], ParentType, ContextType>;
+  points?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -9210,7 +9217,7 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   displayName?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
   emailVerified?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
-  esteemPoints?: Resolver<Maybe<TResolversTypes['esteem_points']>, ParentType, ContextType>;
+  esteemPointsCurrency?: Resolver<Maybe<TResolversTypes['user_esteem_points_currency']>, ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   ideas?: Resolver<Array<TResolversTypes['ideas']>, ParentType, ContextType, Partial<TUsersIdeasArgs>>;
   ideas_aggregate?: Resolver<TResolversTypes['ideas_aggregate'], ParentType, ContextType, Partial<TUsersIdeas_AggregateArgs>>;
@@ -9333,7 +9340,6 @@ export type TResolvers<ContextType = any> = {
   boosted_ideas_variance_fields?: TBoosted_Ideas_Variance_FieldsResolvers<ContextType>;
   buckets?: TBucketsResolvers<ContextType>;
   citext?: GraphQLScalarType;
-  esteem_points?: TEsteem_PointsResolvers<ContextType>;
   files?: TFilesResolvers<ContextType>;
   files_mutation_response?: TFiles_Mutation_ResponseResolvers<ContextType>;
   idea_comment_replies?: TIdea_Comment_RepliesResolvers<ContextType>;
@@ -9415,6 +9421,7 @@ export type TResolvers<ContextType = any> = {
   timestamptz?: GraphQLScalarType;
   user_address?: TUser_AddressResolvers<ContextType>;
   user_address_mutation_response?: TUser_Address_Mutation_ResponseResolvers<ContextType>;
+  user_esteem_points_currency?: TUser_Esteem_Points_CurrencyResolvers<ContextType>;
   user_followers?: TUser_FollowersResolvers<ContextType>;
   user_followers_aggregate?: TUser_Followers_AggregateResolvers<ContextType>;
   user_followers_aggregate_fields?: TUser_Followers_Aggregate_FieldsResolvers<ContextType>;
