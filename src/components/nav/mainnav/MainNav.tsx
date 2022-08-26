@@ -1,5 +1,5 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
-import { Container, Flex } from '@chakra-ui/layout';
+import { Container } from '@chakra-ui/layout';
 import { Icon } from '@chakra-ui/react';
 import { IoCloseOutline, IoMenuSharp } from '@/components/icons';
 import { FlexLayout } from '@/components/layouts';
@@ -11,7 +11,7 @@ import DesktopNav from './DesktopNav';
 import UserMenu from './UserMenu';
 
 const MainNav = memo(() => (
-	<Flex
+	<FlexLayout
 		bg={useColorModeValue('white', 'gray.800')}
 		borderBottomWidth={1}
 		borderBottomColor="fpLightGrey.900"
@@ -19,7 +19,7 @@ const MainNav = memo(() => (
 		// position="sticky"
 		position="fixed"
 		top={0}
-		h="40px"
+		h="56px"
 		w="full"
 	>
 		<Container
@@ -37,16 +37,19 @@ const MainNav = memo(() => (
 		>
 			<FlexLayout alignItems="center">
 				<MobileMenu />
-				<FounderpadLogoWithBadge w={100} />
+				<FounderpadLogoWithBadge
+					w={100}
+					display={{ base: 'none', sm: 'flex' }}
+				/>
 			</FlexLayout>
 
 			<DesktopNav />
-			<FlexLayout alignItems="center" ml={{ base: 0, md: 8 }}>
+			<FlexLayout alignItems="center" ml={{ base: 0, md: 24 }}>
 				<NotificationsPopover />
 				<UserMenu />
 			</FlexLayout>
 		</Container>
-	</Flex>
+	</FlexLayout>
 ));
 
 const MobileMenu = () => {

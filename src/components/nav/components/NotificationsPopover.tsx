@@ -48,8 +48,9 @@ const NotificationsPopover = () => {
 					`}
 					variant="link"
 					aria-label="Notifications"
+					mr={{ base: 2, sm: 4 }}
 					icon={
-						<>
+						<React.Fragment>
 							<Icon
 								as={IoNotificationsSharp}
 								fontSize="md"
@@ -60,29 +61,30 @@ const NotificationsPopover = () => {
 								css={css`
 									backfacevisibility: hidden;
 								`}
-								transformOrigin="top right"
+								transformOrigin="top left"
 							/>
 							{notifications.length > 0 && (
 								<BoxLayout
-									as={'span'}
-									color={'white'}
-									position={'absolute'}
+									as="span"
+									color="white"
+									position="absolute"
 									top={0}
 									right={2}
-									bgColor={'red.500'}
+									bgColor="red.500"
 									zIndex={0}
 									height="10px"
 									width="10px"
 									borderWidth={2}
 									borderColor="white"
-									p={'1px'}
+									p="1px"
 								/>
 							)}
-						</>
+						</React.Fragment>
 					}
 				/>
 			}
-			title="Notifications"
+			title="Notifications (1)"
+			top="13px"
 		>
 			{notifications.length > 0 && (
 				<StackLayout spacing={2}>
@@ -112,9 +114,10 @@ const NotificationItem = (notification: INotification) => {
 			display="block"
 			rounded="md"
 			_hover={{
-				bg: 'fpLightGrey.100'
+				bg: 'fpLightGrey.200'
 			}}
 			p={4}
+			title={notification.title}
 		>
 			<StackLayout direction="row" spacing={4} alignItems="center">
 				<Icon

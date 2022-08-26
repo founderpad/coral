@@ -3,7 +3,7 @@ import { BaseLink } from '@/components/links';
 import React from 'react';
 
 const NavLink = (props: LinkProps) => {
-	const { children, _hover, ...rest } = props;
+	const { children, _hover, title = 'Navigation link', ...rest } = props;
 	const hoverColor = useColorModeValue('fpGrey.900', 'white');
 
 	return (
@@ -17,7 +17,7 @@ const NavLink = (props: LinkProps) => {
 			}
 			fontSize="sm"
 			fontWeight={500}
-			title="Navigation link"
+			title={title}
 		>
 			{children}
 		</BaseLink>

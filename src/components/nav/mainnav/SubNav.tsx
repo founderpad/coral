@@ -22,18 +22,7 @@ export const SubNav = memo(
 					<AppDivider width="150px" alignSelf="center" />
 				</FlexLayout>
 			)}
-			<NavLink
-				href={href}
-				role="group"
-				display="block"
-				rounded="md"
-				// _hover={{
-				// 	bg: 'fpLightGrey.100'
-				// }}
-				// _hover={{
-				// 	bg: '#F7FBFD'
-				// }}
-			>
+			<NavLink href={href} role="group" display="block" rounded="md">
 				<StackLayout
 					direction="row"
 					alignItems="center"
@@ -49,7 +38,7 @@ export const SubNav = memo(
 						p={0}
 					>
 						{icon && (
-							<BoxLayout
+							<FlexLayout
 								p={2}
 								mr={4}
 								bg="fpLightGrey.400"
@@ -68,7 +57,7 @@ export const SubNav = memo(
 										transform: 'scale(1.2)'
 									}}
 								/>
-							</BoxLayout>
+							</FlexLayout>
 						)}
 						<FlexLayout flexDirection="column">
 							<BaseLabel

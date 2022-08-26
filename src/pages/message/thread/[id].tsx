@@ -52,7 +52,7 @@ const MessageThread = () => {
 	return (
 		<React.Fragment>
 			<StackLayout
-				h={{ base: 'calc(100% - 40px)', lg: 'calc(100% - 70px)' }}
+				h={{ base: 'calc(100% - 56px)', lg: 'calc(100% - 70px)' }}
 				display="flex"
 				flex={1}
 				w={{ base: 'full', xl: '95ch' }}

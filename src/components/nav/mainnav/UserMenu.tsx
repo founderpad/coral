@@ -8,16 +8,16 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import { BiCoinStack, IoLockClosedOutline } from '@/components/icons';
+import {
+	BiCoinStack,
+	IoLockClosedOutline,
+	IoMenuSharp
+} from '@/components/icons';
 import { Label } from '@/components/labels';
 import { FlexLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
 import LogoutModal from '@/components/modal/LogoutModal';
-import {
-	AppDivider,
-	CurrentUserAvatarDetails,
-	UserAvatar
-} from '@/components/shared';
+import { CurrentUserAvatarDetails, UserAvatar } from '@/components/shared';
 import { useCurrentUser } from '@/hooks/auth';
 import React from 'react';
 import { BiMoney } from 'react-icons/bi';
@@ -32,12 +32,14 @@ const UserMenu = () => {
 		<Menu>
 			<MenuButton
 				as={Button}
-				pr={0}
 				rounded="full"
 				cursor="pointer"
 				bg="transparent"
-				_hover={{ bg: 'transparent' }}
-				_active={{ bg: 'transparent' }}
+				borderWidth={1}
+				borderColor="inherit"
+				_hover={{ bg: 'transparent', boxShadow: 'sm' }}
+				_active={{ bg: 'fpLightGrey.200' }}
+				p={2}
 				css={{
 					'> *': {
 						display: 'flex',
@@ -45,11 +47,25 @@ const UserMenu = () => {
 					}
 				}}
 			>
+				<Icon as={IoMenuSharp} mr={{ base: 1, sm: 2 }} />
 				<UserAvatar size="xs" src={avatarUrl || undefined} />
 			</MenuButton>
-			<MenuList rounded="md" textAlign="start" p={4} maxW={250}>
+			<MenuList
+				rounded="md"
+				textAlign="start"
+				p={4}
+				maxW={250}
+				borderTopRadius="none"
+				borderBottomRadius="none"
+			>
 				<CurrentUserAvatarDetails size="md" direction="column" />
-				<FlexLayout p={3} mt={6} flexDirection="column" borderWidth={1}>
+				<FlexLayout
+					p={3}
+					mt={6}
+					flexDirection="column"
+					borderWidth={1}
+					borderColor="inherit"
+				>
 					<FlexLayout justifyContent="space-between" mb={2} py={2}>
 						<FlexLayout alignItems="center">
 							<Icon
@@ -67,7 +83,7 @@ const UserMenu = () => {
 							</Label>
 						</FlexLayout>
 					</FlexLayout>
-					<AppDivider />
+					<MenuDivider my={2} />
 					<FlexLayout justifyContent="space-between" py={2}>
 						<FlexLayout alignItems="center">
 							<Icon
@@ -99,24 +115,6 @@ const UserMenu = () => {
 					</CaptionLabel>
 				</FlexLayout>
 
-				{/* <FlexLayout mt={6} px={3} py={2} bg="gray.50">
-					<FlexLayout alignItems="center">
-						<Icon
-							as={BiCoinStack}
-							fontSize="lg"
-							color="yellow.600"
-							mr={1}
-						/>
-						<Label
-							fontSize="sm"
-							textAlign="center"
-							color="yellow.500"
-						>
-							{esteemPoints}
-						</Label>
-					</FlexLayout>
-				</FlexLayout> */}
-
 				<MenuDivider my={6} />
 				<MenuGroup>
 					<MenuItem
@@ -129,8 +127,6 @@ const UserMenu = () => {
 						Profile
 					</MenuItem>
 					<MenuItem
-						// as={BaseLink}
-						// href="/account/profile"
 						fontSize="small"
 						color="fpGrey.500"
 						_hover={{ color: 'fpGrey.900' }}

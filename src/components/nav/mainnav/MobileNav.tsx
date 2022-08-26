@@ -24,14 +24,14 @@ const MobileNav = () => {
 			}}
 			display={{ base: isOpen ? 'flex' : 'none', md: 'none' }}
 			position="fixed"
-			top={10}
+			top={14}
 			zIndex={999}
 			p={4}
 			flex={1}
 			w="full"
 			overflow="hidden"
 			spacing={2}
-			h={'calc(100% - 40px)'}
+			h={'calc(100% - 56px)'}
 		>
 			{NavItems.map((navItem, i) => (
 				<MobileNavItem {...navItem} key={i} />
@@ -51,10 +51,11 @@ const MobileNavItem = (navItem: NavItem) => {
 	return (
 		<StackLayout spacing={4} onClick={navItem && onToggle}>
 			<FlexLayout
-				pb={2}
 				justify="space-between"
 				align="center"
+				alignItems="center"
 				_hover={{ textDecoration: 'none' }}
+				pb={4}
 			>
 				{isLink ? (
 					<Link
@@ -88,7 +89,6 @@ const MobileNavItem = (navItem: NavItem) => {
 					</Link>
 				) : (
 					<Text
-						py={2}
 						fontSize="sm"
 						fontWeight={500}
 						_hover={{

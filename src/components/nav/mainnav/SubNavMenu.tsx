@@ -4,33 +4,27 @@ import React from 'react';
 import { NavItem } from './NavItems';
 import { SubNav } from './SubNav';
 
-const SubNavMenu = (navItem: NavItem) => {
-	return (
-		<StackLayout
-			direction={{ base: 'column', md: 'row' }}
-			p={4}
-			display="flex"
-		>
-			{navItem.items?.map((parentNavItem, key) => (
-				<StackLayout key={key}>
-					{parentNavItem.title && (
-						<BaseHeading fontSize="sm" color="fpGrey.900">
-							{parentNavItem.title}
-						</BaseHeading>
-					)}
-					<StackLayout
-						spacing={{ base: 1, sm: 3 }}
-						display="flex"
-						flex={1}
-					>
-						{parentNavItem.items?.map((childNavItem, key) => (
-							<SubNav {...childNavItem} key={key} />
-						))}
-					</StackLayout>
+const SubNavMenu = (navItem: NavItem) => (
+	<StackLayout direction={{ base: 'column', md: 'row' }} p={4} display="flex">
+		{navItem.items?.map((parentNavItem, key) => (
+			<StackLayout key={key}>
+				{parentNavItem.title && (
+					<BaseHeading fontSize="sm" color="fpGrey.900">
+						{parentNavItem.title}
+					</BaseHeading>
+				)}
+				<StackLayout
+					spacing={{ base: 1, sm: 3 }}
+					display="flex"
+					flex={1}
+				>
+					{parentNavItem.items?.map((childNavItem, key) => (
+						<SubNav {...childNavItem} key={key} />
+					))}
 				</StackLayout>
-			))}
-		</StackLayout>
-	);
-};
+			</StackLayout>
+		))}
+	</StackLayout>
+);
 
 export default SubNavMenu;

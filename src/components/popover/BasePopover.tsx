@@ -1,17 +1,33 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import {
 	Popover,
+	PopoverBody,
+	PopoverCloseButton,
 	PopoverContent,
+	PopoverContentProps,
+	PopoverHeader,
 	PopoverProps,
 	PopoverTrigger
 } from '@chakra-ui/react';
 import BaseHeading from '@/components/heading/BaseHeading';
 import React from 'react';
 
-type Props = PopoverProps & { triggerEl: React.ReactNode; title?: string };
+type Props = PopoverProps &
+	PopoverContentProps & {
+		triggerEl: React.ReactNode;
+		title?: string;
+		showClose?: boolean;
+	};
 
 export const BasePopover = (props: Props) => {
-	const { children, trigger = 'hover', triggerEl, title } = props;
+	const {
+		children,
+		trigger = 'hover',
+		triggerEl,
+		title,
+		top = '12px',
+		showClose = true
+	} = props;
 	const bg = useColorModeValue('white', 'gray.500');
 
 	return (
@@ -20,24 +36,42 @@ export const BasePopover = (props: Props) => {
 
 			{children && (
 				<PopoverContent
-					border={0}
 					borderWidth={1}
+					borderTop={0}
 					boxShadow="xl"
 					bg={bg}
-					p={2}
-					// mt={2}
-					mt="4px"
-					// rounded="md"
+					top={top}
 					rounded="none"
 					w={{ base: '100vw', sm: 'auto' }}
+					minWidth="300px"
 					display="flex"
+					overflowY="auto"
+					// maxH="calc(100vh - 72px)"
+					flexDirection="column"
+					flexWrap="nowrap"
+					maxH="600px"
+					h="full"
 				>
 					{title && (
-						<BaseHeading fontSize="sm" p={4} color="fpGrey.900">
-							{title}
-						</BaseHeading>
+						<PopoverHeader
+							display="flex"
+							justifyContent="space-between"
+							alignItems="center"
+							p={4}
+						>
+							{showClose && <PopoverCloseButton top={3} />}
+							<BaseHeading
+								fontSize="sm"
+								color="fpGrey.900"
+								w="full"
+							>
+								{title}
+							</BaseHeading>
+						</PopoverHeader>
 					)}
-					{children}
+					<PopoverBody flexGrow={1} overflowY="auto" minHeight="auto">
+						{children}
+					</PopoverBody>
 				</PopoverContent>
 			)}
 		</Popover>

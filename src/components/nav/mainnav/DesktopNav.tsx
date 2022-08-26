@@ -39,6 +39,7 @@ const DesktopNav = memo(() => {
 				ml="auto"
 				display={{ base: 'none', md: 'flex' }}
 				position="relative"
+				h="full"
 			>
 				<PrimaryButton
 					name="create-idea"
@@ -82,30 +83,23 @@ const DesktopNav = memo(() => {
 									textDecoration: 'none',
 									color: 'gray.900'
 								}}
+								css={{
+									':hover > svg': {
+										transform: 'rotate(-180deg)',
+										transition: 'transform .1s linear'
+									}
+								}}
 							>
 								{navItem.label}
-								{/* {navItem.rightIcon && (
-									<Icon
-										color="inherit"
-										ml={1}
-										as={navItem.rightIcon}
-									/>
-								)} */}
 								{navItem.items?.length && (
 									<Icon
 										color="inherit"
 										ml={1}
 										as={IoChevronDownSharp}
-										// _hover={{
-										// 	transform: 'rotate(-180deg)'
-										// }}
-										// transform="rotate(0deg)"
-										// transition={'transform .1s linear'}
-										// transition='transform .1s linear'
+										transition="transform .1s linear"
 									/>
 								)}
 							</Link>
-							// <Button>{navItem.label}</Button>
 						}
 					>
 						{navItem.items && (

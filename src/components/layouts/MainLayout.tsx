@@ -11,7 +11,6 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 	return (
 		<MobileNavigationProvider>
 			<MainNav />
-			{/* <BoxLayout>test</BoxLayout> */}
 			<BoxLayout
 				p={0}
 				as="main"
@@ -21,7 +20,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				display="flex"
 				flexDirection="column"
 				flex={1}
-				mt={{ base: 10, lg: 14 }}
+				mt={{ base: 14, lg: '72px' }}
 				mb={{ base: 0, lg: 4 }}
 				id="main-container"
 				rounded="md"
