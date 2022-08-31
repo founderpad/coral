@@ -14,8 +14,8 @@ export const IdeaOverview = () => {
 		<FlexLayout
 			css={{
 				'> *': {
-					marginRight: 8,
-					marginBottom: 8
+					marginRight: 8
+					// marginBottom: 8
 				}
 			}}
 		>

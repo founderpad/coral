@@ -59,6 +59,7 @@ const UserMenu = () => {
 				borderBottomRadius="none"
 			>
 				<CurrentUserAvatarDetails size="md" direction="column" />
+
 				<FlexLayout
 					p={3}
 					mt={6}

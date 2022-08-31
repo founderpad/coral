@@ -1,0 +1,2 @@
+DROP TRIGGER boosted_idea_completed_at_trigger ON boosted_ideas;
+DROP FUNCTION boosted_idea_completed_at_fnc;

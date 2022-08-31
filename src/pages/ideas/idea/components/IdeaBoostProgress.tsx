@@ -1,7 +1,6 @@
-import HeadingWithCaption from '@/components/heading/HeadingWithCaption';
-import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import { formatDate } from '@/utils/validators';
+import { Stat, StatHelpText, StatLabel, StatNumber } from '@chakra-ui/react';
 import React from 'react';
 import BoostProgress from '../../boost/BoostProgress';
 
@@ -13,6 +12,7 @@ const IdeaBoostProgress = ({
 	createdAt: string;
 }) => {
 	const earned = 10 - parseFloat(remainingCurrencyAmount.substring(1));
+
 	return (
 		<StackLayout direction="row">
 			<StackLayout display="inline-block" direction="row">
@@ -20,18 +20,17 @@ const IdeaBoostProgress = ({
 					remainingCurrencyAmount={remainingCurrencyAmount}
 				/>
 			</StackLayout>
-			<StackLayout spacing={3}>
-				<HeadingWithCaption
-					headingProps={{ fontSize: 'sm' }}
-					heading={`${remainingCurrencyAmount} remaining`}
-					caption={`Boosted 
-                            ${formatDate(createdAt, false, false, false)}`}
-				/>
 
-				<Label color="green.300" fontSize="small">
-					${earned} earned by users
-				</Label>
-			</StackLayout>
+			<Stat>
+				<StatLabel fontSize="xs">Earned by users</StatLabel>
+				<StatNumber fontSize="md" py={1}>
+					{remainingCurrencyAmount} / ${earned}.00
+				</StatNumber>
+				<StatHelpText fontSize="x-small" color="fpGrey.400">
+					{formatDate(createdAt, false, false, false)} -{' '}
+					{formatDate(new Date().toString(), false, false, false)}
+				</StatHelpText>
+			</Stat>
 		</StackLayout>
 	);
 };

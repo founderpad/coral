@@ -2,7 +2,7 @@ import { BaseButton, SubmitButton } from '@/components/buttons';
 import { BaseForm } from '@/components/form';
 import { FormTextarea } from '@/components/form/inputs/FormField';
 import { CaptionLabel, Label } from '@/components/labels';
-import { StackLayout } from '@/components/layouts';
+import { FlexLayout, StackLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
 import {
 	TIdeaQuery,
@@ -17,7 +17,7 @@ import { AiTwotoneThunderbolt } from 'react-icons/ai';
 import IdeaBoostProgress from '../IdeaBoostProgress';
 
 const BoostEarnButton = (data: TIdeaQuery) => {
-	const { openModalDrawer } = useModalDrawer();
+	const { openModalDrawer, closeModalDrawer } = useModalDrawer();
 	const userId = useAuth().getUser()?.id;
 	const [postCommentMutation] = usePostCommentMutation();
 
@@ -30,13 +30,16 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 					value: comment.value
 				},
 				ideaId: data.idea?.id
+			},
+			onCompleted: (_data) => {
+				closeModalDrawer();
 			}
 		});
 	};
 
 	const onBoostEarnClick = () => {
 		openModalDrawer({
-			title: `Boost feedback for $0.05`,
+			title: 'Boost feedback for $0.05',
 			showCancel: false,
 			body: (
 				<React.Fragment>
@@ -101,7 +104,7 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 				<StackLayout direction={{ base: 'column', md: 'row' }}>
 					<IdeaBoostProgress
 						remainingCurrencyAmount={
-							data?.idea?.boosted_idea?.remainingCurrencyAmount
+							data.idea?.boosted_idea?.remainingCurrencyAmount
 						}
 						createdAt={data.idea?.boosted_idea?.createdAt}
 					/>
@@ -109,7 +112,10 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 					{data.idea?.userId === userId && (
 						<React.Fragment>
 							<AppDivider orientation="vertical" />
-							<StackLayout spacing={4}>
+							<FlexLayout
+								flexDirection="column"
+								justifyContent="space-between"
+							>
 								<BaseButton
 									name="boost-comment"
 									colorScheme="purple"
@@ -124,12 +130,11 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 										earn $0.05
 									</CaptionLabel>
 								</BaseButton>
-
 								<CaptionLabel mt={2}>
 									All comments must be approved before they
 									are accepted and you can earn money.
 								</CaptionLabel>
-							</StackLayout>
+							</FlexLayout>
 						</React.Fragment>
 					)}
 				</StackLayout>

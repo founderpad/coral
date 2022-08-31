@@ -37,9 +37,9 @@ function getStatusIcon(status: Props['status']) {
 
 export const AlertFeedback = (props: Props) => {
 	const {
-		status,
+		status = 'success',
 		message,
-		bg = 'transparent',
+		bg,
 		variant = 'subtle',
 		px = 0,
 		...rest
@@ -52,7 +52,7 @@ export const AlertFeedback = (props: Props) => {
 			px={px}
 			py={1}
 			variant={variant}
-			bg={bg}
+			bg={bg || 'initial'}
 		>
 			{getStatusIcon(status)}
 			<AlertDescription

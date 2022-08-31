@@ -1,0 +1,109 @@
+table:
+  name: idea_feedback
+  schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    idea_id: ideaId
+    is_boost: isBoost
+    target_user_id: targetUserId
+    total_replies: totalReplies
+    updated_at: updatedAt
+    user_id: userId
+  custom_root_fields: {}
+object_relationships:
+- name: idea
+  using:
+    manual_configuration:
+      column_mapping:
+        idea_id: id
+      insertion_order: null
+      remote_table:
+        name: ideas
+        schema: public
+- name: user
+  using:
+    manual_configuration:
+      column_mapping:
+        user_id: id
+      insertion_order: null
+      remote_table:
+        name: users
+        schema: auth
+array_relationships:
+- name: replies
+  using:
+    manual_configuration:
+      column_mapping:
+        id: comment_id
+      insertion_order: null
+      remote_table:
+        name: idea_comment_replies
+        schema: public
+insert_permissions:
+- permission:
+    backend_only: false
+    check:
+      user_id:
+        _eq: X-Hasura-User-Id
+    columns:
+    - idea_id
+    - is_boost
+    - target_user_id
+    - value
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - total_replies
+    - value
+    - created_at
+    - updated_at
+    - id
+    - idea_id
+    - target_user_id
+    - user_id
+    filter: {}
+  role: user
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - total_replies
+    - value
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+delete_permissions:
+- permission:
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+  role: user
+event_triggers:
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  name: add-esteem-points-for-comment
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points/add/comments"
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  name: send-push-new-comment
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/notifications/send-push-new-comment"

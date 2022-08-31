@@ -3,6 +3,7 @@ table:
   schema: public
 configuration:
   custom_column_names:
+    completed_at: completedAt
     created_at: createdAt
     currency_amount_increment: currencyAmountIncrement
     idea_id: ideaId
@@ -28,6 +29,7 @@ select_permissions:
     allow_aggregations: true
     columns:
     - created_at
+    - id
     - idea_id
     - remaining_currency_amount
     - total_currency_amount

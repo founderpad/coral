@@ -234,6 +234,7 @@ export type TActivity_Select_Column =
 export type TBoosted_Ideas = {
   __typename?: 'boosted_ideas';
   createdAt?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['uuid'];
   /** An object relationship */
   idea?: Maybe<TIdeas>;
   ideaId: Scalars['uuid'];
@@ -285,6 +286,7 @@ export type TBoosted_Ideas_Bool_Exp = {
   _not?: InputMaybe<TBoosted_Ideas_Bool_Exp>;
   _or?: InputMaybe<Array<TBoosted_Ideas_Bool_Exp>>;
   createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  id?: InputMaybe<TUuid_Comparison_Exp>;
   idea?: InputMaybe<TIdeas_Bool_Exp>;
   ideaId?: InputMaybe<TUuid_Comparison_Exp>;
   remainingCurrencyAmount?: InputMaybe<TMoney_Comparison_Exp>;
@@ -296,6 +298,7 @@ export type TBoosted_Ideas_Bool_Exp = {
 export type TBoosted_Ideas_Max_Fields = {
   __typename?: 'boosted_ideas_max_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
   ideaId?: Maybe<Scalars['uuid']>;
   remainingCurrencyAmount?: Maybe<Scalars['money']>;
   totalCurrencyAmount?: Maybe<Scalars['money']>;
@@ -306,6 +309,7 @@ export type TBoosted_Ideas_Max_Fields = {
 export type TBoosted_Ideas_Min_Fields = {
   __typename?: 'boosted_ideas_min_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
   ideaId?: Maybe<Scalars['uuid']>;
   remainingCurrencyAmount?: Maybe<Scalars['money']>;
   totalCurrencyAmount?: Maybe<Scalars['money']>;
@@ -315,6 +319,7 @@ export type TBoosted_Ideas_Min_Fields = {
 /** Ordering options when selecting data from "boosted_ideas". */
 export type TBoosted_Ideas_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
   idea?: InputMaybe<TIdeas_Order_By>;
   ideaId?: InputMaybe<TOrder_By>;
   remainingCurrencyAmount?: InputMaybe<TOrder_By>;
@@ -326,6 +331,8 @@ export type TBoosted_Ideas_Order_By = {
 export type TBoosted_Ideas_Select_Column =
   /** column name */
   | 'createdAt'
+  /** column name */
+  | 'id'
   /** column name */
   | 'ideaId'
   /** column name */
@@ -8121,6 +8128,7 @@ export type TActivity_Mutation_ResponseResolvers<ContextType = any, ParentType e
 
 export type TBoosted_IdeasResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas'] = TResolversParentTypes['boosted_ideas']> = {
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   idea?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType>;
   ideaId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
@@ -8158,6 +8166,7 @@ export type TBoosted_Ideas_Avg_FieldsResolvers<ContextType = any, ParentType ext
 
 export type TBoosted_Ideas_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_max_fields'] = TResolversParentTypes['boosted_ideas_max_fields']> = {
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   ideaId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
   totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
@@ -8167,6 +8176,7 @@ export type TBoosted_Ideas_Max_FieldsResolvers<ContextType = any, ParentType ext
 
 export type TBoosted_Ideas_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['boosted_ideas_min_fields'] = TResolversParentTypes['boosted_ideas_min_fields']> = {
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   ideaId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   remainingCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
   totalCurrencyAmount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
