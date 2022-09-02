@@ -886,6 +886,7 @@ export type TIdea_Comments = {
   /** An object relationship */
   idea?: Maybe<TIdeas>;
   ideaId: Scalars['uuid'];
+  isBoost?: Maybe<Scalars['Boolean']>;
   /** An array relationship */
   replies: Array<TIdea_Comment_Replies>;
   /** An aggregate relationship */
@@ -1003,6 +1004,7 @@ export type TIdea_Comments_Bool_Exp = {
   id?: InputMaybe<TUuid_Comparison_Exp>;
   idea?: InputMaybe<TIdeas_Bool_Exp>;
   ideaId?: InputMaybe<TUuid_Comparison_Exp>;
+  isBoost?: InputMaybe<TBoolean_Comparison_Exp>;
   replies?: InputMaybe<TIdea_Comment_Replies_Bool_Exp>;
   targetUserId?: InputMaybe<TUuid_Comparison_Exp>;
   totalReplies?: InputMaybe<TInt_Comparison_Exp>;
@@ -1111,6 +1113,7 @@ export type TIdea_Comments_Order_By = {
   id?: InputMaybe<TOrder_By>;
   idea?: InputMaybe<TIdeas_Order_By>;
   ideaId?: InputMaybe<TOrder_By>;
+  isBoost?: InputMaybe<TOrder_By>;
   replies_aggregate?: InputMaybe<TIdea_Comment_Replies_Aggregate_Order_By>;
   targetUserId?: InputMaybe<TOrder_By>;
   totalReplies?: InputMaybe<TOrder_By>;
@@ -1133,6 +1136,8 @@ export type TIdea_Comments_Select_Column =
   | 'id'
   /** column name */
   | 'ideaId'
+  /** column name */
+  | 'isBoost'
   /** column name */
   | 'targetUserId'
   /** column name */
@@ -5554,7 +5559,7 @@ export type TPostReplyMutationVariables = Exact<{
 
 export type TPostReplyMutation = { addIdeaReply?: { __typename?: 'idea_comment_replies', commentId: any, id: any, value: string } | null, update_idea_comments_by_pk?: { __typename?: 'idea_comments', id: any } | null };
 
-export type TCommentFieldsFragment = { __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
+export type TCommentFieldsFragment = { __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, isBoost?: boolean | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TCommentsForIdeaQueryVariables = Exact<{
   ideaId: Scalars['uuid'];
@@ -5562,7 +5567,7 @@ export type TCommentsForIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null } };
+export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, isBoost?: boolean | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null } };
 
 export type TRepliesForCommentQueryVariables = Exact<{
   commentId: Scalars['uuid'];
@@ -5833,6 +5838,7 @@ export const CommentFieldsFragmentDoc = gql`
   value
   ideaId
   totalReplies
+  isBoost
   user {
     ...UserFields
   }
@@ -6097,7 +6103,7 @@ export const CommentsForIdeaDocument = gql`
     query CommentsForIdea($ideaId: uuid!, $offset: Int) {
   comments: idea_comments(
     where: {ideaId: {_eq: $ideaId}}
-    order_by: {updatedAt: desc}
+    order_by: {updatedAt: desc, isBoost: desc}
     offset: $offset
     limit: 8
   ) {
@@ -8326,6 +8332,7 @@ export type TIdea_CommentsResolvers<ContextType = any, ParentType extends TResol
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   idea?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType>;
   ideaId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  isBoost?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
   replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, Partial<TIdea_CommentsRepliesArgs>>;
   replies_aggregate?: Resolver<TResolversTypes['idea_comment_replies_aggregate'], ParentType, ContextType, Partial<TIdea_CommentsReplies_AggregateArgs>>;
   targetUserId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;

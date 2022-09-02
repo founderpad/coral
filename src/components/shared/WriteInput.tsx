@@ -81,6 +81,7 @@ const WriteInput = (props: Props) => {
 					type="submit"
 					onClick={onClick}
 					visibility={value?.length ? 'visible' : 'hidden'}
+					// isDisabled={value?.length < 1}
 				>
 					<Icon as={IoSendSharp} />
 				</IconButton>

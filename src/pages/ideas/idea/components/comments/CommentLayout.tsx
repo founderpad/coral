@@ -5,11 +5,18 @@ import BaseTag from '@/components/tags/BaseTag';
 import { useQueryParam } from '@/hooks/util';
 import useIdea from '@/pages/ideas/idea/query/ideaQuery';
 import { formatDate } from '@/utils/validators';
+import { TagLeftIcon } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
+import { AiTwotoneThunderbolt } from 'react-icons/ai';
 import { CommentActions } from './CommentActions';
-// import CommentActions from './CommentActions';
 
-const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
+const ChatContainer = ({
+	children,
+	isBoost = false
+}: {
+	children: Array<JSX.Element>;
+	isBoost: boolean;
+}) => (
 	<StackLayout
 		p={2}
 		bg="fpLightGrey.500"
@@ -17,7 +24,25 @@ const ChatContainer = ({ children }: { children: Array<JSX.Element> }) => (
 		style={{
 			borderRadius: '0 10px 10px'
 		}}
+		borderWidth={3}
+		borderColor={isBoost ? 'purple.500' : 'transparent'}
+		position="relative"
 	>
+		{isBoost && (
+			<BaseTag
+				position="absolute"
+				top={0}
+				right={0}
+				rounded="none"
+				borderBottomLeftRadius="md"
+				bg="purple.500"
+				borderWidth={0}
+				color="white"
+			>
+				<TagLeftIcon as={AiTwotoneThunderbolt} mr={1} />
+				Boost
+			</BaseTag>
+		)}
 		{children}
 	</StackLayout>
 );
@@ -63,7 +88,7 @@ export const CommentLayout = ({
 			>
 				<UserAvatar size="sm" src={comment.user?.avatarUrl} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
-					<ChatContainer>
+					<ChatContainer isBoost={comment.isBoost}>
 						<FlexLayout
 							alignItems="center"
 							justifyContent="space-between"

@@ -43,6 +43,7 @@ fragment CommentFields on idea_comments {
 	value
 	ideaId
 	totalReplies
+	isBoost
 	user {
 		...UserFields
 	}
@@ -60,7 +61,7 @@ fragment CommentFields on idea_comments {
 query CommentsForIdea($ideaId: uuid!, $offset: Int) {
 	comments: idea_comments(
 		where: { ideaId: { _eq: $ideaId } }
-		order_by: { updatedAt: desc }
+		order_by: { updatedAt: desc, isBoost: desc }
 		offset: $offset
 		limit: 8
 	) {
