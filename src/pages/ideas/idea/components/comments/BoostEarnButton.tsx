@@ -27,7 +27,8 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 				ideaComment: {
 					ideaId: data.idea?.id,
 					targetUserId: data.idea?.userId,
-					value: comment.value
+					value: comment.value,
+					isBoost: !!data.idea?.boosted_idea?.ideaId
 				},
 				ideaId: data.idea?.id
 			},
