@@ -24,7 +24,7 @@ const ChatContainer = ({
 		style={{
 			borderRadius: '0 10px 10px'
 		}}
-		borderWidth={3}
+		borderWidth={2}
 		borderColor={isBoost ? 'purple.500' : 'transparent'}
 		position="relative"
 	>
@@ -33,8 +33,8 @@ const ChatContainer = ({
 				position="absolute"
 				top={0}
 				right={0}
-				rounded="none"
-				borderBottomLeftRadius="md"
+				borderTopLeftRadius="none"
+				borderBottomRightRadius="none"
 				bg="purple.500"
 				borderWidth={0}
 				color="white"
