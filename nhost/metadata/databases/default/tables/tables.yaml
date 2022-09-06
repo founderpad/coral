@@ -24,5 +24,6 @@
 - "!include public_user_followers.yaml"
 - "!include public_user_notifications.yaml"
 - "!include public_user_profile.yaml"
+- "!include public_v_comments.yaml"
 - "!include storage_buckets.yaml"
 - "!include storage_files.yaml"

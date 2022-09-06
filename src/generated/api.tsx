@@ -497,6 +497,23 @@ export type TCitext_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['citext']>;
 };
 
+export type TComment_Status_Types_Enum =
+  /** The comment is in the approved state */
+  | 'APPROVED'
+  /** The comment is in the pending state */
+  | 'PENDING'
+  /** The comment is in the rejected state */
+  | 'REJECTED';
+
+/** Boolean expression to compare columns of type "comment_status_types_enum". All fields are combined with logical 'AND'. */
+export type TComment_Status_Types_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<TComment_Status_Types_Enum>;
+  _in?: InputMaybe<Array<TComment_Status_Types_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<TComment_Status_Types_Enum>;
+  _nin?: InputMaybe<Array<TComment_Status_Types_Enum>>;
+};
+
 /** columns and relationships of "storage.files" */
 export type TFiles = {
   __typename?: 'files';
@@ -886,11 +903,12 @@ export type TIdea_Comments = {
   /** An object relationship */
   idea?: Maybe<TIdeas>;
   ideaId: Scalars['uuid'];
-  isBoost?: Maybe<Scalars['Boolean']>;
+  isBoost: Scalars['Boolean'];
   /** An array relationship */
   replies: Array<TIdea_Comment_Replies>;
   /** An aggregate relationship */
   replies_aggregate: TIdea_Comment_Replies_Aggregate;
+  status: TComment_Status_Types_Enum;
   targetUserId: Scalars['uuid'];
   totalReplies: Scalars['Int'];
   updatedAt: Scalars['timestamptz'];
@@ -1006,6 +1024,7 @@ export type TIdea_Comments_Bool_Exp = {
   ideaId?: InputMaybe<TUuid_Comparison_Exp>;
   isBoost?: InputMaybe<TBoolean_Comparison_Exp>;
   replies?: InputMaybe<TIdea_Comment_Replies_Bool_Exp>;
+  status?: InputMaybe<TComment_Status_Types_Enum_Comparison_Exp>;
   targetUserId?: InputMaybe<TUuid_Comparison_Exp>;
   totalReplies?: InputMaybe<TInt_Comparison_Exp>;
   updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
@@ -1115,6 +1134,7 @@ export type TIdea_Comments_Order_By = {
   ideaId?: InputMaybe<TOrder_By>;
   isBoost?: InputMaybe<TOrder_By>;
   replies_aggregate?: InputMaybe<TIdea_Comment_Replies_Aggregate_Order_By>;
+  status?: InputMaybe<TOrder_By>;
   targetUserId?: InputMaybe<TOrder_By>;
   totalReplies?: InputMaybe<TOrder_By>;
   updatedAt?: InputMaybe<TOrder_By>;
@@ -1138,6 +1158,8 @@ export type TIdea_Comments_Select_Column =
   | 'ideaId'
   /** column name */
   | 'isBoost'
+  /** column name */
+  | 'status'
   /** column name */
   | 'targetUserId'
   /** column name */
@@ -3521,6 +3543,10 @@ export type TQuery_Root = {
   users: Array<TUsers>;
   /** fetch aggregated fields from the table: "auth.users" */
   usersAggregate: TUsers_Aggregate;
+  /** fetch data from the table: "v_comments" */
+  v_comments: Array<TV_Comments>;
+  /** fetch aggregated fields from the table: "v_comments" */
+  v_comments_aggregate: TV_Comments_Aggregate;
 };
 
 
@@ -3909,6 +3935,24 @@ export type TQuery_RootUsersAggregateArgs = {
   where?: InputMaybe<TUsers_Bool_Exp>;
 };
 
+
+export type TQuery_RootV_CommentsArgs = {
+  distinct_on?: InputMaybe<Array<TV_Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TV_Comments_Order_By>>;
+  where?: InputMaybe<TV_Comments_Bool_Exp>;
+};
+
+
+export type TQuery_RootV_Comments_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TV_Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TV_Comments_Order_By>>;
+  where?: InputMaybe<TV_Comments_Bool_Exp>;
+};
+
 /**
  * The report table for all users, ideas, comments and replies
  *
@@ -4061,6 +4105,10 @@ export type TSubscription_Root = {
   users: Array<TUsers>;
   /** fetch aggregated fields from the table: "auth.users" */
   usersAggregate: TUsers_Aggregate;
+  /** fetch data from the table: "v_comments" */
+  v_comments: Array<TV_Comments>;
+  /** fetch aggregated fields from the table: "v_comments" */
+  v_comments_aggregate: TV_Comments_Aggregate;
 };
 
 
@@ -4447,6 +4495,24 @@ export type TSubscription_RootUsersAggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<TUsers_Order_By>>;
   where?: InputMaybe<TUsers_Bool_Exp>;
+};
+
+
+export type TSubscription_RootV_CommentsArgs = {
+  distinct_on?: InputMaybe<Array<TV_Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TV_Comments_Order_By>>;
+  where?: InputMaybe<TV_Comments_Bool_Exp>;
+};
+
+
+export type TSubscription_RootV_Comments_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TV_Comments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TV_Comments_Order_By>>;
+  where?: InputMaybe<TV_Comments_Bool_Exp>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -5536,6 +5602,215 @@ export type TUuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
+/** columns and relationships of "v_comments" */
+export type TV_Comments = {
+  __typename?: 'v_comments';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  /** An object relationship */
+  idea?: Maybe<TIdeas>;
+  ideaId?: Maybe<Scalars['uuid']>;
+  isBoost?: Maybe<Scalars['Boolean']>;
+  /** An array relationship */
+  replies: Array<TIdea_Comment_Replies>;
+  /** An aggregate relationship */
+  replies_aggregate: TIdea_Comment_Replies_Aggregate;
+  status?: Maybe<Scalars['String']>;
+  targetUserId?: Maybe<Scalars['uuid']>;
+  totalReplies?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  /** An object relationship */
+  user?: Maybe<TUsers>;
+  userId?: Maybe<Scalars['uuid']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "v_comments" */
+export type TV_CommentsRepliesArgs = {
+  distinct_on?: InputMaybe<Array<TIdea_Comment_Replies_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TIdea_Comment_Replies_Order_By>>;
+  where?: InputMaybe<TIdea_Comment_Replies_Bool_Exp>;
+};
+
+
+/** columns and relationships of "v_comments" */
+export type TV_CommentsReplies_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TIdea_Comment_Replies_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TIdea_Comment_Replies_Order_By>>;
+  where?: InputMaybe<TIdea_Comment_Replies_Bool_Exp>;
+};
+
+/** aggregated selection of "v_comments" */
+export type TV_Comments_Aggregate = {
+  __typename?: 'v_comments_aggregate';
+  aggregate?: Maybe<TV_Comments_Aggregate_Fields>;
+  nodes: Array<TV_Comments>;
+};
+
+/** aggregate fields of "v_comments" */
+export type TV_Comments_Aggregate_Fields = {
+  __typename?: 'v_comments_aggregate_fields';
+  avg?: Maybe<TV_Comments_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<TV_Comments_Max_Fields>;
+  min?: Maybe<TV_Comments_Min_Fields>;
+  stddev?: Maybe<TV_Comments_Stddev_Fields>;
+  stddev_pop?: Maybe<TV_Comments_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<TV_Comments_Stddev_Samp_Fields>;
+  sum?: Maybe<TV_Comments_Sum_Fields>;
+  var_pop?: Maybe<TV_Comments_Var_Pop_Fields>;
+  var_samp?: Maybe<TV_Comments_Var_Samp_Fields>;
+  variance?: Maybe<TV_Comments_Variance_Fields>;
+};
+
+
+/** aggregate fields of "v_comments" */
+export type TV_Comments_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TV_Comments_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type TV_Comments_Avg_Fields = {
+  __typename?: 'v_comments_avg_fields';
+  totalReplies?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "v_comments". All fields are combined with a logical 'AND'. */
+export type TV_Comments_Bool_Exp = {
+  _and?: InputMaybe<Array<TV_Comments_Bool_Exp>>;
+  _not?: InputMaybe<TV_Comments_Bool_Exp>;
+  _or?: InputMaybe<Array<TV_Comments_Bool_Exp>>;
+  createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  id?: InputMaybe<TUuid_Comparison_Exp>;
+  idea?: InputMaybe<TIdeas_Bool_Exp>;
+  ideaId?: InputMaybe<TUuid_Comparison_Exp>;
+  isBoost?: InputMaybe<TBoolean_Comparison_Exp>;
+  replies?: InputMaybe<TIdea_Comment_Replies_Bool_Exp>;
+  status?: InputMaybe<TString_Comparison_Exp>;
+  targetUserId?: InputMaybe<TUuid_Comparison_Exp>;
+  totalReplies?: InputMaybe<TInt_Comparison_Exp>;
+  updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  user?: InputMaybe<TUsers_Bool_Exp>;
+  userId?: InputMaybe<TUuid_Comparison_Exp>;
+  value?: InputMaybe<TString_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type TV_Comments_Max_Fields = {
+  __typename?: 'v_comments_max_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  ideaId?: Maybe<Scalars['uuid']>;
+  status?: Maybe<Scalars['String']>;
+  targetUserId?: Maybe<Scalars['uuid']>;
+  totalReplies?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type TV_Comments_Min_Fields = {
+  __typename?: 'v_comments_min_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  ideaId?: Maybe<Scalars['uuid']>;
+  status?: Maybe<Scalars['String']>;
+  targetUserId?: Maybe<Scalars['uuid']>;
+  totalReplies?: Maybe<Scalars['Int']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** Ordering options when selecting data from "v_comments". */
+export type TV_Comments_Order_By = {
+  createdAt?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  idea?: InputMaybe<TIdeas_Order_By>;
+  ideaId?: InputMaybe<TOrder_By>;
+  isBoost?: InputMaybe<TOrder_By>;
+  replies_aggregate?: InputMaybe<TIdea_Comment_Replies_Aggregate_Order_By>;
+  status?: InputMaybe<TOrder_By>;
+  targetUserId?: InputMaybe<TOrder_By>;
+  totalReplies?: InputMaybe<TOrder_By>;
+  updatedAt?: InputMaybe<TOrder_By>;
+  user?: InputMaybe<TUsers_Order_By>;
+  userId?: InputMaybe<TOrder_By>;
+  value?: InputMaybe<TOrder_By>;
+};
+
+/** select columns of table "v_comments" */
+export type TV_Comments_Select_Column =
+  /** column name */
+  | 'createdAt'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'ideaId'
+  /** column name */
+  | 'isBoost'
+  /** column name */
+  | 'status'
+  /** column name */
+  | 'targetUserId'
+  /** column name */
+  | 'totalReplies'
+  /** column name */
+  | 'updatedAt'
+  /** column name */
+  | 'userId'
+  /** column name */
+  | 'value';
+
+/** aggregate stddev on columns */
+export type TV_Comments_Stddev_Fields = {
+  __typename?: 'v_comments_stddev_fields';
+  totalReplies?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type TV_Comments_Stddev_Pop_Fields = {
+  __typename?: 'v_comments_stddev_pop_fields';
+  totalReplies?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type TV_Comments_Stddev_Samp_Fields = {
+  __typename?: 'v_comments_stddev_samp_fields';
+  totalReplies?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type TV_Comments_Sum_Fields = {
+  __typename?: 'v_comments_sum_fields';
+  totalReplies?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate var_pop on columns */
+export type TV_Comments_Var_Pop_Fields = {
+  __typename?: 'v_comments_var_pop_fields';
+  totalReplies?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type TV_Comments_Var_Samp_Fields = {
+  __typename?: 'v_comments_var_samp_fields';
+  totalReplies?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type TV_Comments_Variance_Fields = {
+  __typename?: 'v_comments_variance_fields';
+  totalReplies?: Maybe<Scalars['Float']>;
+};
+
 export type TUserActivityQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
@@ -5559,7 +5834,7 @@ export type TPostReplyMutationVariables = Exact<{
 
 export type TPostReplyMutation = { addIdeaReply?: { __typename?: 'idea_comment_replies', commentId: any, id: any, value: string } | null, update_idea_comments_by_pk?: { __typename?: 'idea_comments', id: any } | null };
 
-export type TCommentFieldsFragment = { __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, isBoost?: boolean | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
+export type TCommentFieldsFragment = { __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TCommentsForIdeaQueryVariables = Exact<{
   ideaId: Scalars['uuid'];
@@ -5567,7 +5842,7 @@ export type TCommentsForIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'idea_comments', id: any, updatedAt: any, value: string, ideaId: any, totalReplies: number, isBoost?: boolean | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null } };
+export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl?: string | null, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'v_comments_aggregate', aggregate?: { __typename?: 'v_comments_aggregate_fields', count: number } | null } };
 
 export type TRepliesForCommentQueryVariables = Exact<{
   commentId: Scalars['uuid'];
@@ -5832,13 +6107,14 @@ export const UserFieldsFragmentDoc = gql`
 }
     ${UserAddressFragmentDoc}`;
 export const CommentFieldsFragmentDoc = gql`
-    fragment CommentFields on idea_comments {
+    fragment CommentFields on v_comments {
   id
   updatedAt
   value
   ideaId
   totalReplies
   isBoost
+  status
   user {
     ...UserFields
   }
@@ -6101,15 +6377,15 @@ export type PostReplyMutationResult = Apollo.MutationResult<TPostReplyMutation>;
 export type PostReplyMutationOptions = Apollo.BaseMutationOptions<TPostReplyMutation, TPostReplyMutationVariables>;
 export const CommentsForIdeaDocument = gql`
     query CommentsForIdea($ideaId: uuid!, $offset: Int) {
-  comments: idea_comments(
+  comments: v_comments(
     where: {ideaId: {_eq: $ideaId}}
-    order_by: {updatedAt: desc, isBoost: desc}
+    order_by: {updatedAt: desc}
     offset: $offset
     limit: 8
   ) {
     ...CommentFields
   }
-  totalComments: idea_comments_aggregate(where: {ideaId: {_eq: $ideaId}}) {
+  totalComments: v_comments_aggregate(where: {ideaId: {_eq: $ideaId}}) {
     aggregate {
       count(columns: id)
     }
@@ -7513,6 +7789,8 @@ export type TResolversTypes = {
   buckets_select_column: TBuckets_Select_Column;
   citext: ResolverTypeWrapper<Scalars['citext']>;
   citext_comparison_exp: TCitext_Comparison_Exp;
+  comment_status_types_enum: TComment_Status_Types_Enum;
+  comment_status_types_enum_comparison_exp: TComment_Status_Types_Enum_Comparison_Exp;
   files: ResolverTypeWrapper<TFiles>;
   files_aggregate_order_by: TFiles_Aggregate_Order_By;
   files_avg_order_by: TFiles_Avg_Order_By;
@@ -7782,6 +8060,22 @@ export type TResolversTypes = {
   users_set_input: TUsers_Set_Input;
   uuid: ResolverTypeWrapper<Scalars['uuid']>;
   uuid_comparison_exp: TUuid_Comparison_Exp;
+  v_comments: ResolverTypeWrapper<TV_Comments>;
+  v_comments_aggregate: ResolverTypeWrapper<TV_Comments_Aggregate>;
+  v_comments_aggregate_fields: ResolverTypeWrapper<TV_Comments_Aggregate_Fields>;
+  v_comments_avg_fields: ResolverTypeWrapper<TV_Comments_Avg_Fields>;
+  v_comments_bool_exp: TV_Comments_Bool_Exp;
+  v_comments_max_fields: ResolverTypeWrapper<TV_Comments_Max_Fields>;
+  v_comments_min_fields: ResolverTypeWrapper<TV_Comments_Min_Fields>;
+  v_comments_order_by: TV_Comments_Order_By;
+  v_comments_select_column: TV_Comments_Select_Column;
+  v_comments_stddev_fields: ResolverTypeWrapper<TV_Comments_Stddev_Fields>;
+  v_comments_stddev_pop_fields: ResolverTypeWrapper<TV_Comments_Stddev_Pop_Fields>;
+  v_comments_stddev_samp_fields: ResolverTypeWrapper<TV_Comments_Stddev_Samp_Fields>;
+  v_comments_sum_fields: ResolverTypeWrapper<TV_Comments_Sum_Fields>;
+  v_comments_var_pop_fields: ResolverTypeWrapper<TV_Comments_Var_Pop_Fields>;
+  v_comments_var_samp_fields: ResolverTypeWrapper<TV_Comments_Var_Samp_Fields>;
+  v_comments_variance_fields: ResolverTypeWrapper<TV_Comments_Variance_Fields>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -7822,6 +8116,7 @@ export type TResolversParentTypes = {
   buckets_order_by: TBuckets_Order_By;
   citext: Scalars['citext'];
   citext_comparison_exp: TCitext_Comparison_Exp;
+  comment_status_types_enum_comparison_exp: TComment_Status_Types_Enum_Comparison_Exp;
   files: TFiles;
   files_aggregate_order_by: TFiles_Aggregate_Order_By;
   files_avg_order_by: TFiles_Avg_Order_By;
@@ -8064,6 +8359,21 @@ export type TResolversParentTypes = {
   users_set_input: TUsers_Set_Input;
   uuid: Scalars['uuid'];
   uuid_comparison_exp: TUuid_Comparison_Exp;
+  v_comments: TV_Comments;
+  v_comments_aggregate: TV_Comments_Aggregate;
+  v_comments_aggregate_fields: TV_Comments_Aggregate_Fields;
+  v_comments_avg_fields: TV_Comments_Avg_Fields;
+  v_comments_bool_exp: TV_Comments_Bool_Exp;
+  v_comments_max_fields: TV_Comments_Max_Fields;
+  v_comments_min_fields: TV_Comments_Min_Fields;
+  v_comments_order_by: TV_Comments_Order_By;
+  v_comments_stddev_fields: TV_Comments_Stddev_Fields;
+  v_comments_stddev_pop_fields: TV_Comments_Stddev_Pop_Fields;
+  v_comments_stddev_samp_fields: TV_Comments_Stddev_Samp_Fields;
+  v_comments_sum_fields: TV_Comments_Sum_Fields;
+  v_comments_var_pop_fields: TV_Comments_Var_Pop_Fields;
+  v_comments_var_samp_fields: TV_Comments_Var_Samp_Fields;
+  v_comments_variance_fields: TV_Comments_Variance_Fields;
 };
 
 export type TCachedDirectiveArgs = {
@@ -8332,9 +8642,10 @@ export type TIdea_CommentsResolvers<ContextType = any, ParentType extends TResol
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   idea?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType>;
   ideaId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
-  isBoost?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
+  isBoost?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
   replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, Partial<TIdea_CommentsRepliesArgs>>;
   replies_aggregate?: Resolver<TResolversTypes['idea_comment_replies_aggregate'], ParentType, ContextType, Partial<TIdea_CommentsReplies_AggregateArgs>>;
+  status?: Resolver<TResolversTypes['comment_status_types_enum'], ParentType, ContextType>;
   targetUserId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   totalReplies?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -8996,6 +9307,8 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   user_profile_by_pk?: Resolver<Maybe<TResolversTypes['user_profile']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Profile_By_PkArgs, 'id'>>;
   users?: Resolver<Array<TResolversTypes['users']>, ParentType, ContextType, Partial<TQuery_RootUsersArgs>>;
   usersAggregate?: Resolver<TResolversTypes['users_aggregate'], ParentType, ContextType, Partial<TQuery_RootUsersAggregateArgs>>;
+  v_comments?: Resolver<Array<TResolversTypes['v_comments']>, ParentType, ContextType, Partial<TQuery_RootV_CommentsArgs>>;
+  v_comments_aggregate?: Resolver<TResolversTypes['v_comments_aggregate'], ParentType, ContextType, Partial<TQuery_RootV_Comments_AggregateArgs>>;
 };
 
 export type TReportResolvers<ContextType = any, ParentType extends TResolversParentTypes['report'] = TResolversParentTypes['report']> = {
@@ -9060,6 +9373,8 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   user_profile_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_profile']>, "user_profile_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Profile_By_PkArgs, 'id'>>;
   users?: SubscriptionResolver<Array<TResolversTypes['users']>, "users", ParentType, ContextType, Partial<TSubscription_RootUsersArgs>>;
   usersAggregate?: SubscriptionResolver<TResolversTypes['users_aggregate'], "usersAggregate", ParentType, ContextType, Partial<TSubscription_RootUsersAggregateArgs>>;
+  v_comments?: SubscriptionResolver<Array<TResolversTypes['v_comments']>, "v_comments", ParentType, ContextType, Partial<TSubscription_RootV_CommentsArgs>>;
+  v_comments_aggregate?: SubscriptionResolver<TResolversTypes['v_comments_aggregate'], "v_comments_aggregate", ParentType, ContextType, Partial<TSubscription_RootV_Comments_AggregateArgs>>;
 };
 
 export interface TTimestamptzScalarConfig extends GraphQLScalarTypeConfig<TResolversTypes['timestamptz'], any> {
@@ -9335,6 +9650,111 @@ export interface TUuidScalarConfig extends GraphQLScalarTypeConfig<TResolversTyp
   name: 'uuid';
 }
 
+export type TV_CommentsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments'] = TResolversParentTypes['v_comments']> = {
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  idea?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType>;
+  ideaId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  isBoost?: Resolver<Maybe<TResolversTypes['Boolean']>, ParentType, ContextType>;
+  replies?: Resolver<Array<TResolversTypes['idea_comment_replies']>, ParentType, ContextType, Partial<TV_CommentsRepliesArgs>>;
+  replies_aggregate?: Resolver<TResolversTypes['idea_comment_replies_aggregate'], ParentType, ContextType, Partial<TV_CommentsReplies_AggregateArgs>>;
+  status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  targetUserId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  totalReplies?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  value?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_aggregate'] = TResolversParentTypes['v_comments_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['v_comments_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['v_comments']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_aggregate_fields'] = TResolversParentTypes['v_comments_aggregate_fields']> = {
+  avg?: Resolver<Maybe<TResolversTypes['v_comments_avg_fields']>, ParentType, ContextType>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TV_Comments_Aggregate_FieldsCountArgs>>;
+  max?: Resolver<Maybe<TResolversTypes['v_comments_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['v_comments_min_fields']>, ParentType, ContextType>;
+  stddev?: Resolver<Maybe<TResolversTypes['v_comments_stddev_fields']>, ParentType, ContextType>;
+  stddev_pop?: Resolver<Maybe<TResolversTypes['v_comments_stddev_pop_fields']>, ParentType, ContextType>;
+  stddev_samp?: Resolver<Maybe<TResolversTypes['v_comments_stddev_samp_fields']>, ParentType, ContextType>;
+  sum?: Resolver<Maybe<TResolversTypes['v_comments_sum_fields']>, ParentType, ContextType>;
+  var_pop?: Resolver<Maybe<TResolversTypes['v_comments_var_pop_fields']>, ParentType, ContextType>;
+  var_samp?: Resolver<Maybe<TResolversTypes['v_comments_var_samp_fields']>, ParentType, ContextType>;
+  variance?: Resolver<Maybe<TResolversTypes['v_comments_variance_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Avg_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_avg_fields'] = TResolversParentTypes['v_comments_avg_fields']> = {
+  totalReplies?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_max_fields'] = TResolversParentTypes['v_comments_max_fields']> = {
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  ideaId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  targetUserId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  totalReplies?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  value?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_min_fields'] = TResolversParentTypes['v_comments_min_fields']> = {
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  ideaId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  status?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  targetUserId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  totalReplies?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  value?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Stddev_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_stddev_fields'] = TResolversParentTypes['v_comments_stddev_fields']> = {
+  totalReplies?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Stddev_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_stddev_pop_fields'] = TResolversParentTypes['v_comments_stddev_pop_fields']> = {
+  totalReplies?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Stddev_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_stddev_samp_fields'] = TResolversParentTypes['v_comments_stddev_samp_fields']> = {
+  totalReplies?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Sum_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_sum_fields'] = TResolversParentTypes['v_comments_sum_fields']> = {
+  totalReplies?: Resolver<Maybe<TResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Var_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_var_pop_fields'] = TResolversParentTypes['v_comments_var_pop_fields']> = {
+  totalReplies?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Var_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_var_samp_fields'] = TResolversParentTypes['v_comments_var_samp_fields']> = {
+  totalReplies?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TV_Comments_Variance_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['v_comments_variance_fields'] = TResolversParentTypes['v_comments_variance_fields']> = {
+  totalReplies?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TResolvers<ContextType = any> = {
   activity?: TActivityResolvers<ContextType>;
   activity_aggregate?: TActivity_AggregateResolvers<ContextType>;
@@ -9458,6 +9878,19 @@ export type TResolvers<ContextType = any> = {
   users_min_fields?: TUsers_Min_FieldsResolvers<ContextType>;
   users_mutation_response?: TUsers_Mutation_ResponseResolvers<ContextType>;
   uuid?: GraphQLScalarType;
+  v_comments?: TV_CommentsResolvers<ContextType>;
+  v_comments_aggregate?: TV_Comments_AggregateResolvers<ContextType>;
+  v_comments_aggregate_fields?: TV_Comments_Aggregate_FieldsResolvers<ContextType>;
+  v_comments_avg_fields?: TV_Comments_Avg_FieldsResolvers<ContextType>;
+  v_comments_max_fields?: TV_Comments_Max_FieldsResolvers<ContextType>;
+  v_comments_min_fields?: TV_Comments_Min_FieldsResolvers<ContextType>;
+  v_comments_stddev_fields?: TV_Comments_Stddev_FieldsResolvers<ContextType>;
+  v_comments_stddev_pop_fields?: TV_Comments_Stddev_Pop_FieldsResolvers<ContextType>;
+  v_comments_stddev_samp_fields?: TV_Comments_Stddev_Samp_FieldsResolvers<ContextType>;
+  v_comments_sum_fields?: TV_Comments_Sum_FieldsResolvers<ContextType>;
+  v_comments_var_pop_fields?: TV_Comments_Var_Pop_FieldsResolvers<ContextType>;
+  v_comments_var_samp_fields?: TV_Comments_Var_Samp_FieldsResolvers<ContextType>;
+  v_comments_variance_fields?: TV_Comments_Variance_FieldsResolvers<ContextType>;
 };
 
 export type TDirectiveResolvers<ContextType = any> = {

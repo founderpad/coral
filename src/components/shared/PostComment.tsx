@@ -29,12 +29,18 @@ const PostComment = () => {
 			ideaId: idea?.id
 		},
 		update(cache, mutationResult) {
+			console.log('cache 1: ', cache);
 			cache.modify({
 				fields: {
-					idea_comments: (previous, { toReference }) => {
+					v_comments: (previous, { toReference }) => {
+						console.log('previous: ', previous);
+						console.log('mutationResult: ', mutationResult);
+
 						return [
 							...previous,
-							toReference(mutationResult.data?.addIdeaComment!)
+							toReference(
+								mutationResult.data?.addIdeaComment?.ideaId
+							)
 						];
 					}
 					// users
@@ -60,6 +66,7 @@ const PostComment = () => {
 		// 		}
 		// 	});
 		// },
+
 		refetchQueries: [
 			{
 				query: CommentsForIdeaDocument,

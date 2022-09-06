@@ -2,6 +2,7 @@ import { CaptionLabel, Label } from '@/components/labels';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { PointSeparator, UserAvatar } from '@/components/shared';
 import BaseTag from '@/components/tags/BaseTag';
+import { TCommentFieldsFragment } from '@/generated/api';
 import { useQueryParam } from '@/hooks/util';
 import useIdea from '@/pages/ideas/idea/query/ideaQuery';
 import { formatDate } from '@/utils/validators';
@@ -19,7 +20,7 @@ const ChatContainer = ({
 }) => (
 	<StackLayout
 		p={2}
-		bg="fpLightGrey.500"
+		bg="fpLightGrey.300"
 		spacing={0}
 		style={{
 			borderRadius: '0 10px 10px'
@@ -53,12 +54,11 @@ export const CommentLayout = ({
 	actions = true
 }: {
 	children?: React.ReactNode;
-	comment: any;
+	comment: TCommentFieldsFragment | any;
 	actions?: boolean;
 	divider?: boolean;
 }) => {
-	const { user, updatedAt, value } = comment ?? {};
-	const { displayName } = user ?? '';
+	const { user, updatedAt, value, status } = comment ?? {};
 	const anchoredId = useQueryParam<string>('d');
 	const { idea } = useIdea() ?? {};
 
@@ -86,7 +86,7 @@ export const CommentLayout = ({
 				bg={backgroundColor}
 				borderLeftWidth={actions ? 4 : 3}
 			>
-				<UserAvatar size="sm" src={comment.user?.avatarUrl} />
+				<UserAvatar size="sm" src={comment.user?.avatarUrl ?? ''} />
 				<StackLayout spacing={0} w={{ base: 'full' }}>
 					<ChatContainer isBoost={comment.isBoost}>
 						<FlexLayout
@@ -104,7 +104,7 @@ export const CommentLayout = ({
 									// isTruncated
 									flex={1}
 								>
-									{displayName}
+									{user?.displayName}
 								</Label>
 								{isAuthor && (
 									<BaseTag
@@ -124,9 +124,13 @@ export const CommentLayout = ({
 							</FlexLayout>
 						</FlexLayout>
 						<Label
-							color="fpGrey.500"
+							color={
+								status === 'APPROVED' ? 'fpGrey.500' : 'initial'
+							}
 							fontSize="small"
-							fontWeight="normal"
+							fontWeight={
+								status === 'PENDING' ? 'bold' : 'initial'
+							}
 							pt={1}
 						>
 							{value}
