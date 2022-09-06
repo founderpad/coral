@@ -37,13 +37,14 @@ mutation PostReply(
 	}
 }
 
-fragment CommentFields on idea_comments {
+fragment CommentFields on v_comments {
 	id
 	updatedAt
 	value
 	ideaId
 	totalReplies
 	isBoost
+	status
 	user {
 		...UserFields
 	}
@@ -59,22 +60,38 @@ fragment CommentFields on idea_comments {
 }
 
 query CommentsForIdea($ideaId: uuid!, $offset: Int) {
-	comments: idea_comments(
+	comments: v_comments(
 		where: { ideaId: { _eq: $ideaId } }
-		order_by: { updatedAt: desc, isBoost: desc }
+		order_by: { updatedAt: desc }
 		offset: $offset
 		limit: 8
 	) {
 		...CommentFields
 	}
-	totalComments: idea_comments_aggregate(
-		where: { ideaId: { _eq: $ideaId } }
-	) {
+	totalComments: v_comments_aggregate(where: { ideaId: { _eq: $ideaId } }) {
 		aggregate {
 			count(columns: id)
 		}
 	}
 }
+
+# query CommentsForIdea($ideaId: uuid!, $offset: Int) {
+# 	comments: idea_comments(
+# 		where: { ideaId: { _eq: $ideaId } }
+# 		order_by: { updatedAt: desc, isBoost: desc }
+# 		offset: $offset
+# 		limit: 8
+# 	) {
+# 		...CommentFields
+# 	}
+# 	totalComments: idea_comments_aggregate(
+# 		where: { ideaId: { _eq: $ideaId } }
+# 	) {
+# 		aggregate {
+# 			count(columns: id)
+# 		}
+# 	}
+# }
 
 # query CommentsForIdea($first: Int!, $after: String!, $ideaId: uuid!) {
 # 	idea_comments_connection(

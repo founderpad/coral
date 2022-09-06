@@ -10,7 +10,8 @@ export const CommentActions = ({
 	showReply: boolean;
 	comment: any;
 }) => {
-	const { id } = comment;
+	const { id, status } = comment;
+	const isApproved = status == 'APPROVED';
 
 	return (
 		<StackLayout
@@ -33,13 +34,13 @@ export const CommentActions = ({
 					color="gray.400"
 				/>
 			</BaseButton> */}
-			{showReply && (
+			{showReply && isApproved && (
 				<PostReplyComment
 					commentId={id}
 					commentUserId={comment.user.id}
 				/>
 			)}
-			<CommentMenu {...comment} />
+			{isApproved && <CommentMenu {...comment} />}
 		</StackLayout>
 	);
 };

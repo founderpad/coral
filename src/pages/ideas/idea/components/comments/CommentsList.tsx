@@ -33,7 +33,7 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 						comment={reply}
 					/>
 				))}
-			{comment.totalReplies > 2 && (
+			{comment.totalReplies! > 2 && (
 				<React.Fragment>
 					<Collapse in={isOpen}>
 						<RepliesList commentId={comment?.id} />
@@ -108,7 +108,7 @@ export const MobileComments = () => {
 
 export const MobileCommentsList = () => {
 	const { openModalDrawer } = useModalDrawer();
-	const { totalComments } = useIdeaFragment() ?? 0;
+	const { totalComments = 0 } = useIdeaFragment();
 
 	const onShowCommentsMobile = () => {
 		openModalDrawer({

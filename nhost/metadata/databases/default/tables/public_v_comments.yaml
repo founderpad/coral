@@ -1,5 +1,5 @@
 table:
-  name: idea_comments
+  name: v_comments
   schema: public
 configuration:
   custom_column_names:
@@ -40,20 +40,6 @@ array_relationships:
       remote_table:
         name: idea_comment_replies
         schema: public
-insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      user_id:
-        _eq: X-Hasura-User-Id
-    columns:
-    - idea_id
-    - is_boost
-    - target_user_id
-    - value
-    set:
-      user_id: x-hasura-User-Id
-  role: user
 select_permissions:
 - permission:
     allow_aggregations: true
@@ -70,42 +56,3 @@ select_permissions:
     - value
     filter: {}
   role: user
-update_permissions:
-- permission:
-    check: null
-    columns:
-    - total_replies
-    - value
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-    set:
-      user_id: x-hasura-User-Id
-  role: user
-delete_permissions:
-- permission:
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-  role: user
-event_triggers:
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: add-esteem-points-for-comment
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points/add/comments"
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: send-push-new-comment
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/notifications/send-push-new-comment"

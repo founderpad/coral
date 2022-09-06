@@ -184,7 +184,7 @@ const cache = new InMemoryCache({
 				// 	// offsetLimitPagination()
 				// }
 
-				idea_comments: offsetLimitPagination()
+				v_comments: offsetLimitPagination()
 				// idea_comments: {
 				// 	...offsetLimitPagination(),
 				// 	merge(existing = [], incoming) {
