@@ -5,6 +5,7 @@ import { CaptionLabel, Label } from '@/components/labels';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
 import {
+	CommentsForIdeaDocument,
 	TIdeaQuery,
 	TIdea_Comments_Set_Input,
 	usePostCommentMutation
@@ -34,7 +35,15 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 			},
 			onCompleted: (_data) => {
 				closeModalDrawer();
-			}
+			},
+			refetchQueries: [
+				{
+					query: CommentsForIdeaDocument,
+					variables: {
+						ideaId: data.idea?.id
+					}
+				}
+			]
 		});
 	};
 

@@ -101,6 +101,16 @@ event_triggers:
   webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points/add/comments"
 - definition:
     enable_manual: false
+    update:
+      columns: "*"
+  name: approve-boost-comment
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/boost/approve-boost-comment"
+- definition:
+    enable_manual: false
     insert:
       columns: "*"
   name: send-push-new-comment

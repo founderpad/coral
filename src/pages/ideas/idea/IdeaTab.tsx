@@ -49,7 +49,6 @@ const IdeaTab = () => {
 				)}
 				<IdeaUserActions />
 				<IdeaTitleHeader />
-
 				<BoostEarnButton {...data} />
 				<InterestedIdea />
 				<AppDivider />

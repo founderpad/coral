@@ -41,7 +41,7 @@ const ChatContainer = ({
 				color="white"
 			>
 				<TagLeftIcon as={AiTwotoneThunderbolt} mr={1} />
-				Boost
+				Boosted
 			</BaseTag>
 		)}
 		{children}
