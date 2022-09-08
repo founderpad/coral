@@ -25,7 +25,7 @@ const ChatContainer = ({
 		style={{
 			borderRadius: '0 10px 10px'
 		}}
-		borderWidth={2}
+		borderWidth={3}
 		borderColor={isBoost ? 'purple.500' : 'transparent'}
 		position="relative"
 	>
@@ -41,7 +41,7 @@ const ChatContainer = ({
 				color="white"
 			>
 				<TagLeftIcon as={AiTwotoneThunderbolt} mr={1} />
-				Boost
+				Boosted
 			</BaseTag>
 		)}
 		{children}
