@@ -72,6 +72,7 @@ const authSlice = createSlice({
 				state.user = {
 					...state.user,
 					esteemPointsCurrency: {
+						userId: state.user.esteemPointsCurrency?.userId,
 						points: currentPoints + action.payload,
 						currency: state.user.esteemPointsCurrency?.currency
 					}

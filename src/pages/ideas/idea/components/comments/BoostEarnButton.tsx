@@ -12,7 +12,13 @@ import {
 } from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
-import { Icon } from '@chakra-ui/react';
+import {
+	Alert,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+	Icon
+} from '@chakra-ui/react';
 import React from 'react';
 import { AiTwotoneThunderbolt } from 'react-icons/ai';
 import IdeaBoostProgress from '../IdeaBoostProgress';
@@ -21,6 +27,9 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 	const { openModalDrawer, closeModalDrawer } = useModalDrawer();
 	const userId = useAuth().getUser()?.id;
 	const [postCommentMutation] = usePostCommentMutation();
+
+	const { hasBoostedFeedback = [] } = data;
+	const isBoostedFeedback = hasBoostedFeedback?.length > 0;
 
 	const onPostBoostedFeedback = (comment: TIdea_Comments_Set_Input) => {
 		postCommentMutation({
@@ -57,6 +66,7 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 						Boost this idea by providing helpful feedback and
 						opinions, and stand to earn $0.05 from your contribution
 						if your feedback is approved. <br />
+						<br /> You will not be able to change this later.
 						<br />
 					</Label>
 					<BaseForm<TIdea_Comments_Set_Input>
@@ -118,14 +128,11 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 						}
 						createdAt={data.idea?.boosted_idea?.createdAt}
 					/>
+					<AppDivider orientation="vertical" />
 
-					{data.idea?.userId === userId && (
-						<React.Fragment>
-							<AppDivider orientation="vertical" />
-							<FlexLayout
-								flexDirection="column"
-								justifyContent="space-between"
-							>
+					<FlexLayout flexDirection="column" justifyContent="center">
+						{data.idea?.userId === userId && (
+							<>
 								<BaseButton
 									name="boost-comment"
 									colorScheme="purple"
@@ -140,13 +147,43 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 										earn $0.05
 									</CaptionLabel>
 								</BaseButton>
-								<CaptionLabel mt={2}>
+								<CaptionLabel mt={4}>
 									All comments must be approved before they
 									are accepted and you can earn money.
 								</CaptionLabel>
-							</FlexLayout>
-						</React.Fragment>
-					)}
+							</>
+						)}
+
+						{isBoostedFeedback && (
+							<Alert
+								status={
+									hasBoostedFeedback[0].status === 'APPROVED'
+										? 'success'
+										: 'info'
+								}
+								variant="subtle"
+								flexDirection="column"
+								alignItems="center"
+								justifyContent="center"
+								textAlign="center"
+								px={4}
+								h="full"
+								rounded="md"
+							>
+								<AlertIcon mr={0} />
+								<AlertTitle mt={4} fontSize="sm">
+									{hasBoostedFeedback[0].status === 'APPROVED'
+										? 'Your boosted feedback was approved'
+										: 'Your boosted feedback is pending approval'}
+								</AlertTitle>
+								<AlertDescription fontSize="xs">
+									{hasBoostedFeedback[0].status ===
+										'APPROVED' &&
+										'You have earned $0.05 from this idea.'}
+								</AlertDescription>
+							</Alert>
+						)}
+					</FlexLayout>
 				</StackLayout>
 			</React.Fragment>
 		);

@@ -10,5 +10,6 @@ select_permissions:
     columns:
     - currency
     - points
+    - user_id
     filter: {}
   role: user

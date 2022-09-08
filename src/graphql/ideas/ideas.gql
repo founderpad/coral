@@ -183,6 +183,17 @@ query Idea($id: uuid!, $userId: uuid!) {
 	hasInterest: interested_ideas_by_pk(ideaId: $id, userId: $userId) {
 		...InterestedIdeaFields
 	}
+	hasBoostedFeedback: idea_comments(
+		where: {
+			ideaId: { _eq: $id }
+			_and: { userId: { _eq: $userId }, _and: { isBoost: { _eq: true } } }
+			_or: [{ status: { _eq: APPROVED } }, { status: { _eq: PENDING } }]
+		}
+	) {
+		id
+		value
+		status
+	}
 }
 
 fragment InterestedIdeaFields on interested_ideas {
