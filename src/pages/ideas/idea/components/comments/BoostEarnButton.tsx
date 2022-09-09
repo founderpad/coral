@@ -19,7 +19,7 @@ import {
 	AlertTitle,
 	Icon
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { AiTwotoneThunderbolt } from 'react-icons/ai';
 import IdeaBoostProgress from '../IdeaBoostProgress';
 
@@ -27,9 +27,10 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 	const { openModalDrawer, closeModalDrawer } = useModalDrawer();
 	const userId = useAuth().getUser()?.id;
 	const [postCommentMutation] = usePostCommentMutation();
+	const [isPostedFeedback, setPostedFeedback] = useState(false);
 
-	const { hasBoostedFeedback = [] } = data;
-	const isBoostedFeedback = hasBoostedFeedback?.length > 0;
+	const isPendingBoostedFeedback =
+		isPostedFeedback || data.hasBoostedFeedback?.[0]?.status === 'PENDING';
 
 	const onPostBoostedFeedback = (comment: TIdea_Comments_Set_Input) => {
 		postCommentMutation({
@@ -44,6 +45,7 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 			},
 			onCompleted: (_data) => {
 				closeModalDrawer();
+				setPostedFeedback(true);
 			},
 			refetchQueries: [
 				{
@@ -131,7 +133,7 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 					<AppDivider orientation="vertical" />
 
 					<FlexLayout flexDirection="column" justifyContent="center">
-						{data.idea?.userId === userId && (
+						{data.idea?.userId !== userId && !isPostedFeedback && (
 							<>
 								<BaseButton
 									name="boost-comment"
@@ -154,12 +156,13 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 							</>
 						)}
 
-						{isBoostedFeedback && (
+						{(!!data?.hasBoostedFeedback?.[0] ||
+							isPostedFeedback) && (
 							<Alert
 								status={
-									hasBoostedFeedback[0].status === 'APPROVED'
-										? 'success'
-										: 'info'
+									isPendingBoostedFeedback
+										? 'info'
+										: 'success'
 								}
 								variant="subtle"
 								flexDirection="column"
@@ -172,12 +175,12 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 							>
 								<AlertIcon mr={0} />
 								<AlertTitle mt={4} fontSize="sm">
-									{hasBoostedFeedback[0].status === 'APPROVED'
-										? 'Your boosted feedback was approved'
-										: 'Your boosted feedback is pending approval'}
+									{isPendingBoostedFeedback
+										? 'Your boosted feedback is pending approval'
+										: 'Your boosted feedback was approved'}
 								</AlertTitle>
 								<AlertDescription fontSize="xs">
-									{hasBoostedFeedback[0].status ===
+									{data.hasBoostedFeedback?.[0]?.status ===
 										'APPROVED' &&
 										'You have earned $0.05 from this idea.'}
 								</AlertDescription>
