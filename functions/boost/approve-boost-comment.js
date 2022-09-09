@@ -6,7 +6,7 @@ const ADD_CURRENCY = gql`
 	mutation ($userId: uuid!) {
 		update_user_esteem_points_currency_by_pk(
 			pk_columns: { userId: $userId }
-			_inc: { currency: "0.05" }
+			_inc: { currency: "0.4" }
 		) {
 			userId
 			currency
@@ -18,7 +18,7 @@ const UPDATE_CURRENCY_FOR_BOOSTED_IDEA = gql`
 	mutation ($ideaId: uuid!) {
 		update_boosted_ideas_by_pk(
 			pk_columns: { ideaId: $ideaId }
-			_inc: { remainingCurrencyAmount: "-0.05" }
+			_inc: { remainingCurrencyAmount: "-0.4" }
 		) {
 			id
 			remainingCurrencyAmount
@@ -45,8 +45,8 @@ export default async (req, res) => {
 	const targetUserId = req.body.event.data.new.target_user_id;
 
 	if (!userId) throw 'No user id found';
-	if (userId == targetUserId)
-		throw 'You can not post boosted feedback to your own idea.';
+	// if (userId == targetUserId)
+	// 	throw 'You can not post boosted feedback to your own idea.';
 
 	if (isBoost && newStatus === 'APPROVED' && oldStatus === 'PENDING') {
 		try {

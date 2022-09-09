@@ -11,7 +11,9 @@ const IdeaBoostProgress = ({
 	remainingCurrencyAmount: string;
 	createdAt: string;
 }) => {
-	// const earned = 10 - parseFloat(remainingCurrencyAmount.substring(1));
+	const earned = (
+		10 - parseFloat(remainingCurrencyAmount.substring(1))
+	).toFixed(2);
 
 	return (
 		<StackLayout direction="row">
@@ -24,7 +26,7 @@ const IdeaBoostProgress = ({
 			<Stat>
 				<StatLabel fontSize="xs">Earned by users</StatLabel>
 				<StatNumber fontSize="md" py={1}>
-					{remainingCurrencyAmount} / $10.00
+					${earned} / $10.00
 				</StatNumber>
 				<StatHelpText fontSize="x-small" color="fpGrey.400">
 					{formatDate(createdAt, false, false, false)} -{' '}

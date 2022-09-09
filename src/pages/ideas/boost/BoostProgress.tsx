@@ -27,6 +27,8 @@ const BoostProgress = ({
 						: 'purple.500'
 				}
 			>
+				{/* {percentageBoosted(remainingCurrencyAmount)}% */}
+				{/* {Math.floor(100 - percentageBoosted(remainingCurrencyAmount))}% */}
 				{percentageBoosted(remainingCurrencyAmount)}%
 			</CircularProgressLabel>
 		</CircularProgress>
