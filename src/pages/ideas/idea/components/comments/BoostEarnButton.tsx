@@ -60,13 +60,13 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 
 	const onBoostEarnClick = () => {
 		openModalDrawer({
-			title: 'Boost feedback for $0.10',
+			title: 'Boost feedback for $0.40',
 			showCancel: false,
 			body: (
 				<React.Fragment>
 					<Label fontSize="xs">
 						Boost this idea by providing helpful feedback and
-						opinions, and stand to earn $0.10 from your contribution
+						opinions, and stand to earn $0.40 from your contribution
 						if your feedback is approved. <br />
 						<br /> You will not be able to change this later.
 						<br />
@@ -146,7 +146,7 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 								>
 									Boost
 									<CaptionLabel color="white" mt={1}>
-										earn $0.10
+										earn $0.40
 									</CaptionLabel>
 								</BaseButton>
 								<CaptionLabel mt={4}>
@@ -182,7 +182,7 @@ const BoostEarnButton = (data: TIdeaQuery) => {
 								<AlertDescription fontSize="xs">
 									{data.hasBoostedFeedback?.[0]?.status ===
 										'APPROVED' &&
-										'You have earned $0.10 from this idea.'}
+										'You have earned $0.40 from this idea.'}
 								</AlertDescription>
 							</Alert>
 						)}
