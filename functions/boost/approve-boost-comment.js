@@ -6,7 +6,7 @@ const ADD_CURRENCY = gql`
 	mutation ($userId: uuid!) {
 		update_user_esteem_points_currency_by_pk(
 			pk_columns: { userId: $userId }
-			_inc: { currency: "0.05" }
+			_inc: { currency: "0.1" }
 		) {
 			userId
 			currency
@@ -18,7 +18,7 @@ const UPDATE_CURRENCY_FOR_BOOSTED_IDEA = gql`
 	mutation ($ideaId: uuid!) {
 		update_boosted_ideas_by_pk(
 			pk_columns: { ideaId: $ideaId }
-			_inc: { remainingCurrencyAmount: "-0.05" }
+			_inc: { remainingCurrencyAmount: "-0.1" }
 		) {
 			id
 			remainingCurrencyAmount

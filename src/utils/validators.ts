@@ -134,7 +134,7 @@ export const percentageBoosted = (remainingCurrencyAmount: string) => {
 		) /
 			10) *
 		100
-	).toFixed(1);
+	).toFixed(2);
 
 	return Math.floor(100 - parseFloat(percentage));
 };
