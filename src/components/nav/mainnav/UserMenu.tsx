@@ -18,15 +18,43 @@ import { FlexLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
 import LogoutModal from '@/components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from '@/components/shared';
-import { useCurrentUser } from '@/hooks/auth';
+import { useAuth, useCurrentUser } from '@/hooks/auth';
 import React from 'react';
 import { BiMoney } from 'react-icons/bi';
 import { CaptionLabel } from '@/components/labels/Label';
+import { useUserCurrencySubscription } from '@/generated/api';
+import { useModalDrawer } from '@/hooks/util';
+import PayPalPayoutsForm from '../components/PayPalPayoutsForm';
 
 const UserMenu = () => {
 	const avatarUrl = useCurrentUser().avatarUrl;
-	const esteemPoints = useCurrentUser().esteemPointsCurrency?.points;
-	const currency: string = useCurrentUser().esteemPointsCurrency?.currency;
+	const userId = useAuth().getUser()?.id;
+	const result = useUserCurrencySubscription({
+		variables: {
+			userId
+		}
+	});
+
+	const { openModalDrawer } = useModalDrawer();
+
+	const isWithdraw =
+		parseFloat(result.data?.currencyPoints?.currency.substring(1)) >= 10;
+
+	const onWithdrawClick = () => {
+		openModalDrawer({
+			title: `Withdraw ${result.data?.currencyPoints?.currency}`,
+			body: (
+				<PayPalPayoutsForm
+					amount={parseFloat(
+						result.data?.currencyPoints?.currency.substring(1)
+					)}
+					// userId={userId!}
+				/>
+			),
+			contentHeight: '99.1%',
+			showFooter: false
+		});
+	};
 
 	return (
 		<Menu>
@@ -80,7 +108,7 @@ const UserMenu = () => {
 								textAlign="center"
 								color="yellow.500"
 							>
-								{esteemPoints}
+								{result.data?.currencyPoints?.points}
 							</Label>
 						</FlexLayout>
 					</FlexLayout>
@@ -98,21 +126,22 @@ const UserMenu = () => {
 								textAlign="center"
 								color="green.500"
 							>
-								{currency}
+								{result.data?.currencyPoints?.currency}
 							</Label>
 						</FlexLayout>
 						<Button
 							size="xs"
 							colorScheme="green"
 							fontSize="x-small"
-							disabled={parseFloat(currency.substring(1)) < 10}
+							disabled={!isWithdraw}
+							onClick={isWithdraw ? onWithdrawClick : undefined}
 						>
 							Withdraw
 						</Button>
 					</FlexLayout>
 					<CaptionLabel>
-						A minimimum of $10.00 must be earned before you can
-						withdraw
+						A minimum of $10.00 must be earned before you can
+						withdraw.
 					</CaptionLabel>
 				</FlexLayout>
 

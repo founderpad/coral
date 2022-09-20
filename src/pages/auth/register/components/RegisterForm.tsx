@@ -10,6 +10,7 @@ import { SubmitButton } from '@/components/buttons';
 import { AlertFeedback } from '@/components/alert';
 import { useQueryParam } from '@/hooks/util';
 import SocialLogins from '@/components/shared/SocialLogins';
+import { Alert } from '@chakra-ui/react';
 
 const RegisterForm = () => {
 	const onRegister = useRegister();
@@ -154,6 +155,11 @@ const RegisterForm = () => {
 				)}
 			</BaseForm>
 			<SocialLogins />
+
+			<Alert fontSize="xs" status="warning" p={2}>
+				Your email address must be the same as your PayPal account in
+				order to withdraw funds.
+			</Alert>
 			<LegalFooter />
 		</React.Fragment>
 	);

@@ -224,3 +224,10 @@ mutation UpdateUserAvatar($id: uuid!, $userDetails: users_set_input!) {
 		avatarUrl
 	}
 }
+
+subscription UserCurrency($userId: uuid!) {
+	currencyPoints: user_esteem_points_currency_by_pk(userId: $userId) {
+		currency
+		points
+	}
+}
