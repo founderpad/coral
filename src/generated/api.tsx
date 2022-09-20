@@ -6108,6 +6108,13 @@ export type TUpdateUserAvatarMutationVariables = Exact<{
 
 export type TUpdateUserAvatarMutation = { user?: { __typename?: 'users', avatarUrl?: string | null } | null };
 
+export type TUserCurrencySubscriptionVariables = Exact<{
+  userId: Scalars['uuid'];
+}>;
+
+
+export type TUserCurrencySubscription = { currencyPoints?: { __typename?: 'user_esteem_points_currency', currency: any, points: number } | null };
+
 export const UserAddressFragmentDoc = gql`
     fragment UserAddress on user_address {
   location
@@ -7707,6 +7714,37 @@ export function useUpdateUserAvatarMutation(baseOptions?: ApolloReactHooks.Mutat
 export type UpdateUserAvatarMutationHookResult = ReturnType<typeof useUpdateUserAvatarMutation>;
 export type UpdateUserAvatarMutationResult = Apollo.MutationResult<TUpdateUserAvatarMutation>;
 export type UpdateUserAvatarMutationOptions = Apollo.BaseMutationOptions<TUpdateUserAvatarMutation, TUpdateUserAvatarMutationVariables>;
+export const UserCurrencyDocument = gql`
+    subscription UserCurrency($userId: uuid!) {
+  currencyPoints: user_esteem_points_currency_by_pk(userId: $userId) {
+    currency
+    points
+  }
+}
+    `;
+
+/**
+ * __useUserCurrencySubscription__
+ *
+ * To run a query within a React component, call `useUserCurrencySubscription` and pass it any options that fit your needs.
+ * When your component renders, `useUserCurrencySubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserCurrencySubscription({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useUserCurrencySubscription(baseOptions: ApolloReactHooks.SubscriptionHookOptions<TUserCurrencySubscription, TUserCurrencySubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useSubscription<TUserCurrencySubscription, TUserCurrencySubscriptionVariables>(UserCurrencyDocument, options);
+      }
+export type UserCurrencySubscriptionHookResult = ReturnType<typeof useUserCurrencySubscription>;
+export type UserCurrencySubscriptionResult = Apollo.SubscriptionResult<TUserCurrencySubscription>;
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
