@@ -1,6 +1,8 @@
 import { PrimaryButton } from '@/components/buttons';
 import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
+import { useNewWithdrawalRequestMutation } from '@/generated/api';
+import { useAuth } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
 import { Checkbox } from '@chakra-ui/react';
 
@@ -9,10 +11,21 @@ import React, { useCallback, useState } from 'react';
 const PayPalPayoutsForm = ({ amount }: { amount: number }) => {
 	const [isChecked, setChecked] = useState(false);
 	const { closeModalDrawer } = useModalDrawer();
+	const email = useAuth().getUser()?.email;
 
 	const onToggleChange = useCallback(() => {
 		setChecked(!isChecked);
 	}, [isChecked]);
+
+	const [newWithdrawalRequest] = useNewWithdrawalRequestMutation({
+		variables: {
+			amount,
+			email
+		},
+		onCompleted: () => {
+			closeModalDrawer();
+		}
+	});
 
 	return (
 		<StackLayout>
@@ -45,9 +58,9 @@ const PayPalPayoutsForm = ({ amount }: { amount: number }) => {
 			<PrimaryButton
 				name="withdraw-funds"
 				disabled={!isChecked}
-				onClick={closeModalDrawer}
+				onClick={() => newWithdrawalRequest()}
 			>
-				Withdraw ${amount}
+				Request withdrawal of ${amount}
 			</PrimaryButton>
 		</StackLayout>
 	);

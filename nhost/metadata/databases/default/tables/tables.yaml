@@ -25,5 +25,6 @@
 - "!include public_user_notifications.yaml"
 - "!include public_user_profile.yaml"
 - "!include public_v_comments.yaml"
+- "!include public_withdrawal_requests.yaml"
 - "!include storage_buckets.yaml"
 - "!include storage_files.yaml"

@@ -1,0 +1,51 @@
+table:
+  name: withdrawal_requests
+  schema: public
+object_relationships:
+- name: user
+  using:
+    manual_configuration:
+      column_mapping:
+        user_id: id
+      insertion_order: null
+      remote_table:
+        name: users
+        schema: auth
+insert_permissions:
+- permission:
+    backend_only: false
+    check:
+      user_id:
+        _eq: X-Hasura-User-Id
+    columns:
+    - amount
+    - email
+    set:
+      user_id: x-hasura-User-Id
+  role: user
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - amount
+    - created_at
+    - email
+    - id
+    - status
+    - user_id
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+    limit: 1
+  role: user
+event_triggers:
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  name: withdrawal_request_email
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/paypal/withdrawal_request"
