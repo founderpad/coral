@@ -3001,6 +3001,10 @@ export type TMutation_Root = {
   insert_user_followers?: Maybe<TUser_Followers_Mutation_Response>;
   /** insert a single row into the table: "user_followers" */
   insert_user_followers_one?: Maybe<TUser_Followers>;
+  /** insert data into the table: "withdrawal_requests" */
+  insert_withdrawal_requests?: Maybe<TWithdrawal_Requests_Mutation_Response>;
+  /** insert a single row into the table: "withdrawal_requests" */
+  insert_withdrawal_requests_one?: Maybe<TWithdrawal_Requests>;
   /** update single row of the table: "auth.users" */
   updateUser?: Maybe<TUsers>;
   /** update data of the table: "auth.users" */
@@ -3302,6 +3306,18 @@ export type TMutation_RootInsert_User_Followers_OneArgs = {
 
 
 /** mutation root */
+export type TMutation_RootInsert_Withdrawal_RequestsArgs = {
+  objects: Array<TWithdrawal_Requests_Insert_Input>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Withdrawal_Requests_OneArgs = {
+  object: TWithdrawal_Requests_Insert_Input;
+};
+
+
+/** mutation root */
 export type TMutation_RootUpdateUserArgs = {
   _set?: InputMaybe<TUsers_Set_Input>;
   pk_columns: TUsers_Pk_Columns_Input;
@@ -3549,6 +3565,12 @@ export type TQuery_Root = {
   v_comments: Array<TV_Comments>;
   /** fetch aggregated fields from the table: "v_comments" */
   v_comments_aggregate: TV_Comments_Aggregate;
+  /** fetch data from the table: "withdrawal_requests" */
+  withdrawal_requests: Array<TWithdrawal_Requests>;
+  /** fetch aggregated fields from the table: "withdrawal_requests" */
+  withdrawal_requests_aggregate: TWithdrawal_Requests_Aggregate;
+  /** fetch data from the table: "withdrawal_requests" using primary key columns */
+  withdrawal_requests_by_pk?: Maybe<TWithdrawal_Requests>;
 };
 
 
@@ -3960,6 +3982,29 @@ export type TQuery_RootV_Comments_AggregateArgs = {
   where?: InputMaybe<TV_Comments_Bool_Exp>;
 };
 
+
+export type TQuery_RootWithdrawal_RequestsArgs = {
+  distinct_on?: InputMaybe<Array<TWithdrawal_Requests_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TWithdrawal_Requests_Order_By>>;
+  where?: InputMaybe<TWithdrawal_Requests_Bool_Exp>;
+};
+
+
+export type TQuery_RootWithdrawal_Requests_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TWithdrawal_Requests_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TWithdrawal_Requests_Order_By>>;
+  where?: InputMaybe<TWithdrawal_Requests_Bool_Exp>;
+};
+
+
+export type TQuery_RootWithdrawal_Requests_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
 /**
  * The report table for all users, ideas, comments and replies
  *
@@ -4118,6 +4163,12 @@ export type TSubscription_Root = {
   v_comments: Array<TV_Comments>;
   /** fetch aggregated fields from the table: "v_comments" */
   v_comments_aggregate: TV_Comments_Aggregate;
+  /** fetch data from the table: "withdrawal_requests" */
+  withdrawal_requests: Array<TWithdrawal_Requests>;
+  /** fetch aggregated fields from the table: "withdrawal_requests" */
+  withdrawal_requests_aggregate: TWithdrawal_Requests_Aggregate;
+  /** fetch data from the table: "withdrawal_requests" using primary key columns */
+  withdrawal_requests_by_pk?: Maybe<TWithdrawal_Requests>;
 };
 
 
@@ -4527,6 +4578,29 @@ export type TSubscription_RootV_Comments_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<TV_Comments_Order_By>>;
   where?: InputMaybe<TV_Comments_Bool_Exp>;
+};
+
+
+export type TSubscription_RootWithdrawal_RequestsArgs = {
+  distinct_on?: InputMaybe<Array<TWithdrawal_Requests_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TWithdrawal_Requests_Order_By>>;
+  where?: InputMaybe<TWithdrawal_Requests_Bool_Exp>;
+};
+
+
+export type TSubscription_RootWithdrawal_Requests_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TWithdrawal_Requests_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TWithdrawal_Requests_Order_By>>;
+  where?: InputMaybe<TWithdrawal_Requests_Bool_Exp>;
+};
+
+
+export type TSubscription_RootWithdrawal_Requests_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -5830,6 +5904,172 @@ export type TV_Comments_Variance_Fields = {
   totalReplies?: Maybe<Scalars['Float']>;
 };
 
+/** columns and relationships of "withdrawal_requests" */
+export type TWithdrawal_Requests = {
+  __typename?: 'withdrawal_requests';
+  amount: Scalars['money'];
+  created_at: Scalars['timestamptz'];
+  email?: Maybe<Scalars['citext']>;
+  id: Scalars['uuid'];
+  status: TComment_Status_Types_Enum;
+  /** An object relationship */
+  user?: Maybe<TUsers>;
+  user_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "withdrawal_requests" */
+export type TWithdrawal_Requests_Aggregate = {
+  __typename?: 'withdrawal_requests_aggregate';
+  aggregate?: Maybe<TWithdrawal_Requests_Aggregate_Fields>;
+  nodes: Array<TWithdrawal_Requests>;
+};
+
+/** aggregate fields of "withdrawal_requests" */
+export type TWithdrawal_Requests_Aggregate_Fields = {
+  __typename?: 'withdrawal_requests_aggregate_fields';
+  avg?: Maybe<TWithdrawal_Requests_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<TWithdrawal_Requests_Max_Fields>;
+  min?: Maybe<TWithdrawal_Requests_Min_Fields>;
+  stddev?: Maybe<TWithdrawal_Requests_Stddev_Fields>;
+  stddev_pop?: Maybe<TWithdrawal_Requests_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<TWithdrawal_Requests_Stddev_Samp_Fields>;
+  sum?: Maybe<TWithdrawal_Requests_Sum_Fields>;
+  var_pop?: Maybe<TWithdrawal_Requests_Var_Pop_Fields>;
+  var_samp?: Maybe<TWithdrawal_Requests_Var_Samp_Fields>;
+  variance?: Maybe<TWithdrawal_Requests_Variance_Fields>;
+};
+
+
+/** aggregate fields of "withdrawal_requests" */
+export type TWithdrawal_Requests_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TWithdrawal_Requests_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type TWithdrawal_Requests_Avg_Fields = {
+  __typename?: 'withdrawal_requests_avg_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "withdrawal_requests". All fields are combined with a logical 'AND'. */
+export type TWithdrawal_Requests_Bool_Exp = {
+  _and?: InputMaybe<Array<TWithdrawal_Requests_Bool_Exp>>;
+  _not?: InputMaybe<TWithdrawal_Requests_Bool_Exp>;
+  _or?: InputMaybe<Array<TWithdrawal_Requests_Bool_Exp>>;
+  amount?: InputMaybe<TMoney_Comparison_Exp>;
+  created_at?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  email?: InputMaybe<TCitext_Comparison_Exp>;
+  id?: InputMaybe<TUuid_Comparison_Exp>;
+  status?: InputMaybe<TComment_Status_Types_Enum_Comparison_Exp>;
+  user?: InputMaybe<TUsers_Bool_Exp>;
+  user_id?: InputMaybe<TUuid_Comparison_Exp>;
+};
+
+/** input type for inserting data into table "withdrawal_requests" */
+export type TWithdrawal_Requests_Insert_Input = {
+  amount?: InputMaybe<Scalars['money']>;
+  email?: InputMaybe<Scalars['citext']>;
+};
+
+/** aggregate max on columns */
+export type TWithdrawal_Requests_Max_Fields = {
+  __typename?: 'withdrawal_requests_max_fields';
+  amount?: Maybe<Scalars['money']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['citext']>;
+  id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type TWithdrawal_Requests_Min_Fields = {
+  __typename?: 'withdrawal_requests_min_fields';
+  amount?: Maybe<Scalars['money']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['citext']>;
+  id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "withdrawal_requests" */
+export type TWithdrawal_Requests_Mutation_Response = {
+  __typename?: 'withdrawal_requests_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<TWithdrawal_Requests>;
+};
+
+/** Ordering options when selecting data from "withdrawal_requests". */
+export type TWithdrawal_Requests_Order_By = {
+  amount?: InputMaybe<TOrder_By>;
+  created_at?: InputMaybe<TOrder_By>;
+  email?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  status?: InputMaybe<TOrder_By>;
+  user?: InputMaybe<TUsers_Order_By>;
+  user_id?: InputMaybe<TOrder_By>;
+};
+
+/** select columns of table "withdrawal_requests" */
+export type TWithdrawal_Requests_Select_Column =
+  /** column name */
+  | 'amount'
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'email'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'status'
+  /** column name */
+  | 'user_id';
+
+/** aggregate stddev on columns */
+export type TWithdrawal_Requests_Stddev_Fields = {
+  __typename?: 'withdrawal_requests_stddev_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type TWithdrawal_Requests_Stddev_Pop_Fields = {
+  __typename?: 'withdrawal_requests_stddev_pop_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type TWithdrawal_Requests_Stddev_Samp_Fields = {
+  __typename?: 'withdrawal_requests_stddev_samp_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type TWithdrawal_Requests_Sum_Fields = {
+  __typename?: 'withdrawal_requests_sum_fields';
+  amount?: Maybe<Scalars['money']>;
+};
+
+/** aggregate var_pop on columns */
+export type TWithdrawal_Requests_Var_Pop_Fields = {
+  __typename?: 'withdrawal_requests_var_pop_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type TWithdrawal_Requests_Var_Samp_Fields = {
+  __typename?: 'withdrawal_requests_var_samp_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type TWithdrawal_Requests_Variance_Fields = {
+  __typename?: 'withdrawal_requests_variance_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
 export type TUserActivityQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
@@ -6019,6 +6259,14 @@ export type TMessageListSubscriptionVariables = Exact<{
 
 
 export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', avatarUrl?: string | null, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }> };
+
+export type TNewWithdrawalRequestMutationVariables = Exact<{
+  amount: Scalars['money'];
+  email: Scalars['citext'];
+}>;
+
+
+export type TNewWithdrawalRequestMutation = { insert_withdrawal_requests_one?: { __typename?: 'withdrawal_requests', amount: any } | null };
 
 export type TCreateReportMutationVariables = Exact<{
   report: TReport_Insert_Input;
@@ -7211,6 +7459,40 @@ export function useMessageListSubscription(baseOptions: ApolloReactHooks.Subscri
       }
 export type MessageListSubscriptionHookResult = ReturnType<typeof useMessageListSubscription>;
 export type MessageListSubscriptionResult = Apollo.SubscriptionResult<TMessageListSubscription>;
+export const NewWithdrawalRequestDocument = gql`
+    mutation NewWithdrawalRequest($amount: money!, $email: citext!) {
+  insert_withdrawal_requests_one(object: {amount: $amount, email: $email}) {
+    amount
+  }
+}
+    `;
+export type TNewWithdrawalRequestMutationFn = Apollo.MutationFunction<TNewWithdrawalRequestMutation, TNewWithdrawalRequestMutationVariables>;
+
+/**
+ * __useNewWithdrawalRequestMutation__
+ *
+ * To run a mutation, you first call `useNewWithdrawalRequestMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useNewWithdrawalRequestMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [newWithdrawalRequestMutation, { data, loading, error }] = useNewWithdrawalRequestMutation({
+ *   variables: {
+ *      amount: // value for 'amount'
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useNewWithdrawalRequestMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TNewWithdrawalRequestMutation, TNewWithdrawalRequestMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<TNewWithdrawalRequestMutation, TNewWithdrawalRequestMutationVariables>(NewWithdrawalRequestDocument, options);
+      }
+export type NewWithdrawalRequestMutationHookResult = ReturnType<typeof useNewWithdrawalRequestMutation>;
+export type NewWithdrawalRequestMutationResult = Apollo.MutationResult<TNewWithdrawalRequestMutation>;
+export type NewWithdrawalRequestMutationOptions = Apollo.BaseMutationOptions<TNewWithdrawalRequestMutation, TNewWithdrawalRequestMutationVariables>;
 export const CreateReportDocument = gql`
     mutation CreateReport($report: report_insert_input!) {
   insert_report_one(object: $report) {
@@ -8140,6 +8422,24 @@ export type TResolversTypes = {
   v_comments_var_pop_fields: ResolverTypeWrapper<TV_Comments_Var_Pop_Fields>;
   v_comments_var_samp_fields: ResolverTypeWrapper<TV_Comments_Var_Samp_Fields>;
   v_comments_variance_fields: ResolverTypeWrapper<TV_Comments_Variance_Fields>;
+  withdrawal_requests: ResolverTypeWrapper<TWithdrawal_Requests>;
+  withdrawal_requests_aggregate: ResolverTypeWrapper<TWithdrawal_Requests_Aggregate>;
+  withdrawal_requests_aggregate_fields: ResolverTypeWrapper<TWithdrawal_Requests_Aggregate_Fields>;
+  withdrawal_requests_avg_fields: ResolverTypeWrapper<TWithdrawal_Requests_Avg_Fields>;
+  withdrawal_requests_bool_exp: TWithdrawal_Requests_Bool_Exp;
+  withdrawal_requests_insert_input: TWithdrawal_Requests_Insert_Input;
+  withdrawal_requests_max_fields: ResolverTypeWrapper<TWithdrawal_Requests_Max_Fields>;
+  withdrawal_requests_min_fields: ResolverTypeWrapper<TWithdrawal_Requests_Min_Fields>;
+  withdrawal_requests_mutation_response: ResolverTypeWrapper<TWithdrawal_Requests_Mutation_Response>;
+  withdrawal_requests_order_by: TWithdrawal_Requests_Order_By;
+  withdrawal_requests_select_column: TWithdrawal_Requests_Select_Column;
+  withdrawal_requests_stddev_fields: ResolverTypeWrapper<TWithdrawal_Requests_Stddev_Fields>;
+  withdrawal_requests_stddev_pop_fields: ResolverTypeWrapper<TWithdrawal_Requests_Stddev_Pop_Fields>;
+  withdrawal_requests_stddev_samp_fields: ResolverTypeWrapper<TWithdrawal_Requests_Stddev_Samp_Fields>;
+  withdrawal_requests_sum_fields: ResolverTypeWrapper<TWithdrawal_Requests_Sum_Fields>;
+  withdrawal_requests_var_pop_fields: ResolverTypeWrapper<TWithdrawal_Requests_Var_Pop_Fields>;
+  withdrawal_requests_var_samp_fields: ResolverTypeWrapper<TWithdrawal_Requests_Var_Samp_Fields>;
+  withdrawal_requests_variance_fields: ResolverTypeWrapper<TWithdrawal_Requests_Variance_Fields>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -8438,6 +8738,23 @@ export type TResolversParentTypes = {
   v_comments_var_pop_fields: TV_Comments_Var_Pop_Fields;
   v_comments_var_samp_fields: TV_Comments_Var_Samp_Fields;
   v_comments_variance_fields: TV_Comments_Variance_Fields;
+  withdrawal_requests: TWithdrawal_Requests;
+  withdrawal_requests_aggregate: TWithdrawal_Requests_Aggregate;
+  withdrawal_requests_aggregate_fields: TWithdrawal_Requests_Aggregate_Fields;
+  withdrawal_requests_avg_fields: TWithdrawal_Requests_Avg_Fields;
+  withdrawal_requests_bool_exp: TWithdrawal_Requests_Bool_Exp;
+  withdrawal_requests_insert_input: TWithdrawal_Requests_Insert_Input;
+  withdrawal_requests_max_fields: TWithdrawal_Requests_Max_Fields;
+  withdrawal_requests_min_fields: TWithdrawal_Requests_Min_Fields;
+  withdrawal_requests_mutation_response: TWithdrawal_Requests_Mutation_Response;
+  withdrawal_requests_order_by: TWithdrawal_Requests_Order_By;
+  withdrawal_requests_stddev_fields: TWithdrawal_Requests_Stddev_Fields;
+  withdrawal_requests_stddev_pop_fields: TWithdrawal_Requests_Stddev_Pop_Fields;
+  withdrawal_requests_stddev_samp_fields: TWithdrawal_Requests_Stddev_Samp_Fields;
+  withdrawal_requests_sum_fields: TWithdrawal_Requests_Sum_Fields;
+  withdrawal_requests_var_pop_fields: TWithdrawal_Requests_Var_Pop_Fields;
+  withdrawal_requests_var_samp_fields: TWithdrawal_Requests_Var_Samp_Fields;
+  withdrawal_requests_variance_fields: TWithdrawal_Requests_Variance_Fields;
 };
 
 export type TCachedDirectiveArgs = {
@@ -9302,6 +9619,8 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   insert_report_one?: Resolver<Maybe<TResolversTypes['report']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Report_OneArgs, 'object'>>;
   insert_user_followers?: Resolver<Maybe<TResolversTypes['user_followers_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_User_FollowersArgs, 'objects'>>;
   insert_user_followers_one?: Resolver<Maybe<TResolversTypes['user_followers']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_User_Followers_OneArgs, 'object'>>;
+  insert_withdrawal_requests?: Resolver<Maybe<TResolversTypes['withdrawal_requests_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Withdrawal_RequestsArgs, 'objects'>>;
+  insert_withdrawal_requests_one?: Resolver<Maybe<TResolversTypes['withdrawal_requests']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Withdrawal_Requests_OneArgs, 'object'>>;
   updateUser?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateUserArgs, 'pk_columns'>>;
   updateUsers?: Resolver<Maybe<TResolversTypes['users_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateUsersArgs, 'where'>>;
   update_idea_comment_replies?: Resolver<Maybe<TResolversTypes['idea_comment_replies_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Idea_Comment_RepliesArgs, 'where'>>;
@@ -9374,6 +9693,9 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   usersAggregate?: Resolver<TResolversTypes['users_aggregate'], ParentType, ContextType, Partial<TQuery_RootUsersAggregateArgs>>;
   v_comments?: Resolver<Array<TResolversTypes['v_comments']>, ParentType, ContextType, Partial<TQuery_RootV_CommentsArgs>>;
   v_comments_aggregate?: Resolver<TResolversTypes['v_comments_aggregate'], ParentType, ContextType, Partial<TQuery_RootV_Comments_AggregateArgs>>;
+  withdrawal_requests?: Resolver<Array<TResolversTypes['withdrawal_requests']>, ParentType, ContextType, Partial<TQuery_RootWithdrawal_RequestsArgs>>;
+  withdrawal_requests_aggregate?: Resolver<TResolversTypes['withdrawal_requests_aggregate'], ParentType, ContextType, Partial<TQuery_RootWithdrawal_Requests_AggregateArgs>>;
+  withdrawal_requests_by_pk?: Resolver<Maybe<TResolversTypes['withdrawal_requests']>, ParentType, ContextType, RequireFields<TQuery_RootWithdrawal_Requests_By_PkArgs, 'id'>>;
 };
 
 export type TReportResolvers<ContextType = any, ParentType extends TResolversParentTypes['report'] = TResolversParentTypes['report']> = {
@@ -9441,6 +9763,9 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   usersAggregate?: SubscriptionResolver<TResolversTypes['users_aggregate'], "usersAggregate", ParentType, ContextType, Partial<TSubscription_RootUsersAggregateArgs>>;
   v_comments?: SubscriptionResolver<Array<TResolversTypes['v_comments']>, "v_comments", ParentType, ContextType, Partial<TSubscription_RootV_CommentsArgs>>;
   v_comments_aggregate?: SubscriptionResolver<TResolversTypes['v_comments_aggregate'], "v_comments_aggregate", ParentType, ContextType, Partial<TSubscription_RootV_Comments_AggregateArgs>>;
+  withdrawal_requests?: SubscriptionResolver<Array<TResolversTypes['withdrawal_requests']>, "withdrawal_requests", ParentType, ContextType, Partial<TSubscription_RootWithdrawal_RequestsArgs>>;
+  withdrawal_requests_aggregate?: SubscriptionResolver<TResolversTypes['withdrawal_requests_aggregate'], "withdrawal_requests_aggregate", ParentType, ContextType, Partial<TSubscription_RootWithdrawal_Requests_AggregateArgs>>;
+  withdrawal_requests_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['withdrawal_requests']>, "withdrawal_requests_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootWithdrawal_Requests_By_PkArgs, 'id'>>;
 };
 
 export interface TTimestamptzScalarConfig extends GraphQLScalarTypeConfig<TResolversTypes['timestamptz'], any> {
@@ -9822,6 +10147,102 @@ export type TV_Comments_Variance_FieldsResolvers<ContextType = any, ParentType e
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type TWithdrawal_RequestsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests'] = TResolversParentTypes['withdrawal_requests']> = {
+  amount?: Resolver<TResolversTypes['money'], ParentType, ContextType>;
+  created_at?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  email?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
+  id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  status?: Resolver<TResolversTypes['comment_status_types_enum'], ParentType, ContextType>;
+  user?: Resolver<Maybe<TResolversTypes['users']>, ParentType, ContextType>;
+  user_id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_aggregate'] = TResolversParentTypes['withdrawal_requests_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['withdrawal_requests_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['withdrawal_requests']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_aggregate_fields'] = TResolversParentTypes['withdrawal_requests_aggregate_fields']> = {
+  avg?: Resolver<Maybe<TResolversTypes['withdrawal_requests_avg_fields']>, ParentType, ContextType>;
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TWithdrawal_Requests_Aggregate_FieldsCountArgs>>;
+  max?: Resolver<Maybe<TResolversTypes['withdrawal_requests_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['withdrawal_requests_min_fields']>, ParentType, ContextType>;
+  stddev?: Resolver<Maybe<TResolversTypes['withdrawal_requests_stddev_fields']>, ParentType, ContextType>;
+  stddev_pop?: Resolver<Maybe<TResolversTypes['withdrawal_requests_stddev_pop_fields']>, ParentType, ContextType>;
+  stddev_samp?: Resolver<Maybe<TResolversTypes['withdrawal_requests_stddev_samp_fields']>, ParentType, ContextType>;
+  sum?: Resolver<Maybe<TResolversTypes['withdrawal_requests_sum_fields']>, ParentType, ContextType>;
+  var_pop?: Resolver<Maybe<TResolversTypes['withdrawal_requests_var_pop_fields']>, ParentType, ContextType>;
+  var_samp?: Resolver<Maybe<TResolversTypes['withdrawal_requests_var_samp_fields']>, ParentType, ContextType>;
+  variance?: Resolver<Maybe<TResolversTypes['withdrawal_requests_variance_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Avg_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_avg_fields'] = TResolversParentTypes['withdrawal_requests_avg_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_max_fields'] = TResolversParentTypes['withdrawal_requests_max_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  email?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_min_fields'] = TResolversParentTypes['withdrawal_requests_min_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  email?: Resolver<Maybe<TResolversTypes['citext']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_mutation_response'] = TResolversParentTypes['withdrawal_requests_mutation_response']> = {
+  affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<TResolversTypes['withdrawal_requests']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Stddev_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_stddev_fields'] = TResolversParentTypes['withdrawal_requests_stddev_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Stddev_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_stddev_pop_fields'] = TResolversParentTypes['withdrawal_requests_stddev_pop_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Stddev_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_stddev_samp_fields'] = TResolversParentTypes['withdrawal_requests_stddev_samp_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Sum_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_sum_fields'] = TResolversParentTypes['withdrawal_requests_sum_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['money']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Var_Pop_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_var_pop_fields'] = TResolversParentTypes['withdrawal_requests_var_pop_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Var_Samp_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_var_samp_fields'] = TResolversParentTypes['withdrawal_requests_var_samp_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TWithdrawal_Requests_Variance_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['withdrawal_requests_variance_fields'] = TResolversParentTypes['withdrawal_requests_variance_fields']> = {
+  amount?: Resolver<Maybe<TResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TResolvers<ContextType = any> = {
   activity?: TActivityResolvers<ContextType>;
   activity_aggregate?: TActivity_AggregateResolvers<ContextType>;
@@ -9958,6 +10379,20 @@ export type TResolvers<ContextType = any> = {
   v_comments_var_pop_fields?: TV_Comments_Var_Pop_FieldsResolvers<ContextType>;
   v_comments_var_samp_fields?: TV_Comments_Var_Samp_FieldsResolvers<ContextType>;
   v_comments_variance_fields?: TV_Comments_Variance_FieldsResolvers<ContextType>;
+  withdrawal_requests?: TWithdrawal_RequestsResolvers<ContextType>;
+  withdrawal_requests_aggregate?: TWithdrawal_Requests_AggregateResolvers<ContextType>;
+  withdrawal_requests_aggregate_fields?: TWithdrawal_Requests_Aggregate_FieldsResolvers<ContextType>;
+  withdrawal_requests_avg_fields?: TWithdrawal_Requests_Avg_FieldsResolvers<ContextType>;
+  withdrawal_requests_max_fields?: TWithdrawal_Requests_Max_FieldsResolvers<ContextType>;
+  withdrawal_requests_min_fields?: TWithdrawal_Requests_Min_FieldsResolvers<ContextType>;
+  withdrawal_requests_mutation_response?: TWithdrawal_Requests_Mutation_ResponseResolvers<ContextType>;
+  withdrawal_requests_stddev_fields?: TWithdrawal_Requests_Stddev_FieldsResolvers<ContextType>;
+  withdrawal_requests_stddev_pop_fields?: TWithdrawal_Requests_Stddev_Pop_FieldsResolvers<ContextType>;
+  withdrawal_requests_stddev_samp_fields?: TWithdrawal_Requests_Stddev_Samp_FieldsResolvers<ContextType>;
+  withdrawal_requests_sum_fields?: TWithdrawal_Requests_Sum_FieldsResolvers<ContextType>;
+  withdrawal_requests_var_pop_fields?: TWithdrawal_Requests_Var_Pop_FieldsResolvers<ContextType>;
+  withdrawal_requests_var_samp_fields?: TWithdrawal_Requests_Var_Samp_FieldsResolvers<ContextType>;
+  withdrawal_requests_variance_fields?: TWithdrawal_Requests_Variance_FieldsResolvers<ContextType>;
 };
 
 export type TDirectiveResolvers<ContextType = any> = {

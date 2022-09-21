@@ -1,0 +1,3 @@
+table:
+  name: withdrawal_status_types
+  schema: public

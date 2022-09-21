@@ -1,0 +1,5 @@
+mutation NewWithdrawalRequest($amount: money!, $email: citext!) {
+	insert_withdrawal_requests_one(object: { amount: $amount, email: $email }) {
+		amount
+	}
+}
