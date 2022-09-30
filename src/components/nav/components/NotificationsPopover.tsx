@@ -9,13 +9,19 @@ import useUserProfile from '@/hooks/user';
 import React, { useEffect, useState } from 'react';
 import NavLink from './NavLink';
 
-type TNotificationType = 'PROFILE_NOT_SET' | 'COMMENT' | 'REPLY' | 'MESSAGE';
+type TNotificationType =
+	| 'PROFILE_NOT_SET'
+	| 'COMMENT'
+	| 'REPLY'
+	| 'MESSAGE'
+	| 'EARNED_POINTS_CURRENCY';
 interface INotification {
 	type: TNotificationType;
 	title: string;
 	color: BoxProps['color'];
 	description: string;
 	href: string;
+	read?: boolean;
 }
 
 const NotificationsPopover = () => {

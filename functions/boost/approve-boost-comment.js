@@ -90,7 +90,6 @@ export default async (req, res) => {
 			);
 		}
 	} else {
-		console.log('NO MONIES LEFT');
 		res.status(200).send('Not a boosted comment so nothing to do.');
 	}
 };

@@ -57,7 +57,6 @@ const OverviewTags = memo(
 						p={3}
 						display="flex"
 						flexDirection="column"
-						// bg="fpPrimary.50"
 						borderWidth={1}
 						justifyContent="flex-start"
 					>
@@ -66,12 +65,16 @@ const OverviewTags = memo(
 							alignItems="center"
 							mb={1}
 							display="flex"
-							// color="fpPrimary.700"
 							color="black"
+							textAlign="center"
 						>
 							{value}
 						</Label>
-						<Label color="fpGrey.300" fontSize="xs">
+						<Label
+							color="fpGrey.300"
+							fontSize="smaller"
+							textAlign="center"
+						>
 							{title}
 						</Label>
 					</BaseTag>

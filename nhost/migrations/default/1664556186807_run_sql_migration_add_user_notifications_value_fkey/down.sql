@@ -1,0 +1,4 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- ALTER TABLE user_notifications ADD CONSTRAINT
+--   user_notifications_fkey FOREIGN KEY (value) REFERENCES notification_types;

@@ -5,3 +5,16 @@ object_relationships:
 - name: user
   using:
     foreign_key_constraint_on: user_id
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - created_at
+    - href
+    - read
+    - type
+    - value
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+  role: user

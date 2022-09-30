@@ -3442,6 +3442,29 @@ export type TMutation_RootUpdate_User_Profile_By_PkArgs = {
   pk_columns: TUser_Profile_Pk_Columns_Input;
 };
 
+export type TNotification_Types_Enum =
+  /** New comment */
+  | 'COMMENT'
+  /** Earned currency */
+  | 'CURRENCY'
+  /** Earned esteem points */
+  | 'ESTEEM_POINTS'
+  /** New message */
+  | 'MESSAGE'
+  /** Profile not set */
+  | 'PROFILE_NOT_SET'
+  /** New reply */
+  | 'REPLY';
+
+/** Boolean expression to compare columns of type "notification_types_enum". All fields are combined with logical 'AND'. */
+export type TNotification_Types_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<TNotification_Types_Enum>;
+  _in?: InputMaybe<Array<TNotification_Types_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<TNotification_Types_Enum>;
+  _nin?: InputMaybe<Array<TNotification_Types_Enum>>;
+};
+
 /** column ordering options */
 export type TOrder_By =
   /** in ascending order, nulls last */
@@ -3551,6 +3574,10 @@ export type TQuery_Root = {
   user_followers_aggregate: TUser_Followers_Aggregate;
   /** fetch data from the table: "user_followers" using primary key columns */
   user_followers_by_pk?: Maybe<TUser_Followers>;
+  /** An array relationship */
+  user_notifications: Array<TUser_Notifications>;
+  /** An aggregate relationship */
+  user_notifications_aggregate: TUser_Notifications_Aggregate;
   /** fetch data from the table: "user_profile" */
   user_profile: Array<TUser_Profile>;
   /** fetch aggregated fields from the table: "user_profile" */
@@ -3924,6 +3951,24 @@ export type TQuery_RootUser_Followers_By_PkArgs = {
 };
 
 
+export type TQuery_RootUser_NotificationsArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Notifications_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Notifications_Order_By>>;
+  where?: InputMaybe<TUser_Notifications_Bool_Exp>;
+};
+
+
+export type TQuery_RootUser_Notifications_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Notifications_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Notifications_Order_By>>;
+  where?: InputMaybe<TUser_Notifications_Bool_Exp>;
+};
+
+
 export type TQuery_RootUser_ProfileArgs = {
   distinct_on?: InputMaybe<Array<TUser_Profile_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4149,6 +4194,10 @@ export type TSubscription_Root = {
   user_followers_aggregate: TUser_Followers_Aggregate;
   /** fetch data from the table: "user_followers" using primary key columns */
   user_followers_by_pk?: Maybe<TUser_Followers>;
+  /** An array relationship */
+  user_notifications: Array<TUser_Notifications>;
+  /** An aggregate relationship */
+  user_notifications_aggregate: TUser_Notifications_Aggregate;
   /** fetch data from the table: "user_profile" */
   user_profile: Array<TUser_Profile>;
   /** fetch aggregated fields from the table: "user_profile" */
@@ -4522,6 +4571,24 @@ export type TSubscription_RootUser_Followers_By_PkArgs = {
 };
 
 
+export type TSubscription_RootUser_NotificationsArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Notifications_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Notifications_Order_By>>;
+  where?: InputMaybe<TUser_Notifications_Bool_Exp>;
+};
+
+
+export type TSubscription_RootUser_Notifications_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Notifications_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Notifications_Order_By>>;
+  where?: InputMaybe<TUser_Notifications_Bool_Exp>;
+};
+
+
 export type TSubscription_RootUser_ProfileArgs = {
   distinct_on?: InputMaybe<Array<TUser_Profile_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4847,6 +4914,113 @@ export type TUser_Followers_Select_Column =
   | 'followingId'
   /** column name */
   | 'status';
+
+/** columns and relationships of "user_notifications" */
+export type TUser_Notifications = {
+  __typename?: 'user_notifications';
+  created_at: Scalars['timestamptz'];
+  href?: Maybe<Scalars['String']>;
+  read: Scalars['Boolean'];
+  type: Scalars['String'];
+  /** An object relationship */
+  user: TUsers;
+  value: TNotification_Types_Enum;
+};
+
+/** aggregated selection of "user_notifications" */
+export type TUser_Notifications_Aggregate = {
+  __typename?: 'user_notifications_aggregate';
+  aggregate?: Maybe<TUser_Notifications_Aggregate_Fields>;
+  nodes: Array<TUser_Notifications>;
+};
+
+/** aggregate fields of "user_notifications" */
+export type TUser_Notifications_Aggregate_Fields = {
+  __typename?: 'user_notifications_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<TUser_Notifications_Max_Fields>;
+  min?: Maybe<TUser_Notifications_Min_Fields>;
+};
+
+
+/** aggregate fields of "user_notifications" */
+export type TUser_Notifications_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TUser_Notifications_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "user_notifications" */
+export type TUser_Notifications_Aggregate_Order_By = {
+  count?: InputMaybe<TOrder_By>;
+  max?: InputMaybe<TUser_Notifications_Max_Order_By>;
+  min?: InputMaybe<TUser_Notifications_Min_Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "user_notifications". All fields are combined with a logical 'AND'. */
+export type TUser_Notifications_Bool_Exp = {
+  _and?: InputMaybe<Array<TUser_Notifications_Bool_Exp>>;
+  _not?: InputMaybe<TUser_Notifications_Bool_Exp>;
+  _or?: InputMaybe<Array<TUser_Notifications_Bool_Exp>>;
+  created_at?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  href?: InputMaybe<TString_Comparison_Exp>;
+  read?: InputMaybe<TBoolean_Comparison_Exp>;
+  type?: InputMaybe<TString_Comparison_Exp>;
+  user?: InputMaybe<TUsers_Bool_Exp>;
+  value?: InputMaybe<TNotification_Types_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type TUser_Notifications_Max_Fields = {
+  __typename?: 'user_notifications_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  href?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "user_notifications" */
+export type TUser_Notifications_Max_Order_By = {
+  created_at?: InputMaybe<TOrder_By>;
+  href?: InputMaybe<TOrder_By>;
+  type?: InputMaybe<TOrder_By>;
+};
+
+/** aggregate min on columns */
+export type TUser_Notifications_Min_Fields = {
+  __typename?: 'user_notifications_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  href?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "user_notifications" */
+export type TUser_Notifications_Min_Order_By = {
+  created_at?: InputMaybe<TOrder_By>;
+  href?: InputMaybe<TOrder_By>;
+  type?: InputMaybe<TOrder_By>;
+};
+
+/** Ordering options when selecting data from "user_notifications". */
+export type TUser_Notifications_Order_By = {
+  created_at?: InputMaybe<TOrder_By>;
+  href?: InputMaybe<TOrder_By>;
+  read?: InputMaybe<TOrder_By>;
+  type?: InputMaybe<TOrder_By>;
+  user?: InputMaybe<TUsers_Order_By>;
+  value?: InputMaybe<TOrder_By>;
+};
+
+/** select columns of table "user_notifications" */
+export type TUser_Notifications_Select_Column =
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'href'
+  /** column name */
+  | 'read'
+  /** column name */
+  | 'type'
+  /** column name */
+  | 'value';
 
 /**
  * The table for a user's profile details
@@ -5269,6 +5443,10 @@ export type TUsers = {
   /** An aggregate relationship */
   user_followers_aggregate: TUser_Followers_Aggregate;
   /** An array relationship */
+  user_notifications: Array<TUser_Notifications>;
+  /** An aggregate relationship */
+  user_notifications_aggregate: TUser_Notifications_Aggregate;
+  /** An array relationship */
   user_profiles: Array<TUser_Profile>;
   /** An aggregate relationship */
   user_profiles_aggregate: TUser_Profile_Aggregate;
@@ -5442,6 +5620,38 @@ export type TUsersUser_Followers_AggregateArgs = {
  * columns and relationships of "auth.users"
  *
  */
+export type TUsersUser_NotificationsArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Notifications_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Notifications_Order_By>>;
+  where?: InputMaybe<TUser_Notifications_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
+export type TUsersUser_Notifications_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TUser_Notifications_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TUser_Notifications_Order_By>>;
+  where?: InputMaybe<TUser_Notifications_Bool_Exp>;
+};
+
+
+/**
+ * The table to store all users
+ *
+ *
+ * columns and relationships of "auth.users"
+ *
+ */
 export type TUsersUser_ProfilesArgs = {
   distinct_on?: InputMaybe<Array<TUser_Profile_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -5524,6 +5734,7 @@ export type TUsers_Bool_Exp = {
   totpSecret?: InputMaybe<TString_Comparison_Exp>;
   updatedAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   user_followers?: InputMaybe<TUser_Followers_Bool_Exp>;
+  user_notifications?: InputMaybe<TUser_Notifications_Bool_Exp>;
   user_profiles?: InputMaybe<TUser_Profile_Bool_Exp>;
 };
 
@@ -5617,6 +5828,7 @@ export type TUsers_Order_By = {
   totpSecret?: InputMaybe<TOrder_By>;
   updatedAt?: InputMaybe<TOrder_By>;
   user_followers_aggregate?: InputMaybe<TUser_Followers_Aggregate_Order_By>;
+  user_notifications_aggregate?: InputMaybe<TUser_Notifications_Aggregate_Order_By>;
   user_profiles_aggregate?: InputMaybe<TUser_Profile_Aggregate_Order_By>;
 };
 
@@ -8339,6 +8551,8 @@ export type TResolversTypes = {
   money: ResolverTypeWrapper<Scalars['money']>;
   money_comparison_exp: TMoney_Comparison_Exp;
   mutation_root: ResolverTypeWrapper<{}>;
+  notification_types_enum: TNotification_Types_Enum;
+  notification_types_enum_comparison_exp: TNotification_Types_Enum_Comparison_Exp;
   order_by: TOrder_By;
   query_root: ResolverTypeWrapper<{}>;
   report: ResolverTypeWrapper<TReport>;
@@ -8374,6 +8588,17 @@ export type TResolversTypes = {
   user_followers_mutation_response: ResolverTypeWrapper<TUser_Followers_Mutation_Response>;
   user_followers_order_by: TUser_Followers_Order_By;
   user_followers_select_column: TUser_Followers_Select_Column;
+  user_notifications: ResolverTypeWrapper<TUser_Notifications>;
+  user_notifications_aggregate: ResolverTypeWrapper<TUser_Notifications_Aggregate>;
+  user_notifications_aggregate_fields: ResolverTypeWrapper<TUser_Notifications_Aggregate_Fields>;
+  user_notifications_aggregate_order_by: TUser_Notifications_Aggregate_Order_By;
+  user_notifications_bool_exp: TUser_Notifications_Bool_Exp;
+  user_notifications_max_fields: ResolverTypeWrapper<TUser_Notifications_Max_Fields>;
+  user_notifications_max_order_by: TUser_Notifications_Max_Order_By;
+  user_notifications_min_fields: ResolverTypeWrapper<TUser_Notifications_Min_Fields>;
+  user_notifications_min_order_by: TUser_Notifications_Min_Order_By;
+  user_notifications_order_by: TUser_Notifications_Order_By;
+  user_notifications_select_column: TUser_Notifications_Select_Column;
   user_profile: ResolverTypeWrapper<TUser_Profile>;
   user_profile_aggregate: ResolverTypeWrapper<TUser_Profile_Aggregate>;
   user_profile_aggregate_fields: ResolverTypeWrapper<TUser_Profile_Aggregate_Fields>;
@@ -8663,6 +8888,7 @@ export type TResolversParentTypes = {
   money: Scalars['money'];
   money_comparison_exp: TMoney_Comparison_Exp;
   mutation_root: {};
+  notification_types_enum_comparison_exp: TNotification_Types_Enum_Comparison_Exp;
   query_root: {};
   report: TReport;
   report_bool_exp: TReport_Bool_Exp;
@@ -8693,6 +8919,16 @@ export type TResolversParentTypes = {
   user_followers_min_order_by: TUser_Followers_Min_Order_By;
   user_followers_mutation_response: TUser_Followers_Mutation_Response;
   user_followers_order_by: TUser_Followers_Order_By;
+  user_notifications: TUser_Notifications;
+  user_notifications_aggregate: TUser_Notifications_Aggregate;
+  user_notifications_aggregate_fields: TUser_Notifications_Aggregate_Fields;
+  user_notifications_aggregate_order_by: TUser_Notifications_Aggregate_Order_By;
+  user_notifications_bool_exp: TUser_Notifications_Bool_Exp;
+  user_notifications_max_fields: TUser_Notifications_Max_Fields;
+  user_notifications_max_order_by: TUser_Notifications_Max_Order_By;
+  user_notifications_min_fields: TUser_Notifications_Min_Fields;
+  user_notifications_min_order_by: TUser_Notifications_Min_Order_By;
+  user_notifications_order_by: TUser_Notifications_Order_By;
   user_profile: TUser_Profile;
   user_profile_aggregate: TUser_Profile_Aggregate;
   user_profile_aggregate_fields: TUser_Profile_Aggregate_Fields;
@@ -9686,6 +9922,8 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   user_followers?: Resolver<Array<TResolversTypes['user_followers']>, ParentType, ContextType, Partial<TQuery_RootUser_FollowersArgs>>;
   user_followers_aggregate?: Resolver<TResolversTypes['user_followers_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Followers_AggregateArgs>>;
   user_followers_by_pk?: Resolver<Maybe<TResolversTypes['user_followers']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
+  user_notifications?: Resolver<Array<TResolversTypes['user_notifications']>, ParentType, ContextType, Partial<TQuery_RootUser_NotificationsArgs>>;
+  user_notifications_aggregate?: Resolver<TResolversTypes['user_notifications_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Notifications_AggregateArgs>>;
   user_profile?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, Partial<TQuery_RootUser_ProfileArgs>>;
   user_profile_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Profile_AggregateArgs>>;
   user_profile_by_pk?: Resolver<Maybe<TResolversTypes['user_profile']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Profile_By_PkArgs, 'id'>>;
@@ -9756,6 +9994,8 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   user_followers?: SubscriptionResolver<Array<TResolversTypes['user_followers']>, "user_followers", ParentType, ContextType, Partial<TSubscription_RootUser_FollowersArgs>>;
   user_followers_aggregate?: SubscriptionResolver<TResolversTypes['user_followers_aggregate'], "user_followers_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Followers_AggregateArgs>>;
   user_followers_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_followers']>, "user_followers_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
+  user_notifications?: SubscriptionResolver<Array<TResolversTypes['user_notifications']>, "user_notifications", ParentType, ContextType, Partial<TSubscription_RootUser_NotificationsArgs>>;
+  user_notifications_aggregate?: SubscriptionResolver<TResolversTypes['user_notifications_aggregate'], "user_notifications_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Notifications_AggregateArgs>>;
   user_profile?: SubscriptionResolver<Array<TResolversTypes['user_profile']>, "user_profile", ParentType, ContextType, Partial<TSubscription_RootUser_ProfileArgs>>;
   user_profile_aggregate?: SubscriptionResolver<TResolversTypes['user_profile_aggregate'], "user_profile_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Profile_AggregateArgs>>;
   user_profile_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_profile']>, "user_profile_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Profile_By_PkArgs, 'id'>>;
@@ -9833,6 +10073,43 @@ export type TUser_Followers_Min_FieldsResolvers<ContextType = any, ParentType ex
 export type TUser_Followers_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_followers_mutation_response'] = TResolversParentTypes['user_followers_mutation_response']> = {
   affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
   returning?: Resolver<Array<TResolversTypes['user_followers']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TUser_NotificationsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications'] = TResolversParentTypes['user_notifications']> = {
+  created_at?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  read?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
+  type?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
+  value?: Resolver<TResolversTypes['notification_types_enum'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TUser_Notifications_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications_aggregate'] = TResolversParentTypes['user_notifications_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['user_notifications_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['user_notifications']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TUser_Notifications_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications_aggregate_fields'] = TResolversParentTypes['user_notifications_aggregate_fields']> = {
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TUser_Notifications_Aggregate_FieldsCountArgs>>;
+  max?: Resolver<Maybe<TResolversTypes['user_notifications_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['user_notifications_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TUser_Notifications_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications_max_fields'] = TResolversParentTypes['user_notifications_max_fields']> = {
+  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TUser_Notifications_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications_min_fields'] = TResolversParentTypes['user_notifications_min_fields']> = {
+  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -9968,6 +10245,8 @@ export type TUsersResolvers<ContextType = any, ParentType extends TResolversPare
   updatedAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   user_followers?: Resolver<Array<TResolversTypes['user_followers']>, ParentType, ContextType, Partial<TUsersUser_FollowersArgs>>;
   user_followers_aggregate?: Resolver<TResolversTypes['user_followers_aggregate'], ParentType, ContextType, Partial<TUsersUser_Followers_AggregateArgs>>;
+  user_notifications?: Resolver<Array<TResolversTypes['user_notifications']>, ParentType, ContextType, Partial<TUsersUser_NotificationsArgs>>;
+  user_notifications_aggregate?: Resolver<TResolversTypes['user_notifications_aggregate'], ParentType, ContextType, Partial<TUsersUser_Notifications_AggregateArgs>>;
   user_profiles?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, Partial<TUsersUser_ProfilesArgs>>;
   user_profiles_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, Partial<TUsersUser_Profiles_AggregateArgs>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -10353,6 +10632,11 @@ export type TResolvers<ContextType = any> = {
   user_followers_max_fields?: TUser_Followers_Max_FieldsResolvers<ContextType>;
   user_followers_min_fields?: TUser_Followers_Min_FieldsResolvers<ContextType>;
   user_followers_mutation_response?: TUser_Followers_Mutation_ResponseResolvers<ContextType>;
+  user_notifications?: TUser_NotificationsResolvers<ContextType>;
+  user_notifications_aggregate?: TUser_Notifications_AggregateResolvers<ContextType>;
+  user_notifications_aggregate_fields?: TUser_Notifications_Aggregate_FieldsResolvers<ContextType>;
+  user_notifications_max_fields?: TUser_Notifications_Max_FieldsResolvers<ContextType>;
+  user_notifications_min_fields?: TUser_Notifications_Min_FieldsResolvers<ContextType>;
   user_profile?: TUser_ProfileResolvers<ContextType>;
   user_profile_aggregate?: TUser_Profile_AggregateResolvers<ContextType>;
   user_profile_aggregate_fields?: TUser_Profile_Aggregate_FieldsResolvers<ContextType>;
