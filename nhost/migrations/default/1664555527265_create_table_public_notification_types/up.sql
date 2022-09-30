@@ -1,0 +1,1 @@
+CREATE TABLE "public"."notification_types" ("value" text NOT NULL, "description" text NOT NULL, PRIMARY KEY ("value") , UNIQUE ("value"));COMMENT ON TABLE "public"."notification_types" IS E'All notification types';

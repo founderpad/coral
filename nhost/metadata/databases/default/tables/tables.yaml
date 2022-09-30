@@ -18,6 +18,7 @@
 - "!include public_message.yaml"
 - "!include public_message_thread.yaml"
 - "!include public_message_thread_users.yaml"
+- "!include public_notification_types.yaml"
 - "!include public_report.yaml"
 - "!include public_user_address.yaml"
 - "!include public_user_esteem_points_currency.yaml"
