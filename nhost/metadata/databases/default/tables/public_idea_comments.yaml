@@ -111,11 +111,12 @@ event_triggers:
   webhook: "{{NHOST_BACKEND_URL}}/v1/functions/boost/approve-boost-comment"
 - definition:
     enable_manual: false
-    insert:
-      columns: "*"
+    update:
+      columns:
+      - status
   name: send-push-new-comment
   retry_conf:
     interval_sec: 10
     num_retries: 0
     timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/notifications/send-push-new-comment"
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-new-comment"

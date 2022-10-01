@@ -13,11 +13,11 @@ export default async (req, res) => {
 	const targetUserId = req.body.event.data.new.target_user_id;
 	const ideaId = req.body.event.data.new.idea_id;
 	const id = req.body.event.data.new.id;
+	const status = req.body.event.data.new.status;
 	let isSuccess = false;
 
 	if (fromUserId === targetUserId) return null;
-
-	// addEsteemPoints(fromUserId, 10);
+	if (status !== 'APPROVED') return null;
 
 	const message = {
 		app_id: process.env.ONESIGNAL_APP_ID,
