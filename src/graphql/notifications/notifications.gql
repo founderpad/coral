@@ -1,0 +1,18 @@
+query GetUserNotifications($userId: uuid!) {
+	user_notifications(
+		where: { userId: { _eq: $userId } }
+		order_by: { createdAt: desc }
+	) {
+		...NotificationFields
+	}
+}
+
+fragment NotificationFields on user_notifications {
+	id
+	href
+	value
+	type
+	description
+	read
+	createdAt
+}

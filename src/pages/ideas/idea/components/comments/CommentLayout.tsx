@@ -104,7 +104,9 @@ export const CommentLayout = ({
 									// isTruncated
 									flex={1}
 								>
-									{user?.displayName}
+									{user?.displayName
+										? user?.displayName
+										: '[Deleted]'}
 								</Label>
 								{isAuthor && (
 									<BaseTag
