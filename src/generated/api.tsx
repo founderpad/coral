@@ -3578,6 +3578,8 @@ export type TQuery_Root = {
   user_notifications: Array<TUser_Notifications>;
   /** An aggregate relationship */
   user_notifications_aggregate: TUser_Notifications_Aggregate;
+  /** fetch data from the table: "user_notifications" using primary key columns */
+  user_notifications_by_pk?: Maybe<TUser_Notifications>;
   /** fetch data from the table: "user_profile" */
   user_profile: Array<TUser_Profile>;
   /** fetch aggregated fields from the table: "user_profile" */
@@ -3969,6 +3971,11 @@ export type TQuery_RootUser_Notifications_AggregateArgs = {
 };
 
 
+export type TQuery_RootUser_Notifications_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type TQuery_RootUser_ProfileArgs = {
   distinct_on?: InputMaybe<Array<TUser_Profile_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4198,6 +4205,8 @@ export type TSubscription_Root = {
   user_notifications: Array<TUser_Notifications>;
   /** An aggregate relationship */
   user_notifications_aggregate: TUser_Notifications_Aggregate;
+  /** fetch data from the table: "user_notifications" using primary key columns */
+  user_notifications_by_pk?: Maybe<TUser_Notifications>;
   /** fetch data from the table: "user_profile" */
   user_profile: Array<TUser_Profile>;
   /** fetch aggregated fields from the table: "user_profile" */
@@ -4589,6 +4598,11 @@ export type TSubscription_RootUser_Notifications_AggregateArgs = {
 };
 
 
+export type TSubscription_RootUser_Notifications_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type TSubscription_RootUser_ProfileArgs = {
   distinct_on?: InputMaybe<Array<TUser_Profile_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4918,13 +4932,15 @@ export type TUser_Followers_Select_Column =
 /** columns and relationships of "user_notifications" */
 export type TUser_Notifications = {
   __typename?: 'user_notifications';
-  created_at: Scalars['timestamptz'];
+  createdAt: Scalars['timestamptz'];
   href?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
   read: Scalars['Boolean'];
-  type: Scalars['String'];
+  type: TNotification_Types_Enum;
   /** An object relationship */
   user: TUsers;
-  value: TNotification_Types_Enum;
+  userId: Scalars['uuid'];
+  value: Scalars['String'];
 };
 
 /** aggregated selection of "user_notifications" */
@@ -4961,64 +4977,80 @@ export type TUser_Notifications_Bool_Exp = {
   _and?: InputMaybe<Array<TUser_Notifications_Bool_Exp>>;
   _not?: InputMaybe<TUser_Notifications_Bool_Exp>;
   _or?: InputMaybe<Array<TUser_Notifications_Bool_Exp>>;
-  created_at?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   href?: InputMaybe<TString_Comparison_Exp>;
+  id?: InputMaybe<TUuid_Comparison_Exp>;
   read?: InputMaybe<TBoolean_Comparison_Exp>;
-  type?: InputMaybe<TString_Comparison_Exp>;
+  type?: InputMaybe<TNotification_Types_Enum_Comparison_Exp>;
   user?: InputMaybe<TUsers_Bool_Exp>;
-  value?: InputMaybe<TNotification_Types_Enum_Comparison_Exp>;
+  userId?: InputMaybe<TUuid_Comparison_Exp>;
+  value?: InputMaybe<TString_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
 export type TUser_Notifications_Max_Fields = {
   __typename?: 'user_notifications_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   href?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "user_notifications" */
 export type TUser_Notifications_Max_Order_By = {
-  created_at?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
   href?: InputMaybe<TOrder_By>;
-  type?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
+  value?: InputMaybe<TOrder_By>;
 };
 
 /** aggregate min on columns */
 export type TUser_Notifications_Min_Fields = {
   __typename?: 'user_notifications_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
   href?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "user_notifications" */
 export type TUser_Notifications_Min_Order_By = {
-  created_at?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
   href?: InputMaybe<TOrder_By>;
-  type?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  userId?: InputMaybe<TOrder_By>;
+  value?: InputMaybe<TOrder_By>;
 };
 
 /** Ordering options when selecting data from "user_notifications". */
 export type TUser_Notifications_Order_By = {
-  created_at?: InputMaybe<TOrder_By>;
+  createdAt?: InputMaybe<TOrder_By>;
   href?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
   read?: InputMaybe<TOrder_By>;
   type?: InputMaybe<TOrder_By>;
   user?: InputMaybe<TUsers_Order_By>;
+  userId?: InputMaybe<TOrder_By>;
   value?: InputMaybe<TOrder_By>;
 };
 
 /** select columns of table "user_notifications" */
 export type TUser_Notifications_Select_Column =
   /** column name */
-  | 'created_at'
+  | 'createdAt'
   /** column name */
   | 'href'
+  /** column name */
+  | 'id'
   /** column name */
   | 'read'
   /** column name */
   | 'type'
+  /** column name */
+  | 'userId'
   /** column name */
   | 'value';
 
@@ -6472,6 +6504,15 @@ export type TMessageListSubscriptionVariables = Exact<{
 
 export type TMessageListSubscription = { message: Array<{ __typename?: 'message', id: any, threadId: any, content: string, createdAt: any, sender: { __typename?: 'users', avatarUrl?: string | null, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null } }> };
 
+export type TGetUserNotificationsQueryVariables = Exact<{
+  userId: Scalars['uuid'];
+}>;
+
+
+export type TGetUserNotificationsQuery = { user_notifications: Array<{ __typename?: 'user_notifications', id: any, href?: string | null, value: string, type: TNotification_Types_Enum, read: boolean, createdAt: any }> };
+
+export type TNotificationFieldsFragment = { __typename?: 'user_notifications', id: any, href?: string | null, value: string, type: TNotification_Types_Enum, read: boolean, createdAt: any };
+
 export type TNewWithdrawalRequestMutationVariables = Exact<{
   amount: Scalars['money'];
   email: Scalars['citext'];
@@ -6729,6 +6770,16 @@ export const InterestedIdeaFieldsFragmentDoc = gql`
   id
   ideaId
   userId
+}
+    `;
+export const NotificationFieldsFragmentDoc = gql`
+    fragment NotificationFields on user_notifications {
+  id
+  href
+  value
+  type
+  read
+  createdAt
 }
     `;
 export const UserActivityDocument = gql`
@@ -7671,6 +7722,44 @@ export function useMessageListSubscription(baseOptions: ApolloReactHooks.Subscri
       }
 export type MessageListSubscriptionHookResult = ReturnType<typeof useMessageListSubscription>;
 export type MessageListSubscriptionResult = Apollo.SubscriptionResult<TMessageListSubscription>;
+export const GetUserNotificationsDocument = gql`
+    query GetUserNotifications($userId: uuid!) {
+  user_notifications(where: {userId: {_eq: $userId}}) {
+    ...NotificationFields
+  }
+}
+    ${NotificationFieldsFragmentDoc}`;
+
+/**
+ * __useGetUserNotificationsQuery__
+ *
+ * To run a query within a React component, call `useGetUserNotificationsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserNotificationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserNotificationsQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useGetUserNotificationsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TGetUserNotificationsQuery, TGetUserNotificationsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TGetUserNotificationsQuery, TGetUserNotificationsQueryVariables>(GetUserNotificationsDocument, options);
+      }
+export function useGetUserNotificationsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TGetUserNotificationsQuery, TGetUserNotificationsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TGetUserNotificationsQuery, TGetUserNotificationsQueryVariables>(GetUserNotificationsDocument, options);
+        }
+export type GetUserNotificationsQueryHookResult = ReturnType<typeof useGetUserNotificationsQuery>;
+export type GetUserNotificationsLazyQueryHookResult = ReturnType<typeof useGetUserNotificationsLazyQuery>;
+export type GetUserNotificationsQueryResult = Apollo.QueryResult<TGetUserNotificationsQuery, TGetUserNotificationsQueryVariables>;
+export function refetchGetUserNotificationsQuery(variables: TGetUserNotificationsQueryVariables) {
+      return { query: GetUserNotificationsDocument, variables: variables }
+    }
 export const NewWithdrawalRequestDocument = gql`
     mutation NewWithdrawalRequest($amount: money!, $email: citext!) {
   insert_withdrawal_requests_one(object: {amount: $amount, email: $email}) {
@@ -9924,6 +10013,7 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   user_followers_by_pk?: Resolver<Maybe<TResolversTypes['user_followers']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
   user_notifications?: Resolver<Array<TResolversTypes['user_notifications']>, ParentType, ContextType, Partial<TQuery_RootUser_NotificationsArgs>>;
   user_notifications_aggregate?: Resolver<TResolversTypes['user_notifications_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Notifications_AggregateArgs>>;
+  user_notifications_by_pk?: Resolver<Maybe<TResolversTypes['user_notifications']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Notifications_By_PkArgs, 'id'>>;
   user_profile?: Resolver<Array<TResolversTypes['user_profile']>, ParentType, ContextType, Partial<TQuery_RootUser_ProfileArgs>>;
   user_profile_aggregate?: Resolver<TResolversTypes['user_profile_aggregate'], ParentType, ContextType, Partial<TQuery_RootUser_Profile_AggregateArgs>>;
   user_profile_by_pk?: Resolver<Maybe<TResolversTypes['user_profile']>, ParentType, ContextType, RequireFields<TQuery_RootUser_Profile_By_PkArgs, 'id'>>;
@@ -9996,6 +10086,7 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   user_followers_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_followers']>, "user_followers_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Followers_By_PkArgs, 'followerId' | 'followingId'>>;
   user_notifications?: SubscriptionResolver<Array<TResolversTypes['user_notifications']>, "user_notifications", ParentType, ContextType, Partial<TSubscription_RootUser_NotificationsArgs>>;
   user_notifications_aggregate?: SubscriptionResolver<TResolversTypes['user_notifications_aggregate'], "user_notifications_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Notifications_AggregateArgs>>;
+  user_notifications_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_notifications']>, "user_notifications_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Notifications_By_PkArgs, 'id'>>;
   user_profile?: SubscriptionResolver<Array<TResolversTypes['user_profile']>, "user_profile", ParentType, ContextType, Partial<TSubscription_RootUser_ProfileArgs>>;
   user_profile_aggregate?: SubscriptionResolver<TResolversTypes['user_profile_aggregate'], "user_profile_aggregate", ParentType, ContextType, Partial<TSubscription_RootUser_Profile_AggregateArgs>>;
   user_profile_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['user_profile']>, "user_profile_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootUser_Profile_By_PkArgs, 'id'>>;
@@ -10077,12 +10168,14 @@ export type TUser_Followers_Mutation_ResponseResolvers<ContextType = any, Parent
 };
 
 export type TUser_NotificationsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications'] = TResolversParentTypes['user_notifications']> = {
-  created_at?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   read?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
-  type?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
+  type?: Resolver<TResolversTypes['notification_types_enum'], ParentType, ContextType>;
   user?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
-  value?: Resolver<TResolversTypes['notification_types_enum'], ParentType, ContextType>;
+  userId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  value?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -10100,16 +10193,20 @@ export type TUser_Notifications_Aggregate_FieldsResolvers<ContextType = any, Par
 };
 
 export type TUser_Notifications_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications_max_fields'] = TResolversParentTypes['user_notifications_max_fields']> = {
-  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  value?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type TUser_Notifications_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications_min_fields'] = TResolversParentTypes['user_notifications_min_fields']> = {
-  created_at?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  value?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

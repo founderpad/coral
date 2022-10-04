@@ -1,6 +1,12 @@
 table:
   name: user_notifications
   schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    updated_at: updatedAt
+    user_id: userId
+  custom_root_fields: {}
 object_relationships:
 - name: user
   using:
@@ -11,8 +17,10 @@ select_permissions:
     columns:
     - created_at
     - href
+    - id
     - read
     - type
+    - user_id
     - value
     filter:
       user_id:
