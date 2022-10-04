@@ -16,6 +16,7 @@ select_permissions:
     allow_aggregations: true
     columns:
     - created_at
+    - description
     - href
     - id
     - read

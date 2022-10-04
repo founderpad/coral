@@ -4933,6 +4933,7 @@ export type TUser_Followers_Select_Column =
 export type TUser_Notifications = {
   __typename?: 'user_notifications';
   createdAt: Scalars['timestamptz'];
+  description?: Maybe<Scalars['String']>;
   href?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   read: Scalars['Boolean'];
@@ -4978,6 +4979,7 @@ export type TUser_Notifications_Bool_Exp = {
   _not?: InputMaybe<TUser_Notifications_Bool_Exp>;
   _or?: InputMaybe<Array<TUser_Notifications_Bool_Exp>>;
   createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
+  description?: InputMaybe<TString_Comparison_Exp>;
   href?: InputMaybe<TString_Comparison_Exp>;
   id?: InputMaybe<TUuid_Comparison_Exp>;
   read?: InputMaybe<TBoolean_Comparison_Exp>;
@@ -4991,6 +4993,7 @@ export type TUser_Notifications_Bool_Exp = {
 export type TUser_Notifications_Max_Fields = {
   __typename?: 'user_notifications_max_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
   href?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   userId?: Maybe<Scalars['uuid']>;
@@ -5000,6 +5003,7 @@ export type TUser_Notifications_Max_Fields = {
 /** order by max() on columns of table "user_notifications" */
 export type TUser_Notifications_Max_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
+  description?: InputMaybe<TOrder_By>;
   href?: InputMaybe<TOrder_By>;
   id?: InputMaybe<TOrder_By>;
   userId?: InputMaybe<TOrder_By>;
@@ -5010,6 +5014,7 @@ export type TUser_Notifications_Max_Order_By = {
 export type TUser_Notifications_Min_Fields = {
   __typename?: 'user_notifications_min_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
   href?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   userId?: Maybe<Scalars['uuid']>;
@@ -5019,6 +5024,7 @@ export type TUser_Notifications_Min_Fields = {
 /** order by min() on columns of table "user_notifications" */
 export type TUser_Notifications_Min_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
+  description?: InputMaybe<TOrder_By>;
   href?: InputMaybe<TOrder_By>;
   id?: InputMaybe<TOrder_By>;
   userId?: InputMaybe<TOrder_By>;
@@ -5028,6 +5034,7 @@ export type TUser_Notifications_Min_Order_By = {
 /** Ordering options when selecting data from "user_notifications". */
 export type TUser_Notifications_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
+  description?: InputMaybe<TOrder_By>;
   href?: InputMaybe<TOrder_By>;
   id?: InputMaybe<TOrder_By>;
   read?: InputMaybe<TOrder_By>;
@@ -5041,6 +5048,8 @@ export type TUser_Notifications_Order_By = {
 export type TUser_Notifications_Select_Column =
   /** column name */
   | 'createdAt'
+  /** column name */
+  | 'description'
   /** column name */
   | 'href'
   /** column name */
@@ -6509,9 +6518,9 @@ export type TGetUserNotificationsQueryVariables = Exact<{
 }>;
 
 
-export type TGetUserNotificationsQuery = { user_notifications: Array<{ __typename?: 'user_notifications', id: any, href?: string | null, value: string, type: TNotification_Types_Enum, read: boolean, createdAt: any }> };
+export type TGetUserNotificationsQuery = { user_notifications: Array<{ __typename?: 'user_notifications', id: any, href?: string | null, value: string, type: TNotification_Types_Enum, description?: string | null, read: boolean, createdAt: any }> };
 
-export type TNotificationFieldsFragment = { __typename?: 'user_notifications', id: any, href?: string | null, value: string, type: TNotification_Types_Enum, read: boolean, createdAt: any };
+export type TNotificationFieldsFragment = { __typename?: 'user_notifications', id: any, href?: string | null, value: string, type: TNotification_Types_Enum, description?: string | null, read: boolean, createdAt: any };
 
 export type TNewWithdrawalRequestMutationVariables = Exact<{
   amount: Scalars['money'];
@@ -6778,6 +6787,7 @@ export const NotificationFieldsFragmentDoc = gql`
   href
   value
   type
+  description
   read
   createdAt
 }
@@ -7724,7 +7734,7 @@ export type MessageListSubscriptionHookResult = ReturnType<typeof useMessageList
 export type MessageListSubscriptionResult = Apollo.SubscriptionResult<TMessageListSubscription>;
 export const GetUserNotificationsDocument = gql`
     query GetUserNotifications($userId: uuid!) {
-  user_notifications(where: {userId: {_eq: $userId}}) {
+  user_notifications(where: {userId: {_eq: $userId}}, order_by: {createdAt: desc}) {
     ...NotificationFields
   }
 }
@@ -10169,6 +10179,7 @@ export type TUser_Followers_Mutation_ResponseResolvers<ContextType = any, Parent
 
 export type TUser_NotificationsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications'] = TResolversParentTypes['user_notifications']> = {
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
+  description?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   read?: Resolver<TResolversTypes['Boolean'], ParentType, ContextType>;
@@ -10194,6 +10205,7 @@ export type TUser_Notifications_Aggregate_FieldsResolvers<ContextType = any, Par
 
 export type TUser_Notifications_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications_max_fields'] = TResolversParentTypes['user_notifications_max_fields']> = {
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  description?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
@@ -10203,6 +10215,7 @@ export type TUser_Notifications_Max_FieldsResolvers<ContextType = any, ParentTyp
 
 export type TUser_Notifications_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['user_notifications_min_fields'] = TResolversParentTypes['user_notifications_min_fields']> = {
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
+  description?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   href?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;

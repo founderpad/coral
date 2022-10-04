@@ -1,3 +1,4 @@
+import BaseHeading from '@/components/heading/BaseHeading';
 import { Label } from '@/components/labels';
 import { CaptionLabel } from '@/components/labels/Label';
 import { StackLayout } from '@/components/layouts';
@@ -19,12 +20,18 @@ const NotificationItem = (notification: TNotificationFieldsFragment) => (
 		// bg={notification.read ? 'inherit' : 'fpPrimary.50'}
 		borderBottomWidth={1}
 	>
-		<StackLayout direction="row" spacing={4}>
-			{/* <Icon as={IoWarningSharp} fontSize="lg" /> */}
+		<StackLayout direction="row" spacing={4} alignItems="center">
 			<StackLayout spacing={0} flex={1}>
-				<Label fontSize="small">{notification.value}</Label>
+				<BaseHeading fontSize="sm" w="full">
+					{notification.value}
+				</BaseHeading>
+				<Label fontSize="xs" color="gray.600">
+					{notification.description}
+				</Label>
 			</StackLayout>
-			<CaptionLabel>{formatDate(notification.createdAt)}</CaptionLabel>
+			<CaptionLabel>
+				{formatDate(notification.createdAt, true)}
+			</CaptionLabel>
 		</StackLayout>
 	</NavLink>
 );

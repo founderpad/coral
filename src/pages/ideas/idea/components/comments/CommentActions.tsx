@@ -37,7 +37,7 @@ export const CommentActions = ({
 			{showReply && isApproved && (
 				<PostReplyComment
 					commentId={id}
-					commentUserId={comment.user.id}
+					commentUserId={comment.user?.id}
 				/>
 			)}
 			{isApproved && <CommentMenu {...comment} />}

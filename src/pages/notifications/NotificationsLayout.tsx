@@ -11,7 +11,7 @@ const NotificationsLayout = ({
 }: {
 	data?: TGetUserNotificationsQuery;
 }) => (
-	<StackLayout spacing={4}>
+	<StackLayout spacing={0}>
 		{data?.user_notifications?.map(
 			(userNotification: TNotificationFieldsFragment) => (
 				<NotificationItem
