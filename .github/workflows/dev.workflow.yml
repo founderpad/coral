@@ -61,10 +61,10 @@ jobs:
               env:
                   NEXT_PUBLIC_BACKEND: ${{ secrets.HASURA_BACKEND_DEVELOPMENT }}
 
-            # - name: Run tests against Vercel dev preview URL
-            #   env:
-            #       VERCEL_URL: ${{ steps.pilot.outputs.preview-url }}
-            #   run: yarn test
+            - name: Run tests against Vercel dev preview URL
+              env:
+                  VERCEL_URL: ${{ steps.pilot.outputs.preview-url }}
+              run: yarn test
 
             - name: Deploy to development
               run: npx vercel --token ${VERCEL_TOKEN}

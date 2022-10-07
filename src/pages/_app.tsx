@@ -43,9 +43,8 @@ const paypalOptions = {
 };
 
 /**
- * The @App component is the entry point into the application. It wraps the application with the @see ChakraProvider which is a TailwindCSS inspired utility-first
+ * The @App component is the entry point into the application. It wraps the application with the @see ChakraProvider
  * React component library.
- *
  *
  * @param param0
  * @returns
@@ -75,6 +74,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 					content={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
 				></meta>
 				<meta property="og:title" content="Founderpad" key="title" />
+				<meta property="og:type" content="website" />
 				<meta property="og:url" content="https://app.founderpad.com" />
 				<meta
 					property="og:image"
@@ -104,9 +104,12 @@ const App = ({ Component, pageProps }: AppProps) => {
 				strategy="lazyOnload"
 			/>
 
-			<NhostNextProvider nhost={nhost} initial={pageProps.nhostSession}>
+			<NhostNextProvider
+				nhost={nhost}
+				// initial={pageProps.nhostSession} // only needed for SSR
+			>
 				<NhostApolloProvider
-					nhost={nhost as any}
+					nhost={nhost}
 					cache={cache}
 					connectToDevTools={true}
 				>

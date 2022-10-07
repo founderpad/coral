@@ -22,7 +22,8 @@ const customJestConfig = {
 		'^@/context(.*)$': '<rootDir>/src/context$1',
 		'^@/lib(.*)$': '<rootDir>/src/lib$1',
 		'^@/slices(.*)$': '<rootDir>/src/slices$1',
-		'^@/provider(.*)$': '<rootDir>/src/provider$1'
+		'^@/provider(.*)$': '<rootDir>/src/provider$1',
+		'^@/theme(.*)$': '<rootDir>/src/theme$1'
 		// '^@/nhost(.*)$': '<rootDir>/node_modules/@nhost$1' // Add this otherwise tests will fail. This didn't need to be added before(?)
 	}
 };
