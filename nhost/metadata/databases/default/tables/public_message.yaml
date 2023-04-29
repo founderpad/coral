@@ -2,6 +2,15 @@ table:
   name: message
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    sender_user_id:
+      custom_name: senderUserId
+    thread_id:
+      custom_name: threadId
+    updated_at:
+      custom_name: updatedAt
   custom_column_names:
     created_at: createdAt
     sender_user_id: senderUserId
@@ -9,64 +18,63 @@ configuration:
     updated_at: updatedAt
   custom_root_fields: {}
 object_relationships:
-- name: messageThread
-  using:
-    foreign_key_constraint_on: thread_id
-- name: sender
-  using:
-    foreign_key_constraint_on: sender_user_id
+  - name: messageThread
+    using:
+      foreign_key_constraint_on: thread_id
+  - name: sender
+    using:
+      foreign_key_constraint_on: sender_user_id
 insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      _or:
-      - sender_user_id:
-          _eq: X-Hasura-User-Id
-    columns:
-    - content
-    - thread_id
-    set:
-      sender_user_id: x-hasura-User-Id
-  role: user
-select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - id
-    - content
-    - sender_user_id
-    - updated_at
-    - created_at
-    - thread_id
-    filter:
-      _or:
-      - sender_user_id:
-          _eq: X-Hasura-User-Id
-      - messageThread:
-          messageThreadUsers:
-            user_id:
+  - role: user
+    permission:
+      check:
+        _or:
+          - sender_user_id:
               _eq: X-Hasura-User-Id
-  role: user
+      set:
+        sender_user_id: x-hasura-User-Id
+      columns:
+        - content
+        - thread_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - content
+        - sender_user_id
+        - updated_at
+        - created_at
+        - thread_id
+      filter:
+        _or:
+          - sender_user_id:
+              _eq: X-Hasura-User-Id
+          - messageThread:
+              messageThreadUsers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+      allow_aggregations: true
 update_permissions:
-- permission:
-    check: null
-    columns:
-    - id
-    - content
-    - sender_user_id
-    - updated_at
-    - created_at
-    - thread_id
-    filter:
-      sender_user_id:
-        _eq: X-Hasura-User-Id
-    set:
-      sender_user_id: x-hasura-User-Id
-  role: user
-delete_permissions:
-- permission:
-    filter:
-      _or:
-      - sender_user_id:
+  - role: user
+    permission:
+      columns:
+        - id
+        - content
+        - sender_user_id
+        - updated_at
+        - created_at
+        - thread_id
+      filter:
+        sender_user_id:
           _eq: X-Hasura-User-Id
-  role: user
+      check: null
+      set:
+        sender_user_id: x-hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _or:
+          - sender_user_id:
+              _eq: X-Hasura-User-Id

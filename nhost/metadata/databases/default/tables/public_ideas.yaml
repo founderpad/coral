@@ -2,6 +2,25 @@ table:
   name: ideas
   schema: public
 configuration:
+  column_config:
+    additional_information:
+      custom_name: additionalInformation
+    business_plan:
+      custom_name: businessPlan
+    created_at:
+      custom_name: createdAt
+    is_published:
+      custom_name: isPublished
+    total_comments:
+      custom_name: totalComments
+    total_interested:
+      custom_name: totalInterested
+    total_votes:
+      custom_name: totalVotes
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
   custom_column_names:
     additional_information: additionalInformation
     business_plan: businessPlan
@@ -14,130 +33,129 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: boosted_idea
-  using:
-    foreign_key_constraint_on:
-      column: idea_id
-      table:
-        name: boosted_ideas
-        schema: public
-- name: user
-  using:
-    manual_configuration:
-      column_mapping:
-        user_id: id
-      insertion_order: null
-      remote_table:
-        name: users
-        schema: auth
+  - name: boosted_idea
+    using:
+      foreign_key_constraint_on:
+        column: idea_id
+        table:
+          name: boosted_ideas
+          schema: public
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 array_relationships:
-- name: comments
-  using:
-    manual_configuration:
-      column_mapping:
-        id: idea_id
-      insertion_order: null
-      remote_table:
-        name: idea_comments
-        schema: public
-- name: interested
-  using:
-    manual_configuration:
-      column_mapping:
-        id: idea_id
-      insertion_order: null
-      remote_table:
-        name: interested_ideas
-        schema: public
-- name: votes
-  using:
-    manual_configuration:
-      column_mapping:
-        id: idea_id
-      insertion_order: null
-      remote_table:
-        name: idea_votes
-        schema: public
+  - name: comments
+    using:
+      manual_configuration:
+        column_mapping:
+          id: idea_id
+        insertion_order: null
+        remote_table:
+          name: idea_comments
+          schema: public
+  - name: interested
+    using:
+      manual_configuration:
+        column_mapping:
+          id: idea_id
+        insertion_order: null
+        remote_table:
+          name: interested_ideas
+          schema: public
+  - name: votes
+    using:
+      manual_configuration:
+        column_mapping:
+          id: idea_id
+        insertion_order: null
+        remote_table:
+          name: idea_votes
+          schema: public
 insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      user_id:
-        _eq: X-Hasura-User-Id
-    columns:
-    - additional_information
-    - business_plan
-    - competitors
-    - description
-    - field
-    - is_published
-    - name
-    - status
-    - summary
-    - team
-    set:
-      user_id: x-hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+        - additional_information
+        - business_plan
+        - competitors
+        - description
+        - field
+        - is_published
+        - name
+        - status
+        - summary
+        - team
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - additional_information
-    - business_plan
-    - competitors
-    - created_at
-    - description
-    - field
-    - id
-    - is_published
-    - name
-    - status
-    - summary
-    - team
-    - total_comments
-    - total_interested
-    - total_votes
-    - updated_at
-    - user_id
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - additional_information
+        - business_plan
+        - competitors
+        - created_at
+        - description
+        - field
+        - id
+        - is_published
+        - name
+        - status
+        - summary
+        - team
+        - total_comments
+        - total_interested
+        - total_votes
+        - updated_at
+        - user_id
+      filter: {}
+      allow_aggregations: true
 update_permissions:
-- permission:
-    check: null
-    columns:
-    - additional_information
-    - business_plan
-    - competitors
-    - description
-    - field
-    - is_published
-    - name
-    - status
-    - summary
-    - team
-    - total_comments
-    - total_interested
-    - total_votes
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-    set:
-      user_id: x-hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      columns:
+        - additional_information
+        - business_plan
+        - competitors
+        - description
+        - field
+        - is_published
+        - name
+        - status
+        - summary
+        - team
+        - total_comments
+        - total_interested
+        - total_votes
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        user_id: x-hasura-User-Id
 delete_permissions:
-- permission:
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
 event_triggers:
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: new-idea
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/idea/new"
+  - name: new-idea
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/idea/new'

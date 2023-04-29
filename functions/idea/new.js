@@ -1,4 +1,4 @@
-import { addEsteemPoints, getClient, isValidSecret } from 'functions';
+import { addEsteemPoints, getClient, isValidSecret } from '..';
 
 const { graphqlClient, gql } = getClient();
 

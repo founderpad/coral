@@ -2,6 +2,27 @@ table:
   name: boosted_ideas
   schema: public
 configuration:
+  column_config:
+    completed_at:
+      custom_name: completedAt
+    created_at:
+      custom_name: createdAt
+    currency_amount_increment:
+      custom_name: currencyAmountIncrement
+    idea_id:
+      custom_name: ideaId
+    points_increment:
+      custom_name: pointsIncrement
+    remaining_currency_amount:
+      custom_name: remainingCurrencyAmount
+    remaining_points:
+      custom_name: remainingPoints
+    total_currency_amount:
+      custom_name: totalCurrencyAmount
+    total_points:
+      custom_name: totalPoints
+    updated_at:
+      custom_name: updatedAt
   custom_column_names:
     completed_at: completedAt
     created_at: createdAt
@@ -15,24 +36,24 @@ configuration:
     updated_at: updatedAt
   custom_root_fields: {}
 object_relationships:
-- name: idea
-  using:
-    manual_configuration:
-      column_mapping:
-        idea_id: id
-      insertion_order: null
-      remote_table:
-        name: ideas
-        schema: public
+  - name: idea
+    using:
+      manual_configuration:
+        column_mapping:
+          idea_id: id
+        insertion_order: null
+        remote_table:
+          name: ideas
+          schema: public
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - created_at
-    - id
-    - idea_id
-    - remaining_currency_amount
-    - total_currency_amount
-    - updated_at
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - id
+        - idea_id
+        - remaining_currency_amount
+        - total_currency_amount
+        - updated_at
+      filter: {}
+      allow_aggregations: true

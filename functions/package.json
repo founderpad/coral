@@ -8,18 +8,18 @@
 	"author": "founderpad",
 	"license": "ISC",
 	"dependencies": {
-		"aws-sdk": "^2.1158.0",
-		"express": "^4.18.1",
-		"graphql": "^16.5.0",
+		"aws-sdk": "^2.1368.0",
+		"express": "^4.18.2",
+		"graphql": "^16.6.0",
 		"graphql-request": "^4.3.0",
-		"onesignal-node": "^3.3.0"
+		"onesignal-node": "^3.4.0"
 	},
 	"devDependencies": {
-		"@aws-sdk/types": "^3.55.0",
+		"@aws-sdk/types": "^3.310.0",
 		"@types/aws-sdk": "^2.7.0",
-		"@types/express": "^4.17.13",
-		"@types/node": "^17.0.21",
-		"dotenv": "^16.0.0",
-		"typescript": "^4.6.2"
+		"@types/express": "^4.17.17",
+		"@types/node": "^18.16.3",
+		"dotenv": "^16.0.3",
+		"typescript": "^5.0.4"
 	}
 }

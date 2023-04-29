@@ -2,6 +2,21 @@ table:
   name: v_comments
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    idea_id:
+      custom_name: ideaId
+    is_boost:
+      custom_name: isBoost
+    target_user_id:
+      custom_name: targetUserId
+    total_replies:
+      custom_name: totalReplies
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
   custom_column_names:
     created_at: createdAt
     idea_id: ideaId
@@ -12,47 +27,47 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: idea
-  using:
-    manual_configuration:
-      column_mapping:
-        idea_id: id
-      insertion_order: null
-      remote_table:
-        name: ideas
-        schema: public
-- name: user
-  using:
-    manual_configuration:
-      column_mapping:
-        user_id: id
-      insertion_order: null
-      remote_table:
-        name: users
-        schema: auth
+  - name: idea
+    using:
+      manual_configuration:
+        column_mapping:
+          idea_id: id
+        insertion_order: null
+        remote_table:
+          name: ideas
+          schema: public
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 array_relationships:
-- name: replies
-  using:
-    manual_configuration:
-      column_mapping:
-        id: comment_id
-      insertion_order: null
-      remote_table:
-        name: idea_comment_replies
-        schema: public
+  - name: replies
+    using:
+      manual_configuration:
+        column_mapping:
+          id: comment_id
+        insertion_order: null
+        remote_table:
+          name: idea_comment_replies
+          schema: public
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - created_at
-    - id
-    - idea_id
-    - is_boost
-    - status
-    - target_user_id
-    - total_replies
-    - updated_at
-    - user_id
-    - value
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - id
+        - idea_id
+        - is_boost
+        - status
+        - target_user_id
+        - total_replies
+        - updated_at
+        - user_id
+        - value
+      filter: {}
+      allow_aggregations: true

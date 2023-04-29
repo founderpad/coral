@@ -2,48 +2,52 @@ table:
   name: message_thread_users
   schema: public
 configuration:
+  column_config:
+    thread_id:
+      custom_name: threadId
+    user_id:
+      custom_name: userId
   custom_column_names:
     thread_id: threadId
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: messageThread
-  using:
-    foreign_key_constraint_on: thread_id
-- name: user
-  using:
-    foreign_key_constraint_on: user_id
+  - name: messageThread
+    using:
+      foreign_key_constraint_on: thread_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
 insert_permissions:
-- permission:
-    backend_only: false
-    check: {}
-    columns:
-    - thread_id
-    - user_id
-  role: user
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - thread_id
+        - user_id
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - thread_id
-    - user_id
-    filter:
-      _or:
-      - user_id:
-          _eq: X-Hasura-User-Id
-      - messageThread:
-          messageThreadUsers:
-            user_id:
+  - role: user
+    permission:
+      columns:
+        - thread_id
+        - user_id
+      filter:
+        _or:
+          - user_id:
               _eq: X-Hasura-User-Id
-  role: user
+          - messageThread:
+              messageThreadUsers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+      allow_aggregations: true
 delete_permissions:
-- permission:
-    filter:
-      _or:
-      - user_id:
-          _eq: X-Hasura-User-Id
-      - messageThread:
-          messageThreadUsers:
-            user_id:
+  - role: user
+    permission:
+      filter:
+        _or:
+          - user_id:
               _eq: X-Hasura-User-Id
-  role: user
+          - messageThread:
+              messageThreadUsers:
+                user_id:
+                  _eq: X-Hasura-User-Id

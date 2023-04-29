@@ -2,6 +2,17 @@ table:
   name: interested_ideas
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    idea_id:
+      custom_name: ideaId
+    target_user_id:
+      custom_name: targetUserId
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
   custom_column_names:
     created_at: createdAt
     idea_id: ideaId
@@ -10,45 +21,44 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: user
-  using:
-    manual_configuration:
-      column_mapping:
-        user_id: id
-      insertion_order: null
-      remote_table:
-        name: users
-        schema: auth
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      user_id:
-        _eq: X-Hasura-User-Id
-    columns:
-    - idea_id
-    - target_user_id
-    set:
-      user_id: x-hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+        - idea_id
+        - target_user_id
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - created_at
-    - id
-    - idea_id
-    - user_id
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - id
+        - idea_id
+        - user_id
+      filter: {}
+      allow_aggregations: true
 event_triggers:
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: send-push-interested-idea
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-interested-idea"
+  - name: send-push-interested-idea
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-interested-idea'

@@ -2,6 +2,15 @@ table:
   name: idea_preview
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    is_new:
+      custom_name: isNew
+    is_published:
+      custom_name: isPublished
+    user_id:
+      custom_name: userId
   custom_column_names:
     created_at: createdAt
     is_new: isNew
@@ -9,65 +18,65 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: boosted_idea
-  using:
-    manual_configuration:
-      column_mapping:
-        id: idea_id
-      insertion_order: null
-      remote_table:
-        name: boosted_ideas
-        schema: public
-- name: user
-  using:
-    manual_configuration:
-      column_mapping:
-        user_id: id
-      insertion_order: null
-      remote_table:
-        name: users
-        schema: auth
+  - name: boosted_idea
+    using:
+      manual_configuration:
+        column_mapping:
+          id: idea_id
+        insertion_order: null
+        remote_table:
+          name: boosted_ideas
+          schema: public
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 array_relationships:
-- name: comments
-  using:
-    manual_configuration:
-      column_mapping:
-        id: idea_id
-      insertion_order: null
-      remote_table:
-        name: idea_comments
-        schema: public
-- name: interested
-  using:
-    manual_configuration:
-      column_mapping:
-        id: idea_id
-      insertion_order: null
-      remote_table:
-        name: interested_ideas
-        schema: public
-- name: votes
-  using:
-    manual_configuration:
-      column_mapping:
-        id: idea_id
-      insertion_order: null
-      remote_table:
-        name: idea_votes
-        schema: public
+  - name: comments
+    using:
+      manual_configuration:
+        column_mapping:
+          id: idea_id
+        insertion_order: null
+        remote_table:
+          name: idea_comments
+          schema: public
+  - name: interested
+    using:
+      manual_configuration:
+        column_mapping:
+          id: idea_id
+        insertion_order: null
+        remote_table:
+          name: interested_ideas
+          schema: public
+  - name: votes
+    using:
+      manual_configuration:
+        column_mapping:
+          id: idea_id
+        insertion_order: null
+        remote_table:
+          name: idea_votes
+          schema: public
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - is_new
-    - is_published
-    - field
-    - name
-    - status
-    - summary
-    - created_at
-    - id
-    - user_id
-    filter: {}
-    limit: 10
-  role: user
+  - role: user
+    permission:
+      columns:
+        - is_new
+        - is_published
+        - field
+        - name
+        - status
+        - summary
+        - created_at
+        - id
+        - user_id
+      filter: {}
+      limit: 10
+      allow_aggregations: true

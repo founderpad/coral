@@ -2,6 +2,15 @@ table:
   name: idea_votes
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    idea_id:
+      custom_name: ideaId
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
   custom_column_names:
     created_at: createdAt
     idea_id: ideaId
@@ -9,49 +18,48 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: idea
-  using:
-    manual_configuration:
-      column_mapping:
-        idea_id: id
-      insertion_order: null
-      remote_table:
-        name: ideas
-        schema: public
-- name: user
-  using:
-    manual_configuration:
-      column_mapping:
-        user_id: id
-      insertion_order: null
-      remote_table:
-        name: users
-        schema: auth
+  - name: idea
+    using:
+      manual_configuration:
+        column_mapping:
+          idea_id: id
+        insertion_order: null
+        remote_table:
+          name: ideas
+          schema: public
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      user_id:
-        _eq: X-Hasura-User-Id
-    columns:
-    - idea_id
-    set:
-      user_id: x-hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+        - idea_id
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - created_at
-    - updated_at
-    - id
-    - idea_id
-    - user_id
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - updated_at
+        - id
+        - idea_id
+        - user_id
+      filter: {}
+      allow_aggregations: true
 delete_permissions:
-- permission:
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

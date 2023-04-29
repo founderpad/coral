@@ -1,4 +1,4 @@
-import { addEsteemPoints } from 'functions';
+import { addEsteemPoints } from '../..';
 
 const OneSignal = require('onesignal-node');
 

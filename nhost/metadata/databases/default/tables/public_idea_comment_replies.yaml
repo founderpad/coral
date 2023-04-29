@@ -2,6 +2,19 @@ table:
   name: idea_comment_replies
   schema: public
 configuration:
+  column_config:
+    comment_id:
+      custom_name: commentId
+    created_at:
+      custom_name: createdAt
+    idea_id:
+      custom_name: ideaId
+    target_user_id:
+      custom_name: targetUserId
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
   custom_column_names:
     comment_id: commentId
     created_at: createdAt
@@ -11,77 +24,76 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: comment
-  using:
-    manual_configuration:
-      column_mapping:
-        comment_id: id
-      insertion_order: null
-      remote_table:
-        name: idea_comments
-        schema: public
-- name: user
-  using:
-    manual_configuration:
-      column_mapping:
-        user_id: id
-      insertion_order: null
-      remote_table:
-        name: users
-        schema: auth
+  - name: comment
+    using:
+      manual_configuration:
+        column_mapping:
+          comment_id: id
+        insertion_order: null
+        remote_table:
+          name: idea_comments
+          schema: public
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      user_id:
-        _eq: X-Hasura-User-Id
-    columns:
-    - comment_id
-    - idea_id
-    - target_user_id
-    - value
-    set:
-      user_id: x-hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+        - comment_id
+        - idea_id
+        - target_user_id
+        - value
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - value
-    - created_at
-    - updated_at
-    - comment_id
-    - id
-    - idea_id
-    - target_user_id
-    - user_id
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - value
+        - created_at
+        - updated_at
+        - comment_id
+        - id
+        - idea_id
+        - target_user_id
+        - user_id
+      filter: {}
+      allow_aggregations: true
 update_permissions:
-- permission:
-    check: null
-    columns:
-    - value
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-    set:
-      user_id: x-hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      columns:
+        - value
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        user_id: x-hasura-User-Id
 delete_permissions:
-- permission:
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
 event_triggers:
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: send-push-reply-to-comment
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-reply-to-comment"
+  - name: send-push-reply-to-comment
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-reply-to-comment'

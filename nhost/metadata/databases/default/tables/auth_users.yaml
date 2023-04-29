@@ -2,15 +2,68 @@ table:
   name: users
   schema: auth
 configuration:
+  column_config:
+    active_mfa_type:
+      custom_name: activeMfaType
+    avatar_url:
+      custom_name: avatarUrl
+    created_at:
+      custom_name: createdAt
+    default_role:
+      custom_name: defaultRole
+    disabled:
+      custom_name: disabled
+    display_name:
+      custom_name: displayName
+    email:
+      custom_name: email
+    email_verified:
+      custom_name: emailVerified
+    id:
+      custom_name: id
+    is_anonymous:
+      custom_name: isAnonymous
+    last_seen:
+      custom_name: lastSeen
+    locale:
+      custom_name: locale
+    new_email:
+      custom_name: newEmail
+    otp_hash:
+      custom_name: otpHash
+    otp_hash_expires_at:
+      custom_name: otpHashExpiresAt
+    otp_method_last_used:
+      custom_name: otpMethodLastUsed
+    password_hash:
+      custom_name: passwordHash
+    phone_number:
+      custom_name: phoneNumber
+    phone_number_verified:
+      custom_name: phoneNumberVerified
+    ticket:
+      custom_name: ticket
+    ticket_expires_at:
+      custom_name: ticketExpiresAt
+    totp_secret:
+      custom_name: totpSecret
+    updated_at:
+      custom_name: updatedAt
+    webauthn_current_challenge:
+      custom_name: currentChallenge
   custom_column_names:
     active_mfa_type: activeMfaType
     avatar_url: avatarUrl
     created_at: createdAt
     default_role: defaultRole
+    disabled: disabled
     display_name: displayName
+    email: email
     email_verified: emailVerified
+    id: id
     is_anonymous: isAnonymous
     last_seen: lastSeen
+    locale: locale
     new_email: newEmail
     otp_hash: otpHash
     otp_hash_expires_at: otpHashExpiresAt
@@ -18,9 +71,11 @@ configuration:
     password_hash: passwordHash
     phone_number: phoneNumber
     phone_number_verified: phoneNumberVerified
+    ticket: ticket
     ticket_expires_at: ticketExpiresAt
     totp_secret: totpSecret
     updated_at: updatedAt
+    webauthn_current_challenge: currentChallenge
   custom_name: users
   custom_root_fields:
     delete: deleteUsers
@@ -33,173 +88,180 @@ configuration:
     update: updateUsers
     update_by_pk: updateUser
 object_relationships:
-- name: address
-  using:
-    manual_configuration:
-      column_mapping:
-        id: user_id
-      insertion_order: null
-      remote_table:
-        name: user_address
-        schema: public
-- name: defaultRoleByRole
-  using:
-    foreign_key_constraint_on: default_role
-- name: esteemPointsCurrency
-  using:
-    manual_configuration:
-      column_mapping:
-        id: user_id
-      insertion_order: null
-      remote_table:
-        name: user_esteem_points_currency
-        schema: public
-- name: profile
-  using:
-    manual_configuration:
-      column_mapping:
-        id: user_id
-      insertion_order: null
-      remote_table:
-        name: user_profile
-        schema: public
+  - name: address
+    using:
+      manual_configuration:
+        column_mapping:
+          id: user_id
+        insertion_order: null
+        remote_table:
+          name: user_address
+          schema: public
+  - name: defaultRoleByRole
+    using:
+      foreign_key_constraint_on: default_role
+  - name: esteemPointsCurrency
+    using:
+      manual_configuration:
+        column_mapping:
+          id: user_id
+        insertion_order: null
+        remote_table:
+          name: user_esteem_points_currency
+          schema: public
+  - name: profile
+    using:
+      manual_configuration:
+        column_mapping:
+          id: user_id
+        insertion_order: null
+        remote_table:
+          name: user_profile
+          schema: public
 array_relationships:
-- name: ideas
-  using:
-    foreign_key_constraint_on:
-      column: user_id
-      table:
-        name: ideas
-        schema: public
-- name: messageThreadUsers
-  using:
-    manual_configuration:
-      column_mapping:
-        id: user_id
-      insertion_order: null
-      remote_table:
-        name: message_thread_users
-        schema: public
-- name: messageThreads
-  using:
-    foreign_key_constraint_on:
-      column: owner_id
-      table:
-        name: message_thread
-        schema: public
-- name: messages
-  using:
-    manual_configuration:
-      column_mapping:
-        id: sender_user_id
-      insertion_order: null
-      remote_table:
-        name: message
-        schema: public
-- name: refreshTokens
-  using:
-    foreign_key_constraint_on:
-      column: user_id
-      table:
-        name: refresh_tokens
-        schema: auth
-- name: roles
-  using:
-    foreign_key_constraint_on:
-      column: user_id
-      table:
-        name: user_roles
-        schema: auth
-- name: userProviders
-  using:
-    foreign_key_constraint_on:
-      column: user_id
-      table:
-        name: user_providers
-        schema: auth
-- name: user_followers
-  using:
-    foreign_key_constraint_on:
-      column: follower_id
-      table:
-        name: user_followers
-        schema: public
-- name: user_notifications
-  using:
-    foreign_key_constraint_on:
-      column: user_id
-      table:
-        name: user_notifications
-        schema: public
-- name: user_profiles
-  using:
-    foreign_key_constraint_on:
-      column: user_id
-      table:
-        name: user_profile
-        schema: public
+  - name: ideas
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: ideas
+          schema: public
+  - name: messageThreadUsers
+    using:
+      manual_configuration:
+        column_mapping:
+          id: user_id
+        insertion_order: null
+        remote_table:
+          name: message_thread_users
+          schema: public
+  - name: messageThreads
+    using:
+      foreign_key_constraint_on:
+        column: owner_id
+        table:
+          name: message_thread
+          schema: public
+  - name: messages
+    using:
+      manual_configuration:
+        column_mapping:
+          id: sender_user_id
+        insertion_order: null
+        remote_table:
+          name: message
+          schema: public
+  - name: refreshTokens
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: refresh_tokens
+          schema: auth
+  - name: roles
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_roles
+          schema: auth
+  - name: securityKeys
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_security_keys
+          schema: auth
+  - name: userProviders
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_providers
+          schema: auth
+  - name: user_followers
+    using:
+      foreign_key_constraint_on:
+        column: follower_id
+        table:
+          name: user_followers
+          schema: public
+  - name: user_notifications
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_notifications
+          schema: public
+  - name: user_profiles
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_profile
+          schema: public
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - id
-    - created_at
-    - updated_at
-    - last_seen
-    - disabled
-    - display_name
-    - avatar_url
-    - locale
-    - email
-    - phone_number
-    - password_hash
-    - email_verified
-    - phone_number_verified
-    - new_email
-    - otp_method_last_used
-    - otp_hash
-    - otp_hash_expires_at
-    - default_role
-    - is_anonymous
-    - totp_secret
-    - active_mfa_type
-    - ticket
-    - ticket_expires_at
-    filter: {}
-  role: user
-update_permissions:
-- permission:
-    check: null
-    columns:
-    - avatar_url
-    - disabled
-    - display_name
-    - last_seen
-    filter:
-      id:
-        _eq: X-Hasura-User-Id
-    set:
-      id: x-hasura-User-Id
-  role: user
-event_triggers:
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: create-user-esteem-points-currency
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points_currency/create-user-esteem-points-currency"
-- definition:
-    enable_manual: false
-    update:
+  - role: user
+    permission:
       columns:
-      - email_verified
-  name: send-welcome-email
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/email/user/send-welcome-email"
+        - id
+        - created_at
+        - updated_at
+        - last_seen
+        - disabled
+        - display_name
+        - avatar_url
+        - locale
+        - email
+        - phone_number
+        - password_hash
+        - email_verified
+        - phone_number_verified
+        - new_email
+        - otp_method_last_used
+        - otp_hash
+        - otp_hash_expires_at
+        - default_role
+        - is_anonymous
+        - totp_secret
+        - active_mfa_type
+        - ticket
+        - ticket_expires_at
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - avatar_url
+        - disabled
+        - display_name
+        - last_seen
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        id: x-hasura-User-Id
+event_triggers:
+  - name: create-user-esteem-points-currency
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/esteem_points_currency/create-user-esteem-points-currency'
+  - name: send-welcome-email
+    definition:
+      enable_manual: false
+      update:
+        columns:
+          - email_verified
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/email/user/send-welcome-email'

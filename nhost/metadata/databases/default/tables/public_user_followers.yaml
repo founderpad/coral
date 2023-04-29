@@ -2,49 +2,53 @@ table:
   name: user_followers
   schema: public
 configuration:
+  column_config:
+    follower_id:
+      custom_name: followerId
+    following_id:
+      custom_name: followingId
   custom_column_names:
     follower_id: followerId
     following_id: followingId
   custom_root_fields: {}
 object_relationships:
-- name: user
-  using:
-    foreign_key_constraint_on: follower_id
+  - name: user
+    using:
+      foreign_key_constraint_on: follower_id
 insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      follower_id:
-        _eq: X-Hasura-User-Id
-    columns:
-    - following_id
-    - status
-    set:
-      follower_id: x-hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      check:
+        follower_id:
+          _eq: X-Hasura-User-Id
+      set:
+        follower_id: x-hasura-User-Id
+      columns:
+        - following_id
+        - status
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - status
-    - follower_id
-    - following_id
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - status
+        - follower_id
+        - following_id
+      filter: {}
+      allow_aggregations: true
 delete_permissions:
-- permission:
-    filter:
-      follower_id:
-        _eq: X-Hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      filter:
+        follower_id:
+          _eq: X-Hasura-User-Id
 event_triggers:
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: send-push-follow-user-request
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-follow-user-request"
+  - name: send-push-follow-user-request
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-follow-user-request'

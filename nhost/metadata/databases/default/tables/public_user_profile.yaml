@@ -2,6 +2,21 @@ table:
   name: user_profile
   schema: public
 configuration:
+  column_config:
+    business_description:
+      custom_name: businessDescription
+    created_at:
+      custom_name: createdAt
+    custom_pronouns:
+      custom_name: customPronouns
+    is_complete:
+      custom_name: isComplete
+    specialist_industry:
+      custom_name: specialistIndustry
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
   custom_column_names:
     business_description: businessDescription
     created_at: createdAt
@@ -12,70 +27,70 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: user
-  using:
-    manual_configuration:
-      column_mapping:
-        user_id: id
-      insertion_order: null
-      remote_table:
-        name: users
-        schema: auth
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - availability
-    - background
-    - business_description
-    - created_at
-    - custom_pronouns
-    - facebook
-    - id
-    - industries
-    - instagram
-    - is_complete
-    - linkedin
-    - objective
-    - pronouns
-    - resume
-    - skills
-    - specialist_industry
-    - startups
-    - statement
-    - status
-    - twitter
-    - updated_at
-    - user_id
-    - website
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - availability
+        - background
+        - business_description
+        - created_at
+        - custom_pronouns
+        - facebook
+        - id
+        - industries
+        - instagram
+        - is_complete
+        - linkedin
+        - objective
+        - pronouns
+        - resume
+        - skills
+        - specialist_industry
+        - startups
+        - statement
+        - status
+        - twitter
+        - updated_at
+        - user_id
+        - website
+      filter: {}
+      allow_aggregations: true
 update_permissions:
-- permission:
-    check: null
-    columns:
-    - availability
-    - background
-    - business_description
-    - custom_pronouns
-    - facebook
-    - industries
-    - instagram
-    - is_complete
-    - linkedin
-    - objective
-    - pronouns
-    - resume
-    - skills
-    - specialist_industry
-    - startups
-    - statement
-    - status
-    - twitter
-    - website
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-    set:
-      user_id: x-hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      columns:
+        - availability
+        - background
+        - business_description
+        - custom_pronouns
+        - facebook
+        - industries
+        - instagram
+        - is_complete
+        - linkedin
+        - objective
+        - pronouns
+        - resume
+        - skills
+        - specialist_industry
+        - startups
+        - statement
+        - status
+        - twitter
+        - website
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        user_id: x-hasura-User-Id

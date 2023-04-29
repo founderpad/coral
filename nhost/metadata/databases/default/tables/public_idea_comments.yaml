@@ -2,6 +2,21 @@ table:
   name: idea_comments
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    idea_id:
+      custom_name: ideaId
+    is_boost:
+      custom_name: isBoost
+    target_user_id:
+      custom_name: targetUserId
+    total_replies:
+      custom_name: totalReplies
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
   custom_column_names:
     created_at: createdAt
     idea_id: ideaId
@@ -12,111 +27,110 @@ configuration:
     user_id: userId
   custom_root_fields: {}
 object_relationships:
-- name: idea
-  using:
-    manual_configuration:
-      column_mapping:
-        idea_id: id
-      insertion_order: null
-      remote_table:
-        name: ideas
-        schema: public
-- name: user
-  using:
-    manual_configuration:
-      column_mapping:
-        user_id: id
-      insertion_order: null
-      remote_table:
-        name: users
-        schema: auth
+  - name: idea
+    using:
+      manual_configuration:
+        column_mapping:
+          idea_id: id
+        insertion_order: null
+        remote_table:
+          name: ideas
+          schema: public
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: auth
 array_relationships:
-- name: replies
-  using:
-    manual_configuration:
-      column_mapping:
-        id: comment_id
-      insertion_order: null
-      remote_table:
-        name: idea_comment_replies
-        schema: public
+  - name: replies
+    using:
+      manual_configuration:
+        column_mapping:
+          id: comment_id
+        insertion_order: null
+        remote_table:
+          name: idea_comment_replies
+          schema: public
 insert_permissions:
-- permission:
-    backend_only: false
-    check:
-      user_id:
-        _eq: X-Hasura-User-Id
-    columns:
-    - idea_id
-    - is_boost
-    - target_user_id
-    - value
-    set:
-      user_id: x-hasura-User-Id
-  role: user
-select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - created_at
-    - id
-    - idea_id
-    - is_boost
-    - status
-    - target_user_id
-    - total_replies
-    - updated_at
-    - user_id
-    - value
-    filter: {}
-  role: user
-update_permissions:
-- permission:
-    check: null
-    columns:
-    - total_replies
-    - value
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-    set:
-      user_id: x-hasura-User-Id
-  role: user
-delete_permissions:
-- permission:
-    filter:
-      user_id:
-        _eq: X-Hasura-User-Id
-  role: user
-event_triggers:
-- definition:
-    enable_manual: false
-    insert:
-      columns: "*"
-  name: add-esteem-points-for-comment
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/esteem_points/add/comments"
-- definition:
-    enable_manual: false
-    update:
-      columns: "*"
-  name: approve-boost-comment
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/boost/approve-boost-comment"
-- definition:
-    enable_manual: false
-    update:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
       columns:
-      - status
-  name: send-push-new-comment
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-new-comment"
+        - idea_id
+        - is_boost
+        - target_user_id
+        - value
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - id
+        - idea_id
+        - is_boost
+        - status
+        - target_user_id
+        - total_replies
+        - updated_at
+        - user_id
+        - value
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - total_replies
+        - value
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        user_id: x-hasura-User-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+event_triggers:
+  - name: add-esteem-points-for-comment
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/esteem_points/add/comments'
+  - name: approve-boost-comment
+    definition:
+      enable_manual: false
+      update:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/boost/approve-boost-comment'
+  - name: send-push-new-comment
+    definition:
+      enable_manual: false
+      update:
+        columns:
+          - status
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{NHOST_BACKEND_URL}}/v1/functions/notifications/push/send-push-new-comment'
