@@ -46,7 +46,7 @@ const FileUploadProvider = ({ children }: { children: React.ReactNode }) => {
 
 			if (response.fileMetadata) {
 				const { id, name, bucketId } = response.fileMetadata;
-				const fileUrl = storage.getUrl({ fileId: id });
+				const fileUrl = storage.getPublicUrl({ fileId: id });
 
 				if (!fileUrl) throw 'Failed to get file from server';
 

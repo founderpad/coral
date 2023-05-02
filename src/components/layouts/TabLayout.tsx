@@ -96,7 +96,7 @@ const TabLayout = (props: Props & TabsProps) => {
 								}
 							}}
 						>
-							{tp}
+							{tp as any}
 						</TabPanel>
 					);
 				})}

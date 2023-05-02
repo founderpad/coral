@@ -28,7 +28,7 @@ export interface ISelectFieldProps extends IInputFieldProps<any> {
 	isUrl?: boolean;
 }
 
-export type TCheckboxfieldProps<T> = CheckboxProps & {
+export type TCheckboxfieldProps<T extends FieldValues> = CheckboxProps & {
 	name: string;
 	control: Control<T>;
 	label?: string;

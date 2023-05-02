@@ -70,7 +70,7 @@ export const BasePopover = (props: Props) => {
 						</PopoverHeader>
 					)}
 					<PopoverBody flexGrow={1} overflowY="auto" minHeight="auto">
-						{children}
+						{children as any}
 					</PopoverBody>
 				</PopoverContent>
 			)}

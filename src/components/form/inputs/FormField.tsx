@@ -14,6 +14,7 @@ import {
 	Control,
 	DeepMap,
 	FieldError,
+	FieldValues,
 	Path,
 	RegisterOptions,
 	useController,
@@ -27,7 +28,7 @@ import ResizeTextarea from 'react-textarea-autosize';
 import { useMobile } from '@/hooks/util';
 import { TOption } from '@/utils/Constants';
 
-export type TFormFieldProps<TFormValues> = {
+export type TFormFieldProps<TFormValues extends FieldValues> = {
 	name: Path<TFormValues>;
 	control: Control<TFormValues>;
 	rules?: RegisterOptions;
@@ -41,13 +42,14 @@ export type TFormFieldProps<TFormValues> = {
 	fieldProps?: Omit<InputProps, 'name'>;
 } & Omit<InputProps, 'name'>;
 
-export type TFormSelectFieldProps<TFormValues> =
+export type TFormSelectFieldProps<TFormValues extends FieldValues> =
 	TFormFieldProps<TFormValues> & {
 		options?: Array<TOption>;
 		selectProps?: SelectProps;
 	};
 
-export type TFormTextareaFieldProps<TFormValues> = TFormFieldProps<TFormValues>;
+export type TFormTextareaFieldProps<TFormValues extends FieldValues> =
+	TFormFieldProps<TFormValues>;
 
 const FormFieldLimit = ({ max, value }: { max: number; value: string }) => {
 	return (

@@ -28,7 +28,7 @@ export const TitleEditAction = memo(
 			<FlexLayout flex={1} flexDirection="column">
 				{icon ? (
 					<FlexLayout alignItems="center">
-						{icon}
+						{icon as any}
 						<Heading
 							display="flex"
 							flex={1}

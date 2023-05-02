@@ -23,7 +23,7 @@ export const CustomInput = (props: Props) => {
 		useFileUploader();
 
 	const onDrop = useCallback(
-		(acceptedFiles: Array<File>, fileRejections) => {
+		(acceptedFiles: Array<File>, fileRejections: any[]) => {
 			fileRejections.forEach((file: any) => {
 				file.errors.forEach((err: any) => {
 					if (err.code === 'file-too-large') {
@@ -49,7 +49,18 @@ export const CustomInput = (props: Props) => {
 	);
 
 	const { getRootProps, getInputProps } = useDropzone({
-		accept: '.pdf, .doc, .docx, .txt',
+		// accept: '.pdf, .doc, .docx, .txt',
+		// accept: {
+		// 	'application/pdf': ['.pdf'],
+		// 	'text/plain': ['.txt'],
+		// 	'application/msword': ['.doc'],
+		// 	'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+		// 		['.docx']
+		// },
+		accept: {
+			'application/*': ['.pdf', '.doc', 'docx'],
+			'text/plain': ['.txt']
+		},
 		maxSize: 5242880,
 		onDrop
 	});

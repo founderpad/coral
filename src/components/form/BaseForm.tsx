@@ -2,13 +2,22 @@ import { StackProps } from '@chakra-ui/layout';
 import { StackLayout } from '@/components/layouts';
 import React from 'react';
 import {
+	FieldValues,
 	SubmitHandler,
 	useForm,
 	UseFormProps,
 	UseFormReturn
 } from 'react-hook-form';
 
-type TBaseFormProps<TFormValues> = {
+// type TBaseFormProps<TFormValues> = {
+// 	name: string;
+// 	onSubmit: any | SubmitHandler<TFormValues>;
+// 	children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;
+// 	defaultValues?: UseFormProps<TFormValues>['defaultValues'];
+// 	stackProps?: StackProps;
+// };
+
+type TBaseFormProps<TFormValues extends FieldValues> = {
 	name: string;
 	onSubmit: any | SubmitHandler<TFormValues>;
 	children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;

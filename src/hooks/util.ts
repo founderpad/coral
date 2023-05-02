@@ -111,7 +111,7 @@ export const useFileUpload = () => {
 			bucketId
 		});
 		const fileId = response.fileMetadata?.id;
-		if (fileId) return storage.getUrl({ fileId });
+		if (fileId) return storage.getPublicUrl({ fileId });
 		return null;
 	};
 };
