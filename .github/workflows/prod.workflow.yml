@@ -55,7 +55,7 @@ jobs:
             - name: Apply Hasura Metadata (permissions, object/array relationships, events etc) to production Postgres
               working-directory: ./nhost
               run: |
-                  hasura metadata apply --endpoint ${{ secrets.HASURA_BACKEND_PRODUCTION }} --admin-secret ${{ secrets.HASURA_ADMIN_SECRET_PRODUCTION }} --database-name default --skip-update-check
+                  hasura metadata apply --endpoint ${{ secrets.HASURA_BACKEND_PRODUCTION }} --admin-secret ${{ secrets.HASURA_ADMIN_SECRET_PRODUCTION }} --skip-update-check
                   echo "Metadata applied successfully"
 
             - name: Run linter
