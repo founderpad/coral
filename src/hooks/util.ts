@@ -90,24 +90,35 @@ export const useMobileNav = () => {
 	return { isOpen, onToggle };
 };
 
+type TBucket = 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
+
 interface IFileUploadProps {
 	file: File;
-	bucketId: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
+	bucketId: TBucket;
 	fileName?: string;
 }
 
 export const useFileUpload = () => {
-	return async ({ file, bucketId, fileName }: IFileUploadProps) => {
+	return async ({ file, bucketId }: IFileUploadProps) => {
 		// const extension = file?.name.split('.').pop();
 
 		// const extension = file?.name.split('.').pop();
 		// const timestamp = new Date().getTime();
 		// const filePath = `/public/avatars/${id}.${extension}?v=` + timestamp;
 		// const name = file?.name;
+
+		// console.log('id:', userId);
+
+		// console.log(
+		// 	'filename: ',
+		// 	`${file.name.split('.')[0]}-${new Date().getTime()}`
+		// );
+
 		const response = await storage.upload({
 			file,
 			// name: `${fileName}-${new Date().getTime()}`,
-			name: fileName,
+			// name: fileName,
+			name: `${file.name.split('.')[0]}-${new Date().getTime()}`,
 			bucketId
 		});
 		const fileId = response.fileMetadata?.id;

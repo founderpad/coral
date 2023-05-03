@@ -117,6 +117,11 @@ const NavItems: Array<NavItem> = [
 		]
 	},
 	{
+		label: 'Matchmake',
+		href: '/matchmake',
+		isLink: true
+	},
+	{
 		label: 'Messages',
 		href: '/messages',
 		isLink: true
