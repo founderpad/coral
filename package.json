@@ -29,6 +29,9 @@
 		"analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
 		"analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
 	},
+	"engines": {
+		"node": "18"
+	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged",
