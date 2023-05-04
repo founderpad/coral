@@ -41,8 +41,11 @@ insert_permissions:
   - role: user
     permission:
       check:
-        uploaded_by_user_id:
-          _eq: X-Hasura-User-Id
+        _and:
+          - uploaded_by_user_id:
+              _eq: X-Hasura-User-Id
+          - size:
+              _lte: 5000000
       set:
         uploaded_by_user_id: x-hasura-User-Id
       columns:

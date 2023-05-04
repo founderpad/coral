@@ -27,10 +27,11 @@ enum Params {
 // 	router.events.on('routeChangeStart', handleRouteChange)
 // };
 
-export const useEditMode = (): any => useRouter().query[Params.edit];
+export const useEditMode = () => useRouter().query[Params.edit];
 
-export const useQueryParam = <T extends string | string[]>(param: string) =>
-	useRouter().query[param] as T;
+export const useQueryParam = <T extends string | string[] = string>(
+	param: string
+) => useRouter().query[param] as T;
 
 export const usePathMatch = (value: string): boolean =>
 	value.includes(useRouter().pathname);
@@ -100,24 +101,8 @@ interface IFileUploadProps {
 
 export const useFileUpload = () => {
 	return async ({ file, bucketId }: IFileUploadProps) => {
-		// const extension = file?.name.split('.').pop();
-
-		// const extension = file?.name.split('.').pop();
-		// const timestamp = new Date().getTime();
-		// const filePath = `/public/avatars/${id}.${extension}?v=` + timestamp;
-		// const name = file?.name;
-
-		// console.log('id:', userId);
-
-		// console.log(
-		// 	'filename: ',
-		// 	`${file.name.split('.')[0]}-${new Date().getTime()}`
-		// );
-
 		const response = await storage.upload({
 			file,
-			// name: `${fileName}-${new Date().getTime()}`,
-			// name: fileName,
 			name: `${file.name.split('.')[0]}-${new Date().getTime()}`,
 			bucketId
 		});

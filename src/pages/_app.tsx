@@ -6,7 +6,7 @@ import BaseModalDrawer from '@/components/modal/BaseModalDrawer';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
 import { useTrackAnalytics } from '@/hooks/util';
-import { NhostNextProvider, NhostClient } from '@nhost/nextjs';
+import { NhostProvider, NhostClient } from '@nhost/nextjs';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import DrawerProvider from '@/provider/DrawerProvider';
@@ -106,7 +106,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 				strategy="lazyOnload"
 			/>
 
-			<NhostNextProvider nhost={nhost} initial={pageProps.nhostSession}>
+			<NhostProvider nhost={nhost} initial={pageProps.nhostSession}>
 				<NhostApolloProvider
 					nhost={nhost as any}
 					cache={cache}
@@ -144,7 +144,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 						</PersistGate>
 					</Provider>
 				</NhostApolloProvider>
-			</NhostNextProvider>
+			</NhostProvider>
 		</React.Fragment>
 	);
 };
