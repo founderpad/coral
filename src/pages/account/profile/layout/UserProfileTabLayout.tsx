@@ -4,6 +4,7 @@ import React from 'react';
 import UserActivityTab from '../components/UserActivityTab';
 import UserPersonalDetails from '../components/UserPersonalDetails';
 import WorkExperienceTab from '../components/WorkExperienceTab';
+import MatchmakeSettingsTab from '../components/MatchmakeSettingsTab';
 
 const UserProfileTabLayout = () => {
 	const isMobile = useBreakpointValue({ base: true, md: false });
@@ -14,19 +15,26 @@ const UserProfileTabLayout = () => {
 				<TabLayout
 					tabs={[
 						{ label: 'About' },
-						{ label: 'Experience' },
+						{ label: 'Details' },
+						{ label: 'Matchmake Settings' },
 						{ label: 'Activity' }
 					]}
 				>
 					<UserPersonalDetails />
 					<WorkExperienceTab />
+					<MatchmakeSettingsTab />
 					<UserActivityTab />
 				</TabLayout>
 			) : (
 				<TabLayout
-					tabs={[{ label: 'Experience' }, { label: 'Activity' }]}
+					tabs={[
+						{ label: 'Details' },
+						{ label: 'Matchmake Settings' },
+						{ label: 'Activity' }
+					]}
 				>
 					<WorkExperienceTab />
+					<MatchmakeSettingsTab />
 					<UserActivityTab />
 				</TabLayout>
 			)}

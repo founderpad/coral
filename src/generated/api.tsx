@@ -5410,6 +5410,165 @@ export type TJsonb_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['jsonb']>>;
 };
 
+/** columns and relationships of "matchmake_preferences" */
+export type TMatchmake_Preferences = {
+  __typename?: 'matchmake_preferences';
+  looking_for?: Maybe<Scalars['String']>;
+  skills?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  user: TUsers;
+  user_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "matchmake_preferences" */
+export type TMatchmake_Preferences_Aggregate = {
+  __typename?: 'matchmake_preferences_aggregate';
+  aggregate?: Maybe<TMatchmake_Preferences_Aggregate_Fields>;
+  nodes: Array<TMatchmake_Preferences>;
+};
+
+/** aggregate fields of "matchmake_preferences" */
+export type TMatchmake_Preferences_Aggregate_Fields = {
+  __typename?: 'matchmake_preferences_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<TMatchmake_Preferences_Max_Fields>;
+  min?: Maybe<TMatchmake_Preferences_Min_Fields>;
+};
+
+
+/** aggregate fields of "matchmake_preferences" */
+export type TMatchmake_Preferences_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "matchmake_preferences". All fields are combined with a logical 'AND'. */
+export type TMatchmake_Preferences_Bool_Exp = {
+  _and?: InputMaybe<Array<TMatchmake_Preferences_Bool_Exp>>;
+  _not?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+  _or?: InputMaybe<Array<TMatchmake_Preferences_Bool_Exp>>;
+  looking_for?: InputMaybe<TString_Comparison_Exp>;
+  skills?: InputMaybe<TString_Comparison_Exp>;
+  type?: InputMaybe<TString_Comparison_Exp>;
+  user?: InputMaybe<TUsers_Bool_Exp>;
+  user_id?: InputMaybe<TUuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "matchmake_preferences" */
+export type TMatchmake_Preferences_Constraint =
+  /** unique or primary key constraint on columns "user_id" */
+  | 'matchmake_preferences_pkey';
+
+/** input type for inserting data into table "matchmake_preferences" */
+export type TMatchmake_Preferences_Insert_Input = {
+  looking_for?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<TUsers_Obj_Rel_Insert_Input>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type TMatchmake_Preferences_Max_Fields = {
+  __typename?: 'matchmake_preferences_max_fields';
+  looking_for?: Maybe<Scalars['String']>;
+  skills?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type TMatchmake_Preferences_Min_Fields = {
+  __typename?: 'matchmake_preferences_min_fields';
+  looking_for?: Maybe<Scalars['String']>;
+  skills?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "matchmake_preferences" */
+export type TMatchmake_Preferences_Mutation_Response = {
+  __typename?: 'matchmake_preferences_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<TMatchmake_Preferences>;
+};
+
+/** on_conflict condition type for table "matchmake_preferences" */
+export type TMatchmake_Preferences_On_Conflict = {
+  constraint: TMatchmake_Preferences_Constraint;
+  update_columns?: Array<TMatchmake_Preferences_Update_Column>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "matchmake_preferences". */
+export type TMatchmake_Preferences_Order_By = {
+  looking_for?: InputMaybe<TOrder_By>;
+  skills?: InputMaybe<TOrder_By>;
+  type?: InputMaybe<TOrder_By>;
+  user?: InputMaybe<TUsers_Order_By>;
+  user_id?: InputMaybe<TOrder_By>;
+};
+
+/** primary key columns input for table: matchmake_preferences */
+export type TMatchmake_Preferences_Pk_Columns_Input = {
+  user_id: Scalars['uuid'];
+};
+
+/** select columns of table "matchmake_preferences" */
+export type TMatchmake_Preferences_Select_Column =
+  /** column name */
+  | 'looking_for'
+  /** column name */
+  | 'skills'
+  /** column name */
+  | 'type'
+  /** column name */
+  | 'user_id';
+
+/** input type for updating data in table "matchmake_preferences" */
+export type TMatchmake_Preferences_Set_Input = {
+  looking_for?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "matchmake_preferences" */
+export type TMatchmake_Preferences_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: TMatchmake_Preferences_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<TCursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type TMatchmake_Preferences_Stream_Cursor_Value_Input = {
+  looking_for?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "matchmake_preferences" */
+export type TMatchmake_Preferences_Update_Column =
+  /** column name */
+  | 'looking_for'
+  /** column name */
+  | 'skills'
+  /** column name */
+  | 'type'
+  /** column name */
+  | 'user_id';
+
+export type TMatchmake_Preferences_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
+  where: TMatchmake_Preferences_Bool_Exp;
+};
+
 /** All chat messages */
 export type TMessage = {
   __typename?: 'message';
@@ -6192,6 +6351,10 @@ export type TMutation_Root = {
   delete_interested_ideas?: Maybe<TInterested_Ideas_Mutation_Response>;
   /** delete single row from the table: "interested_ideas" */
   delete_interested_ideas_by_pk?: Maybe<TInterested_Ideas>;
+  /** delete data from the table: "matchmake_preferences" */
+  delete_matchmake_preferences?: Maybe<TMatchmake_Preferences_Mutation_Response>;
+  /** delete single row from the table: "matchmake_preferences" */
+  delete_matchmake_preferences_by_pk?: Maybe<TMatchmake_Preferences>;
   /** delete data from the table: "message" */
   delete_message?: Maybe<TMessage_Mutation_Response>;
   /** delete single row from the table: "message" */
@@ -6318,6 +6481,10 @@ export type TMutation_Root = {
   insert_interested_ideas?: Maybe<TInterested_Ideas_Mutation_Response>;
   /** insert a single row into the table: "interested_ideas" */
   insert_interested_ideas_one?: Maybe<TInterested_Ideas>;
+  /** insert data into the table: "matchmake_preferences" */
+  insert_matchmake_preferences?: Maybe<TMatchmake_Preferences_Mutation_Response>;
+  /** insert a single row into the table: "matchmake_preferences" */
+  insert_matchmake_preferences_one?: Maybe<TMatchmake_Preferences>;
   /** insert data into the table: "message" */
   insert_message?: Maybe<TMessage_Mutation_Response>;
   /** insert a single row into the table: "message" */
@@ -6482,6 +6649,12 @@ export type TMutation_Root = {
   update_interested_ideas_by_pk?: Maybe<TInterested_Ideas>;
   /** update multiples rows of table: "interested_ideas" */
   update_interested_ideas_many?: Maybe<Array<Maybe<TInterested_Ideas_Mutation_Response>>>;
+  /** update data of the table: "matchmake_preferences" */
+  update_matchmake_preferences?: Maybe<TMatchmake_Preferences_Mutation_Response>;
+  /** update single row of the table: "matchmake_preferences" */
+  update_matchmake_preferences_by_pk?: Maybe<TMatchmake_Preferences>;
+  /** update multiples rows of table: "matchmake_preferences" */
+  update_matchmake_preferences_many?: Maybe<Array<Maybe<TMatchmake_Preferences_Mutation_Response>>>;
   /** update data of the table: "message" */
   update_message?: Maybe<TMessage_Mutation_Response>;
   /** update single row of the table: "message" */
@@ -6790,6 +6963,18 @@ export type TMutation_RootDelete_Interested_IdeasArgs = {
 export type TMutation_RootDelete_Interested_Ideas_By_PkArgs = {
   ideaId: Scalars['uuid'];
   userId: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_Matchmake_PreferencesArgs = {
+  where: TMatchmake_Preferences_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_Matchmake_Preferences_By_PkArgs = {
+  user_id: Scalars['uuid'];
 };
 
 
@@ -7208,6 +7393,20 @@ export type TMutation_RootInsert_Interested_IdeasArgs = {
 export type TMutation_RootInsert_Interested_Ideas_OneArgs = {
   object: TInterested_Ideas_Insert_Input;
   on_conflict?: InputMaybe<TInterested_Ideas_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Matchmake_PreferencesArgs = {
+  objects: Array<TMatchmake_Preferences_Insert_Input>;
+  on_conflict?: InputMaybe<TMatchmake_Preferences_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Matchmake_Preferences_OneArgs = {
+  object: TMatchmake_Preferences_Insert_Input;
+  on_conflict?: InputMaybe<TMatchmake_Preferences_On_Conflict>;
 };
 
 
@@ -7797,6 +7996,26 @@ export type TMutation_RootUpdate_Interested_Ideas_ManyArgs = {
 
 
 /** mutation root */
+export type TMutation_RootUpdate_Matchmake_PreferencesArgs = {
+  _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
+  where: TMatchmake_Preferences_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_Matchmake_Preferences_By_PkArgs = {
+  _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
+  pk_columns: TMatchmake_Preferences_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_Matchmake_Preferences_ManyArgs = {
+  updates: Array<TMatchmake_Preferences_Updates>;
+};
+
+
+/** mutation root */
 export type TMutation_RootUpdate_MessageArgs = {
   _set?: InputMaybe<TMessage_Set_Input>;
   where: TMessage_Bool_Exp;
@@ -8331,6 +8550,12 @@ export type TQuery_Root = {
   interested_ideas_aggregate: TInterested_Ideas_Aggregate;
   /** fetch data from the table: "interested_ideas" using primary key columns */
   interested_ideas_by_pk?: Maybe<TInterested_Ideas>;
+  /** fetch data from the table: "matchmake_preferences" */
+  matchmake_preferences: Array<TMatchmake_Preferences>;
+  /** fetch aggregated fields from the table: "matchmake_preferences" */
+  matchmake_preferences_aggregate: TMatchmake_Preferences_Aggregate;
+  /** fetch data from the table: "matchmake_preferences" using primary key columns */
+  matchmake_preferences_by_pk?: Maybe<TMatchmake_Preferences>;
   /** fetch data from the table: "message" */
   message: Array<TMessage>;
   /** fetch aggregated fields from the table: "message" */
@@ -8841,6 +9066,29 @@ export type TQuery_RootInterested_Ideas_AggregateArgs = {
 export type TQuery_RootInterested_Ideas_By_PkArgs = {
   ideaId: Scalars['uuid'];
   userId: Scalars['uuid'];
+};
+
+
+export type TQuery_RootMatchmake_PreferencesArgs = {
+  distinct_on?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMatchmake_Preferences_Order_By>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+
+export type TQuery_RootMatchmake_Preferences_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMatchmake_Preferences_Order_By>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+
+export type TQuery_RootMatchmake_Preferences_By_PkArgs = {
+  user_id: Scalars['uuid'];
 };
 
 
@@ -9529,6 +9777,14 @@ export type TSubscription_Root = {
   interested_ideas_by_pk?: Maybe<TInterested_Ideas>;
   /** fetch data from the table in a streaming manner: "interested_ideas" */
   interested_ideas_stream: Array<TInterested_Ideas>;
+  /** fetch data from the table: "matchmake_preferences" */
+  matchmake_preferences: Array<TMatchmake_Preferences>;
+  /** fetch aggregated fields from the table: "matchmake_preferences" */
+  matchmake_preferences_aggregate: TMatchmake_Preferences_Aggregate;
+  /** fetch data from the table: "matchmake_preferences" using primary key columns */
+  matchmake_preferences_by_pk?: Maybe<TMatchmake_Preferences>;
+  /** fetch data from the table in a streaming manner: "matchmake_preferences" */
+  matchmake_preferences_stream: Array<TMatchmake_Preferences>;
   /** fetch data from the table: "message" */
   message: Array<TMessage>;
   /** fetch aggregated fields from the table: "message" */
@@ -10198,6 +10454,36 @@ export type TSubscription_RootInterested_Ideas_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<TInterested_Ideas_Stream_Cursor_Input>>;
   where?: InputMaybe<TInterested_Ideas_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMatchmake_PreferencesArgs = {
+  distinct_on?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMatchmake_Preferences_Order_By>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMatchmake_Preferences_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMatchmake_Preferences_Order_By>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMatchmake_Preferences_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
+export type TSubscription_RootMatchmake_Preferences_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<TMatchmake_Preferences_Stream_Cursor_Input>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
 };
 
 
@@ -13595,6 +13881,14 @@ export type TBoostedIdeasQueryVariables = Exact<{
 
 export type TBoostedIdeasQuery = { boosted_ideas: Array<{ __typename?: 'boosted_ideas', ideaId: any, totalCurrencyAmount?: any | null, remainingCurrencyAmount?: any | null, createdAt?: any | null, idea?: { __typename?: 'ideas', name: string, summary?: string | null, status?: string | null, field: string } | null }>, boosted_ideas_aggregate: { __typename?: 'boosted_ideas_aggregate', aggregate?: { __typename?: 'boosted_ideas_aggregate_fields', count: number } | null } };
 
+export type TUpdateMatchmakeSettingsMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  matchmake_settings: TMatchmake_Preferences_Set_Input;
+}>;
+
+
+export type TUpdateMatchmakeSettingsMutation = { update_matchmake_preferences_by_pk?: { __typename?: 'matchmake_preferences', looking_for?: string | null, skills?: string | null, type?: string | null } | null };
+
 export type TNewMessageThreadMutationVariables = Exact<{
   targetUserId: Scalars['uuid'];
   currentUserId: Scalars['uuid'];
@@ -14635,6 +14929,45 @@ export type BoostedIdeasQueryResult = Apollo.QueryResult<TBoostedIdeasQuery, TBo
 export function refetchBoostedIdeasQuery(variables?: TBoostedIdeasQueryVariables) {
       return { query: BoostedIdeasDocument, variables: variables }
     }
+export const UpdateMatchmakeSettingsDocument = gql`
+    mutation UpdateMatchmakeSettings($id: uuid!, $matchmake_settings: matchmake_preferences_set_input!) {
+  update_matchmake_preferences_by_pk(
+    pk_columns: {user_id: $id}
+    _set: $matchmake_settings
+  ) {
+    looking_for
+    skills
+    type
+  }
+}
+    `;
+export type TUpdateMatchmakeSettingsMutationFn = Apollo.MutationFunction<TUpdateMatchmakeSettingsMutation, TUpdateMatchmakeSettingsMutationVariables>;
+
+/**
+ * __useUpdateMatchmakeSettingsMutation__
+ *
+ * To run a mutation, you first call `useUpdateMatchmakeSettingsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateMatchmakeSettingsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateMatchmakeSettingsMutation, { data, loading, error }] = useUpdateMatchmakeSettingsMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      matchmake_settings: // value for 'matchmake_settings'
+ *   },
+ * });
+ */
+export function useUpdateMatchmakeSettingsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateMatchmakeSettingsMutation, TUpdateMatchmakeSettingsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<TUpdateMatchmakeSettingsMutation, TUpdateMatchmakeSettingsMutationVariables>(UpdateMatchmakeSettingsDocument, options);
+      }
+export type UpdateMatchmakeSettingsMutationHookResult = ReturnType<typeof useUpdateMatchmakeSettingsMutation>;
+export type UpdateMatchmakeSettingsMutationResult = Apollo.MutationResult<TUpdateMatchmakeSettingsMutation>;
+export type UpdateMatchmakeSettingsMutationOptions = Apollo.BaseMutationOptions<TUpdateMatchmakeSettingsMutation, TUpdateMatchmakeSettingsMutationVariables>;
 export const NewMessageThreadDocument = gql`
     mutation NewMessageThread($targetUserId: uuid!, $currentUserId: uuid!) {
   insert_message_thread(
@@ -16054,6 +16387,24 @@ export type TResolversTypes = {
   jsonb: ResolverTypeWrapper<Scalars['jsonb']>;
   jsonb_cast_exp: TJsonb_Cast_Exp;
   jsonb_comparison_exp: TJsonb_Comparison_Exp;
+  matchmake_preferences: ResolverTypeWrapper<TMatchmake_Preferences>;
+  matchmake_preferences_aggregate: ResolverTypeWrapper<TMatchmake_Preferences_Aggregate>;
+  matchmake_preferences_aggregate_fields: ResolverTypeWrapper<TMatchmake_Preferences_Aggregate_Fields>;
+  matchmake_preferences_bool_exp: TMatchmake_Preferences_Bool_Exp;
+  matchmake_preferences_constraint: TMatchmake_Preferences_Constraint;
+  matchmake_preferences_insert_input: TMatchmake_Preferences_Insert_Input;
+  matchmake_preferences_max_fields: ResolverTypeWrapper<TMatchmake_Preferences_Max_Fields>;
+  matchmake_preferences_min_fields: ResolverTypeWrapper<TMatchmake_Preferences_Min_Fields>;
+  matchmake_preferences_mutation_response: ResolverTypeWrapper<TMatchmake_Preferences_Mutation_Response>;
+  matchmake_preferences_on_conflict: TMatchmake_Preferences_On_Conflict;
+  matchmake_preferences_order_by: TMatchmake_Preferences_Order_By;
+  matchmake_preferences_pk_columns_input: TMatchmake_Preferences_Pk_Columns_Input;
+  matchmake_preferences_select_column: TMatchmake_Preferences_Select_Column;
+  matchmake_preferences_set_input: TMatchmake_Preferences_Set_Input;
+  matchmake_preferences_stream_cursor_input: TMatchmake_Preferences_Stream_Cursor_Input;
+  matchmake_preferences_stream_cursor_value_input: TMatchmake_Preferences_Stream_Cursor_Value_Input;
+  matchmake_preferences_update_column: TMatchmake_Preferences_Update_Column;
+  matchmake_preferences_updates: TMatchmake_Preferences_Updates;
   message: ResolverTypeWrapper<TMessage>;
   message_aggregate: ResolverTypeWrapper<TMessage_Aggregate>;
   message_aggregate_bool_exp: TMessage_Aggregate_Bool_Exp;
@@ -16859,6 +17210,21 @@ export type TResolversParentTypes = {
   jsonb: Scalars['jsonb'];
   jsonb_cast_exp: TJsonb_Cast_Exp;
   jsonb_comparison_exp: TJsonb_Comparison_Exp;
+  matchmake_preferences: TMatchmake_Preferences;
+  matchmake_preferences_aggregate: TMatchmake_Preferences_Aggregate;
+  matchmake_preferences_aggregate_fields: TMatchmake_Preferences_Aggregate_Fields;
+  matchmake_preferences_bool_exp: TMatchmake_Preferences_Bool_Exp;
+  matchmake_preferences_insert_input: TMatchmake_Preferences_Insert_Input;
+  matchmake_preferences_max_fields: TMatchmake_Preferences_Max_Fields;
+  matchmake_preferences_min_fields: TMatchmake_Preferences_Min_Fields;
+  matchmake_preferences_mutation_response: TMatchmake_Preferences_Mutation_Response;
+  matchmake_preferences_on_conflict: TMatchmake_Preferences_On_Conflict;
+  matchmake_preferences_order_by: TMatchmake_Preferences_Order_By;
+  matchmake_preferences_pk_columns_input: TMatchmake_Preferences_Pk_Columns_Input;
+  matchmake_preferences_set_input: TMatchmake_Preferences_Set_Input;
+  matchmake_preferences_stream_cursor_input: TMatchmake_Preferences_Stream_Cursor_Input;
+  matchmake_preferences_stream_cursor_value_input: TMatchmake_Preferences_Stream_Cursor_Value_Input;
+  matchmake_preferences_updates: TMatchmake_Preferences_Updates;
   message: TMessage;
   message_aggregate: TMessage_Aggregate;
   message_aggregate_bool_exp: TMessage_Aggregate_Bool_Exp;
@@ -18531,6 +18897,50 @@ export interface TJsonbScalarConfig extends GraphQLScalarTypeConfig<TResolversTy
   name: 'jsonb';
 }
 
+export type TMatchmake_PreferencesResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences'] = TResolversParentTypes['matchmake_preferences']> = {
+  looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  user?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
+  user_id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_aggregate'] = TResolversParentTypes['matchmake_preferences_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['matchmake_preferences_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['matchmake_preferences']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_aggregate_fields'] = TResolversParentTypes['matchmake_preferences_aggregate_fields']> = {
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TMatchmake_Preferences_Aggregate_FieldsCountArgs>>;
+  max?: Resolver<Maybe<TResolversTypes['matchmake_preferences_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['matchmake_preferences_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_max_fields'] = TResolversParentTypes['matchmake_preferences_max_fields']> = {
+  looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_min_fields'] = TResolversParentTypes['matchmake_preferences_min_fields']> = {
+  looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_mutation_response'] = TResolversParentTypes['matchmake_preferences_mutation_response']> = {
+  affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<TResolversTypes['matchmake_preferences']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TMessageResolvers<ContextType = any, ParentType extends TResolversParentTypes['message'] = TResolversParentTypes['message']> = {
   content?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -18716,6 +19126,8 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   delete_ideas_by_pk?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Ideas_By_PkArgs, 'id'>>;
   delete_interested_ideas?: Resolver<Maybe<TResolversTypes['interested_ideas_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Interested_IdeasArgs, 'where'>>;
   delete_interested_ideas_by_pk?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Interested_Ideas_By_PkArgs, 'ideaId' | 'userId'>>;
+  delete_matchmake_preferences?: Resolver<Maybe<TResolversTypes['matchmake_preferences_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Matchmake_PreferencesArgs, 'where'>>;
+  delete_matchmake_preferences_by_pk?: Resolver<Maybe<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Matchmake_Preferences_By_PkArgs, 'user_id'>>;
   delete_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_MessageArgs, 'where'>>;
   delete_message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_By_PkArgs, 'id'>>;
   delete_message_thread?: Resolver<Maybe<TResolversTypes['message_thread_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_ThreadArgs, 'where'>>;
@@ -18779,6 +19191,8 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   insert_ideas_one?: Resolver<Maybe<TResolversTypes['ideas']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Ideas_OneArgs, 'object'>>;
   insert_interested_ideas?: Resolver<Maybe<TResolversTypes['interested_ideas_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Interested_IdeasArgs, 'objects'>>;
   insert_interested_ideas_one?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Interested_Ideas_OneArgs, 'object'>>;
+  insert_matchmake_preferences?: Resolver<Maybe<TResolversTypes['matchmake_preferences_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Matchmake_PreferencesArgs, 'objects'>>;
+  insert_matchmake_preferences_one?: Resolver<Maybe<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Matchmake_Preferences_OneArgs, 'object'>>;
   insert_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_MessageArgs, 'objects'>>;
   insert_message_one?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_OneArgs, 'object'>>;
   insert_message_thread?: Resolver<Maybe<TResolversTypes['message_thread_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_ThreadArgs, 'objects'>>;
@@ -18861,6 +19275,9 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   update_interested_ideas?: Resolver<Maybe<TResolversTypes['interested_ideas_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Interested_IdeasArgs, 'where'>>;
   update_interested_ideas_by_pk?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Interested_Ideas_By_PkArgs, 'pk_columns'>>;
   update_interested_ideas_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['interested_ideas_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Interested_Ideas_ManyArgs, 'updates'>>;
+  update_matchmake_preferences?: Resolver<Maybe<TResolversTypes['matchmake_preferences_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Matchmake_PreferencesArgs, 'where'>>;
+  update_matchmake_preferences_by_pk?: Resolver<Maybe<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Matchmake_Preferences_By_PkArgs, 'pk_columns'>>;
+  update_matchmake_preferences_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['matchmake_preferences_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Matchmake_Preferences_ManyArgs, 'updates'>>;
   update_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_MessageArgs, 'where'>>;
   update_message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Message_By_PkArgs, 'pk_columns'>>;
   update_message_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['message_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Message_ManyArgs, 'updates'>>;
@@ -18993,6 +19410,9 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   interested_ideas?: Resolver<Array<TResolversTypes['interested_ideas']>, ParentType, ContextType, Partial<TQuery_RootInterested_IdeasArgs>>;
   interested_ideas_aggregate?: Resolver<TResolversTypes['interested_ideas_aggregate'], ParentType, ContextType, Partial<TQuery_RootInterested_Ideas_AggregateArgs>>;
   interested_ideas_by_pk?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TQuery_RootInterested_Ideas_By_PkArgs, 'ideaId' | 'userId'>>;
+  matchmake_preferences?: Resolver<Array<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, Partial<TQuery_RootMatchmake_PreferencesArgs>>;
+  matchmake_preferences_aggregate?: Resolver<TResolversTypes['matchmake_preferences_aggregate'], ParentType, ContextType, Partial<TQuery_RootMatchmake_Preferences_AggregateArgs>>;
+  matchmake_preferences_by_pk?: Resolver<Maybe<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, RequireFields<TQuery_RootMatchmake_Preferences_By_PkArgs, 'user_id'>>;
   message?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, Partial<TQuery_RootMessageArgs>>;
   message_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, Partial<TQuery_RootMessage_AggregateArgs>>;
   message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_By_PkArgs, 'id'>>;
@@ -19173,6 +19593,10 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   interested_ideas_aggregate?: SubscriptionResolver<TResolversTypes['interested_ideas_aggregate'], "interested_ideas_aggregate", ParentType, ContextType, Partial<TSubscription_RootInterested_Ideas_AggregateArgs>>;
   interested_ideas_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['interested_ideas']>, "interested_ideas_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootInterested_Ideas_By_PkArgs, 'ideaId' | 'userId'>>;
   interested_ideas_stream?: SubscriptionResolver<Array<TResolversTypes['interested_ideas']>, "interested_ideas_stream", ParentType, ContextType, RequireFields<TSubscription_RootInterested_Ideas_StreamArgs, 'batch_size' | 'cursor'>>;
+  matchmake_preferences?: SubscriptionResolver<Array<TResolversTypes['matchmake_preferences']>, "matchmake_preferences", ParentType, ContextType, Partial<TSubscription_RootMatchmake_PreferencesArgs>>;
+  matchmake_preferences_aggregate?: SubscriptionResolver<TResolversTypes['matchmake_preferences_aggregate'], "matchmake_preferences_aggregate", ParentType, ContextType, Partial<TSubscription_RootMatchmake_Preferences_AggregateArgs>>;
+  matchmake_preferences_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['matchmake_preferences']>, "matchmake_preferences_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMatchmake_Preferences_By_PkArgs, 'user_id'>>;
+  matchmake_preferences_stream?: SubscriptionResolver<Array<TResolversTypes['matchmake_preferences']>, "matchmake_preferences_stream", ParentType, ContextType, RequireFields<TSubscription_RootMatchmake_Preferences_StreamArgs, 'batch_size' | 'cursor'>>;
   message?: SubscriptionResolver<Array<TResolversTypes['message']>, "message", ParentType, ContextType, Partial<TSubscription_RootMessageArgs>>;
   message_aggregate?: SubscriptionResolver<TResolversTypes['message_aggregate'], "message_aggregate", ParentType, ContextType, Partial<TSubscription_RootMessage_AggregateArgs>>;
   message_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['message']>, "message_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMessage_By_PkArgs, 'id'>>;
@@ -20064,6 +20488,12 @@ export type TResolvers<ContextType = any> = {
   interested_ideas_min_fields?: TInterested_Ideas_Min_FieldsResolvers<ContextType>;
   interested_ideas_mutation_response?: TInterested_Ideas_Mutation_ResponseResolvers<ContextType>;
   jsonb?: GraphQLScalarType;
+  matchmake_preferences?: TMatchmake_PreferencesResolvers<ContextType>;
+  matchmake_preferences_aggregate?: TMatchmake_Preferences_AggregateResolvers<ContextType>;
+  matchmake_preferences_aggregate_fields?: TMatchmake_Preferences_Aggregate_FieldsResolvers<ContextType>;
+  matchmake_preferences_max_fields?: TMatchmake_Preferences_Max_FieldsResolvers<ContextType>;
+  matchmake_preferences_min_fields?: TMatchmake_Preferences_Min_FieldsResolvers<ContextType>;
+  matchmake_preferences_mutation_response?: TMatchmake_Preferences_Mutation_ResponseResolvers<ContextType>;
   message?: TMessageResolvers<ContextType>;
   message_aggregate?: TMessage_AggregateResolvers<ContextType>;
   message_aggregate_fields?: TMessage_Aggregate_FieldsResolvers<ContextType>;

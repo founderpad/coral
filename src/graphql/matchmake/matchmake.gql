@@ -1,0 +1,13 @@
+mutation UpdateMatchmakeSettings(
+	$id: uuid!
+	$matchmake_settings: matchmake_preferences_set_input!
+) {
+	update_matchmake_preferences_by_pk(
+		pk_columns: { user_id: $id }
+		_set: $matchmake_settings
+	) {
+		looking_for
+		skills
+		type
+	}
+}

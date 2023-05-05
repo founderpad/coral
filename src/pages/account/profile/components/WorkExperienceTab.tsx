@@ -37,7 +37,7 @@ const WorkExperienceTab = () => {
 
 	const onClick = () => {
 		openModalDrawer({
-			title: 'Your experience',
+			title: 'Your details',
 			action: (
 				<SubmitButton
 					name="open-modal-drawer-experience-button"
@@ -65,7 +65,7 @@ const WorkExperienceTab = () => {
 							/>
 						) : undefined
 					}
-					title="Your experience"
+					title="Your details"
 					subtitle={
 						!isProfileComplete && (
 							<Label
@@ -74,8 +74,7 @@ const WorkExperienceTab = () => {
 								textAlign="start"
 								pt={1}
 							>
-								Provide some more details and showcase your
-								experience
+								Provide some details for more accurate matches
 							</Label>
 						)
 					}
@@ -85,9 +84,7 @@ const WorkExperienceTab = () => {
 				{isChangeSuccess && (
 					<AlertFeedback
 						status="success"
-						message={
-							'Your experience has been updated successfully'
-						}
+						message={'Your details have been updated successfully'}
 					/>
 				)}
 
@@ -95,11 +92,12 @@ const WorkExperienceTab = () => {
 					<AlertFeedback
 						status="error"
 						message={
-							'Failed to update experience. Please try again later'
+							'Failed to update details. Please try again later'
 						}
 					/>
 				)}
 			</StackLayout>
+
 			<OverviewTags
 				tags={[
 					{

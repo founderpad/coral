@@ -47,8 +47,6 @@ const UserImageUploader = () => {
 
 		const response = await upload({ file, bucketId: 'avatars' });
 
-		console.log('response: ', response);
-
 		await updateAvatar({
 			variables: {
 				id: userId,

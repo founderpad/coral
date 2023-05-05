@@ -11,11 +11,10 @@ import { StackLayout } from '@/components/layouts';
 import { TitleEditAction } from '@/components/shared';
 import ChangePasswordForm from '@/components/shared/ChangePasswordForm';
 import PronounsLabel from '@/components/shared/PronounsLabel';
-import ModalDrawerContext from '@/context/ModalDrawerContext';
 import { useCurrentUser } from '@/hooks/auth';
-import { useQueryParam } from '@/hooks/util';
+import { useModalDrawer, useQueryParam } from '@/hooks/util';
 import { formatDate } from '@/utils/validators';
-import React, { memo, useContext } from 'react';
+import React, { memo } from 'react';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';
 import UserImageUploader from './UserImageUploader';
@@ -24,7 +23,7 @@ type Props = Pick<FlexProps, 'display' | 'mb'>;
 
 const UserPersonalInformation = memo((props: Props) => {
 	const user = useCurrentUser();
-	const { openModalDrawer } = useContext(ModalDrawerContext);
+	const { openModalDrawer } = useModalDrawer();
 	const {
 		createdAt = '',
 		displayName = '',

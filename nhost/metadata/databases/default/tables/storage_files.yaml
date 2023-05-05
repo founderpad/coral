@@ -41,18 +41,12 @@ insert_permissions:
   - role: user
     permission:
       check:
-        _and:
-          - uploaded_by_user_id:
-              _eq: X-Hasura-User-Id
-          - size:
-              _lte: 5000000
-      set:
-        uploaded_by_user_id: x-hasura-User-Id
+        size:
+          _lte: 5000000
       columns:
-        - bucket_id
-        - id
-        - mime_type
         - name
+        - size
+        - uploaded_by_user_id
 select_permissions:
   - role: public
     permission:

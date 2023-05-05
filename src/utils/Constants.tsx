@@ -18,6 +18,20 @@ export const ALL_USER_OBJECTIVES: TOption[] = [
 	{ label: 'Just browsing', value: 'Just browsing' }
 ];
 
+export const ALL_MATCHMAKE_TYPES: TOption[] = [
+	{ label: 'Co-Founder', value: 'Co-Founder' },
+	{ label: 'Mentor', value: 'Mentor' },
+	{ label: 'Entrepreneur', value: 'Entrepreneur' },
+	{
+		label: 'Interested in building a startup',
+		value: 'Interested in building a startup'
+	},
+	{
+		label: 'Interested in joining a startup',
+		value: 'Interested in joining a startup'
+	}
+];
+
 export const ALL_IDEA_CATEGORY_FIELDS: TOption[] = [
 	{ label: 'Aerospace', value: 'Aerospace' },
 	{ label: 'Agriculture', value: 'Agriculture' },

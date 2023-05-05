@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useModal = (): any => {
+const useModal = () => {
 	const [open, setOpen] = useState(false);
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState('');
