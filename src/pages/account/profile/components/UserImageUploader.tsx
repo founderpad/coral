@@ -5,7 +5,7 @@ import { useAuth, useCurrentUser } from '@/hooks/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 import { useModalDrawer } from '@/hooks/util';
 import { updateUserImage } from '@/slices/auth';
-import { useFileUpload } from '@nhost/react';
+// import { useFileUpload } from '@nhost/react';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -19,7 +19,7 @@ const UserImageUploader = () => {
 	const showSuccessNotification = useSuccessNotification();
 
 	// const uploadAvatar = useFileUpload();
-	const { upload } = useFileUpload();
+	// const { upload } = useFileUpload();
 	const [updateAvatar] = useUpdateUserAvatarMutation();
 
 	// const onUpload = useCallback(async (file: File) => {
@@ -42,10 +42,10 @@ const UserImageUploader = () => {
 	// 	});
 	// });
 
-	const onUpload = async (file: File) => {
+	const onUpload = async (_file: File) => {
 		// const avatarUrl = await uploadAvatar({ file, bucketId: 'avatars' });
 
-		const response = await upload({ file, bucketId: 'avatars' });
+		// const response = await upload({ file, bucketId: 'avatars' });
 
 		await updateAvatar({
 			variables: {
