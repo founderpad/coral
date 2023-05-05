@@ -3,29 +3,16 @@ import { FormSelect } from '@/components/form/inputs/FormField';
 import { Label } from '@/components/labels';
 import { FlexLayout } from '@/components/layouts';
 import { TMatchmake_Preferences_Set_Input } from '@/generated/api';
+import { useCheckboxes } from '@/hooks/util';
 import { ALL_MATCHMAKE_TYPES, EXPERIENCE_SKILLS } from '@/utils/Constants';
 import { Button, Checkbox, FormControl } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 import { Controller } from 'react-hook-form';
 
 const MatchmakeSettingsForm = () => {
 	// const { closeModalDrawer } = useModalDrawer();
 	// const [updateMatchmakeSettings] = useUpdateMatchmakeSettingsMutation();
-	const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-
-	const onSkillsToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const skill = e.target.name;
-		const skillsCopy = [...selectedSkills];
-
-		const index = skillsCopy.findIndex((s) => s === skill);
-		index > -1 ? skillsCopy.splice(index, 1) : skillsCopy.push(skill);
-
-		setSelectedSkills(skillsCopy);
-	};
-
-	const onClearSkills = () => {
-		setSelectedSkills([]);
-	};
+	const { clearValues, onToggle, values, isChecked } = useCheckboxes();
 
 	// const onUpdateMatchmakeSettings = (
 	// 	matchmakeSettings: TMatchmake_Preferences_Set_Input
@@ -65,13 +52,13 @@ const MatchmakeSettingsForm = () => {
 					<FormControl>
 						<FlexLayout justifyContent="space-between">
 							<FormLabelText label="Skills I am looking for" />
-							{selectedSkills.length > 0 && (
+							{values.length > 0 && (
 								<Button
 									fontSize="x-small"
 									colorScheme="fpPrimary"
 									variant="link"
 									mb={1}
-									onClick={onClearSkills}
+									onClick={clearValues}
 								>
 									Clear
 								</Button>
@@ -88,13 +75,13 @@ const MatchmakeSettingsForm = () => {
 										value={es}
 										py={1}
 										pr={2}
-										onChange={onSkillsToggle}
+										onChange={onToggle}
 										colorScheme="fpPrimary"
 										color="fpGrey.900"
 										ref={ref}
 										size="md"
 										fontSize="xs"
-										isChecked={selectedSkills.includes(es)}
+										isChecked={isChecked(es)}
 									>
 										<Label
 											color="fpGrey.900"
