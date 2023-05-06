@@ -18,23 +18,23 @@ exports[`Register form matches snapshot 1`] = `
       >
         <div
           aria-live="polite"
-          class="css-jhkd4z"
+          class="css-1kadxit"
           id="form-input"
         >
           <div
-            class="css-qnoc8j"
+            class="css-1bcbxj7"
           />
           <input
             aria-label="firstName"
             aria-required="true"
             class="chakra-input css-gr2y0"
-            id="field-1"
+            id="field-:r0:"
             placeholder="First name"
             required=""
             value=""
           />
           <div
-            class="css-11633wt"
+            class="css-19sroul"
           />
         </div>
       </div>
@@ -44,21 +44,21 @@ exports[`Register form matches snapshot 1`] = `
       >
         <div
           aria-live="polite"
-          class="css-jhkd4z"
+          class="css-1kadxit"
           id="form-input"
         >
           <div
-            class="css-qnoc8j"
+            class="css-1bcbxj7"
           />
           <input
             aria-label="lastName"
             class="chakra-input css-gr2y0"
-            id="field-2"
+            id="field-:r1:"
             placeholder="Last name"
             value=""
           />
           <div
-            class="css-11633wt"
+            class="css-19sroul"
           />
         </div>
       </div>
@@ -68,23 +68,23 @@ exports[`Register form matches snapshot 1`] = `
       >
         <div
           aria-live="polite"
-          class="css-jhkd4z"
+          class="css-1kadxit"
           id="form-input"
         >
           <div
-            class="css-qnoc8j"
+            class="css-1bcbxj7"
           />
           <input
             aria-label="email"
             aria-required="true"
             class="chakra-input css-gr2y0"
-            id="field-3"
+            id="field-:r2:"
             placeholder="Email"
             required=""
             value=""
           />
           <div
-            class="css-11633wt"
+            class="css-19sroul"
           />
         </div>
       </div>
@@ -94,40 +94,42 @@ exports[`Register form matches snapshot 1`] = `
       >
         <div
           aria-live="polite"
-          class="css-jhkd4z"
+          class="css-1kadxit"
           id="form-input"
         >
           <div
-            class="css-qnoc8j"
+            class="css-1bcbxj7"
           />
           <input
             aria-label="password"
             aria-required="true"
             class="chakra-input css-gr2y0"
-            id="field-4"
+            id="field-:r3:"
             placeholder="Password"
             required=""
             type="password"
             value=""
           />
           <div
-            class="css-11633wt"
+            class="css-19sroul"
           />
         </div>
       </div>
       <div
-        class="chakra-alert css-glexlw"
+        class="chakra-alert css-e7usqr"
+        data-status="error"
         role="alert"
       >
         <div
           class="chakra-alert__desc css-1g4x3gd"
+          data-status="error"
         >
           Failed to create account. Please try again later.
         </div>
       </div>
       <button
         aria-label="submit-register-account"
-        class="chakra-button css-9j6h2k"
+        class="chakra-button css-nlgm34"
         id="submit-register-account"
         type="submit"
       >
@@ -193,43 +195,59 @@ exports[`Register form matches snapshot 1`] = `
     </div>
   </div>
   <div
+    class="chakra-alert css-1tlb84b"
+    data-status="warning"
+    role="alert"
+  >
+    Your email address must be the same as your PayPal account in order to withdraw funds.
+  </div>
+  <div
     class="chakra-stack css-p0ia60"
   >
     <div
       class="chakra-text css-i2jbli"
     >
       By continuing, you agree to founderpad's 
-      <span
-        class="chakra-link css-ntv2za"
+      <a
         href="/terms-of-conditions"
-        rel="noopener noreferrer"
-        target="_blank"
-        title="Link to Terms of Service"
       >
-        Terms of Service 
-      </span>
+        <span
+          class="chakra-link css-ntv2za"
+          rel="noopener"
+          target="_blank"
+          title="Link to Terms of Service"
+        >
+          Terms of Service 
+        </span>
+      </a>
       and acknowledge that you've read our 
-      <span
-        class="chakra-link css-ntv2za"
+      <a
         href="/privacy-policy"
-        rel="noopener noreferrer"
-        target="_blank"
-        title="Link to Privacy Policy"
       >
-        Privacy Policy.
-      </span>
+        <span
+          class="chakra-link css-ntv2za"
+          rel="noopener"
+          target="_blank"
+          title="Link to Privacy Policy"
+        >
+          Privacy Policy.
+        </span>
+      </a>
     </div>
     <div
       class="chakra-text css-1gx0chr"
     >
       Already have an account? 
-      <span
-        class="chakra-link css-ntv2za"
+      <a
         href="/login"
-        title="Link to login"
       >
-        Login here
-      </span>
+        <span
+          class="chakra-link css-ntv2za"
+          title="Link to login"
+        >
+          Login here
+        </span>
+      </a>
     </div>
   </div>
 </DocumentFragment>

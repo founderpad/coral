@@ -8,11 +8,19 @@ import { ALL_MATCHMAKE_TYPES, EXPERIENCE_SKILLS } from '@/utils/Constants';
 import { Button, Checkbox, FormControl } from '@chakra-ui/react';
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import { SimpleGrid } from '@chakra-ui/react';
 
 const MatchmakeSettingsForm = () => {
 	// const { closeModalDrawer } = useModalDrawer();
 	// const [updateMatchmakeSettings] = useUpdateMatchmakeSettingsMutation();
-	const { clearValues, onToggle, values, isChecked } = useCheckboxes();
+	const {
+		clearValues,
+		onToggle,
+		values,
+		isChecked,
+		onToggleAll,
+		isAllSelected
+	} = useCheckboxes(EXPERIENCE_SKILLS, []);
 
 	// const onUpdateMatchmakeSettings = (
 	// 	matchmakeSettings: TMatchmake_Preferences_Set_Input
@@ -64,37 +72,54 @@ const MatchmakeSettingsForm = () => {
 								</Button>
 							)}
 						</FlexLayout>
-						{EXPERIENCE_SKILLS.map((es: string) => (
-							<Controller
-								key={es}
-								name="skills"
-								render={({ field: { ref } }) => (
-									<Checkbox
-										name={es}
-										rounded="none"
-										value={es}
-										py={1}
-										pr={2}
-										onChange={onToggle}
-										colorScheme="fpPrimary"
-										color="fpGrey.900"
-										ref={ref}
-										size="md"
-										fontSize="xs"
-										isChecked={isChecked(es)}
-									>
-										<Label
+
+						<Checkbox
+							onChange={onToggleAll}
+							isChecked={isAllSelected}
+							w="full"
+							pb={2}
+						>
+							<Label
+								color="fpGrey.900"
+								fontWeight="normal"
+								fontSize="xs"
+							>
+								All
+							</Label>
+						</Checkbox>
+						<SimpleGrid columns={2} row={6}>
+							{EXPERIENCE_SKILLS.map((es: string) => (
+								<Controller
+									key={es}
+									name="skills"
+									render={({ field: { ref } }) => (
+										<Checkbox
+											name={es}
+											rounded="none"
+											value={es}
+											py={1}
+											pr={2}
+											onChange={onToggle}
+											colorScheme="fpPrimary"
 											color="fpGrey.900"
-											fontWeight="normal"
+											ref={ref}
+											size="md"
 											fontSize="xs"
+											isChecked={isChecked(es)}
 										>
-											{es}
-										</Label>
-									</Checkbox>
-								)}
-								control={control}
-							/>
-						))}
+											<Label
+												color="fpGrey.900"
+												fontWeight="normal"
+												fontSize="xs"
+											>
+												{es}
+											</Label>
+										</Checkbox>
+									)}
+									control={control}
+								/>
+							))}
+						</SimpleGrid>
 					</FormControl>
 				</React.Fragment>
 			)}

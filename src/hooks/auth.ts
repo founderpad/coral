@@ -17,12 +17,8 @@ import { auth } from '@/pages/_app';
 import { useAuthenticationStatus } from '@nhost/react';
 
 export const useRegister = () => {
-	return async ({
-		email,
-		password,
-		firstName,
-		lastName
-	}: TRegisterFormFields): Promise<void> => {
+	const register = async (values: TRegisterFormFields) => {
+		const { email, password, firstName, lastName } = values;
 		try {
 			const response = await auth.signUp({
 				email,
@@ -58,6 +54,49 @@ export const useRegister = () => {
 			throw 'Failed to register account';
 		}
 	};
+
+	return { register };
+	// return async ({
+	// 	email,
+	// 	password,
+	// 	firstName,
+	// 	lastName
+	// }: TRegisterFormFields): Promise<void> => {
+	// 	try {
+	// 		const response = await auth.signUp({
+	// 			email,
+	// 			password,
+	// 			options: {
+	// 				displayName: `${firstName?.trim()} ${
+	// 					lastName?.trim() ?? ''
+	// 				}`
+	// 			}
+	// 		});
+
+	// 		if (response.error) {
+	// 			redirectTo(true, undefined, '/register');
+	// 			throw 'Failed to register account';
+	// 		}
+
+	// 		event({
+	// 			action: `Register - ${response.error ? 'error' : 'success'}`,
+	// 			params: {
+	// 				email,
+	// 				display_name: `${firstName?.trim()} ${
+	// 					lastName?.trim() ?? ''
+	// 				}`,
+	// 				user_registration_date: new Date()
+	// 			}
+	// 		});
+
+	// 		Router.push(
+	// 			`/register/registersuccess?nm=${encodeString(firstName)}`
+	// 		);
+	// 	} catch (error) {
+	// 		redirectTo(true, undefined, '/register');
+	// 		throw 'Failed to register account';
+	// 	}
+	// };
 };
 
 export const useLogin = () => {

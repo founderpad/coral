@@ -18,23 +18,23 @@ exports[`Login form matches snapshot 1`] = `
       >
         <div
           aria-live="polite"
-          class="css-jhkd4z"
+          class="css-1kadxit"
           id="form-input"
         >
           <div
-            class="css-qnoc8j"
+            class="css-1bcbxj7"
           />
           <input
             aria-label="email"
             aria-required="true"
             class="chakra-input css-gr2y0"
-            id="field-1"
-            placeholder="Email"
+            id="field-:r0:"
+            placeholder="Email1"
             required=""
             value=""
           />
           <div
-            class="css-11633wt"
+            class="css-19sroul"
           />
         </div>
       </div>
@@ -44,40 +44,42 @@ exports[`Login form matches snapshot 1`] = `
       >
         <div
           aria-live="polite"
-          class="css-jhkd4z"
+          class="css-1kadxit"
           id="form-input"
         >
           <div
-            class="css-qnoc8j"
+            class="css-1bcbxj7"
           />
           <input
             aria-label="password"
             aria-required="true"
             class="chakra-input css-gr2y0"
-            id="field-2"
+            id="field-:r1:"
             placeholder="Password"
             required=""
             type="password"
             value=""
           />
           <div
-            class="css-11633wt"
+            class="css-19sroul"
           />
         </div>
       </div>
       <div
-        class="chakra-alert css-glexlw"
+        class="chakra-alert css-e7usqr"
+        data-status="error"
         role="alert"
       >
         <div
           class="chakra-alert__desc css-1g4x3gd"
+          data-status="error"
         >
           Failed to login. Incorrect email and/or password.
         </div>
       </div>
       <button
         aria-label="submit-login"
-        class="chakra-button css-9j6h2k"
+        class="chakra-button css-nlgm34"
         id="submit-login"
         type="submit"
       >
@@ -149,21 +151,27 @@ exports[`Login form matches snapshot 1`] = `
       class="chakra-text css-135297o"
     >
       No account? 
-      <span
-        class="chakra-link css-ntv2za"
+      <a
         href="/register"
+      >
+        <span
+          class="chakra-link css-ntv2za"
+          title="Link to register an account"
+        >
+          Register now
+        </span>
+      </a>
+    </p>
+    <a
+      href="/resetpassword"
+    >
+      <span
+        class="chakra-link css-1nbxiji"
         title="Link to register an account"
       >
-        Register now
+        Forgotten password?
       </span>
-    </p>
-    <span
-      class="chakra-link css-1nbxiji"
-      href="/resetpassword"
-      title="Link to register an account"
-    >
-      Forgotten password?
-    </span>
+    </a>
   </div>
 </DocumentFragment>
 `;

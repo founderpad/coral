@@ -118,17 +118,23 @@ export const useFileDelete = () => {
 	};
 };
 
-export const useCheckboxes = (defaultValues?: string[]) => {
-	const [values, setValues] = useState<string[]>(defaultValues ?? []);
+export const useCheckboxes = (allValues: string[], initialValues = []) => {
+	const [values, setValues] = useState<string[]>(initialValues);
+	const isAllSelected = values.length === allValues.length;
 
 	const onToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.name;
-		const valuesCopy = [...values];
+		let valuesCopy = [...values];
 
 		const index = valuesCopy.findIndex((v) => v === value);
 		index > -1 ? valuesCopy.splice(index, 1) : valuesCopy.push(value);
 
 		setValues(valuesCopy);
+	};
+
+	const onToggleAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.checked) setValues(allValues);
+		else setValues([]);
 	};
 
 	const isChecked = (value: string) => {
@@ -142,7 +148,9 @@ export const useCheckboxes = (defaultValues?: string[]) => {
 	return {
 		values,
 		onToggle,
+		onToggleAll,
 		isChecked,
+		isAllSelected,
 		clearValues
 	};
 };

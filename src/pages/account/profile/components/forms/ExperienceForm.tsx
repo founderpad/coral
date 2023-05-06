@@ -25,14 +25,20 @@ import { redirectTo } from '@/utils/validators';
 import { FormSelect, FormTextarea } from '@/components/form/inputs/FormField';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { useCheckboxes, useModalDrawer } from '@/hooks/util';
+import { SimpleGrid } from '@chakra-ui/react';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
 	const isProfileComplete = useCurrentUser()?.profile?.isComplete;
 	const { __typename, userId, id, ...rest } = userProfile;
-	const { values, clearValues, onToggle, isChecked } = useCheckboxes(
-		userProfile.skills
-	);
+	const {
+		values,
+		clearValues,
+		onToggle,
+		onToggleAll,
+		isChecked,
+		isAllSelected
+	} = useCheckboxes(EXPERIENCE_SKILLS, userProfile.skills);
 
 	const defaultValues = { ...rest };
 
@@ -213,37 +219,53 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 								</Button>
 							)}
 						</FlexLayout>
-						{EXPERIENCE_SKILLS.map((es: string) => (
-							<Controller
-								key={es}
-								name="skills"
-								render={({ field: { ref } }) => (
-									<Checkbox
-										name={es}
-										rounded="none"
-										value={es}
-										py={1}
-										pr={2}
-										onChange={onToggle}
-										colorScheme="fpPrimary"
-										color="fpGrey.900"
-										ref={ref}
-										size="md"
-										fontSize="xs"
-										isChecked={isChecked(es)}
-									>
-										<Label
+						<Checkbox
+							onChange={onToggleAll}
+							isChecked={isAllSelected}
+							w="full"
+							pb={2}
+						>
+							<Label
+								color="fpGrey.900"
+								fontWeight="normal"
+								fontSize="xs"
+							>
+								All
+							</Label>
+						</Checkbox>
+						<SimpleGrid columns={2} row={6}>
+							{EXPERIENCE_SKILLS.map((es: string) => (
+								<Controller
+									key={es}
+									name="skills"
+									render={({ field: { ref } }) => (
+										<Checkbox
+											name={es}
+											rounded="none"
+											value={es}
+											py={1}
+											pr={2}
+											onChange={onToggle}
+											colorScheme="fpPrimary"
 											color="fpGrey.900"
-											fontWeight="normal"
+											ref={ref}
+											size="md"
 											fontSize="xs"
+											isChecked={isChecked(es)}
 										>
-											{es}
-										</Label>
-									</Checkbox>
-								)}
-								control={control}
-							/>
-						))}
+											<Label
+												color="fpGrey.900"
+												fontWeight="normal"
+												fontSize="xs"
+											>
+												{es}
+											</Label>
+										</Checkbox>
+									)}
+									control={control}
+								/>
+							))}
+						</SimpleGrid>
 					</FormControl>
 				</React.Fragment>
 			)}

@@ -16,7 +16,7 @@
 		"lint:fix": "eslint . --ext .ts,.tsx --fix",
 		"verify": "run-p prettier lint",
 		"verify:fix": "run-p prettier:fix lint:fix",
-		"test": "jest",
+		"test": "jest --watchAll",
 		"test-all": "yarn lint && yarn type-check && yarn test",
 		"test:ci": "jest --ci",
 		"generate": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen -r dotenv/config --config codegen.yml",
