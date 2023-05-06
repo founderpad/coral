@@ -5414,11 +5414,17 @@ export type TJsonb_Comparison_Exp = {
 export type TMatchmake_Preferences = {
   __typename?: 'matchmake_preferences';
   looking_for?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['String']>;
+  skills?: Maybe<Scalars['jsonb']>;
   type?: Maybe<Scalars['String']>;
   /** An object relationship */
   user: TUsers;
   user_id: Scalars['uuid'];
+};
+
+
+/** columns and relationships of "matchmake_preferences" */
+export type TMatchmake_PreferencesSkillsArgs = {
+  path?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregated selection of "matchmake_preferences" */
@@ -5443,13 +5449,18 @@ export type TMatchmake_Preferences_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type TMatchmake_Preferences_Append_Input = {
+  skills?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** Boolean expression to filter rows from the table "matchmake_preferences". All fields are combined with a logical 'AND'. */
 export type TMatchmake_Preferences_Bool_Exp = {
   _and?: InputMaybe<Array<TMatchmake_Preferences_Bool_Exp>>;
   _not?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
   _or?: InputMaybe<Array<TMatchmake_Preferences_Bool_Exp>>;
   looking_for?: InputMaybe<TString_Comparison_Exp>;
-  skills?: InputMaybe<TString_Comparison_Exp>;
+  skills?: InputMaybe<TJsonb_Comparison_Exp>;
   type?: InputMaybe<TString_Comparison_Exp>;
   user?: InputMaybe<TUsers_Bool_Exp>;
   user_id?: InputMaybe<TUuid_Comparison_Exp>;
@@ -5460,10 +5471,25 @@ export type TMatchmake_Preferences_Constraint =
   /** unique or primary key constraint on columns "user_id" */
   | 'matchmake_preferences_pkey';
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type TMatchmake_Preferences_Delete_At_Path_Input = {
+  skills?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type TMatchmake_Preferences_Delete_Elem_Input = {
+  skills?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type TMatchmake_Preferences_Delete_Key_Input = {
+  skills?: InputMaybe<Scalars['String']>;
+};
+
 /** input type for inserting data into table "matchmake_preferences" */
 export type TMatchmake_Preferences_Insert_Input = {
   looking_for?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['jsonb']>;
   type?: InputMaybe<Scalars['String']>;
   user?: InputMaybe<TUsers_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['uuid']>;
@@ -5473,7 +5499,6 @@ export type TMatchmake_Preferences_Insert_Input = {
 export type TMatchmake_Preferences_Max_Fields = {
   __typename?: 'matchmake_preferences_max_fields';
   looking_for?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
@@ -5482,7 +5507,6 @@ export type TMatchmake_Preferences_Max_Fields = {
 export type TMatchmake_Preferences_Min_Fields = {
   __typename?: 'matchmake_preferences_min_fields';
   looking_for?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
@@ -5517,6 +5541,11 @@ export type TMatchmake_Preferences_Pk_Columns_Input = {
   user_id: Scalars['uuid'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type TMatchmake_Preferences_Prepend_Input = {
+  skills?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** select columns of table "matchmake_preferences" */
 export type TMatchmake_Preferences_Select_Column =
   /** column name */
@@ -5531,7 +5560,7 @@ export type TMatchmake_Preferences_Select_Column =
 /** input type for updating data in table "matchmake_preferences" */
 export type TMatchmake_Preferences_Set_Input = {
   looking_for?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['jsonb']>;
   type?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -5547,7 +5576,7 @@ export type TMatchmake_Preferences_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type TMatchmake_Preferences_Stream_Cursor_Value_Input = {
   looking_for?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['jsonb']>;
   type?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -5564,6 +5593,16 @@ export type TMatchmake_Preferences_Update_Column =
   | 'user_id';
 
 export type TMatchmake_Preferences_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<TMatchmake_Preferences_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<TMatchmake_Preferences_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<TMatchmake_Preferences_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<TMatchmake_Preferences_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<TMatchmake_Preferences_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
   where: TMatchmake_Preferences_Bool_Exp;
@@ -7997,6 +8036,11 @@ export type TMutation_RootUpdate_Interested_Ideas_ManyArgs = {
 
 /** mutation root */
 export type TMutation_RootUpdate_Matchmake_PreferencesArgs = {
+  _append?: InputMaybe<TMatchmake_Preferences_Append_Input>;
+  _delete_at_path?: InputMaybe<TMatchmake_Preferences_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<TMatchmake_Preferences_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<TMatchmake_Preferences_Delete_Key_Input>;
+  _prepend?: InputMaybe<TMatchmake_Preferences_Prepend_Input>;
   _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
   where: TMatchmake_Preferences_Bool_Exp;
 };
@@ -8004,6 +8048,11 @@ export type TMutation_RootUpdate_Matchmake_PreferencesArgs = {
 
 /** mutation root */
 export type TMutation_RootUpdate_Matchmake_Preferences_By_PkArgs = {
+  _append?: InputMaybe<TMatchmake_Preferences_Append_Input>;
+  _delete_at_path?: InputMaybe<TMatchmake_Preferences_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<TMatchmake_Preferences_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<TMatchmake_Preferences_Delete_Key_Input>;
+  _prepend?: InputMaybe<TMatchmake_Preferences_Prepend_Input>;
   _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
   pk_columns: TMatchmake_Preferences_Pk_Columns_Input;
 };
@@ -13887,7 +13936,16 @@ export type TUpdateMatchmakeSettingsMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateMatchmakeSettingsMutation = { update_matchmake_preferences_by_pk?: { __typename?: 'matchmake_preferences', looking_for?: string | null, skills?: string | null, type?: string | null } | null };
+export type TUpdateMatchmakeSettingsMutation = { update_matchmake_preferences_by_pk?: { __typename?: 'matchmake_preferences', looking_for?: string | null, skills?: any | null, type?: string | null } | null };
+
+export type TMatchmakeSettingsQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type TMatchmakeSettingsQuery = { preferences?: { __typename?: 'matchmake_preferences', type?: string | null, skills?: any | null, looking_for?: string | null } | null };
+
+export type TMatchmakeSettingsFieldsFragment = { __typename?: 'matchmake_preferences', type?: string | null, skills?: any | null, looking_for?: string | null };
 
 export type TNewMessageThreadMutationVariables = Exact<{
   targetUserId: Scalars['uuid'];
@@ -14192,6 +14250,13 @@ export const InterestedIdeaFieldsFragmentDoc = gql`
   id
   ideaId
   userId
+}
+    `;
+export const MatchmakeSettingsFieldsFragmentDoc = gql`
+    fragment MatchmakeSettingsFields on matchmake_preferences {
+  type
+  skills
+  looking_for
 }
     `;
 export const NotificationFieldsFragmentDoc = gql`
@@ -14968,6 +15033,44 @@ export function useUpdateMatchmakeSettingsMutation(baseOptions?: ApolloReactHook
 export type UpdateMatchmakeSettingsMutationHookResult = ReturnType<typeof useUpdateMatchmakeSettingsMutation>;
 export type UpdateMatchmakeSettingsMutationResult = Apollo.MutationResult<TUpdateMatchmakeSettingsMutation>;
 export type UpdateMatchmakeSettingsMutationOptions = Apollo.BaseMutationOptions<TUpdateMatchmakeSettingsMutation, TUpdateMatchmakeSettingsMutationVariables>;
+export const MatchmakeSettingsDocument = gql`
+    query MatchmakeSettings($id: uuid!) {
+  preferences: matchmake_preferences_by_pk(user_id: $id) {
+    ...MatchmakeSettingsFields
+  }
+}
+    ${MatchmakeSettingsFieldsFragmentDoc}`;
+
+/**
+ * __useMatchmakeSettingsQuery__
+ *
+ * To run a query within a React component, call `useMatchmakeSettingsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMatchmakeSettingsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMatchmakeSettingsQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useMatchmakeSettingsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TMatchmakeSettingsQuery, TMatchmakeSettingsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TMatchmakeSettingsQuery, TMatchmakeSettingsQueryVariables>(MatchmakeSettingsDocument, options);
+      }
+export function useMatchmakeSettingsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TMatchmakeSettingsQuery, TMatchmakeSettingsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TMatchmakeSettingsQuery, TMatchmakeSettingsQueryVariables>(MatchmakeSettingsDocument, options);
+        }
+export type MatchmakeSettingsQueryHookResult = ReturnType<typeof useMatchmakeSettingsQuery>;
+export type MatchmakeSettingsLazyQueryHookResult = ReturnType<typeof useMatchmakeSettingsLazyQuery>;
+export type MatchmakeSettingsQueryResult = Apollo.QueryResult<TMatchmakeSettingsQuery, TMatchmakeSettingsQueryVariables>;
+export function refetchMatchmakeSettingsQuery(variables: TMatchmakeSettingsQueryVariables) {
+      return { query: MatchmakeSettingsDocument, variables: variables }
+    }
 export const NewMessageThreadDocument = gql`
     mutation NewMessageThread($targetUserId: uuid!, $currentUserId: uuid!) {
   insert_message_thread(
@@ -16390,8 +16493,12 @@ export type TResolversTypes = {
   matchmake_preferences: ResolverTypeWrapper<TMatchmake_Preferences>;
   matchmake_preferences_aggregate: ResolverTypeWrapper<TMatchmake_Preferences_Aggregate>;
   matchmake_preferences_aggregate_fields: ResolverTypeWrapper<TMatchmake_Preferences_Aggregate_Fields>;
+  matchmake_preferences_append_input: TMatchmake_Preferences_Append_Input;
   matchmake_preferences_bool_exp: TMatchmake_Preferences_Bool_Exp;
   matchmake_preferences_constraint: TMatchmake_Preferences_Constraint;
+  matchmake_preferences_delete_at_path_input: TMatchmake_Preferences_Delete_At_Path_Input;
+  matchmake_preferences_delete_elem_input: TMatchmake_Preferences_Delete_Elem_Input;
+  matchmake_preferences_delete_key_input: TMatchmake_Preferences_Delete_Key_Input;
   matchmake_preferences_insert_input: TMatchmake_Preferences_Insert_Input;
   matchmake_preferences_max_fields: ResolverTypeWrapper<TMatchmake_Preferences_Max_Fields>;
   matchmake_preferences_min_fields: ResolverTypeWrapper<TMatchmake_Preferences_Min_Fields>;
@@ -16399,6 +16506,7 @@ export type TResolversTypes = {
   matchmake_preferences_on_conflict: TMatchmake_Preferences_On_Conflict;
   matchmake_preferences_order_by: TMatchmake_Preferences_Order_By;
   matchmake_preferences_pk_columns_input: TMatchmake_Preferences_Pk_Columns_Input;
+  matchmake_preferences_prepend_input: TMatchmake_Preferences_Prepend_Input;
   matchmake_preferences_select_column: TMatchmake_Preferences_Select_Column;
   matchmake_preferences_set_input: TMatchmake_Preferences_Set_Input;
   matchmake_preferences_stream_cursor_input: TMatchmake_Preferences_Stream_Cursor_Input;
@@ -17213,7 +17321,11 @@ export type TResolversParentTypes = {
   matchmake_preferences: TMatchmake_Preferences;
   matchmake_preferences_aggregate: TMatchmake_Preferences_Aggregate;
   matchmake_preferences_aggregate_fields: TMatchmake_Preferences_Aggregate_Fields;
+  matchmake_preferences_append_input: TMatchmake_Preferences_Append_Input;
   matchmake_preferences_bool_exp: TMatchmake_Preferences_Bool_Exp;
+  matchmake_preferences_delete_at_path_input: TMatchmake_Preferences_Delete_At_Path_Input;
+  matchmake_preferences_delete_elem_input: TMatchmake_Preferences_Delete_Elem_Input;
+  matchmake_preferences_delete_key_input: TMatchmake_Preferences_Delete_Key_Input;
   matchmake_preferences_insert_input: TMatchmake_Preferences_Insert_Input;
   matchmake_preferences_max_fields: TMatchmake_Preferences_Max_Fields;
   matchmake_preferences_min_fields: TMatchmake_Preferences_Min_Fields;
@@ -17221,6 +17333,7 @@ export type TResolversParentTypes = {
   matchmake_preferences_on_conflict: TMatchmake_Preferences_On_Conflict;
   matchmake_preferences_order_by: TMatchmake_Preferences_Order_By;
   matchmake_preferences_pk_columns_input: TMatchmake_Preferences_Pk_Columns_Input;
+  matchmake_preferences_prepend_input: TMatchmake_Preferences_Prepend_Input;
   matchmake_preferences_set_input: TMatchmake_Preferences_Set_Input;
   matchmake_preferences_stream_cursor_input: TMatchmake_Preferences_Stream_Cursor_Input;
   matchmake_preferences_stream_cursor_value_input: TMatchmake_Preferences_Stream_Cursor_Value_Input;
@@ -18899,7 +19012,7 @@ export interface TJsonbScalarConfig extends GraphQLScalarTypeConfig<TResolversTy
 
 export type TMatchmake_PreferencesResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences'] = TResolversParentTypes['matchmake_preferences']> = {
   looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  skills?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, Partial<TMatchmake_PreferencesSkillsArgs>>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
   user_id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
@@ -18921,7 +19034,6 @@ export type TMatchmake_Preferences_Aggregate_FieldsResolvers<ContextType = any, 
 
 export type TMatchmake_Preferences_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_max_fields'] = TResolversParentTypes['matchmake_preferences_max_fields']> = {
   looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -18929,7 +19041,6 @@ export type TMatchmake_Preferences_Max_FieldsResolvers<ContextType = any, Parent
 
 export type TMatchmake_Preferences_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_min_fields'] = TResolversParentTypes['matchmake_preferences_min_fields']> = {
   looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;

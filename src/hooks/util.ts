@@ -119,7 +119,7 @@ export const useFileDelete = () => {
 };
 
 export const useCheckboxes = (allValues: string[], initialValues = []) => {
-	const [values, setValues] = useState<string[]>(initialValues);
+	const [values, setValues] = useState<string[]>(initialValues ?? []);
 	const isAllSelected = values.length === allValues.length;
 
 	const onToggle = (e: React.ChangeEvent<HTMLInputElement>) => {

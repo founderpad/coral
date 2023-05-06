@@ -224,6 +224,8 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 							isChecked={isAllSelected}
 							w="full"
 							pb={2}
+							colorScheme="fpPrimary"
+							color="fpGrey.900"
 						>
 							<Label
 								color="fpGrey.900"
@@ -234,7 +236,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 							</Label>
 						</Checkbox>
 						<SimpleGrid columns={2} row={6}>
-							{EXPERIENCE_SKILLS.map((es: string) => (
+							{EXPERIENCE_SKILLS.map((es) => (
 								<Controller
 									key={es}
 									name="skills"

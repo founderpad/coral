@@ -2,17 +2,28 @@ import { BaseForm, FormLabelText } from '@/components/form';
 import { FormSelect } from '@/components/form/inputs/FormField';
 import { Label } from '@/components/labels';
 import { FlexLayout } from '@/components/layouts';
-import { TMatchmake_Preferences_Set_Input } from '@/generated/api';
-import { useCheckboxes } from '@/hooks/util';
+import {
+	MatchmakeSettingsDocument,
+	TMatchmakeSettingsFieldsFragment,
+	TMatchmake_Preferences_Set_Input,
+	useUpdateMatchmakeSettingsMutation
+} from '@/generated/api';
+import { useCheckboxes, useModalDrawer } from '@/hooks/util';
 import { ALL_MATCHMAKE_TYPES, EXPERIENCE_SKILLS } from '@/utils/Constants';
 import { Button, Checkbox, FormControl } from '@chakra-ui/react';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { SimpleGrid } from '@chakra-ui/react';
+import { useCurrentUser } from '@/hooks/auth';
+import { redirectTo } from '@/utils/validators';
 
-const MatchmakeSettingsForm = () => {
-	// const { closeModalDrawer } = useModalDrawer();
-	// const [updateMatchmakeSettings] = useUpdateMatchmakeSettingsMutation();
+const MatchmakeSettingsForm = (
+	matchmakePreferences: TMatchmakeSettingsFieldsFragment
+) => {
+	const { closeModalDrawer } = useModalDrawer();
+	const { id } = useCurrentUser();
+	const [updateMatchmakeSettings] = useUpdateMatchmakeSettingsMutation();
+
 	const {
 		clearValues,
 		onToggle,
@@ -20,16 +31,45 @@ const MatchmakeSettingsForm = () => {
 		isChecked,
 		onToggleAll,
 		isAllSelected
-	} = useCheckboxes(EXPERIENCE_SKILLS, []);
+	} = useCheckboxes(EXPERIENCE_SKILLS, matchmakePreferences.skills);
+	const { __typename, ...rest } = matchmakePreferences;
+	const defaultValues = { ...rest };
 
-	// const onUpdateMatchmakeSettings = (
-	// 	matchmakeSettings: TMatchmake_Preferences_Set_Input
-	// ) => {};
+	const onUpdateMatchmakeSettings = (
+		matchmakeSettings: TMatchmake_Preferences_Set_Input
+	) => {
+		updateMatchmakeSettings({
+			variables: {
+				id,
+				matchmake_settings: {
+					...matchmakeSettings,
+					skills: values
+				}
+			},
+			onCompleted: (_data) => {
+				closeModalDrawer();
+				redirectTo(false, 'mm');
+			},
+			refetchQueries: [
+				{
+					query: MatchmakeSettingsDocument,
+					variables: {
+						id
+					}
+				}
+			],
+			onError: (_data) => {
+				closeModalDrawer();
+				redirectTo(true, 'mm');
+			}
+		});
+	};
 
 	return (
 		<BaseForm<TMatchmake_Preferences_Set_Input>
 			name="edit-matchmake-settings-form"
-			onSubmit={() => {}}
+			onSubmit={onUpdateMatchmakeSettings}
+			defaultValues={defaultValues}
 		>
 			{({ register, control, resetField, formState: { errors } }) => (
 				<React.Fragment>
@@ -78,6 +118,8 @@ const MatchmakeSettingsForm = () => {
 							isChecked={isAllSelected}
 							w="full"
 							pb={2}
+							colorScheme="fpPrimary"
+							color="fpGrey.900"
 						>
 							<Label
 								color="fpGrey.900"
@@ -88,7 +130,7 @@ const MatchmakeSettingsForm = () => {
 							</Label>
 						</Checkbox>
 						<SimpleGrid columns={2} row={6}>
-							{EXPERIENCE_SKILLS.map((es: string) => (
+							{EXPERIENCE_SKILLS.map((es) => (
 								<Controller
 									key={es}
 									name="skills"

@@ -11,3 +11,15 @@ mutation UpdateMatchmakeSettings(
 		type
 	}
 }
+
+query MatchmakeSettings($id: uuid!) {
+	preferences: matchmake_preferences_by_pk(user_id: $id) {
+		...MatchmakeSettingsFields
+	}
+}
+
+fragment MatchmakeSettingsFields on matchmake_preferences {
+	type
+	skills
+	looking_for
+}
