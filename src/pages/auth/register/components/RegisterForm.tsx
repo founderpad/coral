@@ -13,14 +13,14 @@ import SocialLogins from '@/components/shared/SocialLogins';
 import { Alert } from '@chakra-ui/react';
 
 const RegisterForm = () => {
-	const onRegister = useRegister();
+	const { register } = useRegister();
 	const isError = useQueryParam('error');
 
 	return (
 		<React.Fragment>
 			<BaseForm<TRegisterFormFields>
 				name="register-form"
-				onSubmit={onRegister}
+				onSubmit={register}
 				defaultValues={{
 					firstName: '',
 					lastName: '',

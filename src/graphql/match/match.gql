@@ -1,0 +1,68 @@
+mutation UpdateMatchSettings(
+	$id: uuid!
+	$match_settings: match_settings_set_input!
+) {
+	update_match_settings_by_pk(
+		pk_columns: { user_id: $id }
+		_set: $match_settings
+	) {
+		lookingFor
+		skills
+		type
+	}
+}
+
+query MatchSettings($id: uuid!) {
+	settings: match_settings_by_pk(user_id: $id) {
+		...MatchSettingsFields
+	}
+}
+
+fragment MatchSettingsFields on match_settings {
+	type
+	skills
+	lookingFor
+}
+
+# query Matches($lookingFor: String!, $skills: jsonb!, $currentUserId: uuid!) {
+# 	users(
+# 		where: {
+# 			matchSettings: {
+# 				type: { _eq: $lookingFor }
+# 				# _and: { user_id: { _neq: $currentUserId } }
+# 				_and: {
+# 					user_id: { _neq: $currentUserId }
+# 					_and: { skills: { _contains: $skills } }
+# 				}
+# 			}
+# 		}
+# 		order_by: { lastSeen: desc, matchSettings: { skills: asc } }
+# 	) {
+# 		displayName
+# 		email
+# 		id
+# 		avatarUrl
+# 		profile {
+# 			skills
+# 		}
+# 	}
+# }
+
+query Matches($lookingFor: String!, $currentUserId: uuid!, $skills: jsonb) {
+	users(
+		where: {
+			id: { _neq: $currentUserId }
+			matchSettings: {
+				type: { _eq: $lookingFor }
+				_and: { skills: { _contained_in: $skills } }
+			}
+		}
+	) {
+		displayName
+		id
+		matchSettings {
+			type
+			skills
+		}
+	}
+}

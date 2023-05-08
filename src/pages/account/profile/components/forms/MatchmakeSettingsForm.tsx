@@ -2,12 +2,6 @@ import { BaseForm, FormLabelText } from '@/components/form';
 import { FormSelect } from '@/components/form/inputs/FormField';
 import { Label } from '@/components/labels';
 import { FlexLayout } from '@/components/layouts';
-import {
-	MatchmakeSettingsDocument,
-	TMatchmakeSettingsFieldsFragment,
-	TMatchmake_Preferences_Set_Input,
-	useUpdateMatchmakeSettingsMutation
-} from '@/generated/api';
 import { useCheckboxes, useModalDrawer } from '@/hooks/util';
 import { ALL_MATCHMAKE_TYPES, EXPERIENCE_SKILLS } from '@/utils/Constants';
 import { Button, Checkbox, FormControl } from '@chakra-ui/react';
@@ -16,13 +10,19 @@ import { Controller } from 'react-hook-form';
 import { SimpleGrid } from '@chakra-ui/react';
 import { useCurrentUser } from '@/hooks/auth';
 import { redirectTo } from '@/utils/validators';
+import {
+	MatchSettingsDocument,
+	TMatchSettingsFieldsFragment,
+	TMatch_Settings_Set_Input,
+	useUpdateMatchSettingsMutation
+} from '@/generated/api';
 
 const MatchmakeSettingsForm = (
-	matchmakePreferences: TMatchmakeSettingsFieldsFragment
+	matchmakeSettings: TMatchSettingsFieldsFragment
 ) => {
 	const { closeModalDrawer } = useModalDrawer();
 	const { id } = useCurrentUser();
-	const [updateMatchmakeSettings] = useUpdateMatchmakeSettingsMutation();
+	const [updateMatchmakeSettings] = useUpdateMatchSettingsMutation();
 
 	const {
 		clearValues,
@@ -31,18 +31,18 @@ const MatchmakeSettingsForm = (
 		isChecked,
 		onToggleAll,
 		isAllSelected
-	} = useCheckboxes(EXPERIENCE_SKILLS, matchmakePreferences.skills);
-	const { __typename, ...rest } = matchmakePreferences;
+	} = useCheckboxes(EXPERIENCE_SKILLS, matchmakeSettings.skills);
+	const { __typename, ...rest } = matchmakeSettings;
 	const defaultValues = { ...rest };
 
 	const onUpdateMatchmakeSettings = (
-		matchmakeSettings: TMatchmake_Preferences_Set_Input
+		matchSettings: TMatch_Settings_Set_Input
 	) => {
 		updateMatchmakeSettings({
 			variables: {
 				id,
-				matchmake_settings: {
-					...matchmakeSettings,
+				match_settings: {
+					...matchSettings,
 					skills: values
 				}
 			},
@@ -52,7 +52,7 @@ const MatchmakeSettingsForm = (
 			},
 			refetchQueries: [
 				{
-					query: MatchmakeSettingsDocument,
+					query: MatchSettingsDocument,
 					variables: {
 						id
 					}
@@ -66,14 +66,14 @@ const MatchmakeSettingsForm = (
 	};
 
 	return (
-		<BaseForm<TMatchmake_Preferences_Set_Input>
-			name="edit-matchmake-settings-form"
+		<BaseForm<TMatch_Settings_Set_Input>
+			name="edit-match-settings-form"
 			onSubmit={onUpdateMatchmakeSettings}
 			defaultValues={defaultValues}
 		>
 			{({ register, control, resetField, formState: { errors } }) => (
 				<React.Fragment>
-					<FormSelect<TMatchmake_Preferences_Set_Input>
+					<FormSelect<TMatch_Settings_Set_Input>
 						id="type"
 						name="type"
 						label="I am"
@@ -84,9 +84,9 @@ const MatchmakeSettingsForm = (
 						hideLimit={true}
 						onClear={() => resetField('type', { defaultValue: '' })}
 					/>
-					<FormSelect<TMatchmake_Preferences_Set_Input>
-						id="looking_for"
-						name="looking_for"
+					<FormSelect<TMatch_Settings_Set_Input>
+						id="lookingFor"
+						name="lookingFor"
 						label="And I am looking for"
 						options={ALL_MATCHMAKE_TYPES}
 						register={register}
@@ -94,7 +94,7 @@ const MatchmakeSettingsForm = (
 						errors={errors}
 						hideLimit={true}
 						onClear={() =>
-							resetField('looking_for', { defaultValue: '' })
+							resetField('lookingFor', { defaultValue: '' })
 						}
 					/>
 					<FormControl>

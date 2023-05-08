@@ -16,7 +16,7 @@ const UserProfileTabLayout = () => {
 					tabs={[
 						{ label: 'About' },
 						{ label: 'Details' },
-						{ label: 'Matchmake Settings' },
+						{ label: 'Match' },
 						{ label: 'Activity' }
 					]}
 				>
@@ -29,7 +29,7 @@ const UserProfileTabLayout = () => {
 				<TabLayout
 					tabs={[
 						{ label: 'Details' },
-						{ label: 'Matchmake Settings' },
+						{ label: 'Match' },
 						{ label: 'Activity' }
 					]}
 				>

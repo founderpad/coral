@@ -20,3 +20,6 @@ export {
 	UserAvatar,
 	UserAvatarDetails
 } from './UserAvatar';
+
+export * from './fileuploader';
+export * from './match';

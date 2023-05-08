@@ -4,7 +4,7 @@ import { TitleEditAction } from '@/components/shared';
 import { useModalDrawer, useQueryParam } from '@/hooks/util';
 import React, { memo } from 'react';
 import MatchmakeSettingsForm from './forms/MatchmakeSettingsForm';
-import { useMatchmakeSettingsQuery } from '@/generated/api';
+import { useMatchSettingsQuery } from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import { AlertFeedback } from '@/components/alert';
 import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
@@ -16,46 +16,43 @@ const MatchmakeSettingsTab = () => {
 	const isChangeSuccess = useQueryParam('mm_success');
 	const isChangeError = useQueryParam('mm_error');
 
-	const { data } = useMatchmakeSettingsQuery({
+	const { data } = useMatchSettingsQuery({
 		variables: {
 			id: useAuth().getUser()?.id
 		}
 	});
 
-	const { looking_for, type, skills } = data?.preferences ?? {};
+	const { lookingFor, type, skills } = data?.settings ?? {};
 
 	const onClick = () => {
 		openModalDrawer({
-			title: 'Your matchmake settings',
+			title: 'Your match settings',
 			action: (
 				<SubmitButton
-					name="open-modal-drawer-matchmake-settings-button"
-					form="edit-matchmake-settings-form"
+					name="open-modal-drawer-match-settings-button"
+					form="edit-match-settings-form"
 					label="Save"
 				/>
 			),
-			body: <MatchmakeSettingsForm {...data?.preferences} />
+			body: <MatchmakeSettingsForm {...data?.settings} />
 		});
 	};
 
 	return (
 		<StackLayout p={4} spacing={8}>
-			<TitleEditAction
-				title="Your matchmake settings"
-				onClick={onClick}
-			/>
+			<TitleEditAction title="Your match settings" onClick={onClick} />
 
 			{isChangeSuccess && (
 				<AlertFeedback
 					status="success"
-					message="Your matchmake preferences have been updated successfully"
+					message="Your match preferences have been updated successfully"
 				/>
 			)}
 
 			{isChangeError && (
 				<AlertFeedback
 					status="error"
-					message="Failed to update matchmake preferences. Please try again later"
+					message="Failed to update match preferences. Please try again later"
 				/>
 			)}
 
@@ -63,7 +60,7 @@ const MatchmakeSettingsTab = () => {
 				<ContentFieldAndValue title="I am" value={type || 'Not set'} />
 				<ContentFieldAndValue
 					title="And I am looking for"
-					value={looking_for || 'Not set'}
+					value={lookingFor || 'Not set'}
 				/>
 
 				<ContentFieldAndValue

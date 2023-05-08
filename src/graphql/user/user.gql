@@ -44,10 +44,16 @@ query User($userId: uuid!) {
 			pronouns
 			customPronouns
 			isComplete
+			skills
 		}
 		esteemPointsCurrency {
 			points
 			currency
+		}
+		matchSettings {
+			lookingFor
+			type
+			skills
 		}
 	}
 }
@@ -70,20 +76,6 @@ query Users(
 		order_by: $orderBy
 	) {
 		id
-		# startups
-		# user {
-		# 	displayName
-		# 	createdAt
-		# 	id
-		# 	address {
-		# 		location
-		# 		country
-		# 	}
-		# }
-		# specialistIndustry
-		# availability
-		# status
-		# skills
 		objective
 		...UserSearch
 	}

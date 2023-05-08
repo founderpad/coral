@@ -109,6 +109,15 @@ object_relationships:
         remote_table:
           name: user_esteem_points_currency
           schema: public
+  - name: matchSettings
+    using:
+      manual_configuration:
+        column_mapping:
+          id: user_id
+        insertion_order: null
+        remote_table:
+          name: match_settings
+          schema: public
   - name: profile
     using:
       manual_configuration:
