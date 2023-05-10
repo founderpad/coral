@@ -9,52 +9,52 @@ import {
 	MenuList
 } from '@chakra-ui/react';
 import {
-	BiCoinStack,
+	// BiCoinStack,
 	IoLockClosedOutline,
 	IoMenuSharp
 } from '@/components/icons';
-import { Label } from '@/components/labels';
-import { FlexLayout } from '@/components/layouts';
+// import { Label } from '@/components/labels';
+// import { FlexLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
 import LogoutModal from '@/components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from '@/components/shared';
-import { useAuth, useCurrentUser } from '@/hooks/auth';
+import { useCurrentUser } from '@/hooks/auth';
 import React from 'react';
-import { BiMoney } from 'react-icons/bi';
-import { CaptionLabel } from '@/components/labels/Label';
-import { useUserCurrencySubscription } from '@/generated/api';
-import { useModalDrawer } from '@/hooks/util';
-import PayPalPayoutsForm from '../components/PayPalPayoutsForm';
+// import { BiMoney } from 'react-icons/bi';
+// import { CaptionLabel } from '@/components/labels/Label';
+// import { useUserCurrencySubscription } from '@/generated/api';
+// import { useModalDrawer } from '@/hooks/util';
+// import PayPalPayoutsForm from '../components/PayPalPayoutsForm';
 
 const UserMenu = () => {
 	const avatarUrl = useCurrentUser().avatarUrl;
-	const userId = useAuth().getUser()?.id;
-	const result = useUserCurrencySubscription({
-		variables: {
-			userId
-		}
-	});
+	// const userId = useAuth().getUser()?.id;
+	// const result = useUserCurrencySubscription({
+	// 	variables: {
+	// 		userId
+	// 	}
+	// });
 
-	const { openModalDrawer } = useModalDrawer();
+	// const { openModalDrawer } = useModalDrawer();
 
-	const isWithdraw =
-		parseFloat(result.data?.currencyPoints?.currency.substring(1)) >= 10;
+	// const isWithdraw =
+	// 	parseFloat(result.data?.currencyPoints?.currency.substring(1)) >= 10;
 
-	const onWithdrawClick = () => {
-		openModalDrawer({
-			title: `Withdraw ${result.data?.currencyPoints?.currency}`,
-			body: (
-				<PayPalPayoutsForm
-					amount={parseFloat(
-						result.data?.currencyPoints?.currency.substring(1)
-					)}
-					// userId={userId!}
-				/>
-			),
-			contentHeight: '99.1%',
-			showFooter: false
-		});
-	};
+	// const onWithdrawClick = () => {
+	// 	openModalDrawer({
+	// 		title: `Withdraw ${result.data?.currencyPoints?.currency}`,
+	// 		body: (
+	// 			<PayPalPayoutsForm
+	// 				amount={parseFloat(
+	// 					result.data?.currencyPoints?.currency.substring(1)
+	// 				)}
+	// 				// userId={userId!}
+	// 			/>
+	// 		),
+	// 		contentHeight: '99.1%',
+	// 		showFooter: false
+	// 	});
+	// };
 
 	return (
 		<Menu>
