@@ -50,7 +50,7 @@ const LoginForm = () => {
 							register={register}
 							control={control}
 							fieldProps={{
-								placeholder: 'Email1'
+								placeholder: 'Email'
 							}}
 							rules={{
 								required:

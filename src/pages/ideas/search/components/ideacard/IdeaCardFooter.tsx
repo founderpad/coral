@@ -42,7 +42,7 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 					{idea?.comments_aggregate?.aggregate?.count}
 				</Button>
 			</StackLayout>
-			{user?.id === idea.userId && !isBoosted && <BoostIdea {...idea} />}
+			{/* {user?.id === idea.userId && !isBoosted && <BoostIdea {...idea} />} */}
 			<IdeaMenu {...idea} />
 		</StackLayout>
 	);

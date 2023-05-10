@@ -88,7 +88,7 @@ const UserMenu = () => {
 			>
 				<CurrentUserAvatarDetails size="md" direction="column" />
 
-				<FlexLayout
+				{/* <FlexLayout
 					p={3}
 					mt={6}
 					flexDirection="column"
@@ -143,7 +143,7 @@ const UserMenu = () => {
 						A minimum of $10.00 must be earned before you can
 						withdraw.
 					</CaptionLabel>
-				</FlexLayout>
+				</FlexLayout> */}
 
 				<MenuDivider my={6} />
 				<MenuGroup>
