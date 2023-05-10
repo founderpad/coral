@@ -13961,12 +13961,12 @@ export type TMatchSettingsFieldsFragment = { __typename?: 'match_settings', type
 
 export type TMatchesQueryVariables = Exact<{
   lookingFor: Scalars['String'];
-  skills: Scalars['jsonb'];
   currentUserId: Scalars['uuid'];
+  skills?: InputMaybe<Scalars['jsonb']>;
 }>;
 
 
-export type TMatchesQuery = { users: Array<{ __typename?: 'users', displayName: string, email?: any | null, id: any, avatarUrl: string, profile?: { __typename?: 'user_profile', skills?: any | null } | null }> };
+export type TMatchesQuery = { users: Array<{ __typename?: 'users', displayName: string, id: any, matchSettings?: { __typename?: 'match_settings', type?: string | null, skills?: any | null } | null }> };
 
 export type TNewMessageThreadMutationVariables = Exact<{
   targetUserId: Scalars['uuid'];
@@ -15090,13 +15090,14 @@ export function refetchMatchSettingsQuery(variables: TMatchSettingsQueryVariable
       return { query: MatchSettingsDocument, variables: variables }
     }
 export const MatchesDocument = gql`
-    query Matches($lookingFor: String!, $skills: jsonb!, $currentUserId: uuid!) {
-  users(order_by: {lastSeen: desc, matchSettings: {skills: asc}}) {
+    query Matches($lookingFor: String!, $currentUserId: uuid!, $skills: jsonb) {
+  users(
+    where: {id: {_neq: $currentUserId}, matchSettings: {type: {_eq: $lookingFor}, _and: {skills: {_contained_in: $skills}}}}
+  ) {
     displayName
-    email
     id
-    avatarUrl
-    profile {
+    matchSettings {
+      type
       skills
     }
   }
@@ -15116,8 +15117,8 @@ export const MatchesDocument = gql`
  * const { data, loading, error } = useMatchesQuery({
  *   variables: {
  *      lookingFor: // value for 'lookingFor'
- *      skills: // value for 'skills'
  *      currentUserId: // value for 'currentUserId'
+ *      skills: // value for 'skills'
  *   },
  * });
  */

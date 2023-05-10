@@ -27,7 +27,45 @@ import UsersSearchForm from './components/UsersSearchForm';
 // 	return where;
 // }
 
-const queryBuilder = (): TUser_Profile_Bool_Exp => {
+// type TUser_Profile_Bool_Exp_Key =
+// 	| 'status'
+// 	| 'specialistIndustry'
+// 	| 'availability'
+// 	| 'field'
+// 	| 'startups'
+// 	| 'skills'
+// 	| 'objective'
+// 	| 'country';
+
+// const queryFields = [
+// 	{ key: 'status', op: '_eq' },
+// 	{ key: 'field', op: '_eq', field: 'specialistIndustry' },
+// 	{ key: 'availability', op: '_eq' },
+// 	{ key: 'startups', op: '_eq' },
+// 	{ key: 'skills', op: '_contains' },
+// 	{ key: 'objective', op: '_eq' },
+// 	{ key: 'country', op: '_eq', field: 'user.address.country' }
+// ];
+
+// const queryBuilder = <T extends [] = []>(params: T): TUser_Profile_Bool_Exp => {
+// 	let where: TUser_Profile_Bool_Exp = {};
+
+// 	queryFields.forEach((queryField) => {
+// 		const queryValue = Router.query[queryField.key];
+// 		if (queryValue !== undefined) {
+// 			if (queryField.field) {
+// 				const field = 'status';
+// 				where[queryField.field] = { [queryField.op]: queryValue };
+// 			} else {
+// 				where[queryField.key] = { [queryField.op]: queryValue };
+// 			}
+// 		}
+// 	});
+
+// 	return where;
+// };
+
+const queryBuilder = () => {
 	const queryParamStatus = Router.query['status'] as string;
 	const queryParamIndustry = Router.query['field'] as string;
 	const queryParamAvailability = Router.query['availability'] as string;
@@ -81,13 +119,6 @@ const UsersContainer = () => {
 	const { data, loading } = useUsersQuery({
 		variables: {
 			where: queryBuilder(),
-			// where: buildQuery<TUser_Profile_Bool_Exp>([
-			// 	'status',
-			// 	'field',
-			// 	'availability',
-			// 	'startups',
-			// 	'country'
-			// ]),
 			limit: 10,
 			offset: (parseInt(useQueryParam('page')) - 1) * 10,
 			orderBy: {

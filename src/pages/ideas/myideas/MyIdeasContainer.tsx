@@ -10,7 +10,7 @@ import InterestedTotal from '@/pages/ideas/idea/components/InterestedTotal';
 import PublishedLabel from '@/pages/ideas/idea/components/PublishedLabel';
 import { formatDate } from '@/utils/validators';
 import React from 'react';
-import BoostIdea from '../idea/components/BoostIdea';
+// import BoostIdea from '../idea/components/BoostIdea';
 
 const MyIdeasContainer = () => {
 	const { data, loading } = useUserIdeasQuery({
@@ -104,7 +104,7 @@ const MyIdeasContainer = () => {
 										/>
 									</React.Fragment>
 								)}
-								<BoostIdea {...idea} />
+								{/* <BoostIdea {...idea} /> */}
 							</StackLayout>
 							{data?.user_ideas?.length !== key && <AppDivider />}
 						</StackLayout>

@@ -19,7 +19,7 @@ import {
 	navigateTo
 } from '@/utils/routerUtils';
 import React, { useCallback, useState } from 'react';
-import { Controller } from 'react-hook-form';
+import { Controller, UseFormReset, UseFormResetField } from 'react-hook-form';
 import { useQueryParam } from '@/hooks/util';
 import Router from 'next/router';
 import { BaseForm } from '@/components/form';
@@ -32,6 +32,8 @@ type TSearchFields = {
 	country?: string;
 	popular?: string;
 };
+
+// type StringOrBoolean<T extends string | boolean> = T;
 
 const IdeasSearchForm = () => {
 	const { closeModalDrawer } = useModalDrawer();
@@ -55,18 +57,57 @@ const IdeasSearchForm = () => {
 		navigateTo();
 	};
 
+	const defaultField = useQueryParam<string>('field') || '';
+	const defaultName = useQueryParam<string>('name') || '';
+	const defaultIsNew = !!useQueryParam<string>('new') || undefined;
+	const defaultStatus = useQueryParam<string>('status') || '';
+	const defaultCountry = useQueryParam<string>('country') || '';
+	const defaultPopular = useQueryParam<string>('popular') || '';
+
+	const defaultValues = {
+		field: defaultField,
+		name: defaultName,
+		new: defaultIsNew,
+		status: defaultStatus,
+		country: defaultCountry,
+		popular: defaultPopular
+	};
+
+	const onClearAll = useCallback(
+		(reset: UseFormReset<TSearchFields>, values: TSearchFields) => {
+			reset({
+				field: '',
+				name: '',
+				country: '',
+				status: '',
+				popular: '',
+				new: false
+			});
+
+			setIsNewIdea(false);
+			deleteParams<TSearchFields>(values);
+		},
+		[setIsNewIdea]
+	);
+
+	const onClear = useCallback(
+		(
+			resetField: UseFormResetField<TSearchFields>,
+			value: keyof TSearchFields,
+			defaultValue: string = ''
+		) => {
+			resetField(value, { defaultValue });
+			deleteParam<TSearchFields>(value);
+			navigateTo();
+		},
+		[]
+	);
+
 	return (
 		<BaseForm<TSearchFields>
 			name="idea-search-form"
 			onSubmit={onClick}
-			defaultValues={{
-				field: useQueryParam<string>('field') || '',
-				name: useQueryParam<string>('name') || '',
-				new: !!useQueryParam<string>('new') || undefined,
-				status: useQueryParam<string>('status') || '',
-				country: useQueryParam<string>('country') || '',
-				popular: useQueryParam<string>('popular') || ''
-			}}
+			defaultValues={defaultValues}
 		>
 			{({ register, control, resetField, reset, getValues }) => (
 				<>
@@ -83,19 +124,7 @@ const IdeasSearchForm = () => {
 							colorScheme="fpPrimary"
 							variant="link"
 							mb={1}
-							onClick={() => {
-								reset({
-									field: '',
-									name: '',
-									country: '',
-									status: '',
-									popular: '',
-									new: false
-								});
-
-								setIsNewIdea(false);
-								deleteParams<TSearchFields>(getValues());
-							}}
+							onClick={() => onClearAll(reset, getValues())}
 							textAlign="left"
 							ml="auto"
 						>
@@ -110,11 +139,7 @@ const IdeasSearchForm = () => {
 						options={ALL_COUNTRIES}
 						register={register}
 						control={control}
-						onClear={() => {
-							resetField('country', { defaultValue: '' });
-							deleteParam<TSearchFields>('country');
-							navigateTo();
-						}}
+						onClear={() => onClear(resetField, 'country')}
 					/>
 					<FormInput<TSearchFields>
 						id="name"
@@ -125,11 +150,7 @@ const IdeasSearchForm = () => {
 						fieldProps={{
 							placeholder: 'Search by idea name'
 						}}
-						onClear={() => {
-							resetField('name', { defaultValue: '' });
-							deleteParam<TSearchFields>('name');
-							navigateTo();
-						}}
+						onClear={() => onClear(resetField, 'name')}
 					/>
 
 					<FormSelect<TSearchFields>
@@ -140,11 +161,7 @@ const IdeasSearchForm = () => {
 						options={ALL_IDEA_CATEGORY_FIELDS}
 						register={register}
 						control={control}
-						onClear={() => {
-							resetField('field', { defaultValue: '' });
-							deleteParam<TSearchFields>('field');
-							navigateTo();
-						}}
+						onClear={() => onClear(resetField, 'field')}
 					/>
 
 					<FormSelect<TSearchFields>
@@ -155,11 +172,7 @@ const IdeasSearchForm = () => {
 						options={ALL_IDEA_STATUSES}
 						register={register}
 						control={control}
-						onClear={() => {
-							resetField('status', { defaultValue: '' });
-							deleteParam<TSearchFields>('status');
-							navigateTo();
-						}}
+						onClear={() => onClear(resetField, 'status')}
 					/>
 
 					<FormSelect<TSearchFields>
@@ -170,11 +183,7 @@ const IdeasSearchForm = () => {
 						options={BY_IDEA_POPULARITY}
 						register={register}
 						control={control}
-						onClear={() => {
-							resetField('popular', { defaultValue: '' });
-							deleteParam<TSearchFields>('popular');
-							navigateTo();
-						}}
+						onClear={() => onClear(resetField, 'popular')}
 					/>
 
 					<AppDivider />
@@ -217,7 +226,7 @@ const IdeasSearchForm = () => {
 								)}
 								control={control}
 							/>
-							{(showClear || !!Router.query['new']) && (
+							{(showClear || Boolean(Router.query['new'])) && (
 								<Button
 									fontSize="x-small"
 									colorScheme="fpPrimary"

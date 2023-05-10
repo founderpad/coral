@@ -118,8 +118,7 @@ const NavItems: Array<NavItem> = [
 	},
 	{
 		label: 'Match',
-		href: '/match',
-		isLink: true
+		href: '/match'
 	},
 	{
 		label: 'Messages',
