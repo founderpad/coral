@@ -60,6 +60,7 @@ query Matches($lookingFor: String!, $currentUserId: uuid!, $skills: jsonb) {
 	) {
 		displayName
 		id
+		avatarUrl
 		matchSettings {
 			type
 			skills

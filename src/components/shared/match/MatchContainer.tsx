@@ -1,7 +1,7 @@
 import { useMatchesQuery } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useAuth } from '@/hooks/auth';
-import { Tag } from '@chakra-ui/react';
+// import { Tag } from '@chakra-ui/react';
 import { NoResults } from '../NoResults';
 import React from 'react';
 import LinkCard from '@/components/cards/LinkCard';
@@ -9,20 +9,20 @@ import { UserAvatarDetails } from '../UserAvatar';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 
 export const MatchContainer = () => {
-	const user = useCurrentUser();
+	const authUser = useCurrentUser();
 
 	const { data, loading } = useMatchesQuery({
 		variables: {
 			currentUserId: useAuth().getUser()?.id,
-			lookingFor: user.matchSettings?.type ?? '',
-			skills: user.profile?.skills ?? []
+			lookingFor: authUser.matchSettings?.type ?? '',
+			skills: authUser.profile?.skills ?? []
 		}
 	});
 
 	const hasResults = data?.users.length ?? 0;
 
-	console.log('user profile skills: ', user.profile?.skills);
-	console.log('matched skills: ', data);
+	// console.log('user profile skills: ', authUser.profile?.skills);
+	// console.log('matched skills: ', data);
 
 	return (
 		<React.Fragment>
@@ -34,7 +34,7 @@ export const MatchContainer = () => {
 						<React.Fragment key={user?.id}>
 							<LinkCard href={`/user/${user?.id}`}>
 								<UserAvatarDetails
-									src={user?.avatarUrl ?? undefined}
+									src={user.avatarUrl ?? undefined}
 									title={user?.displayName}
 									subtitle={
 										<FlexLayout
@@ -44,7 +44,7 @@ export const MatchContainer = () => {
 									}
 									size="md"
 								/>
-								<FlexLayout pt={4}>
+								{/* <FlexLayout pt={4}>
 									{user.profile?.skills.map(
 										(skill: string) => (
 											<Tag
@@ -65,7 +65,7 @@ export const MatchContainer = () => {
 											</Tag>
 										)
 									)}
-								</FlexLayout>
+								</FlexLayout> */}
 							</LinkCard>
 						</React.Fragment>
 					))}

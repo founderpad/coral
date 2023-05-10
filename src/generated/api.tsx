@@ -13966,7 +13966,7 @@ export type TMatchesQueryVariables = Exact<{
 }>;
 
 
-export type TMatchesQuery = { users: Array<{ __typename?: 'users', displayName: string, id: any, matchSettings?: { __typename?: 'match_settings', type?: string | null, skills?: any | null } | null }> };
+export type TMatchesQuery = { users: Array<{ __typename?: 'users', displayName: string, id: any, avatarUrl: string, matchSettings?: { __typename?: 'match_settings', type?: string | null, skills?: any | null } | null }> };
 
 export type TNewMessageThreadMutationVariables = Exact<{
   targetUserId: Scalars['uuid'];
@@ -15096,6 +15096,7 @@ export const MatchesDocument = gql`
   ) {
     displayName
     id
+    avatarUrl
     matchSettings {
       type
       skills
