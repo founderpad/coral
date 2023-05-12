@@ -73,7 +73,7 @@ query Matches($currentUserId: uuid!, $lookingFor: String!, $skills: jsonb) {
 		where: {
 			id: { _neq: $currentUserId }
 			matchSettings: {
-				type: { _neq: $lookingFor }
+				type: { _eq: $lookingFor }
 				# skills: { _has_keys_any: $skills }
 			}
 		}
