@@ -146,15 +146,15 @@ export const ImageUploader = (props: Props) => {
 			rounded="full"
 			boxSize={{ base: 100, md: 120 }}
 		>
-			<input
+			{/* <input
 				id="image-upload"
 				type="file"
 				onChange={onChange}
 				onClick={onInputClick}
 				style={{ display: 'none' }}
-			/>
+			/> */}
 
-			<EditButton
+			{/* <EditButton
 				as="label"
 				onClick={undefined}
 				htmlFor="image-upload"
@@ -169,7 +169,7 @@ export const ImageUploader = (props: Props) => {
 				transform="translateY(5%) translateX(125%)"
 				zIndex={1}
 				borderWidth={1}
-			/>
+			/> */}
 			<Box
 				className="image"
 				position="relative"
