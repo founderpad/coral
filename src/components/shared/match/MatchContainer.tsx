@@ -7,9 +7,15 @@ import React from 'react';
 import LinkCard from '@/components/cards/LinkCard';
 import { UserAvatarDetails } from '../UserAvatar';
 import { FlexLayout, StackLayout } from '@/components/layouts';
+import { Tag } from '@chakra-ui/react';
 
 export const MatchContainer = () => {
 	const authUser = useCurrentUser();
+
+	// authUser.profile?.skills.reduce(function(obj: any, v: any) {
+	// 	obj[v] = 0;
+	// 	return obj;
+	//   }, {})
 
 	const { data, loading } = useMatchesQuery({
 		variables: {
@@ -21,9 +27,6 @@ export const MatchContainer = () => {
 
 	const hasResults = data?.users.length ?? 0;
 
-	// console.log('user profile skills: ', authUser.profile?.skills);
-	// console.log('matched skills: ', data);
-
 	return (
 		<React.Fragment>
 			{!loading && hasResults < 1 ? (
@@ -32,7 +35,55 @@ export const MatchContainer = () => {
 				<StackLayout>
 					{data?.users?.map((user) => (
 						<React.Fragment key={user?.id}>
-							<LinkCard href={`/user/${user?.id}`}>
+							<LinkCard
+								href={`/user/${user?.id}`}
+								footer={
+									<StackLayout direction="row" spacing="2">
+										{user.profile?.skills.map(
+											(skill: any) => {
+												if (
+													authUser.profile?.skills.includes(
+														skill
+													)
+												) {
+													return (
+														<Tag
+															size="sm"
+															key={skill}
+															bgColor={
+																authUser.profile?.skills.includes(
+																	skill
+																)
+																	? 'fpPrimary.500'
+																	: 'inherit'
+															}
+															color={
+																authUser.profile?.skills.includes(
+																	skill
+																)
+																	? 'white'
+																	: 'initial'
+															}
+														>
+															{skill}
+														</Tag>
+													);
+												} else {
+													return (
+														<Tag
+															size="sm"
+															key={skill}
+															variant="subtle"
+														>
+															{skill}
+														</Tag>
+													);
+												}
+											}
+										)}
+									</StackLayout>
+								}
+							>
 								<UserAvatarDetails
 									src={user.avatarUrl ?? undefined}
 									title={user?.displayName}
@@ -40,32 +91,14 @@ export const MatchContainer = () => {
 										<FlexLayout
 											alignItems="center"
 											flexDirection="column"
-										></FlexLayout>
+										>
+											<Tag>
+												{user.matchSettings?.type}
+											</Tag>
+										</FlexLayout>
 									}
 									size="md"
 								/>
-								{/* <FlexLayout pt={4}>
-									{user.profile?.skills.map(
-										(skill: string) => (
-											<Tag
-												fontSize="xs"
-												size="sm"
-												mr={1}
-												mb={1}
-												key={skill}
-												colorScheme={
-													user.profile?.skills.includes(
-														skill
-													)
-														? 'fpPrimary'
-														: 'green'
-												}
-											>
-												{skill}
-											</Tag>
-										)
-									)}
-								</FlexLayout> */}
 							</LinkCard>
 						</React.Fragment>
 					))}

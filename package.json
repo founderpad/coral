@@ -55,6 +55,7 @@
 		"@fontsource/montserrat": "^4.5.14",
 		"@hookform/error-message": "^2.0.1",
 		"@nhost/nextjs": "^1.13.21",
+		"@nhost/nhost-js": "^2.2.2",
 		"@nhost/react": "^2.0.15",
 		"@nhost/react-apollo": "^5.0.19",
 		"@nhost/react-auth": "^3.6.0",

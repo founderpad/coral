@@ -17,7 +17,7 @@ import { auth } from '@/pages/_app';
 import { useAuthenticationStatus } from '@nhost/react';
 
 export const useRegister = () => {
-	const register = async (values: TRegisterFormFields) => {
+	return async (values: TRegisterFormFields) => {
 		const { email, password, firstName, lastName } = values;
 		try {
 			const response = await auth.signUp({
@@ -54,8 +54,6 @@ export const useRegister = () => {
 			throw 'Failed to register account';
 		}
 	};
-
-	return { register };
 };
 
 export const useLogin = () => {

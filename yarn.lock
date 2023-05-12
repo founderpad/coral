@@ -2859,6 +2859,14 @@
     "@graphql-typed-document-node/core" "^3.1.1"
     isomorphic-unfetch "^3.1.0"
 
+"@nhost/graphql-js@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@nhost/graphql-js/-/graphql-js-0.1.1.tgz#abeae63ab6f3e87b14574b97adda4f77d649b0cf"
+  integrity sha512-FQWP2w33yRz0MutOicQ31twSsRslAgy0fHpPcXQAPPQejSLp+gFOI7yEdbsloSI8dnHonNo46NiKPq29OTN8fg==
+  dependencies:
+    "@graphql-typed-document-node/core" "^3.1.1"
+    isomorphic-unfetch "^3.1.0"
+
 "@nhost/hasura-auth-js@1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@nhost/hasura-auth-js/-/hasura-auth-js-1.6.0.tgz#8bb6374126b39b77943fca4ef8e0b80b80b2ddbb"
@@ -2879,10 +2887,30 @@
     jwt-decode "^3.1.2"
     xstate "^4.33.5"
 
+"@nhost/hasura-auth-js@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@nhost/hasura-auth-js/-/hasura-auth-js-2.1.1.tgz#6d609882ef3bd8d7e71e9421dc53a2dea8e8d741"
+  integrity sha512-b+dF7GfrOH9Di88dOGqma6/guocrlTZBoe6pEPw0HDcpCD7AnnYBSCtsJX0yRCCREsH/Am4RnroGMnxB+E5LEA==
+  dependencies:
+    "@simplewebauthn/browser" "^6.0.0"
+    isomorphic-unfetch "^3.1.0"
+    js-cookie "^3.0.1"
+    jwt-decode "^3.1.2"
+    xstate "^4.33.5"
+
 "@nhost/hasura-storage-js@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@nhost/hasura-storage-js/-/hasura-storage-js-2.1.0.tgz#b0c30d984a12ffbc3043c969addce900f770672c"
   integrity sha512-/QwEJFOtL3/fJlHLqTwjuEqDGk4/o1ycv7XK9dpyGE82J8iIqC9uUpkpM18KAnGJTRqkniUsQ/G9SEaY2XULzg==
+  dependencies:
+    form-data "^4.0.0"
+    isomorphic-unfetch "^3.1.0"
+    xstate "^4.33.5"
+
+"@nhost/hasura-storage-js@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@nhost/hasura-storage-js/-/hasura-storage-js-2.1.1.tgz#7c044dbe500cee931d9521f5e11660f4c4030f85"
+  integrity sha512-yp5OJAnae2XDNwMvH5Ye0T3K8EY5NKzpTCjtEW+x0LUSIHXiC6dxPp12cvjL4trlNTBcmDMLnvmljwkECe8ViA==
   dependencies:
     form-data "^4.0.0"
     isomorphic-unfetch "^3.1.0"
@@ -2906,6 +2934,16 @@
     "@nhost/graphql-js" "0.1.0"
     "@nhost/hasura-auth-js" "2.1.0"
     "@nhost/hasura-storage-js" "2.1.0"
+    isomorphic-unfetch "^3.1.0"
+
+"@nhost/nhost-js@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@nhost/nhost-js/-/nhost-js-2.2.2.tgz#7ec37fea0c7dab8d1552e879689a208d82ebb854"
+  integrity sha512-3rYmyng/I3eaB1hzC9Adu52J5UXjGLzhnrY3uYFX0DcrdV6p/Wysl4bsceFh4bWNoxONbPgwskwQkhboOm6ltQ==
+  dependencies:
+    "@nhost/graphql-js" "0.1.1"
+    "@nhost/hasura-auth-js" "2.1.1"
+    "@nhost/hasura-storage-js" "2.1.1"
     isomorphic-unfetch "^3.1.0"
 
 "@nhost/react-apollo@^5.0.19":

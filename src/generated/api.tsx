@@ -13960,13 +13960,13 @@ export type TMatchSettingsQuery = { settings?: { __typename?: 'match_settings', 
 export type TMatchSettingsFieldsFragment = { __typename?: 'match_settings', type?: string | null, skills?: any | null, lookingFor?: string | null };
 
 export type TMatchesQueryVariables = Exact<{
-  lookingFor: Scalars['String'];
   currentUserId: Scalars['uuid'];
+  lookingFor: Scalars['String'];
   skills?: InputMaybe<Scalars['jsonb']>;
 }>;
 
 
-export type TMatchesQuery = { users: Array<{ __typename?: 'users', displayName: string, id: any, avatarUrl: string, matchSettings?: { __typename?: 'match_settings', type?: string | null, skills?: any | null } | null }> };
+export type TMatchesQuery = { users: Array<{ __typename?: 'users', displayName: string, id: any, avatarUrl: string, matchSettings?: { __typename?: 'match_settings', type?: string | null } | null, profile?: { __typename?: 'user_profile', skills?: any | null } | null }> };
 
 export type TNewMessageThreadMutationVariables = Exact<{
   targetUserId: Scalars['uuid'];
@@ -15090,15 +15090,17 @@ export function refetchMatchSettingsQuery(variables: TMatchSettingsQueryVariable
       return { query: MatchSettingsDocument, variables: variables }
     }
 export const MatchesDocument = gql`
-    query Matches($lookingFor: String!, $currentUserId: uuid!, $skills: jsonb) {
+    query Matches($currentUserId: uuid!, $lookingFor: String!, $skills: jsonb) {
   users(
-    where: {id: {_neq: $currentUserId}, matchSettings: {type: {_eq: $lookingFor}, _and: {skills: {_contained_in: $skills}}}}
+    where: {id: {_neq: $currentUserId}, matchSettings: {type: {_neq: $lookingFor}}}
   ) {
     displayName
     id
     avatarUrl
     matchSettings {
       type
+    }
+    profile {
       skills
     }
   }
@@ -15117,8 +15119,8 @@ export const MatchesDocument = gql`
  * @example
  * const { data, loading, error } = useMatchesQuery({
  *   variables: {
- *      lookingFor: // value for 'lookingFor'
  *      currentUserId: // value for 'currentUserId'
+ *      lookingFor: // value for 'lookingFor'
  *      skills: // value for 'skills'
  *   },
  * });

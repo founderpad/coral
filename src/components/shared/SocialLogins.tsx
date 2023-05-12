@@ -1,4 +1,4 @@
-import { Label } from '@/components/labels';
+// import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import { useSocialLogin } from '@/hooks/auth';
 import Router from 'next/router';
@@ -33,7 +33,7 @@ const SocialLogins = memo(() => {
 			alignItems="center"
 			alignSelf="center"
 		>
-			<Label
+			{/* <Label
 				display="flex"
 				alignItems="center"
 				fontSize="xs"
@@ -52,7 +52,7 @@ const SocialLogins = memo(() => {
 				}}
 			>
 				Or
-			</Label>
+			</Label> */}
 
 			<div onClick={() => onSocialLogin('google')}>
 				<GoogleLogin
