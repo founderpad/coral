@@ -1,5 +1,5 @@
 import { Box, BoxProps } from '@chakra-ui/react';
-import { EditButton } from '@/components/buttons';
+// import { EditButton } from '@/components/buttons';
 import { PrimaryButton } from '@/components/buttons/PrimaryButton';
 import { FlexLayout } from '@/components/layouts';
 import { useModalDrawer } from '@/hooks/util';
@@ -16,14 +16,14 @@ type Props = BoxProps & {
 
 export const ImageUploader = (props: Props) => {
 	const { onUpload, defaultSrc, children, title } = props;
-	const [image, setImage] = useState(defaultSrc);
-	const [file, setFile] = useState<File | undefined>(undefined);
+	const [image, _setImage] = useState(defaultSrc);
+	const [file, _setFile] = useState<File | undefined>(undefined);
 	// const [uploading, setUploading] = useState(false);
 
 	const { openModalDrawer } = useModalDrawer();
 	const cropperRef = useRef<HTMLImageElement>(null);
 
-	const MAX_SIZE = 3145728;
+	// const MAX_SIZE = 3145728;
 
 	const getCropData = useCallback(async () => {
 		// setUploading(true);
@@ -90,50 +90,50 @@ export const ImageUploader = (props: Props) => {
 		if (file) onOpenCropperModal();
 	}, [file]); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const onChange = async (e: any) => {
-		e.preventDefault();
-		let files: File[] = [];
+	// const onChange = async (e: any) => {
+	// 	e.preventDefault();
+	// 	let files: File[] = [];
 
-		try {
-			if (e.dataTransfer) {
-				files = e.dataTransfer.files;
-			} else if (e.target) {
-				files = e.target.files;
-			}
+	// 	try {
+	// 		if (e.dataTransfer) {
+	// 			files = e.dataTransfer.files;
+	// 		} else if (e.target) {
+	// 			files = e.target.files;
+	// 		}
 
-			const reader = new FileReader();
-			reader.onload = () => {
-				checkValidation(reader.result as any, files[0]);
-			};
+	// 		const reader = new FileReader();
+	// 		reader.onload = () => {
+	// 			checkValidation(reader.result as any, files[0]);
+	// 		};
 
-			reader.onerror = (_err) => {
-				// console.log(err);
-			};
+	// 		reader.onerror = (_err) => {
+	// 			// console.log(err);
+	// 		};
 
-			if (files[0]?.type.includes('image'))
-				reader.readAsDataURL(files[0]);
-		} catch (e) {
-			console.error(e);
-		}
-	};
+	// 		if (files[0]?.type.includes('image'))
+	// 			reader.readAsDataURL(files[0]);
+	// 	} catch (e) {
+	// 		console.error(e);
+	// 	}
+	// };
 
-	const checkValidation = async (imageBase64: any, file: File) => {
-		const n = imageBase64.length;
-		const x = n * (3 / 4) - 1;
-		if (x > MAX_SIZE) {
-			return;
-		}
+	// const checkValidation = async (imageBase64: any, file: File) => {
+	// 	const n = imageBase64.length;
+	// 	const x = n * (3 / 4) - 1;
+	// 	if (x > MAX_SIZE) {
+	// 		return;
+	// 	}
 
-		setImage(imageBase64);
-		setFile(file);
-	};
+	// 	setImage(imageBase64);
+	// 	setFile(file);
+	// };
 
-	const onInputClick = (
-		event: React.MouseEvent<HTMLInputElement, MouseEvent>
-	) => {
-		const element = event.target as HTMLInputElement;
-		element.value = '';
-	};
+	// const onInputClick = (
+	// 	event: React.MouseEvent<HTMLInputElement, MouseEvent>
+	// ) => {
+	// 	const element = event.target as HTMLInputElement;
+	// 	element.value = '';
+	// };
 
 	return (
 		<FlexLayout
