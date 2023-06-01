@@ -2,41 +2,41 @@ import { StackProps } from '@chakra-ui/layout';
 import { StackLayout } from '@/components/layouts';
 import React from 'react';
 import {
-	FieldValues,
 	SubmitHandler,
 	useForm,
 	UseFormProps,
 	UseFormReturn
 } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-// type TBaseFormProps<TFormValues> = {
-// 	name: string;
-// 	onSubmit: any | SubmitHandler<TFormValues>;
-// 	children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;
-// 	defaultValues?: UseFormProps<TFormValues>['defaultValues'];
-// 	stackProps?: StackProps;
-// };
-
-type TBaseFormProps<TFormValues extends FieldValues> = {
+type TBaseFormProps<
+	TFormValues extends Record<string, any>,
+	S extends yup.ObjectSchema<any>
+> = {
 	name: string;
 	onSubmit: any | SubmitHandler<TFormValues>;
 	children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;
 	defaultValues?: UseFormProps<TFormValues>['defaultValues'];
 	stackProps?: StackProps;
+	schema?: S;
 };
 
 const BaseForm = <
-	TFormValues extends Record<string, any> = Record<string, any>
+	TFormValues extends Record<string, any>,
+	S extends yup.ObjectSchema<any>
 >({
 	name,
 	defaultValues,
 	onSubmit,
 	stackProps,
-	children
-}: TBaseFormProps<TFormValues>) => {
+	children,
+	schema
+}: TBaseFormProps<TFormValues, S>) => {
 	const methods = useForm<TFormValues>({
 		mode: 'all',
-		defaultValues
+		defaultValues,
+		resolver: schema ? yupResolver(schema) : undefined
 	});
 
 	return (

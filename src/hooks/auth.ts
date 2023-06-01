@@ -3,45 +3,65 @@ import { event } from '@/lib/ga';
 import { setUser } from '@/slices/auth';
 import { RootState } from '@/utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	TRegisterFormFields,
-	TAuthProvider,
-	TLoginFields
-} from 'src/types/auth';
+import { TRegisterFormFields, TLoginFields } from 'src/types/auth';
 import { useErrorNotification } from './toast';
 import Router from 'next/router';
 import { useContext, useEffect } from 'react';
 import { encodeString, redirectTo } from '@/utils/validators';
 import ModalDrawerContext from '@/context/ModalDrawerContext';
 import { auth } from '@/pages/_app';
-import { useAuthenticationStatus } from '@nhost/react';
+import {
+	useAuthenticationStatus,
+	useSignInEmailPassword,
+	useSignUpEmailPassword
+} from '@nhost/react';
+import { Provider } from '@nhost/nhost-js';
+import NotificationContext from '@/context/NotificationContext';
 
 export const useRegister = () => {
-	return async (values: TRegisterFormFields) => {
+	const { addNotification } = useContext(NotificationContext);
+
+	const { signUpEmailPassword, needsEmailVerification } =
+		useSignUpEmailPassword();
+
+	const onRegister = async (values: TRegisterFormFields) => {
 		const { email, password, firstName, lastName } = values;
+
 		try {
-			const response = await auth.signUp({
-				email,
-				password,
-				options: {
-					displayName: `${firstName?.trim()} ${
-						lastName?.trim() ?? ''
-					}`
+			// const response = await auth.signUp({
+			// 	email,
+			// 	password,
+			// 	options: {
+			// 		displayName: `${firstName?.trim()} ${
+			// 			lastName?.trim() ?? ''
+			// 		}`
+			// 	}
+			// });
+
+			const response = await signUpEmailPassword(email, password, {
+				displayName: `${firstName} ${lastName}`.trim(),
+				metadata: {
+					firstName,
+					lastName
 				}
 			});
 
 			if (response.error) {
-				redirectTo(true, undefined, '/register');
-				throw 'Failed to register account';
+				addNotification(
+					`Failed to create account. ${response.error.message}.`,
+					'error'
+				);
+
+				throw new Error(
+					`Failed to create account with error code ${response.error.status}. ${response.error.message}.`
+				);
 			}
 
 			event({
 				action: `Register - ${response.error ? 'error' : 'success'}`,
 				params: {
 					email,
-					display_name: `${firstName?.trim()} ${
-						lastName?.trim() ?? ''
-					}`,
+					display_name: `${firstName} ${lastName}`.trim(),
 					user_registration_date: new Date()
 				}
 			});
@@ -50,24 +70,40 @@ export const useRegister = () => {
 				`/register/registersuccess?nm=${encodeString(firstName)}`
 			);
 		} catch (error) {
-			redirectTo(true, undefined, '/register');
-			throw 'Failed to register account';
+			console.log('Failed to create account');
 		}
 	};
+
+	return { onRegister };
 };
 
 export const useLogin = () => {
-	return async ({ email, password }: TLoginFields): Promise<void> => {
+	const { signInEmailPassword } = useSignInEmailPassword();
+	const { addNotification } = useContext(NotificationContext);
+	const onLogin = async ({ email, password }: TLoginFields) => {
 		try {
-			const response = await auth.signIn({ email, password });
+			// const response = await auth.signIn({ email, password });
+			// if (response.error) {
+			// 	redirectTo(true, undefined, '/login');
+			// 	throw new Error('Failed to login');
+			// }
+			const response = await signInEmailPassword(email, password);
 			if (response.error) {
-				redirectTo(true, undefined, '/login');
-				throw new Error('Failed to login');
+				addNotification(
+					`Failed to login. Incorrect email and/or password.`,
+					'error'
+				);
+
+				throw new Error(
+					`Failed to login with error code ${response.error.status}. ${response.error.message}.`
+				);
 			}
 		} catch (error) {
 			console.error('Failed to login');
 		}
 	};
+
+	return { onLogin };
 };
 
 export const useSocialLogin = () => {
@@ -78,7 +114,7 @@ export const useSocialLogin = () => {
 		if (isAuthenticated) getUser();
 	}, [isAuthenticated, getUser]);
 
-	return async (authProvider: TAuthProvider) => {
+	return async (authProvider: Provider) => {
 		try {
 			await auth.signIn({
 				provider: authProvider

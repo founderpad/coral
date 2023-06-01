@@ -29,9 +29,8 @@ import '../styles/globals.css';
 const persistor = persistStore(store);
 
 const nhost = new NhostClient({
-	backendUrl: process.env.NEXT_PUBLIC_BACKEND ?? '',
-	subdomain: process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN || '',
-	region: process.env.NEXT_PUBLIC_NHOST_REGION || ''
+	subdomain: process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN,
+	region: process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN
 });
 
 const auth = nhost.auth;
@@ -108,19 +107,13 @@ const App = ({ Component, pageProps }: AppProps) => {
 
 			<NhostProvider nhost={nhost} initial={pageProps.nhostSession}>
 				<NhostApolloProvider
-					nhost={nhost as any}
+					nhost={nhost}
 					cache={cache}
 					connectToDevTools={true}
 				>
 					<Provider store={store}>
 						<PersistGate persistor={persistor}>
 							<PayPalScriptProvider options={paypalOptions}>
-								{/* <NhostAuthProvider nhost={nhost}>
-							<NhostApolloProvider
-								nhost={nhost as any} // Fix this when SDK is stable
-								cache={cache}
-								connectToDevTools={true}
-							> */}
 								<ChakraProvider theme={theme} resetCSS>
 									<NotificationProvider>
 										<ModalProvider>
@@ -138,8 +131,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 										</ModalProvider>
 									</NotificationProvider>
 								</ChakraProvider>
-								{/* </NhostApolloProvider>
-						</NhostAuthProvider> */}
 							</PayPalScriptProvider>
 						</PersistGate>
 					</Provider>

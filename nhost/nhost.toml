@@ -1,0 +1,182 @@
+[global]
+[[global.environment]]
+name = 'ONESIGNAL_SAFARI_WEB_ID'
+value = 'web.onesignal.auto.4cf0d27e-fe33-43e6-b134-272c9aaf00b9'
+
+[[global.environment]]
+name = 'SITE_URL'
+value = 'https://app.founderpad.com'
+
+[[global.environment]]
+name = 'ONESIGNAL_REST_API_KEY'
+value = '{{ secrets.ONESIGNAL_REST_API_KEY }}'
+
+[[global.environment]]
+name = 'ONESIGNAL_APP_ID'
+value = '{{ secrets.ONESIGNAL_APP_ID }}'
+
+[[global.environment]]
+name = 'AWS_SDK_REGION'
+value = '{{ secrets.AWS_SDK_REGION }}'
+
+[[global.environment]]
+name = 'AWS_SDK_ACCESS_KEY'
+value = '{{ secrets.AWS_SDK_ACCESS_KEY }}'
+
+[[global.environment]]
+name = 'AWS_SDK_SECRET_ACCESS_KEY'
+value = '{{ secrets.AWS_SDK_SECRET_ACCESS_KEY }}'
+
+[hasura]
+version = 'v2.24.1-ce'
+adminSecret = '{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}'
+webhookSecret = '{{ secrets.NHOST_WEBHOOK_SECRET }}'
+
+[[hasura.jwtSecrets]]
+type = 'HS256'
+key = '{{ secrets.NHOST_JWT_SECRET }}'
+
+[hasura.settings]
+corsDomain = ['*']
+devMode = true
+enableAllowList = false
+enableConsole = true
+enableRemoteSchemaPermissions = false
+enabledAPIs = ['metadata', 'graphql', 'pgdump', 'config']
+
+[hasura.logs]
+level = 'warn'
+
+[hasura.events]
+httpPoolSize = 100
+
+[functions]
+[functions.node]
+version = 16
+
+[auth]
+version = '0.20.0'
+
+[auth.redirections]
+clientUrl = 'https://app.founderpad.com'
+
+[auth.signUp]
+enabled = true
+
+[auth.user]
+[auth.user.roles]
+default = 'user'
+allowed = ['user', 'me']
+
+[auth.user.locale]
+default = 'en'
+allowed = ['en']
+
+[auth.user.gravatar]
+enabled = true
+default = 'blank'
+rating = 'g'
+
+[auth.user.email]
+
+[auth.user.emailDomains]
+
+[auth.session]
+[auth.session.accessToken]
+expiresIn = 900
+
+[auth.session.refreshToken]
+expiresIn = 2592000
+
+[auth.method]
+[auth.method.anonymous]
+enabled = false
+
+[auth.method.emailPasswordless]
+enabled = true
+
+[auth.method.emailPassword]
+hibpEnabled = false
+emailVerificationRequired = true
+passwordMinLength = 8
+
+[auth.method.smsPasswordless]
+enabled = false
+
+[auth.method.oauth]
+[auth.method.oauth.apple]
+enabled = false
+
+[auth.method.oauth.azuread]
+tenant = 'common'
+enabled = false
+
+[auth.method.oauth.bitbucket]
+enabled = false
+
+[auth.method.oauth.discord]
+enabled = false
+
+[auth.method.oauth.facebook]
+enabled = false
+
+[auth.method.oauth.github]
+enabled = false
+clientId = '543dce20720c73b02963'
+scope = ['user:email']
+clientSecret = '131d0c000b20e7e5c958ddca3132f35d309d4853'
+
+[auth.method.oauth.gitlab]
+enabled = false
+
+[auth.method.oauth.google]
+enabled = true
+clientId = '570489210751-cplv3bacb2vvkfml9ie337u9m1f3p2cv.apps.googleusercontent.com'
+scope = ['email', 'profile']
+clientSecret = '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'
+
+[auth.method.oauth.linkedin]
+enabled = false
+
+[auth.method.oauth.spotify]
+enabled = false
+
+[auth.method.oauth.strava]
+enabled = false
+
+[auth.method.oauth.twitch]
+enabled = false
+
+[auth.method.oauth.twitter]
+enabled = false
+
+[auth.method.oauth.windowslive]
+enabled = false
+
+[auth.method.oauth.workos]
+enabled = false
+
+[auth.method.webauthn]
+enabled = false
+
+[auth.method.webauthn.relyingParty]
+name = 'Coral - Production'
+
+[auth.method.webauthn.attestation]
+timeout = 0
+
+[auth.totp]
+enabled = false
+issuer = 'nhost'
+
+[postgres]
+version = '14.5-20221009-1'
+
+[provider]
+
+[storage]
+version = '0.3.0'
+
+[observability]
+[observability.grafana]
+adminPassword = "I&JWGO)0c,Z:5=Ka__rSFl0'5';K)CH&"

@@ -300,6 +300,7 @@ export type TActivity_Update_Column =
 export type TActivity_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TActivity_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TActivity_Bool_Exp;
 };
 
@@ -469,6 +470,7 @@ export type TAuthProviderRequests_Updates = {
   _prepend?: InputMaybe<TAuthProviderRequests_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TAuthProviderRequests_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TAuthProviderRequests_Bool_Exp;
 };
 
@@ -622,7 +624,182 @@ export type TAuthProviders_Update_Column =
 export type TAuthProviders_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TAuthProviders_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TAuthProviders_Bool_Exp;
+};
+
+/** columns and relationships of "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes = {
+  __typename?: 'authRefreshTokenTypes';
+  comment?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  refreshTokens: Array<TAuthRefreshTokens>;
+  /** An aggregate relationship */
+  refreshTokens_aggregate: TAuthRefreshTokens_Aggregate;
+  value: Scalars['String'];
+};
+
+
+/** columns and relationships of "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypesRefreshTokensArgs = {
+  distinct_on?: InputMaybe<Array<TAuthRefreshTokens_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TAuthRefreshTokens_Order_By>>;
+  where?: InputMaybe<TAuthRefreshTokens_Bool_Exp>;
+};
+
+
+/** columns and relationships of "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypesRefreshTokens_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TAuthRefreshTokens_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TAuthRefreshTokens_Order_By>>;
+  where?: InputMaybe<TAuthRefreshTokens_Bool_Exp>;
+};
+
+/** aggregated selection of "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Aggregate = {
+  __typename?: 'authRefreshTokenTypes_aggregate';
+  aggregate?: Maybe<TAuthRefreshTokenTypes_Aggregate_Fields>;
+  nodes: Array<TAuthRefreshTokenTypes>;
+};
+
+/** aggregate fields of "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Aggregate_Fields = {
+  __typename?: 'authRefreshTokenTypes_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<TAuthRefreshTokenTypes_Max_Fields>;
+  min?: Maybe<TAuthRefreshTokenTypes_Min_Fields>;
+};
+
+
+/** aggregate fields of "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TAuthRefreshTokenTypes_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "auth.refresh_token_types". All fields are combined with a logical 'AND'. */
+export type TAuthRefreshTokenTypes_Bool_Exp = {
+  _and?: InputMaybe<Array<TAuthRefreshTokenTypes_Bool_Exp>>;
+  _not?: InputMaybe<TAuthRefreshTokenTypes_Bool_Exp>;
+  _or?: InputMaybe<Array<TAuthRefreshTokenTypes_Bool_Exp>>;
+  comment?: InputMaybe<TString_Comparison_Exp>;
+  refreshTokens?: InputMaybe<TAuthRefreshTokens_Bool_Exp>;
+  refreshTokens_aggregate?: InputMaybe<TAuthRefreshTokens_Aggregate_Bool_Exp>;
+  value?: InputMaybe<TString_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Constraint =
+  /** unique or primary key constraint on columns "value" */
+  | 'refresh_token_types_pkey';
+
+export type TAuthRefreshTokenTypes_Enum =
+  /** Personal access token */
+  | 'pat'
+  /** Regular refresh token */
+  | 'regular';
+
+/** Boolean expression to compare columns of type "authRefreshTokenTypes_enum". All fields are combined with logical 'AND'. */
+export type TAuthRefreshTokenTypes_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<TAuthRefreshTokenTypes_Enum>;
+  _in?: InputMaybe<Array<TAuthRefreshTokenTypes_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<TAuthRefreshTokenTypes_Enum>;
+  _nin?: InputMaybe<Array<TAuthRefreshTokenTypes_Enum>>;
+};
+
+/** input type for inserting data into table "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Insert_Input = {
+  comment?: InputMaybe<Scalars['String']>;
+  refreshTokens?: InputMaybe<TAuthRefreshTokens_Arr_Rel_Insert_Input>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type TAuthRefreshTokenTypes_Max_Fields = {
+  __typename?: 'authRefreshTokenTypes_max_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type TAuthRefreshTokenTypes_Min_Fields = {
+  __typename?: 'authRefreshTokenTypes_min_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Mutation_Response = {
+  __typename?: 'authRefreshTokenTypes_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<TAuthRefreshTokenTypes>;
+};
+
+/** on_conflict condition type for table "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_On_Conflict = {
+  constraint: TAuthRefreshTokenTypes_Constraint;
+  update_columns?: Array<TAuthRefreshTokenTypes_Update_Column>;
+  where?: InputMaybe<TAuthRefreshTokenTypes_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "auth.refresh_token_types". */
+export type TAuthRefreshTokenTypes_Order_By = {
+  comment?: InputMaybe<TOrder_By>;
+  refreshTokens_aggregate?: InputMaybe<TAuthRefreshTokens_Aggregate_Order_By>;
+  value?: InputMaybe<TOrder_By>;
+};
+
+/** primary key columns input for table: auth.refresh_token_types */
+export type TAuthRefreshTokenTypes_Pk_Columns_Input = {
+  value: Scalars['String'];
+};
+
+/** select columns of table "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Select_Column =
+  /** column name */
+  | 'comment'
+  /** column name */
+  | 'value';
+
+/** input type for updating data in table "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Set_Input = {
+  comment?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** Streaming cursor of the table "authRefreshTokenTypes" */
+export type TAuthRefreshTokenTypes_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: TAuthRefreshTokenTypes_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<TCursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type TAuthRefreshTokenTypes_Stream_Cursor_Value_Input = {
+  comment?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "auth.refresh_token_types" */
+export type TAuthRefreshTokenTypes_Update_Column =
+  /** column name */
+  | 'comment'
+  /** column name */
+  | 'value';
+
+export type TAuthRefreshTokenTypes_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<TAuthRefreshTokenTypes_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: TAuthRefreshTokenTypes_Bool_Exp;
 };
 
 /** User refresh tokens. Hasura auth uses them to rotate new access tokens as long as the refresh token is not expired. Don't modify its structure as Hasura Auth relies on it to function properly. */
@@ -630,12 +807,19 @@ export type TAuthRefreshTokens = {
   __typename?: 'authRefreshTokens';
   createdAt: Scalars['timestamptz'];
   expiresAt: Scalars['timestamptz'];
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken: Scalars['uuid'];
+  id: Scalars['uuid'];
+  metadata?: Maybe<Scalars['jsonb']>;
   refreshTokenHash?: Maybe<Scalars['String']>;
+  type: TAuthRefreshTokenTypes_Enum;
   /** An object relationship */
   user: TUsers;
   userId: Scalars['uuid'];
+};
+
+
+/** User refresh tokens. Hasura auth uses them to rotate new access tokens as long as the refresh token is not expired. Don't modify its structure as Hasura Auth relies on it to function properly. */
+export type TAuthRefreshTokensMetadataArgs = {
+  path?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregated selection of "auth.refresh_tokens" */
@@ -678,6 +862,11 @@ export type TAuthRefreshTokens_Aggregate_Order_By = {
   min?: InputMaybe<TAuthRefreshTokens_Min_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type TAuthRefreshTokens_Append_Input = {
+  metadata?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** input type for inserting array relation for remote table "auth.refresh_tokens" */
 export type TAuthRefreshTokens_Arr_Rel_Insert_Input = {
   data: Array<TAuthRefreshTokens_Insert_Input>;
@@ -692,23 +881,42 @@ export type TAuthRefreshTokens_Bool_Exp = {
   _or?: InputMaybe<Array<TAuthRefreshTokens_Bool_Exp>>;
   createdAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
   expiresAt?: InputMaybe<TTimestamptz_Comparison_Exp>;
-  refreshToken?: InputMaybe<TUuid_Comparison_Exp>;
+  id?: InputMaybe<TUuid_Comparison_Exp>;
+  metadata?: InputMaybe<TJsonb_Comparison_Exp>;
   refreshTokenHash?: InputMaybe<TString_Comparison_Exp>;
+  type?: InputMaybe<TAuthRefreshTokenTypes_Enum_Comparison_Exp>;
   user?: InputMaybe<TUsers_Bool_Exp>;
   userId?: InputMaybe<TUuid_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "auth.refresh_tokens" */
 export type TAuthRefreshTokens_Constraint =
-  /** unique or primary key constraint on columns "refresh_token" */
+  /** unique or primary key constraint on columns "id" */
   | 'refresh_tokens_pkey';
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type TAuthRefreshTokens_Delete_At_Path_Input = {
+  metadata?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type TAuthRefreshTokens_Delete_Elem_Input = {
+  metadata?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type TAuthRefreshTokens_Delete_Key_Input = {
+  metadata?: InputMaybe<Scalars['String']>;
+};
 
 /** input type for inserting data into table "auth.refresh_tokens" */
 export type TAuthRefreshTokens_Insert_Input = {
   createdAt?: InputMaybe<Scalars['timestamptz']>;
   expiresAt?: InputMaybe<Scalars['timestamptz']>;
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  metadata?: InputMaybe<Scalars['jsonb']>;
+  refreshTokenHash?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TAuthRefreshTokenTypes_Enum>;
   user?: InputMaybe<TUsers_Obj_Rel_Insert_Input>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
@@ -718,8 +926,7 @@ export type TAuthRefreshTokens_Max_Fields = {
   __typename?: 'authRefreshTokens_max_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
   expiresAt?: Maybe<Scalars['timestamptz']>;
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
   refreshTokenHash?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['uuid']>;
 };
@@ -728,8 +935,7 @@ export type TAuthRefreshTokens_Max_Fields = {
 export type TAuthRefreshTokens_Max_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
   expiresAt?: InputMaybe<TOrder_By>;
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
   refreshTokenHash?: InputMaybe<TOrder_By>;
   userId?: InputMaybe<TOrder_By>;
 };
@@ -739,8 +945,7 @@ export type TAuthRefreshTokens_Min_Fields = {
   __typename?: 'authRefreshTokens_min_fields';
   createdAt?: Maybe<Scalars['timestamptz']>;
   expiresAt?: Maybe<Scalars['timestamptz']>;
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['uuid']>;
   refreshTokenHash?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['uuid']>;
 };
@@ -749,8 +954,7 @@ export type TAuthRefreshTokens_Min_Fields = {
 export type TAuthRefreshTokens_Min_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
   expiresAt?: InputMaybe<TOrder_By>;
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
   refreshTokenHash?: InputMaybe<TOrder_By>;
   userId?: InputMaybe<TOrder_By>;
 };
@@ -775,16 +979,22 @@ export type TAuthRefreshTokens_On_Conflict = {
 export type TAuthRefreshTokens_Order_By = {
   createdAt?: InputMaybe<TOrder_By>;
   expiresAt?: InputMaybe<TOrder_By>;
-  refreshToken?: InputMaybe<TOrder_By>;
+  id?: InputMaybe<TOrder_By>;
+  metadata?: InputMaybe<TOrder_By>;
   refreshTokenHash?: InputMaybe<TOrder_By>;
+  type?: InputMaybe<TOrder_By>;
   user?: InputMaybe<TUsers_Order_By>;
   userId?: InputMaybe<TOrder_By>;
 };
 
 /** primary key columns input for table: auth.refresh_tokens */
 export type TAuthRefreshTokens_Pk_Columns_Input = {
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken: Scalars['uuid'];
+  id: Scalars['uuid'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type TAuthRefreshTokens_Prepend_Input = {
+  metadata?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "auth.refresh_tokens" */
@@ -794,9 +1004,13 @@ export type TAuthRefreshTokens_Select_Column =
   /** column name */
   | 'expiresAt'
   /** column name */
-  | 'refreshToken'
+  | 'id'
+  /** column name */
+  | 'metadata'
   /** column name */
   | 'refreshTokenHash'
+  /** column name */
+  | 'type'
   /** column name */
   | 'userId';
 
@@ -804,8 +1018,10 @@ export type TAuthRefreshTokens_Select_Column =
 export type TAuthRefreshTokens_Set_Input = {
   createdAt?: InputMaybe<Scalars['timestamptz']>;
   expiresAt?: InputMaybe<Scalars['timestamptz']>;
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  metadata?: InputMaybe<Scalars['jsonb']>;
+  refreshTokenHash?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TAuthRefreshTokenTypes_Enum>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -821,9 +1037,10 @@ export type TAuthRefreshTokens_Stream_Cursor_Input = {
 export type TAuthRefreshTokens_Stream_Cursor_Value_Input = {
   createdAt?: InputMaybe<Scalars['timestamptz']>;
   expiresAt?: InputMaybe<Scalars['timestamptz']>;
-  /** DEPRECATED: auto-generated refresh token id. Will be replaced by a genereric id column that will be used as a primary key, not the refresh token itself. Use refresh_token_hash instead. */
-  refreshToken?: InputMaybe<Scalars['uuid']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  metadata?: InputMaybe<Scalars['jsonb']>;
   refreshTokenHash?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TAuthRefreshTokenTypes_Enum>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -834,13 +1051,30 @@ export type TAuthRefreshTokens_Update_Column =
   /** column name */
   | 'expiresAt'
   /** column name */
-  | 'refreshToken'
+  | 'id'
+  /** column name */
+  | 'metadata'
+  /** column name */
+  | 'refreshTokenHash'
+  /** column name */
+  | 'type'
   /** column name */
   | 'userId';
 
 export type TAuthRefreshTokens_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<TAuthRefreshTokens_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<TAuthRefreshTokens_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<TAuthRefreshTokens_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<TAuthRefreshTokens_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<TAuthRefreshTokens_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TAuthRefreshTokens_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TAuthRefreshTokens_Bool_Exp;
 };
 
@@ -1022,6 +1256,7 @@ export type TAuthRoles_Update_Column =
 export type TAuthRoles_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TAuthRoles_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TAuthRoles_Bool_Exp;
 };
 
@@ -1287,6 +1522,7 @@ export type TAuthUserProviders_Update_Column =
 export type TAuthUserProviders_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TAuthUserProviders_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TAuthUserProviders_Bool_Exp;
 };
 
@@ -1494,6 +1730,7 @@ export type TAuthUserRoles_Update_Column =
 export type TAuthUserRoles_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TAuthUserRoles_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TAuthUserRoles_Bool_Exp;
 };
 
@@ -1812,6 +2049,7 @@ export type TAuthUserSecurityKeys_Updates = {
   _inc?: InputMaybe<TAuthUserSecurityKeys_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TAuthUserSecurityKeys_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TAuthUserSecurityKeys_Bool_Exp;
 };
 
@@ -2012,6 +2250,7 @@ export type TBoosted_Idea_Log_Update_Column =
 export type TBoosted_Idea_Log_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TBoosted_Idea_Log_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TBoosted_Idea_Log_Bool_Exp;
 };
 
@@ -2339,6 +2578,7 @@ export type TBoosted_Ideas_Updates = {
   _inc?: InputMaybe<TBoosted_Ideas_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TBoosted_Ideas_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TBoosted_Ideas_Bool_Exp;
 };
 
@@ -2664,6 +2904,7 @@ export type TBuckets_Updates = {
   _inc?: InputMaybe<TBuckets_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TBuckets_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TBuckets_Bool_Exp;
 };
 
@@ -2881,6 +3122,7 @@ export type TComment_Status_Types_Update_Column =
 export type TComment_Status_Types_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TComment_Status_Types_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TComment_Status_Types_Bool_Exp;
 };
 
@@ -3272,6 +3514,7 @@ export type TFiles_Updates = {
   _inc?: InputMaybe<TFiles_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TFiles_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TFiles_Bool_Exp;
 };
 
@@ -3566,6 +3809,7 @@ export type TIdea_Comment_Replies_Update_Column =
 export type TIdea_Comment_Replies_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TIdea_Comment_Replies_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TIdea_Comment_Replies_Bool_Exp;
 };
 
@@ -3986,6 +4230,7 @@ export type TIdea_Comments_Updates = {
   _inc?: InputMaybe<TIdea_Comments_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TIdea_Comments_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TIdea_Comments_Bool_Exp;
 };
 
@@ -4285,6 +4530,7 @@ export type TIdea_Preview_Stream_Cursor_Value_Input = {
 export type TIdea_Preview_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TIdea_Preview_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TIdea_Preview_Bool_Exp;
 };
 
@@ -4505,6 +4751,7 @@ export type TIdea_Votes_Update_Column =
 export type TIdea_Votes_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TIdea_Votes_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TIdea_Votes_Bool_Exp;
 };
 
@@ -5105,6 +5352,7 @@ export type TIdeas_Updates = {
   _inc?: InputMaybe<TIdeas_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TIdeas_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TIdeas_Bool_Exp;
 };
 
@@ -5379,6 +5627,7 @@ export type TInterested_Ideas_Update_Column =
 export type TInterested_Ideas_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TInterested_Ideas_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TInterested_Ideas_Bool_Exp;
 };
 
@@ -5612,7 +5861,139 @@ export type TMatch_Settings_Updates = {
   _prepend?: InputMaybe<TMatch_Settings_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TMatch_Settings_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TMatch_Settings_Bool_Exp;
+};
+
+/** columns and relationships of "matchmake_preferences" */
+export type TMatchmake_Preferences = {
+  __typename?: 'matchmake_preferences';
+  looking_for?: Maybe<Scalars['String']>;
+  user_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "matchmake_preferences" */
+export type TMatchmake_Preferences_Aggregate = {
+  __typename?: 'matchmake_preferences_aggregate';
+  aggregate?: Maybe<TMatchmake_Preferences_Aggregate_Fields>;
+  nodes: Array<TMatchmake_Preferences>;
+};
+
+/** aggregate fields of "matchmake_preferences" */
+export type TMatchmake_Preferences_Aggregate_Fields = {
+  __typename?: 'matchmake_preferences_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<TMatchmake_Preferences_Max_Fields>;
+  min?: Maybe<TMatchmake_Preferences_Min_Fields>;
+};
+
+
+/** aggregate fields of "matchmake_preferences" */
+export type TMatchmake_Preferences_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "matchmake_preferences". All fields are combined with a logical 'AND'. */
+export type TMatchmake_Preferences_Bool_Exp = {
+  _and?: InputMaybe<Array<TMatchmake_Preferences_Bool_Exp>>;
+  _not?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+  _or?: InputMaybe<Array<TMatchmake_Preferences_Bool_Exp>>;
+  looking_for?: InputMaybe<TString_Comparison_Exp>;
+  user_id?: InputMaybe<TUuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "matchmake_preferences" */
+export type TMatchmake_Preferences_Constraint =
+  /** unique or primary key constraint on columns "user_id" */
+  | 'matchmake_preferences_pkey1';
+
+/** input type for inserting data into table "matchmake_preferences" */
+export type TMatchmake_Preferences_Insert_Input = {
+  looking_for?: InputMaybe<Scalars['String']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type TMatchmake_Preferences_Max_Fields = {
+  __typename?: 'matchmake_preferences_max_fields';
+  looking_for?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type TMatchmake_Preferences_Min_Fields = {
+  __typename?: 'matchmake_preferences_min_fields';
+  looking_for?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "matchmake_preferences" */
+export type TMatchmake_Preferences_Mutation_Response = {
+  __typename?: 'matchmake_preferences_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<TMatchmake_Preferences>;
+};
+
+/** on_conflict condition type for table "matchmake_preferences" */
+export type TMatchmake_Preferences_On_Conflict = {
+  constraint: TMatchmake_Preferences_Constraint;
+  update_columns?: Array<TMatchmake_Preferences_Update_Column>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "matchmake_preferences". */
+export type TMatchmake_Preferences_Order_By = {
+  looking_for?: InputMaybe<TOrder_By>;
+  user_id?: InputMaybe<TOrder_By>;
+};
+
+/** primary key columns input for table: matchmake_preferences */
+export type TMatchmake_Preferences_Pk_Columns_Input = {
+  user_id: Scalars['uuid'];
+};
+
+/** select columns of table "matchmake_preferences" */
+export type TMatchmake_Preferences_Select_Column =
+  /** column name */
+  | 'looking_for'
+  /** column name */
+  | 'user_id';
+
+/** input type for updating data in table "matchmake_preferences" */
+export type TMatchmake_Preferences_Set_Input = {
+  looking_for?: InputMaybe<Scalars['String']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "matchmake_preferences" */
+export type TMatchmake_Preferences_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: TMatchmake_Preferences_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<TCursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type TMatchmake_Preferences_Stream_Cursor_Value_Input = {
+  looking_for?: InputMaybe<Scalars['String']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "matchmake_preferences" */
+export type TMatchmake_Preferences_Update_Column =
+  /** column name */
+  | 'looking_for'
+  /** column name */
+  | 'user_id';
+
+export type TMatchmake_Preferences_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: TMatchmake_Preferences_Bool_Exp;
 };
 
 /** All chat messages */
@@ -6101,6 +6482,7 @@ export type TMessage_Thread_Update_Column =
 export type TMessage_Thread_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TMessage_Thread_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TMessage_Thread_Bool_Exp;
 };
 
@@ -6279,6 +6661,7 @@ export type TMessage_Thread_Users_Update_Column =
 export type TMessage_Thread_Users_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TMessage_Thread_Users_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TMessage_Thread_Users_Bool_Exp;
 };
 
@@ -6300,6 +6683,7 @@ export type TMessage_Update_Column =
 export type TMessage_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TMessage_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TMessage_Bool_Exp;
 };
 
@@ -6329,6 +6713,10 @@ export type TMutation_Root = {
   deleteAuthProviders?: Maybe<TAuthProviders_Mutation_Response>;
   /** delete single row from the table: "auth.refresh_tokens" */
   deleteAuthRefreshToken?: Maybe<TAuthRefreshTokens>;
+  /** delete single row from the table: "auth.refresh_token_types" */
+  deleteAuthRefreshTokenType?: Maybe<TAuthRefreshTokenTypes>;
+  /** delete data from the table: "auth.refresh_token_types" */
+  deleteAuthRefreshTokenTypes?: Maybe<TAuthRefreshTokenTypes_Mutation_Response>;
   /** delete data from the table: "auth.refresh_tokens" */
   deleteAuthRefreshTokens?: Maybe<TAuthRefreshTokens_Mutation_Response>;
   /** delete single row from the table: "auth.roles" */
@@ -6401,6 +6789,10 @@ export type TMutation_Root = {
   delete_match_settings?: Maybe<TMatch_Settings_Mutation_Response>;
   /** delete single row from the table: "match_settings" */
   delete_match_settings_by_pk?: Maybe<TMatch_Settings>;
+  /** delete data from the table: "matchmake_preferences" */
+  delete_matchmake_preferences?: Maybe<TMatchmake_Preferences_Mutation_Response>;
+  /** delete single row from the table: "matchmake_preferences" */
+  delete_matchmake_preferences_by_pk?: Maybe<TMatchmake_Preferences>;
   /** delete data from the table: "message" */
   delete_message?: Maybe<TMessage_Mutation_Response>;
   /** delete single row from the table: "message" */
@@ -6457,6 +6849,10 @@ export type TMutation_Root = {
   insertAuthProviders?: Maybe<TAuthProviders_Mutation_Response>;
   /** insert a single row into the table: "auth.refresh_tokens" */
   insertAuthRefreshToken?: Maybe<TAuthRefreshTokens>;
+  /** insert a single row into the table: "auth.refresh_token_types" */
+  insertAuthRefreshTokenType?: Maybe<TAuthRefreshTokenTypes>;
+  /** insert data into the table: "auth.refresh_token_types" */
+  insertAuthRefreshTokenTypes?: Maybe<TAuthRefreshTokenTypes_Mutation_Response>;
   /** insert data into the table: "auth.refresh_tokens" */
   insertAuthRefreshTokens?: Maybe<TAuthRefreshTokens_Mutation_Response>;
   /** insert a single row into the table: "auth.roles" */
@@ -6531,6 +6927,10 @@ export type TMutation_Root = {
   insert_match_settings?: Maybe<TMatch_Settings_Mutation_Response>;
   /** insert a single row into the table: "match_settings" */
   insert_match_settings_one?: Maybe<TMatch_Settings>;
+  /** insert data into the table: "matchmake_preferences" */
+  insert_matchmake_preferences?: Maybe<TMatchmake_Preferences_Mutation_Response>;
+  /** insert a single row into the table: "matchmake_preferences" */
+  insert_matchmake_preferences_one?: Maybe<TMatchmake_Preferences>;
   /** insert data into the table: "message" */
   insert_message?: Maybe<TMessage_Mutation_Response>;
   /** insert a single row into the table: "message" */
@@ -6589,6 +6989,10 @@ export type TMutation_Root = {
   updateAuthProviders?: Maybe<TAuthProviders_Mutation_Response>;
   /** update single row of the table: "auth.refresh_tokens" */
   updateAuthRefreshToken?: Maybe<TAuthRefreshTokens>;
+  /** update single row of the table: "auth.refresh_token_types" */
+  updateAuthRefreshTokenType?: Maybe<TAuthRefreshTokenTypes>;
+  /** update data of the table: "auth.refresh_token_types" */
+  updateAuthRefreshTokenTypes?: Maybe<TAuthRefreshTokenTypes_Mutation_Response>;
   /** update data of the table: "auth.refresh_tokens" */
   updateAuthRefreshTokens?: Maybe<TAuthRefreshTokens_Mutation_Response>;
   /** update single row of the table: "auth.roles" */
@@ -6629,6 +7033,8 @@ export type TMutation_Root = {
   update_authProviderRequests_many?: Maybe<Array<Maybe<TAuthProviderRequests_Mutation_Response>>>;
   /** update multiples rows of table: "auth.providers" */
   update_authProviders_many?: Maybe<Array<Maybe<TAuthProviders_Mutation_Response>>>;
+  /** update multiples rows of table: "auth.refresh_token_types" */
+  update_authRefreshTokenTypes_many?: Maybe<Array<Maybe<TAuthRefreshTokenTypes_Mutation_Response>>>;
   /** update multiples rows of table: "auth.refresh_tokens" */
   update_authRefreshTokens_many?: Maybe<Array<Maybe<TAuthRefreshTokens_Mutation_Response>>>;
   /** update multiples rows of table: "auth.roles" */
@@ -6701,6 +7107,12 @@ export type TMutation_Root = {
   update_match_settings_by_pk?: Maybe<TMatch_Settings>;
   /** update multiples rows of table: "match_settings" */
   update_match_settings_many?: Maybe<Array<Maybe<TMatch_Settings_Mutation_Response>>>;
+  /** update data of the table: "matchmake_preferences" */
+  update_matchmake_preferences?: Maybe<TMatchmake_Preferences_Mutation_Response>;
+  /** update single row of the table: "matchmake_preferences" */
+  update_matchmake_preferences_by_pk?: Maybe<TMatchmake_Preferences>;
+  /** update multiples rows of table: "matchmake_preferences" */
+  update_matchmake_preferences_many?: Maybe<Array<Maybe<TMatchmake_Preferences_Mutation_Response>>>;
   /** update data of the table: "message" */
   update_message?: Maybe<TMessage_Mutation_Response>;
   /** update single row of the table: "message" */
@@ -6802,7 +7214,19 @@ export type TMutation_RootDeleteAuthProvidersArgs = {
 
 /** mutation root */
 export type TMutation_RootDeleteAuthRefreshTokenArgs = {
-  refreshToken: Scalars['uuid'];
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type TMutation_RootDeleteAuthRefreshTokenTypeArgs = {
+  value: Scalars['String'];
+};
+
+
+/** mutation root */
+export type TMutation_RootDeleteAuthRefreshTokenTypesArgs = {
+  where: TAuthRefreshTokenTypes_Bool_Exp;
 };
 
 
@@ -7025,6 +7449,18 @@ export type TMutation_RootDelete_Match_Settings_By_PkArgs = {
 
 
 /** mutation root */
+export type TMutation_RootDelete_Matchmake_PreferencesArgs = {
+  where: TMatchmake_Preferences_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootDelete_Matchmake_Preferences_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
+/** mutation root */
 export type TMutation_RootDelete_MessageArgs = {
   where: TMessage_Bool_Exp;
 };
@@ -7196,6 +7632,20 @@ export type TMutation_RootInsertAuthProvidersArgs = {
 export type TMutation_RootInsertAuthRefreshTokenArgs = {
   object: TAuthRefreshTokens_Insert_Input;
   on_conflict?: InputMaybe<TAuthRefreshTokens_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsertAuthRefreshTokenTypeArgs = {
+  object: TAuthRefreshTokenTypes_Insert_Input;
+  on_conflict?: InputMaybe<TAuthRefreshTokenTypes_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsertAuthRefreshTokenTypesArgs = {
+  objects: Array<TAuthRefreshTokenTypes_Insert_Input>;
+  on_conflict?: InputMaybe<TAuthRefreshTokenTypes_On_Conflict>;
 };
 
 
@@ -7457,6 +7907,20 @@ export type TMutation_RootInsert_Match_Settings_OneArgs = {
 
 
 /** mutation root */
+export type TMutation_RootInsert_Matchmake_PreferencesArgs = {
+  objects: Array<TMatchmake_Preferences_Insert_Input>;
+  on_conflict?: InputMaybe<TMatchmake_Preferences_On_Conflict>;
+};
+
+
+/** mutation root */
+export type TMutation_RootInsert_Matchmake_Preferences_OneArgs = {
+  object: TMatchmake_Preferences_Insert_Input;
+  on_conflict?: InputMaybe<TMatchmake_Preferences_On_Conflict>;
+};
+
+
+/** mutation root */
 export type TMutation_RootInsert_MessageArgs = {
   objects: Array<TMessage_Insert_Input>;
   on_conflict?: InputMaybe<TMessage_On_Conflict>;
@@ -7662,13 +8126,37 @@ export type TMutation_RootUpdateAuthProvidersArgs = {
 
 /** mutation root */
 export type TMutation_RootUpdateAuthRefreshTokenArgs = {
+  _append?: InputMaybe<TAuthRefreshTokens_Append_Input>;
+  _delete_at_path?: InputMaybe<TAuthRefreshTokens_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<TAuthRefreshTokens_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<TAuthRefreshTokens_Delete_Key_Input>;
+  _prepend?: InputMaybe<TAuthRefreshTokens_Prepend_Input>;
   _set?: InputMaybe<TAuthRefreshTokens_Set_Input>;
   pk_columns: TAuthRefreshTokens_Pk_Columns_Input;
 };
 
 
 /** mutation root */
+export type TMutation_RootUpdateAuthRefreshTokenTypeArgs = {
+  _set?: InputMaybe<TAuthRefreshTokenTypes_Set_Input>;
+  pk_columns: TAuthRefreshTokenTypes_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdateAuthRefreshTokenTypesArgs = {
+  _set?: InputMaybe<TAuthRefreshTokenTypes_Set_Input>;
+  where: TAuthRefreshTokenTypes_Bool_Exp;
+};
+
+
+/** mutation root */
 export type TMutation_RootUpdateAuthRefreshTokensArgs = {
+  _append?: InputMaybe<TAuthRefreshTokens_Append_Input>;
+  _delete_at_path?: InputMaybe<TAuthRefreshTokens_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<TAuthRefreshTokens_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<TAuthRefreshTokens_Delete_Key_Input>;
+  _prepend?: InputMaybe<TAuthRefreshTokens_Prepend_Input>;
   _set?: InputMaybe<TAuthRefreshTokens_Set_Input>;
   where: TAuthRefreshTokens_Bool_Exp;
 };
@@ -7817,6 +8305,12 @@ export type TMutation_RootUpdate_AuthProviderRequests_ManyArgs = {
 /** mutation root */
 export type TMutation_RootUpdate_AuthProviders_ManyArgs = {
   updates: Array<TAuthProviders_Updates>;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_AuthRefreshTokenTypes_ManyArgs = {
+  updates: Array<TAuthRefreshTokenTypes_Updates>;
 };
 
 
@@ -8068,6 +8562,26 @@ export type TMutation_RootUpdate_Match_Settings_By_PkArgs = {
 /** mutation root */
 export type TMutation_RootUpdate_Match_Settings_ManyArgs = {
   updates: Array<TMatch_Settings_Updates>;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_Matchmake_PreferencesArgs = {
+  _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
+  where: TMatchmake_Preferences_Bool_Exp;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_Matchmake_Preferences_By_PkArgs = {
+  _set?: InputMaybe<TMatchmake_Preferences_Set_Input>;
+  pk_columns: TMatchmake_Preferences_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type TMutation_RootUpdate_Matchmake_Preferences_ManyArgs = {
+  updates: Array<TMatchmake_Preferences_Updates>;
 };
 
 
@@ -8474,6 +8988,7 @@ export type TNotification_Types_Update_Column =
 export type TNotification_Types_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TNotification_Types_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TNotification_Types_Bool_Exp;
 };
 
@@ -8514,6 +9029,12 @@ export type TQuery_Root = {
   authProvidersAggregate: TAuthProviders_Aggregate;
   /** fetch data from the table: "auth.refresh_tokens" using primary key columns */
   authRefreshToken?: Maybe<TAuthRefreshTokens>;
+  /** fetch data from the table: "auth.refresh_token_types" using primary key columns */
+  authRefreshTokenType?: Maybe<TAuthRefreshTokenTypes>;
+  /** fetch data from the table: "auth.refresh_token_types" */
+  authRefreshTokenTypes: Array<TAuthRefreshTokenTypes>;
+  /** fetch aggregated fields from the table: "auth.refresh_token_types" */
+  authRefreshTokenTypesAggregate: TAuthRefreshTokenTypes_Aggregate;
   /** fetch data from the table: "auth.refresh_tokens" */
   authRefreshTokens: Array<TAuthRefreshTokens>;
   /** fetch aggregated fields from the table: "auth.refresh_tokens" */
@@ -8612,6 +9133,12 @@ export type TQuery_Root = {
   match_settings_aggregate: TMatch_Settings_Aggregate;
   /** fetch data from the table: "match_settings" using primary key columns */
   match_settings_by_pk?: Maybe<TMatch_Settings>;
+  /** fetch data from the table: "matchmake_preferences" */
+  matchmake_preferences: Array<TMatchmake_Preferences>;
+  /** fetch aggregated fields from the table: "matchmake_preferences" */
+  matchmake_preferences_aggregate: TMatchmake_Preferences_Aggregate;
+  /** fetch data from the table: "matchmake_preferences" using primary key columns */
+  matchmake_preferences_by_pk?: Maybe<TMatchmake_Preferences>;
   /** fetch data from the table: "message" */
   message: Array<TMessage>;
   /** fetch aggregated fields from the table: "message" */
@@ -8761,7 +9288,30 @@ export type TQuery_RootAuthProvidersAggregateArgs = {
 
 
 export type TQuery_RootAuthRefreshTokenArgs = {
-  refreshToken: Scalars['uuid'];
+  id: Scalars['uuid'];
+};
+
+
+export type TQuery_RootAuthRefreshTokenTypeArgs = {
+  value: Scalars['String'];
+};
+
+
+export type TQuery_RootAuthRefreshTokenTypesArgs = {
+  distinct_on?: InputMaybe<Array<TAuthRefreshTokenTypes_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TAuthRefreshTokenTypes_Order_By>>;
+  where?: InputMaybe<TAuthRefreshTokenTypes_Bool_Exp>;
+};
+
+
+export type TQuery_RootAuthRefreshTokenTypesAggregateArgs = {
+  distinct_on?: InputMaybe<Array<TAuthRefreshTokenTypes_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TAuthRefreshTokenTypes_Order_By>>;
+  where?: InputMaybe<TAuthRefreshTokenTypes_Bool_Exp>;
 };
 
 
@@ -9144,6 +9694,29 @@ export type TQuery_RootMatch_Settings_AggregateArgs = {
 
 
 export type TQuery_RootMatch_Settings_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
+export type TQuery_RootMatchmake_PreferencesArgs = {
+  distinct_on?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMatchmake_Preferences_Order_By>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+
+export type TQuery_RootMatchmake_Preferences_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMatchmake_Preferences_Order_By>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+
+export type TQuery_RootMatchmake_Preferences_By_PkArgs = {
   user_id: Scalars['uuid'];
 };
 
@@ -9678,6 +10251,7 @@ export type TReport_Update_Column =
 export type TReport_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TReport_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TReport_Bool_Exp;
 };
 
@@ -9709,6 +10283,14 @@ export type TSubscription_Root = {
   authProviders_stream: Array<TAuthProviders>;
   /** fetch data from the table: "auth.refresh_tokens" using primary key columns */
   authRefreshToken?: Maybe<TAuthRefreshTokens>;
+  /** fetch data from the table: "auth.refresh_token_types" using primary key columns */
+  authRefreshTokenType?: Maybe<TAuthRefreshTokenTypes>;
+  /** fetch data from the table: "auth.refresh_token_types" */
+  authRefreshTokenTypes: Array<TAuthRefreshTokenTypes>;
+  /** fetch aggregated fields from the table: "auth.refresh_token_types" */
+  authRefreshTokenTypesAggregate: TAuthRefreshTokenTypes_Aggregate;
+  /** fetch data from the table in a streaming manner: "auth.refresh_token_types" */
+  authRefreshTokenTypes_stream: Array<TAuthRefreshTokenTypes>;
   /** fetch data from the table: "auth.refresh_tokens" */
   authRefreshTokens: Array<TAuthRefreshTokens>;
   /** fetch aggregated fields from the table: "auth.refresh_tokens" */
@@ -9841,6 +10423,14 @@ export type TSubscription_Root = {
   match_settings_by_pk?: Maybe<TMatch_Settings>;
   /** fetch data from the table in a streaming manner: "match_settings" */
   match_settings_stream: Array<TMatch_Settings>;
+  /** fetch data from the table: "matchmake_preferences" */
+  matchmake_preferences: Array<TMatchmake_Preferences>;
+  /** fetch aggregated fields from the table: "matchmake_preferences" */
+  matchmake_preferences_aggregate: TMatchmake_Preferences_Aggregate;
+  /** fetch data from the table: "matchmake_preferences" using primary key columns */
+  matchmake_preferences_by_pk?: Maybe<TMatchmake_Preferences>;
+  /** fetch data from the table in a streaming manner: "matchmake_preferences" */
+  matchmake_preferences_stream: Array<TMatchmake_Preferences>;
   /** fetch data from the table: "message" */
   message: Array<TMessage>;
   /** fetch aggregated fields from the table: "message" */
@@ -10037,7 +10627,37 @@ export type TSubscription_RootAuthProviders_StreamArgs = {
 
 
 export type TSubscription_RootAuthRefreshTokenArgs = {
-  refreshToken: Scalars['uuid'];
+  id: Scalars['uuid'];
+};
+
+
+export type TSubscription_RootAuthRefreshTokenTypeArgs = {
+  value: Scalars['String'];
+};
+
+
+export type TSubscription_RootAuthRefreshTokenTypesArgs = {
+  distinct_on?: InputMaybe<Array<TAuthRefreshTokenTypes_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TAuthRefreshTokenTypes_Order_By>>;
+  where?: InputMaybe<TAuthRefreshTokenTypes_Bool_Exp>;
+};
+
+
+export type TSubscription_RootAuthRefreshTokenTypesAggregateArgs = {
+  distinct_on?: InputMaybe<Array<TAuthRefreshTokenTypes_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TAuthRefreshTokenTypes_Order_By>>;
+  where?: InputMaybe<TAuthRefreshTokenTypes_Bool_Exp>;
+};
+
+
+export type TSubscription_RootAuthRefreshTokenTypes_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<TAuthRefreshTokenTypes_Stream_Cursor_Input>>;
+  where?: InputMaybe<TAuthRefreshTokenTypes_Bool_Exp>;
 };
 
 
@@ -10540,6 +11160,36 @@ export type TSubscription_RootMatch_Settings_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<TMatch_Settings_Stream_Cursor_Input>>;
   where?: InputMaybe<TMatch_Settings_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMatchmake_PreferencesArgs = {
+  distinct_on?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMatchmake_Preferences_Order_By>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMatchmake_Preferences_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<TMatchmake_Preferences_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<TMatchmake_Preferences_Order_By>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
+};
+
+
+export type TSubscription_RootMatchmake_Preferences_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
+export type TSubscription_RootMatchmake_Preferences_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<TMatchmake_Preferences_Stream_Cursor_Input>>;
+  where?: InputMaybe<TMatchmake_Preferences_Bool_Exp>;
 };
 
 
@@ -11117,6 +11767,7 @@ export type TUser_Address_Update_Column =
 export type TUser_Address_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TUser_Address_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TUser_Address_Bool_Exp;
 };
 
@@ -11317,6 +11968,7 @@ export type TUser_Esteem_Points_Currency_Updates = {
   _inc?: InputMaybe<TUser_Esteem_Points_Currency_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TUser_Esteem_Points_Currency_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TUser_Esteem_Points_Currency_Bool_Exp;
 };
 
@@ -11525,6 +12177,7 @@ export type TUser_Followers_Update_Column =
 export type TUser_Followers_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TUser_Followers_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TUser_Followers_Bool_Exp;
 };
 
@@ -11813,6 +12466,7 @@ export type TUser_Notifications_Update_Column =
 export type TUser_Notifications_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TUser_Notifications_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TUser_Notifications_Bool_Exp;
 };
 
@@ -12352,6 +13006,7 @@ export type TUser_Profile_Updates = {
   _prepend?: InputMaybe<TUser_Profile_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TUser_Profile_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TUser_Profile_Bool_Exp;
 };
 
@@ -13244,6 +13899,7 @@ export type TUsers_Updates = {
   _prepend?: InputMaybe<TUsers_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TUsers_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TUsers_Bool_Exp;
 };
 
@@ -13524,6 +14180,7 @@ export type TV_Comments_Updates = {
   _inc?: InputMaybe<TV_Comments_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TV_Comments_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TV_Comments_Bool_Exp;
 };
 
@@ -13768,6 +14425,7 @@ export type TWithdrawal_Requests_Updates = {
   _inc?: InputMaybe<TWithdrawal_Requests_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TWithdrawal_Requests_Set_Input>;
+  /** filter the rows which have to be updated */
   where: TWithdrawal_Requests_Bool_Exp;
 };
 
@@ -16105,15 +16763,39 @@ export type TResolversTypes = {
   authProviders_stream_cursor_value_input: TAuthProviders_Stream_Cursor_Value_Input;
   authProviders_update_column: TAuthProviders_Update_Column;
   authProviders_updates: TAuthProviders_Updates;
+  authRefreshTokenTypes: ResolverTypeWrapper<TAuthRefreshTokenTypes>;
+  authRefreshTokenTypes_aggregate: ResolverTypeWrapper<TAuthRefreshTokenTypes_Aggregate>;
+  authRefreshTokenTypes_aggregate_fields: ResolverTypeWrapper<TAuthRefreshTokenTypes_Aggregate_Fields>;
+  authRefreshTokenTypes_bool_exp: TAuthRefreshTokenTypes_Bool_Exp;
+  authRefreshTokenTypes_constraint: TAuthRefreshTokenTypes_Constraint;
+  authRefreshTokenTypes_enum: TAuthRefreshTokenTypes_Enum;
+  authRefreshTokenTypes_enum_comparison_exp: TAuthRefreshTokenTypes_Enum_Comparison_Exp;
+  authRefreshTokenTypes_insert_input: TAuthRefreshTokenTypes_Insert_Input;
+  authRefreshTokenTypes_max_fields: ResolverTypeWrapper<TAuthRefreshTokenTypes_Max_Fields>;
+  authRefreshTokenTypes_min_fields: ResolverTypeWrapper<TAuthRefreshTokenTypes_Min_Fields>;
+  authRefreshTokenTypes_mutation_response: ResolverTypeWrapper<TAuthRefreshTokenTypes_Mutation_Response>;
+  authRefreshTokenTypes_on_conflict: TAuthRefreshTokenTypes_On_Conflict;
+  authRefreshTokenTypes_order_by: TAuthRefreshTokenTypes_Order_By;
+  authRefreshTokenTypes_pk_columns_input: TAuthRefreshTokenTypes_Pk_Columns_Input;
+  authRefreshTokenTypes_select_column: TAuthRefreshTokenTypes_Select_Column;
+  authRefreshTokenTypes_set_input: TAuthRefreshTokenTypes_Set_Input;
+  authRefreshTokenTypes_stream_cursor_input: TAuthRefreshTokenTypes_Stream_Cursor_Input;
+  authRefreshTokenTypes_stream_cursor_value_input: TAuthRefreshTokenTypes_Stream_Cursor_Value_Input;
+  authRefreshTokenTypes_update_column: TAuthRefreshTokenTypes_Update_Column;
+  authRefreshTokenTypes_updates: TAuthRefreshTokenTypes_Updates;
   authRefreshTokens: ResolverTypeWrapper<TAuthRefreshTokens>;
   authRefreshTokens_aggregate: ResolverTypeWrapper<TAuthRefreshTokens_Aggregate>;
   authRefreshTokens_aggregate_bool_exp: TAuthRefreshTokens_Aggregate_Bool_Exp;
   authRefreshTokens_aggregate_bool_exp_count: TAuthRefreshTokens_Aggregate_Bool_Exp_Count;
   authRefreshTokens_aggregate_fields: ResolverTypeWrapper<TAuthRefreshTokens_Aggregate_Fields>;
   authRefreshTokens_aggregate_order_by: TAuthRefreshTokens_Aggregate_Order_By;
+  authRefreshTokens_append_input: TAuthRefreshTokens_Append_Input;
   authRefreshTokens_arr_rel_insert_input: TAuthRefreshTokens_Arr_Rel_Insert_Input;
   authRefreshTokens_bool_exp: TAuthRefreshTokens_Bool_Exp;
   authRefreshTokens_constraint: TAuthRefreshTokens_Constraint;
+  authRefreshTokens_delete_at_path_input: TAuthRefreshTokens_Delete_At_Path_Input;
+  authRefreshTokens_delete_elem_input: TAuthRefreshTokens_Delete_Elem_Input;
+  authRefreshTokens_delete_key_input: TAuthRefreshTokens_Delete_Key_Input;
   authRefreshTokens_insert_input: TAuthRefreshTokens_Insert_Input;
   authRefreshTokens_max_fields: ResolverTypeWrapper<TAuthRefreshTokens_Max_Fields>;
   authRefreshTokens_max_order_by: TAuthRefreshTokens_Max_Order_By;
@@ -16123,6 +16805,7 @@ export type TResolversTypes = {
   authRefreshTokens_on_conflict: TAuthRefreshTokens_On_Conflict;
   authRefreshTokens_order_by: TAuthRefreshTokens_Order_By;
   authRefreshTokens_pk_columns_input: TAuthRefreshTokens_Pk_Columns_Input;
+  authRefreshTokens_prepend_input: TAuthRefreshTokens_Prepend_Input;
   authRefreshTokens_select_column: TAuthRefreshTokens_Select_Column;
   authRefreshTokens_set_input: TAuthRefreshTokens_Set_Input;
   authRefreshTokens_stream_cursor_input: TAuthRefreshTokens_Stream_Cursor_Input;
@@ -16588,6 +17271,24 @@ export type TResolversTypes = {
   match_settings_stream_cursor_value_input: TMatch_Settings_Stream_Cursor_Value_Input;
   match_settings_update_column: TMatch_Settings_Update_Column;
   match_settings_updates: TMatch_Settings_Updates;
+  matchmake_preferences: ResolverTypeWrapper<TMatchmake_Preferences>;
+  matchmake_preferences_aggregate: ResolverTypeWrapper<TMatchmake_Preferences_Aggregate>;
+  matchmake_preferences_aggregate_fields: ResolverTypeWrapper<TMatchmake_Preferences_Aggregate_Fields>;
+  matchmake_preferences_bool_exp: TMatchmake_Preferences_Bool_Exp;
+  matchmake_preferences_constraint: TMatchmake_Preferences_Constraint;
+  matchmake_preferences_insert_input: TMatchmake_Preferences_Insert_Input;
+  matchmake_preferences_max_fields: ResolverTypeWrapper<TMatchmake_Preferences_Max_Fields>;
+  matchmake_preferences_min_fields: ResolverTypeWrapper<TMatchmake_Preferences_Min_Fields>;
+  matchmake_preferences_mutation_response: ResolverTypeWrapper<TMatchmake_Preferences_Mutation_Response>;
+  matchmake_preferences_on_conflict: TMatchmake_Preferences_On_Conflict;
+  matchmake_preferences_order_by: TMatchmake_Preferences_Order_By;
+  matchmake_preferences_pk_columns_input: TMatchmake_Preferences_Pk_Columns_Input;
+  matchmake_preferences_select_column: TMatchmake_Preferences_Select_Column;
+  matchmake_preferences_set_input: TMatchmake_Preferences_Set_Input;
+  matchmake_preferences_stream_cursor_input: TMatchmake_Preferences_Stream_Cursor_Input;
+  matchmake_preferences_stream_cursor_value_input: TMatchmake_Preferences_Stream_Cursor_Value_Input;
+  matchmake_preferences_update_column: TMatchmake_Preferences_Update_Column;
+  matchmake_preferences_updates: TMatchmake_Preferences_Updates;
   message: ResolverTypeWrapper<TMessage>;
   message_aggregate: ResolverTypeWrapper<TMessage_Aggregate>;
   message_aggregate_bool_exp: TMessage_Aggregate_Bool_Exp;
@@ -16988,14 +17689,34 @@ export type TResolversParentTypes = {
   authProviders_stream_cursor_input: TAuthProviders_Stream_Cursor_Input;
   authProviders_stream_cursor_value_input: TAuthProviders_Stream_Cursor_Value_Input;
   authProviders_updates: TAuthProviders_Updates;
+  authRefreshTokenTypes: TAuthRefreshTokenTypes;
+  authRefreshTokenTypes_aggregate: TAuthRefreshTokenTypes_Aggregate;
+  authRefreshTokenTypes_aggregate_fields: TAuthRefreshTokenTypes_Aggregate_Fields;
+  authRefreshTokenTypes_bool_exp: TAuthRefreshTokenTypes_Bool_Exp;
+  authRefreshTokenTypes_enum_comparison_exp: TAuthRefreshTokenTypes_Enum_Comparison_Exp;
+  authRefreshTokenTypes_insert_input: TAuthRefreshTokenTypes_Insert_Input;
+  authRefreshTokenTypes_max_fields: TAuthRefreshTokenTypes_Max_Fields;
+  authRefreshTokenTypes_min_fields: TAuthRefreshTokenTypes_Min_Fields;
+  authRefreshTokenTypes_mutation_response: TAuthRefreshTokenTypes_Mutation_Response;
+  authRefreshTokenTypes_on_conflict: TAuthRefreshTokenTypes_On_Conflict;
+  authRefreshTokenTypes_order_by: TAuthRefreshTokenTypes_Order_By;
+  authRefreshTokenTypes_pk_columns_input: TAuthRefreshTokenTypes_Pk_Columns_Input;
+  authRefreshTokenTypes_set_input: TAuthRefreshTokenTypes_Set_Input;
+  authRefreshTokenTypes_stream_cursor_input: TAuthRefreshTokenTypes_Stream_Cursor_Input;
+  authRefreshTokenTypes_stream_cursor_value_input: TAuthRefreshTokenTypes_Stream_Cursor_Value_Input;
+  authRefreshTokenTypes_updates: TAuthRefreshTokenTypes_Updates;
   authRefreshTokens: TAuthRefreshTokens;
   authRefreshTokens_aggregate: TAuthRefreshTokens_Aggregate;
   authRefreshTokens_aggregate_bool_exp: TAuthRefreshTokens_Aggregate_Bool_Exp;
   authRefreshTokens_aggregate_bool_exp_count: TAuthRefreshTokens_Aggregate_Bool_Exp_Count;
   authRefreshTokens_aggregate_fields: TAuthRefreshTokens_Aggregate_Fields;
   authRefreshTokens_aggregate_order_by: TAuthRefreshTokens_Aggregate_Order_By;
+  authRefreshTokens_append_input: TAuthRefreshTokens_Append_Input;
   authRefreshTokens_arr_rel_insert_input: TAuthRefreshTokens_Arr_Rel_Insert_Input;
   authRefreshTokens_bool_exp: TAuthRefreshTokens_Bool_Exp;
+  authRefreshTokens_delete_at_path_input: TAuthRefreshTokens_Delete_At_Path_Input;
+  authRefreshTokens_delete_elem_input: TAuthRefreshTokens_Delete_Elem_Input;
+  authRefreshTokens_delete_key_input: TAuthRefreshTokens_Delete_Key_Input;
   authRefreshTokens_insert_input: TAuthRefreshTokens_Insert_Input;
   authRefreshTokens_max_fields: TAuthRefreshTokens_Max_Fields;
   authRefreshTokens_max_order_by: TAuthRefreshTokens_Max_Order_By;
@@ -17005,6 +17726,7 @@ export type TResolversParentTypes = {
   authRefreshTokens_on_conflict: TAuthRefreshTokens_On_Conflict;
   authRefreshTokens_order_by: TAuthRefreshTokens_Order_By;
   authRefreshTokens_pk_columns_input: TAuthRefreshTokens_Pk_Columns_Input;
+  authRefreshTokens_prepend_input: TAuthRefreshTokens_Prepend_Input;
   authRefreshTokens_set_input: TAuthRefreshTokens_Set_Input;
   authRefreshTokens_stream_cursor_input: TAuthRefreshTokens_Stream_Cursor_Input;
   authRefreshTokens_stream_cursor_value_input: TAuthRefreshTokens_Stream_Cursor_Value_Input;
@@ -17414,6 +18136,21 @@ export type TResolversParentTypes = {
   match_settings_stream_cursor_input: TMatch_Settings_Stream_Cursor_Input;
   match_settings_stream_cursor_value_input: TMatch_Settings_Stream_Cursor_Value_Input;
   match_settings_updates: TMatch_Settings_Updates;
+  matchmake_preferences: TMatchmake_Preferences;
+  matchmake_preferences_aggregate: TMatchmake_Preferences_Aggregate;
+  matchmake_preferences_aggregate_fields: TMatchmake_Preferences_Aggregate_Fields;
+  matchmake_preferences_bool_exp: TMatchmake_Preferences_Bool_Exp;
+  matchmake_preferences_insert_input: TMatchmake_Preferences_Insert_Input;
+  matchmake_preferences_max_fields: TMatchmake_Preferences_Max_Fields;
+  matchmake_preferences_min_fields: TMatchmake_Preferences_Min_Fields;
+  matchmake_preferences_mutation_response: TMatchmake_Preferences_Mutation_Response;
+  matchmake_preferences_on_conflict: TMatchmake_Preferences_On_Conflict;
+  matchmake_preferences_order_by: TMatchmake_Preferences_Order_By;
+  matchmake_preferences_pk_columns_input: TMatchmake_Preferences_Pk_Columns_Input;
+  matchmake_preferences_set_input: TMatchmake_Preferences_Set_Input;
+  matchmake_preferences_stream_cursor_input: TMatchmake_Preferences_Stream_Cursor_Input;
+  matchmake_preferences_stream_cursor_value_input: TMatchmake_Preferences_Stream_Cursor_Value_Input;
+  matchmake_preferences_updates: TMatchmake_Preferences_Updates;
   message: TMessage;
   message_aggregate: TMessage_Aggregate;
   message_aggregate_bool_exp: TMessage_Aggregate_Bool_Exp;
@@ -17846,11 +18583,52 @@ export type TAuthProviders_Mutation_ResponseResolvers<ContextType = any, ParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type TAuthRefreshTokenTypesResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokenTypes'] = TResolversParentTypes['authRefreshTokenTypes']> = {
+  comment?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  refreshTokens?: Resolver<Array<TResolversTypes['authRefreshTokens']>, ParentType, ContextType, Partial<TAuthRefreshTokenTypesRefreshTokensArgs>>;
+  refreshTokens_aggregate?: Resolver<TResolversTypes['authRefreshTokens_aggregate'], ParentType, ContextType, Partial<TAuthRefreshTokenTypesRefreshTokens_AggregateArgs>>;
+  value?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TAuthRefreshTokenTypes_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokenTypes_aggregate'] = TResolversParentTypes['authRefreshTokenTypes_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['authRefreshTokenTypes']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TAuthRefreshTokenTypes_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokenTypes_aggregate_fields'] = TResolversParentTypes['authRefreshTokenTypes_aggregate_fields']> = {
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TAuthRefreshTokenTypes_Aggregate_FieldsCountArgs>>;
+  max?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TAuthRefreshTokenTypes_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokenTypes_max_fields'] = TResolversParentTypes['authRefreshTokenTypes_max_fields']> = {
+  comment?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  value?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TAuthRefreshTokenTypes_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokenTypes_min_fields'] = TResolversParentTypes['authRefreshTokenTypes_min_fields']> = {
+  comment?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  value?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TAuthRefreshTokenTypes_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokenTypes_mutation_response'] = TResolversParentTypes['authRefreshTokenTypes_mutation_response']> = {
+  affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<TResolversTypes['authRefreshTokenTypes']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TAuthRefreshTokensResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokens'] = TResolversParentTypes['authRefreshTokens']> = {
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
   expiresAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
-  refreshToken?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  metadata?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, Partial<TAuthRefreshTokensMetadataArgs>>;
   refreshTokenHash?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  type?: Resolver<TResolversTypes['authRefreshTokenTypes_enum'], ParentType, ContextType>;
   user?: Resolver<TResolversTypes['users'], ParentType, ContextType>;
   userId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -17872,7 +18650,7 @@ export type TAuthRefreshTokens_Aggregate_FieldsResolvers<ContextType = any, Pare
 export type TAuthRefreshTokens_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokens_max_fields'] = TResolversParentTypes['authRefreshTokens_max_fields']> = {
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   expiresAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
-  refreshToken?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   refreshTokenHash?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -17881,7 +18659,7 @@ export type TAuthRefreshTokens_Max_FieldsResolvers<ContextType = any, ParentType
 export type TAuthRefreshTokens_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['authRefreshTokens_min_fields'] = TResolversParentTypes['authRefreshTokens_min_fields']> = {
   createdAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
   expiresAt?: Resolver<Maybe<TResolversTypes['timestamptz']>, ParentType, ContextType>;
-  refreshToken?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   refreshTokenHash?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -19128,6 +19906,43 @@ export type TMatch_Settings_Mutation_ResponseResolvers<ContextType = any, Parent
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type TMatchmake_PreferencesResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences'] = TResolversParentTypes['matchmake_preferences']> = {
+  looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  user_id?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_AggregateResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_aggregate'] = TResolversParentTypes['matchmake_preferences_aggregate']> = {
+  aggregate?: Resolver<Maybe<TResolversTypes['matchmake_preferences_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<TResolversTypes['matchmake_preferences']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_Aggregate_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_aggregate_fields'] = TResolversParentTypes['matchmake_preferences_aggregate_fields']> = {
+  count?: Resolver<TResolversTypes['Int'], ParentType, ContextType, Partial<TMatchmake_Preferences_Aggregate_FieldsCountArgs>>;
+  max?: Resolver<Maybe<TResolversTypes['matchmake_preferences_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<TResolversTypes['matchmake_preferences_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_max_fields'] = TResolversParentTypes['matchmake_preferences_max_fields']> = {
+  looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_min_fields'] = TResolversParentTypes['matchmake_preferences_min_fields']> = {
+  looking_for?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type TMatchmake_Preferences_Mutation_ResponseResolvers<ContextType = any, ParentType extends TResolversParentTypes['matchmake_preferences_mutation_response'] = TResolversParentTypes['matchmake_preferences_mutation_response']> = {
+  affected_rows?: Resolver<TResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<TResolversTypes['matchmake_preferences']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TMessageResolvers<ContextType = any, ParentType extends TResolversParentTypes['message'] = TResolversParentTypes['message']> = {
   content?: Resolver<TResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -19278,7 +20093,9 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   deleteAuthProviderRequest?: Resolver<Maybe<TResolversTypes['authProviderRequests']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthProviderRequestArgs, 'id'>>;
   deleteAuthProviderRequests?: Resolver<Maybe<TResolversTypes['authProviderRequests_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthProviderRequestsArgs, 'where'>>;
   deleteAuthProviders?: Resolver<Maybe<TResolversTypes['authProviders_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthProvidersArgs, 'where'>>;
-  deleteAuthRefreshToken?: Resolver<Maybe<TResolversTypes['authRefreshTokens']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthRefreshTokenArgs, 'refreshToken'>>;
+  deleteAuthRefreshToken?: Resolver<Maybe<TResolversTypes['authRefreshTokens']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthRefreshTokenArgs, 'id'>>;
+  deleteAuthRefreshTokenType?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthRefreshTokenTypeArgs, 'value'>>;
+  deleteAuthRefreshTokenTypes?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthRefreshTokenTypesArgs, 'where'>>;
   deleteAuthRefreshTokens?: Resolver<Maybe<TResolversTypes['authRefreshTokens_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthRefreshTokensArgs, 'where'>>;
   deleteAuthRole?: Resolver<Maybe<TResolversTypes['authRoles']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthRoleArgs, 'role'>>;
   deleteAuthRoles?: Resolver<Maybe<TResolversTypes['authRoles_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDeleteAuthRolesArgs, 'where'>>;
@@ -19315,6 +20132,8 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   delete_interested_ideas_by_pk?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Interested_Ideas_By_PkArgs, 'ideaId' | 'userId'>>;
   delete_match_settings?: Resolver<Maybe<TResolversTypes['match_settings_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Match_SettingsArgs, 'where'>>;
   delete_match_settings_by_pk?: Resolver<Maybe<TResolversTypes['match_settings']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Match_Settings_By_PkArgs, 'user_id'>>;
+  delete_matchmake_preferences?: Resolver<Maybe<TResolversTypes['matchmake_preferences_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Matchmake_PreferencesArgs, 'where'>>;
+  delete_matchmake_preferences_by_pk?: Resolver<Maybe<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Matchmake_Preferences_By_PkArgs, 'user_id'>>;
   delete_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_MessageArgs, 'where'>>;
   delete_message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_By_PkArgs, 'id'>>;
   delete_message_thread?: Resolver<Maybe<TResolversTypes['message_thread_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootDelete_Message_ThreadArgs, 'where'>>;
@@ -19343,6 +20162,8 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   insertAuthProviderRequests?: Resolver<Maybe<TResolversTypes['authProviderRequests_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsertAuthProviderRequestsArgs, 'objects'>>;
   insertAuthProviders?: Resolver<Maybe<TResolversTypes['authProviders_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsertAuthProvidersArgs, 'objects'>>;
   insertAuthRefreshToken?: Resolver<Maybe<TResolversTypes['authRefreshTokens']>, ParentType, ContextType, RequireFields<TMutation_RootInsertAuthRefreshTokenArgs, 'object'>>;
+  insertAuthRefreshTokenType?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes']>, ParentType, ContextType, RequireFields<TMutation_RootInsertAuthRefreshTokenTypeArgs, 'object'>>;
+  insertAuthRefreshTokenTypes?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsertAuthRefreshTokenTypesArgs, 'objects'>>;
   insertAuthRefreshTokens?: Resolver<Maybe<TResolversTypes['authRefreshTokens_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsertAuthRefreshTokensArgs, 'objects'>>;
   insertAuthRole?: Resolver<Maybe<TResolversTypes['authRoles']>, ParentType, ContextType, RequireFields<TMutation_RootInsertAuthRoleArgs, 'object'>>;
   insertAuthRoles?: Resolver<Maybe<TResolversTypes['authRoles_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsertAuthRolesArgs, 'objects'>>;
@@ -19380,6 +20201,8 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   insert_interested_ideas_one?: Resolver<Maybe<TResolversTypes['interested_ideas']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Interested_Ideas_OneArgs, 'object'>>;
   insert_match_settings?: Resolver<Maybe<TResolversTypes['match_settings_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Match_SettingsArgs, 'objects'>>;
   insert_match_settings_one?: Resolver<Maybe<TResolversTypes['match_settings']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Match_Settings_OneArgs, 'object'>>;
+  insert_matchmake_preferences?: Resolver<Maybe<TResolversTypes['matchmake_preferences_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Matchmake_PreferencesArgs, 'objects'>>;
+  insert_matchmake_preferences_one?: Resolver<Maybe<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Matchmake_Preferences_OneArgs, 'object'>>;
   insert_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_MessageArgs, 'objects'>>;
   insert_message_one?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_OneArgs, 'object'>>;
   insert_message_thread?: Resolver<Maybe<TResolversTypes['message_thread_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootInsert_Message_ThreadArgs, 'objects'>>;
@@ -19409,6 +20232,8 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   updateAuthProviderRequests?: Resolver<Maybe<TResolversTypes['authProviderRequests_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateAuthProviderRequestsArgs, 'where'>>;
   updateAuthProviders?: Resolver<Maybe<TResolversTypes['authProviders_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateAuthProvidersArgs, 'where'>>;
   updateAuthRefreshToken?: Resolver<Maybe<TResolversTypes['authRefreshTokens']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateAuthRefreshTokenArgs, 'pk_columns'>>;
+  updateAuthRefreshTokenType?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateAuthRefreshTokenTypeArgs, 'pk_columns'>>;
+  updateAuthRefreshTokenTypes?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateAuthRefreshTokenTypesArgs, 'where'>>;
   updateAuthRefreshTokens?: Resolver<Maybe<TResolversTypes['authRefreshTokens_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateAuthRefreshTokensArgs, 'where'>>;
   updateAuthRole?: Resolver<Maybe<TResolversTypes['authRoles']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateAuthRoleArgs, 'pk_columns'>>;
   updateAuthRoles?: Resolver<Maybe<TResolversTypes['authRoles_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdateAuthRolesArgs, 'where'>>;
@@ -19429,6 +20254,7 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   update_activity_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['activity_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Activity_ManyArgs, 'updates'>>;
   update_authProviderRequests_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['authProviderRequests_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_AuthProviderRequests_ManyArgs, 'updates'>>;
   update_authProviders_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['authProviders_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_AuthProviders_ManyArgs, 'updates'>>;
+  update_authRefreshTokenTypes_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['authRefreshTokenTypes_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_AuthRefreshTokenTypes_ManyArgs, 'updates'>>;
   update_authRefreshTokens_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['authRefreshTokens_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_AuthRefreshTokens_ManyArgs, 'updates'>>;
   update_authRoles_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['authRoles_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_AuthRoles_ManyArgs, 'updates'>>;
   update_authUserProviders_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['authUserProviders_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_AuthUserProviders_ManyArgs, 'updates'>>;
@@ -19465,6 +20291,9 @@ export type TMutation_RootResolvers<ContextType = any, ParentType extends TResol
   update_match_settings?: Resolver<Maybe<TResolversTypes['match_settings_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Match_SettingsArgs, 'where'>>;
   update_match_settings_by_pk?: Resolver<Maybe<TResolversTypes['match_settings']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Match_Settings_By_PkArgs, 'pk_columns'>>;
   update_match_settings_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['match_settings_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Match_Settings_ManyArgs, 'updates'>>;
+  update_matchmake_preferences?: Resolver<Maybe<TResolversTypes['matchmake_preferences_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Matchmake_PreferencesArgs, 'where'>>;
+  update_matchmake_preferences_by_pk?: Resolver<Maybe<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Matchmake_Preferences_By_PkArgs, 'pk_columns'>>;
+  update_matchmake_preferences_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['matchmake_preferences_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Matchmake_Preferences_ManyArgs, 'updates'>>;
   update_message?: Resolver<Maybe<TResolversTypes['message_mutation_response']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_MessageArgs, 'where'>>;
   update_message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Message_By_PkArgs, 'pk_columns'>>;
   update_message_many?: Resolver<Maybe<Array<Maybe<TResolversTypes['message_mutation_response']>>>, ParentType, ContextType, RequireFields<TMutation_RootUpdate_Message_ManyArgs, 'updates'>>;
@@ -19550,7 +20379,10 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   authProviderRequestsAggregate?: Resolver<TResolversTypes['authProviderRequests_aggregate'], ParentType, ContextType, Partial<TQuery_RootAuthProviderRequestsAggregateArgs>>;
   authProviders?: Resolver<Array<TResolversTypes['authProviders']>, ParentType, ContextType, Partial<TQuery_RootAuthProvidersArgs>>;
   authProvidersAggregate?: Resolver<TResolversTypes['authProviders_aggregate'], ParentType, ContextType, Partial<TQuery_RootAuthProvidersAggregateArgs>>;
-  authRefreshToken?: Resolver<Maybe<TResolversTypes['authRefreshTokens']>, ParentType, ContextType, RequireFields<TQuery_RootAuthRefreshTokenArgs, 'refreshToken'>>;
+  authRefreshToken?: Resolver<Maybe<TResolversTypes['authRefreshTokens']>, ParentType, ContextType, RequireFields<TQuery_RootAuthRefreshTokenArgs, 'id'>>;
+  authRefreshTokenType?: Resolver<Maybe<TResolversTypes['authRefreshTokenTypes']>, ParentType, ContextType, RequireFields<TQuery_RootAuthRefreshTokenTypeArgs, 'value'>>;
+  authRefreshTokenTypes?: Resolver<Array<TResolversTypes['authRefreshTokenTypes']>, ParentType, ContextType, Partial<TQuery_RootAuthRefreshTokenTypesArgs>>;
+  authRefreshTokenTypesAggregate?: Resolver<TResolversTypes['authRefreshTokenTypes_aggregate'], ParentType, ContextType, Partial<TQuery_RootAuthRefreshTokenTypesAggregateArgs>>;
   authRefreshTokens?: Resolver<Array<TResolversTypes['authRefreshTokens']>, ParentType, ContextType, Partial<TQuery_RootAuthRefreshTokensArgs>>;
   authRefreshTokensAggregate?: Resolver<TResolversTypes['authRefreshTokens_aggregate'], ParentType, ContextType, Partial<TQuery_RootAuthRefreshTokensAggregateArgs>>;
   authRole?: Resolver<Maybe<TResolversTypes['authRoles']>, ParentType, ContextType, RequireFields<TQuery_RootAuthRoleArgs, 'role'>>;
@@ -19600,6 +20432,9 @@ export type TQuery_RootResolvers<ContextType = any, ParentType extends TResolver
   match_settings?: Resolver<Array<TResolversTypes['match_settings']>, ParentType, ContextType, Partial<TQuery_RootMatch_SettingsArgs>>;
   match_settings_aggregate?: Resolver<TResolversTypes['match_settings_aggregate'], ParentType, ContextType, Partial<TQuery_RootMatch_Settings_AggregateArgs>>;
   match_settings_by_pk?: Resolver<Maybe<TResolversTypes['match_settings']>, ParentType, ContextType, RequireFields<TQuery_RootMatch_Settings_By_PkArgs, 'user_id'>>;
+  matchmake_preferences?: Resolver<Array<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, Partial<TQuery_RootMatchmake_PreferencesArgs>>;
+  matchmake_preferences_aggregate?: Resolver<TResolversTypes['matchmake_preferences_aggregate'], ParentType, ContextType, Partial<TQuery_RootMatchmake_Preferences_AggregateArgs>>;
+  matchmake_preferences_by_pk?: Resolver<Maybe<TResolversTypes['matchmake_preferences']>, ParentType, ContextType, RequireFields<TQuery_RootMatchmake_Preferences_By_PkArgs, 'user_id'>>;
   message?: Resolver<Array<TResolversTypes['message']>, ParentType, ContextType, Partial<TQuery_RootMessageArgs>>;
   message_aggregate?: Resolver<TResolversTypes['message_aggregate'], ParentType, ContextType, Partial<TQuery_RootMessage_AggregateArgs>>;
   message_by_pk?: Resolver<Maybe<TResolversTypes['message']>, ParentType, ContextType, RequireFields<TQuery_RootMessage_By_PkArgs, 'id'>>;
@@ -19717,7 +20552,11 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   authProviders?: SubscriptionResolver<Array<TResolversTypes['authProviders']>, "authProviders", ParentType, ContextType, Partial<TSubscription_RootAuthProvidersArgs>>;
   authProvidersAggregate?: SubscriptionResolver<TResolversTypes['authProviders_aggregate'], "authProvidersAggregate", ParentType, ContextType, Partial<TSubscription_RootAuthProvidersAggregateArgs>>;
   authProviders_stream?: SubscriptionResolver<Array<TResolversTypes['authProviders']>, "authProviders_stream", ParentType, ContextType, RequireFields<TSubscription_RootAuthProviders_StreamArgs, 'batch_size' | 'cursor'>>;
-  authRefreshToken?: SubscriptionResolver<Maybe<TResolversTypes['authRefreshTokens']>, "authRefreshToken", ParentType, ContextType, RequireFields<TSubscription_RootAuthRefreshTokenArgs, 'refreshToken'>>;
+  authRefreshToken?: SubscriptionResolver<Maybe<TResolversTypes['authRefreshTokens']>, "authRefreshToken", ParentType, ContextType, RequireFields<TSubscription_RootAuthRefreshTokenArgs, 'id'>>;
+  authRefreshTokenType?: SubscriptionResolver<Maybe<TResolversTypes['authRefreshTokenTypes']>, "authRefreshTokenType", ParentType, ContextType, RequireFields<TSubscription_RootAuthRefreshTokenTypeArgs, 'value'>>;
+  authRefreshTokenTypes?: SubscriptionResolver<Array<TResolversTypes['authRefreshTokenTypes']>, "authRefreshTokenTypes", ParentType, ContextType, Partial<TSubscription_RootAuthRefreshTokenTypesArgs>>;
+  authRefreshTokenTypesAggregate?: SubscriptionResolver<TResolversTypes['authRefreshTokenTypes_aggregate'], "authRefreshTokenTypesAggregate", ParentType, ContextType, Partial<TSubscription_RootAuthRefreshTokenTypesAggregateArgs>>;
+  authRefreshTokenTypes_stream?: SubscriptionResolver<Array<TResolversTypes['authRefreshTokenTypes']>, "authRefreshTokenTypes_stream", ParentType, ContextType, RequireFields<TSubscription_RootAuthRefreshTokenTypes_StreamArgs, 'batch_size' | 'cursor'>>;
   authRefreshTokens?: SubscriptionResolver<Array<TResolversTypes['authRefreshTokens']>, "authRefreshTokens", ParentType, ContextType, Partial<TSubscription_RootAuthRefreshTokensArgs>>;
   authRefreshTokensAggregate?: SubscriptionResolver<TResolversTypes['authRefreshTokens_aggregate'], "authRefreshTokensAggregate", ParentType, ContextType, Partial<TSubscription_RootAuthRefreshTokensAggregateArgs>>;
   authRefreshTokens_stream?: SubscriptionResolver<Array<TResolversTypes['authRefreshTokens']>, "authRefreshTokens_stream", ParentType, ContextType, RequireFields<TSubscription_RootAuthRefreshTokens_StreamArgs, 'batch_size' | 'cursor'>>;
@@ -19784,6 +20623,10 @@ export type TSubscription_RootResolvers<ContextType = any, ParentType extends TR
   match_settings_aggregate?: SubscriptionResolver<TResolversTypes['match_settings_aggregate'], "match_settings_aggregate", ParentType, ContextType, Partial<TSubscription_RootMatch_Settings_AggregateArgs>>;
   match_settings_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['match_settings']>, "match_settings_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMatch_Settings_By_PkArgs, 'user_id'>>;
   match_settings_stream?: SubscriptionResolver<Array<TResolversTypes['match_settings']>, "match_settings_stream", ParentType, ContextType, RequireFields<TSubscription_RootMatch_Settings_StreamArgs, 'batch_size' | 'cursor'>>;
+  matchmake_preferences?: SubscriptionResolver<Array<TResolversTypes['matchmake_preferences']>, "matchmake_preferences", ParentType, ContextType, Partial<TSubscription_RootMatchmake_PreferencesArgs>>;
+  matchmake_preferences_aggregate?: SubscriptionResolver<TResolversTypes['matchmake_preferences_aggregate'], "matchmake_preferences_aggregate", ParentType, ContextType, Partial<TSubscription_RootMatchmake_Preferences_AggregateArgs>>;
+  matchmake_preferences_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['matchmake_preferences']>, "matchmake_preferences_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMatchmake_Preferences_By_PkArgs, 'user_id'>>;
+  matchmake_preferences_stream?: SubscriptionResolver<Array<TResolversTypes['matchmake_preferences']>, "matchmake_preferences_stream", ParentType, ContextType, RequireFields<TSubscription_RootMatchmake_Preferences_StreamArgs, 'batch_size' | 'cursor'>>;
   message?: SubscriptionResolver<Array<TResolversTypes['message']>, "message", ParentType, ContextType, Partial<TSubscription_RootMessageArgs>>;
   message_aggregate?: SubscriptionResolver<TResolversTypes['message_aggregate'], "message_aggregate", ParentType, ContextType, Partial<TSubscription_RootMessage_AggregateArgs>>;
   message_by_pk?: SubscriptionResolver<Maybe<TResolversTypes['message']>, "message_by_pk", ParentType, ContextType, RequireFields<TSubscription_RootMessage_By_PkArgs, 'id'>>;
@@ -20528,6 +21371,12 @@ export type TResolvers<ContextType = any> = {
   authProviders_max_fields?: TAuthProviders_Max_FieldsResolvers<ContextType>;
   authProviders_min_fields?: TAuthProviders_Min_FieldsResolvers<ContextType>;
   authProviders_mutation_response?: TAuthProviders_Mutation_ResponseResolvers<ContextType>;
+  authRefreshTokenTypes?: TAuthRefreshTokenTypesResolvers<ContextType>;
+  authRefreshTokenTypes_aggregate?: TAuthRefreshTokenTypes_AggregateResolvers<ContextType>;
+  authRefreshTokenTypes_aggregate_fields?: TAuthRefreshTokenTypes_Aggregate_FieldsResolvers<ContextType>;
+  authRefreshTokenTypes_max_fields?: TAuthRefreshTokenTypes_Max_FieldsResolvers<ContextType>;
+  authRefreshTokenTypes_min_fields?: TAuthRefreshTokenTypes_Min_FieldsResolvers<ContextType>;
+  authRefreshTokenTypes_mutation_response?: TAuthRefreshTokenTypes_Mutation_ResponseResolvers<ContextType>;
   authRefreshTokens?: TAuthRefreshTokensResolvers<ContextType>;
   authRefreshTokens_aggregate?: TAuthRefreshTokens_AggregateResolvers<ContextType>;
   authRefreshTokens_aggregate_fields?: TAuthRefreshTokens_Aggregate_FieldsResolvers<ContextType>;
@@ -20682,6 +21531,12 @@ export type TResolvers<ContextType = any> = {
   match_settings_max_fields?: TMatch_Settings_Max_FieldsResolvers<ContextType>;
   match_settings_min_fields?: TMatch_Settings_Min_FieldsResolvers<ContextType>;
   match_settings_mutation_response?: TMatch_Settings_Mutation_ResponseResolvers<ContextType>;
+  matchmake_preferences?: TMatchmake_PreferencesResolvers<ContextType>;
+  matchmake_preferences_aggregate?: TMatchmake_Preferences_AggregateResolvers<ContextType>;
+  matchmake_preferences_aggregate_fields?: TMatchmake_Preferences_Aggregate_FieldsResolvers<ContextType>;
+  matchmake_preferences_max_fields?: TMatchmake_Preferences_Max_FieldsResolvers<ContextType>;
+  matchmake_preferences_min_fields?: TMatchmake_Preferences_Min_FieldsResolvers<ContextType>;
+  matchmake_preferences_mutation_response?: TMatchmake_Preferences_Mutation_ResponseResolvers<ContextType>;
   message?: TMessageResolvers<ContextType>;
   message_aggregate?: TMessage_AggregateResolvers<ContextType>;
   message_aggregate_fields?: TMessage_Aggregate_FieldsResolvers<ContextType>;

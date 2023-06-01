@@ -2502,6 +2502,11 @@
   resolved "https://registry.yarnpkg.com/@hookform/error-message/-/error-message-2.0.1.tgz#6a37419106e13664ad6a29c9dae699ae6cd276b8"
   integrity sha512-U410sAr92xgxT1idlu9WWOVjndxLdgPUHEB8Schr27C9eh7/xUnITWpCMF93s+lGiG++D4JnbSnrb5A21AdSNg==
 
+"@hookform/resolvers@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.1.0.tgz#ff83ef4aa6078173201da131ceea4c3583b67034"
+  integrity sha512-z0A8K+Nxq+f83Whm/ajlwE6VtQlp/yPHZnXw7XWVPIGm1Vx0QV8KThU3BpbBRfAZ7/dYqCKKBNnQh85BkmBKkA==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"
@@ -2851,35 +2856,18 @@
     graphql "16.6.0"
     graphql-ws "^5.10.1"
 
-"@nhost/graphql-js@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@nhost/graphql-js/-/graphql-js-0.1.0.tgz#51ec59e7bdcfd3d0f80aadd4d83ec171760d369e"
-  integrity sha512-5HPpzQMGfuqbL2cu/MJiG7Mx10R2TI4VzBgKrI8ecLgyYKqg34LPG2DIqZKiLy5CoBgkf3ILBfHYUUYIr/y4vQ==
+"@nhost/graphql-js@0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@nhost/graphql-js/-/graphql-js-0.1.3.tgz#d2b6a54791a3fba55a8176b72863631a0bb911cb"
+  integrity sha512-rzi3HxJj6/FRhHafzLbEySHh5A+JwsSGtfyeU2T49kidVovLbKEQtBi0nRgrLIdVLSdqJ5ZeUBKqgXnkSka4/Q==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     isomorphic-unfetch "^3.1.0"
 
-"@nhost/graphql-js@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@nhost/graphql-js/-/graphql-js-0.1.1.tgz#abeae63ab6f3e87b14574b97adda4f77d649b0cf"
-  integrity sha512-FQWP2w33yRz0MutOicQ31twSsRslAgy0fHpPcXQAPPQejSLp+gFOI7yEdbsloSI8dnHonNo46NiKPq29OTN8fg==
-  dependencies:
-    "@graphql-typed-document-node/core" "^3.1.1"
-    isomorphic-unfetch "^3.1.0"
-
-"@nhost/hasura-auth-js@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@nhost/hasura-auth-js/-/hasura-auth-js-1.6.0.tgz#8bb6374126b39b77943fca4ef8e0b80b80b2ddbb"
-  integrity sha512-XUMIkhcQyue/FKwGxcPYKAU2xrb+RZUdzXm5kGrJciyy3LNyNFFUAnZOHvmEq47kIpYJgmcX3QAUi0qMTv0etg==
-  dependencies:
-    axios "^0.27.2"
-    jwt-decode "^3.1.2"
-    xstate "^4.33.5"
-
-"@nhost/hasura-auth-js@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@nhost/hasura-auth-js/-/hasura-auth-js-2.1.0.tgz#9e515f19229c45254fe9d1c145bb295c453bf4d7"
-  integrity sha512-/dS2Thw3EepY/PV0y1gX/zv1P3I/W0GRnQh4zHw1Z2N7jtT3+tL/P2RjNkxffv75ZPfcApnqQQL+5hlqSejXRQ==
+"@nhost/hasura-auth-js@2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@nhost/hasura-auth-js/-/hasura-auth-js-2.1.4.tgz#046f1fd931ed963a1d42ffdc39b81450ec090fad"
+  integrity sha512-T2mtV853wBZ4pwysY6aU5e9ewoNq02noRPr8fTbNQrDLqt1owfrW6H8EriEceUSChVe7tw7EnigO2Wc43yvDug==
   dependencies:
     "@simplewebauthn/browser" "^6.0.0"
     isomorphic-unfetch "^3.1.0"
@@ -2887,63 +2875,33 @@
     jwt-decode "^3.1.2"
     xstate "^4.33.5"
 
-"@nhost/hasura-auth-js@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@nhost/hasura-auth-js/-/hasura-auth-js-2.1.1.tgz#6d609882ef3bd8d7e71e9421dc53a2dea8e8d741"
-  integrity sha512-b+dF7GfrOH9Di88dOGqma6/guocrlTZBoe6pEPw0HDcpCD7AnnYBSCtsJX0yRCCREsH/Am4RnroGMnxB+E5LEA==
-  dependencies:
-    "@simplewebauthn/browser" "^6.0.0"
-    isomorphic-unfetch "^3.1.0"
-    js-cookie "^3.0.1"
-    jwt-decode "^3.1.2"
-    xstate "^4.33.5"
-
-"@nhost/hasura-storage-js@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@nhost/hasura-storage-js/-/hasura-storage-js-2.1.0.tgz#b0c30d984a12ffbc3043c969addce900f770672c"
-  integrity sha512-/QwEJFOtL3/fJlHLqTwjuEqDGk4/o1ycv7XK9dpyGE82J8iIqC9uUpkpM18KAnGJTRqkniUsQ/G9SEaY2XULzg==
+"@nhost/hasura-storage-js@2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@nhost/hasura-storage-js/-/hasura-storage-js-2.1.3.tgz#9e2576163df9e24beb463f8d7740f260ddfcb7a0"
+  integrity sha512-CrM4xtCmfFH/lUgcWeIJ4o8Oxp6AvoufILEHzF9xYfzMNvrSFSSaF7v2ZJIc/Tsr1CiU7vtgd6XukjIQtniCUg==
   dependencies:
     form-data "^4.0.0"
     isomorphic-unfetch "^3.1.0"
     xstate "^4.33.5"
 
-"@nhost/hasura-storage-js@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@nhost/hasura-storage-js/-/hasura-storage-js-2.1.1.tgz#7c044dbe500cee931d9521f5e11660f4c4030f85"
-  integrity sha512-yp5OJAnae2XDNwMvH5Ye0T3K8EY5NKzpTCjtEW+x0LUSIHXiC6dxPp12cvjL4trlNTBcmDMLnvmljwkECe8ViA==
+"@nhost/nextjs@^1.13.25":
+  version "1.13.25"
+  resolved "https://registry.yarnpkg.com/@nhost/nextjs/-/nextjs-1.13.25.tgz#278d7ca86181648ff3ba1a8403ba5910ea1daa47"
+  integrity sha512-L+cYY+//m2mE9WVhLMUbatKAJvxp7vbInLhMw0aauVOnXz4A8x7SlG6rLsaDg/LKfAPVnbpoEpua4XabQ88iEA==
   dependencies:
-    form-data "^4.0.0"
-    isomorphic-unfetch "^3.1.0"
-    xstate "^4.33.5"
-
-"@nhost/nextjs@^1.13.21":
-  version "1.13.21"
-  resolved "https://registry.yarnpkg.com/@nhost/nextjs/-/nextjs-1.13.21.tgz#0b48dae4c8ae3593ef325db3dedd497c8e21af6a"
-  integrity sha512-ex8ulum1wDVVCe97NEFNGdCro3R2ZiSrKQc/cNkgckHhA2vw4+eHwm8O3QUYsuDZPmyvn0S0GUSQpNtPPSMvQw==
-  dependencies:
-    "@nhost/react" "2.0.15"
+    "@nhost/react" "2.0.19"
     isomorphic-unfetch "^3.1.0"
     js-cookie "^3.0.1"
     xstate "^4.33.5"
 
-"@nhost/nhost-js@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@nhost/nhost-js/-/nhost-js-2.2.1.tgz#4f9789ec38ae93f4e727f3f07fbdbd5a92e71d0c"
-  integrity sha512-XkMTGsdnLkRsmhoLGZpHTZUqqnqdEZcXyb+PYloUpGkA0wisAMkLbERUJ0GD3fvIB04P29nQzw+1+TC5ftMUqg==
+"@nhost/nhost-js@2.2.5", "@nhost/nhost-js@^2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@nhost/nhost-js/-/nhost-js-2.2.5.tgz#5cbf9d21ce666fa9e71e412e1990e023f7f498eb"
+  integrity sha512-tO7WUUnWBex0fU1ntCjoJYB+2jdXylAOHR045dzVXhUb0RJQrT/oeLPhWp9gB4h0vpGLH4FvyQOcG9AVaUbH0w==
   dependencies:
-    "@nhost/graphql-js" "0.1.0"
-    "@nhost/hasura-auth-js" "2.1.0"
-    "@nhost/hasura-storage-js" "2.1.0"
-    isomorphic-unfetch "^3.1.0"
-
-"@nhost/nhost-js@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@nhost/nhost-js/-/nhost-js-2.2.2.tgz#7ec37fea0c7dab8d1552e879689a208d82ebb854"
-  integrity sha512-3rYmyng/I3eaB1hzC9Adu52J5UXjGLzhnrY3uYFX0DcrdV6p/Wysl4bsceFh4bWNoxONbPgwskwQkhboOm6ltQ==
-  dependencies:
-    "@nhost/graphql-js" "0.1.1"
-    "@nhost/hasura-auth-js" "2.1.1"
-    "@nhost/hasura-storage-js" "2.1.1"
+    "@nhost/graphql-js" "0.1.3"
+    "@nhost/hasura-auth-js" "2.1.4"
+    "@nhost/hasura-storage-js" "2.1.3"
     isomorphic-unfetch "^3.1.0"
 
 "@nhost/react-apollo@^5.0.19":
@@ -2953,19 +2911,12 @@
   dependencies:
     "@nhost/apollo" "5.2.3"
 
-"@nhost/react-auth@^3.6.0":
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/@nhost/react-auth/-/react-auth-3.6.0.tgz#725952a52d1be22d157c6beeb690812ebde3b0bc"
-  integrity sha512-ab2g5UetYSiWomjn6ZaUertpdsTAtWLcwUAxZ9ywhEoGV1Yyb2i+E9sBNL//AnV1VXIVOcMib2jdxWti9tIihg==
+"@nhost/react@2.0.19", "@nhost/react@^2.0.19":
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/@nhost/react/-/react-2.0.19.tgz#bfd138674cf362545e882b25cef416f873ee9f60"
+  integrity sha512-lKcU+tK9xxE1/j4VGyNo7evUR6uV/M6h8zw+T4whAf5TSyEg645opBviJxRpeuAAyYSSonmpnqJdgclgRVk7MQ==
   dependencies:
-    "@nhost/hasura-auth-js" "1.6.0"
-
-"@nhost/react@2.0.15", "@nhost/react@^2.0.15":
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/@nhost/react/-/react-2.0.15.tgz#68ea8fecb9da2073cc80226255dfebdfe92fb87e"
-  integrity sha512-tD9t9b4hrEgHSilLVFGrscHuvDt6nGErt8G7McNGvwFTtw8uCXcwgcmzpqUHpLpJNSDvZLKYVaMPN9MzB0t39Q==
-  dependencies:
-    "@nhost/nhost-js" "2.2.1"
+    "@nhost/nhost-js" "2.2.5"
     "@xstate/react" "^3.0.1"
     jwt-decode "^3.1.2"
     xstate "^4.33.5"
@@ -3847,14 +3798,6 @@ axios@^0.21.1:
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
   dependencies:
     follow-redirects "^1.14.0"
-
-axios@^0.27.2:
-  version "0.27.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
-  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
-  dependencies:
-    follow-redirects "^1.14.9"
-    form-data "^4.0.0"
 
 axobject-query@^3.1.1:
   version "3.1.1"
@@ -5344,7 +5287,7 @@ focus-visible@^5.2.0:
   resolved "https://registry.yarnpkg.com/focus-visible/-/focus-visible-5.2.0.tgz#3a9e41fccf587bd25dcc2ef045508284f0a4d6b3"
   integrity sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==
 
-follow-redirects@^1.14.0, follow-redirects@^1.14.9:
+follow-redirects@^1.14.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
@@ -5665,10 +5608,10 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hasura-cli@^2.23.0:
-  version "2.23.0"
-  resolved "https://registry.yarnpkg.com/hasura-cli/-/hasura-cli-2.23.0.tgz#55c6fbe1a8b0d26b53cd0253b9253ca1cd416822"
-  integrity sha512-8yRJtHfKtBIp5o+gXhY/n5FgbHDwRIk+BUZAlaTq00L+3//b3xx3m/syzY1TTkBodkgLad9vUDAzjudzMV5BhQ==
+hasura-cli@^2.25.0:
+  version "2.25.0"
+  resolved "https://registry.yarnpkg.com/hasura-cli/-/hasura-cli-2.25.0.tgz#d63d8ee30662b18fd40ba748d0aaf6f9d9808bae"
+  integrity sha512-6D1HKgaMx4sRYPXJ4sr0fhCRPgtGb9aFd6keF9AbN6Oitv4JN5MV9jYwa6WHvOSK927+8cx6iRiwCEsXXXeuZw==
   dependencies:
     axios "^0.21.1"
     chalk "^2.4.2"
@@ -7536,6 +7479,11 @@ prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+property-expr@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
+  integrity sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==
+
 psl@^1.1.33:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.9.0.tgz#d0df2a137f00794565fcaf3b2c00cd09f8d5a5a7"
@@ -8438,6 +8386,11 @@ through@^2.3.6, through@^2.3.8:
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
+tiny-case@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-case/-/tiny-case-1.0.3.tgz#d980d66bc72b5d5a9ca86fb7c9ffdb9c898ddd03"
+  integrity sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==
+
 tiny-glob@^0.2.9:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/tiny-glob/-/tiny-glob-0.2.9.tgz#2212d441ac17928033b110f8b3640683129d31e2"
@@ -8486,6 +8439,11 @@ toggle-selection@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/toggle-selection/-/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
   integrity sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==
+
+toposort@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
+  integrity sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==
 
 totalist@^1.0.0:
   version "1.1.0"
@@ -8624,6 +8582,11 @@ type-fest@^0.21.3:
   version "0.21.3"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.21.3.tgz#d260a24b0198436e133fa26a524a6d65fa3b2e37"
   integrity sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==
+
+type-fest@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
+  integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
 
 type-fest@^3.0.0:
   version "3.9.0"
@@ -9102,6 +9065,16 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+yup@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/yup/-/yup-1.2.0.tgz#9e51af0c63bdfc9be0fdc6c10aa0710899d8aff6"
+  integrity sha512-PPqYKSAXjpRCgLgLKVGPA33v5c/WgEx3wi6NFjIiegz90zSwyMpvTFp/uGcVnnbx6to28pgnzp/q8ih3QRjLMQ==
+  dependencies:
+    property-expr "^2.0.5"
+    tiny-case "^1.0.3"
+    toposort "^2.0.2"
+    type-fest "^2.19.0"
 
 zen-observable-ts@^1.2.5:
   version "1.2.5"

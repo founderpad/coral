@@ -39,7 +39,6 @@ export type TUser = {
 
 export type TProfile = {
 	id?: string;
-
 	industries: string[];
 	background: string;
 	availability: number;
@@ -92,5 +91,3 @@ export type TExperience = Pick<
 // 	last_name?: string;
 // 	country?: string;
 // };
-
-export type TAuthProvider = Lowercase<'google' | 'facebook' | 'github'>;

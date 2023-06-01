@@ -71,7 +71,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 	label,
 	helperText,
 	onClear,
-	hideLimit,
+	hideLimit = true,
 	hideClear = false,
 	value,
 	rules

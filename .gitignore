@@ -48,3 +48,4 @@ coral.code-workspace
 **/public/sw.js.map
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
+.secrets

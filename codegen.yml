@@ -1,8 +1,8 @@
 schema:
     - ${NEXT_PUBLIC_GRAPHQL_BACKEND}:
           headers:
-              x-hasura-role: ${BACKEND_ROLE}
-              x-hasura-admin-secret: ${NHOST_ADMIN_SECRET}
+              x-hasura-admin-secret: ${HASURA_GRAPHQL_ADMIN_SECRET}
+              x-hasura-role: admin
 overwrite: true
 documents:
     - ./src/**/*.gql

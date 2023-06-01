@@ -2,12 +2,12 @@ import { useMatchesQuery } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useAuth } from '@/hooks/auth';
 // import { Tag } from '@chakra-ui/react';
-import { NoResults } from '../NoResults';
 import React from 'react';
 import LinkCard from '@/components/cards/LinkCard';
-import { UserAvatarDetails } from '../UserAvatar';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { Tag } from '@chakra-ui/react';
+import { NoResults } from '../NoResults';
+import { UserAvatarDetails } from '../UserAvatar';
 
 export const MatchContainer = () => {
 	const authUser = useCurrentUser();

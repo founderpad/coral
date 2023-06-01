@@ -1,32 +1,33 @@
-// import { FormInput } from '@/components/form/inputs/FormField';
-// import SocialLogins from '@/components/shared/SocialLogins';
-// import { useRegister } from '@/hooks/auth';
-// import { emailPattern } from '@/utils/validators';
-import React from 'react';
-// import LegalFooter from './LegalFooter';
-// import { TRegisterFormFields } from '../../../../types/auth';
-// import { BaseForm } from '@/components/form';
-// import { SubmitButton } from '@/components/buttons';
-// import { AlertFeedback } from '@/components/alert';
-// import { useQueryParam } from '@/hooks/util';
+import { FormInput } from '@/components/form/inputs/FormField';
+import { useRegister } from '@/hooks/auth';
+import React, { useContext } from 'react';
+import LegalFooter from './LegalFooter';
+import { TRegisterFormFields } from '../../../../types/auth';
+import { BaseForm } from '@/components/form';
+import { SubmitButton } from '@/components/buttons';
+import { AlertFeedback } from '@/components/alert';
 import SocialLogins from '@/components/shared/SocialLogins';
-// import { Alert } from '@chakra-ui/react';
+import NotificationContext from '@/context/NotificationContext';
+import { schema } from '../validationSchema';
+
+const defaultValues: Record<string, string> & TRegisterFormFields = {
+	firstName: '',
+	lastName: '',
+	email: '',
+	password: ''
+};
 
 const RegisterForm = () => {
-	// const onRegister = useRegister();
-	// const isError = useQueryParam('error');
+	const { onRegister } = useRegister();
+	const { notification } = useContext(NotificationContext);
 
 	return (
 		<React.Fragment>
-			{/* <BaseForm<TRegisterFormFields>
+			<BaseForm<TRegisterFormFields, typeof schema>
 				name="register-form"
 				onSubmit={onRegister}
-				defaultValues={{
-					firstName: '',
-					lastName: '',
-					email: '',
-					password: ''
-				}}
+				defaultValues={defaultValues}
+				schema={schema}
 				stackProps={{
 					alignItems: 'center',
 					spacing: 3
@@ -37,7 +38,7 @@ const RegisterForm = () => {
 					control,
 					formState: { errors, isSubmitting }
 				}) => (
-					<>
+					<React.Fragment>
 						<FormInput<TRegisterFormFields>
 							id="firstName"
 							name="firstName"
@@ -47,19 +48,6 @@ const RegisterForm = () => {
 							errors={errors}
 							fieldProps={{
 								placeholder: 'First name'
-							}}
-							rules={{
-								required: 'You must enter a first name',
-								minLength: {
-									value: 2,
-									message:
-										'Your first name must be a minimum of 2 characters'
-								},
-								maxLength: {
-									value: 30,
-									message:
-										'Your first name must be a maximum of 30 characters'
-								}
 							}}
 							hideLimit={true}
 							hideClear
@@ -74,13 +62,6 @@ const RegisterForm = () => {
 							fieldProps={{
 								placeholder: 'Last name'
 							}}
-							rules={{
-								maxLength: {
-									value: 30,
-									message:
-										'Your last name must be a maximum of 30 characters'
-								}
-							}}
 							hideLimit={true}
 							errors={errors}
 							hideClear
@@ -93,11 +74,6 @@ const RegisterForm = () => {
 							control={control}
 							fieldProps={{
 								placeholder: 'Email'
-							}}
-							rules={{
-								required:
-									'You must enter a valid email address',
-								pattern: emailPattern
 							}}
 							hideLimit={true}
 							errors={errors}
@@ -114,30 +90,15 @@ const RegisterForm = () => {
 								placeholder: 'Password',
 								type: 'password'
 							}}
-							rules={{
-								required: 'You must enter a valid password',
-								minLength: {
-									value: 6,
-									message:
-										'Your password must be a minimum of 6 characters'
-								},
-								maxLength: {
-									value: 20,
-									message:
-										'Your password must be a maximum of 20 characters'
-								}
-							}}
 							hideLimit={true}
 							errors={errors}
 							hideClear
 						/>
 
-						{isError && (
+						{notification && (
 							<AlertFeedback
-								status="error"
-								message={
-									'Failed to create account. Please try again later.'
-								}
+								status={notification.status}
+								message={notification.message}
 							/>
 						)}
 
@@ -145,22 +106,22 @@ const RegisterForm = () => {
 							id="submit-register-account"
 							name="submit-register-account"
 							label="Create account"
-							isLoading={isSubmitting}
-							disabled={isSubmitting}
+							isLoading={isSubmitting && !notification}
+							disabled={isSubmitting && !notification}
 							size="md"
 							fontSize="small"
 							w={{ base: 'full', sm: '200px' }}
 						/>
-					</>
+					</React.Fragment>
 				)}
-			</BaseForm> */}
+			</BaseForm>
 			<SocialLogins />
 
 			{/* <Alert fontSize="xs" status="warning" p={2} textAlign="center">
 				Your email address must be the same as your PayPal account in
 				order to withdraw funds.
 			</Alert> */}
-			{/* <LegalFooter /> */}
+			<LegalFooter />
 		</React.Fragment>
 	);
 };

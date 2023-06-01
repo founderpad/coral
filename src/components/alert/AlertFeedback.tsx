@@ -54,7 +54,7 @@ export const AlertFeedback = (props: Props) => {
 			variant={variant}
 			bg={bg || 'initial'}
 		>
-			{getStatusIcon(status)}
+			{message && getStatusIcon(status)}
 			<AlertDescription
 				fontSize="xs"
 				color={status === 'error' ? 'red.500' : 'green.500'}
