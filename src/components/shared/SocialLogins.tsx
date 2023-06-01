@@ -1,18 +1,18 @@
 // import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import { useSocialLogin } from '@/hooks/auth';
+import { Provider } from '@nhost/nhost-js';
 import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
 import { isIOS } from 'react-device-detect';
 import GoogleLogin from 'react-google-login';
 // import { IoLogoGithub } from 'react-icons/io5';
-import { TAuthProvider } from '../../types/auth';
 
 const SocialLogins = memo(() => {
 	const onLogin = useSocialLogin();
 
 	const onSocialLogin = useCallback(
-		(provider: TAuthProvider) => {
+		(provider: Provider) => {
 			onLogin(provider);
 		},
 		[onLogin]

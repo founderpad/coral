@@ -3,12 +3,12 @@ import { FlexLayout, StackLayout } from '@/components/layouts';
 import { TitleEditAction } from '@/components/shared';
 import { useModalDrawer, useQueryParam } from '@/hooks/util';
 import React, { memo } from 'react';
-import MatchmakeSettingsForm from './forms/MatchmakeSettingsForm';
 import { useMatchSettingsQuery } from '@/generated/api';
 import { useAuth } from '@/hooks/auth';
 import { AlertFeedback } from '@/components/alert';
 import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
 import { Tag } from '@chakra-ui/react';
+import MatchmakeSettingsForm from './forms/matchsettingsform/MatchmakeSettingsForm';
 
 const MatchmakeSettingsTab = () => {
 	const { openModalDrawer } = useModalDrawer();

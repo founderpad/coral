@@ -8,7 +8,7 @@ import { useQueryParam } from '@/hooks/util';
 import React from 'react';
 import { TLoginFields } from '../../../../types/auth';
 import LoginFooter from './LoginFooter';
-import { schema } from '../validationSchema';
+import { schema } from '@/validation/auth/login/validationSchema';
 
 const defaultValues: Record<string, string> & TLoginFields = {
 	email: '',

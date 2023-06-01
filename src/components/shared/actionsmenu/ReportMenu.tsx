@@ -9,6 +9,7 @@ import { useSuccessNotification } from '@/hooks/toast';
 import { useModalDrawer } from '@/hooks/util';
 import { REPORT_REASONS } from '@/utils/Constants';
 import React from 'react';
+import { schema } from './validationSchema';
 
 type TReportProps = {
 	title: string;
@@ -74,10 +75,11 @@ const ReportForm = ({ title, content = undefined, report }: TReportProps) => {
 	};
 
 	return (
-		<BaseForm<TReport_Insert_Input>
+		<BaseForm<TReport_Insert_Input, typeof schema>
 			name="report-form"
 			onSubmit={onAddReport}
 			defaultValues={defaultValues}
+			schema={schema}
 		>
 			{({ register, control, resetField, formState: { errors } }) => (
 				<React.Fragment>
@@ -90,9 +92,6 @@ const ReportForm = ({ title, content = undefined, report }: TReportProps) => {
 						options={REPORT_REASONS}
 						register={register}
 						control={control}
-						rules={{
-							required: 'You must provide a reason'
-						}}
 						errors={errors}
 						onClear={() =>
 							resetField('reason', { defaultValue: '' })

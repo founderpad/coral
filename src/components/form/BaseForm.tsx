@@ -12,7 +12,7 @@ import * as yup from 'yup';
 
 type TBaseFormProps<
 	TFormValues extends Record<string, any>,
-	S extends yup.ObjectSchema<any>
+	S extends yup.ObjectSchema<any> | undefined = undefined
 > = {
 	name: string;
 	onSubmit: any | SubmitHandler<TFormValues>;
@@ -24,7 +24,7 @@ type TBaseFormProps<
 
 const BaseForm = <
 	TFormValues extends Record<string, any>,
-	S extends yup.ObjectSchema<any>
+	S extends yup.ObjectSchema<any> | undefined = undefined
 >({
 	name,
 	defaultValues,

@@ -33,6 +33,7 @@
 			"@/theme/*": ["src/theme/*"],
 			"@/types/*": ["src/types/*"],
 			"@/slices/*": ["src/slices/*"],
+			"@/validation/*": ["src/validation/*"],
 			"@/generated/*": ["src/generated/*"]
 		}
 	},

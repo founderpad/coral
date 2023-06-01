@@ -12,7 +12,7 @@ import { useModalDrawer, useQueryParam } from '@/hooks/util';
 import React, { memo } from 'react';
 import { IoWarningSharp } from 'react-icons/io5';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
-import ExperienceForm from './forms/ExperienceForm';
+import ExperienceForm from './forms/experienceform/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
 // import ResumeUploader from './ResumeUploader';
 

@@ -12,3 +12,5 @@ export const schema: yup.ObjectSchema<TLoginFields> = yup.object().shape({
 		.max(20, 'Your password must be a minimum of 6 characters')
 		.required('You must enter a valid password')
 });
+
+export default schema;

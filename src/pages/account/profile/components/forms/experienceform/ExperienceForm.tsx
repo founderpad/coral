@@ -26,6 +26,7 @@ import { FormSelect, FormTextarea } from '@/components/form/inputs/FormField';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { useCheckboxes, useModalDrawer } from '@/hooks/util';
 import { SimpleGrid } from '@chakra-ui/react';
+import schema from '@/validation/profile/experience/validationSchema';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
@@ -69,10 +70,11 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 	};
 
 	return (
-		<BaseForm<TUser_Profile_Set_Input>
+		<BaseForm<TUser_Profile_Set_Input, typeof schema>
 			name="edit-experience-form"
 			onSubmit={onUpdateExperience}
 			defaultValues={defaultValues}
+			schema={schema}
 			stackProps={{
 				alignItems: 'center'
 			}}
@@ -87,10 +89,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 						options={ALL_USER_OBJECTIVES}
 						register={register}
 						control={control}
-						rules={{
-							required:
-								'You must provide your objective on this platform'
-						}}
 						errors={errors}
 						onClear={() =>
 							resetField('objective', { defaultValue: '' })
@@ -104,13 +102,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 						placeholder="Write about your background, such as past experiences in business (max. 400 characters)"
 						register={register}
 						control={control}
-						rules={{
-							maxLength: {
-								value: 400,
-								message:
-									'Your background can not be more than 400 characters '
-							}
-						}}
 						onClear={() =>
 							resetField('background', { defaultValue: '' })
 						}
@@ -123,13 +114,6 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 						placeholder="Write about what you're looking to achieve (max. 400 characters)"
 						register={register}
 						control={control}
-						rules={{
-							maxLength: {
-								value: 400,
-								message:
-									'Your personal statement can not be more than 400 characters '
-							}
-						}}
 						onClear={() =>
 							resetField('statement', { defaultValue: '' })
 						}

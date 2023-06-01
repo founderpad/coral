@@ -4,6 +4,7 @@ import BaseForm from '@/components/form/BaseForm';
 import { FormInput } from '@/components/form/inputs/FormField';
 import { useChangePassword } from '@/hooks/auth';
 import { useQueryParam } from '@/hooks/util';
+import schema from '@/validation/auth/changepassword/validationSchema';
 import React from 'react';
 
 type TChangePasswordFields = {
@@ -27,10 +28,11 @@ const ConfirmChangePasswordForm = (props: Props) => {
 	const isChangeError = useQueryParam('cp_error');
 
 	return (
-		<BaseForm<TChangePasswordFields>
+		<BaseForm<TChangePasswordFields, typeof schema>
 			name="edit-change-password"
 			onSubmit={onChangePassword}
 			defaultValues={defaultValues}
+			schema={schema}
 			stackProps={{
 				alignItems: 'center'
 			}}
@@ -52,19 +54,6 @@ const ConfirmChangePasswordForm = (props: Props) => {
 						fieldProps={{
 							placeholder: 'Password *',
 							type: 'password'
-						}}
-						rules={{
-							required: 'You must enter a valid password',
-							minLength: {
-								value: 6,
-								message:
-									'Your password must be a minimum of 6 characters'
-							},
-							maxLength: {
-								value: 20,
-								message:
-									'Your password must be a maximum of 20 characters'
-							}
 						}}
 						hideLimit={true}
 						errors={errors}

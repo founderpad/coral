@@ -21,23 +21,12 @@ import NotificationContext from '@/context/NotificationContext';
 export const useRegister = () => {
 	const { addNotification } = useContext(NotificationContext);
 
-	const { signUpEmailPassword, needsEmailVerification } =
-		useSignUpEmailPassword();
+	const { signUpEmailPassword } = useSignUpEmailPassword();
 
 	const onRegister = async (values: TRegisterFormFields) => {
 		const { email, password, firstName, lastName } = values;
 
 		try {
-			// const response = await auth.signUp({
-			// 	email,
-			// 	password,
-			// 	options: {
-			// 		displayName: `${firstName?.trim()} ${
-			// 			lastName?.trim() ?? ''
-			// 		}`
-			// 	}
-			// });
-
 			const response = await signUpEmailPassword(email, password, {
 				displayName: `${firstName} ${lastName}`.trim(),
 				metadata: {

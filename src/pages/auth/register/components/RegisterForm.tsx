@@ -8,7 +8,7 @@ import { SubmitButton } from '@/components/buttons';
 import { AlertFeedback } from '@/components/alert';
 import SocialLogins from '@/components/shared/SocialLogins';
 import NotificationContext from '@/context/NotificationContext';
-import { schema } from '../validationSchema';
+import schema from '@/validation/auth/register/validationSchema';
 
 const defaultValues: Record<string, string> & TRegisterFormFields = {
 	firstName: '',
