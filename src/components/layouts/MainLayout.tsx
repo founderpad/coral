@@ -40,9 +40,10 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 						mb={4}
 						px={6}
 						bg="white"
-						rounded="md"
+						rounded={{ lg: 'md' }}
 						borderColor="fpLightGrey.900"
-						borderWidth="1px"
+						borderBottomWidth={{ xs: '1px', lg: 0 }}
+						borderWidth={{ lg: '1px' }}
 					/>
 				)}
 				{children}

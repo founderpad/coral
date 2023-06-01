@@ -100,7 +100,7 @@ interface IFileUploadProps {
 }
 
 export const useFileUpload = () => {
-	return async ({ file, bucketId }: IFileUploadProps) => {
+	const uploadAvatar = async ({ file, bucketId }: IFileUploadProps) => {
 		const response = await storage.upload({
 			file,
 			name: `${file.name.split('.')[0]}-${new Date().getTime()}`,
@@ -110,6 +110,8 @@ export const useFileUpload = () => {
 		if (fileId) return storage.getPublicUrl({ fileId });
 		return null;
 	};
+
+	return { uploadAvatar };
 };
 
 export const useFileDelete = () => {

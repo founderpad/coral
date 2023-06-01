@@ -1,5 +1,4 @@
 import { Tag } from '@chakra-ui/react';
-import { AlertFeedback } from '@/components/alert';
 import { SubmitButton } from '@/components/buttons';
 import { Label } from '@/components/labels';
 import { FlexLayout, StackLayout } from '@/components/layouts';
@@ -8,16 +7,26 @@ import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
 import OverviewTags from '@/components/shared/OverviewTags';
 import useUserProfile from '@/hooks/user';
 import { useModalDrawer } from '@/hooks/util';
-import React, { memo } from 'react';
+import React, { memo, useContext, useEffect } from 'react';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/experienceform/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
-// import ResumeUploader from './ResumeUploader';
+import NotificationContext from '@/context/NotificationContext';
 
 const WorkExperienceTab = () => {
 	const userProfile = useProfileFragment();
 	const { openModalDrawer } = useModalDrawer();
 	const isProfileComplete = useUserProfile()?.isComplete;
+	const { addNotification } = useContext(NotificationContext);
+
+	useEffect(() => {
+		if (!isProfileComplete) {
+			addNotification({
+				message: 'Provide some details for more accurate matches',
+				status: 'error'
+			});
+		}
+	}, [addNotification, isProfileComplete]);
 
 	const {
 		specialistIndustry,
@@ -50,18 +59,7 @@ const WorkExperienceTab = () => {
 	return (
 		<StackLayout p={4} spacing={8}>
 			<StackLayout spacing={0} mb={6}>
-				<TitleEditAction
-					title="Your details"
-					subtitle={
-						!isProfileComplete && (
-							<AlertFeedback
-								message="Provide some details for more accurate matches"
-								status="error"
-							/>
-						)
-					}
-					onClick={onClick}
-				/>
+				<TitleEditAction title="Your details" onClick={onClick} />
 			</StackLayout>
 
 			<OverviewTags
