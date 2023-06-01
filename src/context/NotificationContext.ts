@@ -1,12 +1,14 @@
 import { AlertProps } from '@chakra-ui/react';
 import { createContext } from 'react';
 
+interface INotification {
+	message: string;
+	status: AlertProps['status'];
+}
+
 const NotificationContext = createContext({
-	notification: {
-		message: '',
-		status: undefined as AlertProps['status']
-	},
-	addNotification: (_message: string, _status?: AlertProps['status']) => {},
+	notification: undefined as INotification | undefined,
+	addNotification: (_notification: INotification) => {},
 	removeNotification: () => {}
 });
 

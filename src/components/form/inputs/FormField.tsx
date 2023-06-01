@@ -149,6 +149,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 export const FormInput = <TFormValues extends Record<string, unknown>>({
 	name,
 	register,
+	isRequired = false,
 	rules,
 	control,
 	fieldProps,
@@ -166,7 +167,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 	});
 
 	return (
-		<FormControl isRequired={!!rules?.required}>
+		<FormControl isRequired={!!rules?.required || isRequired}>
 			<FormField
 				name={name}
 				isInvalid={!!rest.errors}
@@ -202,6 +203,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
 export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 	name,
 	register,
+	isRequired = false,
 	rules,
 	control,
 	placeholder,
@@ -219,7 +221,7 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
 	});
 
 	return (
-		<FormControl isRequired={!!rules?.required}>
+		<FormControl isRequired={!!rules?.required || isRequired}>
 			<FormField
 				name={name}
 				isInvalid={!!rest.errors}
@@ -260,6 +262,7 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	name,
 	register,
 	rules,
+	isRequired = false,
 	onClear,
 	placeholder,
 	options = [],
@@ -268,7 +271,6 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	...rest
 }: TFormSelectFieldProps<TFormValues>) => {
 	const isMobile = useMobile();
-	// const errors = rest.errors;
 	const errorMessages = rest.errors?.[name];
 	const hasError = !!(rest.errors && errorMessages);
 
@@ -283,7 +285,7 @@ export const FormSelect = <TFormValues extends Record<string, unknown>>({
 	return (
 		<FormControl
 			isInvalid={!!rest.errors?.[name]}
-			isRequired={!!rules?.required}
+			isRequired={!!rules?.required || isRequired}
 		>
 			<FormField
 				name={name}

@@ -40,7 +40,7 @@ const UserPersonalInformation = memo((props: Props) => {
 		? country
 		: 'Location not set';
 
-	const isDetailsChangeSuccess = useQueryParam('pd_success');
+	// const isDetailsChangeSuccess = useQueryParam('pd_success');
 	const isPwdChangeSuccess = useQueryParam('cp_success');
 	const isPwdChangeError = useQueryParam('cp_error');
 
@@ -102,12 +102,12 @@ const UserPersonalInformation = memo((props: Props) => {
 					label={`Joined ` + formatDate(createdAt, true)}
 					icon={IoTimeOutline}
 				/>
-				{isDetailsChangeSuccess && (
+				{/* {isDetailsChangeSuccess && (
 					<AlertFeedback
 						status="success"
 						message="Details updated successfully"
 					/>
-				)}
+				)} */}
 				{/* <SocialMediaDetails /> */}
 			</StackLayout>
 

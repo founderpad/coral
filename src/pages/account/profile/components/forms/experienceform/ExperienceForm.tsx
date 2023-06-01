@@ -20,13 +20,13 @@ import {
 } from '@/utils/Constants';
 import { Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import React from 'react';
-import { redirectTo } from '@/utils/validators';
+import React, { useContext } from 'react';
 import { FormSelect, FormTextarea } from '@/components/form/inputs/FormField';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { useCheckboxes, useModalDrawer } from '@/hooks/util';
 import { SimpleGrid } from '@chakra-ui/react';
 import schema from '@/validation/profile/experience/validationSchema';
+import NotificationContext from '@/context/NotificationContext';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
@@ -45,6 +45,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 
 	const { closeModalDrawer } = useModalDrawer();
 	const [updateUserProfileMutation] = useUpdateUserProfileMutation();
+	const { addNotification } = useContext(NotificationContext);
 
 	const onUpdateExperience = (experienceValues: TUser_Profile_Set_Input) => {
 		updateUserProfileMutation({
@@ -58,13 +59,18 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 			},
 			onCompleted: (_data) => {
 				closeModalDrawer();
-
-				redirectTo(false, 'exp');
+				addNotification({
+					message: 'Your details have been updated successfully',
+					status: 'success'
+				});
 				if (!isProfileComplete) dispatch(setProfileComplete());
 			},
 			onError: (_data) => {
 				closeModalDrawer();
-				redirectTo(true, 'exp');
+				addNotification({
+					message: 'Failed to update details. Please try again later',
+					status: 'error'
+				});
 			}
 		});
 	};
@@ -93,6 +99,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 						onClear={() =>
 							resetField('objective', { defaultValue: '' })
 						}
+						isRequired
 					/>
 
 					<FormTextarea<TUser_Profile_Set_Input>
@@ -102,6 +109,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 						placeholder="Write about your background, such as past experiences in business (max. 400 characters)"
 						register={register}
 						control={control}
+						errors={errors}
 						onClear={() =>
 							resetField('background', { defaultValue: '' })
 						}
@@ -114,6 +122,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 						placeholder="Write about what you're looking to achieve (max. 400 characters)"
 						register={register}
 						control={control}
+						errors={errors}
 						onClear={() =>
 							resetField('statement', { defaultValue: '' })
 						}
@@ -131,14 +140,11 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 							options={STARTUP_STATUS}
 							register={register}
 							control={control}
-							rules={{
-								required:
-									'You must provide your current startup status'
-							}}
 							errors={errors}
 							onClear={() =>
 								resetField('status', { defaultValue: '' })
 							}
+							isRequired
 						/>
 
 						<FormSelect<TUser_Profile_Set_Input>

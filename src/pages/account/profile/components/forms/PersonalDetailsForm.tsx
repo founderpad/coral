@@ -1,5 +1,6 @@
 import { BaseForm } from '@/components/form';
 import { FormInput, FormSelect } from '@/components/form/inputs/FormField';
+import NotificationContext from '@/context/NotificationContext';
 import {
 	TUsers,
 	TUsers_Set_Input,
@@ -13,8 +14,7 @@ import { useCurrentUser } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
 import { updateUserPersonalDetails } from '@/slices/auth';
 import { ALL_COUNTRIES, ALL_PRONOUNS } from '@/utils/Constants';
-import { redirectTo } from '@/utils/validators';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 
 type TPersonalDetailsInput = Pick<TUsers_Set_Input, 'displayName'> &
@@ -26,6 +26,7 @@ const PersonalDetailsForm = () => {
 	const dispatch = useDispatch();
 	const { closeModalDrawer } = useModalDrawer();
 	const [updatePersonalDetails] = useUpdateUserPersonalDetailsMutation();
+	const { addNotification } = useContext(NotificationContext);
 
 	const defaultValues = { ...auth, ...auth?.address, ...auth?.profile };
 
@@ -53,6 +54,13 @@ const PersonalDetailsForm = () => {
 				}
 			},
 			onCompleted: (data) => {
+				closeModalDrawer();
+				addNotification({
+					message:
+						'Your personal information has been updated successfully',
+					status: 'success'
+				});
+
 				const { updateUser, updateUserAddress, updateUserProfile } =
 					data;
 				data;
@@ -64,12 +72,14 @@ const PersonalDetailsForm = () => {
 						userProfile: updateUserProfile as TUser_Profile
 					})
 				);
-
-				redirectTo(false, 'pd');
-				closeModalDrawer();
 			},
-			onError: () => {
-				redirectTo(true, 'pd');
+			onError: (_data) => {
+				closeModalDrawer();
+				addNotification({
+					message:
+						'Failed to update personal information. Please try again later',
+					status: 'error'
+				});
 			}
 		});
 	};

@@ -2,11 +2,14 @@ import MainNav from '@/components/nav/mainnav/MainNav';
 import MobileNav from '@/components/nav/mainnav/MobileNav';
 import { usePushNotifications } from '@/hooks/notifications';
 import MobileNavigationProvider from '@/provider/MobileNavigationProvider';
-import React from 'react';
+import React, { useContext } from 'react';
 import { BoxLayout } from './BoxLayout';
+import { AlertFeedback } from '../alert';
+import NotificationContext from '@/context/NotificationContext';
 
 export const MainLayout = ({ children }: { children: JSX.Element }) => {
 	usePushNotifications();
+	const { notification } = useContext(NotificationContext);
 
 	return (
 		<MobileNavigationProvider>
@@ -16,7 +19,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				as="main"
 				mx={{ base: 0, md: 'auto' }}
 				w={{ base: 'full', xl: '95ch' }}
-				bg="white"
+				// bg="white"
 				display="flex"
 				flexDirection="column"
 				flex={1}
@@ -24,7 +27,24 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				mb={{ base: 0, lg: 4 }}
 				id="main-container"
 				rounded="md"
+				css={{
+					'> *': {
+						background: 'white'
+					}
+				}}
 			>
+				{notification && (
+					<AlertFeedback
+						message={notification.message}
+						status={notification.status}
+						mb={4}
+						px={6}
+						bg="white"
+						rounded="md"
+						borderColor="fpLightGrey.900"
+						borderWidth="1px"
+					/>
+				)}
 				{children}
 			</BoxLayout>
 

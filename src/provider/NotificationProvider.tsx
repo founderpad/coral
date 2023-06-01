@@ -1,25 +1,42 @@
 import { AlertProps } from '@chakra-ui/react';
 import NotificationContext from '@/context/NotificationContext';
-import React, { useCallback, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
-const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
-	const [notification, setNotification] = useState<{
-		message: string;
-		status: AlertProps['status'];
-	}>({ message: '', status: 'success' });
+interface INotification {
+	message: string;
+	status: AlertProps['status'];
+}
 
-	const addNotification = (message: string, status: AlertProps['status']) => {
-		setNotification({ message, status });
+/**
+ * The @NotificationProvider is used to toggle notifications in the UI
+ * @param param0
+ * @returns
+ */
+const NotificationProvider = ({ children }: { children: ReactNode }) => {
+	const [notification, setNotification] = useState<
+		INotification | undefined
+	>();
+
+	const router = useRouter();
+
+	useEffect(() => {
+		removeNotification();
+	}, [router.pathname]);
+
+	const addNotification = (notification: INotification) => {
+		setNotification({
+			message: notification.message,
+			status: notification.status
+		});
 	};
 
-	const removeNotification = () =>
-		setNotification({ message: '', status: 'success' });
+	const removeNotification = () => setNotification(undefined);
 
 	const value = {
 		notification,
 		addNotification: useCallback(
-			(message: string, status: AlertProps['status']) =>
-				addNotification(message, status),
+			(notification: INotification) => addNotification(notification),
 			[]
 		),
 		removeNotification: useCallback(() => removeNotification(), [])

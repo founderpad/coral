@@ -18,22 +18,23 @@ import { AppDivider } from '@/components/shared';
 import { useDispatch } from 'react-redux';
 import { addEsteemPoints } from '@/slices/auth';
 import { useSuccessNotification } from '@/hooks/toast';
+import schema from '@/validation/idea/create/validationSchema';
+
+const defaultValues = {
+	name: '',
+	summary: '',
+	description: '',
+	status: '',
+	field: '',
+	competitors: '',
+	team: '',
+	isPublished: true
+};
 
 const CreateIdeaForm = () => {
 	const user = useAuth().getUser();
 	const dispatch = useDispatch();
 	const showNotification = useSuccessNotification();
-
-	const defaultValues = {
-		name: '',
-		summary: '',
-		description: '',
-		status: '',
-		field: '',
-		competitors: '',
-		team: '',
-		isPublished: true
-	};
 
 	const [createIdeaMutation] = useCreateIdeaMutation();
 
@@ -65,10 +66,11 @@ const CreateIdeaForm = () => {
 	};
 
 	return (
-		<BaseForm<TIdeas_Set_Input>
+		<BaseForm<TIdeas_Set_Input, typeof schema>
 			name="edit-idea-form"
 			onSubmit={onCreateIdea}
 			defaultValues={defaultValues}
+			schema={schema}
 			stackProps={{
 				alignItems: 'center',
 				spacing: 10
@@ -97,17 +99,9 @@ const CreateIdeaForm = () => {
 							fontSize: 'lg',
 							rounded: 'none'
 						}}
-						rules={{
-							required:
-								'You must provide a name for your idea (max. 75 characters)',
-							maxLength: {
-								value: 75,
-								message:
-									'Idea name can not be more than 75 characters '
-							}
-						}}
 						errors={errors}
-						onClear={() => resetField('name')}
+						onClear={resetField}
+						isRequired
 					/>
 
 					<FormTextarea<TIdeas_Set_Input>
@@ -118,17 +112,9 @@ const CreateIdeaForm = () => {
 						helperText="Make your summary pop! This is what people will see when they search"
 						register={register}
 						control={control}
-						rules={{
-							required:
-								'You must provide a summary for your idea (max. 200 characters)',
-							maxLength: {
-								value: 200,
-								message:
-									'Your summary can not be more than 200 characters'
-							}
-						}}
 						errors={errors}
-						onClear={() => resetField('summary')}
+						onClear={resetField}
+						isRequired
 					/>
 
 					<FormTextarea<TIdeas_Set_Input>
@@ -138,15 +124,8 @@ const CreateIdeaForm = () => {
 						placeholder="Write a description of your idea (max. 750 characters)"
 						register={register}
 						control={control}
-						rules={{
-							maxLength: {
-								value: 750,
-								message:
-									'Your description can not be more than 750 characters '
-							}
-						}}
 						errors={errors}
-						onClear={() => resetField('description')}
+						onClear={resetField}
 					/>
 
 					<StackLayout
@@ -161,12 +140,9 @@ const CreateIdeaForm = () => {
 							options={ALL_IDEA_STATUSES}
 							register={register}
 							control={control}
-							rules={{
-								required:
-									'You must provide the status for your idea'
-							}}
 							errors={errors}
-							onClear={() => resetField('status')}
+							onClear={resetField}
+							isRequired
 						/>
 
 						<FormSelect<TIdeas_Set_Input>
@@ -177,12 +153,9 @@ const CreateIdeaForm = () => {
 							options={ALL_IDEA_CATEGORY_FIELDS}
 							register={register}
 							control={control}
-							rules={{
-								required:
-									'You must provide the field for your idea'
-							}}
 							errors={errors}
-							onClear={() => resetField('field')}
+							onClear={resetField}
+							isRequired
 						/>
 					</StackLayout>
 
@@ -193,15 +166,8 @@ const CreateIdeaForm = () => {
 						placeholder="Write about what competitors your idea may face (max. 250 characters)"
 						register={register}
 						control={control}
-						rules={{
-							maxLength: {
-								value: 250,
-								message:
-									'Competitors can not be more than 250 characters '
-							}
-						}}
 						errors={errors}
-						onClear={() => resetField('competitors')}
+						onClear={resetField}
 					/>
 
 					<FormTextarea<TIdeas_Set_Input>
@@ -211,15 +177,8 @@ const CreateIdeaForm = () => {
 						placeholder="Write about your team for this idea (max. 250 characters)"
 						register={register}
 						control={control}
-						rules={{
-							maxLength: {
-								value: 250,
-								message:
-									'Team can not be more than 250 characters '
-							}
-						}}
 						errors={errors}
-						onClear={() => resetField('team')}
+						onClear={resetField}
 					/>
 
 					<FormTextarea<TIdeas_Set_Input>
@@ -229,15 +188,8 @@ const CreateIdeaForm = () => {
 						placeholder="Write any additional information about your idea (max. 500 characters)"
 						register={register}
 						control={control}
-						rules={{
-							maxLength: {
-								value: 500,
-								message:
-									'Additional information can not be more than 500 characters '
-							}
-						}}
 						errors={errors}
-						onClear={() => resetField('additionalInformation')}
+						onClear={resetField}
 					/>
 
 					<AppDivider />

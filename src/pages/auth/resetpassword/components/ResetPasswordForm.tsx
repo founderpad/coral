@@ -5,10 +5,10 @@ import { FormInput } from '@/components/form/inputs/FormField';
 import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import { PrimaryLink } from '@/components/links';
+import NotificationContext from '@/context/NotificationContext';
 import { useResetPassword } from '@/hooks/auth';
-import { useQueryParam } from '@/hooks/util';
-import { emailPattern } from '@/utils/validators';
-import React, { memo } from 'react';
+import schema from '@/validation/auth/resetpassword/validationSchema';
+import React, { memo, useContext } from 'react';
 
 type TResetPasswordFields = {
 	email: string;
@@ -19,17 +19,16 @@ const defaultValues = {
 };
 
 const ResetPasswordForm = () => {
-	const isResetSuccess = useQueryParam('rp_success');
-	const isResetError = useQueryParam('rp_error');
-
-	const onResetPassword = useResetPassword();
+	const { onResetPassword } = useResetPassword();
+	const { notification } = useContext(NotificationContext);
 
 	return (
 		<React.Fragment>
-			<BaseForm<TResetPasswordFields>
+			<BaseForm<TResetPasswordFields, typeof schema>
 				name="reset-password-form"
 				onSubmit={onResetPassword}
 				defaultValues={defaultValues}
+				schema={schema}
 				stackProps={{
 					alignItems: 'center',
 					spacing: 3
@@ -56,37 +55,25 @@ const ResetPasswordForm = () => {
 							fieldProps={{
 								placeholder: 'Email'
 							}}
-							rules={{
-								required:
-									'You must enter a valid email address',
-								pattern: emailPattern
-							}}
 							errors={errors}
 							hideClear
 							onClear={() => resetField('email')}
 						/>
 
-						{isResetSuccess && (
+						{notification && (
 							<AlertFeedback
-								status="success"
-								message="Email sent with instructions to reset your password"
+								status={notification.status}
+								message={notification.message}
 							/>
 						)}
 
-						{isResetError && (
-							<AlertFeedback
-								status="error"
-								message="Failed to reset password. Please try again later."
-							/>
-						)}
-
-						{!isResetSuccess && (
+						{!notification && (
 							<SubmitButton
 								id="submit-reset-password"
 								name="submit-reset-password"
 								label="Reset password"
-								isLoading={isSubmitting}
-								disabled={isSubmitting}
+								isLoading={isSubmitting && !notification}
+								disabled={isSubmitting && !notification}
 								size="md"
 								fontSize="small"
 								w={{ base: 'full', sm: '200px' }}

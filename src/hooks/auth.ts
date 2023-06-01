@@ -15,19 +15,23 @@ import {
 	useSignInEmailPassword,
 	useSignUpEmailPassword
 } from '@nhost/react';
-import { Provider } from '@nhost/nhost-js';
+import {
+	Provider,
+	SignInEmailPasswordHandlerResult,
+	SignUpEmailPasswordHandlerResult
+} from '@nhost/nhost-js';
 import NotificationContext from '@/context/NotificationContext';
 
 export const useRegister = () => {
 	const { addNotification } = useContext(NotificationContext);
-
 	const { signUpEmailPassword } = useSignUpEmailPassword();
+	let response: SignUpEmailPasswordHandlerResult;
 
 	const onRegister = async (values: TRegisterFormFields) => {
 		const { email, password, firstName, lastName } = values;
 
 		try {
-			const response = await signUpEmailPassword(email, password, {
+			response = await signUpEmailPassword(email, password, {
 				displayName: `${firstName} ${lastName}`.trim(),
 				metadata: {
 					firstName,
@@ -36,16 +40,17 @@ export const useRegister = () => {
 			});
 
 			if (response.error) {
-				addNotification(
-					`Failed to create account. ${response.error.message}.`,
-					'error'
-				);
-
 				throw new Error(
-					`Failed to create account with error code ${response.error.status}. ${response.error.message}.`
+					`Failed to create account. ${response.error.message}.`
 				);
 			}
 
+			Router.push(
+				`/register/registersuccess?nm=${encodeString(firstName)}`
+			);
+		} catch (error: any) {
+			addNotification({ message: error.message, status: 'error' });
+		} finally {
 			event({
 				action: `Register - ${response.error ? 'error' : 'success'}`,
 				params: {
@@ -54,12 +59,6 @@ export const useRegister = () => {
 					user_registration_date: new Date()
 				}
 			});
-
-			Router.push(
-				`/register/registersuccess?nm=${encodeString(firstName)}`
-			);
-		} catch (error) {
-			console.log('Failed to create account');
 		}
 	};
 
@@ -69,26 +68,32 @@ export const useRegister = () => {
 export const useLogin = () => {
 	const { signInEmailPassword } = useSignInEmailPassword();
 	const { addNotification } = useContext(NotificationContext);
+	let response: SignInEmailPasswordHandlerResult;
+
 	const onLogin = async ({ email, password }: TLoginFields) => {
 		try {
-			// const response = await auth.signIn({ email, password });
-			// if (response.error) {
-			// 	redirectTo(true, undefined, '/login');
-			// 	throw new Error('Failed to login');
-			// }
-			const response = await signInEmailPassword(email, password);
+			response = await signInEmailPassword(email, password);
+			if (response.needsEmailVerification) {
+				addNotification({
+					message: `Failed to login. Please verify your email address first.`,
+					status: 'error'
+				});
+			}
 			if (response.error) {
-				addNotification(
-					`Failed to login. Incorrect email and/or password.`,
-					'error'
-				);
-
 				throw new Error(
-					`Failed to login with error code ${response.error.status}. ${response.error.message}.`
+					'Failed to login. Incorrect email and/or password.'
 				);
 			}
-		} catch (error) {
-			console.error('Failed to login');
+		} catch (error: any) {
+			addNotification({ message: error.message, status: 'error' });
+		} finally {
+			event({
+				action: `Login - ${response.isError ? 'error' : 'success'}`,
+				params: {
+					email,
+					user_registration_date: new Date()
+				}
+			});
 		}
 	};
 
@@ -115,16 +120,30 @@ export const useSocialLogin = () => {
 };
 
 export const useResetPassword = () => {
-	const resetPassword = async ({ email }: { email: string }) => {
+	const { addNotification } = useContext(NotificationContext);
+
+	const onResetPassword = async ({ email }: { email: string }) => {
 		try {
 			await auth.resetPassword({ email });
-			redirectTo(false, 'rp', '/resetpassword');
-		} catch (error) {
-			redirectTo(true, 'rp', '/resetpassword');
+
+			addNotification({
+				message:
+					'If you are registered, you will receive an email with instructions to reset your password.',
+				status: 'success'
+			});
+		} catch (error: any) {
+			addNotification({ message: error.message, status: 'error' });
+		} finally {
+			event({
+				action: 'Reset your password',
+				params: {
+					email
+				}
+			});
 		}
 	};
 
-	return resetPassword;
+	return { onResetPassword };
 };
 
 export const useChangePassword = () => {
@@ -199,7 +218,6 @@ export const useCurrentUser = (): TUsers => {
 export const useCheckLoggedIn = (): void => {
 	const { isAuthenticated } = useAuthenticationStatus();
 	const changePasswordHash = Router.asPath.split('#')[1] ?? '';
-
 	useEffect(() => {
 		if (isAuthenticated && !changePasswordHash) {
 			Router.replace('/ideas/search?page=1');
