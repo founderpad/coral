@@ -5,10 +5,8 @@ import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import { useCurrentUser } from '@/hooks/auth';
 
 const Match: NextPage = () => {
-	const authUser = useCurrentUser();
 	return (
 		<React.Fragment>
 			<Head>
@@ -34,7 +32,7 @@ const Match: NextPage = () => {
 			<DocumentTitle title="Match" />
 			<PageLayout
 				title="Your matches"
-				subtitle={`Here are the ${authUser.matchSettings?.lookingFor?.toLowerCase()}s we've found for you`}
+				subtitle={`Here are the matches we have found for you based on your preferences`}
 			>
 				<MatchContainer />
 			</PageLayout>

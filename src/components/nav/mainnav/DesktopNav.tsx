@@ -8,6 +8,7 @@ import BasePopover from '@/components/popover/BasePopover';
 import { AppDivider } from '@/components/shared';
 import Router from 'next/router';
 import React, { memo } from 'react';
+import NextLink from 'next/link';
 import {
 	IoAdd,
 	IoChevronDownSharp,
@@ -63,43 +64,45 @@ const DesktopNav = memo(() => {
 					<BasePopover
 						key={key}
 						triggerEl={
-							<Link
-								px={2}
-								display="flex"
-								href={navItem.href}
-								fontSize="xs"
-								fontWeight={
-									getCurrentPath(navItem.href ?? '')
-										? 'medium'
-										: 'normal'
-								}
-								alignItems="center"
-								color={
-									getCurrentPath(navItem.href ?? '')
-										? 'fpGrey.900'
-										: 'fpGrey.500'
-								}
-								_hover={{
-									textDecoration: 'none',
-									color: 'gray.900'
-								}}
-								css={{
-									':hover > svg': {
-										transform: 'rotate(-180deg)',
-										transition: 'transform .1s linear'
+							<NextLink href={navItem.href ?? ''} passHref>
+								<Link
+									px={2}
+									display="flex"
+									fontSize="xs"
+									fontWeight={
+										getCurrentPath(navItem.href ?? '')
+											? 'medium'
+											: 'normal'
 									}
-								}}
-							>
-								{navItem.label}
-								{navItem.items?.length && (
-									<Icon
-										color="inherit"
-										ml={1}
-										as={IoChevronDownSharp}
-										transition="transform .1s linear"
-									/>
-								)}
-							</Link>
+									alignItems="center"
+									color={
+										getCurrentPath(navItem.href ?? '')
+											? 'fpGrey.900'
+											: 'fpGrey.500'
+									}
+									_hover={{
+										textDecoration: 'none',
+										color: 'gray.900'
+									}}
+									css={{
+										':hover > svg': {
+											transform: 'rotate(-180deg)',
+											transition: 'transform .1s linear'
+										}
+									}}
+								>
+									{navItem.label}
+									{navItem.items?.length && (
+										<Icon
+											color="inherit"
+											ml={1}
+											as={IoChevronDownSharp}
+											transition="transform .1s linear"
+											top={10}
+										/>
+									)}
+								</Link>
+							</NextLink>
 						}
 					>
 						{navItem.items && (

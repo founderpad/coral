@@ -1,32 +1,11 @@
-import {
-	// AiTwotoneThunderbolt,
-	IoAdd,
-	IoPersonSharp,
-	IoSearchSharp
-} from '@/components/icons';
+import { IoAdd, IoPersonSharp, IoSearchSharp } from '@/components/icons';
 import { IconType } from 'react-icons/lib';
 import React from 'react';
 import { ColorProps } from '@chakra-ui/react';
 
 export interface NavItem {
-	// label: string | React.ReactNode;
-	// subLabel?: string;
-	// items?: Pick<
-	// 	NavItem,
-	// 	'label' | 'subLabel' | 'href' | 'icon' | 'color' | 'divider'
-	// >[];
-	// href?: string;
-	// isLink?: boolean;
-	// icon?: IconType;
-	// rightIcon?: IconType;
-	// divider?: boolean;
-	// color?: string;
 	label: string | React.ReactNode;
 	subLabel?: string;
-	// items?: Pick<
-	// 	NavItem,
-	// 	'label' | 'subLabel' | 'href' | 'icon' | 'color' | 'divider'
-	// >[];
 	items?: Array<{ title?: string } & { items?: Array<NavItem> }>;
 	href?: string;
 	isLink?: boolean;
@@ -39,10 +18,12 @@ export interface NavItem {
 const NavItems: Array<NavItem> = [
 	{
 		label: 'Ideas',
+		isLink: false,
 		// href: '/ideas/search?page=1',
 		items: [
 			{
 				title: 'All ideas',
+
 				items: [
 					{
 						label: 'Search ideas',
@@ -103,6 +84,7 @@ const NavItems: Array<NavItem> = [
 	{
 		label: 'Users',
 		// href: '/users/search?page=1',
+		isLink: false,
 		items: [
 			{
 				items: [
@@ -118,7 +100,8 @@ const NavItems: Array<NavItem> = [
 	},
 	{
 		label: 'Match',
-		href: '/match'
+		href: '/match',
+		isLink: true
 	},
 	{
 		label: 'Messages',

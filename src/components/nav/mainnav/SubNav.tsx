@@ -16,7 +16,7 @@ export const SubNav = memo(
 		divider,
 		color = 'fpPrimary.700'
 	}: NavItem) => (
-		<React.Fragment>
+		<>
 			{divider && (
 				<FlexLayout alignSelf="center" py={4}>
 					<AppDivider width="150px" alignSelf="center" />
@@ -95,6 +95,6 @@ export const SubNav = memo(
 					/>
 				</StackLayout>
 			</NavLink>
-		</React.Fragment>
+		</>
 	)
 );
