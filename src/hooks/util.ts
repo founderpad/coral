@@ -7,25 +7,11 @@ import { pageview } from '@/lib/ga';
 import { storage } from '@/pages/_app';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef, useState } from 'react';
+import { StorageUploadFileParams } from '@nhost/nhost-js';
 
 enum Params {
 	edit
 }
-
-// export const usePageChange = () => {
-// 	const router = useRouter();
-// 	const { removeNotification, notification } = useNotification();
-
-// 	useEffect(() => {
-// 		if (notification) {
-// 			console.log('fgfggh');
-
-// 			removeNotification();
-// 		}
-// 	}, [useRouter().pathname]);
-
-// 	router.events.on('routeChangeStart', handleRouteChange)
-// };
 
 export const useEditMode = () => useRouter().query[Params.edit];
 
@@ -91,16 +77,19 @@ export const useMobileNav = () => {
 	return { isOpen, onToggle };
 };
 
-type TBucket = 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
-
-interface IFileUploadProps {
-	file: File;
-	bucketId: TBucket;
-	fileName?: string;
-}
+type StorageUploadFileParamsWithValidBucketId = Omit<
+	StorageUploadFileParams,
+	'bucketId'
+> & {
+	bucketId: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
+};
 
 export const useFileUpload = () => {
-	const uploadAvatar = async ({ file, bucketId }: IFileUploadProps) => {
+	const uploadAvatar = async ({
+		file,
+		bucketId
+	}: StorageUploadFileParamsWithValidBucketId) => {
+		console.log(': ', file, bucketId);
 		const response = await storage.upload({
 			file,
 			name: `${file.name.split('.')[0]}-${new Date().getTime()}`,

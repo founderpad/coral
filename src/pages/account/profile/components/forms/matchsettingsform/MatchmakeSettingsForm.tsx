@@ -2,14 +2,13 @@ import { BaseForm, FormLabelText } from '@/components/form';
 import { FormSelect } from '@/components/form/inputs/FormField';
 import { Label } from '@/components/labels';
 import { FlexLayout } from '@/components/layouts';
-import { useCheckboxes, useModalDrawer } from '@/hooks/util';
+import { useCheckboxes, useModalDrawer, useNotification } from '@/hooks/util';
 import { ALL_MATCHMAKE_TYPES, EXPERIENCE_SKILLS } from '@/utils/Constants';
 import { Button, Checkbox, FormControl } from '@chakra-ui/react';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { SimpleGrid } from '@chakra-ui/react';
 import { useCurrentUser } from '@/hooks/auth';
-import { redirectTo } from '@/utils/validators';
 import {
 	MatchSettingsDocument,
 	TMatchSettingsFieldsFragment,
@@ -23,6 +22,7 @@ const MatchmakeSettingsForm = (
 	const { closeModalDrawer } = useModalDrawer();
 	const { id } = useCurrentUser();
 	const [updateMatchmakeSettings] = useUpdateMatchSettingsMutation();
+	const { addNotification } = useNotification();
 
 	const {
 		clearValues,
@@ -48,7 +48,11 @@ const MatchmakeSettingsForm = (
 			},
 			onCompleted: (_data) => {
 				closeModalDrawer();
-				redirectTo(false, 'mm');
+				addNotification({
+					message:
+						'Your match preferences have been updated successfully.',
+					status: 'success'
+				});
 			},
 			refetchQueries: [
 				{
@@ -60,7 +64,11 @@ const MatchmakeSettingsForm = (
 			],
 			onError: (_data) => {
 				closeModalDrawer();
-				redirectTo(true, 'mm');
+				addNotification({
+					message:
+						'Failed to update match preferences. Please try again later.',
+					status: 'error'
+				});
 			}
 		});
 	};

@@ -56,7 +56,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 	useTrackAnalytics();
 
 	return (
-		<React.Fragment>
+		<>
 			<Head>
 				<link rel="shortcut icon" href="/favicon.svg" />
 				<link
@@ -136,7 +136,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 					</Provider>
 				</NhostApolloProvider>
 			</NhostProvider>
-		</React.Fragment>
+		</>
 	);
 };
 

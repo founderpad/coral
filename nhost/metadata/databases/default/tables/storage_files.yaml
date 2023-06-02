@@ -44,6 +44,10 @@ insert_permissions:
         size:
           _lte: 5000000
       columns:
+        - bucket_id
+        - id
+        - is_uploaded
+        - mime_type
         - name
         - size
         - uploaded_by_user_id

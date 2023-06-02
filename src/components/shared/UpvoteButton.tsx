@@ -2,17 +2,19 @@ import { Button, Icon } from '@chakra-ui/react';
 import { IoArrowUpSharp } from '@/components/icons';
 import React from 'react';
 
+interface IButtonProps {
+	onClick: () => void;
+	hasUserUpvoted: boolean;
+	name: string;
+	votesTotal?: number;
+}
+
 export const UpvoteButton = ({
 	onClick,
 	hasUserUpvoted,
 	name,
 	votesTotal = 0
-}: {
-	onClick: () => void;
-	hasUserUpvoted: boolean;
-	name: string;
-	votesTotal?: number;
-}) => (
+}: IButtonProps) => (
 	<Button
 		name={`update-${name}-button`}
 		pl={0}
