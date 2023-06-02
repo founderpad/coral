@@ -21,6 +21,7 @@ import {
 	SignUpEmailPasswordHandlerResult
 } from '@nhost/nhost-js';
 import NotificationContext from '@/context/NotificationContext';
+import { useNotification } from './util';
 
 export const useRegister = () => {
 	const { addNotification } = useContext(NotificationContext);
@@ -52,7 +53,7 @@ export const useRegister = () => {
 			addNotification({ message: error.message, status: 'error' });
 		} finally {
 			event({
-				action: `Register - ${response.error ? 'error' : 'success'}`,
+				action: `Register > ${response.error ? 'error' : 'success'}`,
 				params: {
 					email,
 					display_name: `${firstName} ${lastName}`.trim(),
@@ -88,7 +89,7 @@ export const useLogin = () => {
 			addNotification({ message: error.message, status: 'error' });
 		} finally {
 			event({
-				action: `Login - ${response.isError ? 'error' : 'success'}`,
+				action: `Login > ${response.isError ? 'error' : 'success'}`,
 				params: {
 					email,
 					user_registration_date: new Date()
@@ -102,6 +103,7 @@ export const useLogin = () => {
 
 export const useSocialLogin = () => {
 	const [getUser] = useGetAuthUser();
+	const { addNotification } = useNotification();
 
 	const { isAuthenticated } = useAuthenticationStatus();
 	useEffect(() => {
@@ -110,17 +112,28 @@ export const useSocialLogin = () => {
 
 	return async (authProvider: Provider) => {
 		try {
-			await auth.signIn({
+			const response = await auth.signIn({
 				provider: authProvider
 			});
-		} catch (error) {
-			throw `Failed to login with ${authProvider}`;
+
+			if (response.error) {
+				throw Error(
+					`Failed to login using ${
+						authProvider.charAt(0).toUpperCase() +
+						authProvider.slice(1)
+					}`
+				);
+			}
+		} catch (error: unknown) {
+			if (error instanceof Error) {
+				addNotification({ message: error.message, status: 'error' });
+			}
 		}
 	};
 };
 
 export const useResetPassword = () => {
-	const { addNotification } = useContext(NotificationContext);
+	const { addNotification } = useNotification();
 
 	const onResetPassword = async ({ email }: { email: string }) => {
 		try {
@@ -135,7 +148,7 @@ export const useResetPassword = () => {
 			addNotification({ message: error.message, status: 'error' });
 		} finally {
 			event({
-				action: 'Reset your password',
+				action: 'Auth > Reset your password',
 				params: {
 					email
 				}
@@ -148,22 +161,38 @@ export const useResetPassword = () => {
 
 export const useChangePassword = () => {
 	const { closeModalDrawer } = useContext(ModalDrawerContext);
+	const { addNotification } = useNotification();
+	const user = useCurrentUser();
 
 	const onChangePassword = async ({
 		newPassword
 	}: {
 		newPassword: string;
 	}) => {
-		const { error } = await auth.changePassword({ newPassword });
+		try {
+			const response = await auth.changePassword({ newPassword });
 
-		if (error) {
-			redirectTo(true, 'rp');
-			console.error('Error changing password: ', error);
-			throw 'Failed to change password';
+			if (response.error) {
+				throw Error('Failed to change password');
+			}
+
+			addNotification({
+				message: 'Your password has been updated successfully.',
+				status: 'success'
+			});
+		} catch (error: unknown) {
+			if (error instanceof Error) {
+				addNotification({ message: error.message, status: 'error' });
+			}
+		} finally {
+			event({
+				action: 'Profile > Change your password',
+				params: {
+					email: user.email
+				}
+			});
+			closeModalDrawer();
 		}
-
-		redirectTo(false, 'cp');
-		closeModalDrawer();
 	};
 
 	return onChangePassword;

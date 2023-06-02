@@ -59,10 +59,10 @@ const MatchmakeSettingsTab = () => {
 	);
 };
 
-const SkillsBadges = memo(({ skills }: { skills: Array<string> }) => {
+const SkillsBadges = memo(({ skills }: { skills: string }) => {
 	return (
 		<FlexLayout flexWrap="wrap" direction="row" alignItems="center">
-			{skills?.map((skill) => (
+			{skills?.split(',')?.map((skill) => (
 				<Tag fontSize="xs" size="sm" mr={1} mb={1} key={skill}>
 					{skill}
 				</Tag>

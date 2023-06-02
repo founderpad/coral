@@ -4,10 +4,8 @@ import MobileNavigationContext from '@/context/MobileNavigationContext';
 import ModalDrawerContext from '@/context/ModalDrawerContext';
 import NotificationContext from '@/context/NotificationContext';
 import { pageview } from '@/lib/ga';
-import { storage } from '@/pages/_app';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { StorageUploadFileParams } from '@nhost/nhost-js';
 
 enum Params {
 	edit
@@ -75,38 +73,6 @@ export const useMobileNav = () => {
 	const { isOpen, onToggle } = useContext(MobileNavigationContext);
 
 	return { isOpen, onToggle };
-};
-
-type StorageUploadFileParamsWithValidBucketId = Omit<
-	StorageUploadFileParams,
-	'bucketId'
-> & {
-	bucketId: 'avatars' | 'resumes' | 'businessPlans' | 'pitchDecks';
-};
-
-export const useFileUpload = () => {
-	const uploadAvatar = async ({
-		file,
-		bucketId
-	}: StorageUploadFileParamsWithValidBucketId) => {
-		console.log(': ', file, bucketId);
-		const response = await storage.upload({
-			file,
-			name: `${file.name.split('.')[0]}-${new Date().getTime()}`,
-			bucketId
-		});
-		const fileId = response.fileMetadata?.id;
-		if (fileId) return storage.getPublicUrl({ fileId });
-		return null;
-	};
-
-	return { uploadAvatar };
-};
-
-export const useFileDelete = () => {
-	return ({ fileId }: { fileId: string }) => {
-		return storage.delete({ fileId });
-	};
 };
 
 export const useCheckboxes = (allValues: string[], initialValues = []) => {

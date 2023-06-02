@@ -1,15 +1,12 @@
+import { useNotification } from '@/hooks/util';
 import {
 	Alert,
 	AlertDescription,
 	AlertIcon,
-	// AlertIcon,
-	AlertProps
+	AlertProps,
+	CloseButton
 } from '@chakra-ui/react';
 import { IoCheckmarkSharp, IoCloseOutline } from 'react-icons/io5';
-
-type Props = AlertProps & {
-	message: string;
-};
 
 function getStatusIcon(status: Props['status']) {
 	switch (status) {
@@ -36,32 +33,39 @@ function getStatusIcon(status: Props['status']) {
 	}
 }
 
+type Props = AlertProps & {
+	message: string;
+	showClose?: boolean;
+	showIcon?: boolean;
+};
+
 export const AlertFeedback = (props: Props) => {
 	const {
-		status = 'success',
 		message,
-		bg,
-		variant = 'subtle',
-		px = 0,
+		status,
+		showClose = false,
+		showIcon = false,
 		...rest
 	} = props;
+	const { removeNotification } = useNotification();
 
 	return (
-		<Alert
-			{...rest}
-			status={status}
-			px={px}
-			py={1}
-			variant={variant}
-			bg={bg || 'initial'}
-		>
-			{message && getStatusIcon(status)}
+		<Alert {...rest} p={0} bg="white">
+			{showIcon && getStatusIcon(status)}
 			<AlertDescription
 				fontSize="xs"
 				color={status === 'error' ? 'red.500' : 'green.500'}
+				flex={1}
 			>
 				{message}
 			</AlertDescription>
+			{showClose && (
+				<CloseButton
+					size="sm"
+					color="fpGrey.400"
+					onClick={removeNotification}
+				/>
+			)}
 		</Alert>
 	);
 };

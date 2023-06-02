@@ -1,5 +1,4 @@
 import { FlexProps } from '@chakra-ui/react';
-import { AlertFeedback } from '@/components/alert';
 import { SubmitButton } from '@/components/buttons';
 import {
 	IoLocationOutline,
@@ -12,7 +11,7 @@ import { TitleEditAction } from '@/components/shared';
 import ChangePasswordForm from '@/components/shared/ChangePasswordForm';
 import PronounsLabel from '@/components/shared/PronounsLabel';
 import { useCurrentUser } from '@/hooks/auth';
-import { useModalDrawer, useQueryParam } from '@/hooks/util';
+import { useModalDrawer } from '@/hooks/util';
 import { formatDate } from '@/utils/validators';
 import React, { memo } from 'react';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
@@ -36,13 +35,7 @@ const UserPersonalInformation = memo((props: Props) => {
 
 	const userLocation = location
 		? `${location}, ${country}`
-		: country
-		? country
-		: 'Location not set';
-
-	// const isDetailsChangeSuccess = useQueryParam('pd_success');
-	const isPwdChangeSuccess = useQueryParam('cp_success');
-	const isPwdChangeError = useQueryParam('cp_error');
+		: country || 'Location not set';
 
 	const onPersonalDetailsClick = () => {
 		openModalDrawer({
@@ -102,12 +95,6 @@ const UserPersonalInformation = memo((props: Props) => {
 					label={`Joined ` + formatDate(createdAt, true)}
 					icon={IoTimeOutline}
 				/>
-				{/* {isDetailsChangeSuccess && (
-					<AlertFeedback
-						status="success"
-						message="Details updated successfully"
-					/>
-				)} */}
 				{/* <SocialMediaDetails /> */}
 			</StackLayout>
 
@@ -117,20 +104,6 @@ const UserPersonalInformation = memo((props: Props) => {
 					label="*********"
 					icon={IoLockClosedOutline}
 				/>
-				{isPwdChangeSuccess && (
-					<AlertFeedback
-						status="success"
-						message="Password updated successfully"
-					/>
-				)}
-				{isPwdChangeError && (
-					<AlertFeedback
-						status="error"
-						message={
-							'Failed to change password. Please try again later'
-						}
-					/>
-				)}
 			</StackLayout>
 		</StackLayout>
 	);

@@ -43,7 +43,7 @@ const MatchmakeSettingsForm = (
 				id,
 				match_settings: {
 					...matchSettings,
-					skills: values
+					skills: values.toString()
 				}
 			},
 			onCompleted: (_data) => {
@@ -123,6 +123,11 @@ const MatchmakeSettingsForm = (
 
 						<Checkbox
 							onChange={onToggleAll}
+							// isChecked={
+							// 	isAllSelected ||
+							// 	defaultValues.skills.split(',').length ===
+							// 		EXPERIENCE_SKILLS.length
+							// }
 							isChecked={isAllSelected}
 							w="full"
 							pb={2}

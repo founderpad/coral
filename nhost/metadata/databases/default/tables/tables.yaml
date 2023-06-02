@@ -18,7 +18,6 @@
 - "!include public_ideas.yaml"
 - "!include public_interested_ideas.yaml"
 - "!include public_match_settings.yaml"
-- "!include public_matchmake_preferences.yaml"
 - "!include public_message.yaml"
 - "!include public_message_thread.yaml"
 - "!include public_message_thread_users.yaml"

@@ -19,7 +19,6 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				as="main"
 				mx={{ base: 0, md: 'auto' }}
 				w={{ base: 'full', xl: '95ch' }}
-				// bg="white"
 				display="flex"
 				flexDirection="column"
 				flex={1}
@@ -34,17 +33,23 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				}}
 			>
 				{notification && (
-					<AlertFeedback
-						message={notification.message}
-						status={notification.status}
-						mb={4}
+					<BoxLayout
 						px={6}
+						p={2}
+						mb={4}
 						bg="white"
 						rounded={{ lg: 'md' }}
 						borderColor="fpLightGrey.900"
 						borderBottomWidth={{ xs: '1px', lg: 0 }}
 						borderWidth={{ lg: '1px' }}
-					/>
+					>
+						<AlertFeedback
+							message={notification.message}
+							status={notification.status}
+							showIcon
+							showClose
+						/>
+					</BoxLayout>
 				)}
 				{children}
 			</BoxLayout>

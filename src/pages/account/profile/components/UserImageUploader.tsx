@@ -1,53 +1,53 @@
 import { UserAvatar } from '@/components/shared';
 import ImageUploader from '@/components/shared/imageuploader/ImageUploader';
-import NotificationContext from '@/context/NotificationContext';
 import { useUpdateUserAvatarMutation } from '@/generated/api';
+import { useFileUploader } from '@/hooks/FileUpload';
 import { useAuth, useCurrentUser } from '@/hooks/auth';
-import { useFileUpload, useModalDrawer } from '@/hooks/util';
+import { useModalDrawer, useNotification } from '@/hooks/util';
 import { updateUserImage } from '@/slices/auth';
-import React, { useContext } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 
 const UserImageUploader = () => {
 	const dispatch = useDispatch();
 	const userId = useAuth().getUser()?.id;
-	const avatarUrl = useCurrentUser().avatarUrl;
-	const { addNotification } = useContext(NotificationContext);
-
+	const userAvatarUrl = useCurrentUser().avatarUrl;
+	const { addNotification } = useNotification();
 	const { closeModalDrawer } = useModalDrawer();
-
-	const { uploadAvatar } = useFileUpload();
-	// const { upload } = useFileUpload();
 	const [updateAvatar] = useUpdateUserAvatarMutation();
+	const { uploadSingleFile } = useFileUploader();
 
 	const onUpload = async (file: File) => {
-		const avatarUrl = await uploadAvatar({ file, bucketId: 'avatars' });
+		const avatarUrl = await uploadSingleFile({ file, bucketId: 'avatars' });
 
-		await updateAvatar({
-			variables: {
-				id: userId,
-				userDetails: {
-					avatarUrl
-				}
-			},
-			onCompleted: (_data) => {
-				if (avatarUrl) {
-					dispatch(updateUserImage(avatarUrl));
+		if (avatarUrl) {
+			await updateAvatar({
+				variables: {
+					id: userId,
+					userDetails: {
+						avatarUrl
+					}
+				},
+				onCompleted: (_data) => {
+					if (avatarUrl) {
+						dispatch(updateUserImage(avatarUrl));
+						addNotification({
+							message: 'Avatar successfully updated.',
+							status: 'success'
+						});
+					}
+					closeModalDrawer();
+				},
+				onError: () => {
 					addNotification({
-						message: 'Avatar successfully updated.',
-						status: 'success'
+						message:
+							'Failed to update avatar. Please try again later.',
+						status: 'error'
 					});
+					closeModalDrawer();
 				}
-				closeModalDrawer();
-			},
-			onError: () => {
-				addNotification({
-					message: 'Failed to update avatar. Please try again later.',
-					status: 'error'
-				});
-				closeModalDrawer();
-			}
-		});
+			});
+		}
 	};
 
 	return (
@@ -55,10 +55,10 @@ const UserImageUploader = () => {
 			title="Edit profile photo"
 			boxSize={{ base: 100, md: 120 }}
 			onUpload={onUpload}
-			defaultSrc={avatarUrl ?? undefined}
+			defaultSrc={userAvatarUrl}
 		>
 			<UserAvatar
-				src={avatarUrl ?? undefined}
+				src={userAvatarUrl}
 				boxSize={{ base: 100, md: 120 }}
 				aria-label="Edit profile picture"
 			/>

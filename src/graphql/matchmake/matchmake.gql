@@ -3,7 +3,7 @@ mutation UpdateMatchSettings(
 	$match_settings: match_settings_set_input!
 ) {
 	update_match_settings_by_pk(
-		pk_columns: { user_id: $id }
+		pk_columns: { userId: $id }
 		_set: $match_settings
 	) {
 		lookingFor
@@ -13,7 +13,7 @@ mutation UpdateMatchSettings(
 }
 
 query MatchSettings($id: uuid!) {
-	settings: match_settings_by_pk(user_id: $id) {
+	settings: match_settings_by_pk(userId: $id) {
 		...MatchSettingsFields
 	}
 }

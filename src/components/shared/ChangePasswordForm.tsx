@@ -1,9 +1,7 @@
-import { AlertFeedback } from '@/components/alert';
 import { SubmitButton } from '@/components/buttons';
 import BaseForm from '@/components/form/BaseForm';
 import { FormInput } from '@/components/form/inputs/FormField';
 import { useChangePassword } from '@/hooks/auth';
-import { useQueryParam } from '@/hooks/util';
 import schema from '@/validation/auth/changepassword/validationSchema';
 import React from 'react';
 
@@ -24,8 +22,6 @@ const defaultValues: TChangePasswordFields = {
 const ConfirmChangePasswordForm = (props: Props) => {
 	const { showPasswordLabel = false, showSubmit = false } = props;
 	const onChangePassword = useChangePassword();
-	const isChangeSuccess = useQueryParam('cp_success');
-	const isChangeError = useQueryParam('cp_error');
 
 	return (
 		<BaseForm<TChangePasswordFields, typeof schema>
@@ -57,24 +53,10 @@ const ConfirmChangePasswordForm = (props: Props) => {
 						}}
 						hideLimit={true}
 						errors={errors}
-						onClear={() => resetField('newPassword')}
+						onClear={resetField}
 					/>
 
-					{isChangeSuccess && (
-						<AlertFeedback
-							status="success"
-							message="Your password has been updated successfully"
-						/>
-					)}
-
-					{isChangeError && (
-						<AlertFeedback
-							status="error"
-							message="Failed to change password. Please try again later"
-						/>
-					)}
-
-					{!isChangeSuccess && showSubmit && (
+					{showSubmit && (
 						<SubmitButton
 							id="submit-reset-password"
 							name="submit-reset-password"
