@@ -31,7 +31,10 @@ const MatchmakeSettingsForm = (
 		isChecked,
 		onToggleAll,
 		isAllSelected
-	} = useCheckboxes(EXPERIENCE_SKILLS, matchmakeSettings.skills);
+	} = useCheckboxes(
+		EXPERIENCE_SKILLS,
+		matchmakeSettings.skills?.split(',') as []
+	);
 	const { __typename, ...rest } = matchmakeSettings;
 	const defaultValues = { ...rest };
 
