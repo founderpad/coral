@@ -1,21 +1,16 @@
 import { useMatchesQuery } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useAuth } from '@/hooks/auth';
-// import { Tag } from '@chakra-ui/react';
 import React from 'react';
 import LinkCard from '@/components/cards/LinkCard';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { Tag } from '@chakra-ui/react';
 import { NoResults } from '../NoResults';
 import { UserAvatarDetails } from '../UserAvatar';
+import { Label } from '@/components/labels';
 
 export const MatchContainer = () => {
 	const authUser = useCurrentUser();
-
-	// authUser.profile?.skills.reduce(function(obj: any, v: any) {
-	// 	obj[v] = 0;
-	// 	return obj;
-	//   }, {})
 
 	const { data, loading } = useMatchesQuery({
 		variables: {
@@ -29,6 +24,15 @@ export const MatchContainer = () => {
 
 	return (
 		<React.Fragment>
+			<Label>
+				I am <Tag>{authUser.matchSettings?.type?.toLowerCase()}</Tag>{' '}
+				and I am looking for somebody who is a{' '}
+				<Tag>{authUser.matchSettings?.lookingFor?.toLowerCase()}</Tag>{' '}
+				with the following skills:{' '}
+				{(authUser.profile?.skills as string[]).map((skill) => (
+					<Tag key={skill}>{skill.toLowerCase()}</Tag>
+				))}
+			</Label>
 			{!loading && hasResults < 1 ? (
 				<NoResults back />
 			) : (

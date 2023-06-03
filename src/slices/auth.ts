@@ -1,3 +1,4 @@
+import { TMatch_Settings } from '@/generated/api';
 import { TUsers, TUser_Address, TUser_Profile } from '@/generated/api';
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
@@ -65,6 +66,23 @@ const authSlice = createSlice({
 					avatarUrl: action.payload
 				};
 		},
+		updateUserMatchSettings(state, action: PayloadAction<TMatch_Settings>) {
+			const response = (action.payload as any)[
+				'update_match_settings_by_pk'
+			] as TMatch_Settings;
+
+			const { __typename, ...rest } = response;
+
+			if (state.user) {
+				state.user = {
+					...state.user,
+					matchSettings: {
+						...state.user.matchSettings,
+						...rest
+					}
+				};
+			}
+		},
 		addEsteemPoints(state, action: PayloadAction<number>) {
 			if (state.user) {
 				const currentPoints =
@@ -84,10 +102,10 @@ const authSlice = createSlice({
 
 export const {
 	setUser,
-	// clearUser,
 	setProfileComplete,
 	updateUserPersonalDetails,
 	updateUserImage,
+	updateUserMatchSettings,
 	addEsteemPoints
 } = authSlice.actions;
 export default authSlice.reducer;

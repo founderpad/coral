@@ -15,6 +15,7 @@ import {
 	TMatch_Settings_Set_Input,
 	useUpdateMatchSettingsMutation
 } from '@/generated/api';
+// import { useDispatch } from 'react-redux';
 
 const MatchmakeSettingsForm = (
 	matchmakeSettings: TMatchSettingsFieldsFragment
@@ -23,6 +24,7 @@ const MatchmakeSettingsForm = (
 	const { id } = useCurrentUser();
 	const [updateMatchmakeSettings] = useUpdateMatchSettingsMutation();
 	const { addNotification } = useNotification();
+	// const dispatch = useDispatch();
 
 	const {
 		clearValues,
@@ -56,6 +58,8 @@ const MatchmakeSettingsForm = (
 						'Your match preferences have been updated successfully.',
 					status: 'success'
 				});
+
+				// dispatch(updateUserMatchSettings(_data));
 			},
 			refetchQueries: [
 				{
