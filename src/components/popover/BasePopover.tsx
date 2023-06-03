@@ -26,7 +26,8 @@ export const BasePopover = (props: Props) => {
 		triggerEl,
 		title,
 		top = '12px',
-		showClose = true
+		showClose = true,
+		width
 	} = props;
 	const bg = useColorModeValue('white', 'gray.500');
 
@@ -42,7 +43,7 @@ export const BasePopover = (props: Props) => {
 					bg={bg}
 					top={top}
 					rounded="none"
-					w={{ base: '100vw', sm: 'auto' }}
+					w={width}
 					minWidth="300px"
 					display="flex"
 					overflowY="auto"

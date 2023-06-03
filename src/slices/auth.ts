@@ -26,7 +26,6 @@ const authSlice = createSlice({
 		// 	storage.removeItem('persist:root');
 		// },
 		setProfileComplete(state) {
-			// Ugly. Remove Redux asap
 			if (state.user?.profile)
 				state.user = {
 					...state.user,
@@ -67,21 +66,22 @@ const authSlice = createSlice({
 				};
 		},
 		updateUserMatchSettings(state, action: PayloadAction<TMatch_Settings>) {
-			const response = (action.payload as any)[
-				'update_match_settings_by_pk'
-			] as TMatch_Settings;
+			const response = action.payload;
 
 			const { __typename, ...rest } = response;
+
+			console.log('Action: ', rest);
 
 			if (state.user) {
 				state.user = {
 					...state.user,
 					matchSettings: {
-						...state.user.matchSettings,
 						...rest
 					}
 				};
 			}
+
+			console.log('user: ', state.user);
 		},
 		addEsteemPoints(state, action: PayloadAction<number>) {
 			if (state.user) {

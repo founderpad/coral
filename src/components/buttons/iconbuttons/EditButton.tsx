@@ -7,7 +7,6 @@ type Props = IconButtonProps & { htmlFor?: string };
 export const EditButton = (props: Props) => (
 	<IconButton
 		{...props}
-		aria-label="Edit"
 		variant="ghost"
 		colorScheme="gray"
 		fontSize="md"

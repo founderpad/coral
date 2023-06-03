@@ -32,7 +32,8 @@ const Match: NextPage = () => {
 			<DocumentTitle title="Match" />
 			<PageLayout
 				title="Your matches"
-				subtitle={`Here are the matches we have found for you based on your preferences`}
+				subtitle="Here are the matches we have found for you based on your preferences"
+				spacing={0}
 			>
 				<MatchContainer />
 			</PageLayout>

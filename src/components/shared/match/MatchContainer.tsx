@@ -1,13 +1,112 @@
 import { useMatchesQuery } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useAuth } from '@/hooks/auth';
-import React from 'react';
+import React, { memo } from 'react';
 import LinkCard from '@/components/cards/LinkCard';
 import { FlexLayout, StackLayout } from '@/components/layouts';
-import { Tag } from '@chakra-ui/react';
+import { Button, Tag } from '@chakra-ui/react';
 import { NoResults } from '../NoResults';
 import { UserAvatarDetails } from '../UserAvatar';
 import { Label } from '@/components/labels';
+import BasePopover from '@/components/popover/BasePopover';
+import { useMobile } from '@/hooks/util';
+
+const SkillsPopover = ({
+	value,
+	skillsList
+}: {
+	value: string;
+	skillsList: string[];
+}) => {
+	return (
+		<BasePopover
+			placement="bottom-start"
+			triggerEl={
+				<Button size="xs" variant="link">
+					{value}
+				</Button>
+			}
+		>
+			{skillsList.map((skill) => (
+				<Tag key={skill} size="sm" mr={1} mb={1}>
+					{skill}
+				</Tag>
+			))}
+		</BasePopover>
+	);
+};
+
+const LookingForSkills = memo(({ skills }: { skills: string }) => {
+	const skillsList = skills.split(',').map((skill) => skill.trim());
+	const firstThreeSkills = skillsList.slice(0, 3);
+	const remainingSkillsCount = skillsList.length - 3;
+
+	return (
+		<>
+			{firstThreeSkills.map((skill) => (
+				<Tag key={skill} size="sm">
+					{skill}
+				</Tag>
+			))}
+			{remainingSkillsCount > 0 && (
+				<SkillsPopover
+					value={` +${remainingSkillsCount} more`}
+					skillsList={skillsList}
+				/>
+			)}
+		</>
+	);
+});
+
+const UserPreferences = () => {
+	const authUser = useCurrentUser();
+	const isMobile = useMobile();
+
+	return (
+		<StackLayout
+			flexDirection={{ base: 'column', sm: 'row' }}
+			p={2}
+			spacing={{ base: 0, sm: 2 }}
+			alignItems={{ base: 'start', sm: 'center' }}
+			borderWidth="1px"
+			rounded="md"
+			direction="row"
+		>
+			{authUser.matchSettings?.type && (
+				<Tag size="sm">{authUser.matchSettings?.type}</Tag>
+			)}
+
+			{authUser.matchSettings?.lookingFor && (
+				<>
+					<Label fontSize="xs">Looking for</Label>
+					<Tag size="sm">{authUser.matchSettings?.lookingFor}</Tag>
+				</>
+			)}
+
+			{authUser.matchSettings?.skills && (
+				<>
+					{!isMobile ? (
+						<Label fontSize="xs">With skills</Label>
+					) : (
+						<SkillsPopover
+							value="With 20 skills"
+							skillsList={
+								authUser.matchSettings?.skills
+									.split(',')
+									.map((skill) => skill.trim()) ?? []
+							}
+						/>
+					)}
+					{!isMobile && (
+						<LookingForSkills
+							skills={authUser.matchSettings?.skills ?? ''}
+						/>
+					)}
+				</>
+			)}
+		</StackLayout>
+	);
+};
 
 export const MatchContainer = () => {
 	const authUser = useCurrentUser();
@@ -24,15 +123,7 @@ export const MatchContainer = () => {
 
 	return (
 		<React.Fragment>
-			<Label>
-				I am <Tag>{authUser.matchSettings?.type?.toLowerCase()}</Tag>{' '}
-				and I am looking for somebody who is a{' '}
-				<Tag>{authUser.matchSettings?.lookingFor?.toLowerCase()}</Tag>{' '}
-				with the following skills:{' '}
-				{(authUser.profile?.skills as string[]).map((skill) => (
-					<Tag key={skill}>{skill.toLowerCase()}</Tag>
-				))}
-			</Label>
+			<UserPreferences />
 			{!loading && hasResults < 1 ? (
 				<NoResults back />
 			) : (

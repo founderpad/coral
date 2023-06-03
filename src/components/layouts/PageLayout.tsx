@@ -12,6 +12,7 @@ type Props = Omit<BoxProps, 'border'> & {
 	back?: boolean;
 	border?: boolean;
 	position?: StackProps['position'];
+	spacing?: StackProps['spacing'];
 };
 
 export const PageLayout = (props: Props) => {
@@ -25,6 +26,8 @@ export const PageLayout = (props: Props) => {
 		back = false,
 		border = true,
 		position,
+		letterSpacing,
+		spacing = 8,
 		...rest
 	} = props;
 	const headerProps = {
@@ -39,7 +42,7 @@ export const PageLayout = (props: Props) => {
 	return (
 		<StackLayout
 			{...rest}
-			spacing={8}
+			spacing={spacing}
 			w="full"
 			rounded="md"
 			flex={1}

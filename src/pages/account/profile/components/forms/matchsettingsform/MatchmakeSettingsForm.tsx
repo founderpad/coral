@@ -12,10 +12,12 @@ import { useCurrentUser } from '@/hooks/auth';
 import {
 	MatchSettingsDocument,
 	TMatchSettingsFieldsFragment,
+	TMatch_Settings,
 	TMatch_Settings_Set_Input,
 	useUpdateMatchSettingsMutation
 } from '@/generated/api';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { updateUserMatchSettings } from '@/slices/auth';
 
 const MatchmakeSettingsForm = (
 	matchmakeSettings: TMatchSettingsFieldsFragment
@@ -24,7 +26,7 @@ const MatchmakeSettingsForm = (
 	const { id } = useCurrentUser();
 	const [updateMatchmakeSettings] = useUpdateMatchSettingsMutation();
 	const { addNotification } = useNotification();
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const {
 		clearValues,
@@ -51,7 +53,7 @@ const MatchmakeSettingsForm = (
 					skills: values.toString()
 				}
 			},
-			onCompleted: (_data) => {
+			onCompleted: (data) => {
 				closeModalDrawer();
 				addNotification({
 					message:
@@ -59,7 +61,11 @@ const MatchmakeSettingsForm = (
 					status: 'success'
 				});
 
-				// dispatch(updateUserMatchSettings(_data));
+				dispatch(
+					updateUserMatchSettings(
+						data.update_match_settings_by_pk as TMatch_Settings
+					)
+				);
 			},
 			refetchQueries: [
 				{

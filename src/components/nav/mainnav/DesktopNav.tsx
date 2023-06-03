@@ -104,6 +104,7 @@ const DesktopNav = memo(() => {
 								</Link>
 							</NextLink>
 						}
+						w={{ base: '100vw', sm: 'auto' }}
 					>
 						{navItem.items && (
 							<StackLayout
