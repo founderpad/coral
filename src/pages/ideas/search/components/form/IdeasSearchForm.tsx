@@ -12,12 +12,7 @@ import {
 	ALL_IDEA_STATUSES,
 	BY_IDEA_POPULARITY
 } from '@/utils/Constants';
-import {
-	buildParams,
-	deleteParam,
-	deleteParams,
-	navigateTo
-} from '@/utils/routerUtils';
+import { buildParams, deleteParams, navigateTo } from '@/utils/routerUtils';
 import React, { useCallback, useState } from 'react';
 import { Controller, UseFormReset, UseFormResetField } from 'react-hook-form';
 import { useQueryParam } from '@/hooks/util';
@@ -33,12 +28,26 @@ type TSearchFields = {
 	popular?: string;
 };
 
-// type StringOrBoolean<T extends string | boolean> = T;
-
 const IdeasSearchForm = () => {
 	const { closeModalDrawer } = useModalDrawer();
-	const [isNewIdea, setIsNewIdea] = useState<boolean | undefined>(undefined);
+	const [isNewIdea, setIsNewIdea] = useState<boolean | undefined>();
 	const [showClear, setShowClear] = useState(false);
+
+	const defaultField = useQueryParam<string>('field') || '';
+	const defaultName = useQueryParam<string>('name') || '';
+	const defaultIsNew = !!useQueryParam<string>('new') || undefined;
+	const defaultStatus = useQueryParam<string>('status') || '';
+	const defaultCountry = useQueryParam<string>('country') || '';
+	const defaultPopular = useQueryParam<string>('popular') || '';
+
+	const defaultValues: TSearchFields = {
+		field: defaultField,
+		name: defaultName,
+		new: defaultIsNew,
+		status: defaultStatus,
+		country: defaultCountry,
+		popular: defaultPopular
+	};
 
 	const onClick = (values: TSearchFields) => {
 		closeModalDrawer();
@@ -53,39 +62,25 @@ const IdeasSearchForm = () => {
 	const onClearNewIdeas = () => {
 		setIsNewIdea(false);
 		setShowClear(false);
-		deleteParam<TSearchFields>('new');
+		deleteParams<TSearchFields>(['new']);
 		navigateTo();
-	};
-
-	const defaultField = useQueryParam<string>('field') || '';
-	const defaultName = useQueryParam<string>('name') || '';
-	const defaultIsNew = !!useQueryParam<string>('new') || undefined;
-	const defaultStatus = useQueryParam<string>('status') || '';
-	const defaultCountry = useQueryParam<string>('country') || '';
-	const defaultPopular = useQueryParam<string>('popular') || '';
-
-	const defaultValues = {
-		field: defaultField,
-		name: defaultName,
-		new: defaultIsNew,
-		status: defaultStatus,
-		country: defaultCountry,
-		popular: defaultPopular
 	};
 
 	const onClearAll = useCallback(
 		(reset: UseFormReset<TSearchFields>, values: TSearchFields) => {
-			reset({
+			const defaultValues: Partial<TSearchFields> = {
 				field: '',
 				name: '',
 				country: '',
 				status: '',
 				popular: '',
 				new: false
-			});
+			};
 
+			reset(defaultValues);
 			setIsNewIdea(false);
 			deleteParams<TSearchFields>(values);
+			setShowClear(false);
 		},
 		[setIsNewIdea]
 	);
@@ -97,7 +92,7 @@ const IdeasSearchForm = () => {
 			defaultValue: string = ''
 		) => {
 			resetField(value, { defaultValue });
-			deleteParam<TSearchFields>(value);
+			deleteParams([value]);
 			navigateTo();
 		},
 		[]
@@ -205,13 +200,6 @@ const IdeasSearchForm = () => {
 										defaultChecked={!!Router.query['new']}
 										isChecked={isNewIdea}
 										borderColor="gray.200"
-										// sx={{
-										// 	'[data-checked]': {
-										// 		background: 'transparent',
-										// 		borderColor: 'gray.200',
-										// 		color: 'fpPrimary.300'
-										// 	}
-										// }}
 									>
 										<Label
 											color="fpGrey.900"

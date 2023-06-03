@@ -29,37 +29,36 @@ const navigateTo = (
 	);
 };
 
-/** Remove a single param */
-const deleteParam = <T extends TParam>(
-	key: keyof T & string,
+const deleteParams = <T extends TParam>(
+	values: T | (keyof T)[],
 	navigate = true
 ) => {
-	if (Router.query[key]) {
-		delete Router['query'][key];
-		if (navigate) navigateTo();
-	}
-};
+	const keys = Array.isArray(values) ? values : Object.keys(values);
 
-/** Remove multiple params */
-const deleteParams = <T extends TParam>(values: T) => {
-	for (const [key, value] of Object.entries(values)) {
-		if (!value) {
-			delete Router['query'][key];
+	for (const key of keys) {
+		const stringKey = String(key); // We need to do this as a key could be a boolean (checkbox)
+		if (stringKey in Router.query) {
+			delete Router.query[stringKey];
 		}
 	}
 
-	navigateTo();
-};
-
-/** Build parameters for the URL */
-const buildParams = <T extends TParam>(values: T) => {
-	const queryParams = JSON.parse(JSON.stringify(values));
-
-	for (const [key, value] of Object.entries(queryParams)) {
-		if (!value) delete queryParams[key];
+	if (navigate) {
+		navigateTo();
 	}
-
-	navigateTo(undefined, { ...queryParams });
 };
 
-export { navigateTo, deleteParam, deleteParams, buildParams };
+const buildParams = <T extends TParam>(values: T) => {
+	const queryParams: TParam = Object.entries(values).reduce(
+		(params, [key, value]) => {
+			if (value) {
+				return { ...params, [key]: value };
+			}
+			return params;
+		},
+		{}
+	);
+
+	navigateTo(undefined, queryParams);
+};
+
+export { navigateTo, deleteParams, buildParams };

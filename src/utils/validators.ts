@@ -1,4 +1,3 @@
-import { deleteParam, navigateTo, TParam } from './routerUtils';
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 import isYesterday from 'date-fns/isYesterday';
@@ -120,11 +119,6 @@ export const redirectTo = (error: boolean, param?: string, path?: string) => {
 		undefined,
 		{ shallow: true }
 	);
-};
-
-export const resetSearchField = <T extends TParam>(key: keyof T & string) => {
-	deleteParam<T>(key);
-	navigateTo();
 };
 
 export const percentageBoosted = (remainingCurrencyAmount: string) => {

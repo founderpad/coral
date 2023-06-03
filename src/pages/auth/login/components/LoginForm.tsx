@@ -4,12 +4,11 @@ import { BaseForm } from '@/components/form';
 import { FormInput } from '@/components/form/inputs/FormField';
 import SocialLogins from '@/components/shared/SocialLogins';
 import { useLogin } from '@/hooks/auth';
-// import { useQueryParam } from '@/hooks/util';
-import React, { useContext } from 'react';
+import React from 'react';
 import { TLoginFields } from '../../../../types/auth';
 import LoginFooter from './LoginFooter';
 import { schema } from '@/validation/auth/login/validationSchema';
-import NotificationContext from '@/context/NotificationContext';
+import { useNotification } from '@/hooks/util';
 
 const defaultValues: Record<string, string> & TLoginFields = {
 	email: '',
@@ -18,15 +17,10 @@ const defaultValues: Record<string, string> & TLoginFields = {
 
 const LoginForm = () => {
 	const { onLogin } = useLogin();
-	const { notification } = useContext(NotificationContext);
-	// const isVerifiedEmail = useQueryParam('type') === 'emailVerify';
+	const { notification } = useNotification();
 
 	return (
 		<React.Fragment>
-			{/* {isVerifiedEmail && (
-				<AlertFeedback message="Email address successfully verified" />
-			)} */}
-
 			<BaseForm<TLoginFields, typeof schema>
 				name="login-form"
 				onSubmit={onLogin}

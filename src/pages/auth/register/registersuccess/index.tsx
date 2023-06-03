@@ -15,11 +15,7 @@ const RegisterSuccess: NextPage = () => {
 	const firstName = decodeString(encodedFirstName) ?? '';
 
 	return (
-		<AuthLayout
-			header="Registration complete"
-			subheader="Get started by creating an account below"
-			title="Register"
-		>
+		<AuthLayout header="Registration complete" title="Register">
 			<StackLayout>
 				<Icon
 					as={IoRocketSharp}

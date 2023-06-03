@@ -16,7 +16,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  _text: any;
   bigint: any;
   bytea: any;
   citext: any;
@@ -83,19 +82,6 @@ export type TString_Comparison_Exp = {
   _regex?: InputMaybe<Scalars['String']>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars['String']>;
-};
-
-/** Boolean expression to compare columns of type "_text". All fields are combined with logical 'AND'. */
-export type T_Text_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['_text']>;
-  _gt?: InputMaybe<Scalars['_text']>;
-  _gte?: InputMaybe<Scalars['_text']>;
-  _in?: InputMaybe<Array<Scalars['_text']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['_text']>;
-  _lte?: InputMaybe<Scalars['_text']>;
-  _neq?: InputMaybe<Scalars['_text']>;
-  _nin?: InputMaybe<Array<Scalars['_text']>>;
 };
 
 /** The activity table of all user actions */
@@ -5677,7 +5663,7 @@ export type TJsonb_Comparison_Exp = {
 export type TMatch_Settings = {
   __typename?: 'match_settings';
   lookingFor?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['_text']>;
+  skills?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   userId: Scalars['uuid'];
 };
@@ -5710,7 +5696,7 @@ export type TMatch_Settings_Bool_Exp = {
   _not?: InputMaybe<TMatch_Settings_Bool_Exp>;
   _or?: InputMaybe<Array<TMatch_Settings_Bool_Exp>>;
   lookingFor?: InputMaybe<TString_Comparison_Exp>;
-  skills?: InputMaybe<T_Text_Comparison_Exp>;
+  skills?: InputMaybe<TString_Comparison_Exp>;
   type?: InputMaybe<TString_Comparison_Exp>;
   userId?: InputMaybe<TUuid_Comparison_Exp>;
 };
@@ -5723,7 +5709,7 @@ export type TMatch_Settings_Constraint =
 /** input type for inserting data into table "match_settings" */
 export type TMatch_Settings_Insert_Input = {
   lookingFor?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['_text']>;
+  skills?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
@@ -5732,6 +5718,7 @@ export type TMatch_Settings_Insert_Input = {
 export type TMatch_Settings_Max_Fields = {
   __typename?: 'match_settings_max_fields';
   lookingFor?: Maybe<Scalars['String']>;
+  skills?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['uuid']>;
 };
@@ -5740,6 +5727,7 @@ export type TMatch_Settings_Max_Fields = {
 export type TMatch_Settings_Min_Fields = {
   __typename?: 'match_settings_min_fields';
   lookingFor?: Maybe<Scalars['String']>;
+  skills?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['uuid']>;
 };
@@ -5794,7 +5782,7 @@ export type TMatch_Settings_Select_Column =
 /** input type for updating data in table "match_settings" */
 export type TMatch_Settings_Set_Input = {
   lookingFor?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['_text']>;
+  skills?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
@@ -5810,7 +5798,7 @@ export type TMatch_Settings_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type TMatch_Settings_Stream_Cursor_Value_Input = {
   lookingFor?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['_text']>;
+  skills?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
@@ -14306,16 +14294,16 @@ export type TUpdateMatchSettingsMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateMatchSettingsMutation = { update_match_settings_by_pk?: { __typename?: 'match_settings', lookingFor?: string | null, skills?: any | null, type?: string | null } | null };
+export type TUpdateMatchSettingsMutation = { update_match_settings_by_pk?: { __typename?: 'match_settings', lookingFor?: string | null, skills?: string | null, type?: string | null } | null };
 
 export type TMatchSettingsQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type TMatchSettingsQuery = { settings?: { __typename?: 'match_settings', type?: string | null, skills?: any | null, lookingFor?: string | null } | null };
+export type TMatchSettingsQuery = { settings?: { __typename?: 'match_settings', type?: string | null, skills?: string | null, lookingFor?: string | null } | null };
 
-export type TMatchSettingsFieldsFragment = { __typename?: 'match_settings', type?: string | null, skills?: any | null, lookingFor?: string | null };
+export type TMatchSettingsFieldsFragment = { __typename?: 'match_settings', type?: string | null, skills?: string | null, lookingFor?: string | null };
 
 export type TMatchesQueryVariables = Exact<{
   currentUserId: Scalars['uuid'];
@@ -14406,7 +14394,7 @@ export type TUserQueryVariables = Exact<{
 }>;
 
 
-export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl: string, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean, skills?: any | null } | null, esteemPointsCurrency?: { __typename?: 'user_esteem_points_currency', points: number, currency: any } | null, matchSettings?: { __typename?: 'match_settings', lookingFor?: string | null, type?: string | null, skills?: any | null } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
+export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl: string, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean, skills?: any | null } | null, esteemPointsCurrency?: { __typename?: 'user_esteem_points_currency', points: number, currency: any } | null, matchSettings?: { __typename?: 'match_settings', lookingFor?: string | null, type?: string | null, skills?: string | null } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
 export type TUsersQueryVariables = Exact<{
   where?: InputMaybe<TUser_Profile_Bool_Exp>;
@@ -16403,8 +16391,6 @@ export type TResolversTypes = {
   Int_comparison_exp: TInt_Comparison_Exp;
   String: ResolverTypeWrapper<Scalars['String']>;
   String_comparison_exp: TString_Comparison_Exp;
-  _text: ResolverTypeWrapper<Scalars['_text']>;
-  _text_comparison_exp: T_Text_Comparison_Exp;
   activity: ResolverTypeWrapper<TActivity>;
   activity_aggregate: ResolverTypeWrapper<TActivity_Aggregate>;
   activity_aggregate_fields: ResolverTypeWrapper<TActivity_Aggregate_Fields>;
@@ -17317,8 +17303,6 @@ export type TResolversParentTypes = {
   Int_comparison_exp: TInt_Comparison_Exp;
   String: Scalars['String'];
   String_comparison_exp: TString_Comparison_Exp;
-  _text: Scalars['_text'];
-  _text_comparison_exp: T_Text_Comparison_Exp;
   activity: TActivity;
   activity_aggregate: TActivity_Aggregate;
   activity_aggregate_fields: TActivity_Aggregate_Fields;
@@ -18113,10 +18097,6 @@ export type TCachedDirectiveArgs = {
 };
 
 export type TCachedDirectiveResolver<Result, Parent, ContextType = any, Args = TCachedDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export interface T_TextScalarConfig extends GraphQLScalarTypeConfig<TResolversTypes['_text'], any> {
-  name: '_text';
-}
 
 export type TActivityResolvers<ContextType = any, ParentType extends TResolversParentTypes['activity'] = TResolversParentTypes['activity']> = {
   createdAt?: Resolver<TResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -19531,7 +19511,7 @@ export interface TJsonbScalarConfig extends GraphQLScalarTypeConfig<TResolversTy
 
 export type TMatch_SettingsResolvers<ContextType = any, ParentType extends TResolversParentTypes['match_settings'] = TResolversParentTypes['match_settings']> = {
   lookingFor?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  skills?: Resolver<Maybe<TResolversTypes['_text']>, ParentType, ContextType>;
+  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -19552,6 +19532,7 @@ export type TMatch_Settings_Aggregate_FieldsResolvers<ContextType = any, ParentT
 
 export type TMatch_Settings_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['match_settings_max_fields'] = TResolversParentTypes['match_settings_max_fields']> = {
   lookingFor?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -19559,6 +19540,7 @@ export type TMatch_Settings_Max_FieldsResolvers<ContextType = any, ParentType ex
 
 export type TMatch_Settings_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['match_settings_min_fields'] = TResolversParentTypes['match_settings_min_fields']> = {
   lookingFor?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -20966,7 +20948,6 @@ export type TWithdrawal_Requests_Variance_FieldsResolvers<ContextType = any, Par
 };
 
 export type TResolvers<ContextType = any> = {
-  _text?: GraphQLScalarType;
   activity?: TActivityResolvers<ContextType>;
   activity_aggregate?: TActivity_AggregateResolvers<ContextType>;
   activity_aggregate_fields?: TActivity_Aggregate_FieldsResolvers<ContextType>;

@@ -4,7 +4,6 @@ import { setUser } from '@/slices/auth';
 import { RootState } from '@/utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { TRegisterFormFields, TLoginFields } from 'src/types/auth';
-import { useErrorNotification } from './toast';
 import Router from 'next/router';
 import { useContext, useEffect } from 'react';
 import { encodeString, redirectTo } from '@/utils/validators';
@@ -220,7 +219,7 @@ export const useGetAuthUser = () => {
 };
 
 export const useLogout = (): (() => Promise<void>) => {
-	const showErrorNotification = useErrorNotification();
+	// const showErrorNotification = useErrorNotification();
 	return async (): Promise<void> => {
 		try {
 			await auth.signOut();
@@ -229,10 +228,10 @@ export const useLogout = (): (() => Promise<void>) => {
 			// });
 			// await client.clearStore();
 		} catch (error) {
-			showErrorNotification({
-				title: 'Failed to logout',
-				description: 'Please try again later.'
-			});
+			// showErrorNotification({
+			// 	title: 'Failed to logout',
+			// 	description: 'Please try again later.'
+			// });
 		}
 	};
 };

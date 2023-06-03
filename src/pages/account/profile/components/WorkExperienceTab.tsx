@@ -23,7 +23,7 @@ const WorkExperienceTab = () => {
 		if (!isProfileComplete) {
 			addNotification({
 				message: 'Provide some details for more accurate matches',
-				status: 'error'
+				status: 'info'
 			});
 		}
 	}, [addNotification, isProfileComplete]);
