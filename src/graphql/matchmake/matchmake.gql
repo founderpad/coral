@@ -48,26 +48,6 @@ fragment MatchSettingsFields on match_settings {
 # 	}
 # }
 
-# query Matches($currentUserId: uuid!, $lookingFor: String!, $skills: jsonb) {
-# 	users(
-# 		where: {
-# 			id: { _neq: $currentUserId }
-# 			matchSettings: {
-# 				type: { _eq: $lookingFor }
-# 				skills: { _has_keys_any: $skills }
-# 			}
-# 		}
-# 	) {
-# 		displayName
-# 		id
-# 		avatarUrl
-# 		matchSettings {
-# 			type
-# 			skills
-# 		}
-# 	}
-# }
-
 query Matches(
 	$currentUserId: uuid!
 	$userLookingFor: String!
@@ -79,6 +59,8 @@ query Matches(
 			matchSettings: { type: { _ilike: $userLookingFor } }
 			profile: { skills: { _has_keys_any: $userProfileSkills } }
 		}
+		# order_by: { lastSeen: desc, matchSettings: { skills: asc } }
+		order_by: { lastSeen: desc, matchSettings: { skills: asc } }
 	) {
 		displayName
 		id

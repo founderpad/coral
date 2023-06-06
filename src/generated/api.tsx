@@ -15488,6 +15488,7 @@ export const MatchesDocument = gql`
     query Matches($currentUserId: uuid!, $userLookingFor: String!, $userProfileSkills: [String!]) {
   users(
     where: {id: {_neq: $currentUserId}, matchSettings: {type: {_ilike: $userLookingFor}}, profile: {skills: {_has_keys_any: $userProfileSkills}}}
+    order_by: {lastSeen: desc, matchSettings: {skills: asc}}
   ) {
     displayName
     id

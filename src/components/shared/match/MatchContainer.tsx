@@ -91,9 +91,6 @@ const UserPreferences = () => {
 					) : (
 						<SkillsPopover
 							value="With 20 skills"
-							// skillsList={formatStringObjArrayForUi(
-							// 	authUser.matchSettings?.skills
-							// )}
 							skillsList={authUser.matchSettings?.skills}
 						/>
 					)}
@@ -133,50 +130,9 @@ export const MatchContainer = () => {
 							<LinkCard
 								href={`/user/${user?.id}`}
 								footer={
-									<StackLayout direction="row" spacing="2">
-										{user.profile?.skills.map(
-											(skill: string) => {
-												if (
-													authUser.profile?.skills.includes(
-														skill
-													)
-												) {
-													return (
-														<Tag
-															size="sm"
-															key={skill}
-															bgColor={
-																authUser.profile?.skills.includes(
-																	skill
-																)
-																	? 'fpPrimary.500'
-																	: 'inherit'
-															}
-															color={
-																authUser.profile?.skills.includes(
-																	skill
-																)
-																	? 'white'
-																	: 'initial'
-															}
-														>
-															{skill}
-														</Tag>
-													);
-												} else {
-													return (
-														<Tag
-															size="sm"
-															key={skill}
-															variant="subtle"
-														>
-															{skill}
-														</Tag>
-													);
-												}
-											}
-										)}
-									</StackLayout>
+									<MatchedSkills
+										skills={user.profile?.skills}
+									/>
 								}
 							>
 								<UserAvatarDetails
@@ -187,7 +143,7 @@ export const MatchContainer = () => {
 											alignItems="center"
 											flexDirection="column"
 										>
-											<Tag>
+											<Tag size="sm">
 												{user.matchSettings?.type}
 											</Tag>
 										</FlexLayout>
@@ -200,6 +156,34 @@ export const MatchContainer = () => {
 				</StackLayout>
 			)}
 		</React.Fragment>
+	);
+};
+
+const MatchedSkills = ({ skills }: { skills: string[] }) => {
+	const authUser = useCurrentUser();
+	return (
+		<StackLayout direction="row" spacing="2">
+			{skills.map((skill) => {
+				if (authUser.profile?.skills.includes(skill)) {
+					return (
+						<Tag
+							size="sm"
+							key={skill}
+							bgColor={'fpPrimary.500'}
+							color={'white'}
+						>
+							{skill}
+						</Tag>
+					);
+				} else {
+					return (
+						<Tag size="sm" key={skill} variant="subtle">
+							{skill}
+						</Tag>
+					);
+				}
+			})}
+		</StackLayout>
 	);
 };
 
