@@ -23,7 +23,7 @@ const LogoutModal = () => {
 			if (event === 'SIGNED_OUT') {
 				closeModalDrawer();
 				dispatch(logout());
-				client.resetStore();
+				client.clearStore();
 				// Router.push('/loggedout');
 			}
 		});

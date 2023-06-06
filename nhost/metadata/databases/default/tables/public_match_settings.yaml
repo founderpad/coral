@@ -15,10 +15,10 @@ select_permissions:
   - role: user
     permission:
       columns:
-        - user_id
         - looking_for
-        - type
         - skills
+        - type
+        - user_id
       filter: {}
 update_permissions:
   - role: user

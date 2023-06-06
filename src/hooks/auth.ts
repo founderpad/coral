@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TRegisterFormFields, TLoginFields } from 'src/types/auth';
 import Router from 'next/router';
 import { useContext, useEffect } from 'react';
-import { encodeString, redirectTo } from '@/utils/validators';
+import { encodeString } from '@/utils/validators';
 import ModalDrawerContext from '@/context/ModalDrawerContext';
 import { auth } from '@/pages/_app';
 import {
@@ -79,6 +79,7 @@ export const useLogin = () => {
 					status: 'error'
 				});
 			}
+
 			if (response.error) {
 				throw new Error(
 					'Failed to login. Incorrect email and/or password.'
@@ -199,16 +200,23 @@ export const useChangePassword = () => {
 
 export const useGetAuthUser = () => {
 	const dispatch = useDispatch();
+	const { addNotification } = useNotification();
 
 	const getUser = useUserLazyQuery({
 		variables: {
 			userId: useClaim()
 		},
-		onError: () => {
-			redirectTo(true);
+		onError: (error) => {
+			// redirectTo(true);
+			addNotification({
+				message: error.message,
+				status: 'error'
+			});
+			console.log('error: ', error);
 			throw new Error('Failed to get user');
 		},
 		onCompleted: (data) => {
+			console.log('Auth user: ', data);
 			const user = data.user as TUsers;
 			dispatch(setUser(user));
 			Router.replace('/ideas/search?page=1');

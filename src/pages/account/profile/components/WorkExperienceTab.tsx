@@ -1,23 +1,26 @@
-import { Tag } from '@chakra-ui/react';
 import { SubmitButton } from '@/components/buttons';
 import { Label } from '@/components/labels';
-import { FlexLayout, StackLayout } from '@/components/layouts';
-import { AppDivider, Loading, TitleEditAction } from '@/components/shared';
+import { StackLayout } from '@/components/layouts';
+import {
+	AppDivider,
+	Loading,
+	SkillsBadges,
+	TitleEditAction
+} from '@/components/shared';
 import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
 import OverviewTags from '@/components/shared/OverviewTags';
 import useUserProfile from '@/hooks/user';
-import { useModalDrawer } from '@/hooks/util';
-import React, { memo, useContext, useEffect } from 'react';
+import { useModalDrawer, useNotification } from '@/hooks/util';
+import React, { useEffect } from 'react';
 import useProfileFragment from '../../../../fragments/UserProfileFragment';
 import ExperienceForm from './forms/experienceform/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
-import NotificationContext from '@/context/NotificationContext';
 
 const WorkExperienceTab = () => {
 	const userProfile = useProfileFragment();
 	const { openModalDrawer } = useModalDrawer();
 	const isProfileComplete = useUserProfile()?.isComplete;
-	const { addNotification } = useContext(NotificationContext);
+	const { addNotification } = useNotification();
 
 	useEffect(() => {
 		if (!isProfileComplete) {
@@ -124,17 +127,5 @@ const WorkExperienceTab = () => {
 		</StackLayout>
 	);
 };
-
-const SkillsBadges = memo(({ skills }: { skills: Array<string> }) => {
-	return (
-		<FlexLayout flexWrap="wrap" direction="row" alignItems="center">
-			{skills?.map((skill) => (
-				<Tag fontSize="xs" size="sm" mr={1} mb={1} key={skill}>
-					{skill}
-				</Tag>
-			))}
-		</FlexLayout>
-	);
-});
 
 export default WorkExperienceTab;

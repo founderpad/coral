@@ -20,13 +20,12 @@ import {
 } from '@/utils/Constants';
 import { Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import React, { useContext } from 'react';
+import React from 'react';
 import { FormSelect, FormTextarea } from '@/components/form/inputs/FormField';
 import { FlexLayout, StackLayout } from '@/components/layouts';
-import { useCheckboxes, useModalDrawer } from '@/hooks/util';
+import { useCheckboxes, useModalDrawer, useNotification } from '@/hooks/util';
 import { SimpleGrid } from '@chakra-ui/react';
 import schema from '@/validation/profile/experience/validationSchema';
-import NotificationContext from '@/context/NotificationContext';
 
 const ExperienceForm = (userProfile: TUser_Profile) => {
 	const dispatch = useDispatch();
@@ -39,13 +38,19 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 		onToggleAll,
 		isChecked,
 		isAllSelected
-	} = useCheckboxes(EXPERIENCE_SKILLS, userProfile.skills);
-
-	const defaultValues = { ...rest };
+	} = useCheckboxes(
+		EXPERIENCE_SKILLS,
+		// formatStringObjArrayForUi(userProfile.skills)
+		userProfile.skills
+	);
+	const defaultValues = {
+		...rest
+		// skills: formatStringObjArrayForUi(rest.skills)
+	};
 
 	const { closeModalDrawer } = useModalDrawer();
 	const [updateUserProfileMutation] = useUpdateUserProfileMutation();
-	const { addNotification } = useContext(NotificationContext);
+	const { addNotification } = useNotification();
 
 	const onUpdateExperience = (experienceValues: TUser_Profile_Set_Input) => {
 		updateUserProfileMutation({
@@ -53,6 +58,7 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				id,
 				user_profile: {
 					...experienceValues,
+					// skills: formatArrayForDb(skills),
 					skills: values,
 					isComplete: true
 				}

@@ -8,7 +8,6 @@ import '@fontsource/inter/700.css';
 import { useTrackAnalytics } from '@/hooks/util';
 import { NhostProvider, NhostClient } from '@nhost/nextjs';
 import { NhostApolloProvider } from '@nhost/react-apollo';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import DrawerProvider from '@/provider/DrawerProvider';
 import IdeaCycleProvider from '@/provider/IdeaCycleProvider';
 import ModalDrawerProvider from '@/provider/ModalDrawerProvider';
@@ -37,11 +36,11 @@ const auth = nhost.auth;
 const storage = nhost.storage;
 const functions = nhost.functions;
 
-const paypalOptions = {
-	'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ?? '',
-	currency: 'GBP',
-	intent: 'capture'
-};
+// const paypalOptions = {
+// 	'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ?? '',
+// 	currency: 'GBP',
+// 	intent: 'capture'
+// };
 
 /**
  * The @App component is the entry point into the application. It wraps the application with the @see ChakraProvider which is a TailwindCSS inspired utility-first
@@ -113,25 +112,23 @@ const App = ({ Component, pageProps }: AppProps) => {
 				>
 					<Provider store={store}>
 						<PersistGate persistor={persistor}>
-							<PayPalScriptProvider options={paypalOptions}>
-								<ChakraProvider theme={theme} resetCSS>
-									<NotificationProvider>
-										<ModalProvider>
-											<DrawerProvider>
-												<ModalDrawerProvider>
-													<IdeaCycleProvider>
-														<BaseModal />
-														<BaseModalDrawer />
-														<Component
-															{...pageProps}
-														/>
-													</IdeaCycleProvider>
-												</ModalDrawerProvider>
-											</DrawerProvider>
-										</ModalProvider>
-									</NotificationProvider>
-								</ChakraProvider>
-							</PayPalScriptProvider>
+							{/* <PayPalScriptProvider options={paypalOptions}> */}
+							<ChakraProvider theme={theme} resetCSS>
+								<NotificationProvider>
+									<ModalProvider>
+										<DrawerProvider>
+											<ModalDrawerProvider>
+												<IdeaCycleProvider>
+													<BaseModal />
+													<BaseModalDrawer />
+													<Component {...pageProps} />
+												</IdeaCycleProvider>
+											</ModalDrawerProvider>
+										</DrawerProvider>
+									</ModalProvider>
+								</NotificationProvider>
+							</ChakraProvider>
+							{/* </PayPalScriptProvider> */}
 						</PersistGate>
 					</Provider>
 				</NhostApolloProvider>

@@ -18,6 +18,9 @@ import {
 } from '@/generated/api';
 import { useDispatch } from 'react-redux';
 import { updateUserMatchSettings } from '@/slices/auth';
+// import  formatArrayForDb
+//  formatStringObjArrayForUi
+//  '@/utils/validators';
 
 const MatchmakeSettingsForm = (
 	matchmakeSettings: TMatchSettingsFieldsFragment
@@ -37,10 +40,14 @@ const MatchmakeSettingsForm = (
 		isAllSelected
 	} = useCheckboxes(
 		EXPERIENCE_SKILLS,
-		matchmakeSettings.skills?.split(',') as []
+		matchmakeSettings.skills
+		// formatStringObjArrayForUi(matchmakeSettings.skills)
 	);
 	const { __typename, ...rest } = matchmakeSettings;
-	const defaultValues = { ...rest };
+	const defaultValues = {
+		...rest
+		// skills: formatStringObjArrayForUi(rest.skills)
+	};
 
 	const onUpdateMatchmakeSettings = (
 		matchSettings: TMatch_Settings_Set_Input
@@ -50,7 +57,8 @@ const MatchmakeSettingsForm = (
 				id,
 				match_settings: {
 					...matchSettings,
-					skills: values.toString()
+					// skills: formatArrayForDb(values)
+					skills: values
 				}
 			},
 			onCompleted: (data) => {
@@ -136,11 +144,6 @@ const MatchmakeSettingsForm = (
 
 						<Checkbox
 							onChange={onToggleAll}
-							// isChecked={
-							// 	isAllSelected ||
-							// 	defaultValues.skills.split(',').length ===
-							// 		EXPERIENCE_SKILLS.length
-							// }
 							isChecked={isAllSelected}
 							w="full"
 							pb={2}

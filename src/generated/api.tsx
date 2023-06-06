@@ -5663,9 +5663,15 @@ export type TJsonb_Comparison_Exp = {
 export type TMatch_Settings = {
   __typename?: 'match_settings';
   lookingFor?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['String']>;
+  skills?: Maybe<Scalars['jsonb']>;
   type?: Maybe<Scalars['String']>;
   userId: Scalars['uuid'];
+};
+
+
+/** columns and relationships of "match_settings" */
+export type TMatch_SettingsSkillsArgs = {
+  path?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregated selection of "match_settings" */
@@ -5690,13 +5696,18 @@ export type TMatch_Settings_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type TMatch_Settings_Append_Input = {
+  skills?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** Boolean expression to filter rows from the table "match_settings". All fields are combined with a logical 'AND'. */
 export type TMatch_Settings_Bool_Exp = {
   _and?: InputMaybe<Array<TMatch_Settings_Bool_Exp>>;
   _not?: InputMaybe<TMatch_Settings_Bool_Exp>;
   _or?: InputMaybe<Array<TMatch_Settings_Bool_Exp>>;
   lookingFor?: InputMaybe<TString_Comparison_Exp>;
-  skills?: InputMaybe<TString_Comparison_Exp>;
+  skills?: InputMaybe<TJsonb_Comparison_Exp>;
   type?: InputMaybe<TString_Comparison_Exp>;
   userId?: InputMaybe<TUuid_Comparison_Exp>;
 };
@@ -5706,10 +5717,25 @@ export type TMatch_Settings_Constraint =
   /** unique or primary key constraint on columns "user_id" */
   | 'match_settings_pkey';
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type TMatch_Settings_Delete_At_Path_Input = {
+  skills?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type TMatch_Settings_Delete_Elem_Input = {
+  skills?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type TMatch_Settings_Delete_Key_Input = {
+  skills?: InputMaybe<Scalars['String']>;
+};
+
 /** input type for inserting data into table "match_settings" */
 export type TMatch_Settings_Insert_Input = {
   lookingFor?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['jsonb']>;
   type?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
@@ -5718,7 +5744,6 @@ export type TMatch_Settings_Insert_Input = {
 export type TMatch_Settings_Max_Fields = {
   __typename?: 'match_settings_max_fields';
   lookingFor?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['uuid']>;
 };
@@ -5727,7 +5752,6 @@ export type TMatch_Settings_Max_Fields = {
 export type TMatch_Settings_Min_Fields = {
   __typename?: 'match_settings_min_fields';
   lookingFor?: Maybe<Scalars['String']>;
-  skills?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['uuid']>;
 };
@@ -5768,6 +5792,11 @@ export type TMatch_Settings_Pk_Columns_Input = {
   userId: Scalars['uuid'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type TMatch_Settings_Prepend_Input = {
+  skills?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** select columns of table "match_settings" */
 export type TMatch_Settings_Select_Column =
   /** column name */
@@ -5782,7 +5811,7 @@ export type TMatch_Settings_Select_Column =
 /** input type for updating data in table "match_settings" */
 export type TMatch_Settings_Set_Input = {
   lookingFor?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['jsonb']>;
   type?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
@@ -5798,7 +5827,7 @@ export type TMatch_Settings_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type TMatch_Settings_Stream_Cursor_Value_Input = {
   lookingFor?: InputMaybe<Scalars['String']>;
-  skills?: InputMaybe<Scalars['String']>;
+  skills?: InputMaybe<Scalars['jsonb']>;
   type?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
@@ -5815,6 +5844,16 @@ export type TMatch_Settings_Update_Column =
   | 'userId';
 
 export type TMatch_Settings_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<TMatch_Settings_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<TMatch_Settings_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<TMatch_Settings_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<TMatch_Settings_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<TMatch_Settings_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<TMatch_Settings_Set_Input>;
   /** filter the rows which have to be updated */
@@ -8322,6 +8361,11 @@ export type TMutation_RootUpdate_Interested_Ideas_ManyArgs = {
 
 /** mutation root */
 export type TMutation_RootUpdate_Match_SettingsArgs = {
+  _append?: InputMaybe<TMatch_Settings_Append_Input>;
+  _delete_at_path?: InputMaybe<TMatch_Settings_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<TMatch_Settings_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<TMatch_Settings_Delete_Key_Input>;
+  _prepend?: InputMaybe<TMatch_Settings_Prepend_Input>;
   _set?: InputMaybe<TMatch_Settings_Set_Input>;
   where: TMatch_Settings_Bool_Exp;
 };
@@ -8329,6 +8373,11 @@ export type TMutation_RootUpdate_Match_SettingsArgs = {
 
 /** mutation root */
 export type TMutation_RootUpdate_Match_Settings_By_PkArgs = {
+  _append?: InputMaybe<TMatch_Settings_Append_Input>;
+  _delete_at_path?: InputMaybe<TMatch_Settings_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<TMatch_Settings_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<TMatch_Settings_Delete_Key_Input>;
+  _prepend?: InputMaybe<TMatch_Settings_Prepend_Input>;
   _set?: InputMaybe<TMatch_Settings_Set_Input>;
   pk_columns: TMatch_Settings_Pk_Columns_Input;
 };
@@ -14294,21 +14343,21 @@ export type TUpdateMatchSettingsMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateMatchSettingsMutation = { update_match_settings_by_pk?: { __typename?: 'match_settings', lookingFor?: string | null, skills?: string | null, type?: string | null } | null };
+export type TUpdateMatchSettingsMutation = { update_match_settings_by_pk?: { __typename?: 'match_settings', lookingFor?: string | null, skills?: any | null, type?: string | null } | null };
 
 export type TMatchSettingsQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type TMatchSettingsQuery = { settings?: { __typename?: 'match_settings', type?: string | null, skills?: string | null, lookingFor?: string | null } | null };
+export type TMatchSettingsQuery = { settings?: { __typename?: 'match_settings', type?: string | null, skills?: any | null, lookingFor?: string | null } | null };
 
-export type TMatchSettingsFieldsFragment = { __typename?: 'match_settings', type?: string | null, skills?: string | null, lookingFor?: string | null };
+export type TMatchSettingsFieldsFragment = { __typename?: 'match_settings', type?: string | null, skills?: any | null, lookingFor?: string | null };
 
 export type TMatchesQueryVariables = Exact<{
   currentUserId: Scalars['uuid'];
-  lookingFor: Scalars['String'];
-  skills?: InputMaybe<Scalars['jsonb']>;
+  userLookingFor: Scalars['String'];
+  userProfileSkills?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
 }>;
 
 
@@ -14394,7 +14443,7 @@ export type TUserQueryVariables = Exact<{
 }>;
 
 
-export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl: string, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean, skills?: any | null } | null, esteemPointsCurrency?: { __typename?: 'user_esteem_points_currency', points: number, currency: any } | null, matchSettings?: { __typename?: 'match_settings', lookingFor?: string | null, type?: string | null, skills?: string | null } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
+export type TUserQuery = { user?: { __typename?: 'users', createdAt: any, lastSeen?: any | null, email?: any | null, displayName: string, id: any, avatarUrl: string, profile?: { __typename?: 'user_profile', id: any, pronouns?: string | null, customPronouns?: string | null, isComplete: boolean, skills?: any | null } | null, esteemPointsCurrency?: { __typename?: 'user_esteem_points_currency', points: number, currency: any } | null, matchSettings?: { __typename?: 'match_settings', lookingFor?: string | null, type?: string | null, skills?: any | null } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
 export type TUsersQueryVariables = Exact<{
   where?: InputMaybe<TUser_Profile_Bool_Exp>;
@@ -15436,9 +15485,9 @@ export function refetchMatchSettingsQuery(variables: TMatchSettingsQueryVariable
       return { query: MatchSettingsDocument, variables: variables }
     }
 export const MatchesDocument = gql`
-    query Matches($currentUserId: uuid!, $lookingFor: String!, $skills: jsonb) {
+    query Matches($currentUserId: uuid!, $userLookingFor: String!, $userProfileSkills: [String!]) {
   users(
-    where: {id: {_neq: $currentUserId}, matchSettings: {type: {_eq: $lookingFor}}}
+    where: {id: {_neq: $currentUserId}, matchSettings: {type: {_ilike: $userLookingFor}}, profile: {skills: {_has_keys_any: $userProfileSkills}}}
   ) {
     displayName
     id
@@ -15466,8 +15515,8 @@ export const MatchesDocument = gql`
  * const { data, loading, error } = useMatchesQuery({
  *   variables: {
  *      currentUserId: // value for 'currentUserId'
- *      lookingFor: // value for 'lookingFor'
- *      skills: // value for 'skills'
+ *      userLookingFor: // value for 'userLookingFor'
+ *      userProfileSkills: // value for 'userProfileSkills'
  *   },
  * });
  */
@@ -16938,8 +16987,12 @@ export type TResolversTypes = {
   match_settings: ResolverTypeWrapper<TMatch_Settings>;
   match_settings_aggregate: ResolverTypeWrapper<TMatch_Settings_Aggregate>;
   match_settings_aggregate_fields: ResolverTypeWrapper<TMatch_Settings_Aggregate_Fields>;
+  match_settings_append_input: TMatch_Settings_Append_Input;
   match_settings_bool_exp: TMatch_Settings_Bool_Exp;
   match_settings_constraint: TMatch_Settings_Constraint;
+  match_settings_delete_at_path_input: TMatch_Settings_Delete_At_Path_Input;
+  match_settings_delete_elem_input: TMatch_Settings_Delete_Elem_Input;
+  match_settings_delete_key_input: TMatch_Settings_Delete_Key_Input;
   match_settings_insert_input: TMatch_Settings_Insert_Input;
   match_settings_max_fields: ResolverTypeWrapper<TMatch_Settings_Max_Fields>;
   match_settings_min_fields: ResolverTypeWrapper<TMatch_Settings_Min_Fields>;
@@ -16948,6 +17001,7 @@ export type TResolversTypes = {
   match_settings_on_conflict: TMatch_Settings_On_Conflict;
   match_settings_order_by: TMatch_Settings_Order_By;
   match_settings_pk_columns_input: TMatch_Settings_Pk_Columns_Input;
+  match_settings_prepend_input: TMatch_Settings_Prepend_Input;
   match_settings_select_column: TMatch_Settings_Select_Column;
   match_settings_set_input: TMatch_Settings_Set_Input;
   match_settings_stream_cursor_input: TMatch_Settings_Stream_Cursor_Input;
@@ -17783,7 +17837,11 @@ export type TResolversParentTypes = {
   match_settings: TMatch_Settings;
   match_settings_aggregate: TMatch_Settings_Aggregate;
   match_settings_aggregate_fields: TMatch_Settings_Aggregate_Fields;
+  match_settings_append_input: TMatch_Settings_Append_Input;
   match_settings_bool_exp: TMatch_Settings_Bool_Exp;
+  match_settings_delete_at_path_input: TMatch_Settings_Delete_At_Path_Input;
+  match_settings_delete_elem_input: TMatch_Settings_Delete_Elem_Input;
+  match_settings_delete_key_input: TMatch_Settings_Delete_Key_Input;
   match_settings_insert_input: TMatch_Settings_Insert_Input;
   match_settings_max_fields: TMatch_Settings_Max_Fields;
   match_settings_min_fields: TMatch_Settings_Min_Fields;
@@ -17792,6 +17850,7 @@ export type TResolversParentTypes = {
   match_settings_on_conflict: TMatch_Settings_On_Conflict;
   match_settings_order_by: TMatch_Settings_Order_By;
   match_settings_pk_columns_input: TMatch_Settings_Pk_Columns_Input;
+  match_settings_prepend_input: TMatch_Settings_Prepend_Input;
   match_settings_set_input: TMatch_Settings_Set_Input;
   match_settings_stream_cursor_input: TMatch_Settings_Stream_Cursor_Input;
   match_settings_stream_cursor_value_input: TMatch_Settings_Stream_Cursor_Value_Input;
@@ -19511,7 +19570,7 @@ export interface TJsonbScalarConfig extends GraphQLScalarTypeConfig<TResolversTy
 
 export type TMatch_SettingsResolvers<ContextType = any, ParentType extends TResolversParentTypes['match_settings'] = TResolversParentTypes['match_settings']> = {
   lookingFor?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
+  skills?: Resolver<Maybe<TResolversTypes['jsonb']>, ParentType, ContextType, Partial<TMatch_SettingsSkillsArgs>>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<TResolversTypes['uuid'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -19532,7 +19591,6 @@ export type TMatch_Settings_Aggregate_FieldsResolvers<ContextType = any, ParentT
 
 export type TMatch_Settings_Max_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['match_settings_max_fields'] = TResolversParentTypes['match_settings_max_fields']> = {
   lookingFor?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -19540,7 +19598,6 @@ export type TMatch_Settings_Max_FieldsResolvers<ContextType = any, ParentType ex
 
 export type TMatch_Settings_Min_FieldsResolvers<ContextType = any, ParentType extends TResolversParentTypes['match_settings_min_fields'] = TResolversParentTypes['match_settings_min_fields']> = {
   lookingFor?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
-  skills?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<TResolversTypes['String']>, ParentType, ContextType>;
   userId?: Resolver<Maybe<TResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;

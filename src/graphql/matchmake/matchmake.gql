@@ -68,14 +68,16 @@ fragment MatchSettingsFields on match_settings {
 # 	}
 # }
 
-query Matches($currentUserId: uuid!, $lookingFor: String!, $skills: jsonb) {
+query Matches(
+	$currentUserId: uuid!
+	$userLookingFor: String!
+	$userProfileSkills: [String!]
+) {
 	users(
 		where: {
 			id: { _neq: $currentUserId }
-			matchSettings: {
-				type: { _eq: $lookingFor }
-				# skills: { _has_keys_any: $skills }
-			}
+			matchSettings: { type: { _ilike: $userLookingFor } }
+			profile: { skills: { _has_keys_any: $userProfileSkills } }
 		}
 	) {
 		displayName

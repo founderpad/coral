@@ -10,6 +10,7 @@ import { UserAvatarDetails } from '../UserAvatar';
 import { Label } from '@/components/labels';
 import BasePopover from '@/components/popover/BasePopover';
 import { useMobile } from '@/hooks/util';
+// import { formatStringObjArrayForUi } from '@/utils/validators';
 
 const SkillsPopover = ({
 	value,
@@ -36,10 +37,10 @@ const SkillsPopover = ({
 	);
 };
 
-const LookingForSkills = memo(({ skills }: { skills: string }) => {
-	const skillsList = skills.split(',').map((skill) => skill.trim());
-	const firstThreeSkills = skillsList.slice(0, 3);
-	const remainingSkillsCount = skillsList.length - 3;
+const LookingForSkills = memo(({ skills }: { skills: string[] }) => {
+	// const skillsList = formatStringObjArrayForUi(skills);
+	const firstThreeSkills = skills.slice(0, 3);
+	const remainingSkillsCount = skills.length - 3;
 
 	return (
 		<>
@@ -51,7 +52,7 @@ const LookingForSkills = memo(({ skills }: { skills: string }) => {
 			{remainingSkillsCount > 0 && (
 				<SkillsPopover
 					value={` +${remainingSkillsCount} more`}
-					skillsList={skillsList}
+					skillsList={skills}
 				/>
 			)}
 		</>
@@ -90,11 +91,10 @@ const UserPreferences = () => {
 					) : (
 						<SkillsPopover
 							value="With 20 skills"
-							skillsList={
-								authUser.matchSettings?.skills
-									.split(',')
-									.map((skill) => skill.trim()) ?? []
-							}
+							// skillsList={formatStringObjArrayForUi(
+							// 	authUser.matchSettings?.skills
+							// )}
+							skillsList={authUser.matchSettings?.skills}
 						/>
 					)}
 					{!isMobile && (
@@ -114,8 +114,8 @@ export const MatchContainer = () => {
 	const { data, loading } = useMatchesQuery({
 		variables: {
 			currentUserId: useAuth().getUser()?.id,
-			lookingFor: authUser.matchSettings?.type ?? '',
-			skills: authUser.profile?.skills ?? []
+			userLookingFor: authUser.matchSettings?.lookingFor ?? '',
+			userProfileSkills: authUser.matchSettings?.skills ?? []
 		}
 	});
 
@@ -135,7 +135,7 @@ export const MatchContainer = () => {
 								footer={
 									<StackLayout direction="row" spacing="2">
 										{user.profile?.skills.map(
-											(skill: any) => {
+											(skill: string) => {
 												if (
 													authUser.profile?.skills.includes(
 														skill

@@ -67,10 +67,7 @@ const authSlice = createSlice({
 		},
 		updateUserMatchSettings(state, action: PayloadAction<TMatch_Settings>) {
 			const response = action.payload;
-
 			const { __typename, ...rest } = response;
-
-			console.log('Action: ', rest);
 
 			if (state.user) {
 				state.user = {
@@ -80,8 +77,6 @@ const authSlice = createSlice({
 					}
 				};
 			}
-
-			console.log('user: ', state.user);
 		},
 		addEsteemPoints(state, action: PayloadAction<number>) {
 			if (state.user) {

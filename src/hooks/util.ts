@@ -75,7 +75,10 @@ export const useMobileNav = () => {
 	return { isOpen, onToggle };
 };
 
-export const useCheckboxes = (allValues: string[], initialValues = []) => {
+export const useCheckboxes = (
+	allValues: string[],
+	initialValues: string[] = []
+) => {
 	const [values, setValues] = useState<string[]>(initialValues ?? []);
 	const isAllSelected = values.length === allValues.length;
 

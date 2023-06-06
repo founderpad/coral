@@ -21,5 +21,7 @@ export {
 	UserAvatarDetails
 } from './UserAvatar';
 
+export { SkillsBadges } from './SkillsBadges';
+
 export * from './fileuploader';
 export * from './match';

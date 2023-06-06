@@ -132,3 +132,17 @@ export const percentageBoosted = (remainingCurrencyAmount: string) => {
 
 	return Math.floor(100 - parseFloat(percentage));
 };
+
+export const formatArrayForDb = <T>(values: T[]) => {
+	// return JSON.stringify(values).replace('[', '{').replace(']', '}');
+	// console.log('value: ', values);
+	return `{${values.join(', ')}}`;
+};
+
+// export const formatStringObjArrayForUi = (value: string) => {
+// 	if (!value) return [];
+// 	return value
+// 		?.slice(1, -1)
+// 		.split(', ')
+// 		.map((item) => item.trim());
+// };
