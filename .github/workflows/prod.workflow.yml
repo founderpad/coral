@@ -64,7 +64,9 @@ jobs:
             - name: Run build and tests
               run: yarn build
               env:
-                  NEXT_PUBLIC_BACKEND: ${{ secrets.HASURA_BACKEND_PRODUCTION }}
+                  # NEXT_PUBLIC_BACKEND: ${{ secrets.HASURA_BACKEND_PRODUCTION }}
+                  NEXT_PUBLIC_NHOST_SUBDOMAIN: ${{ secrets.NEXT_PUBLIC_NHOST_SUBDOMAIN }}
+                  NEXT_PUBLIC_NHOST_REGION: ${{ secrets.NEXT_PUBLIC_NHOST_REGION }}
 
             # - name: Run tests against Vercel production preview URL
             #   env:
