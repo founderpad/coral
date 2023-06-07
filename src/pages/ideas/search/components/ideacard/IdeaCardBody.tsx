@@ -79,7 +79,7 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 				>
 					{field}
 				</Tag>
-				{isBoosted && (
+				{/* {isBoosted && (
 					<Tag
 						fontSize="11px"
 						size="sm"
@@ -94,7 +94,7 @@ export const IdeaCardBodyBadges = (idea: TIdeaCardBody) => {
 						)}
 						% boosted
 					</Tag>
-				)}
+				)} */}
 			</StackLayout>
 			{/* <Tag
 				h="fit-content"

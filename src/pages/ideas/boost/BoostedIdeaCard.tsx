@@ -1,10 +1,10 @@
 import BaseHeading from '@/components/heading/BaseHeading';
 import { Label } from '@/components/labels';
-import { CaptionLabel } from '@/components/labels/Label';
+// import { CaptionLabel } from '@/components/labels/Label';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
 import { TBoostedIdeaFieldsFragment } from '@/generated/api';
-import { formatDate, percentageBoosted } from '@/utils/validators';
+import { percentageBoosted } from '@/utils/validators';
 import React from 'react';
 import BoostProgress from './BoostProgress';
 
@@ -56,11 +56,11 @@ const BoostedIdeaCard = (boostedIdea: TBoostedIdeaFieldsFragment) => (
 			>
 				{boostedIdea.idea?.name}
 			</BaseHeading>
-			<CaptionLabel mx="auto">
+			{/* <CaptionLabel mx="auto">
 				Boosted {formatDate(boostedIdea.createdAt, false, false, false)}
-			</CaptionLabel>
+			</CaptionLabel> */}
 		</FlexLayout>
-		<BoostedIdeaCardFooter {...boostedIdea} />
+		{/* <BoostedIdeaCardFooter {...boostedIdea} /> */}
 	</StackLayout>
 );
 
