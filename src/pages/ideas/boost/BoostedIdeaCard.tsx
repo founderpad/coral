@@ -1,37 +1,37 @@
 import BaseHeading from '@/components/heading/BaseHeading';
-import { Label } from '@/components/labels';
+// import { Label } from '@/components/labels';
 // import { CaptionLabel } from '@/components/labels/Label';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
 import { TBoostedIdeaFieldsFragment } from '@/generated/api';
-import { percentageBoosted } from '@/utils/validators';
+// import { percentageBoosted } from '@/utils/validators';
 import React from 'react';
-import BoostProgress from './BoostProgress';
+// import BoostProgress from './BoostProgress';
 
-const BoostedIdeaCardFooter = (boostedIdea: TBoostedIdeaFieldsFragment) => {
-	const remainingCurrencyAmount: string =
-		boostedIdea?.remainingCurrencyAmount;
+// const BoostedIdeaCardFooter = (boostedIdea: TBoostedIdeaFieldsFragment) => {
+// 	const remainingCurrencyAmount: string =
+// 		boostedIdea?.remainingCurrencyAmount;
 
-	return (
-		<StackLayout>
-			<BoostProgress remainingCurrencyAmount={remainingCurrencyAmount} />
-			<Label
-				color={
-					percentageBoosted(remainingCurrencyAmount) === 100
-						? 'green.300'
-						: 'purple.500'
-				}
-				fontSize="small"
-				textAlign="center"
-				fontWeight="medium"
-			>
-				{percentageBoosted(remainingCurrencyAmount) === 100
-					? 'Boost complete'
-					: `${boostedIdea?.remainingCurrencyAmount} remaining`}
-			</Label>
-		</StackLayout>
-	);
-};
+// 	return (
+// 		<StackLayout>
+// 			<BoostProgress remainingCurrencyAmount={remainingCurrencyAmount} />
+// 			<Label
+// 				color={
+// 					percentageBoosted(remainingCurrencyAmount) === 100
+// 						? 'green.300'
+// 						: 'purple.500'
+// 				}
+// 				fontSize="small"
+// 				textAlign="center"
+// 				fontWeight="medium"
+// 			>
+// 				{percentageBoosted(remainingCurrencyAmount) === 100
+// 					? 'Boost complete'
+// 					: `${boostedIdea?.remainingCurrencyAmount} remaining`}
+// 			</Label>
+// 		</StackLayout>
+// 	);
+// };
 
 const BoostedIdeaCard = (boostedIdea: TBoostedIdeaFieldsFragment) => (
 	<StackLayout

@@ -81,7 +81,7 @@ export const useFileUploader = () => {
 
 	const uploadFiles = useMemo(
 		() => async (filesWithBucketId: FileWithBucketId[]) => {
-			const results = await Promise.all(
+			return await Promise.all(
 				filesWithBucketId.map(async (fileWithBucket) => {
 					const { bucketId, file } = fileWithBucket;
 					const response = await storage.upload({
