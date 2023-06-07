@@ -29,12 +29,12 @@ const PostComment = () => {
 			ideaId: idea?.id
 		},
 		update(cache, mutationResult) {
-			console.log('cache 1: ', cache);
+			// console.log('cache 1: ', cache);
 			cache.modify({
 				fields: {
 					v_comments: (previous, { toReference }) => {
-						console.log('previous: ', previous);
-						console.log('mutationResult: ', mutationResult);
+						// console.log('previous: ', previous);
+						// console.log('mutationResult: ', mutationResult);
 
 						return [
 							...previous,

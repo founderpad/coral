@@ -212,11 +212,9 @@ export const useGetAuthUser = () => {
 				message: error.message,
 				status: 'error'
 			});
-			console.log('error: ', error);
 			throw new Error('Failed to get user');
 		},
 		onCompleted: (data) => {
-			console.log('Auth user: ', data);
 			const user = data.user as TUsers;
 			dispatch(setUser(user));
 			Router.replace('/ideas/search?page=1');

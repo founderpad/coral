@@ -93,8 +93,6 @@ export const useFileUploader = () => {
 					return response;
 				})
 			);
-
-			console.log('results: ', results);
 		},
 		[]
 	);
