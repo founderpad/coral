@@ -15,8 +15,8 @@ import React from 'react';
 import { SwitchField } from '@/components/input';
 import { StackLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
-import { useDispatch } from 'react-redux';
-import { addEsteemPoints } from '@/slices/auth';
+// import { useDispatch } from 'react-redux';
+// import { addEsteemPoints } from '@/slices/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 import schema from '@/validation/idea/create/validationSchema';
 
@@ -33,7 +33,7 @@ const defaultValues = {
 
 const CreateIdeaForm = () => {
 	const user = useAuth().getUser();
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const showNotification = useSuccessNotification();
 
 	const [createIdeaMutation] = useCreateIdeaMutation();
@@ -55,7 +55,7 @@ const CreateIdeaForm = () => {
 					}
 				});
 
-				dispatch(addEsteemPoints(50));
+				// dispatch(addEsteemPoints(50));
 				showNotification({
 					title: '+50 Esteem Points',
 					description: 'You have earned 50 Esteem Points'

@@ -6,15 +6,15 @@ import { useAuth } from '@/hooks/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 import { event } from '@/lib/ga';
 import useIdea from '@/pages/ideas/idea/query/ideaQuery';
-import { addEsteemPoints } from '@/slices/auth';
+// import { addEsteemPoints } from '@/slices/auth';
 import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import WriteInput from './WriteInput';
 
 const PostComment = () => {
 	const [value, setValue] = useState('');
 	const user = useAuth().getUser();
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const showNotification = useSuccessNotification();
 
 	const { idea } = useIdea() ?? {};
@@ -107,7 +107,7 @@ const PostComment = () => {
 			// });
 
 			if (user?.id !== idea?.userId) {
-				dispatch(addEsteemPoints(10));
+				// dispatch(addEsteemPoints(10));
 				showNotification({
 					title: '+10 Esteem Points',
 					description: 'You have earned 10 Esteem Points'
