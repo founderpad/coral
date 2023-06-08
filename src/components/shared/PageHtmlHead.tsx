@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-type PageHeadProps = {
+export type PageHeadProps = {
 	title: string;
 	pageSlug: string;
 	description: string;

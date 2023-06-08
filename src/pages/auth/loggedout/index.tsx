@@ -11,7 +11,14 @@ const LoggedOut: NextPage = () => {
 	if (userId) return <NotFound />;
 
 	return (
-		<AuthLayout title="Logged out" header="Logged out">
+		<AuthLayout
+			header="Logged out"
+			headProps={{
+				title: 'Logged out',
+				pageSlug: '/loggedout',
+				description: 'You have logged out successfully.'
+			}}
+		>
 			<BaseLink
 				title="Go to login"
 				href="/login"

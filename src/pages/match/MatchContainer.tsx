@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/auth';
 import React, { memo } from 'react';
 import LinkCard from '@/components/cards/LinkCard';
 import { FlexLayout, StackLayout } from '@/components/layouts';
-import { Button, Tag } from '@chakra-ui/react';
+import { Button, SimpleGrid, Tag } from '@chakra-ui/react';
 import { NoResults } from '../../components/shared/NoResults';
 import { UserAvatarDetails } from '../../components/shared/UserAvatar';
 import { Label } from '@/components/labels';
@@ -67,6 +67,7 @@ const UserPreferences = () => {
 		<StackLayout
 			flexDirection={{ base: 'column', sm: 'row' }}
 			p={2}
+			mb={4}
 			spacing={{ base: 0, sm: 2 }}
 			alignItems={{ base: 'start', sm: 'center' }}
 			borderWidth="1px"
@@ -124,10 +125,118 @@ export const MatchContainer = () => {
 			{!loading && hasResults < 1 ? (
 				<NoResults back />
 			) : (
-				<StackLayout>
+				<SimpleGrid columns={2} gap={6}>
 					{data?.users?.map((user) => (
 						<React.Fragment key={user?.id}>
-							<LinkCard href={`/user/${user?.id}`}>
+							<LinkCard
+								href={`/user/${user?.id}`}
+								cardProps={{ borderWidth: 1 }}
+							>
+								<UserAvatarDetails
+									src={user.avatarUrl ?? undefined}
+									title={user?.displayName}
+									subtitle={
+										<FlexLayout
+											alignItems="center"
+											flexDirection="column"
+										>
+											<Tag size="sm">
+												{user.matchSettings?.type}
+											</Tag>
+										</FlexLayout>
+									}
+									size="md"
+								/>
+								<MatchedSkills skills={user.profile?.skills} />
+							</LinkCard>
+							<LinkCard
+								href={`/user/${user?.id}`}
+								cardProps={{ borderWidth: 1 }}
+							>
+								<UserAvatarDetails
+									src={user.avatarUrl ?? undefined}
+									title={user?.displayName}
+									subtitle={
+										<FlexLayout
+											alignItems="center"
+											flexDirection="column"
+										>
+											<Tag size="sm">
+												{user.matchSettings?.type}
+											</Tag>
+										</FlexLayout>
+									}
+									size="md"
+								/>
+								<MatchedSkills skills={user.profile?.skills} />
+							</LinkCard>
+							<LinkCard
+								href={`/user/${user?.id}`}
+								cardProps={{ borderWidth: 1 }}
+							>
+								<UserAvatarDetails
+									src={user.avatarUrl ?? undefined}
+									title={user?.displayName}
+									subtitle={
+										<FlexLayout
+											alignItems="center"
+											flexDirection="column"
+										>
+											<Tag size="sm">
+												{user.matchSettings?.type}
+											</Tag>
+										</FlexLayout>
+									}
+									size="md"
+								/>
+								<MatchedSkills skills={user.profile?.skills} />
+							</LinkCard>
+							<LinkCard
+								href={`/user/${user?.id}`}
+								cardProps={{ borderWidth: 1 }}
+							>
+								<UserAvatarDetails
+									src={user.avatarUrl ?? undefined}
+									title={user?.displayName}
+									subtitle={
+										<FlexLayout
+											alignItems="center"
+											flexDirection="column"
+										>
+											<Tag size="sm">
+												{user.matchSettings?.type}
+											</Tag>
+										</FlexLayout>
+									}
+									size="md"
+								/>
+								<MatchedSkills skills={user.profile?.skills} />
+							</LinkCard>
+							<LinkCard
+								href={`/user/${user?.id}`}
+								cardProps={{ borderWidth: 1 }}
+							>
+								<UserAvatarDetails
+									src={user.avatarUrl ?? undefined}
+									title={user?.displayName}
+									subtitle={
+										<FlexLayout
+											alignItems="center"
+											flexDirection="column"
+										>
+											<Tag size="sm">
+												{user.matchSettings?.type}
+											</Tag>
+										</FlexLayout>
+									}
+									size="md"
+								/>
+								<MatchedSkills skills={user.profile?.skills} />
+							</LinkCard>
+							<LinkCard
+								href={`/user/${user?.id}`}
+								cardProps={{ borderWidth: '1px' }}
+							>
 								<UserAvatarDetails
 									src={user.avatarUrl ?? undefined}
 									title={user?.displayName}
@@ -147,7 +256,7 @@ export const MatchContainer = () => {
 							</LinkCard>
 						</React.Fragment>
 					))}
-				</StackLayout>
+				</SimpleGrid>
 			)}
 		</React.Fragment>
 	);

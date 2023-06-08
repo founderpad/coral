@@ -14231,18 +14231,6 @@ export type TFollowUserMutationVariables = Exact<{
 
 export type TFollowUserMutation = { insert_user_followers_one?: { __typename?: 'user_followers', followingId: any, followerId: any } | null };
 
-export type TUserFieldsFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
-
-export type TUserFieldsWithEmailFragment = { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
-
-export type TUserAddressFragment = { __typename?: 'user_address', location?: string | null, country?: string | null };
-
-export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
-
-export type TMessageUserFragment = { __typename?: 'users', avatarUrl: string, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null };
-
-export type TThreadUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl: string };
-
 export type TCreateIdeaMutationVariables = Exact<{
   idea: TIdeas_Insert_Input;
 }>;
@@ -14424,6 +14412,24 @@ export type TCreateReportMutationVariables = Exact<{
 
 export type TCreateReportMutation = { insert_report_one?: { __typename?: 'report', id: any } | null };
 
+export type TUserFieldsFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
+
+export type TUserFieldsWithEmailFragment = { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
+
+export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
+
+export type TMessageUserFragment = { __typename?: 'users', avatarUrl: string, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null };
+
+export type TThreadUserFragment = { __typename?: 'users', id: any, displayName: string, avatarUrl: string };
+
+export type TUserProfileFragment = { __typename?: 'user_profile', availability?: string | null, background?: string | null, status?: string | null, startups?: string | null, businessDescription?: string | null, specialistIndustry?: string | null, statement?: string | null, skills?: any | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null };
+
+export type TUserAddressFragment = { __typename?: 'user_address', location?: string | null, country?: string | null };
+
+export type TUserPersonalDetailsFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null };
+
+export type TUserWithProfileFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, profile?: { __typename?: 'user_profile', availability?: string | null, background?: string | null, status?: string | null, startups?: string | null, businessDescription?: string | null, specialistIndustry?: string | null, statement?: string | null, skills?: any | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
+
 export type TUserSocialsQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -14436,7 +14442,7 @@ export type TUserProfileDetailsQueryVariables = Exact<{
 }>;
 
 
-export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null, profile?: { __typename?: 'user_profile', availability?: string | null, background?: string | null, status?: string | null, startups?: string | null, businessDescription?: string | null, specialistIndustry?: string | null, statement?: string | null, skills?: any | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null } | null } | null };
+export type TUserProfileDetailsQuery = { user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, profile?: { __typename?: 'user_profile', availability?: string | null, background?: string | null, status?: string | null, startups?: string | null, businessDescription?: string | null, specialistIndustry?: string | null, statement?: string | null, skills?: any | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null } | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
 export type TUserQueryVariables = Exact<{
   userId: Scalars['uuid'];
@@ -14552,38 +14558,6 @@ export const CommentFieldsFragmentDoc = gql`
   }
 }
     ${UserFieldsFragmentDoc}`;
-export const UserSearchFragmentDoc = gql`
-    fragment UserSearch on user_profile {
-  skills
-  startups
-  availability
-  specialistIndustry
-  status
-  objective
-  pronouns
-  customPronouns
-  user {
-    ...UserFields
-  }
-}
-    ${UserFieldsFragmentDoc}`;
-export const ThreadUserFragmentDoc = gql`
-    fragment ThreadUser on users {
-  id
-  displayName
-  avatarUrl
-}
-    `;
-export const MessageUserFragmentDoc = gql`
-    fragment MessageUser on users {
-  ...ThreadUser
-  avatarUrl
-  profile {
-    pronouns
-    customPronouns
-  }
-}
-    ${ThreadUserFragmentDoc}`;
 export const BoostedIdeaFieldsFragmentDoc = gql`
     fragment BoostedIdeaFields on boosted_ideas {
   ideaId
@@ -14686,6 +14660,75 @@ export const NotificationFieldsFragmentDoc = gql`
   createdAt
 }
     `;
+export const UserSearchFragmentDoc = gql`
+    fragment UserSearch on user_profile {
+  skills
+  startups
+  availability
+  specialistIndustry
+  status
+  objective
+  pronouns
+  customPronouns
+  user {
+    ...UserFields
+  }
+}
+    ${UserFieldsFragmentDoc}`;
+export const ThreadUserFragmentDoc = gql`
+    fragment ThreadUser on users {
+  id
+  displayName
+  avatarUrl
+}
+    `;
+export const MessageUserFragmentDoc = gql`
+    fragment MessageUser on users {
+  ...ThreadUser
+  avatarUrl
+  profile {
+    pronouns
+    customPronouns
+  }
+}
+    ${ThreadUserFragmentDoc}`;
+export const UserPersonalDetailsFragmentDoc = gql`
+    fragment UserPersonalDetails on users {
+  displayName
+  id
+  avatarUrl
+  createdAt
+  lastSeen
+}
+    `;
+export const UserProfileFragmentDoc = gql`
+    fragment UserProfile on user_profile {
+  availability
+  background
+  status
+  startups
+  businessDescription
+  specialistIndustry
+  statement
+  skills
+  objective
+  pronouns
+  customPronouns
+}
+    `;
+export const UserWithProfileFragmentDoc = gql`
+    fragment UserWithProfile on users {
+  ...UserPersonalDetails
+  profile {
+    ...UserProfile
+  }
+  address {
+    ...UserAddress
+  }
+}
+    ${UserPersonalDetailsFragmentDoc}
+${UserProfileFragmentDoc}
+${UserAddressFragmentDoc}`;
 export const UserActivityDocument = gql`
     query UserActivity($userId: uuid!) {
   activity(where: {userId: {_eq: $userId}}, order_by: {createdAt: desc}) {
@@ -15899,30 +15942,10 @@ export function refetchUserSocialsQuery(variables: TUserSocialsQueryVariables) {
 export const UserProfileDetailsDocument = gql`
     query UserProfileDetails($userId: uuid!) {
   user(id: $userId) {
-    displayName
-    avatarUrl
-    createdAt
-    lastSeen
-    address {
-      location
-      country
-    }
-    profile {
-      availability
-      background
-      status
-      startups
-      businessDescription
-      specialistIndustry
-      statement
-      skills
-      objective
-      pronouns
-      customPronouns
-    }
+    ...UserWithProfile
   }
 }
-    `;
+    ${UserWithProfileFragmentDoc}`;
 
 /**
  * __useUserProfileDetailsQuery__

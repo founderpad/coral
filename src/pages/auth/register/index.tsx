@@ -10,7 +10,11 @@ const Register: NextPage = () => {
 	return (
 		<AuthLayout
 			header="Register an account to get started"
-			title="Register"
+			headProps={{
+				title: 'Register',
+				pageSlug: '/register',
+				description: 'Register an account and get started!'
+			}}
 		>
 			<RegisterForm />
 		</AuthLayout>

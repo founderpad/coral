@@ -10,7 +10,11 @@ const ResetPassword: NextPage = () => {
 		<AuthLayout
 			header="Reset your password"
 			// subheader="Enter your email address and we'll send you instructions to reset your password"
-			title="Forgotten password"
+			headProps={{
+				title: 'Reset password',
+				pageSlug: '/resetpassword',
+				description: 'Reset your password'
+			}}
 		>
 			<ResetPasswordForm />
 		</AuthLayout>

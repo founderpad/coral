@@ -44,7 +44,14 @@ const Login: NextPage = () => {
 	}, [changePasswordHash]);
 
 	return (
-		<AuthLayout header="Sign in to founderpad" title="Log in">
+		<AuthLayout
+			header="Sign in to founderpad"
+			headProps={{
+				title: 'Login',
+				pageSlug: '/login',
+				description: 'Login to your account.'
+			}}
+		>
 			<LoginForm />
 		</AuthLayout>
 	);

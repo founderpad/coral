@@ -1,20 +1,20 @@
 import { Heading } from '@chakra-ui/layout';
-import { DocumentTitle } from '@/components/shared';
 import FounderpadLogo from '@/components/shared/FounderpadLogo';
 import React from 'react';
 import { FlexLayout } from './FlexLayout';
 import { StackLayout } from './StackLayout';
+import { PageHeadProps, PageHtmlHead } from '../shared';
 
 interface Props {
 	header: string;
 	children: React.ReactNode;
-	title: string;
+	headProps: PageHeadProps;
 }
 
-const AuthLayout = ({ header, children, title }: Props) => {
+const AuthLayout = ({ header, children, headProps }: Props) => {
 	return (
 		<>
-			<DocumentTitle title={title} />
+			<PageHtmlHead {...headProps} />
 			{/* <div id="fb-root"></div> */}
 
 			<StackLayout

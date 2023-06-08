@@ -1,4 +1,4 @@
-import { FlexProps } from '@chakra-ui/react';
+import { StackProps } from '@chakra-ui/react';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
 import React from 'react';
@@ -7,14 +7,14 @@ interface Props {
 	href: string;
 	children: React.ReactNode[] | React.ReactNode;
 	footer?: React.ReactNode;
-	padding?: FlexProps['padding'];
+	cardProps?: StackProps;
 }
 
 const LinkCard = (props: Props) => {
 	const { href, children, footer } = props;
 
 	return (
-		<StackLayout flex={1} spacing={4} w="full">
+		<StackLayout flex={1} spacing={4} w="full" {...props.cardProps}>
 			<FlexLayout
 				flexDirection="column"
 				as={BaseLink}

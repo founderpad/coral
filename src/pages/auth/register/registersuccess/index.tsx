@@ -15,7 +15,14 @@ const RegisterSuccess: NextPage = () => {
 	const firstName = decodeString(encodedFirstName) ?? '';
 
 	return (
-		<AuthLayout header="Registration complete" title="Register">
+		<AuthLayout
+			header="Registration complete"
+			headProps={{
+				title: 'Register success',
+				pageSlug: '/registersuccess',
+				description: 'You have registered successfully.'
+			}}
+		>
 			<StackLayout>
 				<Icon
 					as={IoRocketSharp}

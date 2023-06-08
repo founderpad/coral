@@ -1,0 +1,85 @@
+fragment UserFields on users {
+	displayName
+	id
+	avatarUrl
+	createdAt
+	address {
+		...UserAddress
+	}
+}
+
+fragment UserFieldsWithEmail on users {
+	...UserFields
+	email
+}
+
+# fragment UserAddress on user_address {
+# 	location
+# 	country
+# }
+
+fragment UserSearch on user_profile {
+	skills
+	startups
+	availability
+	specialistIndustry
+	status
+	objective
+	pronouns
+	customPronouns
+	user {
+		...UserFields
+	}
+}
+
+fragment MessageUser on users {
+	...ThreadUser
+	avatarUrl
+	profile {
+		pronouns
+		customPronouns
+	}
+}
+
+fragment ThreadUser on users {
+	id
+	displayName
+	avatarUrl
+}
+
+fragment UserProfile on user_profile {
+	availability
+	background
+	status
+	startups
+	businessDescription
+	specialistIndustry
+	statement
+	skills
+	objective
+	pronouns
+	customPronouns
+}
+
+fragment UserAddress on user_address {
+	location
+	country
+}
+
+fragment UserPersonalDetails on users {
+	displayName
+	id
+	avatarUrl
+	createdAt
+	lastSeen
+}
+
+fragment UserWithProfile on users {
+	...UserPersonalDetails
+	profile {
+		...UserProfile
+	}
+	address {
+		...UserAddress
+	}
+}
