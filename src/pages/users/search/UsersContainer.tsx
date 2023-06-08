@@ -1,6 +1,10 @@
 import { StackLayout } from '@/components/layouts';
-import { Loading, NoResults, PageHeader } from '@/components/shared';
-import AppDivider from '@/components/shared/AppDivider';
+import {
+	AppDivider,
+	Loading,
+	NoResults,
+	PageHeader
+} from '@/components/shared';
 import SearchActions from '@/components/shared/SearchActions';
 import {
 	TUserSearchFragment,

@@ -5,8 +5,8 @@ import React, { memo } from 'react';
 import LinkCard from '@/components/cards/LinkCard';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { Button, Tag } from '@chakra-ui/react';
-import { NoResults } from '../NoResults';
-import { UserAvatarDetails } from '../UserAvatar';
+import { NoResults } from '../../components/shared/NoResults';
+import { UserAvatarDetails } from '../../components/shared/UserAvatar';
 import { Label } from '@/components/labels';
 import BasePopover from '@/components/popover/BasePopover';
 import { useMobile } from '@/hooks/util';
@@ -127,14 +127,7 @@ export const MatchContainer = () => {
 				<StackLayout>
 					{data?.users?.map((user) => (
 						<React.Fragment key={user?.id}>
-							<LinkCard
-								href={`/user/${user?.id}`}
-								footer={
-									<MatchedSkills
-										skills={user.profile?.skills}
-									/>
-								}
-							>
+							<LinkCard href={`/user/${user?.id}`}>
 								<UserAvatarDetails
 									src={user.avatarUrl ?? undefined}
 									title={user?.displayName}
@@ -150,6 +143,7 @@ export const MatchContainer = () => {
 									}
 									size="md"
 								/>
+								<MatchedSkills skills={user.profile?.skills} />
 							</LinkCard>
 						</React.Fragment>
 					))}
@@ -161,8 +155,9 @@ export const MatchContainer = () => {
 
 const MatchedSkills = ({ skills }: { skills: string[] }) => {
 	const authUser = useCurrentUser();
+
 	return (
-		<StackLayout direction="row" spacing="2">
+		<StackLayout direction="row" spacing="2" pt={8}>
 			{skills.map((skill) => {
 				if (authUser.profile?.skills.includes(skill)) {
 					return (

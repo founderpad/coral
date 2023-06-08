@@ -2,10 +2,10 @@ import { Icon } from '@chakra-ui/react';
 import { IoChevronForwardSharp } from '@/components/icons';
 import { BaseLabel } from '@/components/labels/BaseLabel';
 import { BoxLayout, FlexLayout, StackLayout } from '@/components/layouts';
-import AppDivider from '@/components/shared/AppDivider';
 import React, { memo } from 'react';
 import NavLink from '../components/NavLink';
 import { NavItem } from './NavItems';
+import { AppDivider } from '@/components/shared';
 
 export const SubNav = memo(
 	({

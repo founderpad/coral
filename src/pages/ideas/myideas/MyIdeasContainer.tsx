@@ -2,8 +2,12 @@ import { Label } from '@/components/labels';
 import { CaptionLabel } from '@/components/labels/Label';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
-import { Loading, NoResults, PointSeparator } from '@/components/shared';
-import AppDivider from '@/components/shared/AppDivider';
+import {
+	AppDivider,
+	Loading,
+	NoResults,
+	PointSeparator
+} from '@/components/shared';
 import { TIdeaPreviewFieldsFragment, useUserIdeasQuery } from '@/generated/api';
 import { useClaim } from '@/hooks/auth';
 import InterestedTotal from '@/pages/ideas/idea/components/InterestedTotal';

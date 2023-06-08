@@ -1,5 +1,5 @@
 import { PageLayout } from '@/components/layouts';
-import { DocumentTitle, LastUpdatedAt } from '@/components/shared';
+import { LastUpdatedAt, PageHtmlHead } from '@/components/shared';
 import { useUserExperienceQuery } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import AuthFilter from '@/utils/AuthFilter';
@@ -19,8 +19,12 @@ const Profile: NextPage = () => {
 	const updatedAt = data?.profile?.updatedAt;
 
 	return (
-		<React.Fragment>
-			<DocumentTitle title="Profile" />
+		<>
+			<PageHtmlHead
+				title="Profile"
+				pageSlug="/account/profile"
+				description="View your profile."
+			/>
 			<PageLayout
 				title="Your profile"
 				action={updatedAt && <LastUpdatedAt date={updatedAt} />}
@@ -28,7 +32,7 @@ const Profile: NextPage = () => {
 			>
 				<ProfileLayout />
 			</PageLayout>
-		</React.Fragment>
+		</>
 	);
 };
 

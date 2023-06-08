@@ -1,5 +1,5 @@
 import { PageLayout } from '@/components/layouts';
-import { DocumentTitle } from '@/components/shared';
+import { PageHtmlHead } from '@/components/shared';
 import { useCurrentUser } from '@/hooks/auth';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
@@ -9,10 +9,14 @@ const Home: NextPage = () => {
 	const displayName = useCurrentUser()?.displayName;
 
 	return (
-		<React.Fragment>
-			<DocumentTitle title="Home" />
+		<>
+			<PageHtmlHead
+				title={`Welcome back, ${displayName}`}
+				pageSlug="/home"
+				description={`Welcome back, ${displayName}`}
+			/>
 			<PageLayout title={`Welcome back, ${displayName}`} />
-		</React.Fragment>
+		</>
 	);
 };
 

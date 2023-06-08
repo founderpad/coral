@@ -5,5 +5,3 @@ import React from 'react';
 export const AppDivider = (props?: DividerProps) => (
 	<Divider {...props} color="inherit" />
 );
-
-export default AppDivider;

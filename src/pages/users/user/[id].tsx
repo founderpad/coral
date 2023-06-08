@@ -11,7 +11,7 @@ import {
 	TitleEditAction,
 	UserAvatar
 } from '@/components/shared';
-import AppDivider from '@/components/shared/AppDivider';
+import { AppDivider } from '@/components/shared';
 import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
 import OverviewTags from '@/components/shared/OverviewTags';
 import PronounsLabel from '@/components/shared/PronounsLabel';

@@ -14,11 +14,12 @@ import Router from 'next/router';
 import React from 'react';
 import { SwitchField } from '@/components/input';
 import { StackLayout } from '@/components/layouts';
-import { AppDivider } from '@/components/shared';
+// import { AppDivider } from '@/components/shared';
 // import { useDispatch } from 'react-redux';
 // import { addEsteemPoints } from '@/slices/auth';
 import { useSuccessNotification } from '@/hooks/toast';
 import schema from '@/validation/idea/create/validationSchema';
+import { AppDivider } from '@/components/shared';
 
 const defaultValues = {
 	name: '',

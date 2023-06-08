@@ -1,14 +1,18 @@
 import { Label } from '@/components/labels';
 import { PageLayout } from '@/components/layouts';
-import { DocumentTitle } from '@/components/shared';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
 import CreateIdeaForm from '../search/components/CreateIdeaForm';
+import { PageHtmlHead } from '@/components/shared';
 
 const CreateIdea: NextPage = () => (
-	<React.Fragment>
-		<DocumentTitle title="Create idea" />
+	<>
+		<PageHtmlHead
+			title="Create idea"
+			pageSlug="ideas/create"
+			description="Create your idea."
+		/>
 		<PageLayout title="Create your idea">
 			<CreateIdeaForm />
 
@@ -23,7 +27,7 @@ const CreateIdea: NextPage = () => (
 				content published by any third parties.
 			</Label>
 		</PageLayout>
-	</React.Fragment>
+	</>
 );
 
 export default AuthFilter(CreateIdea);
