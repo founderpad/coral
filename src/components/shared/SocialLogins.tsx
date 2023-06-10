@@ -1,12 +1,12 @@
 import { StackLayout } from '@/components/layouts';
 import { useSocialLogin } from '@/hooks/auth';
-import { Button, Icon } from '@chakra-ui/react';
+// import { Button, Icon } from '@chakra-ui/react';
 import { Provider } from '@nhost/nhost-js';
 import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
 import { isIOS } from 'react-device-detect';
 import GoogleLogin from 'react-google-login';
-import { IoLogoGithub } from 'react-icons/io5';
+// import { IoLogoGithub } from 'react-icons/io5';
 
 const SocialLogins = memo(() => {
 	const onLogin = useSocialLogin();
@@ -64,7 +64,7 @@ const SocialLogins = memo(() => {
 					uxMode="redirect"
 				/>
 			</div>
-			<Button
+			{/* <Button
 				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
 				rounded="none"
 				width={'200px'}
@@ -78,7 +78,7 @@ const SocialLogins = memo(() => {
 				onClick={() => onSocialLogin('github')}
 			>
 				Sign in with GitHub
-			</Button>
+			</Button> */}
 			{/* </BoxLayout> */}
 			{/* <Button
 				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
