@@ -2,7 +2,7 @@ import { AlertFeedback } from '@/components/alert';
 import { SubmitButton } from '@/components/buttons';
 import { BaseForm } from '@/components/form';
 import { FormInput } from '@/components/form/inputs/FormField';
-import SocialLogins from '@/components/shared/SocialLogins';
+// import SocialLogins from '@/components/shared/SocialLogins';
 import { useLogin } from '@/hooks/auth';
 import React from 'react';
 import { TLoginFields } from '../../../../types/auth';
@@ -84,7 +84,7 @@ const LoginForm = () => {
 					</React.Fragment>
 				)}
 			</BaseForm>
-			<SocialLogins />
+			{/* <SocialLogins /> */}
 			<LoginFooter />
 		</React.Fragment>
 	);

@@ -6,7 +6,7 @@ import { TRegisterFormFields } from '../../../../types/auth';
 import { BaseForm } from '@/components/form';
 import { SubmitButton } from '@/components/buttons';
 import { AlertFeedback } from '@/components/alert';
-import SocialLogins from '@/components/shared/SocialLogins';
+// import SocialLogins from '@/components/shared/SocialLogins';
 import NotificationContext from '@/context/NotificationContext';
 import schema from '@/validation/auth/register/validationSchema';
 
@@ -115,7 +115,7 @@ const RegisterForm = () => {
 					</React.Fragment>
 				)}
 			</BaseForm>
-			<SocialLogins />
+			{/* <SocialLogins /> */}
 
 			{/* <Alert fontSize="xs" status="warning" p={2} textAlign="center">
 				Your email address must be the same as your PayPal account in
