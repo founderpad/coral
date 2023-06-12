@@ -115,7 +115,7 @@ const RegisterForm = () => {
 					</React.Fragment>
 				)}
 			</BaseForm>
-			{/* <SocialLogins /> */}
+			<SocialLogins />
 
 			{/* <Alert fontSize="xs" status="warning" p={2} textAlign="center">
 				Your email address must be the same as your PayPal account in
