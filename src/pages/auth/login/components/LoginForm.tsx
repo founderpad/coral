@@ -8,7 +8,7 @@ import { TLoginFields } from '../../../../types/auth';
 import LoginFooter from './LoginFooter';
 import { schema } from '@/validation/auth/login/validationSchema';
 import { useNotification } from '@/hooks/util';
-import { SocialLogins } from '@/components/shared';
+// import { SocialLogins } from '@/components/shared';
 
 const defaultValues: Record<string, string> & TLoginFields = {
 	email: '',
@@ -84,7 +84,7 @@ const LoginForm = () => {
 					</React.Fragment>
 				)}
 			</BaseForm>
-			<SocialLogins />
+			{/* <SocialLogins /> */}
 			<LoginFooter />
 		</React.Fragment>
 	);
