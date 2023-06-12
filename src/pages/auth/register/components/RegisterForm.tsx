@@ -6,7 +6,7 @@ import { TRegisterFormFields } from '../../../../types/auth';
 import { BaseForm } from '@/components/form';
 import { SubmitButton } from '@/components/buttons';
 import { AlertFeedback } from '@/components/alert';
-// import SocialLogins from '@/components/shared/SocialLogins';
+import { SocialLogins } from '@/components/shared';
 import NotificationContext from '@/context/NotificationContext';
 import schema from '@/validation/auth/register/validationSchema';
 

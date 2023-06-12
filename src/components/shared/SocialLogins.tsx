@@ -8,7 +8,7 @@ import { isIOS } from 'react-device-detect';
 import GoogleLogin from 'react-google-login';
 // import { IoLogoGithub } from 'react-icons/io5';
 
-const SocialLogins = memo(() => {
+export const SocialLogins = memo(() => {
 	const onLogin = useSocialLogin();
 
 	const onSocialLogin = useCallback(
@@ -108,5 +108,3 @@ const SocialLogins = memo(() => {
 		</StackLayout>
 	);
 });
-
-export default SocialLogins;

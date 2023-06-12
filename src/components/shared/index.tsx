@@ -16,3 +16,4 @@ export * from './TitleEditAction';
 export * from './UserAvatar';
 export * from './SkillsBadges';
 export * from './PageHtmlHead';
+export * from './SocialLogins';
