@@ -23,8 +23,9 @@ const LinkCard = (props: Props) => {
 				_hover={{
 					bg: 'fpLightGrey.200'
 				}}
-				py={4}
-				px={{ base: 0, md: 4 }}
+				// py={4}
+				// px={{ base: 0, md: 4 }}
+				p={4}
 				// px={padding ?? { base: 0, sm: 4 }}
 				// px={padding ?? { base: 4, md: 0 }}
 				flex={1}

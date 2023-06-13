@@ -1,14 +1,14 @@
 import { FormInput } from '@/components/form/inputs/FormField';
 import { useRegister } from '@/hooks/auth';
-import React, { useContext } from 'react';
+import React from 'react';
 import LegalFooter from './LegalFooter';
 import { TRegisterFormFields } from '../../../../types/auth';
 import { BaseForm } from '@/components/form';
 import { SubmitButton } from '@/components/buttons';
 import { AlertFeedback } from '@/components/alert';
 // import { SocialLogins } from '@/components/shared';
-import NotificationContext from '@/context/NotificationContext';
 import schema from '@/validation/auth/register/validationSchema';
+import { useNotification } from '@/hooks/util';
 
 const defaultValues: Record<string, string> & TRegisterFormFields = {
 	firstName: '',
@@ -19,7 +19,7 @@ const defaultValues: Record<string, string> & TRegisterFormFields = {
 
 const RegisterForm = () => {
 	const { onRegister } = useRegister();
-	const { notification } = useContext(NotificationContext);
+	const { notification } = useNotification();
 
 	return (
 		<React.Fragment>
