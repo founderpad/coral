@@ -17,7 +17,7 @@ import { StackLayout } from '@/components/layouts';
 // import { AppDivider } from '@/components/shared';
 // import { useDispatch } from 'react-redux';
 // import { addEsteemPoints } from '@/slices/auth';
-import { useSuccessNotification } from '@/hooks/toast';
+// import { useSuccessNotification } from '@/hooks/toast';
 import schema from '@/validation/idea/create/validationSchema';
 import { AppDivider } from '@/components/shared';
 
@@ -35,7 +35,7 @@ const defaultValues = {
 const CreateIdeaForm = () => {
 	const user = useAuth().getUser();
 	// const dispatch = useDispatch();
-	const showNotification = useSuccessNotification();
+	// const showNotification = useSuccessNotification();
 
 	const [createIdeaMutation] = useCreateIdeaMutation();
 
