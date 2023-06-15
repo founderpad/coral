@@ -18,8 +18,8 @@ import {
 import { BaseLink } from '@/components/links';
 import LogoutModal from '@/components/modal/LogoutModal';
 import { CurrentUserAvatarDetails, UserAvatar } from '@/components/shared';
-import { useCurrentUser } from '@/hooks/auth';
 import React from 'react';
+import { useUserData } from '@nhost/react';
 // import { BiMoney } from 'react-icons/bi';
 // import { CaptionLabel } from '@/components/labels/Label';
 // import { useUserCurrencySubscription } from '@/generated/api';
@@ -27,7 +27,9 @@ import React from 'react';
 // import PayPalPayoutsForm from '../components/PayPalPayoutsForm';
 
 const UserMenu = () => {
-	const avatarUrl = useCurrentUser().avatarUrl;
+	// const avatarUrl = useCurrentUser().avatarUrl;
+
+	const user = useUserData();
 	// const userId = useAuth().getUser()?.id;
 	// const result = useUserCurrencySubscription({
 	// 	variables: {
@@ -76,7 +78,7 @@ const UserMenu = () => {
 				}}
 			>
 				<Icon as={IoMenuSharp} mr={{ base: 1, sm: 2 }} />
-				<UserAvatar size="xs" src={avatarUrl || undefined} />
+				<UserAvatar size="xs" src={user?.avatarUrl} />
 			</MenuButton>
 			<MenuList
 				rounded="md"

@@ -1,14 +1,14 @@
 import TabLayout from '@/components/layouts/TabLayout';
-import { useCurrentUser } from '@/hooks/auth';
 import React from 'react';
 import InterestedUsersTab from './components/InterestedUsersTab';
 import useIdea from './query/ideaQuery';
 import IdeaTab from './IdeaTab';
 import { useMobile } from '@/hooks/util';
 import IdeaCycler from './components/IdeaCycler';
+import { useUserData } from '@nhost/react';
 
 const ViewIdeaTabLayout = () => {
-	const user = useCurrentUser();
+	const user = useUserData();
 	const isMobile = useMobile();
 	const { idea } = useIdea() ?? {};
 	const showInterestTab = idea?.userId === user?.id;

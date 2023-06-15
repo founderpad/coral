@@ -3,7 +3,7 @@ import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import {
 	AppDivider,
-	Loading,
+	// Loading,
 	SkillsBadges,
 	TitleEditAction
 } from '@/components/shared';
@@ -12,15 +12,26 @@ import OverviewTags from '@/components/shared/OverviewTags';
 import useUserProfile from '@/hooks/user';
 import { useModalDrawer, useNotification } from '@/hooks/util';
 import React, { useEffect } from 'react';
-import useProfileFragment from '../../../../fragments/UserProfileFragment';
+// import useProfileFragment from '../../../../fragment
 import ExperienceForm from './forms/experienceform/ExperienceForm';
 import ResumeUploader from './ResumeUploader';
+import { useProfileQuery } from '@/generated/api';
+import { useUserId } from '@nhost/react';
 
 const WorkExperienceTab = () => {
-	const userProfile = useProfileFragment();
+	// const userProfile = useProfileFragment();
 	const { openModalDrawer } = useModalDrawer();
 	const isProfileComplete = useUserProfile()?.isComplete;
 	const { addNotification } = useNotification();
+	const userId = useUserId();
+
+	const { data } = useProfileQuery({
+		variables: {
+			userId
+		}
+	});
+
+	const profile = data?.profile?.[0];
 
 	useEffect(() => {
 		if (!isProfileComplete) {
@@ -30,17 +41,6 @@ const WorkExperienceTab = () => {
 			});
 		}
 	}, [addNotification, isProfileComplete]);
-
-	const {
-		specialistIndustry,
-		startups,
-		statement,
-		status,
-		availability,
-		background,
-		skills,
-		objective
-	} = userProfile ?? {};
 
 	const onClick = () => {
 		openModalDrawer({
@@ -52,12 +52,12 @@ const WorkExperienceTab = () => {
 					label="Save"
 				/>
 			),
-			body: <ExperienceForm {...userProfile} />,
+			body: <ExperienceForm {...profile!} />,
 			size: '2xl'
 		});
 	};
 
-	if (!userProfile) return <Loading small />;
+	// if (!userProfile) return <Loading small />;
 
 	return (
 		<StackLayout p={4} spacing={8}>
@@ -69,19 +69,21 @@ const WorkExperienceTab = () => {
 				tags={[
 					{
 						title: 'Specialist field',
-						value: specialistIndustry || 'Not set'
+						value: profile?.specialistIndustry || 'Not set'
 					},
 					{
 						title: 'Previous startups',
-						value: startups ? `${startups}` : 'Not set'
+						value: profile?.startups
+							? `${profile?.startups}`
+							: 'Not set'
 					},
 					{
 						title: 'Startup status',
-						value: status || 'Not set'
+						value: profile?.status || 'Not set'
 					},
 					{
 						title: 'Capacity (hours per week)',
-						value: availability || 'Not set'
+						value: profile?.availability || 'Not set'
 					}
 				]}
 			/>
@@ -89,22 +91,22 @@ const WorkExperienceTab = () => {
 			<StackLayout>
 				<ContentFieldAndValue
 					title="Objective"
-					value={objective || 'Not set'}
+					value={profile?.objective || 'Not set'}
 				/>
 				<ContentFieldAndValue
 					title="Background"
-					value={background || 'Not set'}
+					value={profile?.background || 'Not set'}
 				/>
 				<ContentFieldAndValue
 					title="Personal statement"
-					value={statement || 'Not set'}
+					value={profile?.statement || 'Not set'}
 				/>
 
 				<ContentFieldAndValue
 					title="Skills"
 					value={
-						skills?.length ? (
-							<SkillsBadges skills={skills} />
+						profile?.skills?.length ? (
+							<SkillsBadges skills={profile?.skills} />
 						) : (
 							'No skills selected'
 						)

@@ -1,21 +1,21 @@
 import { PageLayout } from '@/components/layouts';
 import { PageHtmlHead } from '@/components/shared';
-import { useCurrentUser } from '@/hooks/auth';
 import AuthFilter from '@/utils/AuthFilter';
+import { useUserData } from '@nhost/react';
 import { NextPage } from 'next';
 import React from 'react';
 
 const Home: NextPage = () => {
-	const displayName = useCurrentUser()?.displayName;
+	const user = useUserData();
 
 	return (
 		<>
 			<PageHtmlHead
-				title={`Welcome back, ${displayName}`}
+				title="Home"
 				pageSlug="/home"
-				description={`Welcome back, ${displayName}`}
+				description={`Welcome back, ${user?.displayName}`}
 			/>
-			<PageLayout title={`Welcome back, ${displayName}`} />
+			<PageLayout title={`Welcome back, ${user?.displayName}`} />
 		</>
 	);
 };

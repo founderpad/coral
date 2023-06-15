@@ -4,15 +4,10 @@ import PronounsLabel from '@/components/shared/PronounsLabel';
 import { TUserWithProfileFragment } from '@/generated/api';
 import ProfileSectionLabel from '@/pages/account/profile/components/ProfileSectionLabel';
 import { formatDate } from '@/utils/validators';
-import {
-	IoLocationOutline,
-	IoCalendarOutline,
-	IoTimeOutline
-} from 'react-icons/io5';
+import { IoCalendarOutline, IoTimeOutline } from 'react-icons/io5';
 
 export const UserDetails = (props: Partial<TUserWithProfileFragment>) => {
-	const { displayName, avatarUrl, profile, address, createdAt, lastSeen } =
-		props;
+	const { displayName, avatarUrl, profile, createdAt, lastSeen } = props;
 	return (
 		<StackLayout w="full">
 			<UserAvatar
@@ -30,7 +25,7 @@ export const UserDetails = (props: Partial<TUserWithProfileFragment>) => {
 				}
 			/>
 			<StackLayout spacing={2}>
-				{address && (
+				{/* {address && (
 					<ProfileSectionLabel
 						label={
 							address.location
@@ -41,7 +36,7 @@ export const UserDetails = (props: Partial<TUserWithProfileFragment>) => {
 						}
 						icon={IoLocationOutline}
 					/>
-				)}
+				)} */}
 				{createdAt && (
 					<ProfileSectionLabel
 						label={`Joined ` + formatDate(createdAt, false, true)}

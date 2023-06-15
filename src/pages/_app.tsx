@@ -112,7 +112,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 				>
 					<Provider store={store}>
 						<PersistGate persistor={persistor}>
-							{/* <PayPalScriptProvider options={paypalOptions}> */}
 							<ChakraProvider theme={theme} resetCSS>
 								<NotificationProvider>
 									<ModalProvider>
@@ -128,7 +127,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 									</ModalProvider>
 								</NotificationProvider>
 							</ChakraProvider>
-							{/* </PayPalScriptProvider> */}
 						</PersistGate>
 					</Provider>
 				</NhostApolloProvider>

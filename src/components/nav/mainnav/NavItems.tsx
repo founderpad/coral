@@ -16,6 +16,7 @@ export interface NavItem {
 }
 
 const NavItems: Array<NavItem> = [
+	{ label: 'Home', href: '/home' },
 	{
 		label: 'Ideas',
 		isLink: false,

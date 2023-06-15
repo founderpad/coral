@@ -14207,7 +14207,7 @@ export type TPostReplyMutationVariables = Exact<{
 
 export type TPostReplyMutation = { addIdeaReply?: { __typename?: 'idea_comment_replies', commentId: any, id: any, value: string } | null, update_idea_comments_by_pk?: { __typename?: 'idea_comments', id: any } | null };
 
-export type TCommentFieldsFragment = { __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
+export type TCommentFieldsFragment = { __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TCommentsForIdeaQueryVariables = Exact<{
   ideaId: Scalars['uuid'];
@@ -14215,14 +14215,14 @@ export type TCommentsForIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'v_comments_aggregate', aggregate?: { __typename?: 'v_comments_aggregate_fields', count: number } | null } };
+export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'v_comments_aggregate', aggregate?: { __typename?: 'v_comments_aggregate_fields', count: number } | null } };
 
 export type TRepliesForCommentQueryVariables = Exact<{
   commentId: Scalars['uuid'];
 }>;
 
 
-export type TRepliesForCommentQuery = { replies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
+export type TRepliesForCommentQuery = { replies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TFollowUserMutationVariables = Exact<{
   followingId: Scalars['uuid'];
@@ -14270,18 +14270,18 @@ export type TIdeasQueryVariables = Exact<{
 }>;
 
 
-export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null }> };
+export type TIdeasQuery = { idea_preview_aggregate: { __typename?: 'idea_preview_aggregate', aggregate?: { __typename?: 'idea_preview_aggregate_fields', count: number } | null }, idea_preview: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null }> };
 
 export type TBoostedIdeaFieldsFragment = { __typename?: 'boosted_ideas', ideaId: any, totalCurrencyAmount?: any | null, remainingCurrencyAmount?: any | null, createdAt?: any | null, idea?: { __typename?: 'ideas', name: string, summary?: string | null, status?: string | null, field: string } | null };
 
-export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null };
+export type TIdeaPreviewFieldsFragment = { __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null };
 
 export type TUserIdeasQueryVariables = Exact<{
   userId: Scalars['uuid'];
 }>;
 
 
-export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null }> };
+export type TUserIdeasQuery = { user_ideas: Array<{ __typename?: 'idea_preview', id?: any | null, name?: string | null, field?: string | null, status?: string | null, createdAt?: any | null, isNew?: boolean | null, isPublished?: boolean | null, summary?: string | null, userId?: any | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, comments_aggregate: { __typename?: 'idea_comments_aggregate', aggregate?: { __typename?: 'idea_comments_aggregate_fields', count: number } | null }, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null } | null }> };
 
 export type TIdeaFieldsFragment = { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number };
 
@@ -14291,7 +14291,7 @@ export type TIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null, createdAt?: any | null } | null } | null, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null, hasBoostedFeedback: Array<{ __typename?: 'idea_comments', id: any, value: string, status: TComment_Status_Types_Enum }> };
+export type TIdeaQuery = { idea?: { __typename?: 'ideas', id: any, summary?: string | null, name: string, description?: string | null, field: string, competitors?: string | null, team?: string | null, additionalInformation?: string | null, isPublished: boolean, userId: any, status?: string | null, createdAt: any, totalInterested: number, totalComments: number, totalVotes: number, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, votes_aggregate: { __typename?: 'idea_votes_aggregate', aggregate?: { __typename?: 'idea_votes_aggregate_fields', count: number } | null }, votes: Array<{ __typename?: 'idea_votes', id: any }>, interested_aggregate: { __typename?: 'interested_ideas_aggregate', aggregate?: { __typename?: 'interested_ideas_aggregate_fields', count: number } | null }, boosted_idea?: { __typename?: 'boosted_ideas', ideaId: any, remainingCurrencyAmount?: any | null, createdAt?: any | null } | null } | null, hasInterest?: { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any } | null, hasBoostedFeedback: Array<{ __typename?: 'idea_comments', id: any, value: string, status: TComment_Status_Types_Enum }> };
 
 export type TInterestedIdeaFieldsFragment = { __typename?: 'interested_ideas', id: any, ideaId: any, userId: any };
 
@@ -14300,7 +14300,7 @@ export type TIdeaInterestedUsersQueryVariables = Exact<{
 }>;
 
 
-export type TIdeaInterestedUsersQuery = { interested_users: Array<{ __typename?: 'interested_ideas', id: any, createdAt: any, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
+export type TIdeaInterestedUsersQuery = { interested_users: Array<{ __typename?: 'interested_ideas', id: any, createdAt: any, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TInsertIdeaUpvoteMutationVariables = Exact<{
   idea_vote: TIdea_Votes_Insert_Input;
@@ -14412,11 +14412,11 @@ export type TCreateReportMutationVariables = Exact<{
 
 export type TCreateReportMutation = { insert_report_one?: { __typename?: 'report', id: any } | null };
 
-export type TUserFieldsFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
+export type TUserFieldsFragment = { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
 
-export type TUserFieldsWithEmailFragment = { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
+export type TUserFieldsWithEmailFragment = { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null };
 
-export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
+export type TUserSearchFragment = { __typename?: 'user_profile', skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, objective?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null };
 
 export type TMessageUserFragment = { __typename?: 'users', avatarUrl: string, id: any, displayName: string, profile?: { __typename?: 'user_profile', pronouns?: string | null, customPronouns?: string | null } | null };
 
@@ -14459,15 +14459,7 @@ export type TUsersQueryVariables = Exact<{
 }>;
 
 
-export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null }, user_profile: Array<{ __typename?: 'user_profile', id: any, objective?: string | null, skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
-
-export type TUpdateUserProfileMutationVariables = Exact<{
-  id: Scalars['uuid'];
-  user_profile: TUser_Profile_Set_Input;
-}>;
-
-
-export type TUpdateUserProfileMutation = { update_user_profile_by_pk?: { __typename?: 'user_profile', id: any, availability?: string | null, objective?: string | null, background?: string | null, linkedin?: string | null, twitter?: string | null, instagram?: string | null, facebook?: string | null, resume?: string | null, statement?: string | null, status?: string | null, businessDescription?: string | null, startups?: string | null, website?: string | null, skills?: any | null, isComplete: boolean, specialistIndustry?: string | null, updatedAt: any } | null };
+export type TUsersQuery = { user_profile_aggregate: { __typename?: 'user_profile_aggregate', aggregate?: { __typename?: 'user_profile_aggregate_fields', count: number } | null }, user_profile: Array<{ __typename?: 'user_profile', id: any, objective?: string | null, skills?: any | null, startups?: string | null, availability?: string | null, specialistIndustry?: string | null, status?: string | null, pronouns?: string | null, customPronouns?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TUserExperienceQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -14518,6 +14510,23 @@ export type TUserCurrencySubscriptionVariables = Exact<{
 
 export type TUserCurrencySubscription = { currencyPoints?: { __typename?: 'user_esteem_points_currency', currency: any, points: number } | null };
 
+export type TProfileQueryVariables = Exact<{
+  userId: Scalars['uuid'];
+}>;
+
+
+export type TProfileQuery = { profile: Array<{ __typename?: 'user_profile', specialistIndustry?: string | null, startups?: string | null, statement?: string | null, status?: string | null, availability?: string | null, background?: string | null, skills?: any | null, objective?: string | null, userId: any, id: any }> };
+
+export type TProfileFieldsFragment = { __typename?: 'user_profile', specialistIndustry?: string | null, startups?: string | null, statement?: string | null, status?: string | null, availability?: string | null, background?: string | null, skills?: any | null, objective?: string | null, userId: any, id: any };
+
+export type TUpdateUserProfileMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  user_profile: TUser_Profile_Set_Input;
+}>;
+
+
+export type TUpdateUserProfileMutation = { update_user_profile?: { __typename?: 'user_profile_mutation_response', affected_rows: number } | null };
+
 export const UserAddressFragmentDoc = gql`
     fragment UserAddress on user_address {
   location
@@ -14530,6 +14539,7 @@ export const UserFieldsFragmentDoc = gql`
   id
   avatarUrl
   createdAt
+  lastSeen
   address {
     ...UserAddress
   }
@@ -14729,6 +14739,20 @@ export const UserWithProfileFragmentDoc = gql`
     ${UserPersonalDetailsFragmentDoc}
 ${UserProfileFragmentDoc}
 ${UserAddressFragmentDoc}`;
+export const ProfileFieldsFragmentDoc = gql`
+    fragment ProfileFields on user_profile {
+  specialistIndustry
+  startups
+  statement
+  status
+  availability
+  background
+  skills
+  objective
+  userId
+  id
+}
+    `;
 export const UserActivityDocument = gql`
     query UserActivity($userId: uuid!) {
   activity(where: {userId: {_eq: $userId}}, order_by: {createdAt: desc}) {
@@ -16081,57 +16105,6 @@ export type UsersQueryResult = Apollo.QueryResult<TUsersQuery, TUsersQueryVariab
 export function refetchUsersQuery(variables?: TUsersQueryVariables) {
       return { query: UsersDocument, variables: variables }
     }
-export const UpdateUserProfileDocument = gql`
-    mutation UpdateUserProfile($id: uuid!, $user_profile: user_profile_set_input!) {
-  update_user_profile_by_pk(pk_columns: {id: $id}, _set: $user_profile) {
-    id
-    availability
-    objective
-    background
-    linkedin
-    twitter
-    instagram
-    facebook
-    resume
-    statement
-    status
-    businessDescription
-    startups
-    website
-    skills
-    isComplete
-    specialistIndustry
-    updatedAt
-  }
-}
-    `;
-export type TUpdateUserProfileMutationFn = Apollo.MutationFunction<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>;
-
-/**
- * __useUpdateUserProfileMutation__
- *
- * To run a mutation, you first call `useUpdateUserProfileMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateUserProfileMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateUserProfileMutation, { data, loading, error }] = useUpdateUserProfileMutation({
- *   variables: {
- *      id: // value for 'id'
- *      user_profile: // value for 'user_profile'
- *   },
- * });
- */
-export function useUpdateUserProfileMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return ApolloReactHooks.useMutation<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>(UpdateUserProfileDocument, options);
-      }
-export type UpdateUserProfileMutationHookResult = ReturnType<typeof useUpdateUserProfileMutation>;
-export type UpdateUserProfileMutationResult = Apollo.MutationResult<TUpdateUserProfileMutation>;
-export type UpdateUserProfileMutationOptions = Apollo.BaseMutationOptions<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>;
 export const UserExperienceDocument = gql`
     query UserExperience($id: uuid!) {
   profile: user_profile_by_pk(id: $id) {
@@ -16386,6 +16359,81 @@ export function useUserCurrencySubscription(baseOptions: ApolloReactHooks.Subscr
       }
 export type UserCurrencySubscriptionHookResult = ReturnType<typeof useUserCurrencySubscription>;
 export type UserCurrencySubscriptionResult = Apollo.SubscriptionResult<TUserCurrencySubscription>;
+export const ProfileDocument = gql`
+    query Profile($userId: uuid!) {
+  profile: user_profile(where: {userId: {_eq: $userId}}) {
+    ...ProfileFields
+  }
+}
+    ${ProfileFieldsFragmentDoc}`;
+
+/**
+ * __useProfileQuery__
+ *
+ * To run a query within a React component, call `useProfileQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProfileQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProfileQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useProfileQuery(baseOptions: ApolloReactHooks.QueryHookOptions<TProfileQuery, TProfileQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TProfileQuery, TProfileQueryVariables>(ProfileDocument, options);
+      }
+export function useProfileLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TProfileQuery, TProfileQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TProfileQuery, TProfileQueryVariables>(ProfileDocument, options);
+        }
+export type ProfileQueryHookResult = ReturnType<typeof useProfileQuery>;
+export type ProfileLazyQueryHookResult = ReturnType<typeof useProfileLazyQuery>;
+export type ProfileQueryResult = Apollo.QueryResult<TProfileQuery, TProfileQueryVariables>;
+export function refetchProfileQuery(variables: TProfileQueryVariables) {
+      return { query: ProfileDocument, variables: variables }
+    }
+export const UpdateUserProfileDocument = gql`
+    mutation UpdateUserProfile($id: uuid!, $user_profile: user_profile_set_input!) {
+  update_user_profile(
+    where: {userId: {_eq: "7aaeab01-b91d-4ba9-ab42-e217489ab1f9"}}
+    _set: {availability: "boo"}
+  ) {
+    affected_rows
+  }
+}
+    `;
+export type TUpdateUserProfileMutationFn = Apollo.MutationFunction<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>;
+
+/**
+ * __useUpdateUserProfileMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserProfileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserProfileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserProfileMutation, { data, loading, error }] = useUpdateUserProfileMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      user_profile: // value for 'user_profile'
+ *   },
+ * });
+ */
+export function useUpdateUserProfileMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>(UpdateUserProfileDocument, options);
+      }
+export type UpdateUserProfileMutationHookResult = ReturnType<typeof useUpdateUserProfileMutation>;
+export type UpdateUserProfileMutationResult = Apollo.MutationResult<TUpdateUserProfileMutation>;
+export type UpdateUserProfileMutationOptions = Apollo.BaseMutationOptions<TUpdateUserProfileMutation, TUpdateUserProfileMutationVariables>;
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;

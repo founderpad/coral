@@ -2,14 +2,14 @@ import MainNav from '@/components/nav/mainnav/MainNav';
 import MobileNav from '@/components/nav/mainnav/MobileNav';
 import { usePushNotifications } from '@/hooks/notifications';
 import MobileNavigationProvider from '@/provider/MobileNavigationProvider';
-import React, { useContext } from 'react';
+import React from 'react';
 import { BoxLayout } from './BoxLayout';
 import { AlertFeedback } from '../alert';
-import NotificationContext from '@/context/NotificationContext';
+import { useNotification } from '@/hooks/util';
 
 export const MainLayout = ({ children }: { children: JSX.Element }) => {
 	usePushNotifications();
-	const { notification } = useContext(NotificationContext);
+	const { notification } = useNotification();
 
 	return (
 		<MobileNavigationProvider>

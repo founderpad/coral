@@ -1,10 +1,13 @@
 import { Badge, Tag } from '@chakra-ui/react';
 import LinkCard from '@/components/cards/LinkCard';
 import { FlexLayout } from '@/components/layouts';
-import { PointSeparator, UserAvatarDetails } from '@/components/shared';
-import PronounsLabel from '@/components/shared/PronounsLabel';
+import {
+	LastSeen,
+	PointSeparator,
+	UserAvatarDetails
+} from '@/components/shared';
 import { TUserSearchFragment } from '@/generated/api';
-import React, { memo } from 'react';
+import React from 'react';
 
 const userAttrs = (userProfileAttrs: TUserSearchFragment): Array<string> => {
 	const attrs: string[] = [];
@@ -77,7 +80,7 @@ const UserCard = (userProfile: TUserSearchFragment) => {
 						</FlexLayout>
 					</FlexLayout>
 				}
-				actions={<UserCardHeaderActions {...userProfile} />}
+				actions={<LastSeen lastSeen={userProfile.user?.lastSeen} />}
 				size="md"
 			/>
 			<UserProfileAttributes {...userProfile} />
@@ -85,29 +88,29 @@ const UserCard = (userProfile: TUserSearchFragment) => {
 	);
 };
 
-const UserCardHeaderActions = memo(
-	(
-		actions: Pick<
-			TUserSearchFragment,
-			'customPronouns' | 'pronouns' | 'objective'
-		>
-	) => (
-		<React.Fragment>
-			<PronounsLabel
-				pronouns={actions.pronouns}
-				customPronouns={actions.customPronouns}
-			/>
-			{/* <PointSeparator small /> */}
-			{/* <Tag
-				colorScheme="fpPrimary"
-				variant="solid"
-				fontSize="xs"
-				size="sm"
-			>
-				{actions.objective}
-			</Tag> */}
-		</React.Fragment>
-	)
-);
+// const UserCardHeaderActions = memo(
+// 	(
+// 		actions: Pick<
+// 			TUserSearchFragment,
+// 			'customPronouns' | 'pronouns' | 'objective'
+// 		>
+// 	) => (
+// 		<React.Fragment>
+// 			<PronounsLabel
+// 				pronouns={actions.pronouns}
+// 				customPronouns={actions.customPronouns}
+// 			/>
+// 			<PointSeparator small />
+// 			<Tag
+// 				colorScheme="fpPrimary"
+// 				variant="solid"
+// 				fontSize="xs"
+// 				size="sm"
+// 			>
+// 				{actions.objective}
+// 			</Tag>
+// 		</React.Fragment>
+// 	)
+// );
 
 export default UserCard;

@@ -7,7 +7,7 @@ const NewIdeaBadge = () => {
 	return (
 		<React.Fragment>
 			<Tag
-				bgColor="green.300"
+				bgColor="green.500"
 				variant="subtle"
 				mr={2}
 				color="white"

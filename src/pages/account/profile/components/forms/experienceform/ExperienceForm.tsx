@@ -4,12 +4,11 @@ import { FormLabelText } from '@/components/form';
 import { BaseForm } from '@/components/form';
 import { Label } from '@/components/labels';
 import {
-	TUser_Profile,
+	ProfileDocument,
+	TProfileFieldsFragment,
 	TUser_Profile_Set_Input,
 	useUpdateUserProfileMutation
 } from '@/generated/api';
-import { useCurrentUser } from '@/hooks/auth';
-import { setProfileComplete } from '@/slices/auth';
 import {
 	ALL_IDEA_CATEGORY_FIELDS,
 	ALL_USER_OBJECTIVES,
@@ -19,18 +18,19 @@ import {
 	STARTUP_STATUS
 } from '@/utils/Constants';
 import { Controller } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import React from 'react';
 import { FormSelect, FormTextarea } from '@/components/form/inputs/FormField';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { useCheckboxes, useModalDrawer, useNotification } from '@/hooks/util';
 import { SimpleGrid } from '@chakra-ui/react';
 import schema from '@/validation/profile/experience/validationSchema';
+import { useUserData } from '@nhost/react';
 
-const ExperienceForm = (userProfile: TUser_Profile) => {
-	const dispatch = useDispatch();
-	const isProfileComplete = useCurrentUser()?.profile?.isComplete;
-	const { __typename, userId, id, ...rest } = userProfile;
+const ExperienceForm = (profile: TProfileFieldsFragment) => {
+	// const dispatch = useDispatch();
+	// const isProfileComplete = useCurrentUser()?.profile?.isComplete;
+	const user = useUserData();
+	const { __typename, id, userId, ...rest } = profile;
 	const {
 		values,
 		clearValues,
@@ -38,14 +38,9 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 		onToggleAll,
 		isChecked,
 		isAllSelected
-	} = useCheckboxes(
-		EXPERIENCE_SKILLS,
-		// formatStringObjArrayForUi(userProfile.skills)
-		userProfile.skills
-	);
+	} = useCheckboxes(EXPERIENCE_SKILLS, profile?.skills);
 	const defaultValues = {
 		...rest
-		// skills: formatStringObjArrayForUi(rest.skills)
 	};
 
 	const { closeModalDrawer } = useModalDrawer();
@@ -58,18 +53,25 @@ const ExperienceForm = (userProfile: TUser_Profile) => {
 				id,
 				user_profile: {
 					...experienceValues,
-					// skills: formatArrayForDb(skills),
-					skills: values,
-					isComplete: true
+					skills: values
+					// isComplete: true
 				}
 			},
+			refetchQueries: [
+				{
+					query: ProfileDocument,
+					variables: {
+						userId: user?.id
+					}
+				}
+			],
 			onCompleted: (_data) => {
 				closeModalDrawer();
 				addNotification({
 					message: 'Your details have been updated successfully',
 					status: 'success'
 				});
-				if (!isProfileComplete) dispatch(setProfileComplete());
+				// if (!isProfileComplete) dispatch(setProfileComplete());
 			},
 			onError: (_data) => {
 				closeModalDrawer();

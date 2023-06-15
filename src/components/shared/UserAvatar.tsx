@@ -4,6 +4,7 @@ import { CaptionLabel, Label } from '@/components/labels';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import { useCurrentUser } from '@/hooks/auth';
 import React, { memo } from 'react';
+import { useUserData } from '@nhost/react';
 
 type Props = AvatarProps & {
 	subtitle?: React.ReactNode;
@@ -55,7 +56,7 @@ export const UserAvatarDetails = ({
 			alignItems={direction === 'column' ? 'center' : 'flex-start'}
 			flex={1}
 		>
-			<FlexLayout alignItems="baseline" lineHeight="tall" flex={1}>
+			<FlexLayout alignItems="baseline" lineHeight="tall" flex={1} mb={1}>
 				<Label
 					fontWeight="medium"
 					fontSize={fontSize}
@@ -91,7 +92,7 @@ export const CurrentUserAvatarDetails = memo(
 		size?: Props['size'];
 		direction?: StackProps['direction'];
 	}) => {
-		const user = useCurrentUser();
+		const user = useUserData();
 
 		if (user)
 			return (

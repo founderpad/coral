@@ -8,28 +8,21 @@ import { Button, Checkbox, FormControl } from '@chakra-ui/react';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { SimpleGrid } from '@chakra-ui/react';
-import { useCurrentUser } from '@/hooks/auth';
 import {
 	MatchSettingsDocument,
 	TMatchSettingsFieldsFragment,
-	TMatch_Settings,
 	TMatch_Settings_Set_Input,
 	useUpdateMatchSettingsMutation
 } from '@/generated/api';
-import { useDispatch } from 'react-redux';
-import { updateUserMatchSettings } from '@/slices/auth';
-// import  formatArrayForDb
-//  formatStringObjArrayForUi
-//  '@/utils/validators';
+import { useUserData } from '@nhost/react';
 
 const MatchmakeSettingsForm = (
 	matchmakeSettings: TMatchSettingsFieldsFragment
 ) => {
 	const { closeModalDrawer } = useModalDrawer();
-	const { id } = useCurrentUser();
+	const user = useUserData();
 	const [updateMatchmakeSettings] = useUpdateMatchSettingsMutation();
 	const { addNotification } = useNotification();
-	const dispatch = useDispatch();
 
 	const {
 		clearValues,
@@ -38,30 +31,23 @@ const MatchmakeSettingsForm = (
 		isChecked,
 		onToggleAll,
 		isAllSelected
-	} = useCheckboxes(
-		EXPERIENCE_SKILLS,
-		matchmakeSettings.skills
-		// formatStringObjArrayForUi(matchmakeSettings.skills)
-	);
+	} = useCheckboxes(EXPERIENCE_SKILLS, matchmakeSettings.skills);
 	const { __typename, ...rest } = matchmakeSettings;
-	const defaultValues = {
-		...rest
-		// skills: formatStringObjArrayForUi(rest.skills)
-	};
+	const defaultValues = { ...rest };
 
 	const onUpdateMatchmakeSettings = (
 		matchSettings: TMatch_Settings_Set_Input
 	) => {
 		updateMatchmakeSettings({
 			variables: {
-				id,
+				id: user?.id,
 				match_settings: {
 					...matchSettings,
 					// skills: formatArrayForDb(values)
 					skills: values
 				}
 			},
-			onCompleted: (data) => {
+			onCompleted: (_data) => {
 				closeModalDrawer();
 				addNotification({
 					message:
@@ -69,17 +55,17 @@ const MatchmakeSettingsForm = (
 					status: 'success'
 				});
 
-				dispatch(
-					updateUserMatchSettings(
-						data.update_match_settings_by_pk as TMatch_Settings
-					)
-				);
+				// dispatch(
+				// 	updateUserMatchSettings(
+				// 		data.update_match_settings_by_pk as TMatch_Settings
+				// 	)
+				// );
 			},
 			refetchQueries: [
 				{
 					query: MatchSettingsDocument,
 					variables: {
-						id
+						id: user?.id
 					}
 				}
 			],

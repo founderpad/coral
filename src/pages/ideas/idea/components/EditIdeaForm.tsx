@@ -8,14 +8,14 @@ import { SwitchField } from '@/components/input';
 import { StackLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
 import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@/generated/api';
-import { useModalDrawer } from '@/hooks/util';
+import { useModalDrawer, useNotification } from '@/hooks/util';
 import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@/utils/Constants';
-import { redirectTo } from '@/utils/validators';
 import React from 'react';
 import { useIdeaFragment } from '../query/ideaQuery';
 
 export const EditIdeaForm = () => {
 	const idea = useIdeaFragment();
+	const { addNotification } = useNotification();
 	const { closeModalDrawer } = useModalDrawer();
 	const { __typename, id, ...rest } = idea;
 	const defaultValues = { ...rest };
@@ -30,11 +30,19 @@ export const EditIdeaForm = () => {
 			},
 			onCompleted: (_data) => {
 				closeModalDrawer();
-				redirectTo(false, 'exp');
+				addNotification({
+					message: 'Your idea has been updated successfully.',
+					status: 'success'
+				});
 			},
 			onError: (_data) => {
 				closeModalDrawer();
-				redirectTo(true, 'exp');
+				addNotification({
+					message: 'Failed to update idea. Please try again later.',
+					status: 'error'
+				});
+
+				throw new Error(`Failed to update idea with id: ${idea?.id}`);
 			}
 		});
 	};

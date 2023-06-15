@@ -1,19 +1,19 @@
 import { FlexLayout } from '@/components/layouts';
 import { BaseLink } from '@/components/links';
 import { PointSeparator, UserAvatarDetails } from '@/components/shared';
-import { useCurrentUser } from '@/hooks/auth';
 import { formatDate } from '@/utils/validators';
 import React from 'react';
 import useIdea from '../query/ideaQuery';
 import IdeaActions from './IdeaMenu';
+import { useUserData } from '@nhost/react';
 
 export const IdeaUserActions = () => {
 	const { idea } = useIdea() ?? {};
-	const auth = useCurrentUser();
+	const user = useUserData();
 
 	let publishedName = '';
 	publishedName =
-		auth.id === idea?.userId
+		user?.id === idea?.userId
 			? 'you'
 			: idea?.user
 			? idea?.user?.displayName
@@ -39,7 +39,7 @@ export const IdeaUserActions = () => {
 				}
 			/>
 
-			{auth?.id === idea?.userId && <IdeaActions ideaId={idea?.id} />}
+			{user?.id === idea?.userId && <IdeaActions ideaId={idea?.id} />}
 		</FlexLayout>
 	);
 };

@@ -137,7 +137,7 @@ const UsersContainer = () => {
 	if (loading) return <Loading small />;
 
 	return (
-		<React.Fragment>
+		<>
 			<PageHeader title="All users" subtitle="Search all users" />
 			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
 				<SearchActions
@@ -171,9 +171,8 @@ const UsersContainer = () => {
 						pathname="/users/search"
 					/>
 				)}
-				)
 			</StackLayout>
-		</React.Fragment>
+		</>
 	);
 };
 

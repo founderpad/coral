@@ -249,14 +249,31 @@ export const useCurrentUser = (): TUsers => {
 	);
 };
 
+// export const useCheckLoggedIn = (): void => {
+// 	const { isAuthenticated } = useAuthenticationStatus();
+// 	const changePasswordHash = Router.asPath.split('#')[1] ?? '';
+// 	useEffect(() => {
+// 		if (isAuthenticated && !changePasswordHash) {
+// 			// Router.replace('/ideas/search?page=1');
+// 		}
+// 	}, [isAuthenticated, changePasswordHash]);
+// };
+
 export const useCheckLoggedIn = (): void => {
+	// const { isAuthenticated } = useAuthenticationStatus();
+	// const changePasswordHash = Router.asPath.split('#')[1] ?? '';
+	// useEffect(() => {
+	// 	if (isAuthenticated && !changePasswordHash) {
+	// 		// Router.replace('/ideas/search?page=1');
+	// 	}
+	// }, [isAuthenticated, changePasswordHash]);
+
 	const { isAuthenticated } = useAuthenticationStatus();
-	const changePasswordHash = Router.asPath.split('#')[1] ?? '';
 	useEffect(() => {
-		if (isAuthenticated && !changePasswordHash) {
-			Router.replace('/ideas/search?page=1');
+		if (isAuthenticated) {
+			Router.replace('/home');
 		}
-	}, [isAuthenticated, changePasswordHash]);
+	}, [isAuthenticated]);
 };
 
 export const useClaim = (): string | undefined => auth.getUser()?.id;
