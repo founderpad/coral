@@ -10,14 +10,12 @@ const ProfileLayout = () => (
 		w="full"
 		gridGap={6}
 	>
-		{/* <GridItem colSpan={{ md: 3 }} display={{ base: 'none', md: 'block' }}> */}
 		<GridItem
 			colSpan={{ base: 12, md: 4 }}
 			display={{ base: 'none', md: 'block' }}
 		>
 			<UserPersonalDetails mb={8} />
 		</GridItem>
-		{/* <GridItem colSpan={{ base: 12, md: 9 }}> */}
 		<GridItem colSpan={{ base: 12, md: 8 }}>
 			<UserProfileTabLayout />
 		</GridItem>

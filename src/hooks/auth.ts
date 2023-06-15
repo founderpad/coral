@@ -4,11 +4,11 @@ import { setUser } from '@/slices/auth';
 import { RootState } from '@/utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { TRegisterFormFields, TLoginFields } from 'src/types/auth';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { encodeString } from '@/utils/validators';
 import ModalDrawerContext from '@/context/ModalDrawerContext';
-import { auth } from '@/pages/_app';
+import { auth, nhost } from '@/pages/_app';
 import {
 	useAuthenticationStatus,
 	useSignInEmailPassword,
@@ -21,7 +21,6 @@ import {
 } from '@nhost/nhost-js';
 import NotificationContext from '@/context/NotificationContext';
 import { useNotification } from './util';
-
 export const useRegister = () => {
 	const { addNotification } = useContext(NotificationContext);
 	const { signUpEmailPassword } = useSignUpEmailPassword();
@@ -249,31 +248,20 @@ export const useCurrentUser = (): TUsers => {
 	);
 };
 
-// export const useCheckLoggedIn = (): void => {
-// 	const { isAuthenticated } = useAuthenticationStatus();
-// 	const changePasswordHash = Router.asPath.split('#')[1] ?? '';
-// 	useEffect(() => {
-// 		if (isAuthenticated && !changePasswordHash) {
-// 			// Router.replace('/ideas/search?page=1');
-// 		}
-// 	}, [isAuthenticated, changePasswordHash]);
-// };
-
 export const useCheckLoggedIn = (): void => {
-	// const { isAuthenticated } = useAuthenticationStatus();
-	// const changePasswordHash = Router.asPath.split('#')[1] ?? '';
-	// useEffect(() => {
-	// 	if (isAuthenticated && !changePasswordHash) {
-	// 		// Router.replace('/ideas/search?page=1');
-	// 	}
-	// }, [isAuthenticated, changePasswordHash]);
-
+	const router = useRouter();
 	const { isAuthenticated } = useAuthenticationStatus();
+	const session = nhost.auth.getSession();
+	const { type, refreshToken } = router.query;
+
+	const isChangePassword =
+		type === 'passwordReset' && refreshToken === session?.refreshToken;
+
 	useEffect(() => {
 		if (isAuthenticated) {
-			Router.replace('/home');
+			router.replace(`/home${isChangePassword ? '?resetpassword' : ''}`);
 		}
-	}, [isAuthenticated]);
+	}, [isAuthenticated, router, isChangePassword]);
 };
 
 export const useClaim = (): string | undefined => auth.getUser()?.id;

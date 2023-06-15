@@ -1,30 +1,23 @@
 import { FlexProps } from '@chakra-ui/react';
-import { SubmitButton } from '@/components/buttons';
 import {
-	// IoLocationOutline,
 	IoLockClosedOutline,
 	IoMailOutline,
 	IoTimeOutline
 } from '@/components/icons';
 import { StackLayout } from '@/components/layouts';
 import { TitleEditAction } from '@/components/shared';
-import ChangePasswordForm from '@/components/shared/ChangePasswordForm';
-// import PronounsLabel from '@/components/shared/PronounsLabel';
-// import { useCurrentUser } from '@/hooks/auth';
-import { useModalDrawer } from '@/hooks/util';
 import { formatDate } from '@/utils/validators';
 import React, { memo } from 'react';
-// import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import ProfileSectionLabel from './ProfileSectionLabel';
 import UserImageUploader from './UserImageUploader';
 import { useUserData } from '@nhost/react';
+import useChangePasswordModal from '../hooks/useChangePasswordModal';
 
 type Props = Pick<FlexProps, 'display' | 'mb'>;
 
 const UserPersonalInformation = memo((props: Props) => {
-	// const user = useCurrentUser();
 	const user = useUserData();
-	const { openModalDrawer } = useModalDrawer();
+	const { onOpenModal } = useChangePasswordModal();
 	const {
 		createdAt = '',
 		displayName = '',
@@ -53,24 +46,24 @@ const UserPersonalInformation = memo((props: Props) => {
 	// 	});
 	// };
 
-	const onPasswordClick = () => {
-		openModalDrawer({
-			title: 'Your new password',
-			action: (
-				<SubmitButton
-					name="open-modal-drawer-change-password-button"
-					form="edit-change-password"
-					label="Save"
-				/>
-			),
-			body: (
-				<ChangePasswordForm
-					showPasswordLabel={true}
-					showSubmit={false}
-				/>
-			)
-		});
-	};
+	// const onPasswordClick = () => {
+	// 	openModalDrawer({
+	// 		title: 'Your new password',
+	// 		action: (
+	// 			<SubmitButton
+	// 				name="open-modal-drawer-change-password-button"
+	// 				form="edit-change-password"
+	// 				label="Save"
+	// 			/>
+	// 		),
+	// 		body: (
+	// 			<ChangePasswordForm
+	// 				showPasswordLabel={true}
+	// 				showSubmit={false}
+	// 			/>
+	// 		)
+	// 	});
+	// };
 
 	return (
 		<StackLayout p={4} spacing={8}>
@@ -100,7 +93,7 @@ const UserPersonalInformation = memo((props: Props) => {
 			</StackLayout>
 
 			<StackLayout spacing={2} w="full">
-				<TitleEditAction title="Password" onClick={onPasswordClick} />
+				<TitleEditAction title="Password" onClick={onOpenModal} />
 				<ProfileSectionLabel
 					label="*********"
 					icon={IoLockClosedOutline}

@@ -3,10 +3,22 @@ import { PageHtmlHead } from '@/components/shared';
 import AuthFilter from '@/utils/AuthFilter';
 import { useUserData } from '@nhost/react';
 import { NextPage } from 'next';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import useChangePasswordModal from '../account/profile/hooks/useChangePasswordModal';
 
 const Home: NextPage = () => {
 	const user = useUserData();
+	const router = useRouter();
+	const { onOpenModal } = useChangePasswordModal();
+
+	useEffect(() => {
+		if (router.query['resetpassword'] !== undefined) {
+			console.log('reset pwd');
+			onOpenModal();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>

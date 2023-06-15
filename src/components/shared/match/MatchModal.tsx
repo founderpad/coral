@@ -4,7 +4,7 @@ import { useModalDrawer } from '@/hooks/util';
 import MatchmakeSettingsForm from '@/pages/account/profile/components/forms/matchsettingsform/MatchmakeSettingsForm';
 
 export const useMatchModal = (data: TMatchSettingsQuery) => {
-	const { openModalDrawer } = useModalDrawer();
+	const { openModalDrawer, closeModalDrawer } = useModalDrawer();
 
 	const onOpenModal = () => {
 		openModalDrawer({
@@ -20,7 +20,7 @@ export const useMatchModal = (data: TMatchSettingsQuery) => {
 		});
 	};
 
-	return { onOpenModal };
+	return { onOpenModal, closeModalDrawer };
 };
 
 export default useMatchModal;

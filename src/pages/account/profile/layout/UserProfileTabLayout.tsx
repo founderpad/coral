@@ -10,7 +10,7 @@ const UserProfileTabLayout = () => {
 	const isMobile = useBreakpointValue({ base: true, md: false });
 
 	return (
-		<React.Fragment>
+		<>
 			{isMobile ? (
 				<TabLayout
 					tabs={[
@@ -38,7 +38,7 @@ const UserProfileTabLayout = () => {
 					<UserActivityTab />
 				</TabLayout>
 			)}
-		</React.Fragment>
+		</>
 	);
 };
 
