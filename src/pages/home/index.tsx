@@ -14,7 +14,6 @@ const Home: NextPage = () => {
 
 	useEffect(() => {
 		if (router.query['resetpassword'] !== undefined) {
-			console.log('reset pwd');
 			onOpenModal();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
