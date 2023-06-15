@@ -57,10 +57,10 @@ const CreateIdeaForm = () => {
 				});
 
 				// dispatch(addEsteemPoints(50));
-				showNotification({
-					title: '+50 Esteem Points',
-					description: 'You have earned 50 Esteem Points'
-				});
+				// showNotification({
+				// 	title: '+50 Esteem Points',
+				// 	description: 'You have earned 50 Esteem Points'
+				// });
 				Router.push(`/idea/${idea?.id}`);
 			}
 		});
