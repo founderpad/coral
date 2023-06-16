@@ -1,4 +1,8 @@
-import { TUsers, useMatchesQuery } from '@/generated/api';
+import {
+	TMatchSettingsFieldsFragment,
+	TUsers,
+	useMatchesQuery
+} from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useAuth } from '@/hooks/auth';
 import React from 'react';
@@ -8,6 +12,7 @@ import { SimpleGrid, Tag } from '@chakra-ui/react';
 import { NoResults, UserAvatarDetails } from '@/components/shared';
 import MatchedSkills from '@/components/shared/match/MatchedSkills';
 import UserMatchPreferences from '@/components/shared/match/UserMatchPreferences';
+import { useUserData } from '@nhost/react';
 
 export const sortByCommonSkills = (
 	foundUsers: TUsers[],
@@ -51,14 +56,13 @@ export const sortByCommonSkills = (
 	return res;
 };
 
-export const MatchContainer = () => {
-	const authUser = useCurrentUser();
-
+export const MatchContainer = (settings: TMatchSettingsFieldsFragment) => {
+	const user = useUserData();
 	const { data, loading } = useMatchesQuery({
 		variables: {
-			currentUserId: useAuth().getUser()?.id,
-			userLookingFor: authUser.matchSettings?.lookingFor ?? '',
-			userProfileSkills: authUser.matchSettings?.skills ?? []
+			currentUserId: user?.id,
+			userLookingFor: settings?.lookingFor ?? '',
+			userProfileSkills: settings?.skills ?? []
 		}
 	});
 
@@ -66,12 +70,12 @@ export const MatchContainer = () => {
 
 	const users = sortByCommonSkills(
 		(data?.users as TUsers[]) ?? [],
-		authUser.matchSettings?.skills
+		settings?.skills
 	);
 
 	return (
 		<>
-			<UserMatchPreferences />
+			<UserMatchPreferences {...settings} />
 			{!loading && hasResults < 1 ? (
 				<NoResults back />
 			) : (

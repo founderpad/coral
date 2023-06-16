@@ -4,8 +4,18 @@ import { NextPage } from 'next';
 import React from 'react';
 import MatchContainer from './MatchContainer';
 import { PageHtmlHead } from '@/components/shared';
+import { useMatchSettingsQuery } from '@/generated/api';
+import { useUserData } from '@nhost/react';
 
 const Match: NextPage = () => {
+	const user = useUserData();
+
+	const { data } = useMatchSettingsQuery({
+		variables: {
+			id: user?.id
+		}
+	});
+
 	return (
 		<>
 			<PageHtmlHead
@@ -18,7 +28,7 @@ const Match: NextPage = () => {
 				subtitle="Here are the matches we have found for you based on your preferences"
 				spacing={0}
 			>
-				<MatchContainer />
+				<MatchContainer {...data?.settings} />
 			</PageLayout>
 		</>
 	);

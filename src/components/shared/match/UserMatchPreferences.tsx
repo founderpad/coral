@@ -2,20 +2,23 @@ import { EditButton } from '@/components/buttons';
 import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import useMatchModal from '@/components/shared/match/MatchModal';
-import { useMatchSettingsQuery } from '@/generated/api';
-import { useCurrentUser, useAuth } from '@/hooks/auth';
+import {
+	TMatchSettingsFieldsFragment,
+	useMatchSettingsQuery
+} from '@/generated/api';
 import { useMobile } from '@/hooks/util';
 import { Tag, Spacer } from '@chakra-ui/react';
 import LookingForSkills from './LookingForSkills';
 import SkillsPopover from './SkillsPopover';
+import { useUserData } from '@nhost/react';
 
-const UserMatchPreferences = () => {
-	const authUser = useCurrentUser();
+const UserMatchPreferences = (settings: TMatchSettingsFieldsFragment) => {
+	const user = useUserData();
 	const isMobile = useMobile();
 
 	const { data } = useMatchSettingsQuery({
 		variables: {
-			id: useAuth().getUser()?.id
+			id: user?.id
 		}
 	});
 
@@ -32,27 +35,25 @@ const UserMatchPreferences = () => {
 			rounded="md"
 			direction="row"
 		>
-			{authUser.matchSettings?.lookingFor && (
+			{settings?.lookingFor && (
 				<StackLayout direction="row" spacing={2}>
 					<Label fontSize="xs">I am looking for</Label>
-					<Tag size="sm">{authUser.matchSettings?.lookingFor}</Tag>
+					<Tag size="sm">{settings?.lookingFor}</Tag>
 				</StackLayout>
 			)}
 
-			{authUser.matchSettings?.skills && (
+			{settings?.skills && (
 				<>
 					{!isMobile ? (
 						<Label fontSize="xs">with skills</Label>
 					) : (
 						<SkillsPopover
-							value={`With ${authUser.matchSettings?.skills.length} skills`}
-							skillsList={authUser.matchSettings?.skills}
+							value={`With ${settings?.skills.length} skills`}
+							skillsList={settings?.skills}
 						/>
 					)}
 					{!isMobile && (
-						<LookingForSkills
-							skills={authUser.matchSettings?.skills ?? ''}
-						/>
+						<LookingForSkills skills={settings?.skills ?? ''} />
 					)}
 				</>
 			)}
