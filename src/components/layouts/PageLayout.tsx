@@ -5,7 +5,7 @@ import React from 'react';
 import { StackLayout } from './StackLayout';
 
 type Props = Omit<BoxProps, 'border'> & {
-	title: string;
+	title?: string;
 	subtitle?: React.ReactNode;
 	fixedHeader?: boolean;
 	action?: React.ReactNode;
@@ -49,7 +49,7 @@ export const PageLayout = (props: Props) => {
 			borderWidth={border ? { base: 0, lg: 1 } : 0}
 			borderColor="fpLightGrey.900"
 		>
-			<PageHeader {...headerProps} />
+			{title && <PageHeader {...headerProps} />}
 			<Box
 				as="main"
 				display="flex"

@@ -6,11 +6,11 @@ import { VscSearchStop } from '@/components/icons';
 import { BoxLayout } from '@/components/layouts';
 import React from 'react';
 
-type Props = {
-	label?: string;
+interface Props {
+	label?: string | JSX.Element;
 	back?: boolean;
 	fontSize?: HeadingProps['fontSize'];
-};
+}
 
 /**
  * The @NoResults displays an empty container.
@@ -18,7 +18,11 @@ type Props = {
  * @param param0
  * @returns
  */
-export const NoResults = ({ label, back = true, fontSize = 'sm' }: Props) => (
+export const NoResults = ({
+	label = 'results',
+	back = true,
+	fontSize = 'sm'
+}: Props) => (
 	<BoxLayout
 		flex={1}
 		flexDirection="column"
@@ -27,9 +31,13 @@ export const NoResults = ({ label, back = true, fontSize = 'sm' }: Props) => (
 		display="flex"
 	>
 		<Icon as={VscSearchStop} color="fpGrey.700" fontSize="x-large" mb={2} />
-		<SubheadingText fontSize={fontSize} color="fpGrey.700">
-			No {label ?? 'results'}
-		</SubheadingText>
+		{typeof label === 'string' ? (
+			<SubheadingText fontSize={fontSize} color="fpGrey.700">
+				No {label ?? 'results'}
+			</SubheadingText>
+		) : (
+			label
+		)}
 		{back && <GoBackButton />}
 	</BoxLayout>
 );

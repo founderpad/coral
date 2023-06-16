@@ -73,9 +73,9 @@ export const MatchContainer = (settings: TMatchSettingsFieldsFragment) => {
 
 	return (
 		<>
-			<UserMatchPreferences {...settings} />
-			{!loading && hasResults < 1 ? (
-				<NoResults back />
+			{settings?.lookingFor && <UserMatchPreferences {...settings} />}
+			{!loading && hasResults ? (
+				<NoResults />
 			) : (
 				<SimpleGrid columns={{ base: 1, md: 2 }} gap={6}>
 					{users?.map((user) => (

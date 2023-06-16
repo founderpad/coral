@@ -12,7 +12,7 @@ export const PageHeader = memo(
 		action,
 		back
 	}: {
-		title: string;
+		title?: string;
 		subtitle?: React.ReactNode;
 		fixedHeader?: boolean;
 		action?: React.ReactNode;
