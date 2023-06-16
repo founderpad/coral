@@ -1,14 +1,17 @@
 import { FlexLayout } from '@/components/layouts';
-import { useCurrentUser } from '@/hooks/auth';
 import { TagProps, Tag } from '@chakra-ui/react';
 import SeeMoreLink from './SeeMore';
 
-const MatchedSkills = ({ skills }: { skills: string[] }) => {
-	const authUser = useCurrentUser();
-
+const MatchedSkills = ({
+	authSkills,
+	skills
+}: {
+	authSkills: string[];
+	skills: string[];
+}) => {
 	const sortedSkills = [...skills].sort((a, b) => {
-		const isIncludedA = authUser.matchSettings?.skills.includes(a);
-		const isIncludedB = authUser.matchSettings?.skills.includes(b);
+		const isIncludedA = authSkills.includes(a);
+		const isIncludedB = authSkills.includes(b);
 
 		const countA = skills.filter((skill) => skill === a).length;
 		const countB = skills.filter((skill) => skill === b).length;
@@ -36,8 +39,7 @@ const MatchedSkills = ({ skills }: { skills: string[] }) => {
 				limit={4}
 				items={sortedSkills}
 				renderItem={(skill, _index) => {
-					const isSkillIncluded =
-						authUser.matchSettings?.skills.includes(skill);
+					const isSkillIncluded = authSkills?.includes(skill);
 					const tagProps: TagProps = {
 						size: 'sm',
 						key: skill,

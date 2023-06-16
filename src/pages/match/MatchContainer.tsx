@@ -99,7 +99,10 @@ export const MatchContainer = (settings: TMatchSettingsFieldsFragment) => {
 									}
 									size="md"
 								/>
-								<MatchedSkills skills={user.profile?.skills} />
+								<MatchedSkills
+									authSkills={settings?.skills}
+									skills={user.profile?.skills}
+								/>
 							</LinkCard>
 						</React.Fragment>
 					))}
