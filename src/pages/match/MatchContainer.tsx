@@ -64,17 +64,17 @@ export const MatchContainer = (settings: TMatchSettingsFieldsFragment) => {
 		}
 	});
 
-	const hasResults = data?.users.length ?? 0;
-
 	const users = sortByCommonSkills(
 		(data?.users as TUsers[]) ?? [],
 		settings?.skills
 	);
 
+	const hasResults = data?.users.length ?? 0;
+
 	return (
 		<>
 			{settings?.lookingFor && <UserMatchPreferences {...settings} />}
-			{!loading && hasResults ? (
+			{!loading && hasResults < 1 ? (
 				<NoResults />
 			) : (
 				<SimpleGrid columns={{ base: 1, md: 2 }} gap={6}>
