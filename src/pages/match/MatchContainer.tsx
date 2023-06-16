@@ -3,8 +3,6 @@ import {
 	TUsers,
 	useMatchesQuery
 } from '@/generated/api';
-import { useCurrentUser } from '@/hooks/auth';
-import { useAuth } from '@/hooks/auth';
 import React from 'react';
 import LinkCard from '@/components/cards/LinkCard';
 import { FlexLayout } from '@/components/layouts';
