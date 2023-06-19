@@ -42,7 +42,7 @@ const UserMatchPreferences = (settings: TMatchSettingsFieldsFragment) => {
 				</StackLayout>
 			)}
 
-			{settings?.skills && (
+			{settings?.skills.length && (
 				<>
 					{!isMobile ? (
 						<Label fontSize="xs">with skills</Label>

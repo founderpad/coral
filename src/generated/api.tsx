@@ -15554,7 +15554,7 @@ export function refetchMatchSettingsQuery(variables: TMatchSettingsQueryVariable
 export const MatchesDocument = gql`
     query Matches($currentUserId: uuid!, $userLookingFor: String!, $userProfileSkills: [String!]) {
   users(
-    where: {id: {_neq: $currentUserId}, matchSettings: {type: {_ilike: $userLookingFor}}, profile: {skills: {_has_keys_any: $userProfileSkills}}}
+    where: {id: {_neq: $currentUserId}, matchSettings: {type: {_ilike: $userLookingFor}}, _or: [{profile: {skills: {_has_keys_any: $userProfileSkills}}}, {matchSettings: {type: {_ilike: $userLookingFor}}}]}
     order_by: {lastSeen: desc, matchSettings: {skills: asc}}
   ) {
     displayName

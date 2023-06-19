@@ -4,12 +4,12 @@ import SeeMoreLink from './SeeMore';
 
 const MatchedSkills = ({
 	authSkills,
-	skills
+	skills = []
 }: {
 	authSkills: string[];
 	skills: string[];
 }) => {
-	const sortedSkills = [...skills].sort((a, b) => {
+	const sortedSkills = [...(skills ?? [])].sort((a, b) => {
 		const isIncludedA = authSkills.includes(a);
 		const isIncludedB = authSkills.includes(b);
 

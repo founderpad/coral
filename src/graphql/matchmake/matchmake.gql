@@ -48,6 +48,64 @@ fragment MatchSettingsFields on match_settings {
 # 	}
 # }
 
+# query Matches(
+# 	$currentUserId: uuid!
+# 	$userLookingFor: String!
+# 	$userProfileSkills: [String!]
+# ) {
+# 	users(
+# 		where: {
+# 			id: { _neq: $currentUserId }
+# 			matchSettings: { type: { _ilike: $userLookingFor } }
+# 			profile: { skills: { _has_keys_any: $userProfileSkills } }
+# 		}
+# 		order_by: { lastSeen: desc, matchSettings: { skills: asc } }
+# 	) {
+# 		displayName
+# 		id
+# 		avatarUrl
+# 		matchSettings {
+# 			type
+# 		}
+# 		profile {
+# 			skills
+# 		}
+# 	}
+# }
+
+# query Matches(
+# 	$currentUserId: uuid!
+# 	$userLookingFor: String!
+# 	$userProfileSkills: [String!]
+# ) {
+# 	users(
+# 		where: {
+# 			id: { _neq: $currentUserId }
+# 			matchSettings: { type: { _ilike: $userLookingFor } }
+# 			_or: [
+# 				{ profile: { skills: { _has_keys_any: $userProfileSkills } } }
+# 				{
+# 					_and: [
+# 						{ matchSettings: { type: { _ilike: $userLookingFor } } }
+# 						{ profile: { skills: { _is_null: true } } }
+# 					]
+# 				}
+# 			]
+# 		}
+# 		order_by: { lastSeen: desc, matchSettings: { skills: asc } }
+# 	) {
+# 		displayName
+# 		id
+# 		avatarUrl
+# 		matchSettings {
+# 			type
+# 		}
+# 		profile {
+# 			skills
+# 		}
+# 	}
+# }
+
 query Matches(
 	$currentUserId: uuid!
 	$userLookingFor: String!
@@ -57,9 +115,11 @@ query Matches(
 		where: {
 			id: { _neq: $currentUserId }
 			matchSettings: { type: { _ilike: $userLookingFor } }
-			profile: { skills: { _has_keys_any: $userProfileSkills } }
+			_or: [
+				{ profile: { skills: { _has_keys_any: $userProfileSkills } } }
+				{ matchSettings: { type: { _ilike: $userLookingFor } } }
+			]
 		}
-		# order_by: { lastSeen: desc, matchSettings: { skills: asc } }
 		order_by: { lastSeen: desc, matchSettings: { skills: asc } }
 	) {
 		displayName
