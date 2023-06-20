@@ -5,9 +5,8 @@ import {
 } from '@/generated/api';
 import React from 'react';
 import LinkCard from '@/components/cards/LinkCard';
-import { FlexLayout } from '@/components/layouts';
 import { SimpleGrid, Tag } from '@chakra-ui/react';
-import { NoResults, UserAvatarDetails } from '@/components/shared';
+import { AvatarWithDetails, NoResults } from '@/components/shared';
 import MatchedSkills from '@/components/shared/match/MatchedSkills';
 import UserMatchPreferences from '@/components/shared/match/UserMatchPreferences';
 import { useUserData } from '@nhost/react';
@@ -82,22 +81,16 @@ export const MatchContainer = (settings: TMatchSettingsFieldsFragment) => {
 						<React.Fragment key={user?.id}>
 							<LinkCard
 								href={`/user/${user?.id}`}
-								cardProps={{ borderWidth: 1 }}
+								cardProps={{ borderWidth: 1, rounded: 'md' }}
 							>
-								<UserAvatarDetails
-									src={user.avatarUrl ?? undefined}
-									title={user?.displayName}
+								<AvatarWithDetails
+									title={user.displayName}
 									subtitle={
-										<FlexLayout
-											alignItems="center"
-											flexDirection="column"
-										>
-											<Tag size="sm">
-												{user.matchSettings?.type}
-											</Tag>
-										</FlexLayout>
+										<Tag size="sm">
+											{user.matchSettings?.type}
+										</Tag>
 									}
-									size="md"
+									row
 								/>
 								<MatchedSkills
 									authSkills={settings?.skills}

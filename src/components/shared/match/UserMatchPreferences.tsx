@@ -57,16 +57,12 @@ const UserMatchPreferences = (settings: TMatchSettingsFieldsFragment) => {
 					)}
 				</>
 			)}
-			{!isMobile && (
-				<>
-					<Spacer />
-					<EditButton
-						aria-label="edit-button"
-						ml="auto"
-						onClick={onOpenModal}
-					/>
-				</>
-			)}
+			{/* {!isMobile && ( */}
+			<>
+				<Spacer />
+				<EditButton aria-label="edit-button" onClick={onOpenModal} />
+			</>
+			{/* )} */}
 		</StackLayout>
 	);
 };

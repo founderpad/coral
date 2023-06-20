@@ -1,12 +1,6 @@
 import { GoBackButton } from '@/components/buttons';
-import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
-import {
-	Loading,
-	PointSeparator,
-	UserAvatarDetails
-} from '@/components/shared';
-import PronounsLabel from '@/components/shared/PronounsLabel';
+import { AvatarWithDetails, Loading } from '@/components/shared';
 import {
 	useGetThreadUsersQuery,
 	useMessageListSubscription
@@ -17,6 +11,7 @@ import AuthFilter from '@/utils/AuthFilter';
 import { formatDate } from '@/utils/validators';
 import React from 'react';
 import WriteUserMessage from '../components/WriteUserMessage';
+import { Text } from '@chakra-ui/react';
 
 const MessageThread = () => {
 	const threadId = useQueryParam<string>('id');
@@ -71,10 +66,12 @@ const MessageThread = () => {
 					direction="row"
 				>
 					<GoBackButton mb={0} />
-					<UserAvatarDetails
-						src={recipientUser?.user.avatarUrl ?? ''}
+
+					<AvatarWithDetails
 						title={recipientUser?.user.displayName}
-						size="sm"
+						src={recipientUser?.user.avatarUrl}
+						row
+						small
 					/>
 				</StackLayout>
 
@@ -85,32 +82,16 @@ const MessageThread = () => {
 					overflowY="auto"
 				>
 					{messageList?.message.map((message) => (
-						<UserAvatarDetails
+						<AvatarWithDetails
 							key={message.id}
 							title={message.sender?.displayName}
-							src={message.sender?.avatarUrl || undefined}
 							subtitle={message.content}
 							actions={
-								<React.Fragment>
-									<PronounsLabel
-										pronouns={
-											message.sender?.profile?.pronouns
-										}
-										customPronouns={
-											message.sender?.profile
-												?.customPronouns
-										}
-									/>
-									<PointSeparator small />
-									<Label
-										display="flex"
-										fontSize="x-small"
-										color="fpGrey.500"
-									>
-										{formatDate(message.createdAt, true)}
-									</Label>
-								</React.Fragment>
+								<Text fontSize="x-small" color="fpGrey.500">
+									{formatDate(message.createdAt, true)}
+								</Text>
 							}
+							row
 						/>
 					))}
 				</StackLayout>

@@ -22,7 +22,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 				display="flex"
 				flexDirection="column"
 				flex={1}
-				mt={{ base: 14, lg: '72px' }}
+				mt={{ base: 14, xl: '72px' }}
 				mb={{ base: 0, lg: 4 }}
 				id="main-container"
 				rounded="md"
@@ -36,18 +36,20 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 					<BoxLayout
 						px={6}
 						p={2}
-						mb={4}
+						mb={{ base: 0, xl: 4 }}
 						bg="white"
-						rounded={{ lg: 'md' }}
+						rounded={{ base: 0, xl: 'md' }}
 						borderColor="fpLightGrey.900"
-						borderBottomWidth={{ xs: '1px', lg: 0 }}
-						borderWidth={{ lg: '1px' }}
+						borderWidth={{ base: 0, xl: '1px' }}
+						borderTopWidth={{ xl: '1px' }}
+						borderBottomWidth="1px"
 					>
 						<AlertFeedback
 							message={notification.message}
 							status={notification.status}
 							showIcon
 							showClose
+							auto
 						/>
 					</BoxLayout>
 				)}

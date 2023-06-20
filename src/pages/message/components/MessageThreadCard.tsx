@@ -1,9 +1,9 @@
 import LinkCard from '@/components/cards/LinkCard';
 import { Label } from '@/components/labels';
-import { PointSeparator, UserAvatarDetails } from '@/components/shared';
-import PronounsLabel from '@/components/shared/PronounsLabel';
+import { AvatarWithDetails } from '@/components/shared';
 import { useAuth } from '@/hooks/auth';
 import { formatDate } from '@/utils/validators';
+import { Text } from '@chakra-ui/react';
 import React from 'react';
 
 const MessageThreadCard = (thread: any) => {
@@ -11,41 +11,24 @@ const MessageThreadCard = (thread: any) => {
 
 	return (
 		<LinkCard href={`/message/thread/${thread.id}`}>
-			<UserAvatarDetails
-				src={thread.targetUser?.[0].user?.avatarUrl || undefined}
-				actions={
-					<React.Fragment>
-						<PronounsLabel
-							pronouns={
-								thread.targetUser?.[0].user?.profile?.pronouns
-							}
-							customPronouns={
-								thread.targetUser?.[0].user?.profile
-									?.customPronouns
-							}
-						/>
-						<PointSeparator small />
-						<Label
-							display="flex"
-							fontSize="x-small"
-							color="fpGrey.500"
-						>
-							{formatDate(
-								thread.lastMessage?.[0].createdAt,
-								true
-							)}
-						</Label>
-					</React.Fragment>
-				}
+			<AvatarWithDetails
 				title={thread.targetUser?.[0].user?.displayName}
 				subtitle={
-					<React.Fragment>
+					<Text fontSize="xs" color="fpGrey.500">
 						{authUserId === thread.lastMessage?.[0].sender?.id && (
 							<b>You:</b>
 						)}{' '}
 						{thread.lastMessage?.[0].content}
-					</React.Fragment>
+					</Text>
 				}
+				actions={
+					<Label display="flex" fontSize="x-small" color="fpGrey.500">
+						{formatDate(thread.lastMessage?.[0].createdAt, true)}
+					</Label>
+				}
+				src={thread.targetUser?.[0].user?.avatarUrl}
+				row
+				small
 			/>
 		</LinkCard>
 	);

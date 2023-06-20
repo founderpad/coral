@@ -32,11 +32,10 @@ const LogoutModal = () => {
 	const onClick = () => {
 		openModalDrawer({
 			title: 'Confirm log out',
-			body: 'Are you want to log out of founderpad?',
+			body: 'Are you sure you want to log out of founderpad?',
 			action: (
 				<DeleteButton
 					name="logout-confirm-button"
-					// onClick={() => Router.push('/loggedout')}
 					onClick={onLogout}
 					variant="outline"
 				>

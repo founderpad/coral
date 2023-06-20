@@ -6,6 +6,7 @@ import {
 	AlertProps,
 	CloseButton
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
 const colorMapping: Record<keyof AlertProps['status'], string> = {
 	error: 'red.500',
@@ -17,6 +18,7 @@ type Props = AlertProps & {
 	message: string;
 	showClose?: boolean;
 	showIcon?: boolean;
+	auto?: boolean;
 };
 
 export const AlertFeedback = (props: Props) => {
@@ -25,9 +27,18 @@ export const AlertFeedback = (props: Props) => {
 		status,
 		showClose = false,
 		showIcon = false,
+		auto = false,
 		...rest
 	} = props;
 	const { removeNotification } = useNotification();
+
+	useEffect(() => {
+		if (auto) {
+			const timeout = setTimeout(removeNotification, 2000);
+
+			return () => clearTimeout(timeout);
+		}
+	}, [auto, removeNotification]);
 
 	return (
 		<Alert {...rest} status={status} p={0} bg="white">

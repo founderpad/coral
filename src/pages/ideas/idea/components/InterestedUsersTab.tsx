@@ -2,13 +2,12 @@ import { FlexLayout, StackLayout } from '@/components/layouts';
 import { PrimaryLink } from '@/components/links';
 import {
 	AppDivider,
+	AvatarWithDetails,
 	Loading,
-	NoResults,
-	UserAvatarDetails
+	NoResults
 } from '@/components/shared';
 import { useIdeaInterestedUsersLazyQuery } from '@/generated/api';
 import NewMessageModal from '@/pages/users/user/components/NewMessageModal';
-import { formatDate } from '@/utils/validators';
 import React, { useEffect } from 'react';
 import useIdea from '../query/ideaQuery';
 
@@ -41,13 +40,11 @@ export const InterestedUsersTab = () => {
 					justifyContent="space-between"
 				>
 					<FlexLayout alignItems="center" h="full">
-						<UserAvatarDetails
-							src={interestedUser?.user?.avatarUrl || undefined}
+						<AvatarWithDetails
 							title={interestedUser?.user?.displayName}
-							createdAt={formatDate(
-								interestedUser.createdAt,
-								true
-							)}
+							src={interestedUser?.user?.avatarUrl}
+							small
+							row
 						/>
 						<AppDivider orientation="vertical" mx={3} h="30px" />
 						<NewMessageModal

@@ -1,11 +1,7 @@
 import { Badge, Tag } from '@chakra-ui/react';
 import LinkCard from '@/components/cards/LinkCard';
 import { FlexLayout } from '@/components/layouts';
-import {
-	LastSeen,
-	PointSeparator,
-	UserAvatarDetails
-} from '@/components/shared';
+import { AvatarWithDetails, LastSeen } from '@/components/shared';
 import { TUserSearchFragment } from '@/generated/api';
 import React from 'react';
 
@@ -52,7 +48,7 @@ const UserProfileAttributes = (userProfileAttrs: TUserSearchFragment) => {
 const UserCard = (userProfile: TUserSearchFragment) => {
 	return (
 		<LinkCard href={`/user/${userProfile?.user?.id}`}>
-			<UserAvatarDetails
+			{/* <UserAvatarDetails
 				src={userProfile?.user?.avatarUrl || undefined}
 				title={userProfile?.user?.displayName}
 				subtitle={
@@ -76,12 +72,30 @@ const UserCard = (userProfile: TUserSearchFragment) => {
 								{userProfile?.objective}
 							</Badge>
 
-							{/* Joined {formatDate(userProfile?.user?.createdAt)} */}
+							Joined {formatDate(userProfile?.user?.createdAt)}
 						</FlexLayout>
 					</FlexLayout>
 				}
 				actions={<LastSeen lastSeen={userProfile.user?.lastSeen} />}
 				size="md"
+			/> */}
+			<AvatarWithDetails
+				title={userProfile?.user?.displayName}
+				subtitle={
+					<Badge
+						colorScheme="fpPrimary"
+						textTransform="inherit"
+						variant="solid"
+						fontWeight="normal"
+						rounded="md"
+						fontSize="x-small"
+					>
+						{userProfile?.objective}
+					</Badge>
+				}
+				actions={<LastSeen lastSeen={userProfile.user?.lastSeen} />}
+				src={userProfile?.user?.avatarUrl}
+				row
 			/>
 			<UserProfileAttributes {...userProfile} />
 		</LinkCard>

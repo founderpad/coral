@@ -8,27 +8,15 @@ import {
 	MenuItem,
 	MenuList
 } from '@chakra-ui/react';
-import {
-	// BiCoinStack,
-	IoLockClosedOutline,
-	IoMenuSharp
-} from '@/components/icons';
-// import { Label } from '@/components/labels';
-// import { FlexLayout } from '@/components/layouts';
+import { IoLockClosedOutline, IoMenuSharp } from '@/components/icons';
 import { BaseLink } from '@/components/links';
 import LogoutModal from '@/components/modal/LogoutModal';
-import { CurrentUserAvatarDetails, UserAvatar } from '@/components/shared';
+import { AvatarWithDetails } from '@/components/shared';
 import React from 'react';
 import { useUserData } from '@nhost/react';
-// import { BiMoney } from 'react-icons/bi';
-// import { CaptionLabel } from '@/components/labels/Label';
-// import { useUserCurrencySubscription } from '@/generated/api';
-// import { useModalDrawer } from '@/hooks/util';
-// import PayPalPayoutsForm from '../components/PayPalPayoutsForm';
+import { FlexLayout } from '@/components/layouts';
 
 const UserMenu = () => {
-	// const avatarUrl = useCurrentUser().avatarUrl;
-
 	const user = useUserData();
 	// const userId = useAuth().getUser()?.id;
 	// const result = useUserCurrencySubscription({
@@ -66,19 +54,19 @@ const UserMenu = () => {
 				cursor="pointer"
 				bg="transparent"
 				borderWidth={1}
-				borderColor="inherit"
 				_hover={{ bg: 'transparent', boxShadow: 'sm' }}
 				_active={{ bg: 'fpLightGrey.200' }}
 				p={2}
-				css={{
-					'> *': {
-						display: 'flex',
-						alignItems: 'center'
-					}
-				}}
 			>
-				<Icon as={IoMenuSharp} mr={{ base: 1, sm: 2 }} />
-				<UserAvatar size="xs" src={user?.avatarUrl} />
+				<FlexLayout alignItems="center">
+					<Icon as={IoMenuSharp} mr={{ base: 1, sm: 2 }} />
+					<AvatarWithDetails
+						src={user?.avatarUrl}
+						avatarProps={{ size: 'xs' }}
+						noSpacing
+						row
+					/>
+				</FlexLayout>
 			</MenuButton>
 			<MenuList
 				rounded="md"
@@ -88,7 +76,12 @@ const UserMenu = () => {
 				borderTopRadius="none"
 				borderBottomRadius="none"
 			>
-				<CurrentUserAvatarDetails size="md" direction="column" />
+				<AvatarWithDetails
+					src={user?.avatarUrl}
+					title={user?.displayName}
+					subtitle={user?.email}
+					center
+				/>
 
 				{/* <FlexLayout
 					p={3}

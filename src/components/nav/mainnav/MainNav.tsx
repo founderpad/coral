@@ -25,8 +25,7 @@ const MainNav = memo(() => (
 		<Container
 			bg={useColorModeValue('white', 'gray.800')}
 			color={useColorModeValue('gray.600', 'white')}
-			py={{ base: 2 }}
-			px={{ base: 4, sm: 6, lg: 0 }}
+			px={{ base: 4, xl: 0 }}
 			display="flex"
 			justifySelf="center"
 			position="sticky"

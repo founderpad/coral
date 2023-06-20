@@ -1,5 +1,5 @@
 import { StackLayout } from '@/components/layouts';
-import { UserAvatar, TitleEditAction } from '@/components/shared';
+import { AvatarWithDetails, TitleEditAction } from '@/components/shared';
 import PronounsLabel from '@/components/shared/PronounsLabel';
 import { TUserWithProfileFragment } from '@/generated/api';
 import ProfileSectionLabel from '@/pages/account/profile/components/ProfileSectionLabel';
@@ -10,11 +10,12 @@ export const UserDetails = (props: Partial<TUserWithProfileFragment>) => {
 	const { displayName, avatarUrl, profile, createdAt, lastSeen } = props;
 	return (
 		<StackLayout w="full">
-			<UserAvatar
+			{/* <UserAvatar
 				src={avatarUrl}
 				boxSize={{ base: 100, md: 120 }}
 				aria-label="Edit profile picture"
-			/>
+			/> */}
+			<AvatarWithDetails src={avatarUrl} />
 			<TitleEditAction
 				title={displayName ?? ''}
 				subtitle={

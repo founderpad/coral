@@ -8,9 +8,10 @@ import {
 import { StackLayout } from '@/components/layouts';
 import React from 'react';
 import { IoSendSharp } from 'react-icons/io5';
-import { CurrentUserAvatar } from './UserAvatar';
 import ResizeTextarea from 'react-textarea-autosize';
 import { IconType } from 'react-icons/lib';
+import { AvatarWithDetails } from './UserAvatar';
+import { useUserData } from '@nhost/react';
 
 type Props = {
 	onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void | undefined;
@@ -33,6 +34,8 @@ const WriteInput = (props: Props) => {
 		stackProps
 	} = props;
 
+	const user = useUserData();
+
 	return (
 		<StackLayout
 			spacing={2}
@@ -48,7 +51,7 @@ const WriteInput = (props: Props) => {
 				w="full"
 				alignItems="center"
 			>
-				<CurrentUserAvatar size="sm" />
+				<AvatarWithDetails src={user?.avatarUrl} noSpacing small row />
 				<Textarea
 					name="value"
 					id="value"
@@ -81,7 +84,6 @@ const WriteInput = (props: Props) => {
 					type="submit"
 					onClick={onClick}
 					visibility={value?.length ? 'visible' : 'hidden'}
-					// isDisabled={value?.length < 1}
 				>
 					<Icon as={IoSendSharp} />
 				</IconButton>

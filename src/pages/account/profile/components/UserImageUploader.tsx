@@ -1,8 +1,8 @@
-import { UserAvatar } from '@/components/shared';
 // import ImageUploader from '@/components/shared/imageuploader/ImageUploader';
 // import { useUpdateUserAvatarMutation } from '@/generated/api';
 // import { useFileUploader } from '@/hooks/FileUpload';
 // import { useCurrentUser } from '@/hooks/auth';
+import { AvatarWithDetails } from '@/components/shared';
 import { useUserData } from '@nhost/react';
 // import { useModalDrawer, useNotification } from '@/hooks/util';
 // import { updateUserImage } from '@/slices/auth';
@@ -59,10 +59,15 @@ const UserImageUploader = () => {
 		// 	onUpload={onUpload}
 		// 	defaultSrc={userAvatarUrl}
 		// >
-		<UserAvatar
+		// <UserAvatar
+		// 	src={user?.avatarUrl}
+		// 	boxSize={{ base: 100, md: 120 }}
+		// 	aria-label="Edit profile picture"
+		// />
+
+		<AvatarWithDetails
 			src={user?.avatarUrl}
-			boxSize={{ base: 100, md: 120 }}
-			aria-label="Edit profile picture"
+			avatarProps={{ size: '2xl' }}
 		/>
 		// </ImageUploader>
 	);

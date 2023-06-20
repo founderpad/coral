@@ -5,10 +5,10 @@ import { FormInput } from '@/components/form/inputs/FormField';
 import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import { PrimaryLink } from '@/components/links';
-import NotificationContext from '@/context/NotificationContext';
 import { useResetPassword } from '@/hooks/auth';
+import { useNotification } from '@/hooks/util';
 import schema from '@/validation/auth/resetpassword/validationSchema';
-import React, { memo, useContext } from 'react';
+import React, { memo } from 'react';
 
 type TResetPasswordFields = {
 	email: string;
@@ -20,10 +20,10 @@ const defaultValues = {
 
 const ResetPasswordForm = () => {
 	const { onResetPassword } = useResetPassword();
-	const { notification } = useContext(NotificationContext);
+	const { notification } = useNotification();
 
 	return (
-		<React.Fragment>
+		<>
 			<BaseForm<TResetPasswordFields, typeof schema>
 				name="reset-password-form"
 				onSubmit={onResetPassword}
@@ -40,7 +40,7 @@ const ResetPasswordForm = () => {
 					resetField,
 					formState: { errors, isSubmitting }
 				}) => (
-					<React.Fragment>
+					<>
 						<Label fontSize="small" mb={4}>
 							Please enter your email address below and we will
 							send you an email with instructions to reset your
@@ -79,11 +79,11 @@ const ResetPasswordForm = () => {
 								w={{ base: 'full', sm: '200px' }}
 							/>
 						)}
-					</React.Fragment>
+					</>
 				)}
 			</BaseForm>
 			<ResetPasswordFooter />
-		</React.Fragment>
+		</>
 	);
 };
 

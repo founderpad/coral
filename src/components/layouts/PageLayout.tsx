@@ -10,7 +10,6 @@ type Props = Omit<BoxProps, 'border'> & {
 	fixedHeader?: boolean;
 	action?: React.ReactNode;
 	back?: boolean;
-	border?: boolean;
 	position?: StackProps['position'];
 	spacing?: StackProps['spacing'];
 };
@@ -24,7 +23,6 @@ export const PageLayout = (props: Props) => {
 		children,
 		p = 4,
 		back = false,
-		border = true,
 		position,
 		letterSpacing,
 		spacing = 8,
@@ -46,7 +44,7 @@ export const PageLayout = (props: Props) => {
 			w="full"
 			rounded="md"
 			flex={1}
-			borderWidth={border ? { base: 0, lg: 1 } : 0}
+			borderWidth={{ base: 0, xl: '1px' }}
 			borderColor="fpLightGrey.900"
 		>
 			{title && <PageHeader {...headerProps} />}
