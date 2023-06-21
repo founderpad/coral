@@ -35,8 +35,7 @@ export const Pagination = (props: Props) => {
 			/>
 			<ButtonGroup
 				display={{ base: 'none', sm: 'flex' }}
-				flex={1}
-				justifyContent="center"
+				alignSelf="center"
 				overflowX="auto"
 			>
 				{pagesArray.map((p) => (
