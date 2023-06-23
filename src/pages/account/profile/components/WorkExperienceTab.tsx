@@ -1,8 +1,6 @@
 import { SubmitButton } from '@/components/buttons';
-import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import {
-	AppDivider,
 	// Loading,
 	SkillsBadges,
 	TitleEditAction
@@ -14,7 +12,6 @@ import { useModalDrawer, useNotification } from '@/hooks/util';
 import React, { useEffect } from 'react';
 // import useProfileFragment from '../../../../fragment
 import ExperienceForm from './forms/experienceform/ExperienceForm';
-import ResumeUploader from './ResumeUploader';
 import { useProfileQuery } from '@/generated/api';
 import { useUserId } from '@nhost/react';
 
@@ -114,9 +111,9 @@ const WorkExperienceTab = () => {
 				/>
 			</StackLayout>
 
-			<AppDivider />
+			{/* <AppDivider /> */}
 
-			<TitleEditAction
+			{/* <TitleEditAction
 				title="Your resume"
 				subtitle={
 					<Label fontSize="xs" color="fpGrey.500">
@@ -125,7 +122,7 @@ const WorkExperienceTab = () => {
 					</Label>
 				}
 			/>
-			<ResumeUploader />
+			<ResumeUploader /> */}
 		</StackLayout>
 	);
 };
