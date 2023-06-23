@@ -2,19 +2,19 @@ import { AlertFeedback } from '@/components/alert';
 import { SubmitButton } from '@/components/buttons';
 import { BaseForm } from '@/components/form';
 import { FormInput } from '@/components/form/inputs/FormField';
-import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
 import { PrimaryLink } from '@/components/links';
 import { useResetPassword } from '@/hooks/auth';
 import { useNotification } from '@/hooks/util';
 import schema from '@/validation/auth/resetpassword/validationSchema';
+import { Text } from '@chakra-ui/react';
 import React, { memo } from 'react';
 
 type TResetPasswordFields = {
 	email: string;
 };
 
-const defaultValues = {
+const defaultValues: Record<string, string> = {
 	email: ''
 };
 
@@ -41,11 +41,11 @@ const ResetPasswordForm = () => {
 					formState: { errors, isSubmitting }
 				}) => (
 					<>
-						<Label fontSize="small" mb={4}>
+						<Text fontSize="small" mb={4}>
 							Please enter your email address below and we will
 							send you an email with instructions to reset your
 							password.
-						</Label>
+						</Text>
 
 						<FormInput<TResetPasswordFields>
 							id="email"
@@ -97,12 +97,12 @@ const ResetPasswordFooter = memo(() => (
 		display="flex"
 		w="full"
 	>
-		<Label color="fpGrey.500" fontSize="xs" alignSelf="center">
+		<Text color="fpGrey.500" fontSize="xs" alignSelf="center">
 			No account?{' '}
 			<PrimaryLink href="/register" title="Link to register an account">
 				Register now
 			</PrimaryLink>
-		</Label>
+		</Text>
 		<PrimaryLink
 			href="/login"
 			title="Link to register an account"

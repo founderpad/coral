@@ -14,10 +14,10 @@ import { Tag, TagLeftIcon } from '@chakra-ui/react';
 import React, { useCallback, useState } from 'react';
 import { AiTwotoneThunderbolt } from 'react-icons/ai';
 import useIdea, { useIdeaFragment } from '../query/ideaQuery';
-import { MobileCommentsList } from './comments/CommentsList';
 import IdeaUpvote from './IdeaUpvote';
 import InterestedTotal from './InterestedTotal';
 import PublishedLabel from './PublishedLabel';
+import MobileCommentsList from './comments/MobileCommentsList';
 
 type TIdeaUpvote = Pick<
 	TIdeas | TIdea_Preview,
