@@ -82,6 +82,7 @@ module.exports = withBundleAnalyzer({
 	images: {
 		domains: ['founderpad-file-uploads.s3.eu-west-1.amazonaws.com']
 	},
+	pageExtensions: ['page.tsx', 'ts', 'page.jsx', 'page.js'],
 	async redirects() {
 		return [
 			{

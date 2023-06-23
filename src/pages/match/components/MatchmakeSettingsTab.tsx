@@ -1,19 +1,12 @@
 import { StackLayout } from '@/components/layouts';
 import { SkillsBadges, TitleEditAction } from '@/components/shared';
 import React from 'react';
-import { useMatchSettingsQuery } from '@/generated/api';
-// import { useAuth } from '@/hooks/auth';
 import ContentFieldAndValue from '@/components/shared/ContentFieldAndValue';
 import useMatchModal from '@/components/shared/match/MatchModal';
-import { useUserData } from '@nhost/react';
+import { useMatchSettings } from '../hooks/useMatchSettings';
 
 const MatchmakeSettingsTab = () => {
-	const user = useUserData();
-	const { data } = useMatchSettingsQuery({
-		variables: {
-			id: user?.id
-		}
-	});
+	const { data } = useMatchSettings();
 
 	const { onOpenModal } = useMatchModal(data ?? {});
 

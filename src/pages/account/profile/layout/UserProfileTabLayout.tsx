@@ -4,7 +4,7 @@ import React from 'react';
 import UserActivityTab from '../components/UserActivityTab';
 import UserPersonalDetails from '../components/UserPersonalDetails';
 import WorkExperienceTab from '../components/WorkExperienceTab';
-import MatchmakeSettingsTab from '../components/MatchmakeSettingsTab';
+import MatchmakeSettingsTab from '../../../match/components/MatchmakeSettingsTab';
 
 const UserProfileTabLayout = () => {
 	const isMobile = useBreakpointValue({ base: true, md: false });

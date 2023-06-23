@@ -4,19 +4,12 @@ import { NextPage } from 'next';
 import React from 'react';
 import MatchContainer from './MatchContainer';
 import { NoResults, PageHtmlHead } from '@/components/shared';
-import { useMatchSettingsQuery } from '@/generated/api';
-import { useUserData } from '@nhost/react';
 import { Text } from '@chakra-ui/react';
 import { BaseLink } from '@/components/links';
+import { useMatchSettings } from './hooks/useMatchSettings';
 
-const Match: NextPage = () => {
-	const user = useUserData();
-
-	const { data } = useMatchSettingsQuery({
-		variables: {
-			id: user?.id
-		}
-	});
+const MatchPage: NextPage = () => {
+	const { data } = useMatchSettings();
 
 	return (
 		<>
@@ -56,4 +49,4 @@ const Match: NextPage = () => {
 	);
 };
 
-export default AuthFilter(Match);
+export default AuthFilter(MatchPage);

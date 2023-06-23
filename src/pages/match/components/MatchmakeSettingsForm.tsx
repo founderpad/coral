@@ -1,29 +1,22 @@
 import { BaseForm, FormLabelText } from '@/components/form';
 import { FormSelect } from '@/components/form/inputs/FormField';
 import { FlexLayout } from '@/components/layouts';
-import { useCheckboxes, useModalDrawer, useNotification } from '@/hooks/util';
+import { useCheckboxes } from '@/hooks/util';
 import { ALL_MATCHMAKE_TYPES, EXPERIENCE_SKILLS } from '@/utils/Constants';
 import { Button, Checkbox, FormControl, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { SimpleGrid } from '@chakra-ui/react';
 import {
-	MatchSettingsDocument,
 	TMatchSettingsFieldsFragment,
-	TMatch_Settings_Set_Input,
-	useUpdateMatchSettingsMutation
+	TMatch_Settings_Set_Input
 } from '@/generated/api';
-import { useUserData } from '@nhost/react';
 import schema from '@/validation/match/validationSchema';
+import { useUpdateMatchSettings } from '../hooks/useUpdateMatchSettings';
 
 const MatchmakeSettingsForm = (
 	matchmakeSettings: TMatchSettingsFieldsFragment
 ) => {
-	const { closeModalDrawer } = useModalDrawer();
-	const user = useUserData();
-	const [updateMatchmakeSettings] = useUpdateMatchSettingsMutation();
-	const { addNotification } = useNotification();
-
 	const {
 		clearValues,
 		onToggle,
@@ -32,47 +25,9 @@ const MatchmakeSettingsForm = (
 		onToggleAll,
 		isAllSelected
 	} = useCheckboxes(EXPERIENCE_SKILLS, matchmakeSettings.skills);
+	const { onUpdateMatchmakeSettings } = useUpdateMatchSettings(values);
 	const { __typename, ...rest } = matchmakeSettings;
 	const defaultValues = { ...rest };
-
-	const onUpdateMatchmakeSettings = (
-		matchSettings: TMatch_Settings_Set_Input
-	) => {
-		updateMatchmakeSettings({
-			variables: {
-				id: user?.id,
-				match_settings: {
-					...matchSettings,
-					// skills: formatArrayForDb(values)
-					skills: values
-				}
-			},
-			onCompleted: (_data) => {
-				closeModalDrawer();
-				addNotification({
-					message:
-						'Your match preferences have been updated successfully.',
-					status: 'success'
-				});
-			},
-			refetchQueries: [
-				{
-					query: MatchSettingsDocument,
-					variables: {
-						id: user?.id
-					}
-				}
-			],
-			onError: (_data) => {
-				closeModalDrawer();
-				addNotification({
-					message:
-						'Failed to update match preferences. Please try again later.',
-					status: 'error'
-				});
-			}
-		});
-	};
 
 	return (
 		<BaseForm<TMatch_Settings_Set_Input, typeof schema>

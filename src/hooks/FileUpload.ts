@@ -1,4 +1,4 @@
-import { storage } from '@/pages/_app';
+import { storage } from '@/pages/_app.page';
 import { StorageUploadFileParams } from '@nhost/nhost-js';
 import { useMemo } from 'react';
 import { useNotification } from './util';

@@ -3,7 +3,7 @@ import { FileUploader } from '@/components/shared';
 import { TUser_Profile, useUpdateResumeMutation } from '@/generated/api';
 import { useCurrentUser } from '@/hooks/auth';
 import { useQueryParam } from '@/hooks/util';
-import { cache } from '@/pages/_app';
+import { cache } from '@/pages/_app.page';
 import { formatUploadedUrls } from '@/utils/validators';
 import gql from 'graphql-tag';
 import React from 'react';

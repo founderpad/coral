@@ -8,7 +8,7 @@ import Router, { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { encodeString } from '@/utils/validators';
 import ModalDrawerContext from '@/context/ModalDrawerContext';
-import { auth, nhost } from '@/pages/_app';
+import { auth, nhost } from '@/pages/_app.page';
 import {
 	useAuthenticationStatus,
 	useSignInEmailPassword,

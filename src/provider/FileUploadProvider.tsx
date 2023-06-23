@@ -1,5 +1,5 @@
 import FileUploadContext from '@/context/FileUploadContext';
-import { storage } from '@/pages/_app';
+import { storage } from '@/pages/_app.page';
 
 import React, { useState } from 'react';
 import {
