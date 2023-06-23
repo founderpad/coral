@@ -27,8 +27,6 @@ import schema from '@/validation/profile/experience/validationSchema';
 import { useUserData } from '@nhost/react';
 
 const ExperienceForm = (profile: TProfileFieldsFragment) => {
-	// const dispatch = useDispatch();
-	// const isProfileComplete = useCurrentUser()?.profile?.isComplete;
 	const user = useUserData();
 	const { __typename, id, userId, ...rest } = profile;
 	const {
@@ -50,11 +48,10 @@ const ExperienceForm = (profile: TProfileFieldsFragment) => {
 	const onUpdateExperience = (experienceValues: TUser_Profile_Set_Input) => {
 		updateUserProfileMutation({
 			variables: {
-				id,
+				id: user?.id,
 				user_profile: {
 					...experienceValues,
 					skills: values
-					// isComplete: true
 				}
 			},
 			refetchQueries: [
@@ -71,7 +68,6 @@ const ExperienceForm = (profile: TProfileFieldsFragment) => {
 					message: 'Your details have been updated successfully',
 					status: 'success'
 				});
-				// if (!isProfileComplete) dispatch(setProfileComplete());
 			},
 			onError: (_data) => {
 				closeModalDrawer();

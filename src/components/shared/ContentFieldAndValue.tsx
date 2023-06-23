@@ -1,27 +1,29 @@
-import { Label } from '@/components/labels';
 import { StackLayout } from '@/components/layouts';
-import React from 'react';
+import { Text } from '@chakra-ui/react';
+import React, { memo } from 'react';
 
 interface Props {
 	title?: string;
-	value: any;
+	value?: any;
 }
 
-const ContentFieldAndValue = ({ title, value }: Props) => (
-	<StackLayout spacing={1} wordBreak="break-word">
-		{title && (
-			<Label fontSize="small" as="h4" color="black" fontWeight="medium">
-				{title}
-			</Label>
-		)}
-		{typeof value === 'string' ? (
-			<Label color="gray.500" fontSize="xs">
-				{value}
-			</Label>
-		) : (
-			value
-		)}
-	</StackLayout>
-);
+const ContentFieldAndValue = memo(({ title, value = 'Not set' }: Props) => {
+	return (
+		<StackLayout spacing={1} wordBreak="break-word">
+			{title && (
+				<Text color="black" fontSize="small">
+					{title}
+				</Text>
+			)}
+			{typeof value === 'string' ? (
+				<Text color="gray.500" fontSize="xs">
+					{value}
+				</Text>
+			) : (
+				value
+			)}
+		</StackLayout>
+	);
+});
 
 export default ContentFieldAndValue;

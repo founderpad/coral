@@ -15,6 +15,7 @@ import {
 	useUpdateMatchSettingsMutation
 } from '@/generated/api';
 import { useUserData } from '@nhost/react';
+import schema from '@/validation/match/validationSchema';
 
 const MatchmakeSettingsForm = (
 	matchmakeSettings: TMatchSettingsFieldsFragment
@@ -81,17 +82,18 @@ const MatchmakeSettingsForm = (
 	};
 
 	return (
-		<BaseForm<TMatch_Settings_Set_Input>
+		<BaseForm<TMatch_Settings_Set_Input, typeof schema>
 			name="edit-match-settings-form"
 			onSubmit={onUpdateMatchmakeSettings}
 			defaultValues={defaultValues}
+			schema={schema}
 		>
 			{({ register, control, resetField, formState: { errors } }) => (
-				<React.Fragment>
+				<>
 					<FormSelect<TMatch_Settings_Set_Input>
 						id="type"
 						name="type"
-						label="I am"
+						label="I consider myself"
 						options={ALL_MATCHMAKE_TYPES}
 						register={register}
 						control={control}
@@ -178,7 +180,7 @@ const MatchmakeSettingsForm = (
 							))}
 						</SimpleGrid>
 					</FormControl>
-				</React.Fragment>
+				</>
 			)}
 		</BaseForm>
 	);

@@ -245,11 +245,24 @@ mutation UpdateUserProfile($id: uuid!, $user_profile: user_profile_set_input!) {
 	# 	updatedAt
 	# }
 
-	update_user_profile(
-		where: { userId: { _eq: "7aaeab01-b91d-4ba9-ab42-e217489ab1f9" } }
-		_set: { availability: "boo" }
-	) {
-		affected_rows
+	update_user_profile(where: { userId: { _eq: $id } }, _set: $user_profile) {
+		availability
+		objective
+		background
+		linkedin
+		twitter
+		instagram
+		facebook
+		resume
+		statement
+		status
+		businessDescription
+		startups
+		website
+		skills
+		isComplete
+		specialistIndustry
+		updatedAt
 	}
 }
 

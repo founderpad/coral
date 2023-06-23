@@ -38,28 +38,31 @@ export const Pagination = (props: Props) => {
 				alignSelf="center"
 				overflowX="auto"
 			>
-				{pagesArray.map((p) => (
-					<CancelButton
-						label={p.toString()}
-						key={p}
-						title={`Page ${p} of results`}
-						background={
-							page === p ? 'fpLightGrey.500' : 'transparent'
-						}
-						onClick={() =>
-							router.push(
-								{
-									pathname,
-									query: { ...router.query, page: p }
-								},
-								undefined,
-								{
-									shallow: true
-								}
-							)
-						}
-					/>
-				))}
+				{pagesArray.map((p) => {
+					const isCurrentPage = page === p;
+					const handleClick = () =>
+						router.push(
+							{ pathname, query: { ...router.query, page: p } },
+							undefined,
+							{
+								shallow: true
+							}
+						);
+
+					return (
+						<CancelButton
+							label={p.toString()}
+							key={p}
+							title={`Page ${p} of results`}
+							background={
+								isCurrentPage
+									? 'fpLightGrey.500'
+									: 'transparent'
+							}
+							onClick={handleClick}
+						/>
+					);
+				})}
 			</ButtonGroup>
 			<CancelButton
 				label="Next"

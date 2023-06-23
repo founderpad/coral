@@ -49,7 +49,7 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 							status={notification.status}
 							showIcon
 							showClose
-							auto
+							// auto
 						/>
 					</BoxLayout>
 				)}

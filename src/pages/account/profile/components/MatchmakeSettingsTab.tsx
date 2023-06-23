@@ -26,10 +26,10 @@ const MatchmakeSettingsTab = () => {
 				onClick={onOpenModal}
 			/>
 			<StackLayout>
-				<ContentFieldAndValue title="I am" value={type || 'Not set'} />
+				<ContentFieldAndValue title="I consider myself" value={type} />
 				<ContentFieldAndValue
 					title="And I am looking for"
-					value={lookingFor || 'Not set'}
+					value={lookingFor}
 				/>
 
 				<ContentFieldAndValue

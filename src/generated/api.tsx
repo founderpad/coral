@@ -14525,7 +14525,7 @@ export type TUpdateUserProfileMutationVariables = Exact<{
 }>;
 
 
-export type TUpdateUserProfileMutation = { update_user_profile?: { __typename?: 'user_profile_mutation_response', affected_rows: number } | null };
+export type TUpdateUserProfileMutation = { update_user_profile?: { __typename?: 'user_profile_mutation_response', returning: Array<{ __typename?: 'user_profile', availability?: string | null, objective?: string | null, background?: string | null, linkedin?: string | null, twitter?: string | null, instagram?: string | null, facebook?: string | null, resume?: string | null, statement?: string | null, status?: string | null, businessDescription?: string | null, startups?: string | null, website?: string | null, skills?: any | null, isComplete: boolean, specialistIndustry?: string | null, updatedAt: any }> } | null };
 
 export const UserAddressFragmentDoc = gql`
     fragment UserAddress on user_address {
@@ -16399,11 +16399,26 @@ export function refetchProfileQuery(variables: TProfileQueryVariables) {
     }
 export const UpdateUserProfileDocument = gql`
     mutation UpdateUserProfile($id: uuid!, $user_profile: user_profile_set_input!) {
-  update_user_profile(
-    where: {userId: {_eq: "7aaeab01-b91d-4ba9-ab42-e217489ab1f9"}}
-    _set: {availability: "boo"}
-  ) {
-    affected_rows
+  update_user_profile(where: {userId: {_eq: $id}}, _set: $user_profile) {
+    returning {
+      availability
+      objective
+      background
+      linkedin
+      twitter
+      instagram
+      facebook
+      resume
+      statement
+      status
+      businessDescription
+      startups
+      website
+      skills
+      isComplete
+      specialistIndustry
+      updatedAt
+    }
   }
 }
     `;
