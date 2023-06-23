@@ -45,59 +45,57 @@ const MessageThread = () => {
 	if (loading) return <Loading />;
 
 	return (
-		<React.Fragment>
+		<StackLayout
+			h={{ base: 'calc(100% - 56px)', lg: 'calc(100% - 70px)' }}
+			display="flex"
+			flex={1}
+			w={{ base: 'full', xl: '95ch' }}
+			overflow="hidden"
+			spacing={0}
+			position="fixed"
+			rounded="md"
+			borderWidth={{ base: 0, lg: 1 }}
+			borderColor="fpLightGrey.900"
+		>
 			<StackLayout
-				h={{ base: 'calc(100% - 56px)', lg: 'calc(100% - 70px)' }}
-				display="flex"
-				flex={1}
-				w={{ base: 'full', xl: '95ch' }}
-				overflow="hidden"
-				spacing={0}
-				position="fixed"
-				rounded="md"
-				borderWidth={{ base: 0, lg: 1 }}
-				borderColor="fpLightGrey.900"
+				px={{ base: 4, sm: 6 }}
+				py={2}
+				borderBottomWidth={1}
+				alignItems="center"
+				direction="row"
 			>
-				<StackLayout
-					px={{ base: 4, sm: 6 }}
-					py={2}
-					borderBottomWidth={1}
-					alignItems="center"
-					direction="row"
-				>
-					<GoBackButton mb={0} />
+				<GoBackButton mb={0} />
 
-					<AvatarWithDetails
-						title={recipientUser?.user.displayName}
-						src={recipientUser?.user.avatarUrl}
-						row
-						small
-					/>
-				</StackLayout>
-
-				<StackLayout
-					flex={1}
-					borderBottomWidth={1}
-					p={{ base: 4, sm: 6 }}
-					overflowY="auto"
-				>
-					{messageList?.message.map((message) => (
-						<AvatarWithDetails
-							key={message.id}
-							title={message.sender?.displayName}
-							subtitle={message.content}
-							actions={
-								<Text fontSize="x-small" color="fpGrey.500">
-									{formatDate(message.createdAt, true)}
-								</Text>
-							}
-							row
-						/>
-					))}
-				</StackLayout>
-				<WriteUserMessage threadId={threadId} />
+				<AvatarWithDetails
+					title={recipientUser?.user.displayName}
+					src={recipientUser?.user.avatarUrl}
+					row
+					small
+				/>
 			</StackLayout>
-		</React.Fragment>
+
+			<StackLayout
+				flex={1}
+				borderBottomWidth={1}
+				p={{ base: 4, sm: 6 }}
+				overflowY="auto"
+			>
+				{messageList?.message.map((message) => (
+					<AvatarWithDetails
+						key={message.id}
+						title={message.sender?.displayName}
+						subtitle={message.content}
+						actions={
+							<Text fontSize="x-small" color="fpGrey.500">
+								{formatDate(message.createdAt, true)}
+							</Text>
+						}
+						row
+					/>
+				))}
+			</StackLayout>
+			<WriteUserMessage threadId={threadId} />
+		</StackLayout>
 	);
 };
 

@@ -1,9 +1,10 @@
 import Head from 'next/head';
 
 export type PageHeadProps = {
-	title: string;
+	title?: string;
 	pageSlug: string;
 	description: string;
+	children?: any;
 };
 
 export const PageHtmlHead: React.FC<PageHeadProps> = ({
@@ -15,7 +16,7 @@ export const PageHtmlHead: React.FC<PageHeadProps> = ({
 		<title>{title} &middot; founderpad</title>
 		<meta
 			property="og:title"
-			content={`Founderpad · ${title}`}
+			content={`Founderpad${title ? ` · ${title}` : ''}`}
 			key="title"
 		/>
 		<meta

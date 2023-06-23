@@ -6,22 +6,15 @@ import {
 	FormTextarea
 } from '@/components/form/inputs/FormField';
 import { TIdeas_Set_Input } from '@/generated/api';
-import { TCreateIdeaMutation, useCreateIdeaMutation } from '@/generated/api';
-import { useAuth } from '@/hooks/auth';
-import { event } from '@/lib/ga';
 import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@/utils/Constants';
-import Router from 'next/router';
 import React from 'react';
 import { SwitchField } from '@/components/input';
 import { StackLayout } from '@/components/layouts';
-// import { AppDivider } from '@/components/shared';
-// import { useDispatch } from 'react-redux';
-// import { addEsteemPoints } from '@/slices/auth';
-// import { useSuccessNotification } from '@/hooks/toast';
 import schema from '@/validation/idea/create/validationSchema';
 import { AppDivider } from '@/components/shared';
+import { useCreateIdea } from '../../create/hooks/useCreateIdea.page';
 
-const defaultValues = {
+const defaultValues: Record<string, string | boolean> = {
 	name: '',
 	summary: '',
 	description: '',
@@ -33,38 +26,7 @@ const defaultValues = {
 };
 
 const CreateIdeaForm = () => {
-	const user = useAuth().getUser();
-	// const dispatch = useDispatch();
-	// const showNotification = useSuccessNotification();
-
-	const [createIdeaMutation] = useCreateIdeaMutation();
-
-	const onCreateIdea = (idea: TIdeas_Set_Input) => {
-		createIdeaMutation({
-			variables: {
-				idea
-			},
-			onCompleted: ({ idea }: TCreateIdeaMutation) => {
-				event({
-					action: 'Create idea',
-					params: {
-						user_id: user?.id,
-						display_name: user?.displayName,
-						user_email: user?.email,
-						idea_id: idea?.id,
-						idea_name: idea?.name
-					}
-				});
-
-				// dispatch(addEsteemPoints(50));
-				// showNotification({
-				// 	title: '+50 Esteem Points',
-				// 	description: 'You have earned 50 Esteem Points'
-				// });
-				Router.push(`/idea/${idea?.id}`);
-			}
-		});
-	};
+	const { onCreateIdea } = useCreateIdea();
 
 	return (
 		<BaseForm<TIdeas_Set_Input, typeof schema>
@@ -83,7 +45,7 @@ const CreateIdeaForm = () => {
 				resetField,
 				formState: { errors, isSubmitting }
 			}) => (
-				<React.Fragment>
+				<>
 					<FormInput<TIdeas_Set_Input>
 						id="name"
 						name="name"
@@ -214,7 +176,7 @@ const CreateIdeaForm = () => {
 						fontSize="small"
 						w={{ base: 'full', sm: '200px' }}
 					/>
-				</React.Fragment>
+				</>
 			)}
 		</BaseForm>
 	);

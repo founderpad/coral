@@ -7,7 +7,6 @@ import { FlexLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
 import { useModalDrawer } from '@/hooks/util';
 import {
-	ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
 	ALL_IDEA_STATUSES,
 	BY_IDEA_POPULARITY
@@ -126,7 +125,7 @@ const IdeasSearchForm = () => {
 							Clear all
 						</Button>
 					</FlexLayout>
-					<FormSelect<TSearchFields>
+					{/* <FormSelect<TSearchFields>
 						id="country"
 						name="country"
 						label="Country"
@@ -135,7 +134,7 @@ const IdeasSearchForm = () => {
 						register={register}
 						control={control}
 						onClear={() => onClear(resetField, 'country')}
-					/>
+					/> */}
 					<FormInput<TSearchFields>
 						id="name"
 						name="name"

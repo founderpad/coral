@@ -34,7 +34,7 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 					/>
 				))}
 			{comment.totalReplies! > 2 && (
-				<React.Fragment>
+				<>
 					<Collapse in={isOpen}>
 						<RepliesList commentId={comment?.id} />
 					</Collapse>
@@ -46,7 +46,7 @@ export const Comment = (comment: TCommentFieldsFragment) => {
 					>
 						{isOpen ? 'Hide replies' : 'Show more replies'}
 					</PrimaryButton>
-				</React.Fragment>
+				</>
 			)}
 		</CommentLayout>
 	);

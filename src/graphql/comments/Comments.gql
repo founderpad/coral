@@ -46,7 +46,7 @@ fragment CommentFields on v_comments {
 	isBoost
 	status
 	user {
-		...UserFields
+		...UserFieldsWithEmail
 	}
 	firstReplies: replies(limit: 2, order_by: { updatedAt: desc }) {
 		id
@@ -54,7 +54,7 @@ fragment CommentFields on v_comments {
 		value
 		updatedAt
 		user {
-			...UserFields
+			...UserFieldsWithEmail
 		}
 	}
 }
@@ -127,7 +127,7 @@ query RepliesForComment($commentId: uuid!) {
 		value
 		updatedAt
 		user {
-			...UserFields
+			...UserFieldsWithEmail
 		}
 	}
 }

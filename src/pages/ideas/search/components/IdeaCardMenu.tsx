@@ -1,19 +1,14 @@
 import { BaseMenu } from '@/components/menu';
-import ReportMenu from '@/components/shared/actionsmenu/ReportMenu';
+import ReportMenu from '@/components/shared/report/ReportMenu';
 import {
 	TIdeaPreviewFieldsFragment,
 	TReport_Insert_Input
 } from '@/generated/api';
 import React from 'react';
 
-// enum ACTION_TYPE {
-// 	SHARE,
-// 	REPORT
-// }
-
 type TIdeaProps = Pick<TIdeaPreviewFieldsFragment, 'id' | 'user' | 'name'>;
 
-export const IdeaMenu = (idea: TIdeaProps) => {
+export const IdeaCardMenu = (idea: TIdeaProps) => {
 	const report: TReport_Insert_Input = {
 		reportedId: idea?.id,
 		reportedUserId: idea?.user?.id,
@@ -40,4 +35,4 @@ export const IdeaMenu = (idea: TIdeaProps) => {
 	);
 };
 
-export default IdeaMenu;
+export default IdeaCardMenu;

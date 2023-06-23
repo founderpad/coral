@@ -14207,7 +14207,7 @@ export type TPostReplyMutationVariables = Exact<{
 
 export type TPostReplyMutation = { addIdeaReply?: { __typename?: 'idea_comment_replies', commentId: any, id: any, value: string } | null, update_idea_comments_by_pk?: { __typename?: 'idea_comments', id: any } | null };
 
-export type TCommentFieldsFragment = { __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
+export type TCommentFieldsFragment = { __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TCommentsForIdeaQueryVariables = Exact<{
   ideaId: Scalars['uuid'];
@@ -14215,14 +14215,14 @@ export type TCommentsForIdeaQueryVariables = Exact<{
 }>;
 
 
-export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'v_comments_aggregate', aggregate?: { __typename?: 'v_comments_aggregate_fields', count: number } | null } };
+export type TCommentsForIdeaQuery = { comments: Array<{ __typename?: 'v_comments', id?: any | null, updatedAt?: any | null, value?: string | null, ideaId?: any | null, totalReplies?: number | null, isBoost?: boolean | null, status?: string | null, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null, firstReplies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> }>, totalComments: { __typename?: 'v_comments_aggregate', aggregate?: { __typename?: 'v_comments_aggregate_fields', count: number } | null } };
 
 export type TRepliesForCommentQueryVariables = Exact<{
   commentId: Scalars['uuid'];
 }>;
 
 
-export type TRepliesForCommentQuery = { replies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
+export type TRepliesForCommentQuery = { replies: Array<{ __typename?: 'idea_comment_replies', id: any, commentId: any, value: string, updatedAt: any, user?: { __typename?: 'users', email?: any | null, displayName: string, id: any, avatarUrl: string, createdAt: any, lastSeen?: any | null, address?: { __typename?: 'user_address', location?: string | null, country?: string | null } | null } | null }> };
 
 export type TFollowUserMutationVariables = Exact<{
   followingId: Scalars['uuid'];
@@ -14545,6 +14545,12 @@ export const UserFieldsFragmentDoc = gql`
   }
 }
     ${UserAddressFragmentDoc}`;
+export const UserFieldsWithEmailFragmentDoc = gql`
+    fragment UserFieldsWithEmail on users {
+  ...UserFields
+  email
+}
+    ${UserFieldsFragmentDoc}`;
 export const CommentFieldsFragmentDoc = gql`
     fragment CommentFields on v_comments {
   id
@@ -14555,7 +14561,7 @@ export const CommentFieldsFragmentDoc = gql`
   isBoost
   status
   user {
-    ...UserFields
+    ...UserFieldsWithEmail
   }
   firstReplies: replies(limit: 2, order_by: {updatedAt: desc}) {
     id
@@ -14563,11 +14569,11 @@ export const CommentFieldsFragmentDoc = gql`
     value
     updatedAt
     user {
-      ...UserFields
+      ...UserFieldsWithEmail
     }
   }
 }
-    ${UserFieldsFragmentDoc}`;
+    ${UserFieldsWithEmailFragmentDoc}`;
 export const BoostedIdeaFieldsFragmentDoc = gql`
     fragment BoostedIdeaFields on boosted_ideas {
   ideaId
@@ -14582,12 +14588,6 @@ export const BoostedIdeaFieldsFragmentDoc = gql`
   }
 }
     `;
-export const UserFieldsWithEmailFragmentDoc = gql`
-    fragment UserFieldsWithEmail on users {
-  ...UserFields
-  email
-}
-    ${UserFieldsFragmentDoc}`;
 export const IdeaPreviewFieldsFragmentDoc = gql`
     fragment IdeaPreviewFields on idea_preview {
   id
@@ -14943,11 +14943,11 @@ export const RepliesForCommentDocument = gql`
     value
     updatedAt
     user {
-      ...UserFields
+      ...UserFieldsWithEmail
     }
   }
 }
-    ${UserFieldsFragmentDoc}`;
+    ${UserFieldsWithEmailFragmentDoc}`;
 
 /**
  * __useRepliesForCommentQuery__

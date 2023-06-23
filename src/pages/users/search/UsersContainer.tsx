@@ -6,133 +6,17 @@ import {
 	PageHeader
 } from '@/components/shared';
 import SearchActions from '@/components/shared/SearchActions';
-import {
-	TUserSearchFragment,
-	TUser_Profile_Bool_Exp,
-	useUsersQuery
-} from '@/generated/api';
-import { useQueryParam } from '@/hooks/util';
+import { TUserSearchFragment } from '@/generated/api';
 import MobileFilterMenu from '@/pages/ideas/search/components/MobileFilterMenu';
 import OffsetPagination from '@/pages/ideas/search/OffsetPagination';
-import Router from 'next/router';
 import React from 'react';
 import UserCard from './components/UserCard';
 import UsersSearchForm from './components/UsersSearchForm';
-
-// function buildQuery<T>(values: Array<string>): T {
-// 	let where = {} as any;
-
-// 	for (const value in values) {
-// 		if (Router.query[value]) {
-// 			where[value] = { _eq: Router.query[value] };
-// 		}
-// 	}
-
-// 	return where;
-// }
-
-// type TUser_Profile_Bool_Exp_Key =
-// 	| 'status'
-// 	| 'specialistIndustry'
-// 	| 'availability'
-// 	| 'field'
-// 	| 'startups'
-// 	| 'skills'
-// 	| 'objective'
-// 	| 'country';
-
-// const queryFields = [
-// 	{ key: 'status', op: '_eq' },
-// 	{ key: 'field', op: '_eq', field: 'specialistIndustry' },
-// 	{ key: 'availability', op: '_eq' },
-// 	{ key: 'startups', op: '_eq' },
-// 	{ key: 'skills', op: '_contains' },
-// 	{ key: 'objective', op: '_eq' },
-// 	{ key: 'country', op: '_eq', field: 'user.address.country' }
-// ];
-
-// const queryBuilder = <T extends [] = []>(params: T): TUser_Profile_Bool_Exp => {
-// 	let where: TUser_Profile_Bool_Exp = {};
-
-// 	queryFields.forEach((queryField) => {
-// 		const queryValue = Router.query[queryField.key];
-// 		if (queryValue !== undefined) {
-// 			if (queryField.field) {
-// 				const field = 'status';
-// 				where[queryField.field] = { [queryField.op]: queryValue };
-// 			} else {
-// 				where[queryField.key] = { [queryField.op]: queryValue };
-// 			}
-// 		}
-// 	});
-
-// 	return where;
-// };
-
-const queryBuilder = () => {
-	const queryParamStatus = Router.query['status'] as string;
-	const queryParamIndustry = Router.query['field'] as string;
-	const queryParamAvailability = Router.query['availability'] as string;
-	const queryParamStartups = Router.query['startups'] as string;
-	const queryParamCountry = Router.query['country'] as string;
-	const queryParamSkills = Router.query['skills'] as string[];
-	const queryParamObjective = Router.query['objective'] as string;
-
-	let where: TUser_Profile_Bool_Exp = {};
-
-	if (Router.query['status']) {
-		where['status'] = { _eq: queryParamStatus };
-	}
-
-	if (Router.query['field']) {
-		where['specialistIndustry'] = {
-			_eq: queryParamIndustry
-		};
-	}
-
-	if (Router.query['availability']) {
-		where['availability'] = { _eq: queryParamAvailability };
-	}
-
-	if (Router.query['startups']) {
-		where['startups'] = { _eq: queryParamStartups };
-	}
-
-	if (Router.query['skills']) {
-		where['skills'] = { _contains: queryParamSkills };
-	}
-
-	if (Router.query['objective']) {
-		where['objective'] = { _eq: queryParamObjective };
-	}
-
-	if (Router.query['country']) {
-		where['user'] = {
-			address: {
-				country: {
-					_eq: queryParamCountry
-				}
-			}
-		};
-	}
-
-	return where;
-};
+import { useUsers } from './hooks/useUsers.page';
 
 const UsersContainer = () => {
-	const { data, loading } = useUsersQuery({
-		variables: {
-			where: queryBuilder(),
-			limit: 10,
-			offset: (parseInt(useQueryParam('page')) - 1) * 10,
-			orderBy: {
-				createdAt: 'desc'
-			}
-		},
-		fetchPolicy: 'network-only'
-	});
-
-	const hasResults = data?.user_profile?.length ?? 0;
+	const { data, total, loading } = useUsers();
+	const hasResults = data?.length ?? 0;
 
 	if (loading) return <Loading small />;
 
@@ -140,10 +24,7 @@ const UsersContainer = () => {
 		<>
 			<PageHeader title="All users" subtitle="Search all users" />
 			<StackLayout p={{ base: 4, sm: 6 }} flex={1}>
-				<SearchActions
-					total={data?.user_profile_aggregate?.aggregate?.count}
-					pageSize={data?.user_profile?.length ?? 0}
-				>
+				<SearchActions total={total} pageSize={data?.length ?? 0}>
 					<MobileFilterMenu title="users" form="users-filter-form">
 						<UsersSearchForm />
 					</MobileFilterMenu>
@@ -152,22 +33,17 @@ const UsersContainer = () => {
 					<NoResults back />
 				) : (
 					<StackLayout display="flex" spacing={6}>
-						{data?.user_profile?.map(
-							(searchedUser: TUserSearchFragment) => (
-								<React.Fragment key={searchedUser.user?.id}>
-									<UserCard {...searchedUser} />
-									<AppDivider />
-								</React.Fragment>
-							)
-						)}
+						{data?.map((searchedUser: TUserSearchFragment) => (
+							<React.Fragment key={searchedUser.user?.id}>
+								<UserCard {...searchedUser} />
+								<AppDivider />
+							</React.Fragment>
+						))}
 					</StackLayout>
 				)}
 				{hasResults && (
 					<OffsetPagination
-						pagesCount={
-							(data?.user_profile_aggregate?.aggregate?.count ||
-								0) / 10
-						}
+						pagesCount={(total || 0) / 10}
 						pathname="/users/search"
 					/>
 				)}

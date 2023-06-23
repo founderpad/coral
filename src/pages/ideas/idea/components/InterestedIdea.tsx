@@ -2,14 +2,14 @@ import { PrimaryButton } from '@/components/buttons';
 import { Label } from '@/components/labels';
 import { AppDivider } from '@/components/shared';
 import { useCreateInterestedIdeaMutation } from '@/generated/api';
-import { useCurrentUser } from '@/hooks/auth';
 import { useModalDrawer } from '@/hooks/util';
 import { event } from '@/lib/ga';
 import React, { useState } from 'react';
 import useIdea from '../query/ideaQuery';
+import { useUserData } from '@nhost/react';
 
 export const InterestedIdea = () => {
-	const auth = useCurrentUser();
+	const user = useUserData();
 	const { idea, hasInterest } = useIdea();
 	const { id, userId } = idea ?? {};
 	const [interested, setInterested] = useState(!!hasInterest?.id);
@@ -26,8 +26,8 @@ export const InterestedIdea = () => {
 			event({
 				action: 'User is interested in idea',
 				params: {
-					from_user_id: auth?.id,
-					from_user_email: auth?.email,
+					from_user_id: user?.id,
+					from_user_email: user?.email,
 					idea_id: id,
 					to_idea_user_id: userId
 				}
@@ -50,7 +50,7 @@ export const InterestedIdea = () => {
 		});
 	};
 
-	if (auth?.id === userId) return null;
+	if (user?.id === userId) return null;
 
 	return (
 		<>

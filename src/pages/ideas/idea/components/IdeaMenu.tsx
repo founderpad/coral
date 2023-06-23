@@ -2,15 +2,14 @@ import { DeleteButton, SubmitButton } from '@/components/buttons';
 import { IoPencilOutline, IoTrashBinOutline } from '@/components/icons';
 import { BaseMenuItem } from '@/components/menu';
 import { BaseMenu } from '@/components/menu/BaseMenu';
-import ModalDrawerContext from '@/context/ModalDrawerContext';
 import { useDeleteIdeaMutation } from '@/generated/api';
 import { useRouter } from 'next/router';
-import React, { memo, useCallback, useContext } from 'react';
+import React, { memo, useCallback } from 'react';
 import EditIdeaForm from './EditIdeaForm';
+import { useModalDrawer } from '@/hooks/util';
 
 export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
-	const { openModalDrawer, closeModalDrawer } =
-		useContext(ModalDrawerContext);
+	const { openModalDrawer, closeModalDrawer } = useModalDrawer();
 
 	const router = useRouter();
 	const [deleteIdeaMutation] = useDeleteIdeaMutation({

@@ -8,7 +8,6 @@ import { FlexLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
 import { useCheckboxToggle, useModalDrawer, useQueryParam } from '@/hooks/util';
 import {
-	ALL_COUNTRIES,
 	ALL_IDEA_CATEGORY_FIELDS,
 	ALL_USER_OBJECTIVES,
 	AVAILABILITY_IN_HOURS,
@@ -91,7 +90,7 @@ const UsersSearchForm = () => {
 			defaultValues={defaultValues}
 		>
 			{({ register, control, resetField, reset, getValues }) => (
-				<React.Fragment>
+				<>
 					<FlexLayout justifyContent="space-between">
 						<BaseHeading
 							fontSize="sm"
@@ -124,7 +123,7 @@ const UsersSearchForm = () => {
 						onClear={() => onClear(resetField, 'objective')}
 					/>
 
-					<FormSelect<TSearchFields>
+					{/* <FormSelect<TSearchFields>
 						id="country"
 						name="country"
 						label="Country"
@@ -133,7 +132,7 @@ const UsersSearchForm = () => {
 						register={register}
 						control={control}
 						onClear={() => onClear(resetField, 'country')}
-					/>
+					/> */}
 
 					<AppDivider />
 
@@ -259,7 +258,7 @@ const UsersSearchForm = () => {
 						flex={2}
 						title="Filter users"
 					/>
-				</React.Fragment>
+				</>
 			)}
 		</BaseForm>
 	);

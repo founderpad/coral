@@ -1,22 +1,14 @@
-import { useIdeaQuery } from '@/generated/api';
-import { useAuth } from '@/hooks/auth';
 import { useQueryParam } from '@/hooks/util';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
 import ViewIdeaTabLayout from './ViewIdeaTabLayout';
 import { PageHtmlHead } from '@/components/shared';
+import { useIdea } from './hooks/useIdea.page';
 
 const ViewIdea: NextPage = () => {
-	const userId = useAuth().getUser()?.id;
+	useIdea();
 	const ideaId = useQueryParam('id');
-
-	useIdeaQuery({
-		variables: {
-			id: ideaId,
-			userId
-		}
-	});
 
 	return (
 		<>

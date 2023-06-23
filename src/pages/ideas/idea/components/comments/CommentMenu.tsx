@@ -1,5 +1,6 @@
 import { BaseMenu } from '@/components/menu';
-import ReportMenu from '@/components/shared/actionsmenu/ReportMenu';
+import { ReportMenu } from '@/components/shared/report';
+
 import React from 'react';
 
 export const CommentMenu = (comment: any) => {
@@ -12,6 +13,7 @@ export const CommentMenu = (comment: any) => {
 				content={`"${value}"`}
 				report={{
 					type: 'COMMENT',
+					reportedId: comment?.id,
 					reportedUserId: user?.id,
 					recipientName: user?.displayName,
 					recipientEmail: user?.email,
