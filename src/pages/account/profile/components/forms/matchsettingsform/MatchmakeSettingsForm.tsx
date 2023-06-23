@@ -1,10 +1,9 @@
 import { BaseForm, FormLabelText } from '@/components/form';
 import { FormSelect } from '@/components/form/inputs/FormField';
-import { Label } from '@/components/labels';
 import { FlexLayout } from '@/components/layouts';
 import { useCheckboxes, useModalDrawer, useNotification } from '@/hooks/util';
 import { ALL_MATCHMAKE_TYPES, EXPERIENCE_SKILLS } from '@/utils/Constants';
-import { Button, Checkbox, FormControl } from '@chakra-ui/react';
+import { Button, Checkbox, FormControl, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { SimpleGrid } from '@chakra-ui/react';
@@ -55,12 +54,6 @@ const MatchmakeSettingsForm = (
 						'Your match preferences have been updated successfully.',
 					status: 'success'
 				});
-
-				// dispatch(
-				// 	updateUserMatchSettings(
-				// 		data.update_match_settings_by_pk as TMatch_Settings
-				// 	)
-				// );
 			},
 			refetchQueries: [
 				{
@@ -100,6 +93,7 @@ const MatchmakeSettingsForm = (
 						errors={errors}
 						hideLimit={true}
 						onClear={() => resetField('type', { defaultValue: '' })}
+						isRequired
 					/>
 					<FormSelect<TMatch_Settings_Set_Input>
 						id="lookingFor"
@@ -113,6 +107,7 @@ const MatchmakeSettingsForm = (
 						onClear={() =>
 							resetField('lookingFor', { defaultValue: '' })
 						}
+						isRequired
 					/>
 					<FormControl>
 						<FlexLayout justifyContent="space-between">
@@ -138,13 +133,13 @@ const MatchmakeSettingsForm = (
 							colorScheme="fpPrimary"
 							color="fpGrey.900"
 						>
-							<Label
+							<Text
 								color="fpGrey.900"
 								fontWeight="normal"
 								fontSize="xs"
 							>
 								All
-							</Label>
+							</Text>
 						</Checkbox>
 						<SimpleGrid columns={2} row={6}>
 							{EXPERIENCE_SKILLS.map((es) => (
@@ -166,13 +161,13 @@ const MatchmakeSettingsForm = (
 											fontSize="xs"
 											isChecked={isChecked(es)}
 										>
-											<Label
+											<Text
 												color="fpGrey.900"
 												fontWeight="normal"
 												fontSize="xs"
 											>
 												{es}
-											</Label>
+											</Text>
 										</Checkbox>
 									)}
 									control={control}
