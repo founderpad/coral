@@ -158,7 +158,7 @@ export const EditIdeaForm = () => {
 							control={control}
 							rules={{
 								required:
-									'You must provide the field for your idea'
+									'You must provide the field for your idea.'
 							}}
 							errors={errors}
 							onClear={() =>

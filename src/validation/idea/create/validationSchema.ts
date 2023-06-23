@@ -23,7 +23,7 @@ export const schema: yup.ObjectSchema<TIdeaInput> = yup.object().shape({
 		.string()
 		.max(750, 'Description can not be more than 750 characters.'),
 	status: yup.string().required('You must provide the status for your idea.'),
-	field: yup.string().required('You must provide the field for your idea'),
+	field: yup.string().required('You must provide the field for your idea.'),
 	competitors: yup
 		.string()
 		.max(250, 'Competitors can not be more than 250 characters.'),
