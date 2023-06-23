@@ -1,28 +1,26 @@
-import { UpvoteButton } from '@/components/shared/UpvoteButton';
 import {
 	TIdeaPreviewFieldsFragment,
 	TIdeas,
 	useDeleteIdeaUpvoteMutation,
 	useInsertIdeaUpvoteMutation
 } from '@/generated/api';
-import { useClaim, useCurrentUser } from '@/hooks/auth';
 import { event } from '@/lib/ga';
-import React, { useCallback, useState } from 'react';
+import { useUserData } from '@nhost/react';
+import { useCallback, useState } from 'react';
 
 type TIdeaUpvote = Pick<
 	TIdeas | TIdeaPreviewFieldsFragment,
 	'votes' | 'votes_aggregate' | 'id' | 'name'
 >;
 
-export const IdeaUpvote = (idea: TIdeaUpvote) => {
+const useToggleIdeaUpvote = (idea: TIdeaUpvote) => {
+	const user = useUserData();
 	const [upvote, setUpvote] = useState({
 		hasUserUpvoted: idea?.votes?.length > 0,
-		votesTotal: idea?.votes_aggregate?.aggregate?.count
+		totalVotes: idea?.votes_aggregate?.aggregate?.count
 	});
 
-	const user = useCurrentUser();
-
-	const { hasUserUpvoted, votesTotal = 0 } = upvote;
+	const { hasUserUpvoted, totalVotes = 0 } = upvote;
 
 	const [insertIdeaUpvote] = useInsertIdeaUpvoteMutation({
 		variables: {
@@ -31,7 +29,7 @@ export const IdeaUpvote = (idea: TIdeaUpvote) => {
 			}
 		},
 		onCompleted: () => {
-			setUpvote({ hasUserUpvoted: true, votesTotal: votesTotal + 1 });
+			setUpvote({ hasUserUpvoted: true, totalVotes: totalVotes + 1 });
 			event({
 				action: 'User idea upvote',
 				params: {
@@ -48,10 +46,10 @@ export const IdeaUpvote = (idea: TIdeaUpvote) => {
 	const [deleteIdeaUpvote] = useDeleteIdeaUpvoteMutation({
 		variables: {
 			ideaId: idea.id,
-			userId: useClaim()
+			userId: user?.id
 		},
 		onCompleted: () => {
-			setUpvote({ hasUserUpvoted: false, votesTotal: votesTotal - 1 });
+			setUpvote({ hasUserUpvoted: false, totalVotes: totalVotes - 1 });
 			event({
 				action: 'User idea remove upvote',
 				params: {
@@ -69,14 +67,13 @@ export const IdeaUpvote = (idea: TIdeaUpvote) => {
 		hasUserUpvoted ? deleteIdeaUpvote() : insertIdeaUpvote();
 	}, [hasUserUpvoted, deleteIdeaUpvote, insertIdeaUpvote]);
 
-	return (
-		<UpvoteButton
-			onClick={toggleUpvote}
-			name="idea"
-			hasUserUpvoted={hasUserUpvoted}
-			votesTotal={votesTotal}
-		/>
-	);
+	return {
+		addIdeaUpvote: insertIdeaUpvote,
+		removeIdeaUpvote: deleteIdeaUpvote,
+		hasUserUpvoted,
+		totalVotes,
+		toggleUpvote
+	};
 };
 
-export default IdeaUpvote;
+export default useToggleIdeaUpvote;

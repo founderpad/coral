@@ -5,7 +5,7 @@ import { Loading, NoResults } from '@/components/shared';
 import PostComment from '@/components/shared/PostComment';
 import { useQueryParam } from '@/hooks/util';
 import React, { useEffect } from 'react';
-import { useComments } from '../../hooks/useComments.page';
+import { useComments } from '../../hooks/useComments';
 import Comment from './Comment';
 
 export const CommentsList = ({ onScroll }: { onScroll?: () => void }) => {

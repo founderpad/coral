@@ -2,7 +2,7 @@ import { StackLayout } from '@/components/layouts';
 import { Loading, NoResults } from '@/components/shared';
 import { useQueryParam } from '@/hooks/util';
 import { useEffect } from 'react';
-import { useComments } from '../../hooks/useComments.page';
+import { useComments } from '../../hooks/useComments';
 import Comment from './Comment';
 
 export const MobileComments = () => {

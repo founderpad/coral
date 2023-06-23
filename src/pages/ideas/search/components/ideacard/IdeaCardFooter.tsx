@@ -5,7 +5,7 @@ import { StackLayout } from '@/components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@/generated/api';
 // import { useAuth } from '@/hooks/auth';
 // import BoostIdea from '@/pages/ideas/idea/components/BoostIdea';
-import IdeaUpvote from '@/pages/ideas/idea/components/IdeaUpvote';
+import IdeaUpvote from '@/pages/ideas/idea/components/upvote/IdeaUpvote';
 import React, { memo } from 'react';
 import IdeaMenu from '../IdeaCardMenu';
 // import BoostProgress from '@/pages/ideas/boost/BoostProgress';
