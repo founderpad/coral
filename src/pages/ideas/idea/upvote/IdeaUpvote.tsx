@@ -1,7 +1,7 @@
 import { UpvoteButton } from '@/components/shared/UpvoteButton';
 import { TIdeaPreviewFieldsFragment, TIdeas } from '@/generated/api';
 import React from 'react';
-import useToggleIdeaUpvote from './useToggleIdeaUpvote';
+import useToggleIdeaUpvote from './hooks/useToggleIdeaUpvote';
 
 type TIdeaUpvote = Pick<
 	TIdeas | TIdeaPreviewFieldsFragment,

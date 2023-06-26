@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { AiTwotoneThunderbolt } from 'react-icons/ai';
-import IdeaBoostProgress from '../IdeaBoostProgress';
+import IdeaBoostProgress from '../components/IdeaBoostProgress';
 
 const BoostEarnButton = (data: TIdeaQuery) => {
 	const { openModalDrawer, closeModalDrawer } = useModalDrawer();

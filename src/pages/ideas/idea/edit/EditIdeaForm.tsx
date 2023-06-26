@@ -7,45 +7,17 @@ import {
 import { SwitchField } from '@/components/input';
 import { StackLayout } from '@/components/layouts';
 import { AppDivider } from '@/components/shared';
-import { TIdeas_Set_Input, useUpdateIdeaMutation } from '@/generated/api';
-import { useModalDrawer, useNotification } from '@/hooks/util';
+import { TIdeas_Set_Input } from '@/generated/api';
 import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@/utils/Constants';
 import React from 'react';
 import { useIdeaFragment } from '../query/ideaQuery';
+import useUpdateIdea from './hooks/useUpdateIdea';
 
 export const EditIdeaForm = () => {
 	const idea = useIdeaFragment();
-	const { addNotification } = useNotification();
-	const { closeModalDrawer } = useModalDrawer();
+	const { onUpdateIdea } = useUpdateIdea();
 	const { __typename, id, ...rest } = idea;
 	const defaultValues = { ...rest };
-
-	const [updateIdeaMutation] = useUpdateIdeaMutation();
-
-	const onUpdateIdea = (updatedIdea: TIdeas_Set_Input) => {
-		updateIdeaMutation({
-			variables: {
-				id: idea?.id,
-				idea: updatedIdea
-			},
-			onCompleted: (_data) => {
-				closeModalDrawer();
-				addNotification({
-					message: 'Your idea has been updated successfully.',
-					status: 'success'
-				});
-			},
-			onError: (_data) => {
-				closeModalDrawer();
-				addNotification({
-					message: 'Failed to update idea. Please try again later.',
-					status: 'error'
-				});
-
-				throw new Error(`Failed to update idea with id: ${idea?.id}`);
-			}
-		});
-	};
 
 	return (
 		<BaseForm<TIdeas_Set_Input>
@@ -57,7 +29,7 @@ export const EditIdeaForm = () => {
 			}}
 		>
 			{({ register, control, resetField, formState: { errors } }) => (
-				<React.Fragment>
+				<>
 					<FormInput<TIdeas_Set_Input>
 						id="name"
 						name="name"
@@ -236,7 +208,7 @@ export const EditIdeaForm = () => {
 						defaultChecked={idea.isPublished}
 						control={control}
 					/>
-				</React.Fragment>
+				</>
 			)}
 		</BaseForm>
 	);

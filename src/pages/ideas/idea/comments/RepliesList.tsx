@@ -1,5 +1,5 @@
 import { StackLayout } from '@/components/layouts';
-import useReplies from '../../hooks/useReplies.page';
+import useReplies from './hooks/useReplies';
 import CommentLayout from './CommentLayout';
 
 const RepliesList = ({ commentId }: { commentId: string }) => {

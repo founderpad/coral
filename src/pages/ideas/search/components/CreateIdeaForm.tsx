@@ -12,7 +12,7 @@ import { SwitchField } from '@/components/input';
 import { StackLayout } from '@/components/layouts';
 import schema from '@/validation/idea/create/validationSchema';
 import { AppDivider } from '@/components/shared';
-import { useCreateIdea } from '../../create/hooks/useCreateIdea.page';
+import { useCreateIdea } from '../../create/hooks/useCreateIdea';
 
 const defaultValues: Record<string, string | boolean> = {
 	name: '',

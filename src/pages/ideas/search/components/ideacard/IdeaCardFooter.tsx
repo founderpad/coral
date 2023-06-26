@@ -3,12 +3,9 @@ import { Button } from '@chakra-ui/react';
 import { IoChatbubbleOutline } from '@/components/icons';
 import { StackLayout } from '@/components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@/generated/api';
-// import { useAuth } from '@/hooks/auth';
-// import BoostIdea from '@/pages/ideas/idea/components/BoostIdea';
-import IdeaUpvote from '@/pages/ideas/idea/components/upvote/IdeaUpvote';
 import React, { memo } from 'react';
 import IdeaMenu from '../IdeaCardMenu';
-// import BoostProgress from '@/pages/ideas/boost/BoostProgress';
+import { IdeaUpvote } from '@/pages/ideas/idea/upvote';
 
 const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 	// const user = useAuth().getUser();

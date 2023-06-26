@@ -2,7 +2,7 @@ import PostComment from '@/components/shared/PostComment';
 import { useModalDrawer } from '@/hooks/util';
 import { Button, Icon } from '@chakra-ui/react';
 import { IoChatboxOutline } from 'react-icons/io5';
-import { useIdeaFragment } from '../../query/ideaQuery';
+import { useIdeaFragment } from '../query/ideaQuery';
 import MobileComments from './MobileComments';
 
 export const MobileCommentsList = () => {

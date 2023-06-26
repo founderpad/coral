@@ -3,7 +3,7 @@ import { AppDivider, Loading } from '@/components/shared';
 import { useMobile } from '@/hooks/util';
 import React from 'react';
 import IdeaDetails from './components/IdeaDetails';
-import CommentsList from './components/comments/CommentsList';
+import CommentsList from './comments/CommentsList';
 import IdeaTitleHeader from './components/IdeaTitleHeader';
 import { IdeaOverview } from './components/IdeaOverview';
 import { IdeaUserActions } from './components/IdeaUserActions';

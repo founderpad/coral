@@ -5,8 +5,8 @@ import { BaseMenu } from '@/components/menu/BaseMenu';
 import { useDeleteIdeaMutation } from '@/generated/api';
 import { useRouter } from 'next/router';
 import React, { memo, useCallback } from 'react';
-import EditIdeaForm from './EditIdeaForm';
 import { useModalDrawer } from '@/hooks/util';
+import { EditIdeaForm } from '../edit';
 
 export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 	const { openModalDrawer, closeModalDrawer } = useModalDrawer();
