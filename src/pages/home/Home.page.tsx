@@ -1,4 +1,4 @@
-import { BoxLayout, PageLayout } from '@/components/layouts';
+import { PageLayout } from '@/components/layouts';
 import { PageHtmlHead } from '@/components/shared';
 import AuthFilter from '@/utils/AuthFilter';
 import { useUserData } from '@nhost/react';
@@ -6,8 +6,16 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import useChangePasswordModal from '../account/profile/hooks/useChangePasswordModal';
-import { List, ListItem, OrderedList, Text } from '@chakra-ui/react';
-import { BaseLink } from '@/components/links';
+import { SimpleGrid } from '@chakra-ui/react';
+import {
+	IoBookOutline,
+	IoNotificationsOutline,
+	IoPeopleCircleOutline,
+	IoPersonCircleOutline,
+	IoSendOutline
+} from 'react-icons/io5';
+import HomeCard from './components/HomeCard';
+import { FaPeopleArrows } from 'react-icons/fa';
 
 const Home: NextPage = () => {
 	const user = useUserData();
@@ -30,9 +38,51 @@ const Home: NextPage = () => {
 			/>
 			<PageLayout
 				title={`Hi, ${user?.displayName}`}
-				subtitle="Follow our tips below to get started!"
+				subtitle="Get started below!"
 			>
-				<BoxLayout>
+				<SimpleGrid
+					columns={{ base: 1, md: 2, lg: 3 }}
+					columnGap={6}
+					rowGap={6}
+				>
+					<HomeCard
+						icon={IoPersonCircleOutline}
+						link="/account/profile"
+						title="Profile"
+						content="Fill out your profile and match details to match
+								with what you are looking for!"
+					/>
+					<HomeCard
+						icon={IoBookOutline}
+						link="/ideas/search?page=1"
+						title="Ideas"
+						content="Create a new idea, view others' ideas, and see what takes your interest!"
+					/>
+					<HomeCard
+						icon={IoPeopleCircleOutline}
+						link="/users/search?page=1"
+						title="Users"
+						content="Search users and filter by specific interests!"
+					/>
+					<HomeCard
+						icon={FaPeopleArrows}
+						link="/match"
+						title="Match"
+						content="Fill out your match preferences and discover your closest matches with the skills you are looking for!"
+					/>
+					<HomeCard
+						icon={IoSendOutline}
+						link="/messages"
+						title="Messages"
+						content="Connect directly with other users by messaging them directly!"
+					/>
+					<HomeCard
+						icon={IoNotificationsOutline}
+						title="Notifications"
+						content="Click on the blue bell icon in the bottom left to subscribe to notifications and see when people have replied!"
+					/>
+				</SimpleGrid>
+				{/* <BoxLayout>
 					<Text fontWeight="bold" fontSize="lg">
 						Profile:
 					</Text>
@@ -168,7 +218,7 @@ const Home: NextPage = () => {
 							received from other users on the platform.
 						</ListItem>
 					</List>
-				</BoxLayout>
+				</BoxLayout> */}
 			</PageLayout>
 		</>
 	);
