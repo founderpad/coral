@@ -17,7 +17,7 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 			spacing={0}
 			rounded="none"
 			w="full"
-			px={{ base: 0, sm: 4 }}
+			// px={{ base: 0, sm: 4 }}
 			justifyContent="space-between"
 			alignItems="center"
 		>

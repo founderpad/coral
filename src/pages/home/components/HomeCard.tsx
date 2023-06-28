@@ -1,58 +1,38 @@
-import { BoxLayout } from '@/components/layouts';
+import { Card } from '@/components/cards/Card';
 import { Icon, Text } from '@chakra-ui/react';
-import Link from 'next/link';
+import React, { memo } from 'react';
 import { IconType } from 'react-icons';
 
 interface Props {
 	icon: IconType;
-	link?: string;
 	title: string;
 	content: string;
+	href?: string;
 }
 
-export const HomeCard = (props: Props) => {
-	const { icon, link, title, content } = props;
-
-	if (link)
-		return (
-			<Link href={link}>
-				<BoxLayout
-					borderWidth="1px"
-					textAlign="center"
-					height="175px"
-					_hover={{
-						bg: 'fpLightGrey.200'
-					}}
-				>
-					<Icon as={icon} fontSize="5xl" />
-					<Text fontSize="lg" mb={2}>
-						{title}
-					</Text>
-					<Text fontSize="sm" color="fpGrey.500">
-						{content}
-					</Text>
-				</BoxLayout>
-			</Link>
-		);
-
+const HomeCard = memo(({ icon, title, content, href }: Props) => {
 	return (
-		<BoxLayout
-			borderWidth="1px"
-			textAlign="center"
-			height="175px"
-			_hover={{
-				bg: 'fpLightGrey.200'
+		<Card
+			header={
+				<>
+					<Icon as={icon} fontSize="5xl" color="fpGrey.700" />
+					<Text fontSize="lg">{title}</Text>
+				</>
+			}
+			href={href}
+			content={
+				<Text fontSize="sm" color="fpGrey.500">
+					{content}
+				</Text>
+			}
+			cardProps={{
+				borderWidth: '1px',
+				alignItems: 'Center',
+				spacing: 2
 			}}
-		>
-			<Icon as={icon} fontSize="5xl" />
-			<Text fontSize="lg" mb={2}>
-				{title}
-			</Text>
-			<Text fontSize="sm" color="fpGrey.500">
-				{content}
-			</Text>
-		</BoxLayout>
+			hover
+		/>
 	);
-};
+});
 
 export default HomeCard;

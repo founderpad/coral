@@ -47,32 +47,33 @@ const Home: NextPage = () => {
 				>
 					<HomeCard
 						icon={IoPersonCircleOutline}
-						link="/account/profile"
 						title="Profile"
 						content="Fill out your profile and match details to match
 								with what you are looking for!"
+						href="/account/profile"
 					/>
 					<HomeCard
 						icon={IoBookOutline}
-						link="/ideas/search?page=1"
 						title="Ideas"
 						content="Create a new idea, view others' ideas, and see what takes your interest!"
+						href="/ideas/search?page=1"
 					/>
+
 					<HomeCard
 						icon={IoPeopleCircleOutline}
-						link="/users/search?page=1"
+						href="/users/search?page=1"
 						title="Users"
 						content="Search users and filter by specific interests!"
 					/>
 					<HomeCard
 						icon={FaPeopleArrows}
-						link="/match"
+						href="/match"
 						title="Match"
 						content="Fill out your match preferences and discover your closest matches with the skills you are looking for!"
 					/>
 					<HomeCard
 						icon={IoSendOutline}
-						link="/messages"
+						href="/messages"
 						title="Messages"
 						content="Connect directly with other users by messaging them directly!"
 					/>

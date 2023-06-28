@@ -1,6 +1,6 @@
 import { TMatchSettingsFieldsFragment } from '@/generated/api';
 import React from 'react';
-import LinkCard from '@/components/cards/LinkCard';
+import LinkCard from '@/components/cards/Card';
 import { SimpleGrid, Tag } from '@chakra-ui/react';
 import { AvatarWithDetails, NoResults } from '@/components/shared';
 import MatchedSkills from '@/components/shared/match/MatchedSkills';

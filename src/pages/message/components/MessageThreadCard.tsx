@@ -1,4 +1,4 @@
-import LinkCard from '@/components/cards/LinkCard';
+import LinkCard from '@/components/cards/Card';
 import { Label } from '@/components/labels';
 import { AvatarWithDetails } from '@/components/shared';
 import { useAuth } from '@/hooks/auth';

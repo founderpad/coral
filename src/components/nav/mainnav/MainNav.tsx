@@ -1,38 +1,20 @@
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Container } from '@chakra-ui/layout';
-import { Icon } from '@chakra-ui/react';
-import { IoCloseOutline, IoMenuSharp } from '@/components/icons';
 import { FlexLayout } from '@/components/layouts';
 import { FounderpadLogoWithBadge } from '@/components/shared/FounderpadLogo';
-import { useMobileNav } from '@/hooks/util';
 import React, { memo } from 'react';
-// import NotificationsPopover from '../components/NotificationsPopover';
 import DesktopNav from './DesktopNav';
 import UserMenu from './UserMenu';
+import { mainNavContainerProps, mainNavProps } from './styles';
+import { MobileMenu } from './MobileMenu';
 
 const MainNav = memo(() => (
-	<FlexLayout
-		bg={useColorModeValue('white', 'gray.800')}
-		borderBottomWidth={1}
-		borderBottomColor="fpLightGrey.900"
-		zIndex={1000}
-		// position="sticky"
-		position="fixed"
-		top={0}
-		h="56px"
-		w="full"
-	>
+	<FlexLayout {...mainNavProps(useColorModeValue('white', 'gray.800'))}>
 		<Container
-			bg={useColorModeValue('white', 'gray.800')}
-			color={useColorModeValue('gray.600', 'white')}
-			px={{ base: 4, xl: 0 }}
-			display="flex"
-			justifySelf="center"
-			position="sticky"
-			maxW={{ base: '100%', xl: '95ch' }}
-			alignItems="center"
-			justifyContent="space-between"
-			flex={1}
+			{...mainNavContainerProps(
+				useColorModeValue('white', 'gray.800'),
+				useColorModeValue('gray.600', 'white')
+			)}
 		>
 			<FlexLayout alignItems="center">
 				<MobileMenu />
@@ -50,20 +32,5 @@ const MainNav = memo(() => (
 		</Container>
 	</FlexLayout>
 ));
-
-const MobileMenu = () => {
-	const { isOpen, onToggle } = useMobileNav();
-
-	return (
-		<Icon
-			display={{ base: 'inline-flex', md: 'none' }}
-			as={isOpen ? IoCloseOutline : IoMenuSharp}
-			mr={4}
-			fontSize="2xl"
-			onClick={onToggle}
-			color="gray.900"
-		/>
-	);
-};
 
 export default memo(MainNav);

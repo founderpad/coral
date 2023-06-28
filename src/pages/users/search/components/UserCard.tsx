@@ -1,5 +1,5 @@
 import { Badge, Tag } from '@chakra-ui/react';
-import LinkCard from '@/components/cards/LinkCard';
+import LinkCard from '@/components/cards/Card';
 import { FlexLayout } from '@/components/layouts';
 import { AvatarWithDetails, LastSeen } from '@/components/shared';
 import { TUserSearchFragment } from '@/generated/api';
