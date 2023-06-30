@@ -1,13 +1,7 @@
-import { FormControl } from '@chakra-ui/form-control';
-import { Button, Checkbox } from '@chakra-ui/react';
-import { FormLabelText } from '@/components/form';
 import { BaseForm } from '@/components/form';
-import { Label } from '@/components/labels';
 import {
-	ProfileDocument,
 	TProfileFieldsFragment,
-	TUser_Profile_Set_Input,
-	useUpdateUserProfileMutation
+	TUser_Profile_Set_Input
 } from '@/generated/api';
 import {
 	ALL_IDEA_CATEGORY_FIELDS,
@@ -17,67 +11,20 @@ import {
 	NUMBER_OF_STARTUPS,
 	STARTUP_STATUS
 } from '@/utils/Constants';
-import { Controller } from 'react-hook-form';
 import React from 'react';
 import { FormSelect, FormTextarea } from '@/components/form/inputs/FormField';
-import { FlexLayout, StackLayout } from '@/components/layouts';
-import { useCheckboxes, useModalDrawer, useNotification } from '@/hooks/util';
-import { SimpleGrid } from '@chakra-ui/react';
+import { StackLayout } from '@/components/layouts';
 import schema from '@/validation/profile/experience/validationSchema';
-import { useUserData } from '@nhost/react';
+import CheckboxGroup from '@/components/checkboxgroup/CheckboxGroup';
+import useUpdateUserExperience from './hooks/useUpdateExperience';
 
 const ExperienceForm = (profile: TProfileFieldsFragment) => {
-	const user = useUserData();
 	const { __typename, id, userId, ...rest } = profile;
-	const {
-		values,
-		clearValues,
-		onToggle,
-		onToggleAll,
-		isChecked,
-		isAllSelected
-	} = useCheckboxes(EXPERIENCE_SKILLS, profile?.skills);
 	const defaultValues = {
 		...rest
 	};
 
-	const { closeModalDrawer } = useModalDrawer();
-	const [updateUserProfileMutation] = useUpdateUserProfileMutation();
-	const { addNotification } = useNotification();
-
-	const onUpdateExperience = (experienceValues: TUser_Profile_Set_Input) => {
-		updateUserProfileMutation({
-			variables: {
-				id: user?.id,
-				user_profile: {
-					...experienceValues,
-					skills: values
-				}
-			},
-			refetchQueries: [
-				{
-					query: ProfileDocument,
-					variables: {
-						userId: user?.id
-					}
-				}
-			],
-			onCompleted: (_data) => {
-				closeModalDrawer();
-				addNotification({
-					message: 'Your details have been updated successfully',
-					status: 'success'
-				});
-			},
-			onError: (_data) => {
-				closeModalDrawer();
-				addNotification({
-					message: 'Failed to update details. Please try again later',
-					status: 'error'
-				});
-			}
-		});
-	};
+	const { onUpdateExperience } = useUpdateUserExperience();
 
 	return (
 		<BaseForm<TUser_Profile_Set_Input, typeof schema>
@@ -90,7 +37,7 @@ const ExperienceForm = (profile: TProfileFieldsFragment) => {
 			}}
 		>
 			{({ register, control, resetField, formState: { errors } }) => (
-				<React.Fragment>
+				<>
 					<FormSelect<TUser_Profile_Set_Input>
 						id="objective"
 						name="objective"
@@ -198,72 +145,14 @@ const ExperienceForm = (profile: TProfileFieldsFragment) => {
 						/>
 					</StackLayout>
 
-					<FormControl>
-						<FlexLayout justifyContent="space-between">
-							<FormLabelText label="Your skills" />
-							{values.length > 0 && (
-								<Button
-									fontSize="x-small"
-									colorScheme="fpPrimary"
-									variant="link"
-									mb={1}
-									onClick={clearValues}
-								>
-									Clear
-								</Button>
-							)}
-						</FlexLayout>
-						<Checkbox
-							onChange={onToggleAll}
-							isChecked={isAllSelected}
-							w="full"
-							pb={2}
-							colorScheme="fpPrimary"
-							color="fpGrey.900"
-						>
-							<Label
-								color="fpGrey.900"
-								fontWeight="normal"
-								fontSize="xs"
-							>
-								All
-							</Label>
-						</Checkbox>
-						<SimpleGrid columns={2} row={6}>
-							{EXPERIENCE_SKILLS.map((es) => (
-								<Controller
-									key={es}
-									name="skills"
-									render={({ field: { ref } }) => (
-										<Checkbox
-											name={es}
-											rounded="none"
-											value={es}
-											py={1}
-											pr={2}
-											onChange={onToggle}
-											colorScheme="fpPrimary"
-											color="fpGrey.900"
-											ref={ref}
-											size="md"
-											fontSize="xs"
-											isChecked={isChecked(es)}
-										>
-											<Label
-												color="fpGrey.900"
-												fontWeight="normal"
-												fontSize="xs"
-											>
-												{es}
-											</Label>
-										</Checkbox>
-									)}
-									control={control}
-								/>
-							))}
-						</SimpleGrid>
-					</FormControl>
-				</React.Fragment>
+					<CheckboxGroup
+						name="skills"
+						label="Your skills"
+						options={EXPERIENCE_SKILLS}
+						defaultValues={profile?.skills}
+						isRequired
+					/>
+				</>
 			)}
 		</BaseForm>
 	);

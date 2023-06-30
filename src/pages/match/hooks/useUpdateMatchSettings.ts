@@ -6,7 +6,7 @@ import {
 import { useModalDrawer, useNotification } from '@/hooks/util';
 import { useUserData } from '@nhost/react';
 
-export const useUpdateMatchSettings = (values: string[]) => {
+export const useUpdateMatchSettings = () => {
 	const { closeModalDrawer } = useModalDrawer();
 	const user = useUserData();
 	const { addNotification } = useNotification();
@@ -19,8 +19,7 @@ export const useUpdateMatchSettings = (values: string[]) => {
 			variables: {
 				id: user?.id,
 				match_settings: {
-					...matchSettings,
-					skills: values
+					...matchSettings
 				}
 			},
 			onCompleted: (_data) => {

@@ -23,7 +23,8 @@ export const schema: yup.ObjectSchema<ExperienceInput> = yup.object().shape({
 		.nullable(),
 	status: yup
 		.string()
-		.required('You must provide your current startup status.')
+		.required('You must provide your current startup status.'),
+	skills: yup.array().min(1, 'You must select at least one skill.')
 });
 
 export default schema;

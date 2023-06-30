@@ -19,7 +19,7 @@ const LoginForm = () => {
 	const { notification } = useNotification();
 
 	return (
-		<React.Fragment>
+		<>
 			<BaseForm<TLoginFields, typeof schema>
 				name="login-form"
 				onSubmit={onLogin}
@@ -85,7 +85,7 @@ const LoginForm = () => {
 			</BaseForm>
 			{/* <SocialLogins /> */}
 			<LoginFooter />
-		</React.Fragment>
+		</>
 	);
 };
 
