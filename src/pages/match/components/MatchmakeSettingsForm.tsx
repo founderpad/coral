@@ -9,16 +9,22 @@ import {
 import schema from '@/validation/match/validationSchema';
 import { useUpdateMatchSettings } from '../hooks/useUpdateMatchSettings';
 import CheckboxGroup from '@/components/checkboxgroup/CheckboxGroup';
+import useUserProfile from '@/hooks/user';
 
-const MatchmakeSettingsForm = (
-	matchmakeSettings: TMatchSettingsFieldsFragment
-) => {
-	const { onUpdateMatchmakeSettings } = useUpdateMatchSettings();
-	const { __typename, ...rest } = matchmakeSettings;
+type TMatchSettings = TMatchSettingsFieldsFragment & { isInitial?: boolean };
+type TUpdateMatchSettingsInput = TMatch_Settings_Set_Input & {
+	profileSkills?: string[] | undefined;
+};
+
+const MatchmakeSettingsForm = (matchmakeSettings: TMatchSettings) => {
+	const userProfile = useUserProfile();
+	const { __typename, isInitial, ...rest } = matchmakeSettings;
 	const defaultValues = { ...rest };
 
+	const { onUpdateMatchmakeSettings } = useUpdateMatchSettings(isInitial);
+
 	return (
-		<BaseForm<TMatch_Settings_Set_Input, typeof schema>
+		<BaseForm<TUpdateMatchSettingsInput, typeof schema>
 			name="edit-match-settings-form"
 			onSubmit={onUpdateMatchmakeSettings}
 			defaultValues={defaultValues}
@@ -52,9 +58,18 @@ const MatchmakeSettingsForm = (
 						}
 						isRequired
 					/>
+					{isInitial && (
+						<CheckboxGroup
+							name="profileSkills"
+							label="What are your skills?"
+							options={EXPERIENCE_SKILLS}
+							defaultValues={userProfile?.skills}
+							isRequired
+						/>
+					)}
 					<CheckboxGroup
 						name="skills"
-						label="What skills are you looking for?"
+						label="And what skills are you looking for?"
 						options={EXPERIENCE_SKILLS}
 						defaultValues={matchmakeSettings.skills}
 						isRequired

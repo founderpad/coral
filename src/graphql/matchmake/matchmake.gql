@@ -12,6 +12,29 @@ mutation UpdateMatchSettings(
 	}
 }
 
+mutation UpdateMatchSettingsWithProfileSkills(
+	$id: uuid!
+	$match_settings: match_settings_set_input!
+	$userProfileSkills: jsonb
+) {
+	update_match_settings_by_pk(
+		pk_columns: { userId: $id }
+		_set: $match_settings
+	) {
+		lookingFor
+		skills
+		type
+	}
+	update_user_profile(
+		where: { userId: { _eq: $id } }
+		_set: { skills: $userProfileSkills }
+	) {
+		returning {
+			skills
+		}
+	}
+}
+
 query MatchSettings($id: uuid!) {
 	settings: match_settings_by_pk(userId: $id) {
 		...MatchSettingsFields

@@ -65,10 +65,7 @@ const CheckboxGroup = ({
 	useEffect(() => {
 		if (values.length < 1 && isRequired) {
 			setError(name, {
-				message: `You must select at least one ${name.substring(
-					0,
-					name.length - 1
-				)}.`
+				message: 'You must select at least one.'
 			});
 		} else {
 			clearErrors(name);

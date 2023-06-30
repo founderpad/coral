@@ -14333,6 +14333,15 @@ export type TUpdateMatchSettingsMutationVariables = Exact<{
 
 export type TUpdateMatchSettingsMutation = { update_match_settings_by_pk?: { __typename?: 'match_settings', lookingFor?: string | null, skills?: any | null, type?: string | null } | null };
 
+export type TUpdateMatchSettingsWithProfileSkillsMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  match_settings: TMatch_Settings_Set_Input;
+  userProfileSkills?: InputMaybe<Scalars['jsonb']>;
+}>;
+
+
+export type TUpdateMatchSettingsWithProfileSkillsMutation = { update_match_settings_by_pk?: { __typename?: 'match_settings', lookingFor?: string | null, skills?: any | null, type?: string | null } | null, update_user_profile?: { __typename?: 'user_profile_mutation_response', returning: Array<{ __typename?: 'user_profile', skills?: any | null }> } | null };
+
 export type TMatchSettingsQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -15513,6 +15522,51 @@ export function useUpdateMatchSettingsMutation(baseOptions?: ApolloReactHooks.Mu
 export type UpdateMatchSettingsMutationHookResult = ReturnType<typeof useUpdateMatchSettingsMutation>;
 export type UpdateMatchSettingsMutationResult = Apollo.MutationResult<TUpdateMatchSettingsMutation>;
 export type UpdateMatchSettingsMutationOptions = Apollo.BaseMutationOptions<TUpdateMatchSettingsMutation, TUpdateMatchSettingsMutationVariables>;
+export const UpdateMatchSettingsWithProfileSkillsDocument = gql`
+    mutation UpdateMatchSettingsWithProfileSkills($id: uuid!, $match_settings: match_settings_set_input!, $userProfileSkills: jsonb) {
+  update_match_settings_by_pk(pk_columns: {userId: $id}, _set: $match_settings) {
+    lookingFor
+    skills
+    type
+  }
+  update_user_profile(
+    where: {userId: {_eq: $id}}
+    _set: {skills: $userProfileSkills}
+  ) {
+    returning {
+      skills
+    }
+  }
+}
+    `;
+export type TUpdateMatchSettingsWithProfileSkillsMutationFn = Apollo.MutationFunction<TUpdateMatchSettingsWithProfileSkillsMutation, TUpdateMatchSettingsWithProfileSkillsMutationVariables>;
+
+/**
+ * __useUpdateMatchSettingsWithProfileSkillsMutation__
+ *
+ * To run a mutation, you first call `useUpdateMatchSettingsWithProfileSkillsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateMatchSettingsWithProfileSkillsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateMatchSettingsWithProfileSkillsMutation, { data, loading, error }] = useUpdateMatchSettingsWithProfileSkillsMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      match_settings: // value for 'match_settings'
+ *      userProfileSkills: // value for 'userProfileSkills'
+ *   },
+ * });
+ */
+export function useUpdateMatchSettingsWithProfileSkillsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TUpdateMatchSettingsWithProfileSkillsMutation, TUpdateMatchSettingsWithProfileSkillsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<TUpdateMatchSettingsWithProfileSkillsMutation, TUpdateMatchSettingsWithProfileSkillsMutationVariables>(UpdateMatchSettingsWithProfileSkillsDocument, options);
+      }
+export type UpdateMatchSettingsWithProfileSkillsMutationHookResult = ReturnType<typeof useUpdateMatchSettingsWithProfileSkillsMutation>;
+export type UpdateMatchSettingsWithProfileSkillsMutationResult = Apollo.MutationResult<TUpdateMatchSettingsWithProfileSkillsMutation>;
+export type UpdateMatchSettingsWithProfileSkillsMutationOptions = Apollo.BaseMutationOptions<TUpdateMatchSettingsWithProfileSkillsMutation, TUpdateMatchSettingsWithProfileSkillsMutationVariables>;
 export const MatchSettingsDocument = gql`
     query MatchSettings($id: uuid!) {
   settings: match_settings_by_pk(userId: $id) {

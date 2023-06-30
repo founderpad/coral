@@ -46,7 +46,6 @@ const BaseForm = <
 
 			if (methods.formState.isValid) {
 				// Form is valid, proceed with form submission
-				console.log('is valid');
 				onSubmit(data);
 			}
 		} catch (error) {

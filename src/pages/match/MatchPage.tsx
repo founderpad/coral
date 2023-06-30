@@ -1,15 +1,16 @@
-import { PageLayout } from '@/components/layouts';
+import { FlexLayout, PageLayout } from '@/components/layouts';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
 import MatchContainer from './MatchContainer';
 import { NoResults, PageHtmlHead } from '@/components/shared';
-import { Text } from '@chakra-ui/react';
-import { BaseLink } from '@/components/links';
+import { Button } from '@chakra-ui/react';
 import { useMatchSettings } from './hooks/useMatchSettings';
+import useMatchModal from '@/components/shared/match/MatchModal';
 
 const MatchPage: NextPage = () => {
 	const { data } = useMatchSettings();
+	const { onOpenModal } = useMatchModal(data ?? {}, true);
 
 	return (
 		<>
@@ -30,17 +31,18 @@ const MatchPage: NextPage = () => {
 				<PageLayout>
 					<NoResults
 						label={
-							<Text>
+							<FlexLayout alignItems="center">
 								Add your{' '}
-								<BaseLink
-									title="/account/profile"
-									href="/account/profile"
+								<Button
+									variant="ghost"
+									color="fpPrimary.500"
+									onClick={onOpenModal}
 								>
 									Match
-								</BaseLink>{' '}
+								</Button>{' '}
 								preferences before you can see your matches
 								here.
-							</Text>
+							</FlexLayout>
 						}
 					/>
 				</PageLayout>

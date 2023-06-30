@@ -8,7 +8,8 @@ export const schema: yup.ObjectSchema<TMatchSettings> = yup.object().shape({
 	lookingFor: yup
 		.string()
 		.required('You must provide what you are looking for.'),
-	skills: yup.array().min(1, 'You must select at least one skill.')
+	skills: yup.array().min(1, 'You must select at least one.'),
+	profileSkills: yup.array().min(1, 'You must select at least one.')
 });
 
 export default schema;

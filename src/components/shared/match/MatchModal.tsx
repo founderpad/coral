@@ -3,7 +3,7 @@ import { TMatchSettingsQuery } from '@/generated/api';
 import { useModalDrawer } from '@/hooks/util';
 import MatchmakeSettingsForm from '@/pages/match/components/MatchmakeSettingsForm';
 
-export const useMatchModal = (data: TMatchSettingsQuery) => {
+export const useMatchModal = (data: TMatchSettingsQuery, isInitial = false) => {
 	const { openModalDrawer, closeModalDrawer } = useModalDrawer();
 
 	const onOpenModal = () => {
@@ -16,7 +16,12 @@ export const useMatchModal = (data: TMatchSettingsQuery) => {
 					label="Save"
 				/>
 			),
-			body: <MatchmakeSettingsForm {...data?.settings} />
+			body: (
+				<MatchmakeSettingsForm
+					{...data?.settings}
+					isInitial={isInitial}
+				/>
+			)
 		});
 	};
 
