@@ -1,5 +1,4 @@
 import {
-	Button,
 	FormControl,
 	Input,
 	InputProps,
@@ -27,6 +26,7 @@ import FormLabelText from '../FormLabelText';
 import ResizeTextarea from 'react-textarea-autosize';
 import { useMobile } from '@/hooks/util';
 import { TOption } from '@/utils/Constants';
+import ClearButton from '@/components/shared/ClearButton';
 
 export type TFormFieldProps<TFormValues extends FieldValues> = {
 	name: Path<TFormValues>;
@@ -90,22 +90,8 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 		>
 			<FlexLayout justifyContent="space-between" flex={1}>
 				{label && <FormLabelText label={label} />}
-
-				{!hideClear && (
-					<Button
-						id="clear-value-button"
-						name="clear-value-button"
-						aria-label="clear-value-button"
-						fontSize="x-small"
-						colorScheme="fpPrimary"
-						variant="link"
-						mb={1}
-						ml="auto"
-						onClick={() => onClear?.(name)}
-						visibility={watchValue ? 'visible' : 'hidden'}
-					>
-						Clear
-					</Button>
+				{!hideClear && watchValue && (
+					<ClearButton onClick={() => onClear?.(name)} />
 				)}
 			</FlexLayout>
 

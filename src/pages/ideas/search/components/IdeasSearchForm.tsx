@@ -17,6 +17,7 @@ import { Controller, UseFormReset, UseFormResetField } from 'react-hook-form';
 import { useQueryParam } from '@/hooks/util';
 import Router from 'next/router';
 import { BaseForm } from '@/components/form';
+import ClearButton from '@/components/shared/ClearButton';
 
 type TSearchFields = {
 	field?: string;
@@ -112,18 +113,10 @@ const IdeasSearchForm = () => {
 						>
 							Filters
 						</BaseHeading>
-
-						<Button
-							fontSize="x-small"
-							colorScheme="fpPrimary"
-							variant="link"
-							mb={1}
+						<ClearButton
 							onClick={() => onClearAll(reset, getValues())}
-							textAlign="left"
-							ml="auto"
-						>
-							Clear all
-						</Button>
+							label="Clear all"
+						/>
 					</FlexLayout>
 					{/* <FormSelect<TSearchFields>
 						id="country"

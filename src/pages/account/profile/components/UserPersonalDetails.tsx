@@ -11,7 +11,7 @@ import React, { memo } from 'react';
 import ProfileSectionLabel from './ProfileSectionLabel';
 import UserImageUploader from './UserImageUploader';
 import { useUserData } from '@nhost/react';
-import useChangePasswordModal from '../hooks/useChangePasswordModal';
+import useChangePasswordModal from '../hooks/changepassword';
 
 type Props = Pick<FlexProps, 'display' | 'mb'>;
 

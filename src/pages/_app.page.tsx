@@ -35,12 +35,6 @@ const auth = nhost.auth;
 const storage = nhost.storage;
 const functions = nhost.functions;
 
-// const paypalOptions = {
-// 	'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ?? '',
-// 	currency: 'GBP',
-// 	intent: 'capture'
-// };
-
 /**
  * The @App component is the entry point into the application. It wraps the application with the @see ChakraProvider which is a TailwindCSS inspired utility-first
  * React component library.

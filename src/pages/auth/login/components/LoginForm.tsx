@@ -2,12 +2,13 @@ import { AlertFeedback } from '@/components/alert';
 import { SubmitButton } from '@/components/buttons';
 import { BaseForm } from '@/components/form';
 import { FormInput } from '@/components/form/inputs/FormField';
-import { useLogin } from '@/hooks/auth';
 import React from 'react';
 import { TLoginFields } from '../../../../types/auth';
 import LoginFooter from './LoginFooter';
 import { schema } from '@/validation/auth/login/validationSchema';
 import { useNotification } from '@/hooks/util';
+import { SocialLogins } from '@/components/shared';
+import { useLogin } from '../hooks/login';
 
 const defaultValues: Record<string, string> & TLoginFields = {
 	email: '',
@@ -35,7 +36,7 @@ const LoginForm = () => {
 					control,
 					formState: { errors, isSubmitting }
 				}) => (
-					<React.Fragment>
+					<>
 						<FormInput<TLoginFields>
 							id="email"
 							name="email"
@@ -80,10 +81,10 @@ const LoginForm = () => {
 							fontSize="small"
 							w={{ base: 'full', sm: '200px' }}
 						/>
-					</React.Fragment>
+					</>
 				)}
 			</BaseForm>
-			{/* <SocialLogins /> */}
+			<SocialLogins />
 			<LoginFooter />
 		</>
 	);

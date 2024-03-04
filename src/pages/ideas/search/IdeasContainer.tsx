@@ -12,7 +12,7 @@ import OffsetPagination from './OffsetPagination';
 import SearchActions from '@/components/shared/SearchActions';
 import MobileFilterMenu from './components/MobileFilterMenu';
 import IdeasSearchForm from './components/IdeasSearchForm';
-import { useIdeas } from './hooks/useIdeas.page';
+import { useIdeas } from './hooks/searchideas';
 
 const IdeasContainer = () => {
 	const { data, total, loading } = useIdeas();

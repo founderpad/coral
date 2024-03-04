@@ -18,6 +18,7 @@ import {
 import { buildParams, deleteParams } from '@/utils/routerUtils';
 import React, { useCallback } from 'react';
 import { Controller, UseFormReset, UseFormResetField } from 'react-hook-form';
+import ClearButton from '@/components/shared/ClearButton';
 
 type TSearchFields = {
 	objective?: string;
@@ -98,18 +99,10 @@ const UsersSearchForm = () => {
 						>
 							Filters
 						</BaseHeading>
-
-						<Button
-							fontSize="x-small"
-							colorScheme="fpPrimary"
-							variant="link"
-							mb={1}
-							textAlign="left"
-							ml="auto"
+						<ClearButton
 							onClick={() => onClearAll(reset, getValues())}
-						>
-							Clear all
-						</Button>
+							label="Clear all"
+						/>
 					</FlexLayout>
 
 					<FormSelect<TSearchFields>

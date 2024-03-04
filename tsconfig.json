@@ -45,6 +45,7 @@
 		"**/*.js",
 		"**/*.jsx",
 		"src/utils/AuthFilter.tsx",
-		"lib/index.jsx"
+		"lib/index.jsx",
+		"next.config.mjs"
 	]
 }

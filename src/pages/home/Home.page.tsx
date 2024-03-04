@@ -5,7 +5,7 @@ import { useUserData } from '@nhost/react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import useChangePasswordModal from '../account/profile/hooks/useChangePasswordModal';
+import useChangePasswordModal from '../account/profile/hooks/changepassword';
 import { SimpleGrid } from '@chakra-ui/react';
 import {
 	IoBookOutline,

@@ -3,34 +3,26 @@ import { event } from '@/lib/ga';
 import { setUser } from '@/slices/auth';
 import { RootState } from '@/utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { TRegisterFormFields, TLoginFields } from 'src/types/auth';
+import { TRegisterFormFields } from 'src/types/auth';
 import Router, { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { encodeString } from '@/utils/validators';
 import ModalDrawerContext from '@/context/ModalDrawerContext';
 import { auth, nhost } from '@/pages/_app.page';
-import {
-	useAuthenticationStatus,
-	useSignInEmailPassword,
-	useSignUpEmailPassword
-} from '@nhost/react';
-import {
-	Provider,
-	SignInEmailPasswordHandlerResult,
-	SignUpEmailPasswordHandlerResult
-} from '@nhost/nhost-js';
+import { useAuthenticationStatus, useSignUpEmailPassword } from '@nhost/react';
+import { Provider } from '@nhost/nhost-js';
 import NotificationContext from '@/context/NotificationContext';
 import { useNotification } from './util';
+
 export const useRegister = () => {
 	const { addNotification } = useContext(NotificationContext);
-	const { signUpEmailPassword } = useSignUpEmailPassword();
-	let response: SignUpEmailPasswordHandlerResult;
+	const { signUpEmailPassword, error } = useSignUpEmailPassword();
 
 	const onRegister = async (values: TRegisterFormFields) => {
 		const { email, password, firstName, lastName } = values;
 
 		try {
-			response = await signUpEmailPassword(email, password, {
+			await signUpEmailPassword(email, password, {
 				displayName: `${firstName} ${lastName}`.trim(),
 				metadata: {
 					firstName,
@@ -38,10 +30,8 @@ export const useRegister = () => {
 				}
 			});
 
-			if (response.error) {
-				throw new Error(
-					`Failed to create account. ${response.error.message}.`
-				);
+			if (Boolean(error)) {
+				throw new Error(`Failed to create account. ${error?.message}.`);
 			}
 
 			Router.push(
@@ -51,7 +41,7 @@ export const useRegister = () => {
 			addNotification({ message: error.message, status: 'error' });
 		} finally {
 			event({
-				action: `Register > ${response.error ? 'error' : 'success'}`,
+				action: `Register > ${Boolean(error) ? 'error' : 'success'}`,
 				params: {
 					email,
 					display_name: `${firstName} ${lastName}`.trim(),
@@ -62,42 +52,6 @@ export const useRegister = () => {
 	};
 
 	return { onRegister };
-};
-
-export const useLogin = () => {
-	const { signInEmailPassword } = useSignInEmailPassword();
-	const { addNotification } = useContext(NotificationContext);
-	let response: SignInEmailPasswordHandlerResult;
-
-	const onLogin = async ({ email, password }: TLoginFields) => {
-		try {
-			response = await signInEmailPassword(email, password);
-			if (response.needsEmailVerification) {
-				addNotification({
-					message: `Failed to login. Please verify your email address first.`,
-					status: 'error'
-				});
-			}
-
-			if (response.error) {
-				throw new Error(
-					'Failed to login. Incorrect email and/or password.'
-				);
-			}
-		} catch (error: any) {
-			addNotification({ message: error.message, status: 'error' });
-		} finally {
-			event({
-				action: `Login > ${response.isError ? 'error' : 'success'}`,
-				params: {
-					email,
-					user_registration_date: new Date()
-				}
-			});
-		}
-	};
-
-	return { onLogin };
 };
 
 export const useSocialLogin = () => {

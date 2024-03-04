@@ -9,6 +9,7 @@ import { AlertFeedback } from '@/components/alert';
 // import { SocialLogins } from '@/components/shared';
 import schema from '@/validation/auth/register/validationSchema';
 import { useNotification } from '@/hooks/util';
+import { SocialLogins } from '@/components/shared';
 
 const defaultValues: Record<string, string> & TRegisterFormFields = {
 	firstName: '',
@@ -115,7 +116,7 @@ const RegisterForm = () => {
 					</React.Fragment>
 				)}
 			</BaseForm>
-			{/* <SocialLogins /> */}
+			<SocialLogins />
 
 			{/* <Alert fontSize="xs" status="warning" p={2} textAlign="center">
 				Your email address must be the same as your PayPal account in
