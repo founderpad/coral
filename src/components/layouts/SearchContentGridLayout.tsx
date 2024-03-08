@@ -2,13 +2,15 @@ import { Grid, GridItem } from '@chakra-ui/layout';
 import React from 'react';
 import { StackLayout } from './StackLayout';
 
+interface SearchContentGridLayoutProps {
+	search: React.ReactNode;
+	children: React.ReactNode;
+}
+
 const SearchContentGridLayout = ({
 	search,
 	children
-}: {
-	search: React.ReactNode;
-	children: React.ReactNode;
-}) => (
+}: SearchContentGridLayoutProps) => (
 	<Grid
 		templateColumns="repeat(7, 1fr)"
 		minH="full"

@@ -1,0 +1,1 @@
+CREATE TABLE "public"."match_settings" ("user_id" uuid NOT NULL, "looking_for" text NOT NULL, "type" text NOT NULL, "skills" Text[] NOT NULL, PRIMARY KEY ("user_id") );COMMENT ON TABLE "public"."match_settings" IS E'Match settings';

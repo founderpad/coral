@@ -41,13 +41,7 @@ const IdeaCycler = () => {
 
 	if (cachedIdeaIds.length > 1) {
 		return (
-			<FlexLayout
-				// borderBottomWidth={1}
-				// py={1}
-				// px={4}
-				rounded="none"
-				justifyContent="flex-end"
-			>
+			<FlexLayout rounded="none" justifyContent="flex-end">
 				<ButtonGroup>
 					<PrimaryButton
 						name="Previous"

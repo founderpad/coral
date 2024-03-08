@@ -1,2 +1,2 @@
 export { default as EditIdeaForm } from './EditIdeaForm';
-export { default as useUpdateIdea } from './hooks/useUpdateIdea';
+export { default as useUpdateIdea } from './hooks/updateidea';

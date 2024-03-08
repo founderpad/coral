@@ -48,8 +48,9 @@ const BaseForm = <
 				// Form is valid, proceed with form submission
 				onSubmit(data);
 			}
-		} catch (error: any) {
+		} catch (error) {
 			console.error('Form submission error:', error);
+			throw new Error('Form submission error');
 		}
 	};
 

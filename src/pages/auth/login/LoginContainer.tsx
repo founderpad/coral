@@ -3,19 +3,19 @@ import { SubmitButton } from '@/components/buttons';
 import { BaseForm } from '@/components/form';
 import { FormInput } from '@/components/form/inputs/FormField';
 import React from 'react';
-import { TLoginFields } from '../../../../types/auth';
-import LoginFooter from './LoginFooter';
+import { TLoginFields } from '../../../types/auth';
 import { schema } from '@/validation/auth/login/validationSchema';
 import { useNotification } from '@/hooks/util';
 import { SocialLogins } from '@/components/shared';
-import { useLogin } from '../hooks/login';
+import { useLogin } from './hooks/login';
+import LoginFooter from './components/LoginFooter';
 
-const defaultValues: Record<string, string> & TLoginFields = {
+const defaultValues: TLoginFields = {
 	email: '',
 	password: ''
 };
 
-const LoginForm = () => {
+const LoginContainer = () => {
 	const { onLogin } = useLogin();
 	const { notification } = useNotification();
 
@@ -84,10 +84,10 @@ const LoginForm = () => {
 					</>
 				)}
 			</BaseForm>
-			<SocialLogins />
+			{/* <SocialLogins /> */}
 			<LoginFooter />
 		</>
 	);
 };
 
-export default LoginForm;
+export default LoginContainer;

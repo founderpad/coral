@@ -11,7 +11,6 @@ import {
 import React from 'react';
 import { IconType } from 'react-icons/lib';
 import { FlexLayout } from './FlexLayout';
-// import { BoxLayout } from './BoxLayout';
 
 type Props = Omit<TabsProps, 'children'> & {
 	tabs: TabProps[];
@@ -74,8 +73,6 @@ const TabLayout = (props: Props & TabsProps) => {
 							{tab.label}
 						</Tab>
 					))}
-
-				{/* {actions && <BoxLayout ml="auto">{actions}</BoxLayout>} */}
 				{actions && <FlexLayout ml="auto">{actions}</FlexLayout>}
 			</TabList>
 

@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { event } from '@/lib/ga';
 
 export const useLogin = () => {
-	const { signInEmailPassword, error, needsEmailVerification } =
+	const { signInEmailPassword, error, isError, needsEmailVerification } =
 		useSignInEmailPassword();
 	const { addNotification } = useContext(NotificationContext);
 
@@ -20,7 +20,7 @@ export const useLogin = () => {
 				});
 			}
 
-			if (Boolean(error)) {
+			if (isError) {
 				// TODO
 				// Add error boundary
 				throw new Error(error?.message);
@@ -33,7 +33,7 @@ export const useLogin = () => {
 			});
 		} finally {
 			event({
-				action: `Login > ${Boolean(error) ? 'error' : 'success'}`,
+				action: `Login > ${isError ? 'error' : 'success'}`,
 				params: {
 					email,
 					user_registration_date: new Date()

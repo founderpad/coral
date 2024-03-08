@@ -16,7 +16,7 @@ export default function AuthFilter(Component: any) {
 		}
 
 		return (
-			<React.Fragment>
+			<>
 				<Script
 					src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
 					strategy="lazyOnload"
@@ -24,7 +24,7 @@ export default function AuthFilter(Component: any) {
 				<MainLayout>
 					<Component {...props} />
 				</MainLayout>
-			</React.Fragment>
+			</>
 		);
 	};
 }

@@ -1,1 +1,0 @@
-CREATE TABLE "public"."matchmake_preferences" ("user_id" uuid NOT NULL, "looking_for" text NOT NULL, PRIMARY KEY ("user_id") , FOREIGN KEY ("user_id") REFERENCES "auth"."users"("id") ON UPDATE restrict ON DELETE restrict);

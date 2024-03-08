@@ -3,7 +3,7 @@ import { Text } from '@chakra-ui/layout';
 import React from 'react';
 import FormLabelText from './FormLabelText';
 
-export const FormLabelWithValue = ({
+const FormLabelWithValue = ({
 	label,
 	value
 }: {

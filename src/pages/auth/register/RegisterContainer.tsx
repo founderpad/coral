@@ -1,29 +1,28 @@
 import { FormInput } from '@/components/form/inputs/FormField';
-import { useRegister } from '@/hooks/auth';
 import React from 'react';
-import LegalFooter from './LegalFooter';
-import { TRegisterFormFields } from '../../../../types/auth';
+import LegalFooter from './components/LegalFooter';
+import { TRegisterFormFields } from '../../../types/auth';
 import { BaseForm } from '@/components/form';
 import { SubmitButton } from '@/components/buttons';
 import { AlertFeedback } from '@/components/alert';
-// import { SocialLogins } from '@/components/shared';
 import schema from '@/validation/auth/register/validationSchema';
 import { useNotification } from '@/hooks/util';
 import { SocialLogins } from '@/components/shared';
+import { useRegister } from './hooks/register';
 
-const defaultValues: Record<string, string> & TRegisterFormFields = {
+const defaultValues: TRegisterFormFields = {
 	firstName: '',
 	lastName: '',
 	email: '',
 	password: ''
 };
 
-const RegisterForm = () => {
+const RegisterContainer = () => {
 	const { onRegister } = useRegister();
 	const { notification } = useNotification();
 
 	return (
-		<React.Fragment>
+		<>
 			<BaseForm<TRegisterFormFields, typeof schema>
 				name="register-form"
 				onSubmit={onRegister}
@@ -39,7 +38,7 @@ const RegisterForm = () => {
 					control,
 					formState: { errors, isSubmitting }
 				}) => (
-					<React.Fragment>
+					<>
 						<FormInput<TRegisterFormFields>
 							id="firstName"
 							name="firstName"
@@ -113,18 +112,13 @@ const RegisterForm = () => {
 							fontSize="small"
 							w={{ base: 'full', sm: '200px' }}
 						/>
-					</React.Fragment>
+					</>
 				)}
 			</BaseForm>
 			<SocialLogins />
-
-			{/* <Alert fontSize="xs" status="warning" p={2} textAlign="center">
-				Your email address must be the same as your PayPal account in
-				order to withdraw funds.
-			</Alert> */}
 			<LegalFooter />
-		</React.Fragment>
+		</>
 	);
 };
 
-export default RegisterForm;
+export default RegisterContainer;

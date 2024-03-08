@@ -1,3 +1,3 @@
-import MatchPage from './MatchPage';
+import Match from './Match.page';
 
-export default MatchPage;
+export default Match;

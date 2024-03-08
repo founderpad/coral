@@ -39,16 +39,6 @@ const ContentHighlightsLayout = (props: Props) => {
 				borderLeftWidth={{ base: 'none', md: '1px' }}
 				borderLeftColor="gray.100"
 			>
-				{/* <StackLayout
-					display={{ base: 'none', md: 'flex' }}
-					flex={1}
-					pl={4}
-				>
-					{highlights.map((h, key) => (
-						<KeyInformationBox key={key} {...h} />
-					))}
-				</StackLayout> */}
-
 				<FlexLayout
 					direction="row"
 					display={{ base: 'flex', md: 'none' }}

@@ -31,38 +31,6 @@ export const useIdeaFragment = (id?: string) => {
 };
 
 const useIdea = (id?: string) => {
-	// const cachedIdea = cache.readFragment({
-	// 	id: `ideas:${id ?? useQueryParam('id')}`, // The value of the idea's cache id
-	// 	fragment: gql`
-	// 		fragment idea on ideas {
-	// 			id
-	// 			name
-	// 			description
-	// 			field
-	// 			competitors
-	// 			team
-	// 			additionalInformation
-	// 			isPublished
-	// 			userId
-	// 			status
-	// 			user {
-	// 				id
-	// 				displayName
-	// 				avatarUrl
-	// 			}
-	// 		}
-	// 	`,
-	// 	fragmentName: 'idea'
-	// }) as TIdeas;
-
-	// const idea = cache.readQuery({
-	// 	id: `ideas:${id ?? useQueryParam('id')}`
-	// 	variables: {
-
-	// 	}
-
-	// })
-
 	const paramIdeaId = useQueryParam('id');
 	const ideaId = id ?? paramIdeaId;
 

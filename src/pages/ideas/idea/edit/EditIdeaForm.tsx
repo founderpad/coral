@@ -11,7 +11,7 @@ import { TIdeas_Set_Input } from '@/generated/api';
 import { ALL_IDEA_CATEGORY_FIELDS, ALL_IDEA_STATUSES } from '@/utils/Constants';
 import React from 'react';
 import { useIdeaFragment } from '../query/ideaQuery';
-import useUpdateIdea from './hooks/useUpdateIdea';
+import useUpdateIdea from './hooks/updateidea';
 
 export const EditIdeaForm = () => {
 	const idea = useIdeaFragment();

@@ -1,4 +1,5 @@
-import { render } from 'src/__test__/testUtils';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import Profile from './index.page';
 
 describe('Profile', () => {

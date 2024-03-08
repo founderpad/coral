@@ -2,7 +2,7 @@ import AuthLayout from '@/components/layouts/AuthLayout';
 import { useCheckLoggedIn } from '@/hooks/auth';
 import { NextPage } from 'next';
 import React from 'react';
-import LoginForm from './components/LoginForm';
+import LoginContainer from './LoginContainer';
 
 const Login: NextPage = () => {
 	useCheckLoggedIn();
@@ -16,7 +16,7 @@ const Login: NextPage = () => {
 				description: 'Login to your account.'
 			}}
 		>
-			<LoginForm />
+			<LoginContainer />
 		</AuthLayout>
 	);
 };

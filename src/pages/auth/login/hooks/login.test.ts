@@ -56,15 +56,4 @@ describe('useLogin', () => {
 			'Incorrect credentials'
 		);
 	});
-
-	/**
-	 * TODO
-	 *
-	 * Tests:
-	 *
-	 *
-	 * Show notification if needed to be verified
-	 *
-	 * Social media logins - test that Google login works (OAuth)
-	 */
 });

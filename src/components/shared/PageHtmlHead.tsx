@@ -1,17 +1,16 @@
 import Head from 'next/head';
 
-export type PageHeadProps = {
+interface PageHeadProps {
 	title?: string;
 	pageSlug: string;
 	description: string;
-	children?: any;
-};
+}
 
-export const PageHtmlHead: React.FC<PageHeadProps> = ({
+export const PageHtmlHead = ({
 	title,
 	pageSlug,
 	description
-}) => (
+}: PageHeadProps) => (
 	<Head>
 		<title>{title} &middot; founderpad</title>
 		<meta

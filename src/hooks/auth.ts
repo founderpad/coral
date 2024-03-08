@@ -3,56 +3,13 @@ import { event } from '@/lib/ga';
 import { setUser } from '@/slices/auth';
 import { RootState } from '@/utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { TRegisterFormFields } from 'src/types/auth';
 import Router, { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
-import { encodeString } from '@/utils/validators';
 import ModalDrawerContext from '@/context/ModalDrawerContext';
 import { auth, nhost } from '@/pages/_app.page';
-import { useAuthenticationStatus, useSignUpEmailPassword } from '@nhost/react';
+import { useAuthenticationStatus } from '@nhost/react';
 import { Provider } from '@nhost/nhost-js';
-import NotificationContext from '@/context/NotificationContext';
 import { useNotification } from './util';
-
-export const useRegister = () => {
-	const { addNotification } = useContext(NotificationContext);
-	const { signUpEmailPassword, error } = useSignUpEmailPassword();
-
-	const onRegister = async (values: TRegisterFormFields) => {
-		const { email, password, firstName, lastName } = values;
-
-		try {
-			await signUpEmailPassword(email, password, {
-				displayName: `${firstName} ${lastName}`.trim(),
-				metadata: {
-					firstName,
-					lastName
-				}
-			});
-
-			if (Boolean(error)) {
-				throw new Error(`Failed to create account. ${error?.message}.`);
-			}
-
-			Router.push(
-				`/register/registersuccess?nm=${encodeString(firstName)}`
-			);
-		} catch (error: any) {
-			addNotification({ message: error.message, status: 'error' });
-		} finally {
-			event({
-				action: `Register > ${Boolean(error) ? 'error' : 'success'}`,
-				params: {
-					email,
-					display_name: `${firstName} ${lastName}`.trim(),
-					user_registration_date: new Date()
-				}
-			});
-		}
-	};
-
-	return { onRegister };
-};
 
 export const useSocialLogin = () => {
 	const [getUser] = useGetAuthUser();
@@ -177,9 +134,9 @@ export const useGetAuthUser = () => {
 	return getUser;
 };
 
-export const useLogout = (): (() => Promise<void>) => {
+export const useLogout = () => {
 	// const showErrorNotification = useErrorNotification();
-	return async (): Promise<void> => {
+	return async () => {
 		try {
 			await auth.signOut();
 			// client.push(function () {
@@ -195,14 +152,14 @@ export const useLogout = (): (() => Promise<void>) => {
 	};
 };
 
-export const useCurrentUser = (): TUsers => {
+export const useCurrentUser = () => {
 	return (
 		useSelector((state: RootState) => state.authSlice.user) ??
 		({} as TUsers)
 	);
 };
 
-export const useCheckLoggedIn = (): void => {
+export const useCheckLoggedIn = () => {
 	const router = useRouter();
 	const { isAuthenticated } = useAuthenticationStatus();
 	const session = nhost.auth.getSession();

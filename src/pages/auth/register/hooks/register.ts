@@ -1,14 +1,15 @@
 import NotificationContext from '@/context/NotificationContext';
 import { TRegisterFormFields } from '@/types/auth';
-import { encodeString } from '@/utils/validators';
-import { useSignUpEmailPassword } from '@nhost/react';
-import Router from 'next/router';
+import { useSignUpEmailPassword } from '@nhost/nextjs';
 import { useContext } from 'react';
 import { event } from '@/lib/ga';
+import Router from 'next/router';
+import { encodeString } from '@/utils/validators';
 
 export const useRegister = () => {
+	const { signUpEmailPassword, error, isSuccess, isError } =
+		useSignUpEmailPassword();
 	const { addNotification } = useContext(NotificationContext);
-	const { signUpEmailPassword, error } = useSignUpEmailPassword();
 
 	const onRegister = async (values: TRegisterFormFields) => {
 		const { email, password, firstName, lastName } = values;
@@ -22,15 +23,17 @@ export const useRegister = () => {
 				}
 			});
 
-			if (Boolean(error)) {
+			if (isError) {
 				throw new Error(error?.message);
 			}
 
 			// TODO
 			// Move to routes
-			Router.push(
-				`/register/registersuccess?nm=${encodeString(firstName)}`
-			);
+			if (isSuccess) {
+				Router.push(
+					`/register/registersuccess?nm=${encodeString(firstName)}`
+				);
+			}
 		} catch {
 			// Improve typing here
 			addNotification({
@@ -39,7 +42,7 @@ export const useRegister = () => {
 			});
 		} finally {
 			event({
-				action: `Register > ${Boolean(error) ? 'error' : 'success'}`,
+				action: `Register > ${isError ? 'error' : 'success'}`,
 				params: {
 					email,
 					display_name: `${firstName} ${lastName}`.trim(),

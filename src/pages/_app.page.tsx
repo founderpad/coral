@@ -1,3 +1,5 @@
+'use client';
+
 import { InMemoryCache } from '@apollo/client';
 import { offsetLimitPagination } from '@apollo/client/utilities';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -24,6 +26,7 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import '../styles/globals.css';
+
 const persistor = persistStore(store);
 
 const nhost = new NhostClient({
