@@ -2,9 +2,9 @@ import { PageLayout } from '@/components/layouts';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
-import CreateIdeaForm from '../search/components/CreateIdeaForm';
 import { PageHtmlHead } from '@/components/shared';
 import { Text } from '@chakra-ui/react';
+import { CreateIdeaContainer } from '@/features/idea';
 
 const CreateIdea: NextPage = () => (
 	<>
@@ -14,8 +14,11 @@ const CreateIdea: NextPage = () => (
 			description="Create your idea."
 		/>
 		<PageLayout title="Create your idea">
-			<CreateIdeaForm />
+			<CreateIdeaContainer />
 
+			{/* TODO
+				Add to en.json for internationalization
+			*/}
 			<Text fontSize="x-small" color="fpGrey.300" pt={16}>
 				The content on our site is provided for general information only
 				(including such content uploaded by third parties). This

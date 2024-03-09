@@ -5,19 +5,15 @@ import { StackLayout } from '@/components/layouts';
 import { TIdeaPreviewFieldsFragment } from '@/generated/api';
 import React, { memo } from 'react';
 import IdeaMenu from '../IdeaCardMenu';
-import { IdeaUpvote } from '@/pages/ideas/idea/upvote';
+import { IdeaUpvote } from '@/features/idea/viewidea/upvote';
 
 const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
-	// const user = useAuth().getUser();
-	// const isBoosted = !!idea.boosted_idea?.ideaId;
-
 	return (
 		<StackLayout
 			direction="row"
 			spacing={0}
 			rounded="none"
 			w="full"
-			// px={{ base: 0, sm: 4 }}
 			justifyContent="space-between"
 			alignItems="center"
 		>
@@ -39,7 +35,6 @@ const IdeaCardFooter = (idea: TIdeaPreviewFieldsFragment) => {
 					{idea?.comments_aggregate?.aggregate?.count}
 				</Button>
 			</StackLayout>
-			{/* {user?.id === idea.userId && !isBoosted && <BoostIdea {...idea} />} */}
 			<IdeaMenu {...idea} />
 		</StackLayout>
 	);
