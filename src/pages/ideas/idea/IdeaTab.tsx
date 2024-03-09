@@ -8,14 +8,13 @@ import IdeaTitleHeader from './components/IdeaTitleHeader';
 import { IdeaOverview } from './components/IdeaOverview';
 import { IdeaUserActions } from './components/IdeaUserActions';
 import InterestedIdea from './components/InterestedIdea';
-import useIdea from './query/ideaQuery';
+import useCachedIdea from './query/ideaQuery';
 
 const IdeaTab = () => {
-	const data = useIdea();
+	const data = useCachedIdea();
 	const isMobile = useMobile();
 
 	if (!data) return <Loading small />;
-	// if (!idea.isPublished && auth.id !== idea.userId) Router.replace('/404');
 
 	return (
 		<StackLayout
@@ -28,7 +27,6 @@ const IdeaTab = () => {
 			<StackLayout p={4} flex={1} display="flex" overflowY="auto">
 				<IdeaUserActions />
 				<IdeaTitleHeader />
-				{/* <BoostEarnButton {...data} /> */}
 				<InterestedIdea />
 				<AppDivider />
 				<IdeaOverview />

@@ -3,12 +3,12 @@ import { BaseLink } from '@/components/links';
 import { AvatarWithDetails } from '@/components/shared';
 import { formatDate } from '@/utils/validators';
 import React from 'react';
-import useIdea from '../query/ideaQuery';
 import IdeaActions from './IdeaMenu';
 import { useUserData } from '@nhost/react';
+import useCachedIdea from '../query/ideaQuery';
 
 export const IdeaUserActions = () => {
-	const { idea } = useIdea() ?? {};
+	const { idea } = useCachedIdea() ?? {};
 	const user = useUserData();
 
 	const publishedName =

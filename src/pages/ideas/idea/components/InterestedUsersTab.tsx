@@ -9,12 +9,11 @@ import {
 import { useIdeaInterestedUsersLazyQuery } from '@/generated/api';
 import NewMessageModal from '@/pages/users/user/components/NewMessageModal';
 import React, { useEffect } from 'react';
-import useIdea from '../query/ideaQuery';
+import useCachedIdea from '../query/ideaQuery';
 
 export const InterestedUsersTab = () => {
-	const { idea } = useIdea() ?? {};
-	const totalInterested =
-		useIdea()?.idea?.interested_aggregate.aggregate?.count ?? 0;
+	const { idea } = useCachedIdea() ?? {};
+	const totalInterested = idea?.interested_aggregate.aggregate?.count ?? 0;
 
 	const [getInterestedUsers, { data }] = useIdeaInterestedUsersLazyQuery({
 		variables: {
@@ -33,35 +32,42 @@ export const InterestedUsersTab = () => {
 
 	return (
 		<StackLayout p={4}>
-			{data?.interested_users?.map((interestedUser) => (
-				<FlexLayout
-					key={interestedUser?.user?.id}
-					alignItems="center"
-					justifyContent="space-between"
-				>
-					<FlexLayout alignItems="center" h="full">
-						<AvatarWithDetails
-							title={interestedUser?.user?.displayName}
-							src={interestedUser?.user?.avatarUrl}
-							small
-							row
-						/>
-						<AppDivider orientation="vertical" mx={3} h="30px" />
-						<NewMessageModal
-							userId={interestedUser?.user?.id}
-							icon
-						/>
-					</FlexLayout>
-					<PrimaryLink
-						title="View profile"
-						href={`/user/${interestedUser?.user?.id}`}
-						fontSize="xs"
-						ml={4}
+			{data?.interested_users?.map((interestedUser) => {
+				const userId = interestedUser?.user?.id;
+				const displayName = interestedUser?.user?.displayName;
+				const avatarUrl = interestedUser?.user?.avatarUrl;
+
+				return (
+					<FlexLayout
+						key={userId}
+						alignItems="center"
+						justifyContent="space-between"
 					>
-						View profile
-					</PrimaryLink>
-				</FlexLayout>
-			))}
+						<FlexLayout alignItems="center" h="full">
+							<AvatarWithDetails
+								title={displayName}
+								src={avatarUrl}
+								small
+								row
+							/>
+							<AppDivider
+								orientation="vertical"
+								mx={3}
+								h="30px"
+							/>
+							<NewMessageModal userId={userId} icon />
+						</FlexLayout>
+						<PrimaryLink
+							title="View profile"
+							href={`/user/${userId}`}
+							fontSize="xs"
+							ml={4}
+						>
+							View profile
+						</PrimaryLink>
+					</FlexLayout>
+				);
+			})}
 		</StackLayout>
 	);
 };

@@ -30,7 +30,7 @@ export const useIdeaFragment = (id?: string) => {
 	return ideaFragment || null;
 };
 
-const useIdea = (id?: string) => {
+const useCachedIdea = (id?: string) => {
 	const paramIdeaId = useQueryParam('id');
 	const ideaId = id ?? paramIdeaId;
 
@@ -45,4 +45,4 @@ const useIdea = (id?: string) => {
 	return data || null;
 };
 
-export default useIdea;
+export default useCachedIdea;
