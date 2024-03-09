@@ -2,7 +2,7 @@ import AuthLayout from '@/components/layouts/AuthLayout';
 import { useCheckLoggedIn } from '@/hooks/auth';
 import { NextPage } from 'next';
 import React from 'react';
-import RegisterContainer from './RegisterContainer';
+import RegisterContainer from '../../../features/register/RegisterContainer';
 
 const RegisterPage: NextPage = () => {
 	useCheckLoggedIn();

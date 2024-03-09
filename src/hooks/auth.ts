@@ -4,8 +4,7 @@ import { setUser } from '@/slices/auth';
 import { RootState } from '@/utils/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import Router, { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
-import ModalDrawerContext from '@/context/ModalDrawerContext';
+import { useEffect } from 'react';
 import { auth, nhost } from '@/pages/_app.page';
 import { useAuthenticationStatus } from '@nhost/react';
 import { Provider } from '@nhost/nhost-js';
@@ -40,72 +39,6 @@ export const useSocialLogin = () => {
 			}
 		}
 	};
-};
-
-export const useResetPassword = () => {
-	const { addNotification } = useNotification();
-
-	const onResetPassword = async ({ email }: { email: string }) => {
-		try {
-			await auth.resetPassword({ email });
-
-			addNotification({
-				message:
-					'If you are registered, you will receive an email with instructions to reset your password.',
-				status: 'success'
-			});
-		} catch (error: any) {
-			addNotification({ message: error.message, status: 'error' });
-		} finally {
-			event({
-				action: 'Auth > Reset your password',
-				params: {
-					email
-				}
-			});
-		}
-	};
-
-	return { onResetPassword };
-};
-
-export const useChangePassword = () => {
-	const { closeModalDrawer } = useContext(ModalDrawerContext);
-	const { addNotification } = useNotification();
-	const user = useCurrentUser();
-
-	const onChangePassword = async ({
-		newPassword
-	}: {
-		newPassword: string;
-	}) => {
-		try {
-			const response = await auth.changePassword({ newPassword });
-
-			if (response.error) {
-				throw Error('Failed to change password');
-			}
-
-			addNotification({
-				message: 'Your password has been updated successfully.',
-				status: 'success'
-			});
-		} catch (error: unknown) {
-			if (error instanceof Error) {
-				addNotification({ message: error.message, status: 'error' });
-			}
-		} finally {
-			event({
-				action: 'Profile > Change your password',
-				params: {
-					email: user.email
-				}
-			});
-			closeModalDrawer();
-		}
-	};
-
-	return onChangePassword;
 };
 
 export const useGetAuthUser = () => {

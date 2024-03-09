@@ -1,7 +1,6 @@
 import { FormInput } from '@/components/form/inputs/FormField';
 import React from 'react';
 import LegalFooter from './components/LegalFooter';
-import { TRegisterFormFields } from '../../../types/auth';
 import { BaseForm } from '@/components/form';
 import { SubmitButton } from '@/components/buttons';
 import { AlertFeedback } from '@/components/alert';
@@ -9,8 +8,9 @@ import schema from '@/validation/auth/register/validationSchema';
 import { useNotification } from '@/hooks/util';
 import { SocialLogins } from '@/components/shared';
 import { useRegister } from './hooks/register';
+import { RegisterProps } from './types/register';
 
-const defaultValues: TRegisterFormFields = {
+const defaultValues: RegisterProps = {
 	firstName: '',
 	lastName: '',
 	email: '',
@@ -23,7 +23,7 @@ const RegisterContainer = () => {
 
 	return (
 		<>
-			<BaseForm<TRegisterFormFields, typeof schema>
+			<BaseForm<RegisterProps, typeof schema>
 				name="register-form"
 				onSubmit={onRegister}
 				defaultValues={defaultValues}
@@ -39,7 +39,7 @@ const RegisterContainer = () => {
 					formState: { errors, isSubmitting }
 				}) => (
 					<>
-						<FormInput<TRegisterFormFields>
+						<FormInput<RegisterProps>
 							id="firstName"
 							name="firstName"
 							placeholder="First name"
@@ -53,7 +53,7 @@ const RegisterContainer = () => {
 							hideClear
 						/>
 
-						<FormInput<TRegisterFormFields>
+						<FormInput<RegisterProps>
 							id="lastName"
 							name="lastName"
 							placeholder="Last name"
@@ -66,7 +66,7 @@ const RegisterContainer = () => {
 							errors={errors}
 							hideClear
 						/>
-						<FormInput<TRegisterFormFields>
+						<FormInput<RegisterProps>
 							id="email"
 							name="email"
 							placeholder="Email"
@@ -80,7 +80,7 @@ const RegisterContainer = () => {
 							hideClear
 						/>
 
-						<FormInput<TRegisterFormFields>
+						<FormInput<RegisterProps>
 							id="password"
 							name="password"
 							placeholder="Password"

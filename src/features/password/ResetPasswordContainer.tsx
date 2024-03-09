@@ -4,27 +4,27 @@ import { BaseForm } from '@/components/form';
 import { FormInput } from '@/components/form/inputs/FormField';
 import { StackLayout } from '@/components/layouts';
 import { PrimaryLink } from '@/components/links';
-import { useResetPassword } from '@/hooks/auth';
 import { useNotification } from '@/hooks/util';
 import schema from '@/validation/auth/resetpassword/validationSchema';
 import { Text } from '@chakra-ui/react';
 import React, { memo } from 'react';
+import { useResetPassword } from './hooks/resetpassword';
 
-type TResetPasswordFields = {
+interface ResetPasswordProps {
 	email: string;
-};
+}
 
 const defaultValues: Record<string, string> = {
 	email: ''
 };
 
-const ResetPasswordForm = () => {
+const ResetPasswordContainer = () => {
 	const { onResetPassword } = useResetPassword();
 	const { notification } = useNotification();
 
 	return (
 		<>
-			<BaseForm<TResetPasswordFields, typeof schema>
+			<BaseForm<ResetPasswordProps, typeof schema>
 				name="reset-password-form"
 				onSubmit={onResetPassword}
 				defaultValues={defaultValues}
@@ -47,7 +47,7 @@ const ResetPasswordForm = () => {
 							password.
 						</Text>
 
-						<FormInput<TResetPasswordFields>
+						<FormInput<ResetPasswordProps>
 							id="email"
 							name="email"
 							register={register}
@@ -113,4 +113,4 @@ const ResetPasswordFooter = memo(() => (
 	</StackLayout>
 ));
 
-export default ResetPasswordForm;
+export default ResetPasswordContainer;

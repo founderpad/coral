@@ -1,15 +1,15 @@
 import NotificationContext from '@/context/NotificationContext';
-import { TLoginFields } from '@/types/auth';
 import { useSignInEmailPassword } from '@nhost/nextjs';
 import { useContext } from 'react';
 import { event } from '@/lib/ga';
+import { LoginProps } from '../types/login';
 
 export const useLogin = () => {
 	const { signInEmailPassword, error, isError, needsEmailVerification } =
 		useSignInEmailPassword();
 	const { addNotification } = useContext(NotificationContext);
 
-	const onLogin = async ({ email, password }: TLoginFields) => {
+	const onLogin = async ({ email, password }: LoginProps) => {
 		try {
 			await signInEmailPassword(email, password);
 

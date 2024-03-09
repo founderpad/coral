@@ -1,12 +1,8 @@
-// import { PageLayout } from '@/components/layouts';
-// import { PageHtmlHead } from '@/components/shared';
 import { PageLayout } from '@/components/layouts';
 import { PageHtmlHead } from '@/components/shared';
 import AuthFilter from '@/utils/AuthFilter';
-// import { NextPage } from 'next';
 import React from 'react';
 import ProfileLayout from './layout/ProfileLayout';
-// import ProfileLayout from './layout/ProfileLayout';
 
 const Profile = () => {
 	return (

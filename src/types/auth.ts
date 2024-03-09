@@ -1,13 +1,3 @@
-export type TLoginFields = {
-	email: string;
-	password: string;
-};
-
-export type TRegisterFormFields = {
-	firstName: string;
-	lastName?: string;
-} & TLoginFields;
-
 export type ProfileFormData = {
 	categories: string[];
 	background: string;

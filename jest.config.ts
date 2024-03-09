@@ -8,11 +8,13 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const config: Config = {
+	verbose: true,
 	coverageProvider: 'v8',
 	testEnvironment: 'jsdom',
-	moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
-	transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+	transformIgnorePatterns: ['<rootDir>/node_modules/.+.(js|jsx)$'],
+	setupFiles: ['./setup.jest.ts'],
 	moduleNameMapper: {
+		'^jose': require.resolve('jose'),
 		'^@/components(.*)$': '<rootDir>/src/components$1',
 		'^@/pages(.*)$': '<rootDir>/src/pages$1',
 		'^@/hooks(.*)$': '<rootDir>/src/hooks$1',
@@ -23,6 +25,10 @@ const config: Config = {
 		'^@/provider(.*)$': '<rootDir>/src/provider$1',
 		'^@/nhost(.*)$': '<rootDir>/node_modules/@nhost$1', // Add this otherwise tests will fail. This didn't need to be added before(?)
 		'^@/(.*)$': '<rootDir>/src/$1'
+	},
+	transform: {
+		'^.+\\.(t)s$': 'ts-jest',
+		'^.+\\.(js|jsx)$': 'babel-jest'
 	}
 	// Add more setup options before each test is run
 	// setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],

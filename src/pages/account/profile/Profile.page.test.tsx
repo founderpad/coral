@@ -4,6 +4,7 @@ import Profile from './index.page';
 
 describe('Profile', () => {
 	it('should render profile page', () => {
-		render(<Profile />);
+		const screen = render(<Profile />);
+		expect(screen.findByText('Your profile')).toBeInTheDocument();
 	});
 });

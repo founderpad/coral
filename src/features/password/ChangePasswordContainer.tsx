@@ -1,13 +1,14 @@
 import { SubmitButton } from '@/components/buttons';
 import BaseForm from '@/components/form/BaseForm';
 import { FormInput } from '@/components/form/inputs/FormField';
-import { useChangePassword } from '@/hooks/auth';
 import schema from '@/validation/auth/changepassword/validationSchema';
 import React from 'react';
+import { useChangePassword } from './hooks/changepassword';
 
-type TChangePasswordFields = {
+interface ChangePasswordProps {
 	newPassword: string;
-};
+}
+
 interface Props {
 	showPasswordLabel?: boolean;
 	showSubmit?: boolean;
@@ -15,7 +16,7 @@ interface Props {
 	isError?: boolean;
 }
 
-const defaultValues: TChangePasswordFields = {
+const defaultValues: ChangePasswordProps = {
 	newPassword: ''
 };
 
@@ -24,7 +25,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 	const onChangePassword = useChangePassword();
 
 	return (
-		<BaseForm<TChangePasswordFields, typeof schema>
+		<BaseForm<ChangePasswordProps, typeof schema>
 			name="edit-change-password"
 			onSubmit={onChangePassword}
 			defaultValues={defaultValues}
@@ -39,8 +40,8 @@ const ConfirmChangePasswordForm = (props: Props) => {
 				resetField,
 				formState: { errors, isSubmitting }
 			}) => (
-				<React.Fragment>
-					<FormInput<TChangePasswordFields>
+				<>
+					<FormInput<ChangePasswordProps>
 						id="newPassword"
 						name="newPassword"
 						type="password"
@@ -68,7 +69,7 @@ const ConfirmChangePasswordForm = (props: Props) => {
 							w={{ base: 'full', sm: '175px' }}
 						/>
 					)}
-				</React.Fragment>
+				</>
 			)}
 		</BaseForm>
 	);

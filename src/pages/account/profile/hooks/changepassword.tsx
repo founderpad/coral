@@ -1,6 +1,6 @@
 import { SubmitButton } from '@/components/buttons';
 import { useModalDrawer } from '@/hooks/util';
-import ChangePasswordForm from '@/components/shared/ChangePasswordForm';
+import ChangePasswordForm from '@/features/password/ConfirmChangePasswordContainer';
 
 export const useChangePasswordModal = () => {
 	const { openModalDrawer, closeModalDrawer } = useModalDrawer();

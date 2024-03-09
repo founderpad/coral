@@ -19,7 +19,7 @@ export const PageHeader = memo(
 		back?: boolean;
 	}) => {
 		return (
-			<React.Fragment>
+			<>
 				<StackLayout
 					as="header"
 					p={{ base: 4, sm: 6 }}
@@ -47,7 +47,7 @@ export const PageHeader = memo(
 						</Label>
 					)}
 				</StackLayout>
-			</React.Fragment>
+			</>
 		);
 	}
 );

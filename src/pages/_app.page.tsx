@@ -8,7 +8,6 @@ import BaseModalDrawer from '@/components/modal/BaseModalDrawer';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/700.css';
 import { useTrackAnalytics } from '@/hooks/util';
-import { NhostProvider, NhostClient } from '@nhost/nextjs';
 import { NhostApolloProvider } from '@nhost/react-apollo';
 import DrawerProvider from '@/provider/DrawerProvider';
 import IdeaCycleProvider from '@/provider/IdeaCycleProvider';
@@ -26,11 +25,12 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import '../styles/globals.css';
+import { NhostClient, NhostProvider } from '@nhost/nextjs';
 
 const persistor = persistStore(store);
 
 const nhost = new NhostClient({
-	subdomain: process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN,
+	subdomain: process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN || 'local',
 	region: process.env.NEXT_PUBLIC_NHOST_REGION
 });
 
@@ -132,76 +132,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 };
 
 const cache = new InMemoryCache({
-	// addTypename: false,
 	typePolicies: {
-		// interested_ideas: {
-		// 	keyFields: ['ideaId']
-		// },
-		// idea_comments: {
-		// 	keyFields: ['ideaId', 'id']
-		// },
 		Query: {
 			fields: {
-				// resourceCollection: {
-				// 	keyArgs: false,
-				// 	merge(existing, incoming) {
-				// 		if (!incoming) return existing;
-				// 		if (!existing) return incoming; // existing will be empty the first time
-
-				// 		const { comments, ...rest } = incoming;
-
-				// 		let result = rest;
-				// 		result.comments = [...existing.comments, ...comments]; // Merge existing items with the items from incoming
-
-				// 		return result;
-				// 	}
-				// },
 				resourceCollection: offsetLimitPagination(),
-				// CommentsForIdea: relayStylePagination()
-				// CommentsForIdea: offsetLimitPagination()
-				// idea_comments: {
-				// 	keyArgs: ['id', 'ideaId'],
-				// 	// merge: true
-				// 	merge(existing, incoming) {
-				// 		return incoming;
-				// 	}
-				// 	// offsetLimitPagination()
-				// }
-
 				v_comments: offsetLimitPagination()
-				// idea_comments: {
-				// 	...offsetLimitPagination(),
-				// 	merge(existing = [], incoming) {
-				// 		return [...existing, ...incoming];
-				// 	}
-				// },
-
-				// idea_comments: {
-				// 	keyArgs: ['ideaId'],
-				// 	merge: true
-
-				// }
-				// idea_comments: {
-				// 	// ...offsetLimitP, 'idagination(),
-				// 	keyArgs: ['ideaId'],
-				// 	merge(existing = [], incoming) {
-				// 		console.log('incoming: ', incoming);
-				// 		console.log('existing: ', existing);
-
-				// 		return [...existing, ...incoming];
-				// 	}
-				// 	// read(existing, args) {
-				// 	// 	console.log('existing: ', existing);
-				// 	// 	console.log('args: ', args);
-				// 	// }
-				// 	// merge: true
-				// },
-				// message: {
-				// 	merge(existing = [], incoming) {
-				// 		// console.log('existing: ', existing);
-				// 		// console.log('incoming: ', incoming);
-				// 	}
-				// }
 			}
 		}
 	}

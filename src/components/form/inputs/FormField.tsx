@@ -132,7 +132,7 @@ export const FormField = <TFormValues extends Record<string, unknown>>({
 	);
 };
 
-export const FormInput = <TFormValues extends Record<string, unknown>>({
+export const FormInput = <TFormValues extends Record<string, any>>({
 	name,
 	register,
 	isRequired = false,

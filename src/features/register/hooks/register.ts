@@ -1,17 +1,17 @@
 import NotificationContext from '@/context/NotificationContext';
-import { TRegisterFormFields } from '@/types/auth';
 import { useSignUpEmailPassword } from '@nhost/nextjs';
 import { useContext } from 'react';
 import { event } from '@/lib/ga';
 import Router from 'next/router';
 import { encodeString } from '@/utils/validators';
+import { RegisterProps } from '../types/register';
 
 export const useRegister = () => {
 	const { signUpEmailPassword, error, isSuccess, isError } =
 		useSignUpEmailPassword();
 	const { addNotification } = useContext(NotificationContext);
 
-	const onRegister = async (values: TRegisterFormFields) => {
+	const onRegister = async (values: RegisterProps) => {
 		const { email, password, firstName, lastName } = values;
 
 		try {
