@@ -9,13 +9,9 @@ import { TIdeas } from '@/generated/api';
 import React, { memo } from 'react';
 import HighlightTag from './IdeaHighlightTag';
 
-// type IdeaHighlightsProps = Pick<TIdeas, 'status' | 'field'> &
-// 	TNestedPick<TIdeas, 'user', 'country'>;
-
 type IdeaHighlightsProps = Pick<TIdeas, 'status' | 'field'>;
 
-export const IdeaHighlights = memo((props: IdeaHighlightsProps) => {
-	// const { status, field, user } = props;
+const IdeaHighlights = memo((props: IdeaHighlightsProps) => {
 	const { status, field } = props;
 
 	return (
@@ -33,11 +29,6 @@ export const IdeaHighlights = memo((props: IdeaHighlightsProps) => {
 					value={field}
 					icon={IoBusinessSharp}
 				/>
-				{/* <KeyInformationBox
-						title="Location"
-						value={user.country}
-						icon={IoLocationSharp}
-					/> */}
 				<KeyInformationBox
 					title="Documents"
 					value="4 supporting documents"
@@ -52,7 +43,6 @@ export const IdeaHighlights = memo((props: IdeaHighlightsProps) => {
 			>
 				{status && <HighlightTag value={status} />}
 				<HighlightTag value={field} />
-				{/* <HighlightTag value={user.country} /> */}
 				<HighlightTag value="4 documents" />
 			</FlexLayout>
 		</React.Fragment>

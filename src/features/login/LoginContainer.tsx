@@ -7,13 +7,9 @@ import { schema } from '@/validation/auth/login/validationSchema';
 import { useNotification } from '@/hooks/util';
 import { useLogin } from './hooks/login';
 import { LoginFooter } from './components';
+import { LoginProps } from './types/login';
 
-export type TLoginFields = {
-	email: string;
-	password: string;
-};
-
-const defaultValues: TLoginFields = {
+const defaultValues: LoginProps = {
 	email: '',
 	password: ''
 };
@@ -24,7 +20,7 @@ const LoginContainer = () => {
 
 	return (
 		<>
-			<BaseForm<TLoginFields, typeof schema>
+			<BaseForm<LoginProps, typeof schema>
 				name="login-form"
 				onSubmit={onLogin}
 				defaultValues={defaultValues}
@@ -40,7 +36,7 @@ const LoginContainer = () => {
 					formState: { errors, isSubmitting }
 				}) => (
 					<>
-						<FormInput<TLoginFields>
+						<FormInput<LoginProps>
 							id="email"
 							name="email"
 							placeholder="Email"
@@ -53,7 +49,7 @@ const LoginContainer = () => {
 							hideClear
 						/>
 
-						<FormInput<TLoginFields>
+						<FormInput<LoginProps>
 							id="password"
 							name="password"
 							placeholder="Password"

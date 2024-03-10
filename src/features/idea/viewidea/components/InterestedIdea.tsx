@@ -5,12 +5,12 @@ import { useCreateInterestedIdeaMutation } from '@/generated/api';
 import { useModalDrawer } from '@/hooks/util';
 import { event } from '@/lib/ga';
 import React, { useState } from 'react';
-import useIdea from '../query/ideaQuery';
 import { useUserData } from '@nhost/react';
+import useCachedIdea from '../query/ideaQuery';
 
-export const InterestedIdea = () => {
+const InterestedIdea = () => {
 	const user = useUserData();
-	const { idea, hasInterest } = useIdea();
+	const { idea, hasInterest } = useCachedIdea();
 	const { id, userId } = idea ?? {};
 	const [interested, setInterested] = useState(!!hasInterest?.id);
 	const { closeModalDrawer, openModalDrawer } = useModalDrawer();
@@ -63,7 +63,6 @@ export const InterestedIdea = () => {
 				<PrimaryButton
 					name="show-interest"
 					w="125px"
-					// leftIcon={<IoStarSharp />}
 					fontSize="xs"
 					onClick={onClick}
 					variant="outline"

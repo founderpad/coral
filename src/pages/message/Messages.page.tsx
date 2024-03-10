@@ -2,8 +2,8 @@ import { PageLayout } from '@/components/layouts';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
-import MessageThreadsContainer from './MessageThreadsContainer';
 import { PageHtmlHead } from '@/components/shared';
+import { MessageThreadsContainer } from '@/features/message';
 
 const Messages: NextPage = () => (
 	<>

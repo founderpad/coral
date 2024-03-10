@@ -5,17 +5,16 @@ import { StackLayout } from '@/components/layouts';
 import { useQueryParam } from '@/hooks/util';
 import { useRouter } from 'next/router';
 
-type Props = {
+interface Props {
 	pathname: string;
 	pagesCount: number;
 	onPageChange: (page: string) => void;
-};
+}
 
-export const Pagination = (props: Props) => {
+const Pagination = (props: Props) => {
 	const { pathname, pagesCount, onPageChange } = props;
 	const router = useRouter();
 	const page = parseInt(useQueryParam('page'));
-	// const buttonSize = useBreakpointValue({ base: 'sm', sm: 'md' });
 
 	const pagesArray = Array.from(
 		new Array(Math.ceil(pagesCount)),
@@ -76,3 +75,5 @@ export const Pagination = (props: Props) => {
 		</StackLayout>
 	);
 };
+
+export default Pagination;

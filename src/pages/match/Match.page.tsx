@@ -2,11 +2,10 @@ import { FlexLayout, PageLayout } from '@/components/layouts';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
-import MatchContainer from './MatchContainer';
 import { NoResults, PageHtmlHead } from '@/components/shared';
 import { Button } from '@chakra-ui/react';
-import { useMatchSettings } from './hooks/useMatchSettings';
 import useMatchModal from '@/components/shared/match/MatchModal';
+import { MatchContainer, useMatchSettings } from '@/features/match';
 
 const MatchPage: NextPage = () => {
 	const { data } = useMatchSettings();

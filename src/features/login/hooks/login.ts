@@ -19,14 +19,9 @@ export const useLogin = () => {
 					status: 'error'
 				});
 			}
-
-			if (isError) {
-				// TODO
-				// Add error boundary
-				throw new Error(error?.message);
-			}
 		} catch {
-			// Improve typing here
+			// TODO
+			// Add error boundary
 			addNotification({
 				message: error?.message || 'Failed to login.',
 				status: 'error'

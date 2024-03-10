@@ -1,4 +1,4 @@
-import AuthLayout from '@/components/layouts/AuthLayout';
+import { AuthLayout } from '@/components/layouts';
 import { LoginContainer } from '@/features/login/components';
 import { useCheckLoggedIn } from '@/hooks/auth';
 import { NextPage } from 'next';

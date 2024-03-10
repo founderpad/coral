@@ -2,8 +2,8 @@ import { PageLayout } from '@/components/layouts';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
-import MyIdeasContainer from './MyIdeasContainer';
 import { PageHtmlHead } from '@/components/shared';
+import MyIdeasContainer from '@/features/idea/myideas/MyIdeasContainer';
 
 const MyIdeas: NextPage = () => {
 	return (

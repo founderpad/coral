@@ -4,20 +4,16 @@ import { Label } from '@/components/labels';
 import { FlexLayout, StackLayout } from '@/components/layouts';
 import React, { memo } from 'react';
 
-export const PageHeader = memo(
-	({
-		title,
-		subtitle,
-		fixedHeader,
-		action,
-		back
-	}: {
-		title?: string;
-		subtitle?: React.ReactNode;
-		fixedHeader?: boolean;
-		action?: React.ReactNode;
-		back?: boolean;
-	}) => {
+interface PageHeaderProps {
+	title?: string;
+	subtitle?: React.ReactNode;
+	fixedHeader?: boolean;
+	action?: React.ReactNode;
+	back?: boolean;
+}
+
+const PageHeader = memo(
+	({ title, subtitle, fixedHeader, action, back }: PageHeaderProps) => {
 		return (
 			<>
 				<StackLayout
@@ -51,3 +47,5 @@ export const PageHeader = memo(
 		);
 	}
 );
+
+export default PageHeader;

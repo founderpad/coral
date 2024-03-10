@@ -7,7 +7,7 @@ import {
 	NoResults
 } from '@/components/shared';
 import { useIdeaInterestedUsersLazyQuery } from '@/generated/api';
-import NewMessageModal from '@/pages/users/user/components/NewMessageModal';
+import NewMessageModal from '@/features/users/viewuser/components/NewMessageModal';
 import React, { useEffect } from 'react';
 import useCachedIdea from '../query/ideaQuery';
 

@@ -3,9 +3,9 @@ import MobileNav from '@/components/nav/mainnav/MobileNav';
 import { usePushNotifications } from '@/hooks/notifications';
 import MobileNavigationProvider from '@/provider/MobileNavigationProvider';
 import React from 'react';
-import { BoxLayout } from './BoxLayout';
 import { AlertFeedback } from '../alert';
 import { useNotification } from '@/hooks/util';
+import { BoxLayout } from '.';
 
 export const MainLayout = ({ children }: { children: JSX.Element }) => {
 	usePushNotifications();
@@ -49,7 +49,6 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 							status={notification.status}
 							showIcon
 							showClose
-							// auto
 						/>
 					</BoxLayout>
 				)}
@@ -60,19 +59,5 @@ export const MainLayout = ({ children }: { children: JSX.Element }) => {
 		</MobileNavigationProvider>
 	);
 };
-
-// const FooterLink = ({
-// 	href,
-// 	label
-// }: {
-// 	href: string;
-// 	label: string;
-// }):  => {
-// 	return (
-// 		<Link fontSize="sm" href={href} color="fpGrey.700" isExternal>
-// 			{label}
-// 		</Link>
-// 	);
-// };
 
 export default MainLayout;

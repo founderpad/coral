@@ -1,17 +1,14 @@
-import { Grid, GridItem } from '@chakra-ui/layout';
-import { PageLayout, StackLayout } from '@/components/layouts';
+import { PageLayout } from '@/components/layouts';
 import { Loading, PageHtmlHead } from '@/components/shared';
 import { useQueryParam } from '@/hooks/util';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
-import Actions from './components/Actions';
-import UserProfileExperience from './components/UserProfileExperience';
-import UserDetails from './components/UserDetails';
-import { useUser } from './hooks/useUser';
-// import AddFollower from './components/AddFollower';
+import Actions from '@/features/users/viewuser/components/Actions';
+import useUser from '@/features/users/viewuser/hooks/useUser';
+import { ViewUserContainer } from '@/features/users/viewuser';
 
-const User: NextPage = () => {
+const ViewUser: NextPage = () => {
 	const { data, loading } = useUser();
 	const userId = useQueryParam('id');
 
@@ -28,26 +25,10 @@ const User: NextPage = () => {
 				title={`${data?.displayName}'s profile`}
 				action={<Actions />}
 			>
-				<Grid
-					templateRows="repeat(1, 1fr)"
-					templateColumns="repeat(12, 1fr)"
-					w="full"
-					gridGap={6}
-				>
-					<GridItem colSpan={{ base: 12, md: 4 }}>
-						<UserDetails {...data} />
-					</GridItem>
-					<GridItem
-						colSpan={{ base: 12, md: 8 }}
-						as={StackLayout}
-						spacing={6}
-					>
-						<UserProfileExperience {...data?.profile} />
-					</GridItem>
-				</Grid>
+				<ViewUserContainer {...data} />
 			</PageLayout>
 		</>
 	);
 };
 
-export default AuthFilter(User);
+export default AuthFilter(ViewUser);

@@ -2,7 +2,7 @@ import { Icon, Tag } from '@chakra-ui/react';
 import React from 'react';
 import { IoStarSharp } from 'react-icons/io5';
 
-export const InterestedTotal = ({ total = 0 }: { total?: number }) => {
+const InterestedTotal = ({ total = 0 }: { total?: number }) => {
 	if (total > 0)
 		return (
 			<Tag

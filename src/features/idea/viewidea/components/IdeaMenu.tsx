@@ -8,7 +8,7 @@ import React, { memo, useCallback } from 'react';
 import { useModalDrawer } from '@/hooks/util';
 import { EditIdeaContainer } from '../../editidea';
 
-export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
+const IdeaMenu = memo(({ ideaId }: { ideaId: string }) => {
 	const { openModalDrawer, closeModalDrawer } = useModalDrawer();
 
 	const router = useRouter();
@@ -73,4 +73,4 @@ export const IdeaActions = memo(({ ideaId }: { ideaId: string }) => {
 	);
 });
 
-export default IdeaActions;
+export default IdeaMenu;

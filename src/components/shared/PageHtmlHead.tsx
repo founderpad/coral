@@ -6,11 +6,7 @@ interface PageHeadProps {
 	description: string;
 }
 
-export const PageHtmlHead = ({
-	title,
-	pageSlug,
-	description
-}: PageHeadProps) => (
+const PageHtmlHead = ({ title, pageSlug, description }: PageHeadProps) => (
 	<Head>
 		<title>{title} &middot; founderpad</title>
 		<meta
@@ -30,3 +26,5 @@ export const PageHtmlHead = ({
 		<meta property="og:description" content={description} />
 	</Head>
 );
+
+export default PageHtmlHead;

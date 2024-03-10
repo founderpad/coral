@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/layout';
 import { Spinner } from '@chakra-ui/spinner';
-import React from 'react';
+import React, { memo } from 'react';
 
-export const Loading = ({ small }: { small?: boolean }) => (
+const Loading = memo(({ small }: { small?: boolean }) => (
 	<Flex flex={1} h="full" justifyContent="center">
 		<Spinner
 			display="flex"
@@ -13,4 +13,6 @@ export const Loading = ({ small }: { small?: boolean }) => (
 			variant="outline"
 		/>
 	</Flex>
-);
+));
+
+export default Loading;

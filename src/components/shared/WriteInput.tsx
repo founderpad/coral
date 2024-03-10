@@ -10,7 +10,7 @@ import React from 'react';
 import { IoSendSharp } from 'react-icons/io5';
 import ResizeTextarea from 'react-textarea-autosize';
 import { IconType } from 'react-icons/lib';
-import { AvatarWithDetails } from './UserAvatar';
+import { AvatarWithDetails } from './AvatarWithDetails';
 import { useUserData } from '@nhost/react';
 
 type Props = {

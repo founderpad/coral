@@ -1,8 +1,8 @@
 import { StackLayout } from '@/components/layouts';
+import BoostProgress from '@/pages/ideas/boost/BoostProgress';
 import { formatDate } from '@/utils/validators';
 import { Stat, StatHelpText, StatLabel, StatNumber } from '@chakra-ui/react';
 import React from 'react';
-import BoostProgress from '../../boost/BoostProgress';
 
 const IdeaBoostProgress = ({
 	remainingCurrencyAmount,

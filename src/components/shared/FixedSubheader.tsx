@@ -1,16 +1,14 @@
 import { Box } from '@chakra-ui/react';
 import React, { memo, useEffect, useState } from 'react';
 
-export const FixedSubheader = memo(
-	({
-		children,
-		scrollOffset,
-		topOffset
-	}: {
-		children: React.ReactNode;
-		scrollOffset?: number;
-		topOffset?: number;
-	}) => {
+interface FixedSubheaderProps {
+	children: React.ReactNode;
+	scrollOffset?: number;
+	topOffset?: number;
+}
+
+const FixedSubheader = memo(
+	({ children, scrollOffset, topOffset }: FixedSubheaderProps) => {
 		const [fixed, setIsFixed] = useState(false);
 		const DEFAULT_OFFSET = 120;
 		const isFixed = window.scrollY > DEFAULT_OFFSET;
@@ -43,3 +41,5 @@ export const FixedSubheader = memo(
 		);
 	}
 );
+
+export default FixedSubheader;

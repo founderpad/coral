@@ -1,14 +1,12 @@
 import { StackLayout } from '@/components/layouts';
 import { useSocialLogin } from '@/hooks/auth';
-// import { Button, Icon } from '@chakra-ui/react';
 import { Provider } from '@nhost/nhost-js';
 import Router from 'next/router';
 import React, { memo, useCallback } from 'react';
 import { isIOS } from 'react-device-detect';
 import GoogleLogin from 'react-google-login';
-// import { IoLogoGithub } from 'react-icons/io5';
 
-export const SocialLogins = memo(() => {
+const SocialLogins = memo(() => {
 	const onLogin = useSocialLogin();
 
 	const onSocialLogin = useCallback(
@@ -64,47 +62,8 @@ export const SocialLogins = memo(() => {
 					uxMode="redirect"
 				/>
 			</div>
-			{/* <Button
-				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
-				rounded="none"
-				width={'200px'}
-				height="36px"
-				bg="black"
-				color="white"
-				fontSize="13px"
-				justifyContent="flex-start"
-				_hover={{ bg: 'black' }}
-				title="Sign in with GitHub"
-				onClick={() => onSocialLogin('github')}
-			>
-				Sign in with GitHub
-			</Button> */}
-			{/* </BoxLayout> */}
-			{/* <Button
-				leftIcon={<Icon as={IoLogoGithub} fontSize="x-large" />}
-				rounded="none"
-				width={'200px'}
-				height="36px"
-				bg="black"
-				color="white"
-				fontSize="13px"
-				justifyContent="flex-start"
-				_hover={{ bg: 'black' }}
-				title="Sign in with GitHub"
-				onClick={() => onSocialLogin('github')}
-			>
-				Sign in with GitHub
-			</Button> */}
-			{/* <div
-				className="fb-login-button"
-				data-width=""
-				data-size="medium"
-				data-button-type="login_with"
-				data-layout="default"
-				data-auto-logout-link="false"
-				data-use-continue-as="true"
-				onClick={() => onSocialLogin('facebook')}
-			></div> */}
 		</StackLayout>
 	);
 });
+
+export default SocialLogins;

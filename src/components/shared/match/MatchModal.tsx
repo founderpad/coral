@@ -1,7 +1,7 @@
 import { SubmitButton } from '@/components/buttons';
+import { MatchmakeSettingsForm } from '@/features/match/components';
 import { TMatchSettingsQuery } from '@/generated/api';
 import { useModalDrawer } from '@/hooks/util';
-import MatchmakeSettingsForm from '@/pages/match/components/MatchmakeSettingsForm';
 
 export const useMatchModal = (data: TMatchSettingsQuery, isInitial = false) => {
 	const { openModalDrawer, closeModalDrawer } = useModalDrawer();

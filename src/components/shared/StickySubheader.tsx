@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import React, { memo, useEffect, useState } from 'react';
 
-export const StickySubheader = memo(
+const StickySubheader = memo(
 	({ children }: { children: React.ReactNode; title?: string }) => {
 		const [fixed, setIsFixed] = useState(false);
 		const isSticky = window.scrollY >= 110;
@@ -36,3 +36,5 @@ export const StickySubheader = memo(
 		);
 	}
 );
+
+export default StickySubheader;

@@ -3,7 +3,7 @@ import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
 import { PageHtmlHead } from '@/components/shared';
-import ViewIdeaContainer from '../../../features/idea/viewidea/ViewIdeaContainer';
+import { ViewIdeaContainer } from '@/features/idea/viewidea';
 
 const ViewIdea: NextPage = () => {
 	const ideaId = useQueryParam('id');

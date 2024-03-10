@@ -2,7 +2,7 @@ import { BoxProps } from '@chakra-ui/layout';
 import { Box, StackProps } from '@chakra-ui/react';
 import { PageHeader } from '@/components/shared';
 import React from 'react';
-import { StackLayout } from './StackLayout';
+import { StackLayout } from '.';
 
 type Props = Omit<BoxProps, 'border'> & {
 	title?: string;
@@ -14,7 +14,7 @@ type Props = Omit<BoxProps, 'border'> & {
 	spacing?: StackProps['spacing'];
 };
 
-export const PageLayout = (props: Props) => {
+const PageLayout = (props: Props) => {
 	const {
 		fixedHeader,
 		title,
@@ -66,3 +66,5 @@ export const PageLayout = (props: Props) => {
 		</StackLayout>
 	);
 };
+
+export default PageLayout;

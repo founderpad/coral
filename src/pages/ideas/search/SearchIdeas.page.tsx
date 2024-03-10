@@ -1,10 +1,10 @@
-import SearchContentGridLayout from '@/components/layouts/SearchContentGridLayout';
+import { SearchContentGridLayout } from '@/components/layouts';
 import AuthFilter from '@/utils/AuthFilter';
 import React from 'react';
-import IdeasSearchForm from './components/IdeasSearchForm';
-import IdeasContainer from './IdeasContainer';
 import { NextPage } from 'next';
 import { PageHtmlHead } from '@/components/shared';
+import { IdeasContainer } from '@/features/idea/search';
+import { IdeasSearchForm } from '@/features/idea/components';
 
 const SearchIdeas: NextPage = () => (
 	<>

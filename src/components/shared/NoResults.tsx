@@ -18,26 +18,35 @@ interface Props {
  * @param param0
  * @returns
  */
-export const NoResults = ({
+const NoResults = ({
 	label = 'results',
 	back = true,
 	fontSize = 'sm'
-}: Props) => (
-	<BoxLayout
-		flex={1}
-		flexDirection="column"
-		justifyContent="center"
-		alignItems="center"
-		display="flex"
-	>
-		<Icon as={VscSearchStop} color="fpGrey.700" fontSize="x-large" mb={2} />
-		{typeof label === 'string' ? (
-			<SubheadingText fontSize={fontSize} color="fpGrey.700">
-				No {label ?? 'results'}
-			</SubheadingText>
-		) : (
-			label
-		)}
-		{back && <GoBackButton />}
-	</BoxLayout>
-);
+}: Props) => {
+	return (
+		<BoxLayout
+			flex={1}
+			flexDirection="column"
+			justifyContent="center"
+			alignItems="center"
+			display="flex"
+		>
+			<Icon
+				as={VscSearchStop}
+				color="fpGrey.700"
+				fontSize="x-large"
+				mb={2}
+			/>
+			{typeof label === 'string' ? (
+				<SubheadingText fontSize={fontSize} color="fpGrey.700">
+					No {label ?? 'results'}
+				</SubheadingText>
+			) : (
+				label
+			)}
+			{back && <GoBackButton />}
+		</BoxLayout>
+	);
+};
+
+export default NoResults;

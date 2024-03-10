@@ -3,8 +3,8 @@ import { PageHtmlHead } from '@/components/shared';
 import AuthFilter from '@/utils/AuthFilter';
 import { NextPage } from 'next';
 import React from 'react';
-import UsersSearchForm from './components/UsersSearchForm';
-import UsersContainer from './UsersContainer';
+import UsersSearchForm from '../../../features/users/search/components/UsersSearchForm';
+import UsersContainer from '../../../features/users/search/UsersContainer';
 
 const UsersSearch: NextPage = () => (
 	<>

@@ -3,7 +3,7 @@ import { useBoostedIdeasQuery } from '@/generated/api';
 import { useQueryParam } from '@/hooks/util';
 import { GridItem, SimpleGrid } from '@chakra-ui/react';
 import React from 'react';
-import OffsetPagination from '../search/OffsetPagination';
+import OffsetPagination from '../../../components/shared/OffsetPagination';
 import BoostedIdeaCard from './BoostedIdeaCard';
 
 const BoostedIdeasGridLayout = () => {

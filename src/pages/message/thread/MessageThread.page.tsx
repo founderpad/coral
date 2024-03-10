@@ -10,8 +10,8 @@ import { useQueryParam } from '@/hooks/util';
 import AuthFilter from '@/utils/AuthFilter';
 import { formatDate } from '@/utils/validators';
 import React from 'react';
-import WriteUserMessage from '../components/WriteUserMessage';
 import { Text } from '@chakra-ui/react';
+import { WriteUserMessage } from '@/features/message/components';
 
 const MessageThread = () => {
 	const threadId = useQueryParam<string>('id');
@@ -32,15 +32,6 @@ const MessageThread = () => {
 	const recipientUser = threadUsers?.users.find(
 		(tu) => tu.user.id !== user?.id
 	);
-
-	// const result = cache.readFragment({
-	// 	id: `message_thread:${threadId}`, // The value of the profile's cache id
-	// 	fragment: gql`
-	// 		fragment MessageThreadFragment on message_thread {
-	// 			id
-	// 		}
-	// 	`
-	// }) as any;
 
 	if (loading) return <Loading />;
 

@@ -1,10 +1,8 @@
-// import { formatStringObjArrayForUi } from '@/utils/validators';
 import { Tag } from '@chakra-ui/react';
 import { memo } from 'react';
 import { FlexLayout } from '../layouts';
 
-export const SkillsBadges = memo(({ skills }: { skills: string[] }) => {
-	// const skillsArr = formatStringObjArrayForUi(skills);
+const SkillsBadges = memo(({ skills }: { skills: string[] }) => {
 	return (
 		<FlexLayout flexWrap="wrap" direction="row" alignItems="center">
 			{skills?.map((skill) => (
@@ -15,3 +13,5 @@ export const SkillsBadges = memo(({ skills }: { skills: string[] }) => {
 		</FlexLayout>
 	);
 });
+
+export default SkillsBadges;

@@ -14,17 +14,19 @@ import { Tag, TagLeftIcon } from '@chakra-ui/react';
 import React, { useCallback, useState } from 'react';
 import { AiTwotoneThunderbolt } from 'react-icons/ai';
 import useIdea, { useIdeaFragment } from '../query/ideaQuery';
-import InterestedTotal from './InterestedTotal';
-import PublishedLabel from './PublishedLabel';
-import IdeaUpvote from '../upvote/IdeaUpvote';
+import IdeaUpvote from '../../upvote/IdeaUpvote';
 import { MobileCommentsList } from '@/features/comments/components';
+import {
+	InterestedTotal,
+	PublishedLabel
+} from '@/features/idea/viewidea/components';
 
 type TIdeaUpvote = Pick<
 	TIdeas | TIdea_Preview,
 	'votes' | 'votes_aggregate' | 'id' | 'name'
 >;
 
-export const IdeaTitleHeader = () => {
+const IdeaTitleHeader = () => {
 	const [showComments, setShowComments] = useState(false);
 	const isMobile = useMobile();
 

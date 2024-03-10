@@ -3,16 +3,18 @@ import { CancelButton } from '@/components/buttons';
 import { useModalDrawer } from '@/hooks/util';
 import React, { memo, useCallback } from 'react';
 
-export const ModalDrawerFooterActions = memo(
+interface ModalDrawerFooterActionsProps {
+	children: React.ReactNode;
+	noBtnLabel?: string;
+	showCancel?: boolean;
+}
+
+const ModalDrawerFooterActions = memo(
 	({
 		children,
 		noBtnLabel = 'Cancel',
 		showCancel = true
-	}: {
-		children: React.ReactNode;
-		noBtnLabel?: string;
-		showCancel?: boolean;
-	}) => {
+	}: ModalDrawerFooterActionsProps) => {
 		const { closeModalDrawer } = useModalDrawer();
 
 		const onClose = useCallback(() => {
@@ -39,3 +41,5 @@ export const ModalDrawerFooterActions = memo(
 		);
 	}
 );
+
+export default ModalDrawerFooterActions;

@@ -4,20 +4,16 @@ import { EditButton } from '@/components/buttons';
 import { FlexLayout } from '@/components/layouts';
 import React, { memo } from 'react';
 
-export const TitleEditAction = memo(
-	({
-		title,
-		subtitle,
-		onClick,
-		icon,
-		headerProps
-	}: {
-		title: string;
-		subtitle?: React.ReactNode;
-		onClick?: () => void;
-		icon?: IconProps;
-		headerProps?: HeadingProps;
-	}) => (
+interface TitleEditActionProps {
+	title: string;
+	subtitle?: React.ReactNode;
+	onClick?: () => void;
+	icon?: IconProps;
+	headerProps?: HeadingProps;
+}
+
+const TitleEditAction = memo(
+	({ title, subtitle, onClick, icon, headerProps }: TitleEditActionProps) => (
 		<FlexLayout
 			{...headerProps}
 			justifyContent="space-between"
@@ -65,3 +61,5 @@ export const TitleEditAction = memo(
 		</FlexLayout>
 	)
 );
+
+export default TitleEditAction;

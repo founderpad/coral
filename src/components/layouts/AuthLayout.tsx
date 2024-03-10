@@ -15,7 +15,6 @@ const AuthLayout = ({ header, children, headProps }: Props) => {
 	return (
 		<>
 			<PageHtmlHead {...headProps} />
-			{/* <div id="fb-root"></div> */}
 
 			<StackLayout
 				w={{ base: 'full', sm: '425px' }}

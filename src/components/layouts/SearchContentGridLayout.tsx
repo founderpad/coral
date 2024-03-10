@@ -1,6 +1,6 @@
 import { Grid, GridItem } from '@chakra-ui/layout';
 import React from 'react';
-import { StackLayout } from './StackLayout';
+import { StackLayout } from '.';
 
 interface SearchContentGridLayoutProps {
 	search: React.ReactNode;

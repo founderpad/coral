@@ -1,10 +1,10 @@
 import { FlexLayout } from '@/components/layouts';
 import { OverviewTag } from '@/components/shared';
 import React from 'react';
-import useIdea from '../query/ideaQuery';
+import useCachedIdea from '../query/ideaQuery';
 
-export const IdeaOverview = () => {
-	const { idea } = useIdea() ?? {};
+const IdeaOverview = () => {
+	const { idea } = useCachedIdea();
 
 	const { status, field, user } = idea ?? {};
 	const { address } = user ?? {};
@@ -15,7 +15,6 @@ export const IdeaOverview = () => {
 			css={{
 				'> *': {
 					marginRight: 8
-					// marginBottom: 8
 				}
 			}}
 		>

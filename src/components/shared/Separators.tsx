@@ -24,6 +24,5 @@ export const PointSeparator = ({
 );
 
 export const LineSeparator = (props?: DividerProps) => (
-	// <Box {...props} as="hr" />
 	<Divider {...props} orientation="vertical" />
 );

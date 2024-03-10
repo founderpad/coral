@@ -51,7 +51,6 @@ const upload = async (fileWithBucketId: FileWithBucketId) => {
 };
 
 export const useFileUploader = () => {
-	// const [fileUrls, setFileUrls] = useState<string[]>([]);
 	const { addNotification } = useNotification();
 
 	const uploadSingleFile = useMemo(

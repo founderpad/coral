@@ -32,14 +32,6 @@ const PayPalBoostIdeaForm = (idea: Partial<TIdeaPreviewFieldsFragment>) => {
 	const esteemPoints = useCurrentUser().esteemPointsCurrency?.points ?? 0;
 	const neededPoints = esteemPoints >= 1000 ? 0 : 1000 - esteemPoints;
 
-	// const [succeeded, setSucceeded] = useState(false);
-	// const [paypalErrorMessage, setPaypalErrorMessage] = useState('');
-	// const [orderID, setOrderID] = useState(false);
-	// const [billingDetails, setBillingDetails] = useState('');
-
-	// const FEES = 4.89 / 10;
-	// const TOTAL = FEES + 10 + 0.3 + 0.5;
-
 	// Creates a paypal order
 	const createOrder = (_data: any, actions: any) => {
 		return actions.order
@@ -65,15 +57,11 @@ const PayPalBoostIdeaForm = (idea: Partial<TIdeaPreviewFieldsFragment>) => {
 
 	const onApprove = (_data: any, actions: any) => {
 		return actions.order.capture().then(function (_details: any) {
-			// const { payer } = details;
-			// setBillingDetails(payer);
-			// setSucceeded(true);
 			updateModalDrawer({
 				body: <PaymentSuccessful />,
 				showHeader: false
 			});
 		});
-		// .catch((err) => setPaypalErrorMessage('Something went wrong.'));
 	};
 
 	return (

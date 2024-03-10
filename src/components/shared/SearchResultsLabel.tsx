@@ -4,14 +4,14 @@ import { useRouter } from 'next/router';
 import React, { memo } from 'react';
 import { PointSeparator } from './Separators';
 
-type TSearchResultsLabel = {
+interface TSearchResultsLabel {
 	pageSize: number;
 	limit: number;
 	total: number;
 	labelProps?: TextProps;
-};
+}
 
-export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
+const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 	const { pageSize, limit, total, labelProps } = props;
 	const page = useRouter().query.page;
 
@@ -36,3 +36,5 @@ export const SearchResultsLabel = memo((props: TSearchResultsLabel) => {
 		</Label>
 	);
 });
+
+export default SearchResultsLabel;

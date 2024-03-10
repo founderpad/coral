@@ -8,7 +8,7 @@ type Props = Pick<
 	'description' | 'team' | 'competitors' | 'additionalInformation'
 >;
 
-export const IdeaMainContent = (props: Props) => {
+const IdeaMainContent = (props: Props) => {
 	const { description, team, competitors, additionalInformation } = props;
 	return (
 		<StackLayout spacing={8}>
